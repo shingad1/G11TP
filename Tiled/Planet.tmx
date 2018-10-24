@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="Terrain.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztwwEJAAAMA6A9z/r3W46Dgr2kqqqqqqqqqqqq+vwAui+twA==
+   eJzt0bkRwCAMRUFcD/3X5tQ5I+QjAY032IToP9GP1joAAADAQ+dg9Z4vm8fdu3dE+yu2zLZW7aj4H9HN7zp2a4g2Z027NmQ9s77VO9+2ZG9VVN4OAAAAf3UBz93liA==
   </data>
  </layer>
 </map>
