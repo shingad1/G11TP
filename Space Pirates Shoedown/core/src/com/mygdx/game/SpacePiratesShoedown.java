@@ -3,17 +3,27 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class SpacePiratesShoedown extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	
+
+	private static OrthographicCamera cam; //Othographic view
+	public static int WIDTH;
+	public static int HEIGHT;
+
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+
+		//Gets the size of the screen from the desktop Launcher
+		WIDTH = Gdx.graphics.getWidth();
+		HEIGHT = Gdx.graphics.getHeight();
 	}
 
 	@Override
