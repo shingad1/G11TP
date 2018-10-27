@@ -10,6 +10,12 @@ public abstract class State {
     protected OrthographicCamera cam;
     protected Vector2 mouse;
     protected GameStateManager gsm; //sets the state of the game.
+    protected static final String ASSETS_PATH = "core/assets/";
+    /*
+        ASSETS_PATH: internal path to the assets folder
+        So any references made to images should be ASSETS_PATH + "<image name>.<extension>";
+        i.e. private Texture playButton = New Texture(ASSETS_PATH + "playbutton.png")
+     */
 
     protected State(GameStateManager gsm) {
         this.gsm = gsm;
