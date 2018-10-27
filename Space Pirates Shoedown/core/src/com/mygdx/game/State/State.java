@@ -1,4 +1,4 @@
-package State;
+package com.mygdx.game.State;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
@@ -12,9 +12,9 @@ public abstract class State {
     protected GameStateManager gsm; //sets the state of the game.
 
     protected State(GameStateManager gsm) {
-    this.gsm = gsm;
-    cam = new OrthographicCamera();
-    mouse = new Vector2();
+        this.gsm = gsm;
+        cam = new OrthographicCamera();
+        mouse = new Vector2();
     }
 
     protected abstract void handleInput(); //Handles the user input
