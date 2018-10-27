@@ -34,7 +34,7 @@ public class SpacePiratesShoedown extends ApplicationAdapter {
 		WIDTH = Gdx.graphics.getWidth();
 		HEIGHT = Gdx.graphics.getHeight();
 
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(1, 0, 0, 1); //wipes clear the screen clean, and sb redraws everything
 		gsm.push(new MenuState(gsm));
 
 	}
@@ -42,7 +42,7 @@ public class SpacePiratesShoedown extends ApplicationAdapter {
 	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//gsm.update(Gdx.graphics.getdeltatime());
+		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render(batch);
 
 	/*
