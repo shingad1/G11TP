@@ -20,8 +20,8 @@ public abstract class State {
     protected abstract void handleInput(); //Handles the user input
     public abstract void update(float dt);  //Handles the movement
     public abstract void render(SpriteBatch sb); //Draws on screen
-
-    }
+    public abstract void dispose(); //dispose of texture and other media to prevent memory leak
+}
 
 
 
