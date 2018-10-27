@@ -16,15 +16,12 @@ public class SpacePiratesShoedown extends ApplicationAdapter {
 	public static int HEIGHT;
 
 	private GameStateManager gsm;
-	private SpriteBatch batch;
+	private SpriteBatch batch; //should only have one of
 
 	/**
 	 States: Title, Create Player, Settings, Combat, Overworld, Inventory, Pause Menu
 	 */
-
-
 	public static String state = "title";
-
 
 	@Override
 	public void create () {
