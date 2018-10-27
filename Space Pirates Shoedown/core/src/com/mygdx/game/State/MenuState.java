@@ -33,7 +33,7 @@ public class MenuState extends State {
         //sb has to open and close, everything inside will be rendered
         sb.begin();
         sb.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight()); //Texture = background, x = 0, y = 0 (bottom-left of screen), width = width of screen, height = height of screen
-        sb.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() /2)),((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2)), 128, 128);
+        sb.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() /2)),((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2)), playButton.getWidth(), playButton.getHeight());
         sb.end();
     }
 
