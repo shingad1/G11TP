@@ -19,7 +19,6 @@ public class MenuScreen implements Screen {
     private Texture playButton;
     private OrthographicCamera gamecam; //what the view port displays
     private Viewport gameport;
-    private HudScene hud; //Adding a new hud, when a playscreen is created move this to there
 
     public MenuScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -28,7 +27,6 @@ public class MenuScreen implements Screen {
         playButton = new Texture(ASSETS_PATH + "playButton.png");
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
-        hud = new HudScene(game.batch); //instantiating the new hud
     }
 
     @Override
@@ -54,8 +52,6 @@ public class MenuScreen implements Screen {
         game.batch.draw(logo,0,Gdx.graphics.getHeight()-logo.getHeight(), 640, 399); //positioned at top centre of the screen
         game.batch.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() /2)),((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2)));
         game.batch.end();
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hdu should see
-        hud.stage.draw(); //actually drawing the graphics
     }
 
     @Override
