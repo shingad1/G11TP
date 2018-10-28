@@ -20,9 +20,11 @@ public class MenuScreen implements Screen {
     private OrthographicCamera gamecam; //what the view port displays
     private Viewport gameport;
     private HudScene hud; //Adding a new hud, when a playscreen is created move this to there
+    private GameScreensManager gsm;
 
-    public MenuScreen(SpacePiratesShoedown game){
+    public MenuScreen(SpacePiratesShoedown game, GameScreensManager gsm){
         this.game = game;
+        this.gsm = gsm;
         background = new Texture(ASSETS_PATH + "spacebackground.jpg");
         logo = new Texture(ASSETS_PATH + "transparentlogo.png");
         playButton = new Texture(ASSETS_PATH + "playButton.png");
@@ -34,6 +36,13 @@ public class MenuScreen implements Screen {
     @Override
     public void show() {
         
+    }
+
+    public void handleInput(){
+        if(Gdx.input.justTouched()){
+            gsm.setNewScreen(new PlayScreen(game, gsm));
+            dispose();
+        }
     }
 
     @Override
@@ -71,7 +80,9 @@ public class MenuScreen implements Screen {
     }
 
     @Override
-    public void dispose() {
-
+    public void dispose() { //disposes of the images so less memory is used
+        logo.dispose();
+        playButton.dispose();
+        background.dispose();
     }
 }
