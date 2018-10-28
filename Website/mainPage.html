@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="themeDef.css">
 	<title> SPACE PIRATE SHOE-DOWN!!!</title>
+	<link rel="stylesheet" type="text/css" href="themeDef.css">
+	<link rel="stylesheet" type="text/css" href="slideshow.css">
+	<script type="text/javascript" src="slideshowCtrl.js"> </script>
+	
 	<img src="images/logonobackground.png" class = "align-center">
 </head>
 <body>
-	<p> argh </p>
+	
+	<div class = "slideshow">
+		
+			<img src= "images/fakeImages/testimage1.jpg" style="width: 100%" class="slideImages">
+			<img src="images/fakeImages/testimage2.jpg" style="width: 100%" class="slideImages">
+			<img src="images/fakeImages/testimage3.jpg" style="width:100%" class="slideImages">
+		
+		<a class="prev" onclick="plusSlides(-1)">&#10094</a>
+		<a class="next" onclick="plusSlides(+1)">&#10095</a>
+	</div>
+
+	<div style="text-align: center">
+		<span class= "dot" onclick="currentSlide(1)"></span>
+		<span class = "dot" onclick="currentSlide(2)"></span>
+		<span class = "dot" onclick="currentSlide(3)"></span>
+	</div>
+
+	<div class="description">
+	<p> Intense</p>
+	<p>Game</p>
+	<p>Description</p>
+	<p>Here</p>
+	</div>
+
+	<div class = "buttonwrap">
+	<form method ="get" action="file.txt">
+	<button type="submit"> DOWNLOAD NOW</button>
+	</form>
+	</div>
+
 </body>
+
 </html>
