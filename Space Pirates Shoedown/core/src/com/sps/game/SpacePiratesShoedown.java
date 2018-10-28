@@ -6,10 +6,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.sps.game.Screens.MenuScreen;
 
 public class SpacePiratesShoedown extends Game {
-	SpriteBatch batch;
-	Texture img;
+	public SpriteBatch batch;
+	public Texture img;
 	
 	@Override
 	public void create () {
