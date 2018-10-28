@@ -1,0 +1,18 @@
+img 
+{
+	width: 600px;
+	height: 450px;
+}
+
+img.align-center
+{
+	display: block;
+	margin: 0px auto;
+}
+
+body{
+	background-image: url(images/spacebackground3.jpg);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-size: cover;
+}
