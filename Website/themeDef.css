@@ -11,8 +11,34 @@ img.align-center
 }
 
 body{
-	background-image: url(images/spacebackground3.jpg);
+	background-image: url(images/backgroundedit2.jpg);
 	background-repeat: no-repeat;
-	background-attachment: scroll;
+	background-attachment: fixed;
 	background-size: cover;
+}
+
+.description
+{
+	background-color: coral;
+	margin-left: 500px;
+	margin-right: 500px;
+	position: relative;
+}
+
+
+
+button
+{
+	
+	top: 50%;
+	left: 50%;
+	transform: translateX(+95%) ;
+	display: inline-block;
+	overflow: hidden;
+	font-weight: bold;
+	color: white;
+	background-color: rgb(66, 244, 86);
+	font-size: 60px;
+	padding: 30px;
+	margin: 80px;
 }
