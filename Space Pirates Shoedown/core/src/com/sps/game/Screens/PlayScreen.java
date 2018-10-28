@@ -14,7 +14,7 @@ import com.sps.game.SpacePiratesShoedown;
 
 public class PlayScreen implements Screen {
 
-    private static final String ASSETS_PATH = "core/assets/tiled assests/";
+    private static final String ASSETS_PATH = "core/assets/tiledassets/";
     private SpacePiratesShoedown game;
     private TmxMapLoader mapLoader;
     private TiledMap map;
@@ -22,11 +22,8 @@ public class PlayScreen implements Screen {
     private OrthographicCamera gamecam; //what the view port displays
     private Viewport gameport;
     private HudScene hud;
-    private GameScreensManager gsm;
-
-    public PlayScreen(SpacePiratesShoedown game, GameScreensManager gsm){
+    public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
-        this.gsm = gsm;
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
         hud = new HudScene(game.batch);
