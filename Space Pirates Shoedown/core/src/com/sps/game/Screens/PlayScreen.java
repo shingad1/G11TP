@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Scenes.HudScene;
@@ -24,8 +25,8 @@ public class PlayScreen implements Screen {
     private HudScene hud;
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
-        gamecam = new OrthographicCamera();
-        gameport = new ScreenViewport(gamecam);
+        gamecam = new OrthographicCamera(480,480);
+        gameport = new FitViewport(1600, 1600, gamecam);
         hud = new HudScene(game.batch);
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "HackMap.tmx"); //tmx file of map itself
@@ -39,7 +40,7 @@ public class PlayScreen implements Screen {
 
     public void handleInput(float dt){
         if(Gdx.input.isTouched()){
-            gamecam.position.x += 100 * dt; //temp, changes position of game cam
+            gamecam.position.x += 32; //temp, changes position of game cam
         }
     }
 
