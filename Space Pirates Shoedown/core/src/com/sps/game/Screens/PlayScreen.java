@@ -4,9 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -25,6 +28,11 @@ public class PlayScreen implements Screen {
     private HudScene hud;
     private Boolean buttonPressed = false; //Used to stop the player being able to input while an action is being taken
     private int tickCount = 0; //Used to break down an action into separate ticks
+
+    //Box2D Variables
+    private World world;
+    private Box2DDebugRenderer b2dr;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -34,6 +42,18 @@ public class PlayScreen implements Screen {
         map = mapLoader.load(ASSETS_PATH + "HackMap.tmx"); //tmx file of map itself
         renderer = new OrthogonalTiledMapRenderer(map); //renders the tmx file provided
         gamecam.position.set(464, 944, 0); //positions gamecam
+
+        world = new World(new Vector2(0, 0), true); //2nd param makes any 'not awake' object are not processed in collisions
+        b2dr = new Box2DDebugRenderer();
+
+        //need to change
+        BodyDef bdef = new BodyDef(); //for every object in the game, defines what body consists off, used in world
+        PolygonShape shape = new PolygonShape(); //used in fixture def
+        FixtureDef fdef = new FixtureDef(); //for every object in the game, used in bodydef
+        Body body;
+        for(MapObject object : map.getLayers().get(INDEX).getObjects().getByType(CLASS)){
+
+        }
     }
 
     @Override
@@ -57,7 +77,7 @@ public class PlayScreen implements Screen {
     //checks to see if any inputs are happening
     public void update(float dt){
         handleInput(dt);
-
+        //world.step(1/60f, 6,2);
         gamecam.update(); //update every iteration of the game cycle
         renderer.setView(gamecam); //renders only what the gamecam can see
     }
