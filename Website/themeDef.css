@@ -1,9 +1,9 @@
-.logo 
+#logo 
 {
 	width: 1280px;
 	height: 357px;
 	display: block;
-	margin: 100px auto;
+	margin: 0px auto;
 }
 
 body{

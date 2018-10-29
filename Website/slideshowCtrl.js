@@ -1,3 +1,5 @@
+<script>
+
 var slideIndex = 1;
 showSlides(slideIndex)
 
@@ -31,3 +33,11 @@ function showSlides(n)
 	dots[slideIndex-1].className += "active";
 }
 
+	window.onload = function(){
+				
+				var x = (screen.height / 2);
+				
+				$("#logo").css("margin-top", "500");
+				
+	}
+</script>
