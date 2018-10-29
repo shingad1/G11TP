@@ -32,8 +32,6 @@ public class PlayScreen implements Screen {
     private OrthographicCamera gamecam; //what the view port displays
     private Viewport gameport;
     private HudScene hud;
-    private Boolean buttonPressed = false; //Used to stop the player being able to input while an action is being taken
-    private int tickCount = 0; //Used to break down an action into separate ticks
 
     //Box2D Variables
     private World world;
@@ -98,17 +96,7 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt){
-        if(Gdx.input.isTouched() && !(buttonPressed)){
-
-            buttonPressed = true;
-        }
-        if (buttonPressed && tickCount < 16){
-            gamecam.position.x += 2; //temp, changes position of game cam
-            tickCount++;
-        } else {
-            buttonPressed = false;
-            tickCount = 0;
-        }
+        controller.action(gamecam); //This resolves any actions the user inputs, does nothing if nothing inputed
     }
 
     //checks to see if any inputs are happening
