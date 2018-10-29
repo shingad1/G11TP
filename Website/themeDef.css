@@ -1,13 +1,9 @@
-img 
+.logo 
 {
 	width: 1280px;
 	height: 357px;
-}
-
-img.align-center
-{
 	display: block;
-	margin: 0px auto;
+	margin: 100px auto;
 }
 
 body{

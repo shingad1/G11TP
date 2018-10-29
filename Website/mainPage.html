@@ -4,11 +4,13 @@
 	<title> SPACE PIRATE SHOE-DOWN!!!</title>
 	<link rel="stylesheet" type="text/css" href="themeDef.css">
 	<link rel="stylesheet" type="text/css" href="slideshow.css">
-	<script type="text/javascript" src="slideshowCtrl.js"> </script>
-	
-	<img src="images/logonobackground.png" class = "align-center">
+	<script type="text/javascript" src="slideshowCtrl.js"></script>
 </head>
 <body>
+
+	<div class = "logo">
+		<img src="images/logonobackground.png" class = "align-center">
+	</div>
 	
 	<div class = "slideshow">
 		
@@ -38,6 +40,16 @@
 	<button type="submit"> DOWNLOAD NOW</button>
 	</form>
 	</div>
+	
+	<script>
+	window.onload = function(){
+				
+				var x = (screen.height / 2);
+				
+				$("logo").css("margin-top", x);
+				
+	}
+	</script>
 
 </body>
 
