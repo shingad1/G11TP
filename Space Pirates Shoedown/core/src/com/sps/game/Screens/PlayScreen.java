@@ -5,9 +5,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -39,7 +41,7 @@ public class PlayScreen implements Screen {
         gameport = new FitViewport(1600, 1600, gamecam);
         hud = new HudScene(game.batch);
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load(ASSETS_PATH + "HackMap.tmx"); //tmx file of map itself
+        map = mapLoader.load(ASSETS_PATH + "testMap.tmx"); //tmx file of map itself;    HackMap.tmx
         renderer = new OrthogonalTiledMapRenderer(map); //renders the tmx file provided
         gamecam.position.set(464, 944, 0); //positions gamecam
 
@@ -51,8 +53,25 @@ public class PlayScreen implements Screen {
         PolygonShape shape = new PolygonShape(); //used in fixture def
         FixtureDef fdef = new FixtureDef(); //for every object in the game, used in bodydef
         Body body;
-        for(MapObject object : map.getLayers().get(INDEX).getObjects().getByType(CLASS)){
+            for(MapObject object : map.getLayers().get(1).getObjects().getByType(RectangleMapObject.class)){
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                bdef.type = BodyDef.BodyType.StaticBody;
+                bdef.position.set(rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2);
+                body = world.createBody(bdef);
+                shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+                fdef.shape = shape;
+                body.createFixture(fdef);
+            }
 
+            //for house
+        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject)object).getRectangle();
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set(rect.getX()+rect.getWidth()/2, rect.getY() + rect.getHeight() /2);
+            body = world.createBody(bdef);
+            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            fdef.shape = shape;
+            body.createFixture(fdef);
         }
     }
 
@@ -88,6 +107,8 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
+
+        b2dr.render(world, gamecam.combined);
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
     }
