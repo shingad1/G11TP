@@ -23,6 +23,8 @@ public class PlayScreen implements Screen {
     private OrthographicCamera gamecam; //what the view port displays
     private Viewport gameport;
     private HudScene hud;
+    private Boolean buttonPressed = false; //Used to stop the player being able to input while an action is being taken
+    private int tickCount = 0; //Used to break down an action into separate ticks
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -31,7 +33,7 @@ public class PlayScreen implements Screen {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "HackMap.tmx"); //tmx file of map itself
         renderer = new OrthogonalTiledMapRenderer(map); //renders the tmx file provided
-        gamecam.position.set(gameport.getWorldWidth() / 2, gameport.getWorldHeight() / 2, 0); //positions gamecam
+        gamecam.position.set(464, 944, 0); //positions gamecam
     }
 
     @Override
@@ -39,8 +41,16 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt){
-        if(Gdx.input.isTouched()){
-            gamecam.position.x += 32; //temp, changes position of game cam
+        if(Gdx.input.isTouched() && !(buttonPressed)){
+
+            buttonPressed = true;
+        }
+        if (buttonPressed && tickCount < 16){
+            gamecam.position.x += 2; //temp, changes position of game cam
+            tickCount++;
+        } else {
+            buttonPressed = false;
+            tickCount = 0;
         }
     }
 
