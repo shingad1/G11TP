@@ -56,7 +56,7 @@ public class PlayerController extends InputAdapter {
                     }
                     break;
                 case Input.Keys.LEFT:
-                    collisionX = collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)((player.getY()+32 /2)/tiledHeight)).getTile().getProperties().containsKey("blocked");
+                    collisionX = collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
                     if(collisionX){
                         player.getVelocity().y = 0;
                     }
@@ -65,7 +65,7 @@ public class PlayerController extends InputAdapter {
                     }
                     break;
                 case Input.Keys.RIGHT:
-                    collisionX = collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)((player.getY() +32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
+                    collisionX = collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
                     if(collisionX){
                         player.getVelocity().x = 0;
                     }
