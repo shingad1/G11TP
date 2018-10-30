@@ -53,7 +53,7 @@ public class PlayScreen implements Screen {
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx"); //tmx file of map itself;    HackMap.tmx
         renderer = new OrthogonalTiledMapRenderer(map); //renders the tmx file provided
         gamecam.position.set(240, 1600-240, 0); //positions gamecam, subject to change
-        player = new Texture(ASSETS_PATH + "tempCharacter.png");
+        player = new Texture(ASSETS_PATH + "temp32Character.png");
         batch = new SpriteBatch();
         p = new Player(240,1600-240); //subject to change
         controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1));
@@ -119,7 +119,7 @@ public class PlayScreen implements Screen {
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-        batch.draw(player, p.getX(),p.getY(), 140, 110); //may want to create a settings class
+        batch.draw(player, p.getX() - 16,p.getY()-16); //may want to create a settings class
         batch.end();
     }
 
