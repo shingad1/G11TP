@@ -20,14 +20,6 @@ public class PlayerController extends InputAdapter {
     public PlayerController(Player p, TiledMapTileLayer collisionLayer){
         this.player = p;
         this.collisionLayer = collisionLayer;
-
-        for (int x=0; x < collisionLayer.getWidth(); x++) {
-            for (int y = 0; y < collisionLayer.getHeight(); y++) {
-                if (collisionLayer.getCell(x, y).getTile().getProperties().containsKey("blocked")) {
-                    System.out.println(String.format("Cell %d, %d is blocked", x, y));
-                }
-            }
-        }
     }
 
     @Override
@@ -45,18 +37,9 @@ public class PlayerController extends InputAdapter {
                 case Input.Keys.DOWN:
                     //checks the bottom middle
                     //if (player.getVelocity().y < 0) {
-                    int tileX = (int) (player.getX() / tiledWidth);
-                    int tileY = (int) ((player.getY() - 32) / tiledHeight);
-                    TiledMapTileLayer.Cell cell = collisionLayer.getCell(tileX, tileY);
-                    TiledMapTile tile = cell.getTile();
-                    for (Iterator<String> itKey = tile.getProperties().getKeys(); itKey.hasNext(); ) {
-                        System.out.println(String.format("Layer %s, tile (x: %d, y: %d), cell %d, property %s", collisionLayer.getName(), tileX, tileY, tile.getId(), itKey.next()));
-                    }
-                    collisionY = tile.getProperties().containsKey("blocked");
+                    collisionY = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int) ((player.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
                        if(collisionY) {
-
                            player.getVelocity().y = 0;
-                           collisionY = true;
                        }
                       else{
                            //maybe make y = oldY
