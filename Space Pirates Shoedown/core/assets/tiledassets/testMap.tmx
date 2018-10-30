@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
  <tileset firstgid="1" source="Tiles5.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJztwwEJAAAMBKHL9P3DLcdAwVVTVVVVVVVVVVXV5w/k+uhY
   </data>
  </layer>
- <layer id="2" name="Trees" width="50" height="50">
+ <layer id="8" name="Tree" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt2sEKRlAQQOF5LbZsef/HobglWVAjZ3S+UvPv3JzU/ImI6Narj03FuRnWayw8H88177+nYnO7//O5qmn3fzxjRefnUpVdsdgVi12x2BWLXbHYFYtdsVx1lbEj35W9p2fuyE9k7+lZ+/JTb+3pVfm+YrErFrtisSsWu2KxKxa7YrErFrtisSsWu2L5c1eVZ8J3R6T/Rb+eF/AUdMY=
-  </data>
- </layer>
- <layer id="3" name="House" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJztzzESgkAURMHdE4MhEIKhEgq3ZS5AZGB9q7vq5TOtAQDcG3prY3r0Xy/5zpT9c1qK/1izf0vP4j9e2f9Oe/Efn+w/0ln8BwAAAAAAAPyLC7g2B8w=
+   eJzt1yEOgDAMQNFea0jAsvsfhxkMtkta8cRL3ZL1q46IOJaxaZ5FruXeOKv+8e3xWWZidunR5Z1sjy7vVO9RDz300EMPPfTQo8se9djbwz3Y4x7M3oH/WfUPAAAAAACo9AI8s4RN
   </data>
  </layer>
 </map>

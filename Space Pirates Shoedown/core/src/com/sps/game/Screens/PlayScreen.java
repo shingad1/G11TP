@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -55,7 +56,7 @@ public class PlayScreen implements Screen {
         player = new Texture(ASSETS_PATH + "tempCharacter.png");
         batch = new SpriteBatch();
         p = new Player(240,1600-240); //subject to change
-        controller = new PlayerController(p);
+        controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1));
         /*
         world = new World(new Vector2(0, 0), true); //2nd param makes any 'not awake' object are not processed in collisions
         b2dr = new Box2DDebugRenderer();
