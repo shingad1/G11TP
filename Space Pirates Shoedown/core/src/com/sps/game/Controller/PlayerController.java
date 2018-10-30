@@ -48,13 +48,30 @@ public class PlayerController extends InputAdapter {
                     //}
                     break;
                 case Input.Keys.UP:
-                    player.getVelocity().y = 4;
+                    collisionY = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
+                    if(collisionY){
+                        player.getVelocity().y = 0;
+                    }else {
+                        player.getVelocity().y = 4;
+                    }
                     break;
                 case Input.Keys.LEFT:
-                    player.getVelocity().x = -4;
+                    collisionX = collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)((player.getY()+32 /2)/tiledHeight)).getTile().getProperties().containsKey("blocked");
+                    if(collisionX){
+                        player.getVelocity().y = 0;
+                    }
+                    else {
+                        player.getVelocity().x = -4;
+                    }
                     break;
                 case Input.Keys.RIGHT:
-                    player.getVelocity().x = 4;
+                    collisionX = collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)((player.getY() +32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
+                    if(collisionX){
+                        player.getVelocity().x = 0;
+                    }
+                    else {
+                        player.getVelocity().x = 4;
+                    }
                     break;
             }
             tickCount = 1;
