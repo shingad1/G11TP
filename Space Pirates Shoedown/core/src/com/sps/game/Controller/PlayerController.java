@@ -36,7 +36,6 @@ public class PlayerController extends InputAdapter {
 
                 case Input.Keys.DOWN:
                     //checks the bottom middle
-                    //if (player.getVelocity().y < 0) {
                     collisionY = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int) ((player.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
                        if(collisionY) {
                            player.getVelocity().y = 0;

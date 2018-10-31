@@ -4,7 +4,7 @@ import com.badlogic.gdx.Screen;
 
 public class CombatScreen implements Screen {
 
-    
+
 
     @Override
     public void show() {

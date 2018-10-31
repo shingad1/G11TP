@@ -11,7 +11,6 @@ public class SpacePiratesShoedown extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		//img = new Texture("badlogic.jpg");
 		setScreen(new MenuScreen(this));
 	}
 

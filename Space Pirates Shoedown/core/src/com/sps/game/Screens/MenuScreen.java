@@ -46,7 +46,6 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClearColor(1, 0, 0, 1); //for the alpha
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); //actually clears the screen
         handleInput();
-        //game.batch.setProjectionMatrix(gamecam.combined);//render only what the camera can see
         game.batch.begin();
         game.batch.draw(background,-((background.getWidth() - Gdx.graphics.getWidth())/2),Gdx.graphics.getHeight() - background.getHeight()); //Texture = background, x = centre of image to center of screen, y = top of image to top of screen
         game.batch.draw(logo,0,Gdx.graphics.getHeight()-logo.getHeight(), 640, 399); //positioned at top centre of the screen

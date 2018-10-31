@@ -57,36 +57,6 @@ public class PlayScreen implements Screen {
         batch = new SpriteBatch();
         p = new Player(256,1600-256); //subject to change
         controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1));
-        /*
-        world = new World(new Vector2(0, 0), true); //2nd param makes any 'not awake' object are not processed in collisions
-        b2dr = new Box2DDebugRenderer();
-
-        //need to change
-        BodyDef bdef = new BodyDef(); //for every object in the game, defines what body consists off, used in world
-        PolygonShape shape = new PolygonShape(); //used in fixture def
-        FixtureDef fdef = new FixtureDef(); //for every object in the game, used in bodydef
-        Body body;
-            for(MapObject object : map.getLayers().get(1).getObjects().getByType(RectangleMapObject.class)){
-                Rectangle rect = ((RectangleMapObject) object).getRectangle();
-                bdef.type = BodyDef.BodyType.StaticBody;
-                bdef.position.set(rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2);
-                body = world.createBody(bdef);
-                shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
-                fdef.shape = shape;
-                body.createFixture(fdef);
-            }
-
-            //for house
-        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject)object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(rect.getX()+rect.getWidth()/2, rect.getY() + rect.getHeight() /2);
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
-        */
     }
 
     @Override
@@ -102,7 +72,6 @@ public class PlayScreen implements Screen {
     //checks to see if any inputs are happening
     public void update(float dt){
         handleInput(dt);
-        //world.step(1/60f, 6,2); //affects how 2 bodies react during a collision; 60 times a second
         gamecam.update(); //update every iteration of the game cycle
         renderer.setView(gamecam); //renders only what the gamecam can see
     }
@@ -114,7 +83,6 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
 
-//      //b2dr.render(world, gamecam.combined);
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
