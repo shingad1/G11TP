@@ -10,14 +10,46 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 
+/**
+ * This class sets-up the Menu Screen with the relevant images.
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia.
+ * @version 1.0
+ */
+
 public class MenuScreen implements Screen {
 
+    /**
+     * Constant field to direct where the file is located.
+     */
     private static final String ASSETS_PATH = "core/assets/";
+    /**
+     * Holds a version of the game.
+     * @see #handleInput #render
+     */
     private SpacePiratesShoedown game;
+    /**
+     * Holds background image for the Menu Screen.
+     * @see #render #dispose
+     */
     private Texture background;
+    /**
+     * Holds the logo of the game, for the Menu Screen.
+     * @see #render #dispose
+     */
     private Texture logo;
+    /**
+     * Holds the play button, to allow the user transition to the play screen.
+     * @see #render #dispose
+     */
     private Texture playButton;
-    private OrthographicCamera gamecam; //what the view port displays
+    /**
+     * Holds what the view port will display
+     */
+    private OrthographicCamera gamecam;
+    /**
+     * Displays what the user will see
+     * @see #resize
+     */
     private Viewport gameport;
 
     public MenuScreen(SpacePiratesShoedown game){
@@ -34,6 +66,9 @@ public class MenuScreen implements Screen {
         
     }
 
+    /**
+     * Checks to see if the user has touched the screen and displays the play screen.
+     */
     public void handleInput(){
         if(Gdx.input.justTouched()){
             game.setScreen(new PlayScreen(game));
@@ -41,6 +76,10 @@ public class MenuScreen implements Screen {
         }
     }
 
+    /**
+     * Displays the different textures onto the screen.
+     * @param <code>float</code> delta.
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 0, 0, 1); //for the alpha
@@ -53,6 +92,11 @@ public class MenuScreen implements Screen {
         game.batch.end();
     }
 
+    /**
+     * Changes the size of the ViewPort.
+     * @param <code>width</code>
+     * @param <code>height</code>
+     */
     @Override
     public void resize(int width, int height) {
         gameport.update(width, height);
@@ -73,8 +117,11 @@ public class MenuScreen implements Screen {
 
     }
 
+    /**
+     * Diposes the images so less memory is used.
+     */
     @Override
-    public void dispose() { //disposes of the images so less memory is used
+    public void dispose() {
         logo.dispose();
         playButton.dispose();
         background.dispose();

@@ -23,25 +23,70 @@ import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.Player;
 
+/**
+ * This class launches the play screen, from where the play last left off.
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * @version 1.0
+ */
+
 public class PlayScreen implements Screen {
 
+    /**
+     * Constant field to direct where the file is located.
+     */
     private static final String ASSETS_PATH = "core/assets/tiledassets/";
+    /**
+     * Holds a version of the game.
+     * @see #handleInput #render
+     */
     private SpacePiratesShoedown game;
+    /**
+     * Holds the tmx file.
+     */
     private TmxMapLoader mapLoader;
+    /**
+     * Displays the tmx file.
+     */
     private TiledMap map;
+    /**
+     * Sets the view and displays it to the screen.
+     * @see #update #render
+     */
     private OrthogonalTiledMapRenderer renderer;
-    private OrthographicCamera gamecam; //what the view port displays
+    /**
+     * Holds what the view port will display.
+     * @see #handleInput #update #render
+     */
+    private OrthographicCamera gamecam;
+    /**
+     * Displays what the user will see.
+     */
     private Viewport gameport;
+    /**
+     * Holds instance of the HudScene class, which displays vital information to the user.
+     * @see #render
+     */
     private HudScene hud;
 
-    //Box2D Variables
-    private World world;
-    private Box2DDebugRenderer b2dr;
-
-    //Adding a sprite
+    /**
+     * Holds all the sprites that will be displayed on the sreen.
+     * @see #render
+     */
     private SpriteBatch batch;
+    /**
+     * Holds the texture showing the player.
+     * @see #render
+     */
     private Texture player;
+    /**
+     * Creates instance of the player, which holds the logic of the player.
+     * @see #render
+     */
     private Player p;
+    /**
+     * Resolves any actions the user inputs, does nothing if nothing inputed.
+     * @see #handleInput
+     */
     private PlayerController controller;
 
     public PlayScreen(SpacePiratesShoedown game){
@@ -59,23 +104,36 @@ public class PlayScreen implements Screen {
         controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1));
     }
 
+    /**
+     * Spcifies which controller will be used to check the input.
+     */
     @Override
     public void show() {
-        //specify which controller to use
         Gdx.input.setInputProcessor(controller);
     }
 
+    /**
+     *
+     * @param <code>float</code>dt
+     */
     public void handleInput(float dt){
-        controller.action(gamecam); //This resolves any actions the user inputs, does nothing if nothing inputed
+        controller.action(gamecam);
     }
 
-    //checks to see if any inputs are happening
+    /**
+     * Checks to see if any inputs are happening, and sets the gamecam.
+     * @param <code>float</code> dt.
+     */
     public void update(float dt){
         handleInput(dt);
-        gamecam.update(); //update every iteration of the game cycle
-        renderer.setView(gamecam); //renders only what the gamecam can see
+        gamecam.update();
+        renderer.setView(gamecam);
     }
 
+    /**
+     * Clears the screen and draws the necessary textures.
+     * @param <code>float</code>delta
+     */
     @Override
     public void render(float delta) {
         update(delta); //render method keeps getting called
@@ -113,6 +171,7 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        //dispose map?
+        //dispose player?
     }
 }

@@ -10,14 +10,34 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * This class contains the different labels with the information need for the player.
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * @version 1.0
+ */
+
 public class HudScene  {
-    public Stage stage; //Creates a stage where graphics can be drawn on
-    private Viewport viewport; //Sets up a separate camera for the HUD so that the hud stays stationary
+    /**
+     * Creates a stage where graphics can be drawn on.
+     */
+    public Stage stage;
+    /**
+     * Sets up a separate camera for the HUD so that the hud stays stationary.
+     */
+    private Viewport viewport;
+    /**
+     * Temporary variable used for example, placeholder for the player's real gold.
+     */
+    private Integer gold;
 
-    private Integer gold; //Temporary variable used for example, placeholder for the player's real gold
-
-    Label goldLabel; //A label that will say "Gold"
-    Label goldCountLabel; //A label that displays the value of the gold variable
+    /**
+     * Label that will display the value 'Gold'.
+     */
+    Label goldLabel;
+    /**
+     * Label that displays the value of the gold variable.
+     */
+    Label goldCountLabel;
 
     public HudScene(SpriteBatch sb){
         gold = 100;

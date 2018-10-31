@@ -2,8 +2,13 @@ package com.sps.game.Screens;
 
 import com.badlogic.gdx.Screen;
 
-public class CombatScreen implements Screen {
+/**
+ * This class creates the combat screen, which is shown when the player fights with an enemy.
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * @version 1.0
+ */
 
+public class CombatScreen implements Screen {
 
 
     @Override

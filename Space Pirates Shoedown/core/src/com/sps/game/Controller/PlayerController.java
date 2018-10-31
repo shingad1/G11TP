@@ -10,11 +10,32 @@ import com.sps.game.Sprites.Player;
 import java.lang.Math;
 import java.util.Iterator;
 
-public class PlayerController extends InputAdapter {
+/**
+ * This class creates a controller for the player which checks for any collisions and allows the player to move
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * @version 1.0
+ */
 
+public class PlayerController extends InputAdapter {
+    /**
+     * Creates instance of the player, which holds the logic of the player to control it.
+     * @see #keyDown #action
+     */
     private Player player;
-    private int keyPressed; //used to track button presses
-    private int tickCount; //used to regulate actions
+    /**
+     * Tracks the button pressed.
+     * @see #keyDown
+     */
+    private int keyPressed;
+    /**
+     * Used to regulare actions.
+     * @see #keyDown #action
+     */
+    private int tickCount;
+    /**
+     * Holds which layer of the TiledMap contains objects that the user can not pass through.
+     * @see #keyDown
+     */
     private TiledMapTileLayer collisionLayer;
 
     public PlayerController(Player p, TiledMapTileLayer collisionLayer){
@@ -22,6 +43,12 @@ public class PlayerController extends InputAdapter {
         this.collisionLayer = collisionLayer;
     }
 
+    /**
+     * Checks to see what the user inputs, then performs a check to see if it can move there, then moves if the user can
+     * otherwise it remains where it was.
+     * @param <code>int</code>keycode
+     * @return <code>Boolean</code>
+     */
     @Override
     public boolean keyDown(int keycode) {
         boolean collisionY = false;
@@ -79,6 +106,10 @@ public class PlayerController extends InputAdapter {
         return false; //if input event was absorbed
     }
 
+    /**
+     *
+     * @param <code>OrthographicCamera</code>camera
+     */
     public void action(OrthographicCamera camera) {
         if (tickCount <= 8 && tickCount != 0) { //regulates the amount the player moves so the player moves 1 tile at a time but isn't too fast
             tickCount++;
