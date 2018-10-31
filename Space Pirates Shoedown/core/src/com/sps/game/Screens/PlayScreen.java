@@ -52,10 +52,10 @@ public class PlayScreen implements Screen {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx"); //tmx file of map itself;    HackMap.tmx
         renderer = new OrthogonalTiledMapRenderer(map); //renders the tmx file provided
-        gamecam.position.set(240, 1600-240, 0); //positions gamecam, subject to change
+        gamecam.position.set(256, 1600-256, 0); //positions gamecam, subject to change
         player = new Texture(ASSETS_PATH + "temp32Character.png");
         batch = new SpriteBatch();
-        p = new Player(240,1600-240); //subject to change
+        p = new Player(256,1600-256); //subject to change
         controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1));
         /*
         world = new World(new Vector2(0, 0), true); //2nd param makes any 'not awake' object are not processed in collisions
@@ -115,11 +115,11 @@ public class PlayScreen implements Screen {
         renderer.render();
 
 //      //b2dr.render(world, gamecam.combined);
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
+        batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-        batch.draw(player, p.getX() - 16,p.getY()-16); //may want to create a settings class
+        batch.draw(player, p.getX(),p.getY(), 32, 32); //may want to create a settings class
         batch.end();
     }
 

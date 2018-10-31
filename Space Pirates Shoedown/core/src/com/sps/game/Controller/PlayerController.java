@@ -82,15 +82,15 @@ public class PlayerController extends InputAdapter {
 
     public void action(OrthographicCamera camera) {
         if (tickCount <= 8 && tickCount != 0) { //regulates the amount the player moves so the player moves 1 tile at a time but isn't too fast
+            tickCount++;
             player.move(0, Math.round(player.getVelocity().y));
             player.move(Math.round(player.getVelocity().x), 0);
-            if (!((player.getY() - 4 < 240) || (player.getY() + 4 > (1600 - 240)))) {
-                camera.position.y += Math.round(player.getVelocity().y);
-            }
-            if (!((player.getX() - 4 < 240) || (player.getX() + 4 > (1600 - 240)))) {
+            //if ((player.getX() + player.getVelocity().x > 257) && (player.getX() + player.getVelocity().x < (1600 - 257))){
                 camera.position.x += Math.round(player.getVelocity().x);
-            }
-            tickCount++;
+            //}
+            //if ((player.getY() + player.getVelocity().y > 257) && (player.getY() + player.getVelocity().y < (1600 - 257))) {
+                camera.position.y += Math.round(player.getVelocity().y);
+            //}
         } else {
             tickCount = 0;
             player.getVelocity().x = 0;
