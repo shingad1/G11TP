@@ -85,12 +85,12 @@ public class PlayerController extends InputAdapter {
             tickCount++;
             player.move(0, Math.round(player.getVelocity().y));
             player.move(Math.round(player.getVelocity().x), 0);
-            //if ((player.getX() + player.getVelocity().x > 257) && (player.getX() + player.getVelocity().x < (1600 - 257))){
-                camera.position.x += Math.round(player.getVelocity().x);
-            //}
-            //if ((player.getY() + player.getVelocity().y > 257) && (player.getY() + player.getVelocity().y < (1600 - 257))) {
-                camera.position.y += Math.round(player.getVelocity().y);
-            //}
+            if ((player.getX() + player.getVelocity().x >= 256) && (player.getX() + player.getVelocity().x <= (1600 - 256))){
+                camera.position.x = player.getX();
+            }
+            if ((player.getY() + player.getVelocity().y >= 256) && (player.getY() + player.getVelocity().y <= (1600 - 256))) {
+                camera.position.y = player.getY();
+            }
         } else {
             tickCount = 0;
             player.getVelocity().x = 0;
