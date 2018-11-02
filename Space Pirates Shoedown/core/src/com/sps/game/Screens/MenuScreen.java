@@ -118,7 +118,7 @@ public class MenuScreen implements Screen {
     }
 
     /**
-     * Diposes the images so less memory is used.
+     * Disposes the images so less memory is used.
      */
     @Override
     public void dispose() {
