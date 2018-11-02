@@ -118,6 +118,12 @@ public class PlayScreen implements Screen {
      */
     public void handleInput(float dt){
         controller.action(gamecam);
+        if(controller.getEntered()){
+            dispose();
+            map = mapLoader.load(ASSETS_PATH + "TestBattleScene.tmx");
+            renderer = new OrthogonalTiledMapRenderer(map);
+            controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1));
+        }
     }
 
     /**
@@ -169,9 +175,12 @@ public class PlayScreen implements Screen {
 
     }
 
+    /**
+     * Disposes the images so less memory is used.
+     */
     @Override
     public void dispose() {
-        //dispose map?
-        //dispose player?
+       map.dispose();
+       //player.dispose();
     }
 }

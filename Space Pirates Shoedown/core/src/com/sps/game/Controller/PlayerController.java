@@ -38,6 +38,11 @@ public class PlayerController extends InputAdapter {
      */
     private TiledMapTileLayer collisionLayer;
 
+    /**
+     *
+     */
+    private boolean entered;
+
     public PlayerController(Player p, TiledMapTileLayer collisionLayer){
         this.player = p;
         this.collisionLayer = collisionLayer;
@@ -74,6 +79,7 @@ public class PlayerController extends InputAdapter {
                     //}
                     break;
                 case Input.Keys.UP:
+                    entered = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("enter");
                     collisionY = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
                     if(collisionY){
                         player.getVelocity().y = 0;
@@ -126,5 +132,13 @@ public class PlayerController extends InputAdapter {
             player.getVelocity().x = 0;
             player.getVelocity().y = 0;
         }
+    }
+
+    public boolean getEntered(){
+        return entered;
+    }
+
+    public void changeCollisionLayer(TiledMapTileLayer newLayer){
+        collisionLayer = newLayer;
     }
 }

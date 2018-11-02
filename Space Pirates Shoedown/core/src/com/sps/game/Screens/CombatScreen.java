@@ -1,5 +1,6 @@
 package com.sps.game.Screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 
 /**
@@ -10,7 +11,11 @@ import com.badlogic.gdx.Screen;
 
 public class CombatScreen implements Screen {
 
+    private Game game;
 
+    public CombatScreen(Game game){
+        this.game = game;
+    }
     @Override
     public void show() {
 
