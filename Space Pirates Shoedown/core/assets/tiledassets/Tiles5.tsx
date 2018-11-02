@@ -96,6 +96,11 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
+ <tile id="55">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
  <tile id="56">
   <properties>
    <property name="blocked" value="true"/>

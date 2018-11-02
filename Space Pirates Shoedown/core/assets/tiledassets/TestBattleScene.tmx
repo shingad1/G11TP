@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="11" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
  <tileset firstgid="1" source="Terrain.tsx"/>
  <tileset firstgid="1025" source="Tiles5.tsx"/>
- <layer id="1" name="Ground" width="10" height="10">
+ <layer id="1" name="Ground" width="11" height="11">
   <data encoding="base64" compression="zlib">
-   eJx7w8jA8GYUDxoMABI7XJU=
+   eJxjYCANvGEkjEfV0kctsQAAfuBK/g==
   </data>
  </layer>
- <layer id="2" name="CollisionLayer" width="10" height="10">
+ <layer id="2" name="CollisionLayer" width="11" height="11">
   <data encoding="base64" compression="zlib">
-   eJxzYmFgcBrFgwYDAJSrG1k=
+   eJyzYGFgsCABOxGBR9XSRy2xGAANeh+H
   </data>
  </layer>
 </map>
