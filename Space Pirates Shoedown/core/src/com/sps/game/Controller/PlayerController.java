@@ -17,6 +17,9 @@ import java.util.Iterator;
  */
 
 public class PlayerController extends InputAdapter {
+
+    private int[] xbounds;
+    private int[] ybounds;
     /**
      * Creates instance of the player, which holds the logic of the player to control it.
      * @see #keyDown #action
@@ -43,9 +46,16 @@ public class PlayerController extends InputAdapter {
      */
     private boolean entered;
 
-    public PlayerController(Player p, TiledMapTileLayer collisionLayer){
+    public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound){
         this.player = p;
         this.collisionLayer = collisionLayer;
+        xbounds = new int[2];
+        ybounds = new int[2];
+        for (int i=0; i < 2; i++) {
+            xbounds[i] = xbound[i];
+            ybounds[i] = ybound[i];
+        }
+
     }
 
     /**
@@ -121,16 +131,14 @@ public class PlayerController extends InputAdapter {
             tickCount++;
             player.move(0, Math.round(player.getVelocity().y));
             player.move(Math.round(player.getVelocity().x), 0);
-            if ((player.getX() + player.getVelocity().x >= 256) && (player.getX() + player.getVelocity().x <= (1600 - 256))){
+            if ((player.getX() + player.getVelocity().x >= xbounds[0] + 256) && (player.getX() + player.getVelocity().x <= xbounds[1] - 256)){
                 camera.position.x = player.getX();
             }
-            if ((player.getY() + player.getVelocity().y >= 256) && (player.getY() + player.getVelocity().y <= (1600 - 256))) {
+            if ((player.getY() + player.getVelocity().y >= ybounds[0] + 256) && (player.getY() + player.getVelocity().y <= ybounds[1] - 256)) {
                 camera.position.y = player.getY();
             }
         } else {
-            tickCount = 0;
-            player.getVelocity().x = 0;
-            player.getVelocity().y = 0;
+            reset();
         }
         /* The code above breaks down the movement into 8 ticks so that the character doesn't move too fast
         tickCount will be responsible for doing keeping track of the 8 ticks
@@ -143,7 +151,18 @@ public class PlayerController extends InputAdapter {
         return entered;
     }
 
-    public void changeCollisionLayer(TiledMapTileLayer newLayer){
+    public void changeCollisionLayer(TiledMapTileLayer newLayer, int[] xbound, int[] ybound){
         collisionLayer = newLayer;
+        reset();
+        for (int i=0; i < 2; i++){
+            xbounds[i] = xbound[i];
+            ybounds[i] = ybound[i];
+        }
+    }
+
+    public void reset(){
+        tickCount = 0;
+        player.getVelocity().x = 0;
+        player.getVelocity().y = 0;
     }
 }

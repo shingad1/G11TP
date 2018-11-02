@@ -79,5 +79,10 @@ public class Player{
 
     public int getHP(){ return HP; }
 
+    public void setPosition(int dx, int dy){
+        x = dx;
+        y = dy;
+    }
+
 
 }

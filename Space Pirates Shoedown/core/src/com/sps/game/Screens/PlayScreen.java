@@ -96,11 +96,13 @@ public class PlayScreen implements Screen {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx"); //tmx file of map itself;    HackMap.tmx
         renderer = new OrthogonalTiledMapRenderer(map); //renders the tmx file provided
-        gamecam.position.set(256, 1600-256, 0); //positions gamecam, subject to change
+        gamecam.position.set(800, 800, 0); //positions gamecam, subject to change
         player = new Texture(ASSETS_PATH + "singlecharacter.png");
         batch = new SpriteBatch();
-        p = new Player(256,1600-256); //subject to change
-        controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1));
+        p = new Player(800,800); //subject to change
+        int[] xbounds = {0, 1600};
+        int[] ybounds = {0,1600};
+        controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         hud = new HudScene(game.batch,p);
     }
 
@@ -120,9 +122,14 @@ public class PlayScreen implements Screen {
         controller.action(gamecam);
         if(controller.getEntered()){
             dispose();
+            gamecam.position.x = 160;
+            gamecam.position.y = 160;
+            p.setPosition(160,0);
             map = mapLoader.load(ASSETS_PATH + "TestBattleScene.tmx");
             renderer = new OrthogonalTiledMapRenderer(map);
-            controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1));
+            int[] xbounds = {0,320};
+            int[] ybounds = {0,320};
+            controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         }
     }
 
