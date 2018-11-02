@@ -9,6 +9,14 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Player{
     /**
+     * Keeps track of the player's gold
+     */
+    private int gold;
+    /**
+     * Keeps track of the player's HP
+     */
+    private int HP;
+    /**
      * Holds the players X coordinates.
      * @see #move #getX
      */
@@ -29,6 +37,8 @@ public class Player{
         this.y = y;
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
+        gold = 50;
+        HP = 100;
     }
 
     /**
@@ -64,6 +74,10 @@ public class Player{
     public Vector2 getVelocity(){
         return velocity;
     }
+
+    public int getGold(){ return gold; }
+
+    public int getHP(){ return HP; }
 
 
 }

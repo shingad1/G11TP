@@ -93,7 +93,6 @@ public class PlayScreen implements Screen {
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
-        hud = new HudScene(game.batch);
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx"); //tmx file of map itself;    HackMap.tmx
         renderer = new OrthogonalTiledMapRenderer(map); //renders the tmx file provided
@@ -102,6 +101,7 @@ public class PlayScreen implements Screen {
         batch = new SpriteBatch();
         p = new Player(256,1600-256); //subject to change
         controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1));
+        hud = new HudScene(game.batch,p);
     }
 
     /**
@@ -126,6 +126,7 @@ public class PlayScreen implements Screen {
      */
     public void update(float dt){
         handleInput(dt);
+        hud.update();
         gamecam.update();
         renderer.setView(gamecam);
     }
