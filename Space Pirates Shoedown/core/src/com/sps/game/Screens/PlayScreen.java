@@ -131,6 +131,17 @@ public class PlayScreen implements Screen {
             int[] ybounds = {32,320};
             controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         }
+        if(controller.getLeave()){
+            dispose();
+            gamecam.position.x = 694;
+            gamecam.position.y = 1200;
+            p.setPosition(726, 1248);
+            map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
+            renderer = new OrthogonalTiledMapRenderer(map);
+            int[] xbounds = {0, 1600};
+            int[] ybounds = {0,1600};
+            controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
+        }
     }
 
     /**

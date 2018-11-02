@@ -42,9 +42,13 @@ public class PlayerController extends InputAdapter {
     private TiledMapTileLayer collisionLayer;
 
     /**
-     *
+     * Holds a boolean value to see if the player can enter the building or not.
      */
     private boolean entered;
+    /**
+     * Holds a boolean value to see if the player can leave the building or not.
+     */
+    private boolean leave;
 
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound){
         this.player = p;
@@ -77,7 +81,7 @@ public class PlayerController extends InputAdapter {
             switch(keycode){
 
                 case Input.Keys.DOWN:
-                    //checks the bottom middle
+                    leave = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int) ((player.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey("leave");
                     collisionY = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int) ((player.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
                        if(collisionY) {
                            player.getVelocity().y = 0;
@@ -147,10 +151,28 @@ public class PlayerController extends InputAdapter {
          */
     }
 
+    /**
+     * Gets the value of entered.
+     * @return <code>boolean</code> entered. True if the player can enter, false if the player cannot enter.
+     */
     public boolean getEntered(){
         return entered;
     }
 
+    /**
+     * Gets the value of leave.
+     * @return <code>boolean</code> leave. True if the player can leave, false if the player cannot leave.
+     */
+    public boolean getLeave(){
+        return leave;
+    }
+
+    /**
+     *
+     * @param newLayer
+     * @param xbound
+     * @param ybound
+     */
     public void changeCollisionLayer(TiledMapTileLayer newLayer, int[] xbound, int[] ybound){
         collisionLayer = newLayer;
         reset();
