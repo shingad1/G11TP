@@ -52,6 +52,7 @@ public class MenuScreen implements Screen {
      */
     private Viewport gameport;
     /**
+     * The playbutton that is shown if the user hovers over it.
      */
     private Texture activatedPlayButton;
 
