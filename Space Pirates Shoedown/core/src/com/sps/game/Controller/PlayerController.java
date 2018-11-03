@@ -186,5 +186,7 @@ public class PlayerController extends InputAdapter {
         tickCount = 0;
         player.getVelocity().x = 0;
         player.getVelocity().y = 0;
+        entered = false;
+        leave = false;
     }
 }
