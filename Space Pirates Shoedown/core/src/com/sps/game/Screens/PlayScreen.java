@@ -133,9 +133,9 @@ public class PlayScreen implements Screen {
         }
         if(controller.getLeave()){
             dispose();
-            gamecam.position.x = 694;
-            gamecam.position.y = 1200;
-            p.setPosition(726, 1248);
+            gamecam.position.x = 736;
+            gamecam.position.y = 1600-320;
+            p.setPosition(736, 1600-320);
             map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
             renderer = new OrthogonalTiledMapRenderer(map);
             int[] xbounds = {0, 1600};
