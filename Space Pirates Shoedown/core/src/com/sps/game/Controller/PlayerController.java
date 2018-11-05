@@ -176,9 +176,13 @@ public class PlayerController extends InputAdapter {
         return leave;
     }
 
-   public Vector2 popPosition(){
+    /**
+     * Returns the last position of the player, before they entered the house.
+     * @return <code>Vector2</code> last position.
+     */
+    public Vector2 popPosition(){
         return positions.pop();
-   }
+    }
 
     /**
      *
