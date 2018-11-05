@@ -75,9 +75,13 @@ public class Player{
         return velocity;
     }
 
-    public int getGold(){ return gold; }
+    public int getGold(){
+        return gold;
+    }
 
-    public int getHP(){ return HP; }
+    public int getHP(){
+        return HP;
+    }
 
     public void setPosition(int dx, int dy){
         x = dx;

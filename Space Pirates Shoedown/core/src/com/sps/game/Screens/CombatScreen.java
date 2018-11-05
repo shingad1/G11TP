@@ -16,12 +16,10 @@ import com.sps.game.SpacePiratesShoedown;
 
 public class CombatScreen implements Screen {
 
-    private Game game;
-
     /**
      * Holds a version of the game
      */
-    private SpacePiratesShoedown game;
+    private Game game;
     /**
      * Renders the texture resources
      */
