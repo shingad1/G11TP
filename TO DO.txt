@@ -1,0 +1,3 @@
+- Player animations
+- Enemy Animations
+- Create new combatScreen upon entering combat area 
