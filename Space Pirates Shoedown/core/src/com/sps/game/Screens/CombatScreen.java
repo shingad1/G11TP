@@ -2,6 +2,7 @@ package com.sps.game.Screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+import com.sps.game.SpacePiratesShoedown;
 
 /**
  * This class creates the combat screen, which is shown when the player fights with an enemy.
@@ -12,6 +13,8 @@ import com.badlogic.gdx.Screen;
 public class CombatScreen implements Screen {
 
     private Game game;
+    private SpacePiratesShoedown game;
+
 
     public CombatScreen(Game game){
         this.game = game;
