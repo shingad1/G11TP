@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Screens.PlayScreen;
+import com.sps.game.Screens.ScreenController;
 import com.sps.game.Sprites.Player;
 import java.lang.Math;
 import java.util.Iterator;
@@ -52,6 +53,7 @@ public class PlayerController extends InputAdapter {
      */
     private boolean leave;
 
+    private boolean fight;
     /**
      * Holds the stack of the old positions of the player before he enters the room.
      */
@@ -81,7 +83,6 @@ public class PlayerController extends InputAdapter {
         boolean collisionY = false;
         boolean collisionX = false;
 
-
         float oldX = player.getX(), oldY = player.getY();
         float tiledWidth = collisionLayer.getTileWidth(), tiledHeight = collisionLayer.getTileHeight();
         if(tickCount == 0) { //starts the 8 tick count for the movement (in other words, movement is separated into 8 ticks)
@@ -95,14 +96,14 @@ public class PlayerController extends InputAdapter {
                            player.getVelocity().y = 0;
                        }
                       else{
-                           //maybe make y = oldY
                            player.getVelocity().y = -4;
                      }
-                    //}
                     break;
                 case Input.Keys.UP:
                     entered = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("enter");
-                    positions.push(new Vector2(player.getX(), player.getY()));
+                    if(entered) {
+                        positions.push(new Vector2(player.getX(), player.getY()));
+                    }
                     collisionY = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
                     if(collisionY){
                         player.getVelocity().y = 0;
@@ -127,6 +128,9 @@ public class PlayerController extends InputAdapter {
                     else {
                         player.getVelocity().x = 4;
                     }
+                    break;
+                case Input.Keys.A:
+                    fight = collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey("basicEnemy");
                     break;
             }
             tickCount = 1;
@@ -158,6 +162,10 @@ public class PlayerController extends InputAdapter {
         The movement will then be confined to moving 32px per key press
         The camera will also follow the player except for when the player is near the edge of the map
          */
+    }
+
+    public boolean getFight(){
+        return fight;
     }
 
     /**

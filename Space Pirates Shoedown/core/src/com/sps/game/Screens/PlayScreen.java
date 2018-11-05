@@ -143,6 +143,10 @@ public class PlayScreen implements Screen {
             int[] ybounds = {0,1600};
             controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         }
+        if(controller.getFight()){
+            game.setScreen(new CombatScreen(game));
+            dispose();
+        }
     }
 
     /**

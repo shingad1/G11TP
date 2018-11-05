@@ -1,7 +1,9 @@
 package com.sps.game.Screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -33,7 +35,7 @@ public class CombatScreen implements Screen {
     /**
      * Constant field to direct where the file is located.
      */
-    private static final String ASSETS_PATH = "core/assets/tiledAssets";
+    private static final String ASSETS_PATH = "core/assets/tiledAssets/";
     /**
      *Displays what the user will see
      */
@@ -89,9 +91,13 @@ public class CombatScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
+        batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-
+        batch.draw(player, 100, 64, 32, 32);
+        batch.draw(enemy, 100, 128, 32, 32);
         batch.end();
     }
 

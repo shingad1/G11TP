@@ -8,9 +8,9 @@ public class ScreenController {
     private Game game;
     private Screen combatScreen;
 
-    public ScreenController(Game game, Screen screen){
+    public ScreenController(Game game){
         this.game = game;
-        combatScreen = screen;
+        //combatScreen = screen;
     }
 
     public void switchToCombatScreen(){

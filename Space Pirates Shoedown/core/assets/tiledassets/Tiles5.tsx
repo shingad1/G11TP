@@ -256,6 +256,11 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
+ <tile id="140">
+  <properties>
+   <property name="basicEnemy" value="true"/>
+  </properties>
+ </tile>
  <tile id="366">
   <properties>
    <property name="blocked" value="true"/>
