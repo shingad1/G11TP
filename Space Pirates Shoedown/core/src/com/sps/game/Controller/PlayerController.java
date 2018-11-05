@@ -5,10 +5,12 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Screens.PlayScreen;
 import com.sps.game.Sprites.Player;
 import java.lang.Math;
 import java.util.Iterator;
+import java.util.Stack;
 
 /**
  * This class creates a controller for the player which checks for any collisions and allows the player to move
@@ -50,6 +52,11 @@ public class PlayerController extends InputAdapter {
      */
     private boolean leave;
 
+    /**
+     * Holds the stack of the old positions of the player before he enters the room.
+     */
+    private Stack<Vector2> positions;
+
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound){
         this.player = p;
         this.collisionLayer = collisionLayer;
@@ -59,6 +66,7 @@ public class PlayerController extends InputAdapter {
             xbounds[i] = xbound[i];
             ybounds[i] = ybound[i];
         }
+        positions = new Stack<Vector2>();
 
     }
 
@@ -94,6 +102,7 @@ public class PlayerController extends InputAdapter {
                     break;
                 case Input.Keys.UP:
                     entered = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("enter");
+                    positions.push(new Vector2(player.getX(), player.getY()));
                     collisionY = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
                     if(collisionY){
                         player.getVelocity().y = 0;
@@ -166,6 +175,10 @@ public class PlayerController extends InputAdapter {
     public boolean getLeave(){
         return leave;
     }
+
+   public Vector2 popPosition(){
+        return positions.pop();
+   }
 
     /**
      *
