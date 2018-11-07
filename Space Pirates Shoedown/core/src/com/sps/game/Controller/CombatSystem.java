@@ -14,5 +14,5 @@ public class CombatSystem {
         this.enemy = e;
     }
 
-    
+
 }
