@@ -126,7 +126,7 @@ public class PlayerController extends InputAdapter {
                     }
                     break;
                 case Input.Keys.A:
-                    fight = collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey("basicEnemy");
+                    fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
                     break;
             }
             tickCount = 1;
@@ -209,5 +209,18 @@ public class PlayerController extends InputAdapter {
         player.getVelocity().y = 0;
         entered = false;
         leave = false;
+    }
+
+    private boolean isPlayerNearProperty(String property, float tiledWidth, float tiledHeight){
+        if (collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey(property)){
+            return true;
+        } else if (collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey(property)){
+            return true;
+        } else if (collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)(player.getY() + 32/tiledHeight)).getTile().getProperties().containsKey(property)){
+            return true;
+        } else if (collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY() - 32/tiledHeight)).getTile().getProperties().containsKey(property)){
+            return true;
+        }
+        return false;
     }
 }
