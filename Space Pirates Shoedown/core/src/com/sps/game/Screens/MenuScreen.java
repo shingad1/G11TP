@@ -50,17 +50,21 @@ public class MenuScreen implements Screen {
      * @see #resize
      */
     private Viewport gameport;
-    /**
-     * The playbutton that is shown if the user hovers over it.
-     */
-    private Texture activatedPlayButton;
+
+    private Texture quitButton;
+
+    private Texture twitterButton;
+
+    private Texture logoViewed;
 
     public MenuScreen(SpacePiratesShoedown game){
         this.game = game;
         background = new Texture(ASSETS_PATH + "spacebackground.jpg");
         logo = new Texture(ASSETS_PATH + "transparentlogo.png");
-        playButton = new Texture(ASSETS_PATH + "playButton.png");
-        activatedPlayButton = new Texture(ASSETS_PATH + "activatedPlayButton.png");
+        logoViewed = new Texture(ASSETS_PATH + "transparentlogo.png");
+        playButton = new Texture(ASSETS_PATH + "PlayButton.png");
+        quitButton = new Texture(ASSETS_PATH + "QuitButton.png");
+        twitterButton = new Texture(ASSETS_PATH + "twitter.png");
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
     }
@@ -74,9 +78,29 @@ public class MenuScreen implements Screen {
      * Checks to see if the user has touched the screen and displays the play screen.
      */
     public void handleInput(){
-        if (Gdx.input.justTouched()) {
-            game.setScreen(new PlayScreen(game));
-            dispose();
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 160)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 10))){
+               if((Gdx.input.getY() > ((background.getHeight() / 2) - 190)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 85))) {
+                   if (Gdx.input.justTouched()) {
+                       game.setScreen(new PlayScreen(game));
+                       dispose();
+                   }
+               }
+        }
+
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 160)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 10))){
+            if((Gdx.input.getY() > ((background.getHeight() / 2) + 10)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 285))) {
+                if (Gdx.input.justTouched()) {
+                    Gdx.app.exit();
+                }
+            }
+        }
+
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 210)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 150))){
+            if((Gdx.input.getY() > ((background.getHeight() / 2) + 220))) {
+                if (Gdx.input.justTouched()) {
+                    Gdx.net.openURI("https://youtube.com");
+                }
+            }
         }
     }
 
@@ -91,17 +115,10 @@ public class MenuScreen implements Screen {
         handleInput();
         game.batch.begin();
         game.batch.draw(background,-((background.getWidth() - Gdx.graphics.getWidth())/2),Gdx.graphics.getHeight() - background.getHeight()); //Texture = background, x = centre of image to center of screen, y = top of image to top of screen
-        game.batch.draw(logo,0,Gdx.graphics.getHeight()-logo.getHeight(), 640, 399); //positioned at top centre of the screen
-
-        //Checks to see if Mouse pointer is same as PlayButton Location. If so, it will draw activatedPlayButton
-        int x = Gdx.graphics.getWidth() / 2 - playButton.getWidth();
-        int y = Gdx.graphics.getHeight() / 2 - playButton.getHeight();
-
-        if ((Gdx.input.getX() < x + playButton.getWidth() && Gdx.input.getX() > x) && (Gdx.input.getY() < y + playButton.getHeight() && Gdx.input.getY() > y)) {
-            game.batch.draw(activatedPlayButton, ((Gdx.graphics.getWidth() / 2) - (activatedPlayButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (activatedPlayButton.getWidth() / 2)));
-        } else {
-            game.batch.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2)));
-        }
+        game.batch.draw(logoViewed,18,Gdx.graphics.getHeight()-logo.getHeight() + 80, 600, 374); //positioned at top centre of the screen
+        game.batch.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
+        game.batch.draw(quitButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
+        game.batch.draw(twitterButton, ((Gdx.graphics.getWidth() / 2) - (twitterButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 210));
         game.batch.end();
     }
 
@@ -137,7 +154,8 @@ public class MenuScreen implements Screen {
     public void dispose() {
         logo.dispose();
         playButton.dispose();
-        activatedPlayButton.dispose();
+        quitButton.dispose();
+        twitterButton.dispose();
         background.dispose();
     }
 }
