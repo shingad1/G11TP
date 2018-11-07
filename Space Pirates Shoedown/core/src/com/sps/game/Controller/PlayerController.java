@@ -3,14 +3,10 @@ package com.sps.game.Controller;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import com.sps.game.Screens.PlayScreen;
-import com.sps.game.Screens.ScreenController;
 import com.sps.game.Sprites.Player;
 import java.lang.Math;
-import java.util.Iterator;
 import java.util.Stack;
 
 /**

@@ -12,8 +12,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Scenes.HudScene;
-import com.sps.game.SpacePiratesShoedown;
 
 /**
  * This class creates the combat screen, which is shown when the player fights with an enemy.
@@ -40,10 +38,6 @@ public class CombatScreen implements Screen {
      *Displays what the user will see
      */
     private Viewport gameport;
-    /**
-     * Holds instance of the HudScene class, which displays vital information to the user
-     */
-    private HudScene hud;
     /**
      * Holds the texture showing the player.
      */
@@ -77,11 +71,12 @@ public class CombatScreen implements Screen {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "emptyBattleMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
-        gamecam = new OrthographicCamera(160, 160);
+        gamecam = new OrthographicCamera(480, 480);
+        gamecam.position.set(160,160,0);
         gameport = new FitViewport(1600, 1600, gamecam);
         player = new Texture(ASSETS_PATH + "singleCharacter.png");
         enemy = new Texture(ASSETS_PATH + "singleEnemy.png");
-
+        batch = new SpriteBatch();
     }
 
     @Override
@@ -89,15 +84,21 @@ public class CombatScreen implements Screen {
 
     }
 
+    public void update(float dt){
+        gamecam.update();
+        renderer.setView(gamecam);
+    }
+
     @Override
     public void render(float delta) {
+        update(delta);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-        batch.draw(player, 100, 64, 32, 32);
-        batch.draw(enemy, 100, 128, 32, 32);
+        batch.draw(player, 160, 100, 32, 32);
+        batch.draw(enemy, 160, 250, 32, 32);
         batch.end();
     }
 
