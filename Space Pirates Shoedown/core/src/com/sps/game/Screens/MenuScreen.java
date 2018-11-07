@@ -98,7 +98,7 @@ public class MenuScreen implements Screen {
         if((Gdx.input.getX() > ((logo.getWidth() / 2) - 210)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 150))){
             if((Gdx.input.getY() > ((background.getHeight() / 2) + 220))) {
                 if (Gdx.input.justTouched()) {
-                    Gdx.net.openURI("https://youtube.com");
+                    Gdx.net.openURI("https://twitter.com/SpacePirateSD");
                 }
             }
         }
