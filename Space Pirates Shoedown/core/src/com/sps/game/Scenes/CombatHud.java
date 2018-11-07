@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Sprites.BasicEnemy;
+import com.sps.game.Sprites.Player;
 
 
 /**
@@ -52,9 +54,9 @@ public class CombatHud {
      */
     Label enemyHealthCountLabel;
 
-    public CombatHud(SpriteBatch sb){
-        playerHealth = 100; //link to player class
-        enemyHealth = 100; //link to enemy class
+    public CombatHud(SpriteBatch sb, Player player, BasicEnemy enemy){
+        playerHealth = player.getHP();
+        enemyHealth = enemy.getHealth();
 
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);

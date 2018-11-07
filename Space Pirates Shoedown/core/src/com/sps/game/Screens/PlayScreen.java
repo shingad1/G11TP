@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
+import com.sps.game.Sprites.BasicEnemy;
 import com.sps.game.Sprites.Player;
 
 /**
@@ -140,7 +141,7 @@ public class PlayScreen implements Screen {
         }
         if(controller.getFight()){
             dispose();
-            game.setScreen(new CombatScreen(game));
+            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250)));
         }
     }
 
