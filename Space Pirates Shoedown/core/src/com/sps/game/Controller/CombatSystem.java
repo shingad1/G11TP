@@ -9,21 +9,41 @@ public class CombatSystem {
 
     private BasicEnemy enemy;
 
-    private Boolean playerTurn;
+    private boolean playerTurn;
 
-    private CombatController controller;
+    //private CombatController controller;
 
-    public CombatSystem(Player p, BasicEnemy e, CombatController controller){
+    public CombatSystem(Player p, BasicEnemy e){//maybe have controller as a parameter
         this.player = p;
         this.enemy = e;
-        this.controller = controller;
-
+      //this.controller = controller;
     }
-
+    /*
     public void handleCombat(){
         if (playerTurn){
             controller.activate();
         }
+    }*/
+
+    public void basicPlayerAttack(){
+        player.decreaseHealth(20);
+        playerTurn = false;
+    }
+
+    public void basicEnemyAttack(){
+        enemy.decreaseHealth(20);
+        playerTurn = true;
+    }
+
+    public void basicPlayerBlock(){
+        if(!(player.getHP()==100)) {
+            player.increaseHealth(10);
+            playerTurn = false;
+        }
+    }
+
+    public boolean getPlayerTurn(){
+        return playerTurn;
     }
 
     /* Implementing a 'move list'

@@ -91,4 +91,8 @@ public class Player{
     public void decreaseHealth(int decrease){
         HP-=decrease;
     }
+
+    public void increaseHealth(int increase){
+        HP+=increase;
+    }
 }

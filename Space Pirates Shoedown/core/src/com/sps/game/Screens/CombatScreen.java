@@ -12,7 +12,9 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Controller.CombatController;
 import com.sps.game.Scenes.CombatHud;
+import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.BasicEnemy;
 import com.sps.game.Sprites.Player;
 
@@ -72,7 +74,9 @@ public class CombatScreen implements Screen {
 
     private BasicEnemy e;
 
-    public CombatScreen(Game game, Player p, BasicEnemy e) {
+    private CombatController combatController;
+
+    public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e) {
         this.game = game;
         this.e = e;
         mapLoader = new TmxMapLoader();
@@ -85,11 +89,12 @@ public class CombatScreen implements Screen {
         enemy = new Texture(ASSETS_PATH + "singleEnemy.png");
         batch = new SpriteBatch();
         hud = new CombatHud(batch,p,e);
+        combatController = new CombatController(p, e);
     }
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(combatController);
     }
 
     public void update(float dt){
