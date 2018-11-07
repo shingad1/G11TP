@@ -79,7 +79,7 @@ public class CombatScreen implements Screen {
         map = mapLoader.load(ASSETS_PATH + "emptyBattleMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam = new OrthographicCamera(480, 480);
-        gamecam.position.set(160,160,0);
+        gamecam.position.set(176,176,0);
         gameport = new FitViewport(1600, 1600, gamecam);
         player = new Texture(ASSETS_PATH + "singleCharacter.png");
         enemy = new Texture(ASSETS_PATH + "singleEnemy.png");
@@ -95,6 +95,7 @@ public class CombatScreen implements Screen {
     public void update(float dt){
         gamecam.update();
         renderer.setView(gamecam);
+        hud.update();
     }
 
     @Override
