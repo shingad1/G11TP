@@ -26,5 +26,12 @@ public class CombatSystem {
         }
     }
 
+    /* Implementing a 'move list'
+    public void applyMove(Fighter user, Fighter usee, String move){
+        switch(move){
+            // uses on usee
+        }
+    }
+    */
 
 }
