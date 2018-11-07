@@ -9,16 +9,25 @@ public class CombatController {
 
     private CombatSystem combatSystem;
 
+    private boolean activated;
+
     public CombatController(Player p){
         this.player = p;
     }
 
     public void keyDown(int keycode){
-        switch(keycode){
-            case Input.Keys.Q:
-                break;
-            case Input.Keys.W:
-                break;
+        if(activated){
+            switch(keycode) {
+                case Input.Keys.Q:
+                    break;
+                case Input.Keys.W:
+                    break;
+            }
         }
+        activated = false;
+    }
+
+    public void activate(){
+        activated = true;
     }
 }

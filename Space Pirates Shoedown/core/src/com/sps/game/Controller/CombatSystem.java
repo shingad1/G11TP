@@ -9,9 +9,21 @@ public class CombatSystem {
 
     private BasicEnemy enemy;
 
-    public CombatSystem(Player p, BasicEnemy e){
+    private Boolean playerTurn;
+
+    private CombatController controller;
+
+    public CombatSystem(Player p, BasicEnemy e, CombatController controller){
         this.player = p;
         this.enemy = e;
+        this.controller = controller;
+
+    }
+
+    public void handleCombat(){
+        if (playerTurn){
+            controller.activate();
+        }
     }
 
     
