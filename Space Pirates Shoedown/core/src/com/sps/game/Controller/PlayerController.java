@@ -216,9 +216,9 @@ public class PlayerController extends InputAdapter {
             return true;
         } else if (collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey(property)){
             return true;
-        } else if (collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)(player.getY() + 32/tiledHeight)).getTile().getProperties().containsKey(property)){
+        } else if (collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey(property)){
             return true;
-        } else if (collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)(player.getY() - 32/tiledHeight)).getTile().getProperties().containsKey(property)){
+        } else if (collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey(property)){
             return true;
         }
         return false;
