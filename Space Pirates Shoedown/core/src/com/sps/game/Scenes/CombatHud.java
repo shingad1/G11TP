@@ -24,7 +24,7 @@ public class CombatHud {
     /**
      * Creates a stage where graphics can be drawn on.
      */
-    private Stage stage;
+    public Stage stage;
     /**
      * Sets up a separate camera for the HUD so that the hud stays stationary.
      */

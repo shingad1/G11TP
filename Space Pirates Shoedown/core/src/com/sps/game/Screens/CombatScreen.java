@@ -103,6 +103,7 @@ public class CombatScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
+        hud.stage.draw();
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
         batch.draw(player, 160, 100, 32, 32);
