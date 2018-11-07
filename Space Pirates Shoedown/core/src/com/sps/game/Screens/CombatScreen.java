@@ -12,6 +12,9 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Scenes.CombatHud;
+import com.sps.game.Sprites.BasicEnemy;
+import com.sps.game.Sprites.Player;
 
 /**
  * This class creates the combat screen, which is shown when the player fights with an enemy.
@@ -65,9 +68,13 @@ public class CombatScreen implements Screen {
      */
     private OrthographicCamera gamecam;
 
+    private CombatHud hud;
 
-    public CombatScreen(Game game) {
+    private BasicEnemy e;
+
+    public CombatScreen(Game game, Player p, BasicEnemy e) {
         this.game = game;
+        this.e = e;
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "emptyBattleMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
@@ -77,6 +84,7 @@ public class CombatScreen implements Screen {
         player = new Texture(ASSETS_PATH + "singleCharacter.png");
         enemy = new Texture(ASSETS_PATH + "singleEnemy.png");
         batch = new SpriteBatch();
+        hud = new CombatHud(batch,p,e);
     }
 
     @Override
@@ -98,7 +106,7 @@ public class CombatScreen implements Screen {
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
         batch.draw(player, 160, 100, 32, 32);
-        batch.draw(enemy, 160, 250, 32, 32);
+        batch.draw(enemy, e.getX(), e.getY(), 32, 32);
         batch.end();
     }
 

@@ -14,6 +14,6 @@ public class ScreenController {
     }
 
     public void switchToCombatScreen(){
-        combatScreen = new CombatScreen(game);
+        //combatScreen = new CombatScreen(game);
     }
 }
