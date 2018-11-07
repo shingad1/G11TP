@@ -88,5 +88,7 @@ public class Player{
         y = dy;
     }
 
-
+    public void decreaseHealth(int decrease){
+        HP-=decrease;
+    }
 }

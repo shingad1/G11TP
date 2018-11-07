@@ -22,4 +22,8 @@ public class BasicEnemy extends AbstractEnemy{
     public int getHealth() {
         return health;
     }
+
+    public void decreaseHealth(int decrease){
+        health -= decrease;
+    }
 }
