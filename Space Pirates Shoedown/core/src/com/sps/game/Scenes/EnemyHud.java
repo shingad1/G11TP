@@ -23,23 +23,24 @@ public class EnemyHud
 
     public EnemyHud(SpriteBatch sb, BasicEnemy enemy)
     {
-        enemyHealth = enemy.getHealth();
+        enemyHealth = enemy.getHealth();//gets the enemy health
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
     }
 
     public void update(){
-        enemyHealthLabel = new Label("Enemy Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        enemyHealthLabel = new Label("Enemy Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));//updates the health level
         enemyHealthCountLabel = new Label(String.format("%d", enemyHealth), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
 
-    public void formatting(){
-        stage = new Stage();
-        Table table = new Table();
-        table.top().right();
+    public void formatting()
+    {
+        stage = new Stage();//formats the labels
+        Table table = new Table(); //creates a table so it can be formatted properly
+        table.top().right(); //places it at the top right
         table.setFillParent(true);
-        table.add(enemyHealthLabel).padLeft(20);
+        table.add(enemyHealthLabel).padLeft(20); //it is padded
         table.row();
         table.add(enemyHealthCountLabel).padLeft(20);
         stage.addActor(table);
