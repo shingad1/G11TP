@@ -150,7 +150,7 @@ public class PlayScreen implements Screen {
         }
         if(controller.getFight()){
             dispose();
-            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250)));
+            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250),this));
         }
     }
 

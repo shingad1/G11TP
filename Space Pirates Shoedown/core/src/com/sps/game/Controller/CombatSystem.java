@@ -13,6 +13,8 @@ public class CombatSystem {
 
     private int tick;
 
+    private boolean finished;
+
     //private CombatController controller;
 
     public CombatSystem(Player p, BasicEnemy e){//maybe have controller as a parameter
@@ -21,6 +23,7 @@ public class CombatSystem {
       //this.controller = controller;
         playerTurn = true;
         tick = 0;
+        finished = false;
     }
 
     public void basicPlayerAttack(){
@@ -44,17 +47,26 @@ public class CombatSystem {
         return (playerTurn && (tick == 0));
     }
 
-    public void update(){
-        if(!(playerTurn) && (tick == 0)){
-            basicEnemyAttack();
-        }
-        if (tick > 0){
-            tick++;
-            if (tick >= 17){
-                playerTurn = !(playerTurn);
-                tick = 0;
+    public void update() {
+        if (!(finished)){
+            if (!(playerTurn) && (tick == 0)) {
+                basicEnemyAttack();
+            }
+            if (tick > 0) {
+                tick++;
+                if (tick >= 17) {
+                    playerTurn = !(playerTurn);
+                    tick = 0;
+                }
+            }
+            if ((player.getHP() == 0) || (enemy.getHealth() == 0)) {
+                finished = true;
             }
         }
+    }
+
+    public boolean getFinished(){
+        return finished;
     }
 
     /* Implementing a 'move list'
