@@ -30,16 +30,16 @@ public class NonPlayingCharacter {
             }
         }
         if (x > 0) {
-            x++;
+            x+= 1;
         }
         if (x < 0) {
-            x--;
+            x-=1;
         }
         if (y > 0) {
-            y++;
+            y+=1;
         }
         if (y > 0) {
-            y--;
+            y-=1;
         }
     }
 

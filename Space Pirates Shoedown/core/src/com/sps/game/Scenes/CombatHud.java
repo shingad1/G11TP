@@ -79,13 +79,11 @@ public class CombatHud {
     public void formatting(){
         stage = new Stage();
         Table table = new Table();
-        table.top();
+        table.top().left();
         table.setFillParent(true);
         table.add(playerHealthLabel).padRight(20);
-        //table.add(enemyHealthLabel).padLeft(20);
         table.row();
         table.add(playerHealthCountLabel).padRight(20);
-        //table.add(enemyHealthCountLabel).padLeft(20);
         stage.addActor(table);
     }
 

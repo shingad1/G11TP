@@ -19,6 +19,7 @@ import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.BasicEnemy;
 import com.sps.game.Sprites.NonPlayingCharacter;
 import com.sps.game.Sprites.Player;
+import java.util.ArrayList;
 
 /**
  * This class launches the play screen, from where the play last left off.
@@ -86,7 +87,7 @@ public class PlayScreen implements Screen {
      */
 
     private Texture NPC;
-    private NonPlayingCharacter npc;
+    private ArrayList<NonPlayingCharacter> npc;
 
     private PlayerController controller;
 
@@ -99,10 +100,11 @@ public class PlayScreen implements Screen {
         renderer = new OrthogonalTiledMapRenderer(map); //renders the tmx file provided
         gamecam.position.set(800, 800, 0); //positions gamecam, subject to change
         player = new Texture(ASSETS_PATH + "singlecharacter.png");
-        NPC = new Texture(ASSETS_PATH + "monster-512.png");
+        NPC = new Texture(ASSETS_PATH + "../monster-512.png");
         batch = new SpriteBatch();
         p = new Player(800,800); //subject to change
-        npc = new NonPlayingCharacter(900,900);
+        npc = new ArrayList<NonPlayingCharacter>();
+        npc.add(new NonPlayingCharacter(960,960));
         int[] xbounds = {0, 1600};
         int[] ybounds = {0,1600};
         controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
@@ -158,6 +160,11 @@ public class PlayScreen implements Screen {
      */
     public void update(float dt){
         handleInput(dt);
+        /*
+        for (int i = 0; i < npc.size(); i++){
+            npc.get(i).update();
+        }
+        */
         hud.update();
         gamecam.update();
         renderer.setView(gamecam);
@@ -178,8 +185,10 @@ public class PlayScreen implements Screen {
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
+        for (int i = 0; i < npc.size(); i++){
+            batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
+        }
         batch.draw(player, p.getX(),p.getY(), 32, 32); //may want to create a settings class
-        batch.draw(NPC, npc.NPCGetX(), npc.NPCGetY());
         batch.end();
     }
 

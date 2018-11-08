@@ -38,11 +38,10 @@ public class EnemyHud
         stage = new Stage();
         Table table = new Table();
         //table.top();
+        table.top().right();
         table.setFillParent(true);
-        table.add(enemyHealthLabel).expand().top().right();
         table.add(enemyHealthLabel).padLeft(20);
         table.row();
-        table.add(enemyHealthCountLabel).expand().top().right();
         table.add(enemyHealthCountLabel).padLeft(20);
         stage.addActor(table);
     }

@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.CombatController;
 import com.sps.game.Scenes.CombatHud;
+import com.sps.game.Scenes.EnemyHud;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.BasicEnemy;
 import com.sps.game.Sprites.Player;
@@ -70,7 +71,9 @@ public class CombatScreen implements Screen {
      */
     private OrthographicCamera gamecam;
 
-    private CombatHud hud;
+    private CombatHud playerHud;
+
+    private EnemyHud enemyHud;
 
     private BasicEnemy e;
 
@@ -88,7 +91,8 @@ public class CombatScreen implements Screen {
         player = new Texture(ASSETS_PATH + "singleCharacter.png");
         enemy = new Texture(ASSETS_PATH + "singleEnemy.png");
         batch = new SpriteBatch();
-        hud = new CombatHud(batch,p,e);
+        playerHud = new CombatHud(batch,p,e);
+        enemyHud = new EnemyHud(batch,e);
         combatController = new CombatController(p, e);
     }
 
@@ -100,7 +104,8 @@ public class CombatScreen implements Screen {
     public void update(float dt){
         gamecam.update();
         renderer.setView(gamecam);
-        hud.update();
+        playerHud.update();
+        enemyHud.update();
     }
 
     @Override
@@ -109,7 +114,8 @@ public class CombatScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
-        hud.stage.draw();
+        enemyHud.stage.draw();
+        playerHud.stage.draw();
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
         batch.draw(player, 160, 100, 32, 32);
