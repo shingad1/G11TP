@@ -146,7 +146,6 @@ public class PlayScreen implements Screen {
             gamecam.position.y = (int) oldPosition.y; //1600-320
             p.setPosition((int) oldPosition.x, (int) oldPosition.y); //736 and 1600-320
             map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
-            //te
             npc.add(new NonPlayingCharacter(960,960));
             for (int i = 0; i < npc.size(); i++){
                 batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
@@ -158,8 +157,7 @@ public class PlayScreen implements Screen {
             controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         }
         if(controller.getFight()){
-            dispose();
-            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250)));
+            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250),this));
         }
     }
 
@@ -169,6 +167,9 @@ public class PlayScreen implements Screen {
      */
     public void update(float dt){
         handleInput(dt);
+        for (int i = 0; i < npc.size(); i++){
+            npc.get(i).update();
+        }
         hud.update();
         gamecam.update();
         renderer.setView(gamecam);
@@ -220,5 +221,10 @@ public class PlayScreen implements Screen {
     public void dispose() {
        map.dispose();
        //player.dispose();
+    }
+
+    public void combatExit(){
+        controller.setFight(false);
+        game.setScreen(this);
     }
 }

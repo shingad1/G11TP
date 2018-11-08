@@ -13,17 +13,18 @@ public class CombatController extends InputAdapter {
 
     private CombatSystem combatSystem;
 
-    private boolean activated;
+    private int keyPressed;
 
-    public CombatController(Player p, BasicEnemy e){
+    public CombatController(Player p, BasicEnemy e, CombatSystem cs){
         this.player = p;
         this.enemy = e;
-        combatSystem = new CombatSystem(player, enemy);
+        combatSystem = cs;
     }
 
     @Override
     public boolean keyDown(int keycode){
         if(combatSystem.getPlayerTurn()){//was activated
+            keyPressed = keycode;
             switch(keycode) {
                 case Input.Keys.Q:
                     combatSystem.basicPlayerAttack();
@@ -38,7 +39,4 @@ public class CombatController extends InputAdapter {
         return false;
     }
 
-    public void activate(){
-        activated = true;
-    }
 }

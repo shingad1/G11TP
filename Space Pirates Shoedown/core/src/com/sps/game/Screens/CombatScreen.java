@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.CombatController;
+import com.sps.game.Controller.CombatSystem;
 import com.sps.game.Scenes.CombatHud;
 import com.sps.game.Scenes.EnemyHud;
 import com.sps.game.Scenes.ThirdHud;
@@ -82,7 +83,13 @@ public class CombatScreen implements Screen {
 
     private CombatController combatController;
 
-    public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e) {
+    private CombatSystem cs;
+
+    private int tick;
+
+    private PlayScreen playScreen;
+
+    public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e, PlayScreen playScreen) {
         this.game = game;
         this.Enemy = e;
         mapLoader = new TmxMapLoader();
@@ -97,7 +104,10 @@ public class CombatScreen implements Screen {
         playerHud = new CombatHud(batch,p,e);
         enemyHud = new EnemyHud(batch,e);
         ThirdHud = new ThirdHud(batch);
-        combatController = new CombatController(p, e);
+        cs = new CombatSystem(p, e);
+        combatController = new CombatController(p, e, cs);
+        tick = 0;
+        this.playScreen = playScreen;
     }
 
     @Override
@@ -106,8 +116,12 @@ public class CombatScreen implements Screen {
     }
 
     public void update(float dt){
+        if (cs.getFinished()){
+            returnScreen();
+        }
         gamecam.update();
         renderer.setView(gamecam);
+        cs.update();
         playerHud.update();
         enemyHud.update();
         ThirdHud.update();
@@ -151,6 +165,13 @@ public class CombatScreen implements Screen {
 
     @Override
     public void dispose() {
+        map.dispose();
+        player.dispose();
+        enemy.dispose();
+    }
 
+    private void returnScreen(){
+        dispose();
+        playScreen.combatExit();
     }
 }

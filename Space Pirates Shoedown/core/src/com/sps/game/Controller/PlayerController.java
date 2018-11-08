@@ -224,6 +224,11 @@ public class PlayerController extends InputAdapter {
         return false;
     }
 
-
+    public void setFight(boolean bool){
+        fight = bool;
+        if(fight == false){
+            collisionLayer.setVisible(false);
+        }
+    }
 
 }
