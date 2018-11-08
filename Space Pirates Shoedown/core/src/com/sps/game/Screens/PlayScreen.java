@@ -149,8 +149,7 @@ public class PlayScreen implements Screen {
             controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         }
         if(controller.getFight()){
-            dispose();
-            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250)));
+            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250),this));
         }
     }
 
@@ -219,5 +218,10 @@ public class PlayScreen implements Screen {
     public void dispose() {
        map.dispose();
        //player.dispose();
+    }
+
+    public void combatExit(){
+        controller.setFight(false);
+        game.setScreen(this);
     }
 }

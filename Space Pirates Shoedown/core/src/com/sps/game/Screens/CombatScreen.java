@@ -87,7 +87,9 @@ public class CombatScreen implements Screen {
 
     private int tick;
 
-    public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e) {
+    private PlayScreen playScreen;
+
+    public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e, PlayScreen playScreen) {
         this.game = game;
         this.Enemy = e;
         mapLoader = new TmxMapLoader();
@@ -105,6 +107,7 @@ public class CombatScreen implements Screen {
         cs = new CombatSystem(p, e);
         combatController = new CombatController(p, e, cs);
         tick = 0;
+        this.playScreen = playScreen;
     }
 
     @Override
@@ -113,6 +116,9 @@ public class CombatScreen implements Screen {
     }
 
     public void update(float dt){
+        if (cs.getFinished()){
+            returnScreen();
+        }
         gamecam.update();
         renderer.setView(gamecam);
         cs.update();
@@ -159,6 +165,13 @@ public class CombatScreen implements Screen {
 
     @Override
     public void dispose() {
+        map.dispose();
+        player.dispose();
+        enemy.dispose();
+    }
 
+    private void returnScreen(){
+        dispose();
+        playScreen.combatExit();
     }
 }
