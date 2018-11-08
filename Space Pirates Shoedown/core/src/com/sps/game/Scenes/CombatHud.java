@@ -5,11 +5,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Controller.PlayerController;
 import com.sps.game.Sprites.BasicEnemy;
 import com.sps.game.Sprites.Player;
 
@@ -37,7 +39,7 @@ public class CombatHud {
     /**
      * Holds the value of the enemies health.
      */
-    private Integer enemyHealth;
+    //private Integer enemyHealth;
     /**
      * Label that will display the value 'Player Health'.
      */
@@ -45,7 +47,7 @@ public class CombatHud {
     /**
      * Label that will display the value 'Enemy Health'.
      */
-    Label enemyHealthLabel;
+    //Label enemyHealthLabel;
     /**
      * Label that will display the value of the playerHealth field.
      */
@@ -53,11 +55,13 @@ public class CombatHud {
     /**
      * Label that will display the value of the enemyHealth field.
      */
-    Label enemyHealthCountLabel;
+    //Label enemyHealthCountLabel;
+
+    private PlayerController p;
 
     public CombatHud(SpriteBatch sb, Player player, BasicEnemy enemy){
         playerHealth = player.getHP();
-        enemyHealth = enemy.getHealth();
+        //enemyHealth = enemy.getHealth();
 
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -67,10 +71,9 @@ public class CombatHud {
     public void update(){
         playerHealthLabel = new Label("Player Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         playerHealthCountLabel = new Label(String.format("%d",playerHealth), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        enemyHealthLabel = new Label("Enemy Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        enemyHealthCountLabel = new Label(String.format("%d", enemyHealth), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        //enemyHealthLabel = new Label("Enemy Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        //enemyHealthCountLabel = new Label(String.format("%d", enemyHealth), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
-
     }
 
     public void formatting(){
@@ -79,10 +82,10 @@ public class CombatHud {
         table.top();
         table.setFillParent(true);
         table.add(playerHealthLabel).padRight(20);
-        table.add(enemyHealthLabel).padLeft(20);
+        //table.add(enemyHealthLabel).padLeft(20);
         table.row();
         table.add(playerHealthCountLabel).padRight(20);
-        table.add(enemyHealthCountLabel).padLeft(20);
+        //table.add(enemyHealthCountLabel).padLeft(20);
         stage.addActor(table);
     }
 
