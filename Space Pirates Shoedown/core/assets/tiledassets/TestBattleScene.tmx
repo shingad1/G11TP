@@ -5,12 +5,12 @@
  <tileset firstgid="1515" source="singleEnemyTileset.tsx"/>
  <layer id="1" name="Ground" width="11" height="11" offsetx="0.333333" offsety="-0.333333">
   <data encoding="base64" compression="zlib">
-   eJxjYCANvGEkjEfVUk/ta1bcaokFAH+oSwE=
+   eJxjYCANvGEkjEfVUk9tEx61xAIAYrhKlA==
   </data>
  </layer>
  <layer id="2" name="CollisionLayer" width="11" height="11">
   <data encoding="base64" compression="zlib">
-   eJyzYGFgsCABOxGBcaltJkEtKeYOZ7VNjLjVEosBfSkgBQ==
+   eJyzYGFgsCABOxGBcal9zUq8WlLMHc5qmxhxqyUWAwAXbyBu
   </data>
  </layer>
 </map>

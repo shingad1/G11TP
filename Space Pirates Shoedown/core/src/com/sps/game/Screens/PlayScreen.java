@@ -159,11 +159,9 @@ public class PlayScreen implements Screen {
      */
     public void update(float dt){
         handleInput(dt);
-        /*
         for (int i = 0; i < npc.size(); i++){
             npc.get(i).update();
         }
-        */
         hud.update();
         gamecam.update();
         renderer.setView(gamecam);

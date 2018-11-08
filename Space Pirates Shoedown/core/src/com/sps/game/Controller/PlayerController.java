@@ -226,6 +226,9 @@ public class PlayerController extends InputAdapter {
 
     public void setFight(boolean bool){
         fight = bool;
+        if(fight == false){
+            collisionLayer.setVisible(false);
+        }
     }
 
 }
