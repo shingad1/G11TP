@@ -32,36 +32,22 @@ public class CombatHud {
      */
     private Viewport viewport;
     /**
-     * Holds the value of the player health.
+     * Holds the player
      */
-    private Integer playerHealth;
-    /**
-     * Holds the value of the enemies health.
-     */
-    private Integer enemyHealth;
+    private Player player;
     /**
      * Label that will display the value 'Player Health'.
      */
     Label playerHealthLabel;
     /**
-     * Label that will display the value 'Enemy Health'.
-     */
-    Label enemyHealthLabel;
-    /**
      * Label that will display the value of the playerHealth field.
      */
     Label playerHealthCountLabel;
-    /**
-     * Label that will display the value of the enemyHealth field.
-     */
-    Label enemyHealthCountLabel;
 
     private PlayerController p;
 
     public CombatHud(SpriteBatch sb, Player player, BasicEnemy enemy){
-        playerHealth = player.getHP();
-        //enemyHealth = enemy.getHealth();
-
+        this.player = player;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
@@ -69,9 +55,7 @@ public class CombatHud {
 
     public void update(){
         playerHealthLabel = new Label("Player Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        playerHealthCountLabel = new Label(String.format("%d",playerHealth), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        //enemyHealthLabel = new Label("Enemy Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        //enemyHealthCountLabel = new Label(String.format("%d", enemyHealth), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playerHealthCountLabel = new Label(String.format("%d",player.getHP()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
 

@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class EnemyHud
 {
-    private int enemyHealth;
+    private BasicEnemy enemy;
     Label enemyHealthLabel;
     Label enemyHealthCountLabel;
 
@@ -23,14 +23,14 @@ public class EnemyHud
 
     public EnemyHud(SpriteBatch sb, BasicEnemy enemy)
     {
-        enemyHealth = enemy.getHealth();
+        this.enemy = enemy;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
     }
 
     public void update(){
         enemyHealthLabel = new Label("Enemy Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        enemyHealthCountLabel = new Label(String.format("%d", enemyHealth), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        enemyHealthCountLabel = new Label(String.format("%d", enemy.getHealth()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
 

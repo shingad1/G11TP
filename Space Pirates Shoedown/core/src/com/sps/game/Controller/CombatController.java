@@ -15,10 +15,10 @@ public class CombatController extends InputAdapter {
 
     private int keyPressed;
 
-    public CombatController(Player p, BasicEnemy e){
+    public CombatController(Player p, BasicEnemy e, CombatSystem cs){
         this.player = p;
         this.enemy = e;
-        combatSystem = new CombatSystem(player, enemy);
+        combatSystem = cs;
     }
 
     @Override

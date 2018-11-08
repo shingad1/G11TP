@@ -25,15 +25,14 @@ public class ThirdHud
 
     public void update()
     {
-        AttackLabel = new Label ("To AttackLabel press the key'A'", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        AttackLabel = new Label (String.format("%d" , AttackLabel), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        AttackLabel = new Label ("To Attack: press the key'Q'", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
 
     public void formatting(){
         stage = new Stage();
         Table table = new Table();
-        table.bottom().center();
+        table.bottom();
         table.setFillParent(true);
         table.add(AttackLabel).padLeft(20);
         stage.addActor(table);
