@@ -54,7 +54,7 @@ public class CombatSystem {
             }
             if (tick > 0) {
                 tick++;
-                if (tick >= 17) {
+                if (tick >= 65) {
                     playerTurn = !(playerTurn);
                     tick = 0;
                 }
