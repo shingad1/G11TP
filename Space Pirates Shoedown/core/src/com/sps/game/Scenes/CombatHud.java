@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -39,7 +38,7 @@ public class CombatHud {
     /**
      * Holds the value of the enemies health.
      */
-    //private Integer enemyHealth;
+    private Integer enemyHealth;
     /**
      * Label that will display the value 'Player Health'.
      */
@@ -47,7 +46,7 @@ public class CombatHud {
     /**
      * Label that will display the value 'Enemy Health'.
      */
-    //Label enemyHealthLabel;
+    Label enemyHealthLabel;
     /**
      * Label that will display the value of the playerHealth field.
      */
@@ -55,7 +54,7 @@ public class CombatHud {
     /**
      * Label that will display the value of the enemyHealth field.
      */
-    //Label enemyHealthCountLabel;
+    Label enemyHealthCountLabel;
 
     private PlayerController p;
 

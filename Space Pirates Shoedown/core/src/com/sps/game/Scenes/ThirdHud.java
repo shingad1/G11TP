@@ -6,42 +6,36 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.sps.game.Sprites.BasicEnemy;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
-
-public class EnemyHud
+public class ThirdHud
 {
-    private int enemyHealth;
-    Label enemyHealthLabel;
-    Label enemyHealthCountLabel;
+    private Label AttackLabel;
 
     private FitViewport viewport;
     public Stage stage;
 
-    public EnemyHud(SpriteBatch sb, BasicEnemy enemy)
+    public ThirdHud(SpriteBatch sb)
     {
-        enemyHealth = enemy.getHealth();
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
     }
 
-    public void update(){
-        enemyHealthLabel = new Label("Enemy Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        enemyHealthCountLabel = new Label(String.format("%d", enemyHealth), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+    public void update()
+    {
+        AttackLabel = new Label ("To AttackLabel press the key'A'", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        AttackLabel = new Label (String.format("%d" , AttackLabel), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
 
     public void formatting(){
         stage = new Stage();
         Table table = new Table();
-        table.top().right();
+        table.bottom().center();
         table.setFillParent(true);
-        table.add(enemyHealthLabel).padLeft(20);
-        table.row();
-        table.add(enemyHealthCountLabel).padLeft(20);
+        table.add(AttackLabel).padLeft(20);
         stage.addActor(table);
     }
 }

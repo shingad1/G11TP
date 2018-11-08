@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.CombatController;
 import com.sps.game.Scenes.CombatHud;
 import com.sps.game.Scenes.EnemyHud;
+import com.sps.game.Scenes.ThirdHud;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.BasicEnemy;
 import com.sps.game.Sprites.Player;
@@ -75,13 +76,15 @@ public class CombatScreen implements Screen {
 
     private EnemyHud enemyHud;
 
-    private BasicEnemy e;
+    private ThirdHud ThirdHud;
+
+    private BasicEnemy Enemy;
 
     private CombatController combatController;
 
     public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e) {
         this.game = game;
-        this.e = e;
+        this.Enemy = e;
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "emptyBattleMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
@@ -93,6 +96,7 @@ public class CombatScreen implements Screen {
         batch = new SpriteBatch();
         playerHud = new CombatHud(batch,p,e);
         enemyHud = new EnemyHud(batch,e);
+        ThirdHud = new ThirdHud(batch);
         combatController = new CombatController(p, e);
     }
 
@@ -106,6 +110,7 @@ public class CombatScreen implements Screen {
         renderer.setView(gamecam);
         playerHud.update();
         enemyHud.update();
+        ThirdHud.update();
     }
 
     @Override
@@ -116,10 +121,11 @@ public class CombatScreen implements Screen {
         renderer.render();
         enemyHud.stage.draw();
         playerHud.stage.draw();
+        ThirdHud.stage.draw();
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
         batch.draw(player, 160, 100, 32, 32);
-        batch.draw(enemy, e.getX(), e.getY(), 32, 32);
+        batch.draw(enemy, Enemy.getX(), Enemy.getY(), 32, 32);
         batch.end();
     }
 
