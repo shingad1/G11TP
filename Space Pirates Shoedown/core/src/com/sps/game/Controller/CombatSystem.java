@@ -17,13 +17,8 @@ public class CombatSystem {
         this.player = p;
         this.enemy = e;
       //this.controller = controller;
+        playerTurn = true;
     }
-    /*
-    public void handleCombat(){
-        if (playerTurn){
-            controller.activate();
-        }
-    }*/
 
     public void basicPlayerAttack(){
         player.decreaseHealth(20);

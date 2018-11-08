@@ -82,6 +82,8 @@ public class CombatScreen implements Screen {
 
     private CombatController combatController;
 
+    private int tick;
+
     public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e) {
         this.game = game;
         this.Enemy = e;
@@ -98,6 +100,7 @@ public class CombatScreen implements Screen {
         enemyHud = new EnemyHud(batch,e);
         ThirdHud = new ThirdHud(batch);
         combatController = new CombatController(p, e);
+        tick = 0;
     }
 
     @Override
