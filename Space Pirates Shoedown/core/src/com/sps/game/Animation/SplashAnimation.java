@@ -1,7 +1,7 @@
 package com.sps.game.Animation;
 
-import aurelienribon
-
+//import aurelienribon;
+/*
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class SplashAnimation implements TweenAccessor<Sprite> {
@@ -13,5 +13,5 @@ public class SplashAnimation implements TweenAccessor<Sprite> {
     public int setValues(Sprite target, int tweenType, float[] returnValues) {
 
     }
-
 }
+*/

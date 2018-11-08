@@ -12,17 +12,13 @@ public class playerAnimation extends ApplicationAdapter {
     private static final String ASSETS_PATH = "core/assets/";
 
     public void create() {
-        batch =  new SpriteBatch;
+        batch =  new SpriteBatch();
         playerDown = new Texture(ASSETS_PATH + "playerSpriteSheet.png");
 
 
     }
 
     public playerAnimation() {
-
-    }
-
-    public void create() {
 
     }
 
