@@ -25,40 +25,34 @@ public class CombatSystem {
 
     public void basicPlayerAttack(){
         enemy.decreaseHealth(20);
-        playerTurn = false;
         tick = 1;
     }
 
     public void basicEnemyAttack(){
-        if (playerTurn = false) {
-            player.decreaseHealth(20);
-        }
+        player.decreaseHealth(20);
+        tick = 1;
     }
 
     public void basicPlayerBlock(){
         if(!(player.getHP()==100)) {
             player.increaseHealth(10);
-            playerTurn = false;
         }
         tick = 1;
     }
 
     public boolean getPlayerTurn(){
-        return playerTurn;
+        return (playerTurn && (tick == 0));
     }
 
     public void update(){
-        if (playerTurn != true){
-            if (tick == 17) {
-                basicEnemyAttack();
-                tick++;
-            } else {
-                if (tick != 33) {
-                    tick++;
-                } else {
-                    tick = 0;
-                    playerTurn = true;
-                }
+        if(!(playerTurn) && (tick == 0)){
+            basicEnemyAttack();
+        }
+        if (tick > 0){
+            tick++;
+            if (tick >= 17){
+                playerTurn = !(playerTurn);
+                tick = 0;
             }
         }
     }
