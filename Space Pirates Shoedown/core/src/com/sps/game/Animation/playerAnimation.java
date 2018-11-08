@@ -1,5 +1,6 @@
 package com.sps.game.Animation;
 
+<<<<<<< HEAD
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -40,3 +41,7 @@ public class playerAnimation extends ApplicationAdapter {
     }
 }
 
+=======
+public class playerAnimation {
+}
+>>>>>>> 87ddd891e716509d768befb3c5cb048791cd2cea
