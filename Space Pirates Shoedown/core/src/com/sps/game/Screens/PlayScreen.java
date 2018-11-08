@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -229,9 +230,10 @@ public class PlayScreen implements Screen {
 
     public void combatExit(){
         controller.setFight(false);
-        TiledMapTileLayer.Cell enemyCell = controller.getCellNearPlayerWithProperty("basicEnemy",32,32);
-        enemyCell.getTile().getProperties().remove("basicEnemy");
-        enemyCell.getTile().getProperties().remove("blocked");
+        TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("basicEnemy",32,32);
+        enemyTile.getProperties().remove("basicEnemy");
+        enemyTile.getProperties().remove("blocked");
+        enemyTile.getProperties().put("invisible","true");
         game.setScreen(this);
     }
 }

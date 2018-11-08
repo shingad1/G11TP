@@ -213,18 +213,18 @@ public class PlayerController extends InputAdapter {
     }
 
     public boolean isPlayerNearProperty(String property, float tiledWidth, float tiledHeight) {
-        return (getCellNearPlayerWithProperty(property, tiledWidth, tiledHeight) != null);
+        return (getTileNearPlayerWithProperty(property, tiledWidth, tiledHeight) != null);
     }
 
-    public TiledMapTileLayer.Cell getCellNearPlayerWithProperty(String property, float tiledWidth, float tiledHeight){
+    public TiledMapTile getTileNearPlayerWithProperty(String property, float tiledWidth, float tiledHeight){
         if (collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey(property)){
-            return collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight));
+            return collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile();
         } else if (collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey(property)){
-            return collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight));
+            return collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile();
         } else if (collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey(property)){
-            return collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight));
+            return collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile();
         } else if (collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey(property)){
-            return collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight));
+            return collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() - 32)/tiledHeight)).getTile();
         }
         return null;
     }
