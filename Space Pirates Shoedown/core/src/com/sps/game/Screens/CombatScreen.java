@@ -171,6 +171,7 @@ public class CombatScreen implements Screen {
     }
 
     private void returnScreen(){
-        game.setScreen(playScreen);
+        dispose();
+        playScreen.combatExit();
     }
 }
