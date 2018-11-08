@@ -7,11 +7,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class playerAnimation extends ApplicationAdapter {
     private SpriteBatch batch;
     private TextureAtlas playerDownAtlas;
-    private Animation animation;
+    private Animation <TextureRegion> animation;
     private float timePassed = 0;
 
    private static final String ASSETS_PATH = "core/assets/";
@@ -23,7 +24,7 @@ public class playerAnimation extends ApplicationAdapter {
         batch =  new SpriteBatch();
 
         playerDownAtlas = new TextureAtlas(Gdx.files.internal("playerDown.atlas"));
-        animation = new Animation(1/3f, playerDownAtlas.getRegions());
+        animation = new Animation <TextureRegion> (1/3f, playerDownAtlas.getRegions());
 
     }
 
@@ -38,7 +39,7 @@ public class playerAnimation extends ApplicationAdapter {
 
     batch.begin();
     timePassed += Gdx.graphics.getDeltaTime();
-   // batch.draw(animation.getKeyFrame(timePassed, true), 100, 500);
+    batch.draw(animation.getKeyFrame(timePassed, true), 100, 500);
     batch.end();
     }
 }
