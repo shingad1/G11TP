@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -91,6 +93,8 @@ public class PlayScreen implements Screen {
 
     private PlayerController controller;
 
+    private TiledMapTileLayer collisionLayer;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -107,7 +111,8 @@ public class PlayScreen implements Screen {
         npc.add(new NonPlayingCharacter(900,900));
         int[] xbounds = {0, 1600};
         int[] ybounds = {0,1600};
-        controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
+        collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
+        controller = new PlayerController(p, collisionLayer,xbounds,ybounds);
         hud = new HudScene(game.batch,p);
     }
 
@@ -222,6 +227,10 @@ public class PlayScreen implements Screen {
 
     public void combatExit(){
         controller.setFight(false);
+        TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("basicEnemy",32,32);
+        enemyTile.getProperties().remove("basicEnemy");
+        enemyTile.getProperties().remove("blocked");
+        enemyTile.getProperties().put("invisible","true");
         game.setScreen(this);
     }
 }

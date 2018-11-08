@@ -3,6 +3,7 @@ package com.sps.game.Controller;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Sprites.Player;
@@ -211,17 +212,21 @@ public class PlayerController extends InputAdapter {
         leave = false;
     }
 
-    private boolean isPlayerNearProperty(String property, float tiledWidth, float tiledHeight){
+    public boolean isPlayerNearProperty(String property, float tiledWidth, float tiledHeight) {
+        return (getTileNearPlayerWithProperty(property, tiledWidth, tiledHeight) != null);
+    }
+
+    public TiledMapTile getTileNearPlayerWithProperty(String property, float tiledWidth, float tiledHeight){
         if (collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey(property)){
-            return true;
+            return collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile();
         } else if (collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey(property)){
-            return true;
+            return collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile();
         } else if (collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey(property)){
-            return true;
+            return collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile();
         } else if (collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey(property)){
-            return true;
+            return collisionLayer.getCell((int)((player.getX())/tiledWidth),(int)((player.getY() - 32)/tiledHeight)).getTile();
         }
-        return false;
+        return null;
     }
 
     public void setFight(boolean bool){
