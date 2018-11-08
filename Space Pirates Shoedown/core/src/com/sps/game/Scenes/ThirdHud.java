@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class ThirdHud
 {
-    private Label AttackLabel;
+    private Label AttackLabel; //contains the text displayed to the label
 
     private FitViewport viewport;
     public Stage stage;
