@@ -89,8 +89,6 @@ public class PlayScreen implements Screen {
     private Texture NPC;
     private ArrayList<NonPlayingCharacter> npc;
 
-
-
     private PlayerController controller;
 
     public PlayScreen(SpacePiratesShoedown game){
@@ -104,9 +102,9 @@ public class PlayScreen implements Screen {
         player = new Texture(ASSETS_PATH + "singlecharacter.png");
         NPC = new Texture(ASSETS_PATH + "../monster-512.png");
         batch = new SpriteBatch();
-        p = new Player(800,800); //subject to change
+            p = new Player(800,800); //subject to change
         npc = new ArrayList<NonPlayingCharacter>();
-
+        npc.add(new NonPlayingCharacter(900,900));
         int[] xbounds = {0, 1600};
         int[] ybounds = {0,1600};
         controller = new PlayerController(p, (TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
@@ -146,11 +144,7 @@ public class PlayScreen implements Screen {
             gamecam.position.y = (int) oldPosition.y; //1600-320
             p.setPosition((int) oldPosition.x, (int) oldPosition.y); //736 and 1600-320
             map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
-            npc.add(new NonPlayingCharacter(960,960));
-            for (int i = 0; i < npc.size(); i++){
-                batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
-                npc.get(i).update();
-            }
+
             renderer = new OrthogonalTiledMapRenderer(map);
             int[] xbounds = {0, 1600};
             int[] ybounds = {0,1600};
@@ -191,6 +185,9 @@ public class PlayScreen implements Screen {
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
         batch.draw(player, p.getX(),p.getY(), 32, 32); //may want to create a settings class
+        for (int i = 0; i < npc.size(); i++){
+            batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
+        }
         batch.end();
     }
 
