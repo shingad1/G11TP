@@ -25,7 +25,7 @@ public class ThirdHud
 
     public void update()
     {
-        AttackLabel = new Label ("To Attack: press the key'Q'", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        AttackLabel = new Label ("To Attack: press the key 'Q'" + "\n" + "To Defend: press the key 'W'", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
 
