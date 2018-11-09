@@ -31,47 +31,61 @@ public class CombatScreen implements Screen {
 
     /**
      * Holds a version of the game
+     * @see #CombatScreen
      */
     private Game game;
     /**
      * Renders the texture resources
+     * @see #CombatScreen
      */
     private SpriteBatch batch;
 
     /**
      * Constant field to direct where the file is located.
+     * @see #CombatScreen
      */
     private static final String ASSETS_PATH = "core/assets/tiledAssets/";
     /**
      *Displays what the user will see
+     * @see #CombatScreen
      */
     private Viewport gameport;
     /**
      * Holds the texture showing the player.
+<<<<<<< HEAD
+     * @see #render(float)
+=======
      * @see #render
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     private Texture player;
     /**
      * Holds the texture showing the enemy.
+<<<<<<< HEAD
+     * @see #render(float)
+=======
      * @see #render
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     private Texture enemy;
     /**
      * Holds the tmx file.
+     * @see #CombatScreen
      */
     private TmxMapLoader mapLoader;
     /**
      * Displays the tmx file.
+     * @see #CombatScreen
      */
     private TiledMap map;
     /**
      * Sets the view and displays it to the screen.
-     * @see
+     * @see #CombatScreen
      */
     private OrthogonalTiledMapRenderer renderer;
     /**
      * Holds what the view port will display.
-     * @see
+     * @see #CombatScreen
      */
     private OrthographicCamera gamecam;
     /**
@@ -80,6 +94,42 @@ public class CombatScreen implements Screen {
      */
     private CombatHud playerHud;
     /**
+<<<<<<< HEAD
+     * holds the playerhud
+     * @see #render(float) #update(float)
+     */
+    private EnemyHud enemyHud;
+    /**
+     * holds the Enemyhud
+     * @see #render(float) #update(float)
+     */
+    private ThirdHud ThirdHud;
+    /**
+     * holds the ThirdHud
+     * @see #render(float) #update(float)
+     */
+    private BasicEnemy Enemy;
+    /**
+     * holds the enemy
+     * @see #render(float) #update(float)
+     */
+    private CombatController combatController;
+    /**
+     * Holds the CombatController
+     * @see #CombatScreen
+     */
+    private CombatSystem cs;
+    /**
+     * Holds the CombatSystem
+     * @see #CombatScreen
+     */
+    private int tick;
+    /**
+     * Holds integer variable which has the information for the tick
+     * @see #CombatScreen
+     */
+
+=======
      * Holds the enemy information during the combat.
      * @see #update #render
      */
@@ -108,6 +158,7 @@ public class CombatScreen implements Screen {
      * Holds the state of the playScreen, before the user entered the combat phase.
      * @see #returnScreen
      */
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
     private PlayScreen playScreen;
 
     public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e, PlayScreen playScreen) {
@@ -129,18 +180,29 @@ public class CombatScreen implements Screen {
         combatController = new CombatController(p, e, cs);
         this.playScreen = playScreen;
     }
+<<<<<<< HEAD
+    /**
+     * this method sets the combat controller to input processor
+=======
 
     /**
      * Sets which controller is being used to handle user input
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     @Override
     public void show() {
         Gdx.input.setInputProcessor(combatController);
     }
+<<<<<<< HEAD
+    /**
+     * this method updates the information on the screen
+     * @param (dt)
+=======
 
     /**
      * Updates the screen according to user input and the state of the combat.
      * @param <code>float</code> dt
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     public void update(float dt){
         if (cs.getFinished()){
@@ -153,10 +215,16 @@ public class CombatScreen implements Screen {
         enemyHud.update();
         ThirdHud.update();
     }
+<<<<<<< HEAD
+    /**
+     * this method renders the information on the screen and draws it
+     * @param (delta)
+=======
 
     /**
      * Clears the screen and draws the necessary textures.
      * @param <code>float</code>delta
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     @Override
     public void render(float delta) {
@@ -173,28 +241,40 @@ public class CombatScreen implements Screen {
         batch.draw(enemy, Enemy.getX(), Enemy.getY(), 32, 32);
         batch.end();
     }
-
+    /**
+     * this method resize the screen
+     */
     @Override
     public void resize(int width, int height) {
 
     }
-
+    /**
+     * this method pause the screen
+     */
     @Override
     public void pause() {
 
     }
-
+    /**
+     * this method resume the screen
+     */
     @Override
     public void resume() {
 
     }
-
+    /**
+     * this method hides the screen
+     */
     @Override
     public void hide() {
 
     }
     /**
+<<<<<<< HEAD
+     * this method disposes all the textures
+=======
      * Disposes the images so less memory is used.
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     @Override
     public void dispose() {
@@ -202,9 +282,14 @@ public class CombatScreen implements Screen {
         player.dispose();
         enemy.dispose();
     }
+<<<<<<< HEAD
+    /**
+     * this method exits the screen
+=======
 
     /**
      * Clears the combat screen and returns to the state the play screen was left in.
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     private void returnScreen(){
         dispose();

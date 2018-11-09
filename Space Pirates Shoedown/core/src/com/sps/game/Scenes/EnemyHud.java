@@ -12,18 +12,33 @@ import com.sps.game.Sprites.BasicEnemy;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 /**
- * This class creates a controller for the player which checks for any collisions and allows the player to move
- * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * This class creates controls all the variables of enemy and also is responsible for updating them
+ * @author Miguel Abaquin, Mahamuda Akhter
  * @version 1.0
  */
 public class EnemyHud
 {
+    /**
+     * Holds the enemy's health label
+     * @see #update()
+     */
     Label enemyHealthLabel;
+    /**
+     * Holds the enemy's health label counter
+     * @see #update()
+     */
     Label enemyHealthCountLabel;
-    private int enemyHealth;
-    private BasicEnemy enemy;
 
+    private BasicEnemy enemy;
+    /**
+     * Sets up a separate camera for the HUD so that the hud stays stationary.
+     * @see #EnemyHud
+     */
     private FitViewport viewport;
+    /**
+     * Creates a stage where graphics can be drawn on.
+     * @see #EnemyHud
+     */
     public Stage stage;
 
     public EnemyHud(SpriteBatch sb, BasicEnemy enemy)
@@ -32,13 +47,17 @@ public class EnemyHud
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
     }
-
+    /**
+     * this method updates the enemy's information on the screen, also calls onto another method
+     */
     public void update(){
         enemyHealthLabel = new Label("Enemy Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         enemyHealthCountLabel = new Label(String.format("%d", enemy.getHealth()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
-
+    /**
+     * this method formats the labels so it displayed on the correct position
+     */
     public void formatting()
     {
         stage = new Stage();//formats the labels

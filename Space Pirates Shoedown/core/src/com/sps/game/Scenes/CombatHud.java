@@ -24,22 +24,27 @@ public class CombatHud
 {
     /**
      * Creates a stage where graphics can be drawn on.
+     * @see #CombatHud
      */
     public Stage stage;
     /**
      * Sets up a separate camera for the HUD so that the hud stays stationary.
+     * @see #CombatHud
      */
     private Viewport viewport;
     /**
      * Holds the player
+     * @see #update()
      */
     private Player player;
     /**
      * Label that will display the value 'Player Health'.
+     * @see #update()
      */
     Label playerHealthLabel;
     /**
      * Label that will display the value of the playerHealth field.
+     * @see #update()
      */
     Label playerHealthCountLabel;
 
