@@ -11,7 +11,11 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sps.game.Sprites.BasicEnemy;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
-
+/**
+ * This class creates a controller for the player which checks for any collisions and allows the player to move
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * @version 1.0
+ */
 public class EnemyHud
 {
     Label enemyHealthLabel;
