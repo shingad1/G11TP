@@ -50,11 +50,17 @@ public class MenuScreen implements Screen {
      * @see #resize
      */
     private Viewport gameport;
-
+    /**
+     * Holds the quit button texture.
+     */
     private Texture quitButton;
-
+    /**
+     * Holds the texture of the twitterButton.
+     */
     private Texture twitterButton;
-
+    /**
+     * Holds the texture of the logo.
+     */
     private Texture logoViewed;
 
     public MenuScreen(SpacePiratesShoedown game){
