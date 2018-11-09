@@ -12,18 +12,22 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class playerAnimation extends ApplicationAdapter {
     /**
      * Holds all the sprites that will be displayed on the screen
+     * @see #playerAnimation
      */
     private SpriteBatch batch;
     /**
      * SpriteSheet created by the TexturePacker
+     * @see #playerAnimation
      */
     private TextureAtlas playerDownAtlas;
     /**
      * Animation object stores a list of objects representing an animated sequence.
+     * @see #playerAnimation
      */
     private Animation <TextureRegion> animation;
     /**
      * Delta time
+     *@see #playerAnimation
      */
     private float timePassed = 0;
     /**

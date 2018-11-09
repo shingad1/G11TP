@@ -138,7 +138,7 @@ public class PlayerController extends InputAdapter {
 
     /**
      *
-     * @param <code>OrthographicCamera</code>camera
+     * @param <code>OrthographicCamera<code>camera
      */
     public void action(OrthographicCamera camera) {
         if (tickCount <= 8 && tickCount != 0) { //regulates the amount the player moves so the player moves 1 tile at a time but isn't too fast

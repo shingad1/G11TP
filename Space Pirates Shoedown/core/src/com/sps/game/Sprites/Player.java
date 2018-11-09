@@ -75,23 +75,44 @@ public class Player{
         return velocity;
     }
 
+    /**
+     * Gets the amount of gold the player has
+     * @return Returns a <code>int</code> gold value.
+     */
     public int getGold(){
         return gold;
     }
 
+    /**
+     * Gets the health level of the player.
+     * @return Returns a <code>int</code> health points value.
+     */
     public int getHP(){
         return HP;
     }
 
+    /**
+     * Sets the position of the player on the screen
+     * @param <code>int<code> dx, change in the x axis.
+     * @param <code>int</code> dy, change in the y axis.
+     */
     public void setPosition(int dx, int dy){
         x = dx;
         y = dy;
     }
 
+    /**
+     * Decreases the players health by an inputted amount.
+     * @param <code>int</code> decrease, the amount to decrease the health level by.
+     */
     public void decreaseHealth(int decrease){
         HP-=decrease;
     }
 
+    /**
+     * Increases the players health by an inputted amount.
+     * @param <code>int</code> increase, the amount to increase the health by.
+     */
     public void increaseHealth(int increase){
         HP+=increase;
     }

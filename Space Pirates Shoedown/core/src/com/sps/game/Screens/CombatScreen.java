@@ -52,12 +52,20 @@ public class CombatScreen implements Screen {
     private Viewport gameport;
     /**
      * Holds the texture showing the player.
+<<<<<<< HEAD
      * @see #render(float)
+=======
+     * @see #render
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     private Texture player;
     /**
      * Holds the texture showing the enemy.
+<<<<<<< HEAD
      * @see #render(float)
+=======
+     * @see #render
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     private Texture enemy;
     /**
@@ -80,9 +88,13 @@ public class CombatScreen implements Screen {
      * @see #CombatScreen
      */
     private OrthographicCamera gamecam;
-
+    /**
+     * Holds the player information during the combat.
+     * @see #update #render
+     */
     private CombatHud playerHud;
     /**
+<<<<<<< HEAD
      * holds the playerhud
      * @see #render(float) #update(float)
      */
@@ -117,6 +129,36 @@ public class CombatScreen implements Screen {
      * @see #CombatScreen
      */
 
+=======
+     * Holds the enemy information during the combat.
+     * @see #update #render
+     */
+    private EnemyHud enemyHud;
+    /**
+     * Holds the control information for the user, during combat.
+     * @see #update #render
+     */
+    private ThirdHud ThirdHud;
+    /**
+     * Holds an instance of the enemy.
+     * @see #render
+     */
+    private BasicEnemy Enemy;
+    /**
+     * Handles user input during the combat.
+     * @see #show
+     */
+    private CombatController combatController;
+    /**
+     * Holds the different battle moves and controls whos turn it is.
+     * @see #update
+     */
+    private CombatSystem cs;
+    /**
+     * Holds the state of the playScreen, before the user entered the combat phase.
+     * @see #returnScreen
+     */
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
     private PlayScreen playScreen;
 
     public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e, PlayScreen playScreen) {
@@ -136,19 +178,31 @@ public class CombatScreen implements Screen {
         ThirdHud = new ThirdHud(batch);
         cs = new CombatSystem(p, e);
         combatController = new CombatController(p, e, cs);
-        tick = 0;
         this.playScreen = playScreen;
     }
+<<<<<<< HEAD
     /**
      * this method sets the combat controller to input processor
+=======
+
+    /**
+     * Sets which controller is being used to handle user input
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     @Override
     public void show() {
         Gdx.input.setInputProcessor(combatController);
     }
+<<<<<<< HEAD
     /**
      * this method updates the information on the screen
      * @param (dt)
+=======
+
+    /**
+     * Updates the screen according to user input and the state of the combat.
+     * @param <code>float</code> dt
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     public void update(float dt){
         if (cs.getFinished()){
@@ -161,9 +215,16 @@ public class CombatScreen implements Screen {
         enemyHud.update();
         ThirdHud.update();
     }
+<<<<<<< HEAD
     /**
      * this method renders the information on the screen and draws it
      * @param (delta)
+=======
+
+    /**
+     * Clears the screen and draws the necessary textures.
+     * @param <code>float</code>delta
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     @Override
     public void render(float delta) {
@@ -209,7 +270,11 @@ public class CombatScreen implements Screen {
 
     }
     /**
+<<<<<<< HEAD
      * this method disposes all the textures
+=======
+     * Disposes the images so less memory is used.
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     @Override
     public void dispose() {
@@ -217,8 +282,14 @@ public class CombatScreen implements Screen {
         player.dispose();
         enemy.dispose();
     }
+<<<<<<< HEAD
     /**
      * this method exits the screen
+=======
+
+    /**
+     * Clears the combat screen and returns to the state the play screen was left in.
+>>>>>>> e1f8a307cca8acdf98a0323dea42f1d847076107
      */
     private void returnScreen(){
         dispose();
