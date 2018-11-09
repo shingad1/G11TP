@@ -20,27 +20,33 @@ import com.sps.game.Sprites.Player;
 public class HudScene  {
     /**
      * Stores the player character so the values of the player can be retrieved for the hud
+     * @see #update()
      */
     private Player player;
     /**
      * Creates a stage where graphics can be drawn on.
+     * @see #HudScene
      */
     public Stage stage;
     /**
      * Sets up a separate camera for the HUD so that the hud stays stationary.
+     * @see #HudScene
      */
     private Viewport viewport;
     /**
      * Temporary variable used for example, placeholder for the player's real gold.
+     * @see #update()
      */
     private Integer gold;
 
     /**
      * Label that will display the value 'Gold'.
+     * @see #update()
      */
     Label goldLabel;
     /**
      * Label that displays the value of the gold variable.
+     * @see #update()
      */
     Label goldCountLabel;
 
@@ -59,12 +65,16 @@ public class HudScene  {
 
         player = p;
     }
-
+    /**
+     * this method updates the GoldCounterLabel and also calls onto another method
+     */
     public void update(){
         goldCountLabel = new Label(String.format("%02d",player.getGold()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
-
+    /**
+     * this method formats the labels so it displayed on the correct position
+     */
     private void formatting(){
         stage = new Stage();
         //Creating a Table and instantiating it, used for layout of the HUD

@@ -149,7 +149,6 @@ public class PlayScreen implements Screen {
             gamecam.position.y = (int) oldPosition.y; //1600-320
             p.setPosition((int) oldPosition.x, (int) oldPosition.y); //736 and 1600-320
             map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
-
             renderer = new OrthogonalTiledMapRenderer(map);
             int[] xbounds = {0, 1600};
             int[] ybounds = {0,1600};
@@ -190,8 +189,9 @@ public class PlayScreen implements Screen {
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
         batch.draw(player, p.getX(),p.getY(), 32, 32); //may want to create a settings class
+
         for (int i = 0; i < npc.size(); i++){
-            batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
+           batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
         }
         batch.end();
     }

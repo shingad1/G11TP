@@ -2,11 +2,27 @@ package com.sps.game.Sprites;
 
 import java.util.Random;
 
-public class NonPlayingCharacter {
+public class NonPlayingCharacter
+{
+    /**
+     * Stores the NPC character's x co-ordinate
+     * @see #update()
+     */
     private int x; //keep record of the NPC's x co-ordinate
+    /**
+     * Stores the NPC character's y co-ordinate
+     * @see #update()
+     */
     private int y; //keep record of the NPC's y co-ordinate
-
-    private int time = 0; //keep record of the time
+    /**
+     * keeps record of the time
+     * @see #update()
+     */
+    private int time = 0;
+    /**
+     * Stores the random variable so it can be used for the movement
+     * @see #update()
+     */
     private Random random;
 
     public NonPlayingCharacter(int x, int y)
@@ -15,7 +31,9 @@ public class NonPlayingCharacter {
         this.y = y;
         random = new Random();
     }
-
+    /**
+     * this method allows the NPC to move, it also changes direction as well as stops every now and then
+     */
     public void update() {
         time++; //increases the time
         if (time % (random.nextInt(50) + 30) == 0) //uses the mod in order to change direction every second (the range is from 30-80)
@@ -42,12 +60,18 @@ public class NonPlayingCharacter {
             y-=1;
         }
     }
-
+    /**
+     * this method returns the NPC x co-ordinate
+     * @return <code>int</code>
+     */
     public int NPCGetX()
     {
         return x;
     } //returns the x-axis
-
+    /**
+     * this method returns the NPC y co-ordinate
+     * @return <code>int</code>
+     */
     public int NPCGetY()
     {
         return y;
