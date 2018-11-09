@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="1">
+ <tileset firstgid="1" source="Tiles5.tsx"/>
+ <tileset firstgid="491" source="Fences.tsx"/>
+ <tileset firstgid="509" source="Tiles4.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1bkNACEMRUHXRF30H5NSwGp9MMHLPdKXvCJiSZKkT9tX2bdwcFSLo1YcteKoVaZjN+sVR/VdcXBwcHBwdHJk/fMu/e2YsisODg4ODo5Oji5Nd0ia2QESqknT
+  </data>
+ </layer>
+ <layer id="8" name="Tree" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmjlPwzAUgNPuwAiMwMAACAYOlQHKMRRQGTg2jp8AbFwT1waMwH9EqhADYuOLmkimilzL9YvjKsOnF1tVn+0vfnGk1KIoWoZa4HEDNvsgpvNpwm6AsdPHugO+KlH0qeG74iaPSqcPF//ZYpz1apszrs/hQulrCcxDwkc8zknGe0m8gmu4gdukX2IeUj7mGO8d8R4e4BGekv6QfMxW2zxz/QKvSl8oPn6S/fwLb/AOH5X//SH48IGEDx+UPopF6aNYlD6KhZSPrHWRXCspH1nrInnvSvlI32+69RXdR96U9cr/2ofuQ1dDQvKRVS9C9KFz5MPHPCzAIixZtH36GIBBGIIVWIU6rFm0TX2oOV3NYxhGYBQasAXbsGPRNvWh5nR1343BOEzAHuzDARxatE19qDld3XdTMA0zcATHcAKnFm1TH2pOybORC0J8fmQR4vMja82lfOTxzpSHD0m/WXtVykfedSHE/aHz38/1SuJc0g3bnDof6rnE5ZrpfmObU+dDPZe4mIfJHrTNqfOhnktczMOkhtnmLOtVsSh9FAvVh+9vjnqNsY+m4ibUmNZC398e9RrjOfwBNpKTaQ==
+  </data>
+ </layer>
+</map>
