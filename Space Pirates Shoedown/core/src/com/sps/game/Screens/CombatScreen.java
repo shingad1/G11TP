@@ -48,10 +48,12 @@ public class CombatScreen implements Screen {
     private Viewport gameport;
     /**
      * Holds the texture showing the player.
+     * @see #render
      */
     private Texture player;
     /**
      * Holds the texture showing the enemy.
+     * @see #render
      */
     private Texture enemy;
     /**
@@ -72,21 +74,40 @@ public class CombatScreen implements Screen {
      * @see
      */
     private OrthographicCamera gamecam;
-
+    /**
+     * Holds the player information during the combat.
+     * @see #update #render
+     */
     private CombatHud playerHud;
-
+    /**
+     * Holds the enemy information during the combat.
+     * @see #update #render
+     */
     private EnemyHud enemyHud;
-
+    /**
+     * Holds the control information for the user, during combat.
+     * @see #update #render
+     */
     private ThirdHud ThirdHud;
-
+    /**
+     * Holds an instance of the enemy.
+     * @see #render
+     */
     private BasicEnemy Enemy;
-
+    /**
+     * Handles user input during the combat.
+     * @see #show
+     */
     private CombatController combatController;
-
+    /**
+     * Holds the different battle moves and controls whos turn it is.
+     * @see #update
+     */
     private CombatSystem cs;
-
-    private int tick;
-
+    /**
+     * Holds the state of the playScreen, before the user entered the combat phase.
+     * @see #returnScreen
+     */
     private PlayScreen playScreen;
 
     public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e, PlayScreen playScreen) {
@@ -106,15 +127,21 @@ public class CombatScreen implements Screen {
         ThirdHud = new ThirdHud(batch);
         cs = new CombatSystem(p, e);
         combatController = new CombatController(p, e, cs);
-        tick = 0;
         this.playScreen = playScreen;
     }
 
+    /**
+     * Sets which controller is being used to handle user input
+     */
     @Override
     public void show() {
         Gdx.input.setInputProcessor(combatController);
     }
 
+    /**
+     * Updates the screen according to user input and the state of the combat.
+     * @param <code>float</code> dt
+     */
     public void update(float dt){
         if (cs.getFinished()){
             returnScreen();
@@ -127,6 +154,10 @@ public class CombatScreen implements Screen {
         ThirdHud.update();
     }
 
+    /**
+     * Clears the screen and draws the necessary textures.
+     * @param <code>float</code>delta
+     */
     @Override
     public void render(float delta) {
         update(delta);
@@ -162,7 +193,9 @@ public class CombatScreen implements Screen {
     public void hide() {
 
     }
-
+    /**
+     * Disposes the images so less memory is used.
+     */
     @Override
     public void dispose() {
         map.dispose();
@@ -170,6 +203,9 @@ public class CombatScreen implements Screen {
         enemy.dispose();
     }
 
+    /**
+     * Clears the combat screen and returns to the state the play screen was left in.
+     */
     private void returnScreen(){
         dispose();
         playScreen.combatExit();
