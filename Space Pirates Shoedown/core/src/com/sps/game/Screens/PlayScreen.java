@@ -84,15 +84,23 @@ public class PlayScreen implements Screen {
      */
     private Player p;
     /**
-     * Resolves any actions the user inputs, does nothing if nothing inputed.
-     * @see #handleInput
+     * Holds the texture showing the NPC.
+     * @see #render
      */
-
     private Texture NPC;
+    /**
+     * Holds a list of NonPlayingCharacter objects.
+     * @see #render
+     */
     private ArrayList<NonPlayingCharacter> npc;
-
+    /**
+     * Handles the users input, and updates the players properties accordingly.
+     * @see #show #handleInput #combatExit
+     */
     private PlayerController controller;
-
+    /**
+     * Holds the layer of objects which the player cannot go through.
+     */
     private TiledMapTileLayer collisionLayer;
 
     public PlayScreen(SpacePiratesShoedown game){
@@ -125,7 +133,7 @@ public class PlayScreen implements Screen {
     }
 
     /**
-     *
+     * Checks the users input, changing the screen accordingly.
      * @param <code>float</code>dt
      */
     public void handleInput(float dt){
@@ -225,6 +233,9 @@ public class PlayScreen implements Screen {
        //player.dispose();
     }
 
+    /**
+     * Changes the screen once combat is finished.
+     */
     public void combatExit(){
         controller.setFight(false);
         TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("basicEnemy",32,32);

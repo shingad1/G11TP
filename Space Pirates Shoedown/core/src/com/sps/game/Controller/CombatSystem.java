@@ -68,13 +68,13 @@ public class CombatSystem
         tick = 1;
     }
     /**
-     * changes the boolean when it is the players turn
+     * Changes the boolean when it is the players turn.
      */
     public boolean getPlayerTurn(){
         return (playerTurn && (tick == 0));
     }
     /**
-     *this updates the battle scene so the enemy and the player has equal chances
+     * This updates the battle scene so the enemy and the player has equal chances.
      */
     public void update() {
         if (!(finished)){
@@ -94,7 +94,7 @@ public class CombatSystem
         }
     }
     /**
-     * keeps track of whether the game is finished or nto
+     * Keeps track of whether the game is finished or not.
      * @return <code>Boolean</code>
      */
     public boolean getFinished(){
