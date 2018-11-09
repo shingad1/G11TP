@@ -229,6 +229,7 @@ public class PlayerController extends InputAdapter {
         return null;
     }
 
+    //Changes the fight state to 'bool' (usually false), this stops the player from fighting
     public void setFight(boolean bool){
         fight = bool;
         if(fight == false){

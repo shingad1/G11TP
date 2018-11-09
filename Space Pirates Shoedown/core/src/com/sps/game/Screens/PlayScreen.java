@@ -103,6 +103,8 @@ public class PlayScreen implements Screen {
      */
     private TiledMapTileLayer collisionLayer;
 
+    private String mapState;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -116,12 +118,13 @@ public class PlayScreen implements Screen {
         batch = new SpriteBatch();
             p = new Player(800,800); //subject to change
         npc = new ArrayList<NonPlayingCharacter>();
-        npc.add(new NonPlayingCharacter(900,900));
+        npc.add(new NonPlayingCharacter(960,960,"Overworld"));
         int[] xbounds = {0, 1600};
         int[] ybounds = {0,1600};
         collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
         controller = new PlayerController(p, collisionLayer,xbounds,ybounds);
         hud = new HudScene(game.batch,p);
+        mapState = "Overworld";
     }
 
     /**
@@ -149,6 +152,7 @@ public class PlayScreen implements Screen {
             int[] xbounds = {32,320};
             int[] ybounds = {32,320};
             controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
+            mapState = "House";
         }
         if(controller.getLeave()){
             dispose();
@@ -162,9 +166,11 @@ public class PlayScreen implements Screen {
             int[] xbounds = {0, 1600};
             int[] ybounds = {0,1600};
             controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
+            mapState = "Overworld";
         }
         if(controller.getFight()){
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250),this));
+            mapState = "HouseFight";
         }
     }
 
@@ -175,7 +181,9 @@ public class PlayScreen implements Screen {
     public void update(float dt){
         handleInput(dt);
         for (int i = 0; i < npc.size(); i++){
-            npc.get(i).update();
+            if (npc.get(i).getWorld().equals(mapState)) {
+                npc.get(i).update();
+            }
         }
         hud.update();
         gamecam.update();
@@ -197,10 +205,12 @@ public class PlayScreen implements Screen {
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-        batch.draw(player, p.getX(),p.getY(), 32, 32); //may want to create a settings class
         for (int i = 0; i < npc.size(); i++){
-            batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
+            if (npc.get(i).getWorld().equals(mapState)) {
+                batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
+            }
         }
+        batch.draw(player, p.getX(),p.getY(), 32, 32); //may want to create a settings class
         batch.end();
     }
 
@@ -242,6 +252,7 @@ public class PlayScreen implements Screen {
         enemyTile.getProperties().remove("basicEnemy");
         enemyTile.getProperties().remove("blocked");
         enemyTile.getProperties().put("invisible","true");
+        mapState = "House";
         game.setScreen(this);
     }
 }
