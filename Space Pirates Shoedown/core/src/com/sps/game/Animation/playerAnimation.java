@@ -42,7 +42,7 @@ public class playerAnimation extends ApplicationAdapter {
         this.player = player;
         batch = sb;
         playerDownAtlas = new TextureAtlas(ASSETS_PATH + "playerDown.atlas");
-        animation = new Animation <TextureRegion> (1/3f, playerDownAtlas.getRegions());
+        animation = new Animation <TextureRegion> (1/4f, playerDownAtlas.getRegions());
     }
 
     /**
