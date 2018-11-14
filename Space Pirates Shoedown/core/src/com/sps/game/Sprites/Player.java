@@ -1,5 +1,6 @@
 package com.sps.game.Sprites;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Animation.playerAnimation;
 
@@ -37,14 +38,14 @@ public class Player{
      */
     private playerAnimation animation;
 
-    public Player(int x, int y){
+    public Player(int x, int y, SpriteBatch sb){
         this.x = x;
         this.y = y;
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
         gold = 50;
         HP = 100;
-        animation = new playerAnimation(this);
+        animation = new playerAnimation(sb,this);
     }
 
     /**

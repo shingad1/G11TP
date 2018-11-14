@@ -38,9 +38,9 @@ public class playerAnimation extends ApplicationAdapter {
 
    private Player player;
 
-    public playerAnimation(Player player) {
+    public playerAnimation(SpriteBatch sb,Player player) {
         this.player = player;
-        batch =  new SpriteBatch();
+        batch = sb;
         playerDownAtlas = new TextureAtlas(ASSETS_PATH + "playerDown.atlas");
         animation = new Animation <TextureRegion> (1/3f, playerDownAtlas.getRegions());
     }

@@ -113,7 +113,7 @@ public class PlayScreen implements Screen {
         gamecam.position.set(800, 800, 0);
         NPC = new Texture(ASSETS_PATH + "../monster-512.png");
         batch = new SpriteBatch();
-            p = new Player(800,800);
+        p = new Player(800,800,batch);
         npc = new ArrayList<NonInteractiveNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld"));
         int[] xbounds = {0, 1600};
