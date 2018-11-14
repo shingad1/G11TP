@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Animation.playerAnimation;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
@@ -73,11 +74,7 @@ public class PlayScreen implements Screen {
      * @see #render
      */
     private SpriteBatch batch;
-    /**
-     * Holds the texture showing the player.
-     * @see #render
-     */
-    private Texture player;
+
     /**
      * Creates instance of the player, which holds the logic of the player.
      * @see #render
@@ -113,10 +110,9 @@ public class PlayScreen implements Screen {
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(800, 800, 0);
-        player = new Texture(ASSETS_PATH + "singlecharacter.png");
         NPC = new Texture(ASSETS_PATH + "../monster-512.png");
         batch = new SpriteBatch();
-            p = new Player(800,800);
+        p = new Player(800,800);
         npc = new ArrayList<NonPlayingCharacter>();
         npc.add(new NonPlayingCharacter(960,960,"Overworld"));
         int[] xbounds = {0, 1600};
@@ -204,13 +200,13 @@ public class PlayScreen implements Screen {
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-        for (int i = 0; i < npc.size(); i++){
+        for (int i = 0; i < npc.size(); i++) {
             if (npc.get(i).getWorld().equals(mapState)) {
                 batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
             }
         }
-        batch.draw(player, p.getX(),p.getY(), 32, 32); //may want to create a settings class
         batch.end();
+        p.getAnimation().render();
     }
 
     @Override

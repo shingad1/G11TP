@@ -1,6 +1,7 @@
 package com.sps.game.Sprites;
 
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Animation.playerAnimation;
 
 /**
  * This class creates the player and sets the starting x and y coordinates.
@@ -31,6 +32,10 @@ public class Player{
      * #getVelocity
      */
     private Vector2 velocity;
+    /**
+     * Holds the texture showing the player.
+     */
+    private playerAnimation animation;
 
     public Player(int x, int y){
         this.x = x;
@@ -39,6 +44,7 @@ public class Player{
         velocity.x = 0; velocity.y = 0;
         gold = 50;
         HP = 100;
+        animation = new playerAnimation(this);
     }
 
     /**
@@ -115,5 +121,9 @@ public class Player{
      */
     public void increaseHealth(int increase){
         HP+=increase;
+    }
+
+    public playerAnimation getAnimation(){
+        return animation;
     }
 }
