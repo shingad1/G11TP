@@ -94,6 +94,7 @@ public class PlayerController extends InputAdapter {
                        }
                       else{
                            player.getVelocity().y = -4;
+                           player.changeState("down");
                      }
                     break;
                 case Input.Keys.UP:
@@ -106,6 +107,7 @@ public class PlayerController extends InputAdapter {
                         player.getVelocity().y = 0;
                     }else {
                         player.getVelocity().y = 4;
+                        player.changeState("down");
                     }
                     break;
                 case Input.Keys.LEFT:
@@ -115,6 +117,7 @@ public class PlayerController extends InputAdapter {
                     }
                     else {
                         player.getVelocity().x = -4;
+                        player.changeState("left");
                     }
                     break;
                 case Input.Keys.RIGHT:
@@ -124,6 +127,7 @@ public class PlayerController extends InputAdapter {
                     }
                     else {
                         player.getVelocity().x = 4;
+                        player.changeState("right");
                     }
                     break;
                 case Input.Keys.A:
@@ -210,6 +214,7 @@ public class PlayerController extends InputAdapter {
         player.getVelocity().y = 0;
         entered = false;
         leave = false;
+        player.changeState("idle");
     }
 
     public boolean isPlayerNearProperty(String property, float tiledWidth, float tiledHeight) {
