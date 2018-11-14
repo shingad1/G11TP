@@ -39,4 +39,5 @@ public abstract class AbstractNPC {
     public abstract void setY(float newY);
     public abstract void setX(float newX);
 
+
 }

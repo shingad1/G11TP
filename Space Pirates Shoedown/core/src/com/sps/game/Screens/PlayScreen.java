@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
+import com.sps.game.Extra.Location;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.BasicEnemy;
@@ -100,6 +101,8 @@ public class PlayScreen implements Screen {
     private TiledMapTileLayer collisionLayer;
 
     private String mapState;
+
+    private Location location;
 
     private NPCController npcController;
 
@@ -205,10 +208,12 @@ public class PlayScreen implements Screen {
         for (int i = 0; i < npc.size(); i++) {
             if (npc.get(i).getWorld().equals(mapState)) {
                 batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
+                location.addLocation(new Vector2(npc.get(i).NPCGetX(), npc.get(i).NPCGetY()), true);
             }
         }
         batch.end();
         p.getAnimation().render();
+        location.addLocation(new Vector2(p.getX(), p.getY()), true);
     }
 
     @Override

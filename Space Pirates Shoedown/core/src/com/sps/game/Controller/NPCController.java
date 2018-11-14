@@ -40,22 +40,18 @@ public class NPCController {
 
         if(npc.getVelocity().y > 0){
             collisionY = collisionLayer.getCell((int) (npc.NPCGetX() / tiledWidth), (int) ((npc.NPCGetY() + 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
-            System.out.println("Up");
             return collisionY;
         }
         if(npc.getVelocity().y < 0){
             collisionY = collisionLayer.getCell((int) (npc.NPCGetX() / tiledWidth), (int) ((npc.NPCGetY() - 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
-            System.out.println("down");
             return collisionY;
         }
         if(npc.getVelocity().x > 0){
             collisionX = collisionLayer.getCell((int) ((npc.NPCGetX() + 32) / tiledWidth), (int) (npc.NPCGetY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
-            System.out.println("right");
             return collisionX;
         }
         if(npc.getVelocity().x < 0){
             collisionX = collisionLayer.getCell((int) ((npc.NPCGetX() - 32) / tiledWidth), (int) (npc.NPCGetY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
-            System.out.println("left");
             return collisionX;
         }
 
@@ -112,4 +108,6 @@ public class NPCController {
         npc.getVelocity().y = 0;
         tick = 0;
     }
+
+
 }

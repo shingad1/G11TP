@@ -59,7 +59,6 @@ public class CombatController extends InputAdapter
             {
                 case Input.Keys.Q:
                     combatSystem.basicPlayerAttack();
-                    System.out.println(player.getHP());
                     break;
                 case Input.Keys.W:
                     combatSystem.basicPlayerBlock();
