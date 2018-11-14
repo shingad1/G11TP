@@ -19,16 +19,8 @@ walkdown2
   index: -1
 walkdown3
   rotate: false
-   xy: 69, 1
-   size: 32, 32
-   orig: 32, 32
-   offset: 0, 0
-   index: -1
-walkdown4
-  rotate: false
-   xy: 35, 1
-   size: 32, 32
-   orig: 32, 32
-   offset: 0, 0
-   index: -1
-
+  xy: 69, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
