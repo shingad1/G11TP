@@ -80,7 +80,7 @@ public class PlayerController extends InputAdapter {
         boolean collisionY = false;
         boolean collisionX = false;
 
-        float oldX = player.getX(), oldY = player.getY();
+        //float oldX = player.getX(), oldY = player.getY();
         float tiledWidth = collisionLayer.getTileWidth(), tiledHeight = collisionLayer.getTileHeight();
         if(tickCount == 0) { //starts the 8 tick count for the movement (in other words, movement is separated into 8 ticks)
             keyPressed = keycode;
