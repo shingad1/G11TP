@@ -110,13 +110,13 @@ public class PlayScreen implements Screen {
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load(ASSETS_PATH + "testMap.tmx"); //tmx file of map itself;    HackMap.tmx
-        renderer = new OrthogonalTiledMapRenderer(map); //renders the tmx file provided
-        gamecam.position.set(800, 800, 0); //positions gamecam, subject to change
+        map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
+        renderer = new OrthogonalTiledMapRenderer(map);
+        gamecam.position.set(800, 800, 0);
         player = new Texture(ASSETS_PATH + "singlecharacter.png");
         NPC = new Texture(ASSETS_PATH + "../monster-512.png");
         batch = new SpriteBatch();
-            p = new Player(800,800); //subject to change
+            p = new Player(800,800);
         npc = new ArrayList<NonPlayingCharacter>();
         npc.add(new NonPlayingCharacter(960,960,"Overworld"));
         int[] xbounds = {0, 1600};
@@ -128,7 +128,7 @@ public class PlayScreen implements Screen {
     }
 
     /**
-     * Spcifies which controller will be used to check the input.
+     * Specifies which controller will be used to check the input.
      */
     @Override
     public void show() {
@@ -157,9 +157,9 @@ public class PlayScreen implements Screen {
         if(controller.getLeave()){
             dispose();
             Vector2 oldPosition = controller.popPosition();
-            gamecam.position.x = (int) oldPosition.x; //736
-            gamecam.position.y = (int) oldPosition.y; //1600-320
-            p.setPosition((int) oldPosition.x, (int) oldPosition.y); //736 and 1600-320
+            gamecam.position.x = (int) oldPosition.x;
+            gamecam.position.y = (int) oldPosition.y;
+            p.setPosition((int) oldPosition.x, (int) oldPosition.y);
             map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
             renderer = new OrthogonalTiledMapRenderer(map);
             int[] xbounds = {0, 1600};
