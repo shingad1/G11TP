@@ -50,6 +50,7 @@ public class dialogueBox extends Table
                 state = STATE.IDLE;
                 animTimer = animationTotalTime;
             }
+            /*
             String actuallyDisplayedText = "";
             int charactersToDisplay = (int)((animTimer/animationTotalTime)*targetText.length());
             for (int i = 0; i < charactersToDisplay; i++)
@@ -58,8 +59,9 @@ public class dialogueBox extends Table
             }
             if(!actuallyDisplayedText.equals(textLabel.getText().toString()))
             {
-                setText(actuallyDisplayedText);
+               setText(actuallyDisplayedText);
             }
+            */
         }
     }
 
