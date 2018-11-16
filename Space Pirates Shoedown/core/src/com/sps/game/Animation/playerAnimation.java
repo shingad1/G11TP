@@ -42,7 +42,7 @@ public class playerAnimation extends ApplicationAdapter {
         this.player = player;
         batch = sb;
         playerDownAtlas = new TextureAtlas(ASSETS_PATH + animationName);
-        animation = new Animation <TextureRegion> (1/4f, playerDownAtlas.getRegions());
+        animation = new Animation <TextureRegion> (1/64f, playerDownAtlas.getRegions());
     }
 
     /**
@@ -71,7 +71,7 @@ public class playerAnimation extends ApplicationAdapter {
 
     batch.begin();
     timePassed += Gdx.graphics.getDeltaTime();
-    batch.draw(animation.getKeyFrame(timePassed, true), player.getX(), player.getY(),32,32);
+    batch.draw(animation.getKeyFrame(timePassed, true), player.getX(), player.getY(),128,32);
     batch.end();
     }
 }
