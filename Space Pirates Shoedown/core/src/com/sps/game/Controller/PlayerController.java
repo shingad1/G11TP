@@ -213,12 +213,12 @@ public class PlayerController extends InputAdapter {
         switch(keycode) {
 
             case Input.Keys.DOWN:
-                leave = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 32) / tiledHeight)).getTile().getProperties().containsKey("leave");
-                collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 32) / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                leave = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("leave");
+                collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("blocked");
                 if (collisionY) {
                     player.getVelocity().y = 0;
                 } else {
-                    player.getVelocity().y = -4;
+                    player.getVelocity().y = -1;
                     player.changeState("down");
                     isKeyDown = true;
                 }
@@ -232,17 +232,17 @@ public class PlayerController extends InputAdapter {
                 if (collisionY) {
                     player.getVelocity().y = 0;
                 } else {
-                    player.getVelocity().y = 4;
+                    player.getVelocity().y = 1;
                     player.changeState("down");
                     isKeyDown = true;
                 }
                 break;
             case Input.Keys.LEFT:
-                collisionX = collisionLayer.getCell((int) ((player.getX() - 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                collisionX = collisionLayer.getCell((int) ((player.getX() - 1) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
                 if (collisionX) {
-                    player.getVelocity().y = 0;
+                    player.getVelocity().x = 0;
                 } else {
-                    player.getVelocity().x = -4;
+                    player.getVelocity().x = -1;
                     player.changeState("left");
                     isKeyDown = true;
                 }
@@ -252,7 +252,7 @@ public class PlayerController extends InputAdapter {
                 if (collisionX) {
                     player.getVelocity().x = 0;
                 } else {
-                    player.getVelocity().x = 4;
+                    player.getVelocity().x = 1;
                     player.changeState("right");
                     isKeyDown = true;
                 }
