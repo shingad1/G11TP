@@ -48,14 +48,14 @@ public class NonInteractiveNPC extends AbstractNPC {
     /**
      * Returns the NPc x Axis
      */
-    public int NPCGetX()
+    public int getX()
     {
         return x;
     }
     /**
      * Returns the y Axis
      */
-    public int NPCGetY()
+    public int getY()
     {
         return y;
     }

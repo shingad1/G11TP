@@ -1,10 +1,16 @@
 package com.sps.game.Controller;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.sps.game.Sprites.AbstractNPC;
+
+import javax.swing.text.Position;
 import java.util.Random;
 
-public class NPCController {
+public class NPCController
+{
 
     /**
      * Holds which layer of the TiledMap contains objects that the user can not pass through.
@@ -13,6 +19,8 @@ public class NPCController {
     private TiledMapTileLayer collisionLayer;
 
     private AbstractNPC npc;
+
+    private FixtureDef npcBody;
 
     /**
      * Uses Tick to break down movement into a number of iterations so that it doesnt move too fast
@@ -29,6 +37,8 @@ public class NPCController {
         this.collisionLayer = collisionLayer;
         this.npc = npc;
         random = new Random();
+        npcBody = new FixtureDef();
+
     }
 
     public boolean collisionDetection(){
@@ -39,19 +49,20 @@ public class NPCController {
         float tiledHeight = 32;
 
         if(npc.getVelocity().y > 0){
-            collisionY = collisionLayer.getCell((int) (npc.NPCGetX() / tiledWidth), (int) ((npc.NPCGetY() + 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
+            collisionY = collisionLayer.getCell((int) (npc.getX() / tiledWidth), (int) ((npc.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
+            //npcBody.getPosition.y = new Position;
             return collisionY;
         }
         if(npc.getVelocity().y < 0){
-            collisionY = collisionLayer.getCell((int) (npc.NPCGetX() / tiledWidth), (int) ((npc.NPCGetY() - 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
+            collisionY = collisionLayer.getCell((int) (npc.getX() / tiledWidth), (int) ((npc.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
             return collisionY;
         }
         if(npc.getVelocity().x > 0){
-            collisionX = collisionLayer.getCell((int) ((npc.NPCGetX() + 32) / tiledWidth), (int) (npc.NPCGetY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
+            collisionX = collisionLayer.getCell((int) ((npc.getX() + 32) / tiledWidth), (int) (npc.getY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
             return collisionX;
         }
         if(npc.getVelocity().x < 0){
-            collisionX = collisionLayer.getCell((int) ((npc.NPCGetX() - 32) / tiledWidth), (int) (npc.NPCGetY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
+            collisionX = collisionLayer.getCell((int) ((npc.getX() - 32) / tiledWidth), (int) (npc.getY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
             return collisionX;
         }
 
@@ -62,6 +73,7 @@ public class NPCController {
      * This method updates the movement for the NPc
      */
     public void move() {
+        float oldX = npc.getX(), oldY = npc.getY();
         if (tick == 0){
             switch (random.nextInt(6) + 1){
                 case 2:

@@ -26,11 +26,11 @@ public abstract class AbstractNPC {
     /**
      * Returns the NPc x Axis
      */
-    public abstract int NPCGetX();
+    public abstract int getX();
     /**
      * Returns the y Axis
      */
-    public abstract int NPCGetY();
+    public abstract int getY();
     /**
      *
      */

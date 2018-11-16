@@ -37,12 +37,12 @@ public class InteractiveNPC extends AbstractNPC{
     }
 
     @Override
-    public int NPCGetX() {
+    public int getX() {
         return x;
     }
 
     @Override
-    public int NPCGetY() {
+    public int getY() {
         return y;
     }
 

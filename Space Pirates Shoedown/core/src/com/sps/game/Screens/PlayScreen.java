@@ -207,8 +207,8 @@ public class PlayScreen implements Screen {
         batch.begin();
         for (int i = 0; i < npc.size(); i++) {
             if (npc.get(i).getWorld().equals(mapState)) {
-                batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
-//                location.addLocation(new Vector2(npc.get(i).NPCGetX(), npc.get(i).NPCGetY()), true);
+                batch.draw(NPC, npc.get(i).getX(), npc.get(i).getY(), 32, 32);
+//                location.addLocation(new Vector2(npc.get(i).getX(), npc.get(i).getY()), true);
             }
         }
         batch.end();
