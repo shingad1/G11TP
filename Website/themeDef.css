@@ -25,14 +25,15 @@ body{
 
 button
 {
+	position: fixed;
 	top: 50%;
-	left: 50%;
-	transform: translateX(+156%) ;
+	left: 36%;
+	/*transform: translateX(+156%) ;*/
 	display: inline-block;
 	overflow: hidden;
 	font-weight: bold;
 	color: white;
-	background-color: rgb(66, 244, 86);
+	background-color: rgb(72, 61, 139);
 	font-size: 30px;
 	padding: 30px;
 	margin: 80px;
