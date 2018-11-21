@@ -114,7 +114,7 @@ public class PlayScreen implements Screen {
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(800, 800, 0);
-        NPC = new Texture(ASSETS_PATH + "../monster-512.png");
+        NPC = new Texture(ASSETS_PATH + "../npcIdle.png");
         batch = new SpriteBatch();
         p = new Player(800,800,batch);
         npc = new ArrayList<NonInteractiveNPC>();
