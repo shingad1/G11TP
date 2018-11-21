@@ -1,7 +1,9 @@
 package com.sps.game.Extra;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 
 public class DialogueBox extends Table
 {
@@ -18,6 +20,14 @@ public class DialogueBox extends Table
         ANIMATING,
         IDLE,
         ;
+    }
+
+    public DialogueBox(Skin skin)
+    {
+        super(skin);
+        this.setBackground("dialoguebox");
+        textLabel = new Label("\n", skin);
+        this.add(textLabel).expand().align(Align.left).pad(5f);
     }
 
     public void animateText(String text)
@@ -39,6 +49,15 @@ public class DialogueBox extends Table
             return false;
         }
     }
+
+    private void setText(String text)
+    {
+        if(!text.contains("\n"))
+        {
+            text += "\n";
+        }
+        this.textLabel.setText(text);
+    }
 @Override
     public void act(float delta)
     {
@@ -50,8 +69,9 @@ public class DialogueBox extends Table
                 state = STATE.IDLE;
                 animTimer = animationTotalTime;
             }
-            /*
+
             String actuallyDisplayedText = "";
+
             int charactersToDisplay = (int)((animTimer/animationTotalTime)*targetText.length());
             for (int i = 0; i < charactersToDisplay; i++)
             {
@@ -59,13 +79,13 @@ public class DialogueBox extends Table
             }
             if(!actuallyDisplayedText.equals(textLabel.getText().toString()))
             {
-               setText(actuallyDisplayedText);
+                setText(actuallyDisplayedText);
             }
-            */
         }
     }
 
-    public float getPreWidth()
+    @Override
+    public float getPrefWidth()
     {
         return 200f;
     }
