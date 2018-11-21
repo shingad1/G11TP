@@ -3,7 +3,7 @@ package com.sps.game.Extra;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
-public class dialogueBox extends Table
+public class DialogueBox extends Table
 {
     private String targetText = "";
     private float animTimer = 0f;
