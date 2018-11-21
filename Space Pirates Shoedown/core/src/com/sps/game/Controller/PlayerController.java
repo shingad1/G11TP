@@ -218,7 +218,7 @@ public class PlayerController extends InputAdapter {
                 if (collisionY) {
                     player.getVelocity().y = 0;
                 } else {
-                    player.getVelocity().y = -1;
+                    player.getVelocity().y = -4;
                     player.changeState("down");
                     isKeyDown = true;
                 }
@@ -232,7 +232,7 @@ public class PlayerController extends InputAdapter {
                 if (collisionY) {
                     player.getVelocity().y = 0;
                 } else {
-                    player.getVelocity().y = 1;
+                    player.getVelocity().y = 4;
                     player.changeState("down");
                     isKeyDown = true;
                 }
@@ -242,7 +242,7 @@ public class PlayerController extends InputAdapter {
                 if (collisionX) {
                     player.getVelocity().x = 0;
                 } else {
-                    player.getVelocity().x = -1;
+                    player.getVelocity().x = -4;
                     player.changeState("left");
                     isKeyDown = true;
                 }
@@ -252,7 +252,7 @@ public class PlayerController extends InputAdapter {
                 if (collisionX) {
                     player.getVelocity().x = 0;
                 } else {
-                    player.getVelocity().x = 1;
+                    player.getVelocity().x = 4;
                     player.changeState("right");
                     isKeyDown = true;
                 }
