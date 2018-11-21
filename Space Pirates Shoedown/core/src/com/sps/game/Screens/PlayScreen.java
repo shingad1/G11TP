@@ -106,6 +106,7 @@ public class PlayScreen implements Screen {
 
     private NPCController npcController;
 
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
