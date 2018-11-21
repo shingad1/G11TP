@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.sps.game.Sprites.Player;
 
 public class playerAnimation extends ApplicationAdapter {
     /**
@@ -33,9 +34,15 @@ public class playerAnimation extends ApplicationAdapter {
     /**
      * The path for textures
      */
-   private static final String ASSETS_PATH = "core/assets/";
+   private static final String ASSETS_PATH = "core/assets/textureAtlas/";
 
-    public playerAnimation() {
+   private Player player;
+
+    public playerAnimation(SpriteBatch sb,Player player,String animationName) {
+        this.player = player;
+        batch = sb;
+        playerDownAtlas = new TextureAtlas(ASSETS_PATH + animationName);
+        animation = new Animation <TextureRegion> (1/15f, playerDownAtlas.getRegions());
     }
 
     /**
@@ -43,10 +50,7 @@ public class playerAnimation extends ApplicationAdapter {
      * Instantiates the animation object, specifying the frame duration, and 'playerDownAtlas'
      */
     public void create() {
-        batch =  new SpriteBatch();
 
-        playerDownAtlas = new TextureAtlas(Gdx.files.internal("playerDown.atlas"));
-        animation = new Animation <TextureRegion> (1/3f, playerDownAtlas.getRegions());
 
     }
 
@@ -62,12 +66,12 @@ public class playerAnimation extends ApplicationAdapter {
      * Sets a temporary background colour, and uses the spritebatch to render the animation object, using the timePassed field.
      */
     public void render() {
-    Gdx.gl.glClearColor(0, 1, 0, 1);
-    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    //Gdx.gl.glClearColor(0, 1, 0, 1);
+    //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
     batch.begin();
     timePassed += Gdx.graphics.getDeltaTime();
-    batch.draw(animation.getKeyFrame(timePassed, true), 100, 500);
+    batch.draw(animation.getKeyFrame(timePassed, true), player.getX(), player.getY(),32,32);
     batch.end();
     }
 }

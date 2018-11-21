@@ -6,10 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import com.sps.game.Sprites.NonPlayingCharacter;
 import com.sps.game.Sprites.Player;
 import java.lang.Math;
-import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -36,7 +34,7 @@ public class PlayerController extends InputAdapter {
      * Used to regulare actions.
      * @see #keyDown #action
      */
-    private int tickCount;
+    private boolean isKeyDown;
     /**
      * Holds which layer of the TiledMap contains objects that the user can not pass through.
      * @see #keyDown
@@ -58,6 +56,8 @@ public class PlayerController extends InputAdapter {
      */
     private Stack<Vector2> positions;
 
+    private boolean resolve;
+
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound){
         this.player = p;
         this.collisionLayer = collisionLayer;
@@ -68,6 +68,7 @@ public class PlayerController extends InputAdapter {
             ybounds[i] = ybound[i];
         }
         positions = new Stack<Vector2>();
+        reset();
     }
 
     /**
@@ -81,60 +82,25 @@ public class PlayerController extends InputAdapter {
         boolean collisionY = false;
         boolean collisionX = false;
 
-        float oldX = player.getX(), oldY = player.getY();
+        //float oldX = player.getX(), oldY = player.getY();
         float tiledWidth = collisionLayer.getTileWidth(), tiledHeight = collisionLayer.getTileHeight();
-        if(tickCount == 0) { //starts the 8 tick count for the movement (in other words, movement is separated into 8 ticks)
+        if(!(isKeyDown)) { //starts the 8 tick count for the movement (in other words, movement is separated into 8 ticks)
             keyPressed = keycode;
             switch(keycode){
-
-                case Input.Keys.DOWN:
-                    leave = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int) ((player.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey("leave");
-                    collisionY = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int) ((player.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
-                       if(collisionY) {
-                           player.getVelocity().y = 0;
-                       }
-                      else{
-                           player.getVelocity().y = -4;
-                     }
-                    break;
-                case Input.Keys.UP:
-                    entered = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("enter");
-                    if(entered) {
-                        positions.push(new Vector2(player.getX(), player.getY()));
-                    }
-                    collisionY = collisionLayer.getCell((int)(player.getX()/tiledWidth),(int)((player.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
-                    if(collisionY){
-                        player.getVelocity().y = 0;
-                    }else {
-                        player.getVelocity().y = 4;
-                    }
-                    break;
-                case Input.Keys.LEFT:
-                    collisionX = collisionLayer.getCell((int)((player.getX() - 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
-                    if(collisionX){
-                        player.getVelocity().y = 0;
-                    }
-                    else {
-                        player.getVelocity().x = -4;
-                    }
-                    break;
-                case Input.Keys.RIGHT:
-                    collisionX = collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
-                    if(collisionX){
-                        player.getVelocity().x = 0;
-                    }
-                    else {
-                        player.getVelocity().x = 4;
-                    }
-                    break;
                 case Input.Keys.A:
                     fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
                     break;
+                default:
+                    collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
             }
-            tickCount = 1;
         }
 
         return false; //if input event was absorbed
+    }
+
+    public boolean keyUp(int keyCode){
+        resolve = true;
+        return true;
     }
 
     /**
@@ -142,8 +108,8 @@ public class PlayerController extends InputAdapter {
      * @param <code>OrthographicCamera<code>camera
      */
     public void action(OrthographicCamera camera) {
-        if (tickCount <= 8 && tickCount != 0) { //regulates the amount the player moves so the player moves 1 tile at a time but isn't too fast
-            tickCount++;
+        if (isKeyDown) { //regulates the amount the player moves so the player moves 1 tile at a time but isn't too fast
+            collisionCheck(keyPressed,false,false,32,32);
             player.move(0, Math.round(player.getVelocity().y));
             player.move(Math.round(player.getVelocity().x), 0);
             if ((player.getX() + player.getVelocity().x >= xbounds[0] + 256) && (player.getX() + player.getVelocity().x <= xbounds[1] - 256)){
@@ -152,8 +118,11 @@ public class PlayerController extends InputAdapter {
             if ((player.getY() + player.getVelocity().y >= ybounds[0] + 256) && (player.getY() + player.getVelocity().y <= ybounds[1] - 256)) {
                 camera.position.y = player.getY();
             }
-        } else {
-            reset();
+        }
+        if(resolve == true){
+            if(player.getX() % 32 == 0 && player.getY() % 32 == 0) {
+                reset();
+            }
         }
         /* The code above breaks down the movement into 8 ticks so that the character doesn't move too fast
         tickCount will be responsible for doing keeping track of the 8 ticks
@@ -206,11 +175,14 @@ public class PlayerController extends InputAdapter {
     }
 
     public void reset(){
-        tickCount = 0;
+        isKeyDown = false;
+        resolve = false;
         player.getVelocity().x = 0;
         player.getVelocity().y = 0;
         entered = false;
         leave = false;
+        player.changeState("idle");
+        keyPressed = -1;
     }
 
     public boolean isPlayerNearProperty(String property, float tiledWidth, float tiledHeight) {
@@ -234,6 +206,57 @@ public class PlayerController extends InputAdapter {
         fight = bool;
         if(fight == false){
             collisionLayer.setVisible(false);
+        }
+    }
+
+    public void collisionCheck(int keycode, boolean collisionY, boolean collisionX, float tiledWidth, float tiledHeight){
+        switch(keycode) {
+
+            case Input.Keys.DOWN:
+                leave = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("leave");
+                collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                if (collisionY) {
+                    player.getVelocity().y = 0;
+                } else {
+                    player.getVelocity().y = -4;
+                    player.changeState("down");
+                    isKeyDown = true;
+                }
+                break;
+            case Input.Keys.UP:
+                entered = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("enter");
+                if (entered) {
+                    positions.push(new Vector2(player.getX(), player.getY()));
+                }
+                collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                if (collisionY) {
+                    player.getVelocity().y = 0;
+                } else {
+                    player.getVelocity().y = 4;
+                    player.changeState("down");
+                    isKeyDown = true;
+                }
+                break;
+            case Input.Keys.LEFT:
+                collisionX = collisionLayer.getCell((int) ((player.getX() - 1) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                if (collisionX) {
+                    player.getVelocity().x = 0;
+                } else {
+                    player.getVelocity().x = -4;
+                    player.changeState("left");
+                    isKeyDown = true;
+                }
+                break;
+            case Input.Keys.RIGHT:
+                collisionX = collisionLayer.getCell((int) ((player.getX() + 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                if (collisionX) {
+                    player.getVelocity().x = 0;
+                } else {
+                    player.getVelocity().x = 4;
+                    player.changeState("right");
+                    isKeyDown = true;
+                }
+                break;
         }
     }
 

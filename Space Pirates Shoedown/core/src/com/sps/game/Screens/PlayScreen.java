@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -15,11 +14,13 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
+import com.sps.game.Extra.Location;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.BasicEnemy;
-import com.sps.game.Sprites.NonPlayingCharacter;
+import com.sps.game.Sprites.NonInteractiveNPC;
 import com.sps.game.Sprites.Player;
 import java.util.ArrayList;
 
@@ -73,11 +74,7 @@ public class PlayScreen implements Screen {
      * @see #render
      */
     private SpriteBatch batch;
-    /**
-     * Holds the texture showing the player.
-     * @see #render
-     */
-    private Texture player;
+
     /**
      * Creates instance of the player, which holds the logic of the player.
      * @see #render
@@ -89,10 +86,10 @@ public class PlayScreen implements Screen {
      */
     private Texture NPC;
     /**
-     * Holds a list of NonPlayingCharacter objects.
+     * Holds a list of NonInteractiveNPC objects.
      * @see #render
      */
-    private ArrayList<NonPlayingCharacter> npc;
+    private ArrayList<NonInteractiveNPC> npc;
     /**
      * Handles the users input, and updates the players properties accordingly.
      * @see #show #handleInput #combatExit
@@ -105,6 +102,10 @@ public class PlayScreen implements Screen {
 
     private String mapState;
 
+    private Location location;
+
+    private NPCController npcController;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -113,18 +114,18 @@ public class PlayScreen implements Screen {
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(800, 800, 0);
-        player = new Texture(ASSETS_PATH + "singlecharacter.png");
         NPC = new Texture(ASSETS_PATH + "../monster-512.png");
         batch = new SpriteBatch();
-            p = new Player(800,800);
-        npc = new ArrayList<NonPlayingCharacter>();
-        npc.add(new NonPlayingCharacter(960,960,"Overworld"));
+        p = new Player(800,800,batch);
+        npc = new ArrayList<NonInteractiveNPC>();
+        npc.add(new NonInteractiveNPC(960,960,"Overworld"));
         int[] xbounds = {0, 1600};
         int[] ybounds = {0,1600};
         collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
         controller = new PlayerController(p, collisionLayer,xbounds,ybounds);
         hud = new HudScene(game.batch,p);
         mapState = "Overworld";
+        npcController = new NPCController(npc.get(0), collisionLayer);
     }
 
     /**
@@ -181,7 +182,7 @@ public class PlayScreen implements Screen {
         handleInput(dt);
         for (int i = 0; i < npc.size(); i++){
             if (npc.get(i).getWorld().equals(mapState)) {
-                npc.get(i).update();
+                npcController.move();
             }
         }
         hud.update();
@@ -204,13 +205,15 @@ public class PlayScreen implements Screen {
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-        for (int i = 0; i < npc.size(); i++){
+        for (int i = 0; i < npc.size(); i++) {
             if (npc.get(i).getWorld().equals(mapState)) {
-                batch.draw(NPC, npc.get(i).NPCGetX(), npc.get(i).NPCGetY(), 32, 32);
+                batch.draw(NPC, npc.get(i).getX(), npc.get(i).getY(), 32, 32);
+//                location.addLocation(new Vector2(npc.get(i).getX(), npc.get(i).getY()), true);
             }
         }
-        batch.draw(player, p.getX(),p.getY(), 32, 32); //may want to create a settings class
         batch.end();
+        p.getAnimation().render();
+//        location.addLocation(new Vector2(p.getX(), p.getY()), true);
     }
 
     @Override

@@ -1,6 +1,9 @@
 package com.sps.game.Sprites;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Animation.playerAnimation;
+import java.util.HashMap;
 
 /**
  * This class creates the player and sets the starting x and y coordinates.
@@ -31,14 +34,26 @@ public class Player{
      * #getVelocity
      */
     private Vector2 velocity;
+    /**
+     * Holds the texture showing the player.
+     */
+    private HashMap<String,playerAnimation> animation;
 
-    public Player(int x, int y){
+    private String state;
+
+    public Player(int x, int y, SpriteBatch sb){
         this.x = x;
         this.y = y;
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
         gold = 50;
         HP = 100;
+        animation = new HashMap<String, playerAnimation>();
+        animation.put("down",new playerAnimation(sb,this, "playerDown.atlas"));
+        animation.put("up",new playerAnimation(sb,this, "playerUp.atlas"));
+        animation.put("left",new playerAnimation(sb,this, "playerLeft.atlas"));
+        animation.put("right",new playerAnimation(sb,this, "playerRight.atlas"));
+        animation.put("idle",new playerAnimation(sb,this, "playerIdle.pack"));
     }
 
     /**
@@ -116,4 +131,10 @@ public class Player{
     public void increaseHealth(int increase){
         HP+=increase;
     }
+
+    public playerAnimation getAnimation(){
+        return animation.get(state);
+    }
+
+    public void changeState(String newState){state = newState;}
 }
