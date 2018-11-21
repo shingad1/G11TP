@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Sprites.NonPlayingCharacter;
 import com.sps.game.Sprites.Player;
 import java.lang.Math;
+import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -66,7 +68,6 @@ public class PlayerController extends InputAdapter {
             ybounds[i] = ybound[i];
         }
         positions = new Stack<Vector2>();
-
     }
 
     /**

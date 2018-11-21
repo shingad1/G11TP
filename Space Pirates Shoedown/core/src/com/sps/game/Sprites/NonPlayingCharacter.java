@@ -1,10 +1,15 @@
 package com.sps.game.Sprites;
 
+import java.util.HashMap;
 import java.util.Random;
+import java.util.Vector;
+
 import com.badlogic.gdx.math.Vector2;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public class NonPlayingCharacter
 {
+
     private int x; //keep record of the NPC's x co-ordinate
     /**
      * Stores the NPC character's x co-ordinate
