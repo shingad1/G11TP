@@ -118,7 +118,7 @@ public class PlayScreen implements Screen {
         batch = new SpriteBatch();
         p = new Player(800,800,batch);
         npc = new ArrayList<NonInteractiveNPC>();
-        npc.add(new NonInteractiveNPC(960,960,"Overworld"));
+        npc.add(new NonInteractiveNPC(960,960,"Overworld", batch));
         int[] xbounds = {0, 1600};
         int[] ybounds = {0,1600};
         collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);

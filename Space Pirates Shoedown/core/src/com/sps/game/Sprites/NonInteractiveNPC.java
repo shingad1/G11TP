@@ -1,8 +1,12 @@
 package com.sps.game.Sprites;
 
+import java.util.HashMap;
 import java.util.Random;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Animation.npcAnimation;
+import com.sps.game.Animation.playerAnimation;
 
 public class NonInteractiveNPC extends AbstractNPC {
 
@@ -44,13 +48,32 @@ public class NonInteractiveNPC extends AbstractNPC {
          */
         private Vector2 velocity;
 
-        public NonInteractiveNPC(int x, int y, String world) {
+        /**
+         * Holds the animated textures of the NPC.
+         * Key = A string which specifies the movement
+         * Value = The textureAtlas to display.
+         */
+        private HashMap<String, npcAnimation> animation;
+
+        private String state;
+
+        public NonInteractiveNPC(int x, int y, String world, SpriteBatch sb) {
             this.x = x;
             this.y = y;
             this.world = world;
             velocity = new Vector2();
             velocity.x = 0;
             velocity.y = 0;
+
+            animation = new HashMap<String, npcAnimation>();
+
+            animation.put("down",new npcAnimation(sb,this, "npcDown.atlas"));
+            animation.put("up",new npcAnimation(sb,this, "npcUp.atlas"));
+            animation.put("left",new npcAnimation(sb,this, "npcLeft.atlas"));
+            animation.put("right",new npcAnimation(sb,this, "npcRight.atlas"));
+            animation.put("idle",new npcAnimation(sb,this, "npcIdle.atlas"));
+
+
         }
 
         /**
@@ -88,4 +111,8 @@ public class NonInteractiveNPC extends AbstractNPC {
         public void setX(float newX) {
             x += newX;
         }
+
+        public npcAnimation getAnimation() { return animation.get(state);}
+
+        public void changeState(String newState) { state = newState; }
     }
