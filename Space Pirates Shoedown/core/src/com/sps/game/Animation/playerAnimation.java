@@ -20,7 +20,7 @@ public class playerAnimation extends ApplicationAdapter {
      * SpriteSheet created by the TexturePacker
      * @see #playerAnimation
      */
-    private TextureAtlas playerDownAtlas;
+    private TextureAtlas playerAtlas;
     /**
      * Animation object stores a list of objects representing an animated sequence.
      * @see #playerAnimation
@@ -41,25 +41,17 @@ public class playerAnimation extends ApplicationAdapter {
     public playerAnimation(SpriteBatch sb,Player player,String animationName) {
         this.player = player;
         batch = sb;
-        playerDownAtlas = new TextureAtlas(ASSETS_PATH + animationName);
-        animation = new Animation <TextureRegion> (1/15f, playerDownAtlas.getRegions());
+        playerAtlas = new TextureAtlas(ASSETS_PATH + animationName);
+        animation = new Animation <TextureRegion> (1/15f, playerAtlas.getRegions());
     }
 
-    /**
-     * Creates a new SpriteBatch, instantiates the playerDownAtlas object to the playerDown spriteSheet.
-     * Instantiates the animation object, specifying the frame duration, and 'playerDownAtlas'
-     */
-    public void create() {
-
-
-    }
 
     /**
      * Frees up resources in the memory
      */
     public void dispose() {
         batch.dispose();
-        playerDownAtlas.dispose();
+        playerAtlas.dispose();
     }
 
     /**
