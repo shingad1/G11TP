@@ -19,6 +19,7 @@ body{
 	margin-left: 500px;
 	margin-right: 500px;
 	position: relative;
+	margin-bottom: 500px;
 }
 
 
@@ -28,7 +29,7 @@ button
 	position: fixed;
 	top: 50%;
 	left: 36%;
-	/*transform: translateX(+156%) ;*/
+	transform: translateX(+75%) ;
 	display: inline-block;
 	overflow: hidden;
 	font-weight: bold;
@@ -53,28 +54,3 @@ article
 	display: flex;
 	width: 100%;
 }
-
-#sidebar
-{
-	width: 250px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100vh;
-	z-index: 999;
-	background: #7386D5;
-	color: #fff;
-	transition: all 0.3s;
-}
-
-#sidebar.active
-{
-	margin-left: -250px;
-}
-
-/*nav ::after
-{
-	content: '';
-	display: table;
-	clear: both;
-}*/
