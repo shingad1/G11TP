@@ -22,6 +22,7 @@ public abstract class AbstractNPC {
      */
     private Vector2 velocity;
 
+    protected Location location;
 
     /**
      * Returns the NPc x Axis
@@ -38,6 +39,8 @@ public abstract class AbstractNPC {
 
     public abstract void setY(float newY);
     public abstract void setX(float newX);
+
+    public Location getLocation(){return location;}
 
 
 }

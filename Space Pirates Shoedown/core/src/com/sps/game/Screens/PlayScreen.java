@@ -16,12 +16,10 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
-import com.sps.game.Extra.Location;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.Sprites.BasicEnemy;
-import com.sps.game.Sprites.NonInteractiveNPC;
-import com.sps.game.Sprites.Player;
+import com.sps.game.Sprites.*;
+
 import java.util.ArrayList;
 
 /**
@@ -102,9 +100,9 @@ public class PlayScreen implements Screen {
 
     private String mapState;
 
-    private Location location;
-
     private NPCController npcController;
+
+    private ArrayList<Location> allLocations;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -119,10 +117,14 @@ public class PlayScreen implements Screen {
         p = new Player(800,800,batch);
         npc = new ArrayList<NonInteractiveNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch));
+        allLocations = new ArrayList<Location>();
+        for (AbstractNPC nonPlayingCharacter : npc){
+            allLocations.add(nonPlayingCharacter.getLocation());
+        }
         int[] xbounds = {0, 1600};
         int[] ybounds = {0,1600};
         collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
-        controller = new PlayerController(p, collisionLayer,xbounds,ybounds);
+        controller = new PlayerController(p, collisionLayer,xbounds,ybounds,allLocations);
         hud = new HudScene(game.batch,p);
         mapState = "Overworld";
         npcController = new NPCController(npc.get(0), collisionLayer);

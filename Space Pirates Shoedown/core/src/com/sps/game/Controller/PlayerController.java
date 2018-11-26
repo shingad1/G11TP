@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 import java.lang.Math;
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -58,7 +60,9 @@ public class PlayerController extends InputAdapter {
 
     private boolean resolve;
 
-    public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound){
+    private ArrayList<Location> allLocations;
+
+    public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         this.player = p;
         this.collisionLayer = collisionLayer;
         xbounds = new int[2];
@@ -68,6 +72,9 @@ public class PlayerController extends InputAdapter {
             ybounds[i] = ybound[i];
         }
         positions = new Stack<Vector2>();
+
+        this.allLocations = allLocations;
+
         reset();
     }
 
@@ -215,7 +222,7 @@ public class PlayerController extends InputAdapter {
             case Input.Keys.DOWN:
                 leave = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("leave");
                 collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("blocked");
-                if (collisionY) {
+                if (collisionY || npcCollision(new Location(player.getX(),player.getY() - 32))) {
                     player.getVelocity().y = 0;
                 } else {
                     player.getVelocity().y = -4;
@@ -229,7 +236,7 @@ public class PlayerController extends InputAdapter {
                     positions.push(new Vector2(player.getX(), player.getY()));
                 }
                 collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("blocked");
-                if (collisionY) {
+                if (collisionY || npcCollision(new Location(player.getX(),player.getY() + 32))) {
                     player.getVelocity().y = 0;
                 } else {
                     player.getVelocity().y = 4;
@@ -239,7 +246,7 @@ public class PlayerController extends InputAdapter {
                 break;
             case Input.Keys.LEFT:
                 collisionX = collisionLayer.getCell((int) ((player.getX() - 1) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
-                if (collisionX) {
+                if (collisionX || npcCollision(new Location(player.getX() - 32,player.getY()))) {
                     player.getVelocity().x = 0;
                 } else {
                     player.getVelocity().x = -4;
@@ -249,7 +256,7 @@ public class PlayerController extends InputAdapter {
                 break;
             case Input.Keys.RIGHT:
                 collisionX = collisionLayer.getCell((int) ((player.getX() + 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
-                if (collisionX) {
+                if (collisionX || npcCollision(new Location(player.getX() + 32,player.getY()))) {
                     player.getVelocity().x = 0;
                 } else {
                     player.getVelocity().x = 4;
@@ -258,6 +265,15 @@ public class PlayerController extends InputAdapter {
                 }
                 break;
         }
+    }
+
+    public boolean npcCollision(Location location){
+        for (Location npcLocation : allLocations){
+            if(npcLocation.equals(location)){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

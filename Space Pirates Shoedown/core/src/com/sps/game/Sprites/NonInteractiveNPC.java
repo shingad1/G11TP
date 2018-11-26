@@ -73,7 +73,7 @@ public class NonInteractiveNPC extends AbstractNPC {
             animation.put("right",new npcAnimation(sb,this, "npcRight.atlas"));
             animation.put("idle",new npcAnimation(sb,this, "npcIdle.atlas"));
 
-
+            location = new Location(x,y);
         }
 
         /**

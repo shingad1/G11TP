@@ -78,26 +78,36 @@ public class NPCController
             switch (random.nextInt(6) + 1){
                 case 2:
                     npc.getVelocity().y = 2;
+
                     if(collisionDetection()) {
+
                         npc.getVelocity().y = 0;
+                    } else {
+                        npc.getLocation().setY(npc.getY() + 32);
                     }
                     break;
                 case 3:
                     npc.getVelocity().y = -2;
                     if(collisionDetection()) {
                         npc.getVelocity().y = 0;
+                    } else {
+                        npc.getLocation().setY(npc.getY() - 32);
                     }
                     break;
                 case 4:
                     npc.getVelocity().x = 2;
                     if(collisionDetection()) {
                         npc.getVelocity().x = 0;
+                    } else {
+                        npc.getLocation().setX(npc.getX() + 32);
                     }
                     break;
                 case 5:
                     npc.getVelocity().x = -2;
                    if(collisionDetection()) {
                        npc.getVelocity().x = 0;
+                   } else {
+                       npc.getLocation().setX(npc.getX() - 32);
                    }
                     break;
             }
