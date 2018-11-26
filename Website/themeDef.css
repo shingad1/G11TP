@@ -6,6 +6,28 @@
 	margin: 0px auto;
 }
 
+/*#massiveContainer{
+	float: left;
+	width: 900px;
+}*/
+
+#tagline{
+	font-style: italic;
+	font-size: 110px;
+	font-family: Verdana;
+	text-align: center;
+	color: white;
+}
+
+#carousel{
+	margin-left: 250px;
+	margin-right: 250px;
+	width: 70%;
+	height: 100%;
+	position:relative;
+
+}
+
 body{
 	background-image: url(images/backgroundedit2.jpg);
 	background-repeat: no-repeat;
@@ -16,21 +38,23 @@ body{
 .description
 {
 	background-color:white;
+	font-size: 30px;
+	padding: 5px;
+	margin-top: 20px;
 	margin-left: 500px;
 	margin-right: 500px;
 	position: relative;
-	margin-bottom: 500px;
 }
 
 
 
 button
 {
-	position: fixed;
+	position: relative;
 	top: 50%;
 	left: 36%;
 	transform: translateX(+75%) ;
-	display: inline-block;
+	/*display: inline-block;*/
 	overflow: hidden;
 	font-weight: bold;
 	color: white;
