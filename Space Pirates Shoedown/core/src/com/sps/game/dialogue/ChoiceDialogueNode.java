@@ -6,6 +6,10 @@ import java.util.List;
 
 public class ChoiceDialogueNode implements DialogueNode
 {
+    /**
+     * Holds all the sprites that will be displayed on the screen
+     * @see #
+     */
     private String text;
     private int id;
 

@@ -1,5 +1,7 @@
 package com.sps.game.Sprites;
 
+import java.util.Random;
+
 public class BasicEnemy extends AbstractEnemy{
     /**
      * Holds the value of what world it is.
@@ -56,5 +58,42 @@ public class BasicEnemy extends AbstractEnemy{
      */
     public void decreaseHealth(int decrease){
         health -= decrease;
+    }
+
+    public void battleMove()
+    {
+        Random rand = new Random();
+
+        if(getHealth() > 40)
+        {
+            int temp = rand.nextInt(3);
+            switch (temp) {
+                case 1:
+                    basicPunch();
+                    break;
+                case 2: {
+                    basicKick();
+                }
+            }
+        }
+        else
+        {
+            block();
+        }
+    }
+
+    private void block()
+    {
+        decreaseHealth(10);
+    }
+
+    private void basicPunch()
+    {
+        decreaseHealth(10);
+    }
+
+    private void basicKick()
+    {
+        decreaseHealth(15);
     }
 }
