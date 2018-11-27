@@ -213,13 +213,13 @@ public class PlayScreen implements Screen {
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-        for (int i = 0; i < npc.size(); i++) {
-            if (npc.get(i).getWorld().equals(mapState)) {
-                batch.draw(npcTexture, npc.get(i).getX(), npc.get(i).getY(), 32, 32);
-            }
-        }
         batch.draw(cryingNPCTexture,800, 612, 32, 32);
         batch.end();
+        for (int i = 0; i < npc.size(); i++) {
+            if (npc.get(i).getWorld().equals(mapState)) {
+                npc.get(i).getAnimation().render();
+            }
+        }
         p.getAnimation().render();
     }
 
