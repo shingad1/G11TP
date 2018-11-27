@@ -184,7 +184,7 @@ public class PlayScreen implements Screen {
         handleInput(dt);
         for (int i = 0; i < npc.size(); i++){
             if (npc.get(i).getWorld().equals(mapState)) {
-                npcController.move();
+                npcController.move(p);
             }
         }
         hud.update();

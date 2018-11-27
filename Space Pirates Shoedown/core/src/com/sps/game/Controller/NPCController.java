@@ -5,6 +5,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.sps.game.Sprites.AbstractNPC;
+import com.sps.game.Sprites.Location;
+import com.sps.game.Sprites.Player;
 
 import javax.swing.text.Position;
 import java.util.Random;
@@ -41,7 +43,7 @@ public class NPCController
 
     }
 
-    public boolean collisionDetection(){
+    public boolean collisionDetection(Player player){
         boolean collisionX;
         boolean collisionY;
 
@@ -51,19 +53,19 @@ public class NPCController
         if(npc.getVelocity().y > 0){
             collisionY = collisionLayer.getCell((int) (npc.getX() / tiledWidth), (int) ((npc.getY() + 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
             //npcBody.getPosition.y = new Position;
-            return collisionY;
+            return (collisionY || playerInLocation(player,new Location(Math.round(npc.getLocation().getX()),Math.round(npc.getLocation().getY() + 32))));
         }
         if(npc.getVelocity().y < 0){
             collisionY = collisionLayer.getCell((int) (npc.getX() / tiledWidth), (int) ((npc.getY() - 32)/tiledHeight)).getTile().getProperties().containsKey("blocked");
-            return collisionY;
+            return (collisionY || playerInLocation(player,new Location(Math.round(npc.getLocation().getX()),Math.round(npc.getLocation().getY() - 32))));
         }
         if(npc.getVelocity().x > 0){
             collisionX = collisionLayer.getCell((int) ((npc.getX() + 32) / tiledWidth), (int) (npc.getY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
-            return collisionX;
+            return (collisionX || playerInLocation(player,new Location(Math.round(npc.getLocation().getX() + 32),Math.round(npc.getLocation().getY()))));
         }
         if(npc.getVelocity().x < 0){
             collisionX = collisionLayer.getCell((int) ((npc.getX() - 32) / tiledWidth), (int) (npc.getY()/tiledHeight)).getTile().getProperties().containsKey("blocked");
-            return collisionX;
+            return (collisionX || playerInLocation(player,new Location(Math.round(npc.getLocation().getX() - 32),Math.round(npc.getLocation().getY()))));
         }
 
         return false;
@@ -72,14 +74,14 @@ public class NPCController
     /**
      * This method updates the movement for the NPc
      */
-    public void move() {
+    public void move(Player player) {
         float oldX = npc.getX(), oldY = npc.getY();
         if (tick == 0){
             switch (random.nextInt(6) + 1){
                 case 2:
                     npc.getVelocity().y = 2;
 
-                    if(collisionDetection()) {
+                    if(collisionDetection(player)) {
 
                         npc.getVelocity().y = 0;
                     } else {
@@ -88,7 +90,7 @@ public class NPCController
                     break;
                 case 3:
                     npc.getVelocity().y = -2;
-                    if(collisionDetection()) {
+                    if(collisionDetection(player)) {
                         npc.getVelocity().y = 0;
                     } else {
                         npc.getLocation().setY(npc.getY() - 32);
@@ -96,7 +98,7 @@ public class NPCController
                     break;
                 case 4:
                     npc.getVelocity().x = 2;
-                    if(collisionDetection()) {
+                    if(collisionDetection(player)) {
                         npc.getVelocity().x = 0;
                     } else {
                         npc.getLocation().setX(npc.getX() + 32);
@@ -104,7 +106,7 @@ public class NPCController
                     break;
                 case 5:
                     npc.getVelocity().x = -2;
-                   if(collisionDetection()) {
+                   if(collisionDetection(player)) {
                        npc.getVelocity().x = 0;
                    } else {
                        npc.getLocation().setX(npc.getX() - 32);
@@ -131,5 +133,8 @@ public class NPCController
         tick = 0;
     }
 
+    public boolean playerInLocation(Player player, Location location){
+        return(location.equals(player.getLocation()));
+    }
 
 }

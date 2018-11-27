@@ -41,6 +41,8 @@ public class Player{
 
     private String state;
 
+    private Location location;
+
     public Player(int x, int y, SpriteBatch sb){
         this.x = x;
         this.y = y;
@@ -54,12 +56,13 @@ public class Player{
         animation.put("left",new playerAnimation(sb,this, "playerLeft.atlas"));
         animation.put("right",new playerAnimation(sb,this, "playerRight.atlas"));
         animation.put("idle",new playerAnimation(sb,this, "playerIdle.pack"));
+        location = new Location(this.x,this.y);
     }
 
     /**
      * Updates the players x and y coordinates according to the players movement.
      * @param <code>int</code>dx. Holds the change in the x axis.
-     * @param <code>int</code>dy. Holds the change in the y axis
+     * k@param <code>int</code>dy. Holds the change in the y axis
      */
     public void move(int dx, int dy){
         x += dx;
@@ -114,6 +117,9 @@ public class Player{
     public void setPosition(int dx, int dy){
         x = dx;
         y = dy;
+        if(x % 32 == 0 && y % 32 == 0){
+            location = new Location(x,y);
+        }
     }
 
     /**
@@ -137,4 +143,6 @@ public class Player{
     }
 
     public void changeState(String newState){state = newState;}
+
+    public Location getLocation(){return location;}
 }
