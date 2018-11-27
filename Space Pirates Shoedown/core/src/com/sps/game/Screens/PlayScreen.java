@@ -79,10 +79,10 @@ public class PlayScreen implements Screen {
      */
     private Player p;
     /**
-     * Holds the texture showing the NPC.
+     * Holds the texture showing the npcTexture.
      * @see #render
      */
-    private Texture NPC;
+    private Texture npcTexture;
     /**
      * Holds a list of NonInteractiveNPC objects.
      * @see #render
@@ -98,11 +98,15 @@ public class PlayScreen implements Screen {
      */
     private TiledMapTileLayer collisionLayer;
 
+    private Texture cryingNPCTexture;
+
     private String mapState;
 
     private NPCController npcController;
 
     private ArrayList<Location> allLocations;
+
+    private InteractiveNPC cryingNPC;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -112,7 +116,9 @@ public class PlayScreen implements Screen {
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(800, 800, 0);
-        NPC = new Texture(ASSETS_PATH + "../npcIdle.png");
+        npcTexture = new Texture(ASSETS_PATH + "../npcIdle.png");
+        cryingNPCTexture = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/Crying NPC/CryingNPC2.png");
+        cryingNPC = new InteractiveNPC();
         batch = new SpriteBatch();
         p = new Player(800,800,batch);
         npc = new ArrayList<NonInteractiveNPC>();
@@ -209,13 +215,12 @@ public class PlayScreen implements Screen {
         batch.begin();
         for (int i = 0; i < npc.size(); i++) {
             if (npc.get(i).getWorld().equals(mapState)) {
-                batch.draw(NPC, npc.get(i).getX(), npc.get(i).getY(), 32, 32);
-//                location.addLocation(new Vector2(npc.get(i).getX(), npc.get(i).getY()), true);
+                batch.draw(npcTexture, npc.get(i).getX(), npc.get(i).getY(), 32, 32);
             }
         }
+        batch.draw(cryingNPCTexture,800, 612, 32, 32);
         batch.end();
         p.getAnimation().render();
-//        location.addLocation(new Vector2(p.getX(), p.getY()), true);
     }
 
     @Override
