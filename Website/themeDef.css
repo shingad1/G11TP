@@ -126,20 +126,10 @@ article
 		background-size: cover;
 	}
 
-	.description
+	#textboxContainer
 	{
-		background-color:white;
-		width: 1000px;
-		height: 300px;
-		font-size: 30px;
-		padding: 5px;
-		margin-top: 20px;
-		margin-left: 300px;
-		margin-right: 300px;
-		position: relative;
+		background-color: white;
 	}
-
-
 
 	button
 	{
@@ -161,6 +151,7 @@ article
 	{
 		font-family: Verdana;
 		background-color:white;
+
 		margin-left: 500px;
 		margin-right: 500px;
 		position: relative;
@@ -182,11 +173,6 @@ article
 		display: block;
 		margin: 0px auto;
 	}
-
-	/*#massiveContainer{
-		float: left;
-		width: 900px;
-	}*/
 
 	#tagline{
 		font-style: italic;
@@ -212,17 +198,13 @@ article
 		background-size: cover;
 	}
 
-	.description
+	.textboxContainer
 	{
 		background-color:white;
-		width: 1000px;
-		height: 300px;
-		font-size: 30px;
-		padding: 5px;
-		margin-top: 20px;
-		margin-left: 300px;
-		margin-right: 300px;
-		position: relative;
+		text-align: center;
+		width: 70%;
+		margin-left: 16%;
+		font-size: 25px;
 	}
 
 
