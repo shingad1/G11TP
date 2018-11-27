@@ -1,3 +1,4 @@
+/**
 package com.sps.game.dialogue;
 
 import com.badlogic.gdx.Gdx;
@@ -93,3 +94,4 @@ public class Conversation
         root.add(dialogueTable).expand().align(Align.bottom);
     }
 }
+*/
