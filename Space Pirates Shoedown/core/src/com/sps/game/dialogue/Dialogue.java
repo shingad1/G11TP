@@ -158,6 +158,11 @@ public class Dialogue {
             endCycle = false;
         }
 
+        public void Test()
+        {
+            System.out.println("hi");
+        }
+
 /*
     public void update(float dt) {
         if (beginCycle) {
