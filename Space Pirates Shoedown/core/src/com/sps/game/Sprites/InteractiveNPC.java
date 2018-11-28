@@ -1,7 +1,9 @@
 package com.sps.game.Sprites;
 
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Animation.npcAnimation;
 
 import java.util.Random;
 
@@ -32,11 +34,21 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Vector2 velocity;
 
-    public InteractiveNPC(int x,int y){
+    private npcAnimation animation;
+
+    private String world;
+
+    public InteractiveNPC(int x, int y,String world, SpriteBatch sb){
         this.x = x;
         this.y = y;
         location = new Location(x,y);
+        animation = new npcAnimation(sb,this,"cryingNPC.atlas",1/16f);
+        this.world = world;
     }
+
+    public npcAnimation getAnimation(){return animation;}
+
+    public String getWorld(){return world;}
 
     @Override
     public int getX() {

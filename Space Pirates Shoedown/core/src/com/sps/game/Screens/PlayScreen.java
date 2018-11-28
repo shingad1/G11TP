@@ -122,7 +122,7 @@ public class PlayScreen implements Screen {
         p = new Player(800,800,batch);
         npc = new ArrayList<AbstractNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch));
-        npc.add(new InteractiveNPC(800,640));
+        npc.add(new InteractiveNPC(800,640,"Overworld",batch));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
             allLocations.add(nonPlayingCharacter.getLocation());
@@ -190,7 +190,7 @@ public class PlayScreen implements Screen {
         handleInput(dt);
         for (int i = 0; i < npc.size(); i++){
             if(npc.get(i).getClass() == NonInteractiveNPC.class) {
-                if (((NonInteractiveNPC) npc.get(i)).getWorld().equals(mapState)) {
+                if (npc.get(i).getWorld().equals(mapState)) {
                     npcController.move(p);
                 }
             }
@@ -214,15 +214,10 @@ public class PlayScreen implements Screen {
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
-        batch.begin();
-        batch.draw(cryingNPCTexture,800, 640, 32, 32);
-        batch.end();
         for (int i = 0; i < npc.size(); i++) {
-            if(npc.get(i).getClass() == NonInteractiveNPC.class) {
-                if (((NonInteractiveNPC) npc.get(i)).getWorld().equals(mapState)) {
-                    ((NonInteractiveNPC) npc.get(i)).getAnimation().render();
+                if (npc.get(i).getWorld().equals(mapState)) {
+                    npc.get(i).getAnimation().render();
                 }
-            }
         }
         p.getAnimation().render();
     }

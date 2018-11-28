@@ -1,7 +1,7 @@
 package com.sps.game.Sprites;
 
 import com.badlogic.gdx.math.Vector2;
-
+import com.sps.game.Animation.npcAnimation;
 
 
 public abstract class AbstractNPC {
@@ -39,6 +39,10 @@ public abstract class AbstractNPC {
 
     public abstract void setY(float newY);
     public abstract void setX(float newX);
+
+    public abstract String getWorld();
+
+    public abstract npcAnimation getAnimation();
 
     public Location getLocation(){return location;}
 
