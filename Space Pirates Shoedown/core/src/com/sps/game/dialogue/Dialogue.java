@@ -55,7 +55,7 @@ public class Dialogue {
         this.player = player;
 
         viewport = new StretchViewport(640, 640, new OrthographicCamera());
-        stage = new Stage(viewport, playScreen.getSpriteBatch());
+        //stage = new Stage(viewport, playScreen.getSpriteBatch());
 
         ui = new Image();
         ui.setSize(200, 40);
