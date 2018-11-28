@@ -14,7 +14,7 @@ public class DialogueNew extends ScreenAdapter {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage = new Stage());
-        skin = new Skin(Gdx.files.internal(Assets.uiskin));
+        //skin = new Skin(Gdx.files.internal(Assets.uiskin));
 
         new Dialog("confirm exit", skin) {
             {
