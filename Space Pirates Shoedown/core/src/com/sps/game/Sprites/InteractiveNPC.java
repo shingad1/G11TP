@@ -42,7 +42,7 @@ public class InteractiveNPC extends AbstractNPC{
         this.x = x;
         this.y = y;
         location = new Location(x,y);
-        animation = new npcAnimation(sb,this,"cryingNPC.atlas",1/16f);
+        animation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
         this.world = world;
     }
 
