@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.Sprites.InteractiveNPC;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
@@ -277,7 +278,7 @@ public class PlayerController extends InputAdapter {
         return false;
     }
 
-    public boolean npcInProximity(InteractiveNPC npc){
+    public boolean npcInProximity(AbstractNPC npc){
         if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY() + 32))).equals(npc.getLocation())){
             return true;
         }

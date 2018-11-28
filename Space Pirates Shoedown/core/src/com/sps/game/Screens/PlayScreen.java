@@ -87,7 +87,7 @@ public class PlayScreen implements Screen {
      * Holds a list of NonInteractiveNPC objects.
      * @see #render
      */
-    private ArrayList<NonInteractiveNPC> npc;
+    private ArrayList<AbstractNPC> npc;
     /**
      * Handles the users input, and updates the players properties accordingly.
      * @see #show #handleInput #combatExit
@@ -118,11 +118,11 @@ public class PlayScreen implements Screen {
         gamecam.position.set(800, 800, 0);
         npcTexture = new Texture(ASSETS_PATH + "../npcIdle.png");
         cryingNPCTexture = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/Crying NPC/CryingNPC2.png");
-        cryingNPC = new InteractiveNPC();
         batch = new SpriteBatch();
         p = new Player(800,800,batch);
-        npc = new ArrayList<NonInteractiveNPC>();
+        npc = new ArrayList<AbstractNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch));
+        npc.add(new InteractiveNPC(800,640));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
             allLocations.add(nonPlayingCharacter.getLocation());
@@ -133,7 +133,7 @@ public class PlayScreen implements Screen {
         controller = new PlayerController(p, collisionLayer,xbounds,ybounds,allLocations);
         hud = new HudScene(game.batch,p);
         mapState = "Overworld";
-        npcController = new NPCController(npc.get(0), collisionLayer);
+        npcController = new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer);
     }
 
     /**
@@ -189,8 +189,10 @@ public class PlayScreen implements Screen {
     public void update(float dt){
         handleInput(dt);
         for (int i = 0; i < npc.size(); i++){
-            if (npc.get(i).getWorld().equals(mapState)) {
-                npcController.move(p);
+            if(npc.get(i).getClass() == NonInteractiveNPC.class) {
+                if (((NonInteractiveNPC) npc.get(i)).getWorld().equals(mapState)) {
+                    npcController.move(p);
+                }
             }
         }
         hud.update();
@@ -213,11 +215,13 @@ public class PlayScreen implements Screen {
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-        batch.draw(cryingNPCTexture,800, 612, 32, 32);
+        batch.draw(cryingNPCTexture,800, 640, 32, 32);
         batch.end();
         for (int i = 0; i < npc.size(); i++) {
-            if (npc.get(i).getWorld().equals(mapState)) {
-                npc.get(i).getAnimation().render();
+            if(npc.get(i).getClass() == NonInteractiveNPC.class) {
+                if (((NonInteractiveNPC) npc.get(i)).getWorld().equals(mapState)) {
+                    ((NonInteractiveNPC) npc.get(i)).getAnimation().render();
+                }
             }
         }
         p.getAnimation().render();

@@ -32,8 +32,10 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Vector2 velocity;
 
-    public InteractiveNPC(){
-
+    public InteractiveNPC(int x,int y){
+        this.x = x;
+        this.y = y;
+        location = new Location(x,y);
     }
 
     @Override
