@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Conversation
 {
-
+/*
     private Dialogue dialogue;
 
     private Stage uiStage;
@@ -91,5 +91,5 @@ public class Conversation
                 .row();
 
         root.add(dialogueTable).expand().align(Align.bottom);
-    }
+    }*/
 }
