@@ -264,4 +264,9 @@ public class PlayScreen implements Screen {
         mapState = "House";
         game.setScreen(this);
     }
+
+    public SpriteBatch getSpriteBatch()
+    {
+        return batch;
+    }
 }
