@@ -92,6 +92,6 @@ public class Conversation
                 .row();
 
         root.add(dialogueTable).expand().align(Align.bottom);
-    }*/
+    }
 }
 */
