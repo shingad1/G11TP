@@ -15,7 +15,6 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Screens.PlayScreen;
 import com.sps.game.Sprites.Player;
-import sun.net.ResourceManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class Dialogue {
@@ -49,7 +48,7 @@ public class Dialogue {
 
     private static final String ASSETS_PATH = "core/assets/tiledassets/";
 
-    public Dialogue(PlayScreen playScreen, TiledMap tiledMap, Player player, ResourceManager rm) {
+    public Dialogue(PlayScreen playScreen, TiledMap tiledMap, Player player) {
         this.playScreen = playScreen;
         this.tiledMap = tiledMap;
         this.player = player;
