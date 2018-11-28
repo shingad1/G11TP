@@ -67,6 +67,9 @@ public class Player{
     public void move(int dx, int dy){
         x += dx;
         y += dy;
+        if(Math.round(x) % 32 == 0 && Math.round(y) % 32 == 0){
+            location = new Location(x,y);
+        }
     }
 
     /**
@@ -117,9 +120,6 @@ public class Player{
     public void setPosition(int dx, int dy){
         x = dx;
         y = dy;
-        if(x % 32 == 0 && y % 32 == 0){
-            location = new Location(x,y);
-        }
     }
 
     /**

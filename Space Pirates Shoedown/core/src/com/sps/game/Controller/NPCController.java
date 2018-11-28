@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.Sprites.Location;
+import com.sps.game.Sprites.NonInteractiveNPC;
 import com.sps.game.Sprites.Player;
 
 import javax.swing.text.Position;
@@ -20,7 +21,7 @@ public class NPCController
      */
     private TiledMapTileLayer collisionLayer;
 
-    private AbstractNPC npc;
+    private NonInteractiveNPC npc;
 
     private FixtureDef npcBody;
 
@@ -35,7 +36,7 @@ public class NPCController
      */
     private Random random;
 
-    public NPCController(AbstractNPC npc, TiledMapTileLayer collisionLayer){
+    public NPCController(NonInteractiveNPC npc, TiledMapTileLayer collisionLayer){
         this.collisionLayer = collisionLayer;
         this.npc = npc;
         random = new Random();
@@ -79,36 +80,38 @@ public class NPCController
         if (tick == 0){
             switch (random.nextInt(6) + 1){
                 case 2:
-                    npc.getVelocity().y = 2;
-
+                    npc.getVelocity().y = 1;
                     if(collisionDetection(player)) {
-
                         npc.getVelocity().y = 0;
                     } else {
+                        npc.changeState("up");
                         npc.getLocation().setY(npc.getY() + 32);
                     }
                     break;
                 case 3:
-                    npc.getVelocity().y = -2;
+                    npc.getVelocity().y = -1;
                     if(collisionDetection(player)) {
                         npc.getVelocity().y = 0;
                     } else {
+                        npc.changeState("down");
                         npc.getLocation().setY(npc.getY() - 32);
                     }
                     break;
                 case 4:
-                    npc.getVelocity().x = 2;
+                    npc.getVelocity().x = 1;
                     if(collisionDetection(player)) {
                         npc.getVelocity().x = 0;
                     } else {
+                        npc.changeState("right");
                         npc.getLocation().setX(npc.getX() + 32);
                     }
                     break;
                 case 5:
-                    npc.getVelocity().x = -2;
+                    npc.getVelocity().x = -1;
                    if(collisionDetection(player)) {
                        npc.getVelocity().x = 0;
                    } else {
+                       npc.changeState("left");
                        npc.getLocation().setX(npc.getX() - 32);
                    }
                     break;
@@ -118,7 +121,7 @@ public class NPCController
             npc.setY(npc.getVelocity().y);
             npc.setX(npc.getVelocity().x);
             tick++;
-            if(tick == 17){
+            if(tick == 33){
                 reset();
             }
         }
@@ -131,6 +134,7 @@ public class NPCController
         npc.getVelocity().x = 0;
         npc.getVelocity().y = 0;
         tick = 0;
+        npc.changeState("idle");
     }
 
     public boolean playerInLocation(Player player, Location location){
