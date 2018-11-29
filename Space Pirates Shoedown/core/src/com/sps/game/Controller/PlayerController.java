@@ -82,6 +82,8 @@ public class PlayerController extends InputAdapter {
 
         this.allLocations = allLocations;
 
+        //dialogue = new Dialogue();
+
         reset();
     }
 
