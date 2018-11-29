@@ -220,6 +220,8 @@ public class PlayScreen implements Screen {
                 }
         }
         p.getAnimation().render();
+
+        controller.test((InteractiveNPC) npc.get(1));
     }
 
     @Override
