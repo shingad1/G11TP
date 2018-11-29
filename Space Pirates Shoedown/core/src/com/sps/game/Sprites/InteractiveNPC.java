@@ -75,4 +75,7 @@ public class InteractiveNPC extends AbstractNPC{
 
     }
 
+    public Location getLocation(){return location;}
+
+
 }
