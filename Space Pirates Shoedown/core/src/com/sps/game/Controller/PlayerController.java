@@ -6,10 +6,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.Sprites.InteractiveNPC;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
+import com.sps.game.dialogue.Dialogue;
+
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -21,6 +24,8 @@ import java.util.Stack;
  */
 
 public class PlayerController extends InputAdapter {
+
+    Dialogue dialogue;
 
     private int[] xbounds;
     private int[] ybounds;
@@ -76,6 +81,8 @@ public class PlayerController extends InputAdapter {
         positions = new Stack<Vector2>();
 
         this.allLocations = allLocations;
+
+        //dialogue = new Dialogue();
 
         reset();
     }
@@ -279,19 +286,32 @@ public class PlayerController extends InputAdapter {
     }
 
     public boolean npcInProximity(AbstractNPC npc){
-        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY() + 32))).equals(npc.getLocation())){
+        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(npc.getLocation())){
             return true;
         }
-        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY() - 32))).equals(npc.getLocation())){
+        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) - 32)).equals(npc.getLocation())){
             return true;
         }
-        if((new Location(Math.round(player.getLocation().getX() + 32),Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
+        if((new Location(Math.round(player.getLocation().getX()) + 32,Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
             return true;
         }
-        if((new Location(Math.round(player.getLocation().getX() - 32),Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
+        if((new Location(Math.round(player.getLocation().getX()) - 32,Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
             return true;
         }
         return false;
+
+    }
+
+    public void test(InteractiveNPC npc)
+    {
+        if(!(npcInProximity(npc)))
+        {
+            //System.out.println("test");
+        }
+        else
+        {
+            dialogue.setDialog();
+        }
     }
 
 }

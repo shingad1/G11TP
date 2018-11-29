@@ -115,4 +115,7 @@ public class NonInteractiveNPC extends AbstractNPC {
         public npcAnimation getAnimation() { return animation.get(state);}
 
         public void changeState(String newState) { state = newState; }
-    }
+
+        public Location getLocation(){return location;}
+
+}
