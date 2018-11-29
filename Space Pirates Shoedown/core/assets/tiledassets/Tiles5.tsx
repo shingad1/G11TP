@@ -2,6 +2,16 @@
 <tileset version="1.2" tiledversion="1.2.0" name="Tiles5" tilewidth="32" tileheight="32" tilecount="490" columns="10">
  <grid orientation="orthogonal" width="10" height="10"/>
  <image source="img/1/tilesheet.png" width="320" height="1568"/>
+ <tile id="8">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="9">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
  <tile id="11">
   <properties>
    <property name="blocked" value="true"/>
@@ -23,6 +33,16 @@
   </properties>
  </tile>
  <tile id="15">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="18">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="19">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
@@ -74,7 +94,7 @@
  </tile>
  <tile id="43">
   <properties>
-   <property name="enter" value="true"/>
+   <property name="blocked" value="true"/>
   </properties>
  </tile>
  <tile id="44">
@@ -359,6 +379,26 @@
   </properties>
  </tile>
  <tile id="408">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="468">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="469">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="478">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="479">
   <properties>
    <property name="blocked" value="true"/>
   </properties>

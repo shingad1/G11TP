@@ -182,8 +182,8 @@ public class CombatScreen implements Screen {
         ThirdHud.stage.draw();
         batch.setProjectionMatrix(gamecam.combined);
         batch.begin();
-        batch.draw(player, 160, 100, 32, 32);
-        batch.draw(enemy, Enemy.getX(), Enemy.getY(), 32, 32);
+        batch.draw(player, 64, 150, 32, 32);
+        batch.draw(enemy, 256, 150 , 32, 32);
         batch.end();
     }
     /**
