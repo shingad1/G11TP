@@ -129,6 +129,10 @@ article
 	#textboxContainer
 	{
 		background-color: white;
+		position: relative;
+		margin: 80px;
+		overflow: hidden;
+		height: 100%;
 	}
 
 	button
@@ -151,10 +155,10 @@ article
 	{
 		font-family: Verdana;
 		background-color:white;
-
-		margin-left: 500px;
-		margin-right: 500px;
-		position: relative;
+		margin-left: 100px;
+		margin-right: 100px;
+		padding: 25px;
+		min-height: 500px;
 	}
 
 	.wrapper
@@ -229,9 +233,15 @@ article
 	{
 		font-family: Verdana;
 		background-color:white;
-		margin-left: 500px;
-		margin-right: 500px;
-		position: relative;
+		padding: 25px;
+		min-height: 500px;
+		position: fixed;
+
+	}
+
+	main {
+		margin-left: 300px;
+		margin-right: 200px;
 	}
 
 	.wrapper
