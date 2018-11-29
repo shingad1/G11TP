@@ -363,4 +363,24 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
+ <tile id="468">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="469">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="478">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="479">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
 </tileset>
