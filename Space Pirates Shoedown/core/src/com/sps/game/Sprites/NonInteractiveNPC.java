@@ -67,11 +67,11 @@ public class NonInteractiveNPC extends AbstractNPC {
 
             animation = new HashMap<String, npcAnimation>();
 
-            animation.put("down",new npcAnimation(sb,this, "npcDown.atlas"));
-            animation.put("up",new npcAnimation(sb,this, "npcUp.atlas"));
-            animation.put("left",new npcAnimation(sb,this, "npcLeft.atlas"));
-            animation.put("right",new npcAnimation(sb,this, "npcRight.atlas"));
-            animation.put("idle",new npcAnimation(sb,this, "npcIdle.atlas"));
+            animation.put("down",new npcAnimation(sb,this, "npcDown.atlas",1/15f));
+            animation.put("up",new npcAnimation(sb,this, "npcUp.atlas",1/15f));
+            animation.put("left",new npcAnimation(sb,this, "npcLeft.atlas",1/15f));
+            animation.put("right",new npcAnimation(sb,this, "npcRight.atlas",1/15f));
+            animation.put("idle",new npcAnimation(sb,this, "npcIdle.atlas",1/15f));
 
             location = new Location(x,y);
         }

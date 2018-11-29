@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.Sprites.NonInteractiveNPC;
 
 public class npcAnimation extends ApplicationAdapter {
@@ -30,13 +31,13 @@ public class npcAnimation extends ApplicationAdapter {
      */
     private static final String ASSETS_PATH = "core/assets/textureAtlas/npcAtlas/";
 
-    private NonInteractiveNPC npc;
+    private AbstractNPC npc;
 
-    public npcAnimation(SpriteBatch sb, NonInteractiveNPC npc, String animationName) {
+    public npcAnimation(SpriteBatch sb, AbstractNPC npc, String animationName, float duration) {
         this.npc = npc;
         batch = sb;
         npcAtlas = new TextureAtlas(ASSETS_PATH + animationName);
-        animation = new Animation <TextureRegion> (1/15f, npcAtlas.getRegions());
+        animation = new Animation <TextureRegion> (duration, npcAtlas.getRegions());
     }
 
     public void dispose() {

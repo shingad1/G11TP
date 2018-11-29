@@ -87,8 +87,8 @@ public class MenuScreen implements Screen {
         if((Gdx.input.getX() > ((logo.getWidth() / 2) - 160)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 10))){
                if((Gdx.input.getY() > ((background.getHeight() / 2) - 190)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 85))) {
                    if (Gdx.input.justTouched()) {
-                       game.setScreen(new PlayScreen(game));
                        dispose();
+                       game.setScreen(new PlayScreen(game));
                    }
                }
         }

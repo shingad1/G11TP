@@ -5,29 +5,22 @@ filter: Nearest,Nearest
 repeat: none
 npcUp1
   rotate: false
-  xy: 1, 1
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-npcUp2
-  rotate: false
-  xy: 35, 1
-  size: 32, 32
-  orig: 32, 32
+  xy: 1, 31
+  size: 25, 32
+  orig: 25, 32
   offset: 0, 0
   index: -1
 npcUp3
   rotate: false
-  xy: 69, 1
-  size: 32, 32
-  orig: 32, 32
+  xy: 28, 32
+  size: 25, 31
+  orig: 25, 31
   offset: 0, 0
   index: -1
-npcUp4
+npcUp2
   rotate: false
-  xy: 103, 1
-  size: 32, 32
-  orig: 32, 32
+  xy: 28, 1
+  size: 25, 29
+  orig: 25, 29
   offset: 0, 0
   index: -1

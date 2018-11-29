@@ -79,15 +79,15 @@ public class PlayScreen implements Screen {
      */
     private Player p;
     /**
-     * Holds the texture showing the NPC.
+     * Holds the texture showing the npcTexture.
      * @see #render
      */
-    private Texture NPC;
+    private Texture npcTexture;
     /**
      * Holds a list of NonInteractiveNPC objects.
      * @see #render
      */
-    private ArrayList<NonInteractiveNPC> npc;
+    private ArrayList<AbstractNPC> npc;
     /**
      * Handles the users input, and updates the players properties accordingly.
      * @see #show #handleInput #combatExit
@@ -98,11 +98,15 @@ public class PlayScreen implements Screen {
      */
     private TiledMapTileLayer collisionLayer;
 
+    private Texture cryingNPCTexture;
+
     private String mapState;
 
     private NPCController npcController;
 
     private ArrayList<Location> allLocations;
+
+    private InteractiveNPC cryingNPC;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -112,11 +116,13 @@ public class PlayScreen implements Screen {
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(800, 800, 0);
-        NPC = new Texture(ASSETS_PATH + "../npcIdle.png");
+        npcTexture = new Texture(ASSETS_PATH + "../npcIdle.png");
+        cryingNPCTexture = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/Crying NPC/CryingNPC2.png");
         batch = new SpriteBatch();
         p = new Player(800,800,batch);
-        npc = new ArrayList<NonInteractiveNPC>();
+        npc = new ArrayList<AbstractNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch));
+        npc.add(new InteractiveNPC(800,640,"Overworld",batch));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
             allLocations.add(nonPlayingCharacter.getLocation());
@@ -127,7 +133,7 @@ public class PlayScreen implements Screen {
         controller = new PlayerController(p, collisionLayer,xbounds,ybounds,allLocations);
         hud = new HudScene(game.batch,p);
         mapState = "Overworld";
-        npcController = new NPCController(npc.get(0), collisionLayer);
+        npcController = new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer);
     }
 
     /**
@@ -183,8 +189,10 @@ public class PlayScreen implements Screen {
     public void update(float dt){
         handleInput(dt);
         for (int i = 0; i < npc.size(); i++){
-            if (npc.get(i).getWorld().equals(mapState)) {
-                npcController.move();
+            if(npc.get(i).getClass() == NonInteractiveNPC.class) {
+                if (npc.get(i).getWorld().equals(mapState)) {
+                    npcController.move(p);
+                }
             }
         }
         hud.update();
@@ -206,16 +214,12 @@ public class PlayScreen implements Screen {
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
-        batch.begin();
         for (int i = 0; i < npc.size(); i++) {
-            if (npc.get(i).getWorld().equals(mapState)) {
-                batch.draw(NPC, npc.get(i).getX(), npc.get(i).getY(), 32, 32);
-//                location.addLocation(new Vector2(npc.get(i).getX(), npc.get(i).getY()), true);
-            }
+                if (npc.get(i).getWorld().equals(mapState)) {
+                    npc.get(i).getAnimation().render();
+                }
         }
-        batch.end();
         p.getAnimation().render();
-//        location.addLocation(new Vector2(p.getX(), p.getY()), true);
     }
 
     @Override
