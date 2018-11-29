@@ -53,7 +53,7 @@
  </tile>
  <tile id="70">
   <properties>
-   <property name="entered" value="true"/>
+   <property name="enter" value="true"/>
   </properties>
  </tile>
  <tile id="71">

@@ -6,7 +6,7 @@
  <tileset firstgid="617" source="Tiles3.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1cENgCAMQNHGkZjLKT05lldijGkRKK3/8C9gIC9gKCJSiIiIqGt7leVbSzjGOqxr48CBAwcOHD0dre+qV39xzL5XrWvjiOU4t+/hwPHkuM9ldhwvreLQFMGhOQ/NXp7veZRmO1b9Pyx74cCBA8dIRz2Gw9+R5V5FKbuDiHJ2AW5iuo8=
+   eJzt1UsOgCAMANHGI3EuT+nKY7klhpDWD7RlFrNRQvMCxiIihYiIiD5tr7KsteTVYd0bBw4cOHDgwNGfHaFVHKPv1dO9ccRynNv7cOBoOe7vMjuOTl4cmiI4NOehmTXzfx6l0Q6v34dlFg4cOHD86aif4ZjvyHKvopTdQUQ5uwADT7hL
   </data>
  </layer>
  <layer id="8" name="Tree" width="50" height="50">

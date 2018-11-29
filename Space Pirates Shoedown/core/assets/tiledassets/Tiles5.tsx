@@ -94,7 +94,7 @@
  </tile>
  <tile id="43">
   <properties>
-   <property name="enter" value="true"/>
+   <property name="blocked" value="true"/>
   </properties>
  </tile>
  <tile id="44">
