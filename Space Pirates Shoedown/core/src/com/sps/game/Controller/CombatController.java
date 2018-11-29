@@ -58,10 +58,10 @@ public class CombatController extends InputAdapter
             switch(keycode)
             {
                 case Input.Keys.Q:
-                    combatSystem.basicPlayerAttack();
+                    combatSystem.doMove("basicAttack");
                     break;
                 case Input.Keys.W:
-                    combatSystem.basicPlayerBlock();
+                    combatSystem.doMove("block");
                     break;
             }
         }

@@ -127,6 +127,7 @@ public class CombatScreen implements Screen {
     public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e, PlayScreen playScreen) {
         this.game = game;
         this.Enemy = e;
+
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "emptyBattleMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
@@ -140,6 +141,7 @@ public class CombatScreen implements Screen {
         enemyHud = new EnemyHud(batch,e);
         ThirdHud = new ThirdHud(batch);
         cs = new CombatSystem(p, e);
+        Enemy.setCombatSystem(cs);
         combatController = new CombatController(p, e, cs);
         this.playScreen = playScreen;
     }

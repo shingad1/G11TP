@@ -1,5 +1,8 @@
 package com.sps.game.Sprites;
 
+import com.sps.game.Controller.CombatSystem;
+import com.sps.game.Screens.Fighter;
+
 import java.util.Random;
 
 public class BasicEnemy extends AbstractEnemy{
@@ -12,6 +15,8 @@ public class BasicEnemy extends AbstractEnemy{
         this.x = x;
         this.y = y;
         health = 100;
+        attack = 20;
+        defence = 0;
         changeInString();
     }
 
@@ -60,40 +65,23 @@ public class BasicEnemy extends AbstractEnemy{
         health -= decrease;
     }
 
+    @Override
     public void battleMove()
     {
         Random rand = new Random();
 
         if(getHealth() > 40)
         {
-            int temp = rand.nextInt(3);
+            int temp = 1;
             switch (temp) {
                 case 1:
-                    basicPunch();
+                    system.doMove("basicAttack");
                     break;
-                case 2: {
-                    basicKick();
-                }
             }
         }
         else
         {
-            block();
+            system.doMove("block");
         }
-    }
-
-    private void block()
-    {
-        decreaseHealth(10);
-    }
-
-    private void basicPunch()
-    {
-        decreaseHealth(10);
-    }
-
-    private void basicKick()
-    {
-        decreaseHealth(15);
     }
 }
