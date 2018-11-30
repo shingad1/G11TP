@@ -1,14 +1,17 @@
-package com.sps.game.dialogue;
+package com.sps.game.dialogue.Dia;
+
+import com.sps.game.dialogue.Dialogue;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Dialogue extends JDialog {
-    private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
+public class JSON extends JDialog
+{
+        private JPanel contentPane;
+        private JButton buttonOK;
+        private JButton buttonCancel;
 
-    public Dialogue() {
+    public JSON() {
 
         setContentPane(contentPane);
         setModal(true);
@@ -42,17 +45,17 @@ public class Dialogue extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() {
+        private void onOK() {
         // add your code here
         dispose();
     }
 
-    private void onCancel() {
+        private void onCancel() {
         // add your code here if necessary
         dispose();
     }
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         Dialogue dialog = new Dialogue();
         dialog.pack();
         dialog.setVisible(true);
