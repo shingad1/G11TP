@@ -57,7 +57,7 @@ public class NonInteractiveNPC extends AbstractNPC {
 
         private String state;
 
-        //"npc<ROLE><Direction>.atlas" camel case
+        //"npc<ROLE><Direction>.atlas" camel case i.e. "npcMerchantDown.atlas" do this for ALL AbstractNPC
         public NonInteractiveNPC(int x, int y, String world, SpriteBatch sb, String role) {
             this.x = x;
             this.y = y;
