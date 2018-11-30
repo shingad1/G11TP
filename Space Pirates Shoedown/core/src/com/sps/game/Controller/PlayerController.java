@@ -82,7 +82,7 @@ public class PlayerController extends InputAdapter {
 
         this.allLocations = allLocations;
 
-        //dialogue = new Dialogue();
+        dialogue = new Dialogue();
 
         reset();
     }
@@ -310,10 +310,14 @@ public class PlayerController extends InputAdapter {
         }
         else
         {
+<<<<<<< HEAD
             Dialogue dialog = new Dialogue();
             dialog.pack();
             dialog.setVisible(true);
             System.exit(0);
+=======
+            dialogue.showDialog();
+>>>>>>> 13aa7a82e355b6b79e9a4c5f76686a21655dd9db
         }
     }
 

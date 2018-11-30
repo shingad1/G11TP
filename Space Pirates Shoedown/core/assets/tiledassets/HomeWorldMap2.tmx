@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" source="Tiles5.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1bERgEAIRUFqurrsPzY2UgMUuA1eATvzB1ZELEm3Hc3axfH3Lp7uhqNGHLXiqNVu/6NLX+wqc6McHBwcnR1v7jJH/11N+edTHFN2xcHBwdHFMeV/THFk7I+Dg4ODgyPT0aXpDknXTqDganM=
+  </data>
+ </layer>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2kEKgzAQQNG5ll3Gbuv9j2MEB4pLs8if8D+E2XZ4glSyRcSnn6343Pv5LjBzn18/R8H59Kja06NqerDSg5UerPRgpQcrPVjpwWo1j/xf1eb+nNf9P08t6u6RHi1q75Ee1fdY1aNqvj9Y6cFKD1Z6sNKDlR6s9GClBys9WOnBakWP2XeORmd+351952h0HrfN7LtHo/PqBIMLepk=
+  </data>
+ </layer>
+</map>
