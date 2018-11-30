@@ -57,11 +57,11 @@ public class Player implements Fighter {
         gold = 50;
         HP = 100;
         animation = new HashMap<String, playerAnimation>();
-        animation.put("down",new playerAnimation(sb,this, "playerDown.atlas"));
-        animation.put("up",new playerAnimation(sb,this, "playerUp.atlas"));
-        animation.put("left",new playerAnimation(sb,this, "playerLeft.atlas"));
-        animation.put("right",new playerAnimation(sb,this, "playerRight.atlas"));
-        animation.put("idle",new playerAnimation(sb,this, "playerIdle.pack"));
+        animation.put("down",new playerAnimation(sb,this, "playerDown.atlas",1/15f));
+        animation.put("up",new playerAnimation(sb,this, "playerUp.atlas",1/15f));
+        animation.put("left",new playerAnimation(sb,this, "playerLeft.atlas",1/15f));
+        animation.put("right",new playerAnimation(sb,this, "playerRight.atlas",1/15f));
+        animation.put("idle",new playerAnimation(sb,this, "playerIdle.pack",1/15f));
         location = new Location(this.x,this.y);
         attack = 20;
         defence = 10;
@@ -70,7 +70,7 @@ public class Player implements Fighter {
     /**
      * Updates the players x and y coordinates according to the players movement.
      * @param <code>int</code>dx. Holds the change in the x axis.
-     * k@param <code>int</code>dy. Holds the change in the y axis
+     * @param <code>int</code>dy. Holds the change in the y axis
      */
     public void move(int dx, int dy){
         x += dx;

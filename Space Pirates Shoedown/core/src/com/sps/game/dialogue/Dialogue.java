@@ -15,23 +15,30 @@ public class Dialogue {
 
     private Skin skin;
 
+    private static final String ASSETS_PATH = "core/assets/textureAtlas/npcAtlas/";
+
+
     public Dialogue() {
-        setDialog();
+        skin = new Skin();
+
+
     }
-    public void setDialog() {
-        Dialog dialog = new Dialog("Warning", skin, "dialog")
-        {
-            public void result(Object obj)
-            {
-                System.out.println("result " + obj);
-            }
-        };
+
+    public void showDialog() {
+        Dialog dialog = new Dialog("Warning", skin, "dialog");
+
         dialog.text("Are you sure you want to quit?");
         dialog.button("Yes", true); //sends "true" as the result
         dialog.button("No", false);  //sends "false" as the result
         dialog.key(Input.Keys.ENTER, true); //sends "true" when the ENTER key is pressed
         dialog.show(stage);
     }
+
+    public void result(Object obj)
+    {
+        System.out.println("result " + obj);
+    }
+
 
     public void create() {
         stage = new Stage();
@@ -47,6 +54,7 @@ public class Dialogue {
     }
 
     public void resize(int width, int height) {
+
         stage.getViewport().update(width, height, true);
     }
 
@@ -57,6 +65,7 @@ public class Dialogue {
     }
 
     public void dispose() {
+
         stage.dispose();
     }
 }
