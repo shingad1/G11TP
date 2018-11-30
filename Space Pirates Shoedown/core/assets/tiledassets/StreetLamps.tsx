@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.0" name="redhouse" tilewidth="32" tileheight="32" tilecount="450" columns="25">
- <image source="img/1/redhouse.png" width="800" height="600"/>
+<tileset version="1.2" tiledversion="1.2.0" name="StreetLamps" tilewidth="32" tileheight="32" tilecount="12" columns="3">
+ <image source="StreetLamps.png" width="96" height="128"/>
  <tile id="0">
   <properties>
    <property name="blocked" value="true"/>
@@ -16,62 +16,47 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="25">
+ <tile id="3">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="26">
+ <tile id="4">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="27">
+ <tile id="5">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="50">
+ <tile id="6">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="51">
+ <tile id="7">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="52">
+ <tile id="8">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="75">
+ <tile id="9">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="76">
+ <tile id="10">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="77">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="100">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="101">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="102">
+ <tile id="11">
   <properties>
    <property name="blocked" value="true"/>
   </properties>

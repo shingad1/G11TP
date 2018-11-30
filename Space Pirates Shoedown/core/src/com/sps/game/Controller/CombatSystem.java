@@ -1,5 +1,7 @@
 package com.sps.game.Controller;
 
+import com.sps.game.Screens.Fighter;
+import com.sps.game.Sprites.AbstractEnemy;
 import com.sps.game.Sprites.BasicEnemy;
 import com.sps.game.Sprites.Player;
 
@@ -16,7 +18,7 @@ public class CombatSystem
      * creates an instance of the player
      * @see #CombatSystem
      */
-    private BasicEnemy enemy;
+    private AbstractEnemy enemy;
     /**
      * creates an instance of the enemy
      * @see #CombatSystem
@@ -37,35 +39,15 @@ public class CombatSystem
      * @see #getPlayerTurn
      */
 
-    public CombatSystem(Player p, BasicEnemy e){
+    private String chosenMove;
+
+    public CombatSystem(Player p, AbstractEnemy e){
         this.player = p;
         this.enemy = e;
         playerTurn = true;
         tick = 0;
         finished = false;
-    }
-    /**
-     * Changes the enemies health if it has been attacked and sets the tick to 1
-     */
-    public void basicPlayerAttack(){
-        enemy.decreaseHealth(20);
-        tick = 1;
-    }
-    /**
-     * Changes the players health if it has been attacked and sets the tick to 1
-     */
-    public void basicEnemyAttack(){
-        player.decreaseHealth(20);
-        tick = 1;
-    }
-    /**
-     * Changes the players health, increases it and sets the tick to 1
-     */
-    public void basicPlayerBlock() {
-        if (!(player.getHP() == 100)) {
-            player.increaseHealth(10);
-        }
-        tick = 1;
+        chosenMove = "";
     }
     /**
      * Changes the boolean when it is the players turn.
@@ -79,7 +61,14 @@ public class CombatSystem
     public void update() {
         if (!(finished)){
             if (!(playerTurn) && (tick == 0)) {
-                basicEnemyAttack();
+                enemy.battleMove();
+                if(!(chosenMove.equals(""))) {
+                    applyMove(enemy, player, chosenMove);
+                }
+            } else if ((playerTurn) && (tick == 0)){
+                if(!(chosenMove.equals(""))) {
+                    applyMove(player, enemy, chosenMove);
+                }
             }
             if (tick > 0) {
                 tick++;
@@ -101,15 +90,22 @@ public class CombatSystem
         return finished;
     }
 
-    /* Implementing a 'move list'
-    public void applyMove(Fighter user, Fighter usee, String move){
-        switch(move){
-            case "basicAttack":
-                usee.decreaseHealth(20);
-                user.endTurn();
-        }
+    public void doMove(String move){
+        chosenMove = move;
     }
-    */
+
+    //Implementing a 'move list'
+    public void applyMove(Fighter user, Fighter usee, String move){
+        if(move.equals("basicAttack")){
+            if(user.getAttack() > usee.getDefence()) {
+                usee.changeHP(-(user.getAttack() - usee.getDefence()));
+            }
+        } else if(move.equals("block")){
+            user.changeHP(10);
+        }
+        chosenMove = "";
+        tick = 1;
+    }
 
 
 }

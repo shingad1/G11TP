@@ -3,6 +3,8 @@ package com.sps.game.Sprites;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Animation.playerAnimation;
+import com.sps.game.Screens.Fighter;
+
 import java.util.HashMap;
 
 /**
@@ -10,7 +12,7 @@ import java.util.HashMap;
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
  * @version 1.0
  */
-public class Player{
+public class Player implements Fighter {
     /**
      * Keeps track of the player's gold
      */
@@ -43,6 +45,10 @@ public class Player{
 
     private Location location;
 
+    private int attack;
+
+    private int defence;
+
     public Player(int x, int y, SpriteBatch sb){
         this.x = x;
         this.y = y;
@@ -57,6 +63,8 @@ public class Player{
         animation.put("right",new playerAnimation(sb,this, "playerRight.atlas"));
         animation.put("idle",new playerAnimation(sb,this, "playerIdle.pack"));
         location = new Location(this.x,this.y);
+        attack = 20;
+        defence = 10;
     }
 
     /**
@@ -104,12 +112,27 @@ public class Player{
         return gold;
     }
 
+    @Override
+    public void changeHP(int diff) {
+        increaseHealth(diff); //if diff is negative, implicitly takes away health points
+    }
+
+    @Override
+    public int getAttack() {
+        return attack;
+    }
+
     /**
      * Gets the health level of the player.
      * @return Returns a <code>int</code> health points value.
      */
     public int getHP(){
         return HP;
+    }
+
+    @Override
+    public int getDefence() {
+        return defence;
     }
 
     /**

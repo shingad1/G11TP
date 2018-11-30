@@ -1,6 +1,9 @@
 package com.sps.game.Sprites;
 
-public abstract class AbstractEnemy {
+import com.sps.game.Controller.CombatSystem;
+import com.sps.game.Screens.Fighter;
+
+public abstract class AbstractEnemy implements Fighter {
 
     /**
      * Holds the enemies X coordinate.
@@ -14,6 +17,10 @@ public abstract class AbstractEnemy {
      * Holds the health of the enemy.
      */
     public int health;
+    protected int attack;
+    protected int defence;
+
+    protected CombatSystem system;
 
     /**
      * Abstract method that will return the enemies X coordinate.
@@ -32,5 +39,17 @@ public abstract class AbstractEnemy {
      * @return <code>int</code> Health, which stores the enemies health
      */
     public abstract int getHealth();
+
+    public abstract void battleMove();
+
+    public int getAttack(){return attack;}
+
+    public int getDefence(){return defence;}
+
+    public int getHP(){return health;}
+
+    public void changeHP(int diff){health += diff;}
+
+    public void setCombatSystem(CombatSystem system){this.system = system;}
 
 }
