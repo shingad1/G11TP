@@ -82,7 +82,7 @@ public class PlayerController extends InputAdapter {
 
         this.allLocations = allLocations;
 
-        //dialogue = new Dialogue();
+        dialogue = new Dialogue();
 
         reset();
     }
@@ -310,7 +310,7 @@ public class PlayerController extends InputAdapter {
         }
         else
         {
-            dialogue.setDialog();
+            dialogue.showDialog();
         }
     }
 
