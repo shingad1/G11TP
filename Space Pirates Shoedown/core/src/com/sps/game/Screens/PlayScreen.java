@@ -115,11 +115,11 @@ public class PlayScreen implements Screen {
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
-        gamecam.position.set(800, 800, 0);
+        gamecam.position.set(736, 1280, 0);
         npcTexture = new Texture(ASSETS_PATH + "../npcIdle.png");
         cryingNPCTexture = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/Crying NPC/CryingNPC2.png");
         batch = new SpriteBatch();
-        p = new Player(800,800,batch);
+        p = new Player(736,1280,batch);
         npc = new ArrayList<AbstractNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch));
         npc.add(new InteractiveNPC(800,640,"Overworld",batch));
