@@ -1,0 +1,26 @@
+
+npcMerchantDownAtlas.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+merchantDown1
+  rotate: false
+  xy: 1, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+merchantDown2
+  rotate: false
+  xy: 35, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+merchantDown3
+  rotate: false
+  xy: 69, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
