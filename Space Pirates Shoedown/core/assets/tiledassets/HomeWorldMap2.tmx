@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
  <tileset firstgid="1" source="Tiles5.tsx"/>
+ <tileset firstgid="491" source="watertiles.tsx"/>
+ <tileset firstgid="882" source="redhouse.tsx"/>
+ <tileset firstgid="1332" source="StreetLamps.tsx"/>
+ <tileset firstgid="1344" source="Fences.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJzt1bERgEAIRUFqurrsPzY2UgMUuA1eATvzB1ZELEm3Hc3axfH3Lp7uhqNGHLXiqNVu/6NLX+wqc6McHBwcnR1v7jJH/11N+edTHFN2xcHBwdHFMeV/THFk7I+Dg4ODgyPT0aXpDknXTqDganM=
@@ -8,7 +12,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt2kEKgzAQQNG5ll3Gbuv9j2MEB4pLs8if8D+E2XZ4glSyRcSnn6343Pv5LjBzn18/R8H59Kja06NqerDSg5UerPRgpQcrPVjpwWo1j/xf1eb+nNf9P08t6u6RHi1q75Ee1fdY1aNqvj9Y6cFKD1Z6sNKDlR6s9GClBys9WOnBakWP2XeORmd+351952h0HrfN7LtHo/PqBIMLepk=
+   eJztmkFOwzAQRUdEsAOWwBJYAjskVKQuSitg0x6mcAvgFsAtgFsAx+FbYCkdxRNbduNMcKUvS3/iyUyfUruRR0R0CY2Uj1NoNoDR9jOHFgpHzuN8k+iKdMnUzHlcKOzD1Mx5jBX2MW7gUY9fIz5humnwJN8nHpLz1vE9cx712KxhTpMn+T7xkJyuayUeZs6yIrqD7qvVPC7fSoqH5Gy7jy+PB8x/hJ5YHpdvJcVDcrbdx5fHM+a/QK8sj8u3kuIhOV3X8vWhjccb5r9DH9Xvczb/e95c/sQj7ptz4fBMbXx9kHhMce0n5n9B39VqzOX7xENyuq7l64PEQ5MkHpok8Yjda3W5V5N4xO61utyrSTxi91pd7tX+w/OhSbZ++78qdz2xPKgHtaTgkbuOVDxy11F4DJOH9n6Gtn4UHv7ahnag3UReLh570D50kMjLxeMQOoKOE3m5eJxAp9BZIi8Xj3Wq/F6FaWtDlhYe6+6j8OhXH4VHv/ooPPrVx1B5aD0HwHloPQfAeWg9B1DnkfvMUexo3+9aNlpH836aKP/Zo9jRfH4A/j+RmQ==
   </data>
  </layer>
 </map>
