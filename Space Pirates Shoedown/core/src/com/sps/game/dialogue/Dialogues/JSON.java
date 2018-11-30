@@ -1,4 +1,4 @@
-package com.sps.game.dialogue.Dia;
+package com.sps.game.dialogue.Dialogues;
 
 import com.sps.game.dialogue.Dialogue;
 
