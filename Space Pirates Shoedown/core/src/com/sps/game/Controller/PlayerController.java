@@ -6,11 +6,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.Sprites.InteractiveNPC;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
+import com.sps.game.dialogue.Dia.JSON;
 import com.sps.game.dialogue.Dialogue;
 
 import java.lang.Math;
@@ -25,7 +25,7 @@ import java.util.Stack;
 
 public class PlayerController extends InputAdapter {
 
-    Dialogue dialogue;
+    JSON json;
 
     private int[] xbounds;
     private int[] ybounds;
@@ -310,7 +310,14 @@ public class PlayerController extends InputAdapter {
         }
         else
         {
+<<<<<<< HEAD
+            Dialogue dialog = new Dialogue();
+            dialog.pack();
+            dialog.setVisible(true);
+            System.exit(0);
+=======
             dialogue.showDialog();
+>>>>>>> 13aa7a82e355b6b79e9a4c5f76686a21655dd9db
         }
     }
 

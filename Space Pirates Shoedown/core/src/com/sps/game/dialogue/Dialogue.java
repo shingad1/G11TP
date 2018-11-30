@@ -1,20 +1,26 @@
 package com.sps.game.dialogue;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import javax.swing.*;
+import java.awt.event.*;
 
-public class Dialogue {
+public class Dialogue extends JDialog {
+    private JPanel contentPane;
+    private JButton buttonOK;
+    private JButton buttonCancel;
 
-    private Stage stage;
-    private Table table;
+    public Dialogue() {
 
-    private Skin skin;
+        setContentPane(contentPane);
+        setModal(true);
+        getRootPane().setDefaultButton(buttonOK);
 
+<<<<<<< HEAD
+        buttonOK.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onOK();
+            }
+        });
+=======
     private static final String ASSETS_PATH = "core/assets/textureAtlas/npcAtlas/";
 
 
@@ -43,30 +49,56 @@ public class Dialogue {
     public void create() {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
+>>>>>>> 13aa7a82e355b6b79e9a4c5f76686a21655dd9db
 
-        table = new Table();
-        table.setFillParent(true);
-        stage.addActor(table);
+        buttonCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
 
-        table.setDebug(true); // This is optional, but enables debug lines for tables.
+        // call onCancel() when cross is clicked
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                onCancel();
+            }
+        });
 
-        // Add widgets to the table here.
+        // call onCancel() on ESCAPE
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+<<<<<<< HEAD
+    private void onOK() {
+        // add your code here
+        dispose();
+=======
     public void resize(int width, int height) {
 
         stage.getViewport().update(width, height, true);
+>>>>>>> 13aa7a82e355b6b79e9a4c5f76686a21655dd9db
     }
 
-    public void render() {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
+    private void onCancel() {
+        // add your code here if necessary
+        dispose();
     }
 
+<<<<<<< HEAD
+    public static void main(String[] args) {
+        Dialogue dialog = new Dialogue();
+        dialog.pack();
+        dialog.setVisible(true);
+        System.exit(0);
+=======
     public void dispose() {
 
         stage.dispose();
+>>>>>>> 13aa7a82e355b6b79e9a4c5f76686a21655dd9db
     }
 }
-
