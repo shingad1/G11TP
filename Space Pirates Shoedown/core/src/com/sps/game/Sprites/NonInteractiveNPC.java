@@ -57,7 +57,8 @@ public class NonInteractiveNPC extends AbstractNPC {
 
         private String state;
 
-        public NonInteractiveNPC(int x, int y, String world, SpriteBatch sb) {
+        //"npc<ROLE><Direction>.atlas" camel case i.e. "npcMerchantDown.atlas" do this for ALL AbstractNPC
+        public NonInteractiveNPC(int x, int y, String world, SpriteBatch sb, String role) {
             this.x = x;
             this.y = y;
             this.world = world;
@@ -67,11 +68,11 @@ public class NonInteractiveNPC extends AbstractNPC {
 
             animation = new HashMap<String, npcAnimation>();
 
-            animation.put("down",new npcAnimation(sb,this, "npcDown.atlas",1/15f));
-            animation.put("up",new npcAnimation(sb,this, "npcUp.atlas",1/15f));
-            animation.put("left",new npcAnimation(sb,this, "npcLeft.atlas",1/15f));
-            animation.put("right",new npcAnimation(sb,this, "npcRight.atlas",1/15f));
-            animation.put("idle",new npcAnimation(sb,this, "npcIdle.atlas",1/15f));
+            animation.put("down",new npcAnimation(sb,this, "npc"+ role +"Down.atlas",1/15f));
+            animation.put("up",new npcAnimation(sb,this, "npc"+ role +"Up.atlas",1/15f));
+            animation.put("left",new npcAnimation(sb,this, "npc"+ role +"Left.atlas",1/15f));
+            animation.put("right",new npcAnimation(sb,this, "npc"+ role +"Right.atlas",1/15f));
+            animation.put("idle",new npcAnimation(sb,this, "npc"+ role +"Idle.atlas",1/15f));
 
             location = new Location(x,y);
         }

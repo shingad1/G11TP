@@ -1,63 +1,55 @@
 package com.sps.game.dialogue;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import javax.swing.*;
+import java.awt.event.*;
 
-public class Dialogue {
-
-    private Stage stage;
-    private Table table;
-
-    private Skin skin;
+public class Dialogue extends JDialog
+{
+    private JPanel contentPane;
+    private JButton buttonOK;
+    private JButton buttonCancel;
 
     public Dialogue() {
-        setDialog();
-    }
-    public void setDialog() {
-        Dialog dialog = new Dialog("Warning", skin, "dialog")
-        {
-            public void result(Object obj)
-            {
-                System.out.println("result " + obj);
+
+        setContentPane(contentPane);
+        setModal(true);
+        getRootPane().setDefaultButton(buttonOK);
+
+        buttonOK.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onOK();
             }
-        };
-        dialog.text("Are you sure you want to quit?");
-        dialog.button("Yes", true); //sends "true" as the result
-        dialog.button("No", false);  //sends "false" as the result
-        dialog.key(Input.Keys.ENTER, true); //sends "true" when the ENTER key is pressed
-        dialog.show(stage);
+        });
+
+        buttonCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
+
+        // call onCancel() when cross is clicked
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                onCancel();
+            }
+        });
+
+        // call onCancel() on ESCAPE
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public void create() {
-        stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
-
-        table = new Table();
-        table.setFillParent(true);
-        stage.addActor(table);
-
-        table.setDebug(true); // This is optional, but enables debug lines for tables.
-
-        // Add widgets to the table here.
+    private void onOK() {
+        // add your code here
+        dispose();
     }
 
-    public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
+        private void onCancel () {
+            // add your code here if necessary
+            dispose();
+        }
     }
-
-    public void render() {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
-    }
-
-    public void dispose() {
-        stage.dispose();
-    }
-}
-

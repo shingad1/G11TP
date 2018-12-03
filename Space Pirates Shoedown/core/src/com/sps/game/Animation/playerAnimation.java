@@ -38,11 +38,11 @@ public class playerAnimation extends ApplicationAdapter {
 
    private Player player;
 
-    public playerAnimation(SpriteBatch sb,Player player,String animationName) {
+    public playerAnimation(SpriteBatch sb,Player player,String animationName, float duration) {
         this.player = player;
         batch = sb;
         playerAtlas = new TextureAtlas(ASSETS_PATH + animationName);
-        animation = new Animation <TextureRegion> (1/15f, playerAtlas.getRegions());
+        animation = new Animation <TextureRegion> (duration, playerAtlas.getRegions());
     }
 
 

@@ -311,4 +311,14 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
+ <tile id="355">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="356">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
 </tileset>
