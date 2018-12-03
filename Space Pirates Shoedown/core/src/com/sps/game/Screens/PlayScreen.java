@@ -21,6 +21,7 @@ import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * This class launches the play screen, from where the play last left off.
@@ -108,6 +109,8 @@ public class PlayScreen implements Screen {
 
     private InteractiveNPC cryingNPC;
 
+    private Stack<TiledMap> maps;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -137,6 +140,31 @@ public class PlayScreen implements Screen {
         npcController = new ArrayList<NPCController>();
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
+        maps = new Stack<TiledMap>();
+    }
+
+    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npcList, ArrayList<NPCController> npcControllerList){
+        this.game = game;
+        gamecam = new OrthographicCamera(480,480);
+        gameport = new FitViewport(1600, 1600, gamecam);
+        mapLoader = new TmxMapLoader();
+        map = mapLoader.load(ASSETS_PATH + mapName);
+        gamecam.position.set(playerX, playerY, 0);
+        this.batch = batch;
+        this.p = p;
+        p.setPosition(playerX, playerY);
+        renderer = new OrthogonalTiledMapRenderer(map);
+        int[] xbounds = {0, 1600};
+        int[] ybounds = {0,1600};
+        collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
+        hud = new HudScene(game.batch,p);
+        mapState = "Overworld";
+        this.controller = controller;
+        this.npcController = npcControllerList;
+        npc = npcList;
+        npcController = npcControllerList;
+        controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
+        maps = new Stack<TiledMap>();
     }
 
     /**
@@ -158,6 +186,7 @@ public class PlayScreen implements Screen {
             gamecam.position.x = 160;
             gamecam.position.y = 160;
             p.setPosition(160,64);
+            maps.push(map);
             map = mapLoader.load(ASSETS_PATH + "TestBattleScene.tmx");
             //BasicEnemy.WORLD = "Test Battle Screen";
             renderer = new OrthogonalTiledMapRenderer(map);
@@ -182,6 +211,15 @@ public class PlayScreen implements Screen {
         if(controller.getFight()){
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250),this));
             mapState = "HouseFight";
+        }
+        if(controller.getNewWorld()){
+            dispose();
+            ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
+            npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
+            ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
+            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
+            game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList));
+            mapState = "Overworld";
         }
     }
 

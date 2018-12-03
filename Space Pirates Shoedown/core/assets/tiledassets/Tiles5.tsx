@@ -288,6 +288,11 @@
    <property name="basicEnemy" value="true"/>
   </properties>
  </tile>
+ <tile id="365">
+  <properties>
+   <property name="newWorld" value="true"/>
+  </properties>
+ </tile>
  <tile id="366">
   <properties>
    <property name="blocked" value="true"/>
@@ -391,6 +396,11 @@
  <tile id="469">
   <properties>
    <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="473">
+  <properties>
+   <property name="oldWorld" value="true"/>
   </properties>
  </tile>
  <tile id="478">
