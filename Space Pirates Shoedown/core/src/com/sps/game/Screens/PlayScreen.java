@@ -102,7 +102,7 @@ public class PlayScreen implements Screen {
 
     private String mapState;
 
-    private NPCController npcController;
+    private ArrayList<NPCController> npcController;
 
     private ArrayList<Location> allLocations;
 
@@ -123,7 +123,7 @@ public class PlayScreen implements Screen {
         npc = new ArrayList<AbstractNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
         npc.add(new InteractiveNPC(800,640,"Overworld",batch));
-        npc.add(new NonInteractiveNPC(512, 608,"Overworld", batch, "Merchant"));
+        npc.add(new NonInteractiveNPC(576, 672,"Overworld", batch, "Merchant"));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
             allLocations.add(nonPlayingCharacter.getLocation());
@@ -134,7 +134,9 @@ public class PlayScreen implements Screen {
         controller = new PlayerController(p, collisionLayer,xbounds,ybounds,allLocations);
         hud = new HudScene(game.batch,p);
         mapState = "Overworld";
-        npcController = new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer);
+        npcController = new ArrayList<NPCController>();
+        npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
+        npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
     }
 
     /**
@@ -189,11 +191,9 @@ public class PlayScreen implements Screen {
      */
     public void update(float dt){
         handleInput(dt);
-        for (int i = 0; i < npc.size(); i++){
-            if(npc.get(i).getClass() == NonInteractiveNPC.class) {
-                if (npc.get(i).getWorld().equals(mapState)) {
-                    npcController.move(p);
-                }
+        for (int i = 0; i < npcController.size(); i++){
+            if (npc.get(i).getWorld().equals(mapState)) {
+                npcController.get(i).move(p);
             }
         }
         hud.update();
@@ -223,8 +223,6 @@ public class PlayScreen implements Screen {
             }
         }
         p.getAnimation().render();
-
-        controller.test((InteractiveNPC) npc.get(1));
     }
 
     @Override
