@@ -17,7 +17,7 @@ public class MoveList {
         if(atkDefDiff <= 0)
             atkDefDiff = 0;
         movelist = new HashMap<String, Move>();
-        movelist.put("basicAttack",new Move("HP","close", "enemy", atkDefDiff));
+        movelist.put("basicAttack",new Move("HP","close", "enemy", -atkDefDiff));
         movelist.put("block",new Move("HP","far", "self", 10));
     }
 

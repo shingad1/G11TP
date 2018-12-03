@@ -68,11 +68,11 @@ public class CombatSystem
             if (!(playerTurn) && (tick == 0)) {
                 enemy.battleMove();
                 if(!(chosenMove.equals(""))) {
-                    applyMove(playerMoveList);
+                    applyMove(enemyMoveList);
                 }
             } else if ((playerTurn) && (tick == 0)){
                 if(!(chosenMove.equals(""))) {
-                    applyMove(enemyMoveList);
+                    applyMove(playerMoveList);
                 }
             }
             if (tick > 0) {
