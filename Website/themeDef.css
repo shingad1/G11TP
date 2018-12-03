@@ -13,11 +13,6 @@
 		margin: 0px auto;
 	}
 
-	/*#massiveContainer{
-		float: left;
-		width: 900px;
-	}*/
-
 	#tagline{
 		font-style: italic;
 		font-size: 90px;
@@ -26,10 +21,15 @@
 		color: white;
 	}
 
+	#screenshot {
+		width: 100px;
+		height: 800px;
+	}
+
 	#carousel{
 		margin-left: 250px;
 		margin-right: 250px;
-		width: 70%;
+		width: 50%;
 		height: 100%;
 		position:relative;
 
@@ -51,7 +51,7 @@
 		height: 100%;
 	}
 
-	button
+	.homepgButton
 	{
 		position: relative;
 		top: 50%;

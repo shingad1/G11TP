@@ -41,9 +41,14 @@ public class CombatSystem
 
     private String chosenMove;
 
+    private MoveList playerMoveList;
+    private MoveList enemyMoveList;
+
     public CombatSystem(Player p, AbstractEnemy e){
         this.player = p;
         this.enemy = e;
+        playerMoveList = new MoveList(this.player,this.enemy);
+        enemyMoveList = new MoveList(this.enemy,this.player);
         playerTurn = true;
         tick = 0;
         finished = false;
@@ -63,11 +68,11 @@ public class CombatSystem
             if (!(playerTurn) && (tick == 0)) {
                 enemy.battleMove();
                 if(!(chosenMove.equals(""))) {
-                    applyMove(enemy, player, chosenMove);
+                    applyMove(enemyMoveList);
                 }
             } else if ((playerTurn) && (tick == 0)){
                 if(!(chosenMove.equals(""))) {
-                    applyMove(player, enemy, chosenMove);
+                    applyMove(playerMoveList);
                 }
             }
             if (tick > 0) {
@@ -95,14 +100,8 @@ public class CombatSystem
     }
 
     //Implementing a 'move list'
-    public void applyMove(Fighter user, Fighter usee, String move){
-        if(move.equals("basicAttack")){
-            if(user.getAttack() > usee.getDefence()) {
-                usee.changeHP(-(user.getAttack() - usee.getDefence()));
-            }
-        } else if(move.equals("block")){
-            user.changeHP(10);
-        }
+    public void applyMove(MoveList userMoveList){
+        userMoveList.use(chosenMove);
         chosenMove = "";
         tick = 1;
     }
