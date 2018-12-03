@@ -10,7 +10,6 @@ import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.Sprites.InteractiveNPC;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
-import com.sps.game.dialogue.Dialogues.JSON;
 import com.sps.game.dialogue.Dialogue;
 
 import java.lang.Math;
@@ -25,7 +24,7 @@ import java.util.Stack;
 
 public class PlayerController extends InputAdapter {
 
-    JSON json;
+    //JSON json;
 
     private int[] xbounds;
     private int[] ybounds;
