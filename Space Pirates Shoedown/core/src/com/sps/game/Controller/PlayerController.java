@@ -299,11 +299,11 @@ public class PlayerController extends InputAdapter {
 
     }
 
-    public void test(InteractiveNPC npc)
+    public void nonCryingNpcInteraction(InteractiveNPC npc)
     {
         if(!(npcInProximity(npc)))
         {
-            //System.out.println("test");
+            System.out.println("test");
         }
         else
         {

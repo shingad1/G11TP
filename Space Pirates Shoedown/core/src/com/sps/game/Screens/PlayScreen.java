@@ -106,6 +106,8 @@ public class PlayScreen implements Screen {
 
     private ArrayList<Location> allLocations;
 
+    private PlayerController playerController;
+
     private InteractiveNPC cryingNPC;
 
     public PlayScreen(SpacePiratesShoedown game){
@@ -137,6 +139,9 @@ public class PlayScreen implements Screen {
         npcController = new ArrayList<NPCController>();
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
+
+        //InteractiveNPC = new InteractiveNPC();
+        //cryingNPC = new InteractiveNPC(800,640, "Overworld", batch);
     }
 
     /**
@@ -199,6 +204,10 @@ public class PlayScreen implements Screen {
         hud.update();
         gamecam.update();
         renderer.setView(gamecam);
+
+        //playerController.nonCryingNpcInteraction((InteractiveNPC) npc.get(1));
+
+
     }
 
     /**
@@ -223,6 +232,8 @@ public class PlayScreen implements Screen {
             }
         }
         p.getAnimation().render();
+
+        controller.nonCryingNpcInteraction((InteractiveNPC)npc.get(1));
     }
 
     @Override
