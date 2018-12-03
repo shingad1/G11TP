@@ -127,8 +127,6 @@
 		font-size: 25px;
 	}
 
-
-
 	button
 	{
 		position: relative;
@@ -166,17 +164,30 @@
 		width: 100%;
 	}
 
+
+	.thanksImage{
+			display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width: 50%;
+	}
+
+
 	.downloadSpeech{
 		color: white;
-		font-size: 35px;
+		font-size: 25px;
 		margin: 10px;
-		margin-bottom: 35px;
+		align-self: center;
+		max-width: 50%;
 	}
 
 	#gamedownload
 	{
-		float: left;
+		font-size: 25px;
+		position: relative;
+		transform: translateX(-40%);
 		background-color: green;
+		margin-bottom: 30px;
 	}
 
 }
