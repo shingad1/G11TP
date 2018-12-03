@@ -1,8 +1,5 @@
 package com.sps.game.dialogue;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -12,27 +9,17 @@ import java.awt.event.*;
  * @version 1.0
  */
 
-public class Dialogue extends JDialog
-{
+public class Dialogue extends JDialog {
     private JPanel contentPane;
     private JButton buttonPrevious;
     private JButton buttonCancel;
     private JButton buttonNext;
     private JTextArea helloTextField;
 
-    private String mapState;
-    private TmxMapLoader mapLoader;
-    /**
-     * Displays the tmx file.
-     */
-    private TiledMap map;
-    private static final String ASSETS_PATH = "core/assets/tiledassets/";
-
     private int counter;
     private String[] cryingNpc;
 
-    public Dialogue()
-    {
+    public Dialogue() {
         setText();
         counter = 0;
         helloTextField.setText(cryingNpc[0]);
@@ -55,7 +42,7 @@ public class Dialogue extends JDialog
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //onCancel();
+                onCancel();
                 //goBack();
             }
         });
@@ -77,22 +64,18 @@ public class Dialogue extends JDialog
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void previousButton()
-    {
-        if(counter > 0)
-        {
-            System.out.println("before:"+ counter);
+    private void previousButton() {
+        if (counter > 0) {
+            System.out.println("before:" + counter);
             counter--;
             helloTextField.setText(cryingNpc[counter]);
-            System.out.println("after:"+ counter);
+            System.out.println("after:" + counter);
 
         }
     }
 
-    private void afterButton()
-    {
-        if(counter < cryingNpc.length-1)
-        {
+    private void afterButton() {
+        if (counter < cryingNpc.length - 1) {
             counter++;
             helloTextField.setText(cryingNpc[counter]);
 
@@ -100,22 +83,16 @@ public class Dialogue extends JDialog
 
     }
 
-        private void onCancel () {
-            // add your code here if necessary
-            //dispose();
-        }
-
-        public void goBack()
-        {
-            mapLoader = new TmxMapLoader();
-            map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
-        }
-
-        public void setText()
-        {
-            cryingNpc = new String[3];
-            cryingNpc[0] = "Hello";
-            cryingNpc[1] = "my name is libgdx";
-            cryingNpc[2] = "nigga bye";
-        }
+    private void onCancel() {
+        // add your code here if necessary
+        Dialogue.this.dispose();
     }
+
+    public void setText() {
+        cryingNpc = new String[3];
+        cryingNpc[0] = "Hello";
+        cryingNpc[1] = "my name is libgdx";
+        cryingNpc[2] = "nigga bye";
+    }
+
+}
