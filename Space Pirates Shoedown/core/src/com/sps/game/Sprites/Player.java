@@ -135,6 +135,12 @@ public class Player implements Fighter {
         return defence;
     }
 
+    @Override
+    public void changeDefence(int diff){defence += diff;}
+
+    @Override
+    public void changeAttack(int diff){attack += diff;}
+
     /**
      * Sets the position of the player on the screen
      * @param <code>int<code> dx, change in the x axis.

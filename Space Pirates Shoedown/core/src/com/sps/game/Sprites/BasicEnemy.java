@@ -57,6 +57,12 @@ public class BasicEnemy extends AbstractEnemy{
         return health;
     }
 
+    @Override
+    public void changeDefence(int diff){defence += diff;}
+
+    @Override
+    public void changeAttack(int diff){attack += diff;}
+
     /**
      * Decreases the enemies health by an inputted value.
      * @param <code>int</code> decrease, the amount to decrease the health by.
