@@ -58,6 +58,8 @@ public class PlayerController extends InputAdapter {
      */
     private boolean leave;
 
+    private boolean dialogue;
+
     private boolean fight;
     /**
      * Holds the stack of the old positions of the player before he enters the room.
@@ -71,6 +73,7 @@ public class PlayerController extends InputAdapter {
     private boolean newWorld;
 
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
+        dialogue = false;
         this.player = p;
         this.collisionLayer = collisionLayer;
         xbounds = new int[2];
@@ -300,22 +303,25 @@ public class PlayerController extends InputAdapter {
         if((new Location(Math.round(player.getLocation().getX()) - 32,Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
             return true;
         }
+        dialogue = false;
         return false;
 
     }
 
-    public void test(InteractiveNPC npc)
+    public void nonCryingNpcInteraction(InteractiveNPC npc)
     {
         if(!(npcInProximity(npc)))
         {
             //System.out.println("test");
         }
-        else
+        else if(dialogue == false)
         {
+            dialogue = true;
             Dialogue dialog = new Dialogue();
             dialog.pack();
             dialog.setVisible(true);
-            System.exit(0);
+
+            //if(){}
         }
     }
 

@@ -107,6 +107,8 @@ public class PlayScreen implements Screen {
 
     private ArrayList<Location> allLocations;
 
+    private PlayerController playerController;
+
     private InteractiveNPC cryingNPC;
 
     private Stack<TiledMap> maps;
@@ -237,6 +239,10 @@ public class PlayScreen implements Screen {
         hud.update();
         gamecam.update();
         renderer.setView(gamecam);
+
+        //playerController.nonCryingNpcInteraction((InteractiveNPC) npc.get(1));
+
+
     }
 
     /**
@@ -261,6 +267,8 @@ public class PlayScreen implements Screen {
             }
         }
         p.getAnimation().render();
+
+        controller.nonCryingNpcInteraction((InteractiveNPC)npc.get(1));
     }
 
     @Override
