@@ -1,10 +1,12 @@
 package com.sps.game.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -20,6 +22,7 @@ import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -106,9 +109,9 @@ public class PlayScreen implements Screen {
 
     private ArrayList<Location> allLocations;
 
-    private PlayerController playerController;
-
-    private InteractiveNPC cryingNPC;
+    private Boolean pause;
+    private static Texture pauseTexture;
+    public  static Sprite pauseSprite;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -140,8 +143,10 @@ public class PlayScreen implements Screen {
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
 
-        //InteractiveNPC = new InteractiveNPC();
-        //cryingNPC = new InteractiveNPC(800,640, "Overworld", batch);
+        pauseTexture = new Texture("core/assets/pause.png");
+        //pauseSprite = new Sprite(pauseTexture);
+        //pauseSprite.flip(false,true);
+        pause = false;
     }
 
     /**
@@ -195,6 +200,17 @@ public class PlayScreen implements Screen {
      * @param <code>float</code> dt.
      */
     public void update(float dt){
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+        {
+            pause = true;
+            try
+            {
+                Thread.sleep(100);
+            }catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
         handleInput(dt);
         for (int i = 0; i < npcController.size(); i++){
             if (npc.get(i).getWorld().equals(mapState)) {
@@ -204,10 +220,6 @@ public class PlayScreen implements Screen {
         hud.update();
         gamecam.update();
         renderer.setView(gamecam);
-
-        //playerController.nonCryingNpcInteraction((InteractiveNPC) npc.get(1));
-
-
     }
 
     /**
@@ -216,7 +228,23 @@ public class PlayScreen implements Screen {
      */
     @Override
     public void render(float delta) {
-        update(delta); //render method keeps getting called
+        if(pause)
+        {
+            if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+            {
+                pause = false;
+                try
+                {
+                    Thread.sleep(100);
+                }catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else {
+            update(delta); //render method keeps getting called
+        }
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
@@ -233,7 +261,14 @@ public class PlayScreen implements Screen {
         }
         p.getAnimation().render();
 
-        controller.nonCryingNpcInteraction((InteractiveNPC)npc.get(1));
+        batch.begin();
+        if(pause)
+        {
+            batch.draw(pauseTexture,400,1000);
+        }
+        batch.end();
+
+        controller.nonCryingNpcInteraction((InteractiveNPC)npc.get(1), "CryingNpc");
     }
 
     @Override

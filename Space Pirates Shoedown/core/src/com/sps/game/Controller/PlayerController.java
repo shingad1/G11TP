@@ -70,6 +70,8 @@ public class PlayerController extends InputAdapter {
 
     private ArrayList<Location> allLocations;
 
+    private String npcStatus;
+
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         dialogue = false;
         this.player = p;
@@ -303,20 +305,19 @@ public class PlayerController extends InputAdapter {
 
     }
 
-    public void nonCryingNpcInteraction(InteractiveNPC npc)
+    public void nonCryingNpcInteraction(InteractiveNPC npc, String npcStatus)
     {
         if(!(npcInProximity(npc)))
         {
-            //System.out.println("test");
+
         }
         else if(dialogue == false)
         {
+            this.npcStatus = npcStatus;
             dialogue = true;
             Dialogue dialog = new Dialogue();
             dialog.pack();
             dialog.setVisible(true);
-
-            //if(){}
         }
     }
 
