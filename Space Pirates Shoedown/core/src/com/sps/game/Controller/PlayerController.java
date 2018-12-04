@@ -70,7 +70,11 @@ public class PlayerController extends InputAdapter {
 
     private ArrayList<Location> allLocations;
 
+<<<<<<< HEAD
     private String npcStatus;
+=======
+    private boolean newWorld;
+>>>>>>> 1935d17ea539f707518229c6754a4ae26cf44ae0
 
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         dialogue = false;
@@ -177,6 +181,8 @@ public class PlayerController extends InputAdapter {
         return positions.pop();
     }
 
+    public boolean getNewWorld(){ return newWorld; }
+
     /**
      *
      * @param newLayer
@@ -266,6 +272,7 @@ public class PlayerController extends InputAdapter {
                 }
                 break;
             case Input.Keys.RIGHT:
+                newWorld = collisionLayer.getCell((int) ((player.getX() + 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("newWorld");
                 collisionX = collisionLayer.getCell((int) ((player.getX() + 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
                 if (collisionX || npcCollision(new Location(player.getX() + 32,player.getY()))) {
                     player.getVelocity().x = 0;
