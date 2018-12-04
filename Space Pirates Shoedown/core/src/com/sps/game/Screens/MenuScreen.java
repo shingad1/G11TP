@@ -1,5 +1,6 @@
 package com.sps.game.Screens;
 
+import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -63,6 +64,10 @@ public class MenuScreen implements Screen {
      */
     private Texture logoViewed;
 
+    private com.badlogic.gdx.audio.Music music;
+
+    private com.badlogic.gdx.audio.Music sound;
+
     public MenuScreen(SpacePiratesShoedown game){
         this.game = game;
         background = new Texture(ASSETS_PATH + "spacebackground.jpg");
@@ -73,7 +78,15 @@ public class MenuScreen implements Screen {
         twitterButton = new Texture(ASSETS_PATH + "twitter.png");
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
+        music = Gdx.audio.newMusic(Gdx.files.internal(ASSETS_PATH + "Music/bensound-newdawn.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
+
+        sound = Gdx.audio.newMusic(Gdx.files.internal(ASSETS_PATH + "Music/click.wav"));
+        sound.setVolume(0.1f);
     }
+
 
     @Override
     public void show() {
@@ -87,6 +100,7 @@ public class MenuScreen implements Screen {
         if((Gdx.input.getX() > ((logo.getWidth() / 2) - 160)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 10))){
                if((Gdx.input.getY() > ((background.getHeight() / 2) - 190)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 85))) {
                    if (Gdx.input.justTouched()) {
+                       sound.play();
                        dispose();
                        game.setScreen(new PlayScreen(game));
                    }
@@ -96,6 +110,7 @@ public class MenuScreen implements Screen {
         if((Gdx.input.getX() > ((logo.getWidth() / 2) - 160)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 10))){
             if((Gdx.input.getY() > ((background.getHeight() / 2) + 10)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 285))) {
                 if (Gdx.input.justTouched()) {
+                    sound.play();
                     Gdx.app.exit();
                 }
             }
@@ -163,5 +178,6 @@ public class MenuScreen implements Screen {
         quitButton.dispose();
         twitterButton.dispose();
         background.dispose();
+        music.dispose();
     }
 }
