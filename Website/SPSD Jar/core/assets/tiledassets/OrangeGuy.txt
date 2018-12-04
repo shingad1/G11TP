@@ -1,0 +1,68 @@
+OrangeGuy.png
+size: 208, 31
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Left-1
+  rotate: false
+  xy: 48, 0
+  size: 21, 31
+  orig: 32, 32
+  offset: 6, 1
+  index: -1
+Left-2
+  rotate: false
+  xy: 0, 0
+  size: 24, 31
+  orig: 32, 32
+  offset: 4, 1
+  index: -1
+Left-3
+  rotate: false
+  xy: 69, 0
+  size: 21, 31
+  orig: 32, 32
+  offset: 6, 1
+  index: -1
+Right-1
+  rotate: false
+  xy: 90, 0
+  size: 21, 31
+  orig: 32, 32
+  offset: 5, 1
+  index: -1
+Right-2
+  rotate: false
+  xy: 24, 0
+  size: 24, 31
+  orig: 32, 32
+  offset: 4, 1
+  index: -1
+Right-3
+  rotate: false
+  xy: 111, 0
+  size: 21, 31
+  orig: 32, 32
+  offset: 5, 1
+  index: -1
+Up-down-1
+  rotate: false
+  xy: 132, 0
+  size: 26, 30
+  orig: 32, 32
+  offset: 2, 0
+  index: -1
+Up-down-2
+  rotate: false
+  xy: 158, 0
+  size: 25, 30
+  orig: 32, 32
+  offset: 2, 0
+  index: -1
+Up-down-3
+  rotate: false
+  xy: 183, 0
+  size: 25, 30
+  orig: 32, 32
+  offset: 3, 0
+  index: -1
