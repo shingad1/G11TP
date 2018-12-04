@@ -91,22 +91,23 @@ public class Dialogue extends JDialog {
 
     public void setText(String npcName)
     {
-        //this.npcName = npcName;
-        //String string = "CryingNpc";
-        //if(string.indexOf("CryingNpc") != -1)
         if(npcName.equals("Rick"))
         {
             dialogue[0] = "Hello";
             dialogue[1] = "my name is libgdx";
             dialogue[2] = "nigga bye";
         }
-       /* else if(npcName.contains("c"))
+        else if(npcName.equals("C"))
         {
-            System.out.println("character");
-        }*/
-        else
+            dialogue[0] = "OH MY GOD!!!";
+            dialogue[1] = "I have lost all my shoes";
+            dialogue[2] = "";
+        }
+        else if (npcName.equals("Enemy"))
         {
-            System.out.println("test");
+            dialogue[0] = "Grrrrrrrr";
+            dialogue[1] = "Nuuuuuuuu";
+            dialogue[2] = "I am DEAD!!!";
         }
         dialoguesTextArea.setText(dialogue[0]);
     }
