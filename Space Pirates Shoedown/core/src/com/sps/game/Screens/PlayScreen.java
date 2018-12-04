@@ -32,7 +32,8 @@ import java.util.Stack;
  * @version 1.0
  */
 
-public class PlayScreen implements Screen {
+public class PlayScreen implements Screen
+{
 
     /**
      * Constant field to direct where the file is located.
@@ -115,6 +116,8 @@ public class PlayScreen implements Screen {
 
     private Stack<TiledMap> maps;
 
+    private Texture idleOne;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -125,12 +128,14 @@ public class PlayScreen implements Screen {
         gamecam.position.set(736, 1280, 0);
         npcTexture = new Texture(ASSETS_PATH + "../npcIdle.png");
         cryingNPCTexture = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/Crying NPC/CryingNPC2.png");
+        idleOne = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/InteractiveNPC_Idle/glassesNPC_Behind.png");
         batch = new SpriteBatch();
         p = new Player(736,1280,batch);
         npc = new ArrayList<AbstractNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
         npc.add(new InteractiveNPC(800,640,"Overworld",batch, "Rick"));
         npc.add(new NonInteractiveNPC(576, 672,"Overworld", batch, "Merchant"));
+        npc.add(new InteractiveNPC(736, 1248, "Overworld", batch, "Bob"));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
             allLocations.add(nonPlayingCharacter.getLocation());
