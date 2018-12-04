@@ -351,4 +351,26 @@ public class PlayScreen implements Screen {
         mapState = "House";
         game.setScreen(this);
     }
+
+    public ArrayList<InteractiveNPC> getInteractiveNPC(){
+        ArrayList<InteractiveNPC> interactiveNPCs = new ArrayList<InteractiveNPC>();
+        for(AbstractNPC nonPlayingCharacter : npc){
+            if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
+                interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
+            }
+        }
+        return interactiveNPCs;
+    }
+
+    public ArrayList<NonInteractiveNPC> getNonInteractiveNPC(){
+        ArrayList<NonInteractiveNPC> nonInteractiveNPCs = new ArrayList<NonInteractiveNPC>();
+        for(AbstractNPC nonPlayingCharacter : npc){
+            if(nonPlayingCharacter.getClass() == NonInteractiveNPC.class){
+                nonInteractiveNPCs.add((NonInteractiveNPC) nonPlayingCharacter);
+            }
+        }
+        return nonInteractiveNPCs;
+    }
+
+
 }
