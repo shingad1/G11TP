@@ -8,6 +8,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.sps.game.Sprites.AbstractEnemy;
 import com.sps.game.Sprites.AbstractNPC;
+import com.sps.game.Sprites.Location;
+
+import java.util.HashMap;
 
 public class enemyAnimation extends ApplicationAdapter {
     /**
@@ -29,7 +32,7 @@ public class enemyAnimation extends ApplicationAdapter {
     /**
      * The path for textures
      */
-    private static final String ASSETS_PATH = "core/assets/textureAtlas/npcAtlas/";
+    private static final String ASSETS_PATH = "core/assets/textureAtlas/enemyAtlas/";
 
     private AbstractEnemy enemy;
 
@@ -49,6 +52,20 @@ public class enemyAnimation extends ApplicationAdapter {
         batch.begin();
         timePassed += Gdx.graphics.getDeltaTime();
         batch.draw(animation.getKeyFrame(timePassed, true), enemy.getX(), enemy.getY(), 32, 32);
+        batch.end();
+    }
+
+    public void render(Location location, float frame) {
+        batch.begin();
+        timePassed += Gdx.graphics.getDeltaTime();
+        batch.draw(animation.getKeyFrame(frame, true), location.getX(), location.getY(), 32, 32);
+        batch.end();
+    }
+
+    public void render(Location location) {
+        batch.begin();
+        timePassed += Gdx.graphics.getDeltaTime();
+        batch.draw(animation.getKeyFrame(timePassed, true), location.getX(), location.getY(), 32, 32);
         batch.end();
     }
 }

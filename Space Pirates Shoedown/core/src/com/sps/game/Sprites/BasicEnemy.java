@@ -1,8 +1,11 @@
 package com.sps.game.Sprites;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.sps.game.Animation.enemyAnimation;
 import com.sps.game.Controller.CombatSystem;
 import com.sps.game.Screens.Fighter;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class BasicEnemy extends AbstractEnemy{
@@ -11,13 +14,21 @@ public class BasicEnemy extends AbstractEnemy{
      */
     public static String WORLD = "Earth";
 
-    public BasicEnemy(int x, int y){
+    private HashMap<String, enemyAnimation> fightAnimation;
+
+    public BasicEnemy(int x, int y, SpriteBatch sb){
         this.x = x;
         this.y = y;
         health = 100;
         attack = 20;
         defence = 0;
         changeInString();
+        fightAnimation = new HashMap<String, enemyAnimation>();
+        fightAnimation.put("Idle",new enemyAnimation(sb, this, "enemyIdle.atlas", 1/15f));
+        fightAnimation.put("Right",new enemyAnimation(sb, this, "enemyMoveRight.atlas", 1/15f));
+        fightAnimation.put("Left",new enemyAnimation(sb, this, "enemyMoveLeft.atlas", 1/15f));
+        fightAnimation.put("basicAttack",new enemyAnimation(sb, this, "enemyBasicAttack.atlas", 1/3f));
+        fightAnimation.put("block",new enemyAnimation(sb, this, "enemyBasicBlock.atlas", 1/3f));
     }
 
     /**
@@ -29,6 +40,8 @@ public class BasicEnemy extends AbstractEnemy{
 
         }
     }
+
+    public HashMap<String,enemyAnimation> getFightAnimation(){return fightAnimation;}
 
     /**
      * Gets the enemies X coordinate.

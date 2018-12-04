@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Controller.BattleAnimationHandler;
 import com.sps.game.Controller.CombatController;
 import com.sps.game.Controller.CombatSystem;
 import com.sps.game.Scenes.CombatHud;
@@ -19,6 +20,7 @@ import com.sps.game.Scenes.EnemyHud;
 import com.sps.game.Scenes.ThirdHud;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.BasicEnemy;
+import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 
 /**
@@ -140,7 +142,7 @@ public class CombatScreen implements Screen {
         playerHud = new CombatHud(batch,p,e);
         enemyHud = new EnemyHud(batch,e);
         ThirdHud = new ThirdHud(batch);
-        cs = new CombatSystem(p, e);
+        cs = new CombatSystem(p, e, batch);
         Enemy.setCombatSystem(cs);
         combatController = new CombatController(p, e, cs);
         this.playScreen = playScreen;
@@ -181,10 +183,7 @@ public class CombatScreen implements Screen {
         playerHud.stage.draw();
         ThirdHud.stage.draw();
         batch.setProjectionMatrix(gamecam.combined);
-        batch.begin();
-        batch.draw(player, 64, 150, 32, 32);
-        batch.draw(enemy, 256, 150 , 32, 32);
-        batch.end();
+        cs.render();
     }
     /**
      * this method resize the screen

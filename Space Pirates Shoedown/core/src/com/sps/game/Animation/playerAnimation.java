@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 
 public class playerAnimation extends ApplicationAdapter {
@@ -65,6 +66,24 @@ public class playerAnimation extends ApplicationAdapter {
     timePassed += Gdx.graphics.getDeltaTime();
     batch.draw(animation.getKeyFrame(timePassed, true), player.getX(), player.getY(),32,32);
     batch.end();
+    }
+    public void render(Location location,float frame) {
+        //Gdx.gl.glClearColor(0, 1, 0, 1);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.begin();
+        timePassed += Gdx.graphics.getDeltaTime();
+        batch.draw(animation.getKeyFrame(frame, true), location.getX(), location.getY(),32,32);
+        batch.end();
+    }
+    public void render(Location location) {
+        //Gdx.gl.glClearColor(0, 1, 0, 1);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.begin();
+        timePassed += Gdx.graphics.getDeltaTime();
+        batch.draw(animation.getKeyFrame(timePassed, true), location.getX(), location.getY(),32,32);
+        batch.end();
     }
 }
 
