@@ -133,10 +133,10 @@ public class PlayScreen implements Screen
         p = new Player(736,1280,batch);
         npc = new ArrayList<AbstractNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
-        npc.add(new InteractiveNPC(800,640,"Overworld",batch, "Rick"));
+        npc.add(new InteractiveNPC(800,640,"Overworld",batch, "Linda"));
         npc.add(new NonInteractiveNPC(576, 672,"Overworld", batch, "Merchant"));
-       // npc.add(new InteractiveNPC(736, 1248, "Overworld", batch, "Bob"));
-        npc.add(new InteractiveNPCMoving(736, 1248, "Overworld", batch, "", "Bob"));
+        //npc.add(new InteractiveNPC(736, 1248, "Overworld", batch, "Bob"));
+        npc.add(new InteractiveNPCMoving(768, 1312, "Overworld", batch, "", "Bob"));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
             allLocations.add(nonPlayingCharacter.getLocation());
@@ -307,7 +307,8 @@ public class PlayScreen implements Screen
         p.getAnimation().render();
 
 
-        controller.npcInteraction((getInteractiveNPC()), "Rick");
+        controller.npcInteraction((getInteractiveNPC()), "Linda");
+        controller.npcmoving(getInteractiveNPCMoving(), "Bob");
 
         batch.begin();
         if(pause)
@@ -377,6 +378,16 @@ public class PlayScreen implements Screen
             }
         }
         return nonInteractiveNPCs;
+    }
+
+    public ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving(){
+        ArrayList<InteractiveNPCMoving> InteractiveNPCsMoving = new ArrayList<InteractiveNPCMoving>();
+        for(AbstractNPC InteractiveNPC : npc){
+            if(InteractiveNPC.getClass() == InteractiveNPCMoving.class){
+                InteractiveNPCsMoving.add((InteractiveNPCMoving) InteractiveNPC);
+            }
+        }
+        return InteractiveNPCsMoving;
     }
 
 

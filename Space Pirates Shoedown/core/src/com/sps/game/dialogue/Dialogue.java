@@ -91,23 +91,35 @@ public class Dialogue extends JDialog {
 
     public void setText(String npcName)
     {
-        if(npcName.equals("Rick"))
+        if(npcName.equals("Linda"))
         {
-            dialogue[0] = "Hello";
-            dialogue[1] = "my name is libgdx";
-            dialogue[2] = "nigga bye";
+            dialogue[0] = "*crying*";
+            dialogue[1] = "someone....is..inside..my...house...";
+            dialogue[2] = "HELP ME!!!!";
         }
-        else if(npcName.equals("C"))
+        else if(npcName.equals("Bob"))
         {
             dialogue[0] = "OH MY GOD!!!";
             dialogue[1] = "I have lost all my shoes";
-            dialogue[2] = "";
+            dialogue[2] = "What's going on?!";
+        }
+        else if(npcName.equals("Ellie"))
+        {
+            dialogue[0] = "AHHHHH!!!!!";
+            dialogue[1] = "WHAT IS THAT!!!!";
+            dialogue[2] = "WHERE DID IT COME FROM!!!!";
+        }
+        else if(npcName.equals("Mo"))
+        {
+            dialogue[0] = "*SCREAMING*";
+            dialogue[1] = "SOMETHING WEIRD IS ATTACKING EVERYONE....*CRYING*";
+            dialogue[2] = "LINDA IS CRYING";
         }
         else if (npcName.equals("Enemy"))
         {
-            dialogue[0] = "Grrrrrrrr";
-            dialogue[1] = "Nuuuuuuuu";
-            dialogue[2] = "I am DEAD!!!";
+            dialogue[0] = "You may have beaten me";
+            dialogue[1] = "But...you can't beat all of us!!!";
+            dialogue[2] = "*DYING*" + " \n " + "*MAP DROPPED*";
         }
         dialoguesTextArea.setText(dialogue[0]);
     }

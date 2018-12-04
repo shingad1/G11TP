@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Sprites.InteractiveNPC;
+import com.sps.game.Sprites.InteractiveNPCMoving;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 import com.sps.game.dialogue.Dialogue;
@@ -312,7 +313,9 @@ public class PlayerController extends InputAdapter {
             for (int i = 0; i < npcList.size(); i++) {
                 InteractiveNPC tempNPC = npcList.get(i);
                 String temp = tempNPC.getName();
-                if (npcInProximity(tempNPC)) {
+                //if (temp.equals("Linda"))//change hardcoded linda to a list?
+                if (npcInProximity(tempNPC))
+                {
                     if (Gdx.input.isKeyPressed(Input.Keys.B)) {
                         if (temp.equals(npcName)) {
                             Dialogue dialog = new Dialogue(npcName);
@@ -327,5 +330,13 @@ public class PlayerController extends InputAdapter {
             //was else here
         }
     }
+
+        public void npcmoving(ArrayList<InteractiveNPCMoving> npcList, String npcName)
+        {
+            Dialogue dialog = new Dialogue(npcName);
+            dialog.pack();
+            dialog.setVisible(true);
+        }
+
 
 }
