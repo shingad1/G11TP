@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.Screens.MenuScreen;
+import com.sps.game.Screens.SplashWorker;
 
 /**
  * This class creates the game and launches the Menu Screen.
@@ -18,6 +19,7 @@ public class SpacePiratesShoedown extends Game {
 	 * @see #create
 	 */
 	public SpriteBatch batch;
+	private SplashWorker splashWorker;
 
 	@Override
 	public void create () {
@@ -33,5 +35,13 @@ public class SpacePiratesShoedown extends Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
+	}
+
+	public SplashWorker getSplashWorker() {
+		return splashWorker;
+	}
+
+	public void setSplashWorker(SplashWorker splashWorker) {
+		this.splashWorker = splashWorker;
 	}
 }

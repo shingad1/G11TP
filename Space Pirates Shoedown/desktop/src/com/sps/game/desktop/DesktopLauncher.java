@@ -2,11 +2,14 @@ package com.sps.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.sps.game.Screens.DesktopSplashLauncher;
 import com.sps.game.SpacePiratesShoedown;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		SpacePiratesShoedown spacePiratesShoedown = new SpacePiratesShoedown();
+		spacePiratesShoedown.setSplashWorker(new DesktopSplashLauncher());
 		new LwjglApplication(new SpacePiratesShoedown(), config);
 		config.width = 640; //width of the window
 		config.height = 640; //height of the window;
