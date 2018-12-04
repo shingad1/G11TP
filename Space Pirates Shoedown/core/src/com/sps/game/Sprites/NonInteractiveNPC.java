@@ -14,25 +14,25 @@ public class NonInteractiveNPC extends AbstractNPC {
         /**
          * Stores the NPC character's x co-ordinate
          *
-         * @see #update()
+         * @see
          */
         //private int x;
         /**
          * Stores the NPC character's y co-ordinate
          *
-         * @see #update()
+         * @see
          */
         private int y;
         /**
          * Uses Tick to break down movement into a number of iterations so that it doesnt move too fast
          *
-         * @see #update()
+         * @see
          */
         private int tick = 0;
         /**
          * Stores the random variable so it can be used for the movement
          *
-         * @see #update()
+         * @see
          */
         private Random random;
         /**
@@ -44,7 +44,7 @@ public class NonInteractiveNPC extends AbstractNPC {
         /**
          * changes the speed of the NPC
          *
-         * @see #update() #reset
+         * @see
          */
         private Vector2 velocity;
 
@@ -57,7 +57,12 @@ public class NonInteractiveNPC extends AbstractNPC {
 
         private String state;
 
-        //"npc<ROLE><Direction>.atlas" camel case i.e. "npcMerchantDown.atlas" do this for ALL AbstractNPC
+        /**
+         * Holds the name of the NonInteractiveNPC
+         */
+        private String name;
+
+    //"npc<ROLE><Direction>.atlas" camel case i.e. "npcMerchantDown.atlas" do this for ALL AbstractNPC
         public NonInteractiveNPC(int x, int y, String world, SpriteBatch sb, String role) {
             this.x = x;
             this.y = y;
@@ -65,7 +70,6 @@ public class NonInteractiveNPC extends AbstractNPC {
             velocity = new Vector2();
             velocity.x = 0;
             velocity.y = 0;
-
             animation = new HashMap<String, npcAnimation>();
 
             animation.put("down",new npcAnimation(sb,this, "npc"+ role +"Down.atlas",1/15f));

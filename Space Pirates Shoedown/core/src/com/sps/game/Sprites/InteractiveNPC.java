@@ -10,40 +10,45 @@ import java.util.Random;
 public class InteractiveNPC extends AbstractNPC{
     /**
      * Stores the NPC character's x co-ordinate
-     * @see #update()
+     * @see
      */
     private int x;
     /**
      * Stores the NPC character's y co-ordinate
-     * @see #update()
+     * @see
      */
     private int y;
     /**
      * Uses Tick to break down movement into a number of iterations so that it doesnt move too fast
-     * @see #update()
+     * @see
      */
     private int tick = 0;
     /**
      * Stores the random variable so it can be used for the movement
-     * @see #update()
+     * @see
      */
     private Random random;
     /**
      *changes the speed of the NPC
-     * @see #update() #reset
+     * @see
      */
     private Vector2 velocity;
 
     private npcAnimation animation;
 
     private String world;
+    /**
+     * Holds the name of the InteractiveNPC
+     */
+    private String name;
 
-    public InteractiveNPC(int x, int y,String world, SpriteBatch sb){
+    public InteractiveNPC(int x, int y,String world, SpriteBatch sb, String name){
         this.x = x;
         this.y = y;
         location = new Location(x,y);
         animation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
         this.world = world;
+        setName(name);
     }
 
     public npcAnimation getAnimation(){return animation;}
@@ -76,6 +81,14 @@ public class InteractiveNPC extends AbstractNPC{
     }
 
     public Location getLocation(){return location;}
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
 
 }

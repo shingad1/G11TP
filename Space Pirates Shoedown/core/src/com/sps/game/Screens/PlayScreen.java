@@ -130,7 +130,7 @@ public class PlayScreen implements Screen
         p = new Player(736,1280,batch);
         npc = new ArrayList<AbstractNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
-        npc.add(new InteractiveNPC(800,640,"Overworld",batch));
+        npc.add(new InteractiveNPC(800,640,"Overworld",batch, "Rick"));
         npc.add(new NonInteractiveNPC(576, 672,"Overworld", batch, "Merchant"));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
@@ -301,7 +301,8 @@ public class PlayScreen implements Screen
         }
         p.getAnimation().render();
 
-        controller.nonCryingNpcInteraction((InteractiveNPC)npc.get(1), "CryingNpc");
+
+        controller.npcInteraction((getInteractiveNPC()), "Rick");
 
         batch.begin();
         if(pause)
