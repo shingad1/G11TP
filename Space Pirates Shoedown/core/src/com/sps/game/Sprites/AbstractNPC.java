@@ -1,9 +1,12 @@
 package com.sps.game.Sprites;
 
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Animation.enemyAnimation;
 import com.sps.game.Animation.npcAnimation;
 import com.sps.game.Controller.CombatSystem;
 import com.sps.game.Screens.Fighter;
+
+import java.util.HashMap;
 
 
 public abstract class AbstractNPC {

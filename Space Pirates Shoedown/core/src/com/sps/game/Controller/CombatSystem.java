@@ -1,8 +1,10 @@
 package com.sps.game.Controller;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.Screens.Fighter;
 import com.sps.game.Sprites.AbstractEnemy;
 import com.sps.game.Sprites.BasicEnemy;
+import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 
 /**
@@ -44,7 +46,9 @@ public class CombatSystem
     private MoveList playerMoveList;
     private MoveList enemyMoveList;
 
-    public CombatSystem(Player p, AbstractEnemy e){
+    private BattleAnimationHandler animationHandler;
+
+    public CombatSystem(Player p, AbstractEnemy e, SpriteBatch sb){
         this.player = p;
         this.enemy = e;
         playerMoveList = new MoveList(this.player,this.enemy);
@@ -53,6 +57,7 @@ public class CombatSystem
         tick = 0;
         finished = false;
         chosenMove = "";
+        animationHandler = new BattleAnimationHandler(p,e,sb,new Location(64,150),new Location(256,150));
     }
     /**
      * Changes the boolean when it is the players turn.
@@ -60,27 +65,30 @@ public class CombatSystem
     public boolean getPlayerTurn(){
         return (playerTurn && (tick == 0));
     }
+
+    public void render(){
+        animationHandler.render(playerTurn);
+    }
+
     /**
      * This updates the battle scene so the enemy and the player has equal chances.
      */
     public void update() {
         if (!(finished)){
-            if (!(playerTurn) && (tick == 0)) {
+            if (!(playerTurn) && !(animationHandler.isInAnimation())) {
                 enemy.battleMove();
                 if(!(chosenMove.equals(""))) {
+                    animationHandler.setupEnemyAnimation(chosenMove);
                     applyMove(enemyMoveList);
                 }
-            } else if ((playerTurn) && (tick == 0)){
+            } else if ((playerTurn) && !(animationHandler.isInAnimation())){
                 if(!(chosenMove.equals(""))) {
+                    animationHandler.setupPlayerAnimation(chosenMove);
                     applyMove(playerMoveList);
                 }
             }
-            if (tick > 0) {
-                tick++;
-                if (tick >= 65) {
-                    playerTurn = !(playerTurn);
-                    tick = 0;
-                }
+            if (animationHandler.isAnimationEnd()) {
+                playerTurn = !playerTurn;
             }
             if ((player.getHP() == 0) || (enemy.getHealth() == 0)) {
                 finished = true;
@@ -103,7 +111,6 @@ public class CombatSystem
     public void applyMove(MoveList userMoveList){
         userMoveList.use(chosenMove);
         chosenMove = "";
-        tick = 1;
     }
 
 

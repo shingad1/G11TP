@@ -41,6 +41,8 @@ public class Player implements Fighter {
      */
     private HashMap<String,playerAnimation> animation;
 
+    private HashMap<String,playerAnimation> fightAnimation;
+
     private String state;
 
     private Location location;
@@ -65,6 +67,13 @@ public class Player implements Fighter {
         location = new Location(this.x,this.y);
         attack = 20;
         defence = 10;
+        fightAnimation = new HashMap<String, playerAnimation>();
+        fightAnimation.put("Idle",new playerAnimation(sb, this, "combatPlayerIdle.atlas",1/15f));
+        fightAnimation.put("Right",new playerAnimation(sb, this, "playerRight.atlas",1/15f));
+        fightAnimation.put("Left",new playerAnimation(sb, this, "playerLeft.atlas",1/15f));
+        fightAnimation.put("basicAttack",new playerAnimation(sb, this, "playerBasicAttack.atlas",1/3f));
+        fightAnimation.put("block",new playerAnimation(sb, this, "playerBasicBlock.atlas",1/3f));
+
     }
 
     /**
@@ -79,6 +88,8 @@ public class Player implements Fighter {
             location = new Location(x,y);
         }
     }
+
+    public HashMap<String,playerAnimation> getFightAnimation(){return fightAnimation;}
 
     /**
      * Gets the players X coordinate.

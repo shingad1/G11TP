@@ -220,7 +220,7 @@ public class PlayScreen implements Screen {
             mapState = "Overworld";
         }
         if(controller.getFight()){
-            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250),this));
+            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
             mapState = "HouseFight";
         }
         if(controller.getNewWorld()){
