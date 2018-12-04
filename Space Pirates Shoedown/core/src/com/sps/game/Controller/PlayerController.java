@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.Sprites.InteractiveNPC;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
@@ -70,8 +69,6 @@ public class PlayerController extends InputAdapter {
     private boolean resolve;
 
     private ArrayList<Location> allLocations;
-
-    private String npcStatus;
 
     private boolean newWorld;
 
@@ -293,7 +290,7 @@ public class PlayerController extends InputAdapter {
         return false;
     }
 
-    public boolean npcInProximity(AbstractNPC npc){
+    public boolean npcInProximity(InteractiveNPC npc){
         if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(npc.getLocation())){
             return true;
         }
@@ -306,25 +303,29 @@ public class PlayerController extends InputAdapter {
         if((new Location(Math.round(player.getLocation().getX()) - 32,Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
             return true;
         }
-        //dialogue = false;
         return false;
 
     }
 
-    public void nonCryingNpcInteraction(InteractiveNPC npc, String npcStatus)
-    {
-        if(npcInProximity(npc))
-        {
-            if(Gdx.input.isKeyPressed(Input.Keys.B)) {
-                this.npcStatus = npcStatus;
-                //dialogue = true;
-                Dialogue dialog = new Dialogue(npcStatus);
-                dialog.pack();
-                dialog.setVisible(true);
+    public void npcInteraction(ArrayList<InteractiveNPC> npcList, String npcName) {
+        if (!npcList.isEmpty()) {
+            for (int i = 0; i < npcList.size(); i++) {
+                InteractiveNPC tempNPC = npcList.get(i);
+                String temp = tempNPC.getName();
+                if (npcInProximity(tempNPC)) {
+                    if (Gdx.input.isKeyPressed(Input.Keys.B)) {
+                        if (temp.equals(npcName)) {
+                            Dialogue dialog = new Dialogue(npcName);
+                            dialog.pack();
+                            dialog.setVisible(true);
+                        }
+                    }
+                }
             }
+
+            //else if(dialogue == false)
+            //was else here
         }
-        //else if(dialogue == false)
-        //was else here
     }
 
 }

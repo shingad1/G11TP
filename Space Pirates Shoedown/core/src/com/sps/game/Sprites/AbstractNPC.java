@@ -9,18 +9,18 @@ import com.sps.game.Screens.Fighter;
 public abstract class AbstractNPC {
     /**
      * Stores the NPC character's x co-ordinate
-     * @see #update()
+     * @see
      */
     private int x;
     /**
      * Stores the NPC character's y co-ordinate
-     * @see #update()
+     * @see
      */
     private int y;
 
     /**
      *changes the speed of the NPC
-     * @see #update() #reset
+     * @see
      */
     private Vector2 velocity;
 
@@ -40,6 +40,7 @@ public abstract class AbstractNPC {
     public abstract Vector2 getVelocity();
 
     public abstract void setY(float newY);
+
     public abstract void setX(float newX);
 
     public abstract String getWorld();
@@ -47,5 +48,6 @@ public abstract class AbstractNPC {
     public abstract npcAnimation getAnimation();
 
     public Location getLocation(){return location;}
+
 
 }

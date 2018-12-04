@@ -16,16 +16,16 @@ public class Dialogue extends JDialog {
     private JButton buttonNext;
     private JTextArea dialoguesTextArea;
 
-    private String npcStatus = "";
+    private String npcName = "";
 
     private int counter;
     private String[] dialogue;
 
-    public Dialogue(String npcStatus)
+    public Dialogue(String npcName)
     {
         counter = 0;
         dialogue = new String[3];
-        setText(npcStatus);
+        setText(npcName);
 
         setContentPane(contentPane);
         setModal(true);
@@ -89,18 +89,18 @@ public class Dialogue extends JDialog {
         Dialogue.this.dispose();
     }
 
-    public void setText(String npcStatus)
+    public void setText(String npcName)
     {
-        //this.npcStatus = npcStatus;
+        //this.npcName = npcName;
         //String string = "CryingNpc";
         //if(string.indexOf("CryingNpc") != -1)
-        if(npcStatus.equals("CryingNpc"))
+        if(npcName.equals("Rick"))
         {
             dialogue[0] = "Hello";
             dialogue[1] = "my name is libgdx";
             dialogue[2] = "nigga bye";
         }
-       /* else if(npcStatus.contains("c"))
+       /* else if(npcName.contains("c"))
         {
             System.out.println("character");
         }*/
