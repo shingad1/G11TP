@@ -14,15 +14,18 @@ public class Dialogue extends JDialog {
     private JButton buttonPrevious;
     private JButton buttonCancel;
     private JButton buttonNext;
-    private JTextArea helloTextField;
+    private JTextArea dialoguesTextArea;
+
+    private String npcName = "";
 
     private int counter;
-    private String[] cryingNpc;
+    private String[] dialogue;
 
-    public Dialogue() {
-        setText();
+    public Dialogue(String npcName)
+    {
         counter = 0;
-        helloTextField.setText(cryingNpc[0]);
+        dialogue = new String[3];
+        setText(npcName);
 
         setContentPane(contentPane);
         setModal(true);
@@ -43,7 +46,6 @@ public class Dialogue extends JDialog {
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
-                //goBack();
             }
         });
 
@@ -56,7 +58,6 @@ public class Dialogue extends JDialog {
             }
         });
 
-        // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
@@ -64,35 +65,50 @@ public class Dialogue extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void previousButton() {
-        if (counter > 0) {
-            System.out.println("before:" + counter);
-            counter--;
-            helloTextField.setText(cryingNpc[counter]);
-            System.out.println("after:" + counter);
-
+    private void previousButton()
+    {
+        if (counter > 0)
+        {
+            counter --;
+            dialoguesTextArea.setText(dialogue[counter]);
         }
     }
 
-    private void afterButton() {
-        if (counter < cryingNpc.length - 1) {
-            counter++;
-            helloTextField.setText(cryingNpc[counter]);
-
+    private void afterButton()
+    {
+        if (counter < dialogue.length - 1)
+        {
+            counter ++;
+            dialoguesTextArea.setText(dialogue[counter]);
         }
 
     }
 
-    private void onCancel() {
-        // add your code here if necessary
+    private void onCancel()
+    {
         Dialogue.this.dispose();
     }
 
-    public void setText() {
-        cryingNpc = new String[3];
-        cryingNpc[0] = "Hello";
-        cryingNpc[1] = "my name is libgdx";
-        cryingNpc[2] = "nigga bye";
+    public void setText(String npcName)
+    {
+        //this.npcName = npcName;
+        //String string = "CryingNpc";
+        //if(string.indexOf("CryingNpc") != -1)
+        if(npcName.equals("Rick"))
+        {
+            dialogue[0] = "Hello";
+            dialogue[1] = "my name is libgdx";
+            dialogue[2] = "nigga bye";
+        }
+       /* else if(npcName.contains("c"))
+        {
+            System.out.println("character");
+        }*/
+        else
+        {
+            System.out.println("test");
+        }
+        dialoguesTextArea.setText(dialogue[0]);
     }
 
 }

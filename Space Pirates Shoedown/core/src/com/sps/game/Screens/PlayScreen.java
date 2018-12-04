@@ -1,10 +1,12 @@
 package com.sps.game.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -20,6 +22,7 @@ import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -107,9 +110,8 @@ public class PlayScreen implements Screen {
 
     private ArrayList<Location> allLocations;
 
-    private PlayerController playerController;
-
-    private InteractiveNPC cryingNPC;
+    private Boolean pause;
+    private static Texture pauseTexture;
 
     private Stack<TiledMap> maps;
 
@@ -127,7 +129,7 @@ public class PlayScreen implements Screen {
         p = new Player(736,1280,batch);
         npc = new ArrayList<AbstractNPC>();
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
-        npc.add(new InteractiveNPC(800,640,"Overworld",batch));
+        npc.add(new InteractiveNPC(800,640,"Overworld",batch, "Rick"));
         npc.add(new NonInteractiveNPC(576, 672,"Overworld", batch, "Merchant"));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
@@ -143,7 +145,11 @@ public class PlayScreen implements Screen {
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
         maps = new Stack<TiledMap>();
+
+        pauseTexture = new Texture("core/assets/pause.png");
+        pause = false;
     }
+
 
     public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npcList, ArrayList<NPCController> npcControllerList){
         this.game = game;
@@ -167,6 +173,9 @@ public class PlayScreen implements Screen {
         npcController = npcControllerList;
         controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         maps = new Stack<TiledMap>();
+
+        pauseTexture = new Texture("core/assets/pause.png");
+        pause = false;
     }
 
     /**
@@ -230,6 +239,17 @@ public class PlayScreen implements Screen {
      * @param <code>float</code> dt.
      */
     public void update(float dt){
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+        {
+            pause = true;
+            try
+            {
+                Thread.sleep(100);
+            }catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
         handleInput(dt);
         for (int i = 0; i < npcController.size(); i++){
             if (npc.get(i).getWorld().equals(mapState)) {
@@ -239,10 +259,6 @@ public class PlayScreen implements Screen {
         hud.update();
         gamecam.update();
         renderer.setView(gamecam);
-
-        //playerController.nonCryingNpcInteraction((InteractiveNPC) npc.get(1));
-
-
     }
 
     /**
@@ -251,7 +267,23 @@ public class PlayScreen implements Screen {
      */
     @Override
     public void render(float delta) {
-        update(delta); //render method keeps getting called
+        if(pause)
+        {
+            if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+            {
+                pause = false;
+                try
+                {
+                    Thread.sleep(100);
+                }catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else {
+            update(delta); //render method keeps getting called
+        }
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
@@ -268,7 +300,15 @@ public class PlayScreen implements Screen {
         }
         p.getAnimation().render();
 
-        controller.nonCryingNpcInteraction((InteractiveNPC)npc.get(1));
+
+        controller.npcInteraction((getInteractiveNPC()), "Rick");
+
+        batch.begin();
+        if(pause)
+        {
+            batch.draw(pauseTexture,gamecam.position.x - 240,gamecam.position.y - 240,480,480);
+        }
+        batch.end();
     }
 
     @Override
@@ -312,4 +352,26 @@ public class PlayScreen implements Screen {
         mapState = "House";
         game.setScreen(this);
     }
+
+    public ArrayList<InteractiveNPC> getInteractiveNPC(){
+        ArrayList<InteractiveNPC> interactiveNPCs = new ArrayList<InteractiveNPC>();
+        for(AbstractNPC nonPlayingCharacter : npc){
+            if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
+                interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
+            }
+        }
+        return interactiveNPCs;
+    }
+
+    public ArrayList<NonInteractiveNPC> getNonInteractiveNPC(){
+        ArrayList<NonInteractiveNPC> nonInteractiveNPCs = new ArrayList<NonInteractiveNPC>();
+        for(AbstractNPC nonPlayingCharacter : npc){
+            if(nonPlayingCharacter.getClass() == NonInteractiveNPC.class){
+                nonInteractiveNPCs.add((NonInteractiveNPC) nonPlayingCharacter);
+            }
+        }
+        return nonInteractiveNPCs;
+    }
+
+
 }
