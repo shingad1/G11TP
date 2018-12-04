@@ -32,7 +32,8 @@ import java.util.Stack;
  * @version 1.0
  */
 
-public class PlayScreen implements Screen {
+public class PlayScreen implements Screen
+{
 
     /**
      * Constant field to direct where the file is located.
