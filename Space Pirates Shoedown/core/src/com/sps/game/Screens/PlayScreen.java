@@ -111,7 +111,6 @@ public class PlayScreen implements Screen {
 
     private Boolean pause;
     private static Texture pauseTexture;
-    public  static Sprite pauseSprite;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -144,8 +143,6 @@ public class PlayScreen implements Screen {
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
 
         pauseTexture = new Texture("core/assets/pause.png");
-        //pauseSprite = new Sprite(pauseTexture);
-        //pauseSprite.flip(false,true);
         pause = false;
     }
 
