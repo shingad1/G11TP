@@ -305,7 +305,7 @@ public class PlayScreen implements Screen {
         batch.begin();
         if(pause)
         {
-            batch.draw(pauseTexture,400,900);
+            batch.draw(pauseTexture,gamecam.position.x - 240,gamecam.position.y - 240,480,480);
         }
         batch.end();
     }
