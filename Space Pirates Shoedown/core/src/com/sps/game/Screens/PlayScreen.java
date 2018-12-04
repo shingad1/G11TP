@@ -135,7 +135,8 @@ public class PlayScreen implements Screen
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
         npc.add(new InteractiveNPC(800,640,"Overworld",batch, "Rick"));
         npc.add(new NonInteractiveNPC(576, 672,"Overworld", batch, "Merchant"));
-        npc.add(new InteractiveNPC(736, 1248, "Overworld", batch, "Bob"));
+       // npc.add(new InteractiveNPC(736, 1248, "Overworld", batch, "Bob"));
+        npc.add(new InteractiveNPCMoving(736, 1248, "Overworld", batch, "", "Bob"));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
             allLocations.add(nonPlayingCharacter.getLocation());
