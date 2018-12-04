@@ -173,6 +173,9 @@ public class PlayScreen implements Screen {
         npcController = npcControllerList;
         controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         maps = new Stack<TiledMap>();
+
+        pauseTexture = new Texture("core/assets/pause.png");
+        pause = false;
     }
 
     /**
@@ -297,14 +300,14 @@ public class PlayScreen implements Screen {
         }
         p.getAnimation().render();
 
+        controller.nonCryingNpcInteraction((InteractiveNPC)npc.get(1), "CryingNpc");
+
         batch.begin();
         if(pause)
         {
             batch.draw(pauseTexture,400,900);
         }
         batch.end();
-
-        controller.nonCryingNpcInteraction((InteractiveNPC)npc.get(1), "CryingNpc");
     }
 
     @Override

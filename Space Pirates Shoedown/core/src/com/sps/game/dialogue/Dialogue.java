@@ -26,8 +26,6 @@ public class Dialogue extends JDialog {
         setText(npcStatus);
         counter = 0;
         dialogue = new String[3];
-        //dialoguesTextArea.setText(dialogue[0]);
-        //String string = dialoguesTextArea.toString();
 
         setContentPane(contentPane);
         setModal(true);
@@ -71,16 +69,15 @@ public class Dialogue extends JDialog {
     {
         if (counter > 0)
         {
-            System.out.println("before:" + counter);
             counter --;
             dialoguesTextArea.setText(dialogue[counter]);
-            System.out.println("after:" + counter);
         }
     }
 
     private void afterButton()
     {
-        if (counter < dialogue.length - 1) {
+        if (counter < dialogue.length - 1)
+        {
             counter ++;
             dialoguesTextArea.setText(dialogue[counter]);
         }
@@ -95,13 +92,17 @@ public class Dialogue extends JDialog {
     public void setText(String npcStatus)
     {
         this.npcStatus = npcStatus;
-        String string = "CryingNpc";
-        if(string.indexOf("CryingNpc") != -1)
-        //if(this.npcStatus.contains("CryingNpc"))
+        //String string = "CryingNpc";
+        //if(string.indexOf("CryingNpc") != -1)
+        if(this.npcStatus.contains("CryingNpc"))
         {
             dialogue[0] = "Hello";
             dialogue[1] = "my name is libgdx";
             dialogue[2] = "nigga bye";
+        }
+        else if(npcStatus.contains("c"))
+        {
+            System.out.println("character");
         }
         else
         {
