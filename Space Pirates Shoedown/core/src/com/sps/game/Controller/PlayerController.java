@@ -70,11 +70,9 @@ public class PlayerController extends InputAdapter {
 
     private ArrayList<Location> allLocations;
 
-<<<<<<< HEAD
     private String npcStatus;
-=======
+
     private boolean newWorld;
->>>>>>> 1935d17ea539f707518229c6754a4ae26cf44ae0
 
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         dialogue = false;

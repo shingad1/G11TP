@@ -145,12 +145,12 @@ public class PlayScreen implements Screen {
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
         maps = new Stack<TiledMap>();
-    }
 
-<<<<<<< HEAD
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
-=======
+    }
+
+
     public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npcList, ArrayList<NPCController> npcControllerList){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -173,7 +173,6 @@ public class PlayScreen implements Screen {
         npcController = npcControllerList;
         controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         maps = new Stack<TiledMap>();
->>>>>>> 1935d17ea539f707518229c6754a4ae26cf44ae0
     }
 
     /**
@@ -301,7 +300,7 @@ public class PlayScreen implements Screen {
         batch.begin();
         if(pause)
         {
-            batch.draw(pauseTexture,400,1000);
+            batch.draw(pauseTexture,400,900);
         }
         batch.end();
 
