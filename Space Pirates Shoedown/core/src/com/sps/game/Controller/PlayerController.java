@@ -1,5 +1,6 @@
 package com.sps.game.Controller;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -75,7 +76,7 @@ public class PlayerController extends InputAdapter {
     private boolean newWorld;
 
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
-        dialogue = false;
+        //dialogue = false;
         this.player = p;
         this.collisionLayer = collisionLayer;
         xbounds = new int[2];
@@ -305,25 +306,25 @@ public class PlayerController extends InputAdapter {
         if((new Location(Math.round(player.getLocation().getX()) - 32,Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
             return true;
         }
-        dialogue = false;
+        //dialogue = false;
         return false;
 
     }
 
     public void nonCryingNpcInteraction(InteractiveNPC npc, String npcStatus)
     {
-        if(!(npcInProximity(npc)))
+        if(npcInProximity(npc))
         {
-
+            if(Gdx.input.isKeyPressed(Input.Keys.B)) {
+                this.npcStatus = npcStatus;
+                //dialogue = true;
+                Dialogue dialog = new Dialogue(npcStatus);
+                dialog.pack();
+                dialog.setVisible(true);
+            }
         }
-        else if(dialogue == false)
-        {
-            this.npcStatus = npcStatus;
-            dialogue = true;
-            Dialogue dialog = new Dialogue();
-            dialog.pack();
-            dialog.setVisible(true);
-        }
+        //else if(dialogue == false)
+        //was else here
     }
 
 }

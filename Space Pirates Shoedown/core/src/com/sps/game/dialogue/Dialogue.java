@@ -21,11 +21,11 @@ public class Dialogue extends JDialog {
     private int counter;
     private String[] dialogue;
 
-    public Dialogue()
+    public Dialogue(String npcStatus)
     {
-        setText(npcStatus);
         counter = 0;
         dialogue = new String[3];
+        setText(npcStatus);
 
         setContentPane(contentPane);
         setModal(true);
@@ -91,19 +91,19 @@ public class Dialogue extends JDialog {
 
     public void setText(String npcStatus)
     {
-        this.npcStatus = npcStatus;
+        //this.npcStatus = npcStatus;
         //String string = "CryingNpc";
         //if(string.indexOf("CryingNpc") != -1)
-        if(this.npcStatus.contains("CryingNpc"))
+        if(npcStatus.equals("CryingNpc"))
         {
             dialogue[0] = "Hello";
             dialogue[1] = "my name is libgdx";
             dialogue[2] = "nigga bye";
         }
-        else if(npcStatus.contains("c"))
+       /* else if(npcStatus.contains("c"))
         {
             System.out.println("character");
-        }
+        }*/
         else
         {
             System.out.println("test");
