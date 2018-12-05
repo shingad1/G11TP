@@ -52,5 +52,7 @@ public abstract class AbstractNPC {
 
     public Location getLocation(){return location;}
 
+    public abstract void changeState(String newState);
+
 
 }

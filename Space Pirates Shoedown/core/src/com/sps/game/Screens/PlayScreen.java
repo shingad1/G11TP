@@ -150,6 +150,7 @@ public class PlayScreen implements Screen
         npcController = new ArrayList<NPCController>();
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
+        npcController.add(new NPCController((InteractiveNPCMoving) npc.get(3), collisionLayer));
         maps = new Stack<TiledMap>();
 
         pauseTexture = new Texture("core/assets/pause.png");
@@ -165,11 +166,11 @@ public class PlayScreen implements Screen
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
         map = mapLoader.load(ASSETS_PATH + mapName);
-        gamecam.position.set(playerX, playerY, 0);
+        renderer = new OrthogonalTiledMapRenderer(map);
+        gamecam.position.set(playerX + 165, playerY, 0);
         this.batch = batch;
         this.p = p;
         p.setPosition(playerX, playerY);
-        renderer = new OrthogonalTiledMapRenderer(map);
         int[] xbounds = {0, 1600};
         int[] ybounds = {0,1600};
         collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
