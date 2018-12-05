@@ -21,6 +21,7 @@ import com.sps.game.Controller.PlayerController;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
+//import com.sun.tools.internal.ws.processor.model.ModelVisitor;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -135,8 +136,9 @@ public class PlayScreen implements Screen
         npc.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
         npc.add(new InteractiveNPC(800,640,"Overworld",batch, "Linda"));
         npc.add(new NonInteractiveNPC(576, 672,"Overworld", batch, "Merchant"));
-        //npc.add(new InteractiveNPC(736, 1248, "Overworld", batch, "Bob"));
         npc.add(new InteractiveNPCMoving(768, 1216, "Overworld", batch, "", "Bob"));
+        npc.add(new InteractiveNPCMoving(768, 960,"Overworld", batch,"", "Ellie"));
+        npc.add(new InteractiveNPCMoving(768, 832, "Overworld", batch, "", "Mo"));
         allLocations = new ArrayList<Location>();
         for (AbstractNPC nonPlayingCharacter : npc){
             allLocations.add(nonPlayingCharacter.getLocation());
@@ -151,6 +153,8 @@ public class PlayScreen implements Screen
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
         npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
         npcController.add(new NPCController((InteractiveNPCMoving) npc.get(3), collisionLayer));
+        npcController.add(new NPCController((InteractiveNPCMoving) npc.get(4), collisionLayer));
+        npcController.add(new NPCController((InteractiveNPCMoving) npc.get(5), collisionLayer));
         maps = new Stack<TiledMap>();
 
         pauseTexture = new Texture("core/assets/pause.png");
@@ -160,7 +164,7 @@ public class PlayScreen implements Screen
     }
 
 
-    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npcList, ArrayList<NPCController> npcControllerList){
+    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
@@ -177,9 +181,14 @@ public class PlayScreen implements Screen
         hud = new HudScene(game.batch,p);
         mapState = "Overworld";
         this.controller = controller;
-        this.npcController = npcControllerList;
-        npc = npcList;
-        npcController = npcControllerList;
+        //npc = new ArrayList<AbstractNPC>();
+        //npc.add(new NonInteractiveNPC(544,1152,"Overworld", batch, ""));
+        //npc.add(new NonInteractiveNPC(768,800,"Overworld",batch, ""));
+        //npc.add(new NonInteractiveNPC(704, 512,"Overworld", batch, ""));
+        //npcController = new ArrayList<NPCController>();
+        //npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
+        //npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
+        //npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
         controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         maps = new Stack<TiledMap>();
 
@@ -240,7 +249,7 @@ public class PlayScreen implements Screen
             npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
             npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-            game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList));
+            game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864));
             mapState = "Overworld";
         }
     }
