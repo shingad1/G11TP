@@ -359,7 +359,7 @@ public class PlayerController extends InputAdapter {
                 {
                     Dialogue dialog = new Dialogue(npcName);
 
-                    if(dialog.cancelButtonPressed())
+                    /*if(dialog.cancelButtonPressed())
                     {
                         System.out.println("goes to the button pressed");
                         dialog.setVisible(false);
@@ -370,7 +370,7 @@ public class PlayerController extends InputAdapter {
                             //tempNPC.getAnimation();
                             tempNPC.getAnimation("left");
                         }
-                    }
+                    }*/
 
                         if (temp.equals(npcName)) {
                             //Dialogue dialog = new Dialogue(npcName);
