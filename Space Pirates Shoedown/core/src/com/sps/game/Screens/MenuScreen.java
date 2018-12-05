@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.TutorialController1;
+import com.sps.game.Controller.StoryController1;
+import com.sps.game.Controller.TutorialController;
 import com.sps.game.SpacePiratesShoedown;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.io.IOException;
 
@@ -71,8 +71,9 @@ public class MenuScreen implements Screen {
 
     private com.badlogic.gdx.audio.Music sound;
 
-    private SpriteBatch batch;
-    private static Texture TutorialTexture;
+    private static Texture storyTexture;
+
+    private Texture tutorialTexture;
 
     public MenuScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -82,7 +83,8 @@ public class MenuScreen implements Screen {
         playButton = new Texture(ASSETS_PATH + "PlayButton.png");
         quitButton = new Texture(ASSETS_PATH + "QuitButton.png");
         twitterButton = new Texture(ASSETS_PATH + "twitter.png");
-        TutorialTexture = new Texture(ASSETS_PATH + "tutorial.png");
+        storyTexture = new Texture(ASSETS_PATH + "story.png");
+        tutorialTexture = new Texture(ASSETS_PATH + "tutorial.png");
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
 
@@ -132,13 +134,21 @@ public class MenuScreen implements Screen {
             }
         }
 
-            if((Gdx.input.getY() > ((TutorialTexture.getHeight() / 2) + 220 ))&& (Gdx.input.getX() < ((TutorialTexture.getWidth() / 2) + 150))) {
+            if((Gdx.input.getY() > ((storyTexture.getHeight() / 2) + 220 ))&& (Gdx.input.getX() < ((storyTexture.getWidth() / 2) + 150))) {
                 if (Gdx.input.justTouched()) {
-                    TutorialController1 dialog = new TutorialController1();
+                    StoryController1 dialog = new StoryController1();
                     dialog.pack();
                     dialog.setVisible(true);
                 }
             }
+
+        if((Gdx.input.getX() > Gdx.graphics.getWidth() - 100) && Gdx.input.getY() > 10 ){
+            if (Gdx.input.justTouched()) {
+                TutorialController dialog = new TutorialController();
+                dialog.pack();
+                dialog.setVisible(true);
+            }
+        }
     }
 
     /**
@@ -160,7 +170,8 @@ public class MenuScreen implements Screen {
         game.batch.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
         game.batch.draw(quitButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
         game.batch.draw(twitterButton, ((Gdx.graphics.getWidth() / 2) - (twitterButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 210));
-        game.batch.draw(TutorialTexture, 0,0);
+        game.batch.draw(storyTexture, 0,0);
+        game.batch.draw(tutorialTexture, (Gdx.graphics.getWidth()) - 100, 0);
         game.batch.end();
     }
 

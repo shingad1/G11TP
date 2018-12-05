@@ -199,8 +199,6 @@ public class PlayScreen implements Screen
         maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
-
-
     }
 
     /**
@@ -328,6 +326,8 @@ public class PlayScreen implements Screen
 
         controller.npcInteraction((getInteractiveNPC()), "Linda");
         controller.npcmoving(getInteractiveNPCMoving(), "Bob");
+        controller.npcmoving(getInteractiveNPCMoving(), "Ellie");
+        controller.npcmoving(getInteractiveNPCMoving(), "Mo");
 
         batch.begin();
         if(pause)
