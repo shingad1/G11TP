@@ -55,4 +55,5 @@ public abstract class AbstractNPC {
     public abstract void changeState(String newState);
 
 
+
 }

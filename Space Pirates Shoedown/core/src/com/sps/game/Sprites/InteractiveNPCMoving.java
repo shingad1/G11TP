@@ -136,8 +136,9 @@ public class InteractiveNPCMoving extends AbstractNPC {
 
     public void setName(String name) { this.name = name;}
 
-
     public String getName() {return name;}
+
+    public String getType() {return "InteractiveNPCMoving";}
 
 }
 

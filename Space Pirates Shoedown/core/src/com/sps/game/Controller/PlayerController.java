@@ -333,10 +333,11 @@ public class PlayerController extends InputAdapter {
                 InteractiveNPC tempNPC = npcList.get(i);
                 String temp = tempNPC.getName();
                 //if (temp.equals("Linda"))//change hardcoded linda to a list?
-                if (npcInProximity1(tempNPC))
+                if (npcInProximity1(tempNPC) && dialogue == false && tempNPC.getType().equals("InteractiveNPC"))
                 {
                     if (Gdx.input.isKeyPressed(Input.Keys.B)) {
-                        if (temp.equals(npcName)) {
+                        if (temp.equals(npcName))
+                         {
                             Dialogue dialog = new Dialogue(npcName);
                             dialog.pack();
                             dialog.setVisible(true);
@@ -344,11 +345,25 @@ public class PlayerController extends InputAdapter {
                     }
                 }
             }
+            boolean switchOff = true;
+
+            if (dialogue == true) {
+                for (InteractiveNPC npc2 : npcList) {
+                    switchOff = false;
+                }
+
+            }
+
+            if (switchOff) {
+                dialogue = false;
+            }
+            }
+
 
             //else if(dialogue == false)
             //was else here
         }
-    }
+
 
     public void npcmoving(ArrayList<InteractiveNPCMoving> npcList, String npcName)
     {
@@ -356,8 +371,7 @@ public class PlayerController extends InputAdapter {
             InteractiveNPCMoving tempNPC = npcList.get(i);
             String temp = tempNPC.getName();
 
-            if (npcInProximity(tempNPC) && dialogue == false)
-            {
+            if (npcInProximity(tempNPC) && dialogue == false && (tempNPC.getType().equals("InteractiveNPCMoving"))) {
                 Dialogue dialog = new Dialogue(npcName);
                 dialogue = true;
 
@@ -394,11 +408,13 @@ public class PlayerController extends InputAdapter {
         boolean switchOff = true;
         if (dialogue == true){
             for (InteractiveNPCMoving npc : npcList) {
-                if(npcInProximity(npc)){
+                if (npcInProximity(npc)) {
                     switchOff = false;
                 }
+
             }
         }
+
         if(switchOff){
             dialogue = false;
         }

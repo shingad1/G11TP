@@ -95,5 +95,8 @@ public class InteractiveNPC extends AbstractNPC{
         return name;
     }
 
+    public String getType() {return "InteractiveNPC";}
+
+
 
 }
