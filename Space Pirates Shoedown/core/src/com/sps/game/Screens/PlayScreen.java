@@ -121,6 +121,10 @@ public class PlayScreen implements Screen
 
     private String overworldMap;
 
+    private com.badlogic.gdx.audio.Music music;
+
+    private com.badlogic.gdx.audio.Music sound;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -163,6 +167,10 @@ public class PlayScreen implements Screen
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
 
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
 
     }
 
