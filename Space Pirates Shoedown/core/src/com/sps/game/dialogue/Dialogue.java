@@ -1,6 +1,7 @@
 package com.sps.game.dialogue;
 
 import com.badlogic.gdx.Gdx;
+import com.sps.game.Sprites.InteractiveNPCMoving;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -17,14 +18,17 @@ public class Dialogue extends JDialog {
     private JButton buttonCancel;
     private JButton buttonNext;
     private JTextArea dialoguesTextArea;
+    private InteractiveNPCMoving npc;
 
     private String npcName = "";
 
     private int counter;
     private String[] dialogue;
+    private boolean cancel;
 
     public Dialogue(String npcName)
     {
+        cancel = false;
         counter = 0;
         dialogue = new String[3];
         setText(npcName);
@@ -47,8 +51,11 @@ public class Dialogue extends JDialog {
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
+               if  (onCancel()) {
+
+                }
+               }
+
         });
 
         // call onCancel() when cross is clicked
@@ -86,9 +93,11 @@ public class Dialogue extends JDialog {
 
     }
 
-    private void onCancel()
+    private boolean onCancel()
     {
+        cancel = true;
         Dialogue.this.dispose();
+        return cancel;
     }
 
     /* Boolean cancelButtonPressed()

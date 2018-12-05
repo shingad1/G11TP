@@ -87,6 +87,7 @@ public class PlayerController extends InputAdapter {
         positions = new Stack<Vector2>();
 
         this.allLocations = allLocations;
+        dialogue = false;
 
         reset();
     }
@@ -349,15 +350,16 @@ public class PlayerController extends InputAdapter {
         }
     }
 
-        public void npcmoving(ArrayList<InteractiveNPCMoving> npcList, String npcName)
-        {
-            for (int i = 0; i < npcList.size(); i++) {
-                InteractiveNPCMoving tempNPC = npcList.get(i);
-                String temp = tempNPC.getName();
+    public void npcmoving(ArrayList<InteractiveNPCMoving> npcList, String npcName)
+    {
+        for (int i = 0; i < npcList.size(); i++) {
+            InteractiveNPCMoving tempNPC = npcList.get(i);
+            String temp = tempNPC.getName();
 
-                if (npcInProximity(tempNPC))
-                {
-                    Dialogue dialog = new Dialogue(npcName);
+            if (npcInProximity(tempNPC) && dialogue == false)
+            {
+                Dialogue dialog = new Dialogue(npcName);
+                dialogue = true;
 
                     /*if(dialog.cancelButtonPressed())
                     {
@@ -372,11 +374,11 @@ public class PlayerController extends InputAdapter {
                         }
                     }*/
 
-                        if (temp.equals(npcName)) {
-                            //Dialogue dialog = new Dialogue(npcName);
-                            dialog.pack();
-                            dialog.setVisible(true);
-                        }
+                if (temp.equals(npcName)) {
+                    //Dialogue dialog = new Dialogue(npcName);
+                    dialog.pack();
+                    dialog.setVisible(true);
+                }
                         /*else
                         {
                             dialog.setVisible(false);
@@ -386,11 +388,21 @@ public class PlayerController extends InputAdapter {
                                 tempNPC.getAnimation();
                             }
                         }*/
-                }
-
-
             }
         }
+
+        boolean switchOff = true;
+        if (dialogue == true){
+            for (InteractiveNPCMoving npc : npcList) {
+                if(npcInProximity(npc)){
+                    switchOff = false;
+                }
+            }
+        }
+        if(switchOff){
+            dialogue = false;
+        }
+    }
 
 
 }

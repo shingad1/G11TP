@@ -82,7 +82,6 @@ public class InteractiveNPCMoving extends AbstractNPC {
 
     }
 
-
     public npcAnimation getAnimation(String direction) {return animation.get(direction);}
 
     /**
