@@ -1,5 +1,7 @@
 package com.sps.game.dialogue;
 
+import com.badlogic.gdx.Gdx;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -88,6 +90,21 @@ public class Dialogue extends JDialog {
     {
         Dialogue.this.dispose();
     }
+
+    /* Boolean cancelButtonPressed()
+    {
+        boolean temp = false;
+
+        //buttonCancel.;
+
+        if (buttonCancel.doClick(1).equals(true)) {
+            temp = false;
+        } else {
+            temp = true;
+        }
+
+        return temp;
+    }*/
 
     public void setText(String npcName)
     {
