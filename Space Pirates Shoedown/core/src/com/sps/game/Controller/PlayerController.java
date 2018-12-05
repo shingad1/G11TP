@@ -333,92 +333,86 @@ public class PlayerController extends InputAdapter {
                 InteractiveNPC tempNPC = npcList.get(i);
                 String temp = tempNPC.getName();
                 //if (temp.equals("Linda"))//change hardcoded linda to a list?
-                if (npcInProximity1(tempNPC) && dialogue == false && tempNPC.getType().equals("InteractiveNPC"))
-                {
+                if (npcInProximity1(tempNPC) && dialogue == false && tempNPC.getType().equals("InteractiveNPC")) {
                     if (Gdx.input.isKeyPressed(Input.Keys.B)) {
-                        if (temp.equals(npcName))
-                         {
+                        if (temp.equals(npcName)) {
                             Dialogue dialog = new Dialogue(npcName);
-                            dialog.pack();
-                            dialog.setVisible(true);
+                            if (npcInProximity1(tempNPC) && dialogue == false) {
+                                if (Gdx.input.isKeyPressed(Input.Keys.B)) {
+                                    Dialogue dialog2 = new Dialogue(npcName);
+                                    dialogue = true;
+
+                                    if (temp.equals(npcName)) {
+                                        dialog2.pack();
+                                        dialog2.setVisible(true);
+                                    }
+                                }
+                            }
+                        }
+                        boolean switchOff = true;
+
+                        if (dialogue == true) {
+                            for (InteractiveNPC npc2 : npcList) {
+                                switchOff = false;
+                            }
+
+                        }
+
+                        if (switchOff) {
+                            dialogue = false;
                         }
                     }
-                }
-            }
-            boolean switchOff = true;
 
-            if (dialogue == true) {
-                for (InteractiveNPC npc2 : npcList) {
-                    switchOff = false;
                 }
 
-            }
 
-            if (switchOff) {
-                dialogue = false;
-            }
-            }
+                boolean switchOff = true;
+                if (dialogue == true) {
+                    for (InteractiveNPC npc : npcList) {
+                            switchOff = false;
 
-
-            //else if(dialogue == false)
-            //was else here
-        }
-
-
-    public void npcmoving(ArrayList<InteractiveNPCMoving> npcList, String npcName)
-    {
-        for (int i = 0; i < npcList.size(); i++) {
-            InteractiveNPCMoving tempNPC = npcList.get(i);
-            String temp = tempNPC.getName();
-
-            if (npcInProximity(tempNPC) && dialogue == false && (tempNPC.getType().equals("InteractiveNPCMoving"))) {
-                Dialogue dialog = new Dialogue(npcName);
-                dialogue = true;
-
-                    /*if(dialog.cancelButtonPressed())
-                    {
-                        System.out.println("goes to the button pressed");
-                        dialog.setVisible(false);
-                        System.out.println("set visibility");
-                        tempNPC.changeState("NonInteractive");
-                        if(tempNPC.getState().equals("NonInteractive"))
-                        {
-                            //tempNPC.getAnimation();
-                            tempNPC.getAnimation("left");
-                        }
-                    }*/
-
-                if (temp.equals(npcName)) {
-                    //Dialogue dialog = new Dialogue(npcName);
-                    dialog.pack();
-                    dialog.setVisible(true);
+                    }
                 }
-                        /*else
-                        {
-                            dialog.setVisible(false);
-                            tempNPC.changeState("NonInteractive");
-                            if(tempNPC.getState().equals("NonInteractive"))
-                            {
-                                tempNPC.getAnimation();
-                            }
-                        }*/
-            }
-        }
-
-        boolean switchOff = true;
-        if (dialogue == true){
-            for (InteractiveNPCMoving npc : npcList) {
-                if (npcInProximity(npc)) {
-                    switchOff = false;
+                if (switchOff) {
+                    dialogue = false;
                 }
-
             }
-        }
-
-        if(switchOff){
-            dialogue = false;
         }
     }
 
 
-}
+                public void npcmoving (ArrayList < InteractiveNPCMoving > npcList, String npcName) {
+
+                    for (int i = 0; i < npcList.size(); i++) {
+                        InteractiveNPCMoving tempNPC = npcList.get(i);
+                        String temp = tempNPC.getName();
+
+                        if (npcInProximity(tempNPC) && dialogue == false && (tempNPC.getType().equals("InteractiveNPCMoving"))) {
+                            Dialogue dialog = new Dialogue(npcName);
+                            dialogue = true;
+
+                            if (temp.equals(npcName)) {
+                                dialog.pack();
+                                dialog.setVisible(true);
+                            }
+                        }
+                    }
+
+                    boolean switchOff = true;
+                    if (dialogue == true) {
+                        for (InteractiveNPCMoving npc : npcList) {
+                            if (npcInProximity(npc)) {
+                                switchOff = false;
+                            }
+
+                        }
+                    }
+
+                    if (switchOff) {
+                        dialogue = false;
+                    }
+                }
+
+
+            }
+
