@@ -1,19 +1,15 @@
 package com.sps.game.Screens;
 
-import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.TutorialController;
 import com.sps.game.Controller.TutorialController1;
 import com.sps.game.SpacePiratesShoedown;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.sps.game.dialogue.Dialogue;
 
 import java.io.IOException;
 
@@ -77,7 +73,6 @@ public class MenuScreen implements Screen {
 
     private SpriteBatch batch;
     private static Texture TutorialTexture;
-    private TutorialController tutorial;
 
     public MenuScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -137,13 +132,13 @@ public class MenuScreen implements Screen {
             }
         }
 
-           /* if((Gdx.input.getY() > ((TutorialTexture.getHeight() / 2) + 220))) {
+            if((Gdx.input.getY() > ((TutorialTexture.getHeight() / 2) + 220 ))&& (Gdx.input.getX() < ((TutorialTexture.getWidth() / 2) + 150))) {
                 if (Gdx.input.justTouched()) {
                     TutorialController1 dialog = new TutorialController1();
                     dialog.pack();
                     dialog.setVisible(true);
                 }
-            }*/
+            }
     }
 
     /**

@@ -14,48 +14,51 @@ public class TutorialController1 extends JDialog {
     private JButton buttonPrevious;
     private JButton buttonNext;
     private JButton buttonCancel;
-    private int counter;
+    private JLabel label;
 
-    private Texture slide1;
-    private Texture slide2;
-    private Texture slide3;
-    private Texture slide4;
-    private Texture slide5;
-    private Texture slide6;
-    private Texture slide7;
-    private Texture slide8;
-    private Texture slide9;
-    private Texture slide10;
-    private Texture slide11;
-    private Texture slide12;
+    private int counter;
 
     private static final String ASSETS_PATH = "core/assets/SP/";
 
-    private Texture[] bob;
+    private ImageIcon[] bob;
 
-    private SpriteBatch batch;
+    ImageIcon iconic1;
+    ImageIcon iconic2;
+    ImageIcon iconic3;
+    ImageIcon iconic4;
+    ImageIcon iconic5;
+    ImageIcon iconic6;
+    ImageIcon iconic7;
+    ImageIcon iconic8;
+    ImageIcon iconic9;
+    ImageIcon iconic10;
+    ImageIcon iconic11;
+    ImageIcon iconic12;
 
     public TutorialController1() throws IOException {
+
+        iconic1 = new ImageIcon(ASSETS_PATH + "Slide1.png");
+        iconic2 = new ImageIcon(ASSETS_PATH + "Slide2.png");
+        iconic3 = new ImageIcon(ASSETS_PATH + "Slide3.png");
+        iconic4 = new ImageIcon(ASSETS_PATH + "Slide4.png");
+        iconic5 = new ImageIcon(ASSETS_PATH + "Slide5.png");
+        iconic6 = new ImageIcon(ASSETS_PATH + "Slide6.png");
+        iconic7 = new ImageIcon(ASSETS_PATH + "Slide7.png");
+        iconic8 = new ImageIcon(ASSETS_PATH + "Slide8.png");
+        iconic9 = new ImageIcon(ASSETS_PATH + "Slide9.png");
+        iconic10 = new ImageIcon(ASSETS_PATH + "Slide10.png");
+        iconic11 = new ImageIcon(ASSETS_PATH + "Slide11.png");
+        iconic12 = new ImageIcon(ASSETS_PATH + "Slide12.png");
+
+        counter = 0;
+        bob = new ImageIcon[12];
+        set();
+        label.setIcon(bob[counter]);
+        label.setText(" ");
+
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonPrevious);
-
-        slide1 = new Texture(ASSETS_PATH + "Slide1.png");
-        slide2 = new Texture(ASSETS_PATH + "Slide2.png");
-        slide3 = new Texture(ASSETS_PATH + "Slide3.png");
-        slide4 = new Texture(ASSETS_PATH + "Slide4.png");
-        slide5 = new Texture(ASSETS_PATH + "Slide5.png");
-        slide6 = new Texture(ASSETS_PATH + "Slide6.png");
-        slide7 = new Texture(ASSETS_PATH + "Slide7.png");
-        slide8 = new Texture(ASSETS_PATH + "Slide8.png");
-        slide9 = new Texture(ASSETS_PATH + "Slide9.png");
-        slide10 = new Texture(ASSETS_PATH + "Slide10.png");
-        slide11 = new Texture(ASSETS_PATH + "Slide11.png");
-        slide12 = new Texture(ASSETS_PATH + "Slide11.png");
-
-        ImageIcon iconic = new ImageIcon(ASSETS_PATH + "Slide1.png");
-
-        batch = new SpriteBatch();
 
         buttonPrevious.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -95,15 +98,16 @@ public class TutorialController1 extends JDialog {
         if (counter > 0)
         {
             counter --;
+            label.setIcon(bob[counter]);
         }
     }
 
     private void afterButton()
     {
-        //if (counter < dialogue.length - 1)
+        if (counter < bob.length - 1)
         {
             counter ++;
-            //dialoguesTextArea.setText(dialogue[counter]);
+            label.setIcon(bob[counter]);
         }
 
     }
@@ -113,28 +117,18 @@ public class TutorialController1 extends JDialog {
         dispose();
     }
 
-    /*JFrame f = new JFrame("stackoverflow") {
-        private Image backgroundImage = ImageIO.read(new File("background.jpg"));
-        public void paint( Graphics g ) {
-            super.paint(g);
-            g.drawImage(backgroundImage, 0, 0, null);
-        }
-    };*/
-
-    public void render() {
-        batch.begin();
-        batch.draw(slide1, 0,0);
-        batch.draw(slide2, 0,0);
-        batch.draw(slide3, 0,0);
-        batch.draw(slide4, 0,0);
-        batch.draw(slide5, 0,0);
-        batch.draw(slide6, 0,0);
-        batch.draw(slide7, 0,0);
-        batch.draw(slide8, 0,0);
-        batch.draw(slide9, 0,0);
-        batch.draw(slide10, 0,0);
-        batch.draw(slide11, 0,0);
-        batch.draw(slide12, 0,0);
-        batch.end();
+    private void set(){
+        bob[0] = iconic1;
+        bob[1] = iconic2;
+        bob[2] = iconic3;
+        bob[3] = iconic4;
+        bob[4] = iconic5;
+        bob[5] = iconic6;
+        bob[6] = iconic7;
+        bob[7] = iconic8;
+        bob[8] = iconic9;
+        bob[9] = iconic10;
+        bob[10] = iconic11;
+        bob[11] = iconic12;
     }
 }
