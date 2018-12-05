@@ -2,13 +2,20 @@ package com.sps.game.Screens;
 
 import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Controller.TutorialController;
+import com.sps.game.Controller.TutorialController1;
 import com.sps.game.SpacePiratesShoedown;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.sps.game.dialogue.Dialogue;
+
+import java.io.IOException;
 
 /**
  * This class sets-up the Menu Screen with the relevant images.
@@ -68,6 +75,10 @@ public class MenuScreen implements Screen {
 
     private com.badlogic.gdx.audio.Music sound;
 
+    private SpriteBatch batch;
+    private static Texture TutorialTexture;
+    private TutorialController tutorial;
+
     public MenuScreen(SpacePiratesShoedown game){
         this.game = game;
         background = new Texture(ASSETS_PATH + "spacebackground.jpg");
@@ -76,8 +87,10 @@ public class MenuScreen implements Screen {
         playButton = new Texture(ASSETS_PATH + "PlayButton.png");
         quitButton = new Texture(ASSETS_PATH + "QuitButton.png");
         twitterButton = new Texture(ASSETS_PATH + "twitter.png");
+        TutorialTexture = new Texture(ASSETS_PATH + "tutorial.png");
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
+
         music = Gdx.audio.newMusic(Gdx.files.internal(ASSETS_PATH + "Music/bensound-newdawn.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
@@ -96,7 +109,7 @@ public class MenuScreen implements Screen {
     /**
      * Checks to see if the user has touched the screen and displays the play screen.
      */
-    public void handleInput(){
+    public void handleInput() throws IOException {
         if((Gdx.input.getX() > ((logo.getWidth() / 2) - 160)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 10))){
                if((Gdx.input.getY() > ((background.getHeight() / 2) - 190)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 85))) {
                    if (Gdx.input.justTouched()) {
@@ -123,6 +136,14 @@ public class MenuScreen implements Screen {
                 }
             }
         }
+
+           /* if((Gdx.input.getY() > ((TutorialTexture.getHeight() / 2) + 220))) {
+                if (Gdx.input.justTouched()) {
+                    TutorialController1 dialog = new TutorialController1();
+                    dialog.pack();
+                    dialog.setVisible(true);
+                }
+            }*/
     }
 
     /**
@@ -133,13 +154,18 @@ public class MenuScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 0, 0, 1); //for the alpha
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); //actually clears the screen
-        handleInput();
+        try {
+            handleInput();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         game.batch.begin();
         game.batch.draw(background,-((background.getWidth() - Gdx.graphics.getWidth())/2),Gdx.graphics.getHeight() - background.getHeight()); //Texture = background, x = centre of image to center of screen, y = top of image to top of screen
         game.batch.draw(logoViewed,18,Gdx.graphics.getHeight()-logo.getHeight() + 80, 600, 374); //positioned at top centre of the screen
         game.batch.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
         game.batch.draw(quitButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
         game.batch.draw(twitterButton, ((Gdx.graphics.getWidth() / 2) - (twitterButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 210));
+        game.batch.draw(TutorialTexture, 0,0);
         game.batch.end();
     }
 

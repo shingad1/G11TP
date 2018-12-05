@@ -51,9 +51,7 @@ public class Dialogue extends JDialog {
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               if  (onCancel()) {
-
-                }
+               onCancel();
                }
 
         });
@@ -99,21 +97,6 @@ public class Dialogue extends JDialog {
         Dialogue.this.dispose();
         return cancel;
     }
-
-    /* Boolean cancelButtonPressed()
-    {
-        boolean temp = false;
-
-        //buttonCancel.;
-
-        if (buttonCancel.doClick(1).equals(true)) {
-            temp = false;
-        } else {
-            temp = true;
-        }
-
-        return temp;
-    }*/
 
     public void setText(String npcName)
     {

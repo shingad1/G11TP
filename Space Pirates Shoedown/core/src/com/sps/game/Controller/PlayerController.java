@@ -332,22 +332,25 @@ public class PlayerController extends InputAdapter {
             for (int i = 0; i < npcList.size(); i++) {
                 InteractiveNPC tempNPC = npcList.get(i);
                 String temp = tempNPC.getName();
-                //if (temp.equals("Linda"))//change hardcoded linda to a list?
                 if (npcInProximity1(tempNPC) && dialogue == false && tempNPC.getType().equals("InteractiveNPC")) {
                     if (Gdx.input.isKeyPressed(Input.Keys.B)) {
                         if (temp.equals(npcName)) {
-                            Dialogue dialog = new Dialogue(npcName);
-                            if (npcInProximity1(tempNPC) && dialogue == false) {
-                                if (Gdx.input.isKeyPressed(Input.Keys.B)) {
                                     Dialogue dialog2 = new Dialogue(npcName);
                                     dialogue = true;
-
                                     if (temp.equals(npcName)) {
+                                        player.getVelocity().x = -4;
+                                        try
+                                        {
+                                            Thread.sleep(100);
+                                        }catch (InterruptedException e)
+                                        {
+                                            e.printStackTrace();
+                                        }
+                                        player.changeState("left");
+                                        isKeyDown = true;
                                         dialog2.pack();
                                         dialog2.setVisible(true);
                                     }
-                                }
-                            }
                         }
                         boolean switchOff = true;
 
