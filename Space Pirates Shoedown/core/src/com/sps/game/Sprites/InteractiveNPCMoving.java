@@ -129,6 +129,8 @@ public class InteractiveNPCMoving extends AbstractNPC {
         state = newState;
     }
 
+    public String getState(){return state;}
+
     public Location getLocation() {
         return location;
     }

@@ -82,6 +82,11 @@ public class InteractiveNPC extends AbstractNPC{
 
     public Location getLocation(){return location;}
 
+    @Override
+    public void changeState(String newState) {
+
+    }
+
     public void setName(String name) {
         this.name = name;
     }

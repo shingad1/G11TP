@@ -21,7 +21,7 @@ public class NPCController
      */
     private TiledMapTileLayer collisionLayer;
 
-    private NonInteractiveNPC npc;
+    private AbstractNPC npc;
 
     private FixtureDef npcBody;
 
@@ -36,7 +36,7 @@ public class NPCController
      */
     private Random random;
 
-    public NPCController(NonInteractiveNPC npc, TiledMapTileLayer collisionLayer){
+    public NPCController(AbstractNPC npc, TiledMapTileLayer collisionLayer){
         this.collisionLayer = collisionLayer;
         this.npc = npc;
         random = new Random();

@@ -13,6 +13,7 @@ import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 import com.sps.game.dialogue.Dialogue;
 
+import javax.swing.*;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -291,7 +292,24 @@ public class PlayerController extends InputAdapter {
         return false;
     }
 
-    public boolean npcInProximity(InteractiveNPC npc){
+    public boolean npcInProximity(InteractiveNPCMoving npc){
+        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(npc.getLocation())){
+            return true;
+        }
+        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) - 32)).equals(npc.getLocation())){
+            return true;
+        }
+        if((new Location(Math.round(player.getLocation().getX()) + 32,Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
+            return true;
+        }
+        if((new Location(Math.round(player.getLocation().getX()) - 32,Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean npcInProximity1(InteractiveNPC npc){
         if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(npc.getLocation())){
             return true;
         }
@@ -314,7 +332,7 @@ public class PlayerController extends InputAdapter {
                 InteractiveNPC tempNPC = npcList.get(i);
                 String temp = tempNPC.getName();
                 //if (temp.equals("Linda"))//change hardcoded linda to a list?
-                if (npcInProximity(tempNPC))
+                if (npcInProximity1(tempNPC))
                 {
                     if (Gdx.input.isKeyPressed(Input.Keys.B)) {
                         if (temp.equals(npcName)) {
@@ -333,9 +351,45 @@ public class PlayerController extends InputAdapter {
 
         public void npcmoving(ArrayList<InteractiveNPCMoving> npcList, String npcName)
         {
-            Dialogue dialog = new Dialogue(npcName);
-            dialog.pack();
-            dialog.setVisible(true);
+            for (int i = 0; i < npcList.size(); i++) {
+                InteractiveNPCMoving tempNPC = npcList.get(i);
+                String temp = tempNPC.getName();
+
+                if (npcInProximity(tempNPC))
+                {
+                    Dialogue dialog = new Dialogue(npcName);
+
+                    /*if(dialog.cancelButtonPressed())
+                    {
+                        System.out.println("goes to the button pressed");
+                        dialog.setVisible(false);
+                        System.out.println("set visibility");
+                        tempNPC.changeState("NonInteractive");
+                        if(tempNPC.getState().equals("NonInteractive"))
+                        {
+                            //tempNPC.getAnimation();
+                            tempNPC.getAnimation("left");
+                        }
+                    }*/
+
+                        if (temp.equals(npcName)) {
+                            //Dialogue dialog = new Dialogue(npcName);
+                            dialog.pack();
+                            dialog.setVisible(true);
+                        }
+                        /*else
+                        {
+                            dialog.setVisible(false);
+                            tempNPC.changeState("NonInteractive");
+                            if(tempNPC.getState().equals("NonInteractive"))
+                            {
+                                tempNPC.getAnimation();
+                            }
+                        }*/
+                }
+
+
+            }
         }
 
 
