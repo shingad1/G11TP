@@ -333,20 +333,31 @@ public class PlayerController extends InputAdapter {
                 InteractiveNPC tempNPC = npcList.get(i);
                 String temp = tempNPC.getName();
                 //if (temp.equals("Linda"))//change hardcoded linda to a list?
-                if (npcInProximity1(tempNPC))
+                if (npcInProximity1(tempNPC) && dialogue == false)
                 {
                     if (Gdx.input.isKeyPressed(Input.Keys.B)) {
+                        Dialogue dialog = new Dialogue(npcName);
+                        dialogue = true;
+
                         if (temp.equals(npcName)) {
-                            Dialogue dialog = new Dialogue(npcName);
                             dialog.pack();
                             dialog.setVisible(true);
                         }
                     }
                 }
             }
+        }
 
-            //else if(dialogue == false)
-            //was else here
+        boolean switchOff = true;
+        if (dialogue == true){
+            for (InteractiveNPC npc : npcList) {
+                if(npcInProximity1(npc)){
+                    switchOff = false;
+                }
+            }
+        }
+        if(switchOff){
+            dialogue = false;
         }
     }
 
@@ -361,33 +372,10 @@ public class PlayerController extends InputAdapter {
                 Dialogue dialog = new Dialogue(npcName);
                 dialogue = true;
 
-                    /*if(dialog.cancelButtonPressed())
-                    {
-                        System.out.println("goes to the button pressed");
-                        dialog.setVisible(false);
-                        System.out.println("set visibility");
-                        tempNPC.changeState("NonInteractive");
-                        if(tempNPC.getState().equals("NonInteractive"))
-                        {
-                            //tempNPC.getAnimation();
-                            tempNPC.getAnimation("left");
-                        }
-                    }*/
-
                 if (temp.equals(npcName)) {
-                    //Dialogue dialog = new Dialogue(npcName);
                     dialog.pack();
                     dialog.setVisible(true);
                 }
-                        /*else
-                        {
-                            dialog.setVisible(false);
-                            tempNPC.changeState("NonInteractive");
-                            if(tempNPC.getState().equals("NonInteractive"))
-                            {
-                                tempNPC.getAnimation();
-                            }
-                        }*/
             }
         }
 
