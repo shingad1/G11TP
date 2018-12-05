@@ -3,24 +3,24 @@ npcRight.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-npcRight3
-  rotate: false
-  xy: 1, 1
-  size: 22, 32
-  orig: 22, 32
-  offset: 0, 0
-  index: -1
 npcRight1
   rotate: false
-  xy: 25, 2
-  size: 22, 31
-  orig: 22, 31
+  xy: 1, 1
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
-npcRIght2
+npcRight2
   rotate: false
-  xy: 49, 2
-  size: 22, 31
-  orig: 22, 31
+  xy: 35, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+npcRight3
+  rotate: false
+  xy: 69, 1
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
