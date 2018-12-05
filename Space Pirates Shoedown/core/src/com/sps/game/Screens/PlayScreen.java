@@ -154,6 +154,8 @@ public class PlayScreen implements Screen
 
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
+
+
     }
 
 
@@ -182,6 +184,8 @@ public class PlayScreen implements Screen
 
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
+
+
     }
 
     /**
