@@ -58,22 +58,11 @@ public class Player implements Fighter {
         velocity.x = 0; velocity.y = 0;
         gold = 50;
         HP = 100;
-        animation = new HashMap<String, playerAnimation>();
-        animation.put("down",new playerAnimation(sb,this, "playerDown.atlas",1/15f));
-        animation.put("up",new playerAnimation(sb,this, "playerUp.atlas",1/15f));
-        animation.put("left",new playerAnimation(sb,this, "playerLeft.atlas",1/15f));
-        animation.put("right",new playerAnimation(sb,this, "playerRight.atlas",1/15f));
-        animation.put("idle",new playerAnimation(sb,this, "playerIdle.pack",1/15f));
         location = new Location(this.x,this.y);
         attack = 20;
         defence = 10;
-        fightAnimation = new HashMap<String, playerAnimation>();
-        fightAnimation.put("Idle",new playerAnimation(sb, this, "combatPlayerIdle.atlas",1/15f));
-        fightAnimation.put("Right",new playerAnimation(sb, this, "playerRight.atlas",1/15f));
-        fightAnimation.put("Left",new playerAnimation(sb, this, "playerLeft.atlas",1/15f));
-        fightAnimation.put("basicAttack",new playerAnimation(sb, this, "playerBasicAttack.atlas",1/3f));
-        fightAnimation.put("block",new playerAnimation(sb, this, "playerBasicBlock.atlas",1/3f));
 
+        setAnimations(sb);
     }
 
     /**
@@ -160,6 +149,7 @@ public class Player implements Fighter {
     public void setPosition(int dx, int dy){
         x = dx;
         y = dy;
+        location = new Location(dx,dy);
     }
 
     /**
@@ -185,4 +175,24 @@ public class Player implements Fighter {
     public void changeState(String newState){state = newState;}
 
     public Location getLocation(){return location;}
+
+    public void changeSpriteBatch(SpriteBatch sb){
+        setAnimations(sb);
+    }
+
+    private void setAnimations(SpriteBatch sb){
+        animation = new HashMap<String, playerAnimation>();
+        animation.put("down",new playerAnimation(sb,this, "playerDown.atlas",1/15f));
+        animation.put("up",new playerAnimation(sb,this, "playerUp.atlas",1/15f));
+        animation.put("left",new playerAnimation(sb,this, "playerLeft.atlas",1/15f));
+        animation.put("right",new playerAnimation(sb,this, "playerRight.atlas",1/15f));
+        animation.put("idle",new playerAnimation(sb,this, "playerIdle.pack",1/15f));
+        fightAnimation = new HashMap<String, playerAnimation>();
+        fightAnimation.put("Idle",new playerAnimation(sb, this, "combatPlayerIdle.atlas",1/15f));
+        fightAnimation.put("Right",new playerAnimation(sb, this, "playerRight.atlas",1/15f));
+        fightAnimation.put("Left",new playerAnimation(sb, this, "playerLeft.atlas",1/15f));
+        fightAnimation.put("basicAttack",new playerAnimation(sb, this, "playerBasicAttack.atlas",1/3f));
+        fightAnimation.put("block",new playerAnimation(sb, this, "playerBasicBlock.atlas",1/3f));
+
+    }
 }

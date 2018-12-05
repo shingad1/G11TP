@@ -119,11 +119,14 @@ public class PlayScreen implements Screen
 
     private Texture idleOne;
 
+    private String overworldMap;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
+        overworldMap = "testMap.tmx";
         map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(736, 1280, 0);
@@ -164,14 +167,15 @@ public class PlayScreen implements Screen
     }
 
 
-    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY){
+    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npc, ArrayList<NPCController> npcController){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
+        overworldMap = mapName;
         map = mapLoader.load(ASSETS_PATH + mapName);
         renderer = new OrthogonalTiledMapRenderer(map);
-        gamecam.position.set(playerX + 165, playerY, 0);
+        gamecam.position.set(playerX + 182, playerY, 0);
         this.batch = batch;
         this.p = p;
         p.setPosition(playerX, playerY);
@@ -181,17 +185,10 @@ public class PlayScreen implements Screen
         hud = new HudScene(game.batch,p);
         mapState = "Overworld";
         this.controller = controller;
-        //npc = new ArrayList<AbstractNPC>();
-        //npc.add(new NonInteractiveNPC(544,1152,"Overworld", batch, ""));
-        //npc.add(new NonInteractiveNPC(768,800,"Overworld",batch, ""));
-        //npc.add(new NonInteractiveNPC(704, 512,"Overworld", batch, ""));
-        //npcController = new ArrayList<NPCController>();
-        //npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-        //npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-        //npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
+        this.npc = npc;
+        this.npcController = npcController;
         controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         maps = new Stack<TiledMap>();
-
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
 
@@ -232,7 +229,7 @@ public class PlayScreen implements Screen
             gamecam.position.x = (int) oldPosition.x;
             gamecam.position.y = (int) oldPosition.y;
             p.setPosition((int) oldPosition.x, (int) oldPosition.y);
-            map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
+            map = mapLoader.load(ASSETS_PATH + this.overworldMap);
             renderer = new OrthogonalTiledMapRenderer(map);
             int[] xbounds = {0, 1600};
             int[] ybounds = {0,1600};
@@ -244,12 +241,12 @@ public class PlayScreen implements Screen
             mapState = "HouseFight";
         }
         if(controller.getNewWorld()){
-            dispose();
+            //dispose
             ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
             npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
             npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-            game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864));
+            game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList));
             mapState = "Overworld";
         }
     }
@@ -304,6 +301,7 @@ public class PlayScreen implements Screen
         else {
             update(delta); //render method keeps getting called
         }
+        batch.setProjectionMatrix(gamecam.combined);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
@@ -319,7 +317,6 @@ public class PlayScreen implements Screen
             }
         }
         p.getAnimation().render();
-
 
         controller.npcInteraction((getInteractiveNPC()), "Linda");
         controller.npcmoving(getInteractiveNPCMoving(), "Bob");

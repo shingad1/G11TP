@@ -75,19 +75,22 @@ public class CombatSystem
      */
     public void update() {
         if (!(finished)){
-            if (!(playerTurn) && !(animationHandler.isInAnimation())) {
+            if (!(playerTurn) && !(animationHandler.isInAnimation()) && !(animationHandler.isAnimationEnd())) {
                 enemy.battleMove();
                 if(!(chosenMove.equals(""))) {
                     animationHandler.setupEnemyAnimation(chosenMove);
-                    applyMove(enemyMoveList);
                 }
-            } else if ((playerTurn) && !(animationHandler.isInAnimation())){
+            } else if ((playerTurn) && !(animationHandler.isInAnimation()) && !(animationHandler.isAnimationEnd())){
                 if(!(chosenMove.equals(""))) {
                     animationHandler.setupPlayerAnimation(chosenMove);
-                    applyMove(playerMoveList);
                 }
             }
             if (animationHandler.isAnimationEnd()) {
+                if(!(playerTurn)) {
+                    applyMove(enemyMoveList);
+                } else {
+                    applyMove(playerMoveList);
+                }
                 playerTurn = !playerTurn;
             }
             if ((player.getHP() == 0) || (enemy.getHealth() == 0)) {

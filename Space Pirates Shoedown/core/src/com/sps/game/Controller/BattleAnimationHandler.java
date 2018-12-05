@@ -57,7 +57,6 @@ public class BattleAnimationHandler {
         } else {
             enemy.getFightAnimation().get(enemyAnimationStack.peek()).render(enemyLocation,frame);
         }
-        System.out.println(enemyLocation.getX());
     }
 
     private void controlAnimation(boolean playerTurn){
@@ -66,13 +65,13 @@ public class BattleAnimationHandler {
                 if(playerLocation.equals(new Location(Math.round(enemyLocation.getX() - 32),Math.round(enemyLocation.getY())))){
                     playerAnimationStack.pop();
                 } else {
-                    playerLocation.setX(Math.round(playerLocation.getX() + 2));
+                    playerLocation.setX(Math.round(playerLocation.getX() + 4));
                 }
             } else if(playerAnimationStack.peek().equals("Left")){
                 if(playerLocation.equals(oldLocation)){
                     playerAnimationStack.pop();
                 } else {
-                    playerLocation.setX(Math.round(playerLocation.getX() - 2));
+                    playerLocation.setX(Math.round(playerLocation.getX() - 4));
                 }
             } else if(playerAnimationStack.peek().equals("Idle")){
                 //do nothing
@@ -89,13 +88,13 @@ public class BattleAnimationHandler {
                 if(enemyLocation.equals(new Location(Math.round(playerLocation.getX() + 32),Math.round(playerLocation.getY())))){
                     enemyAnimationStack.pop();
                 } else {
-                    enemyLocation.setX(Math.round(enemyLocation.getX() - 2));
+                    enemyLocation.setX(Math.round(enemyLocation.getX() - 4));
                 }
             } else if(enemyAnimationStack.peek().equals("Right")){
                 if(enemyLocation.equals(oldLocation)){
                     enemyAnimationStack.pop();
                 } else {
-                    enemyLocation.setX(Math.round(enemyLocation.getX() + 2));
+                    enemyLocation.setX(Math.round(enemyLocation.getX() + 4));
                 }
             } else if(enemyAnimationStack.peek().equals("Idle")){
                 //do nothing
