@@ -261,7 +261,7 @@ public class PlayScreen implements Screen
             npcList.add(new NonInteractiveNPC(1088,512,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
             npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-            game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 480, 1312, npcList, npcControllerList,0,0));
+            game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
             mapState = "CandyLand";
         }
     }
