@@ -31,6 +31,9 @@ public class Dialogue extends JDialog {
         cancel = false;
         counter = 0;
         dialogue = new String[3];
+        dialogue[0] = "";
+        dialogue[1] = "";
+        dialogue[2] = "";
         setText(npcName);
 
         setContentPane(contentPane);
