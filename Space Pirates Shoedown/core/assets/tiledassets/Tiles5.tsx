@@ -102,6 +102,11 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
+ <tile id="51">
+  <properties>
+   <property name="candyLand" value=""/>
+  </properties>
+ </tile>
  <tile id="52">
   <properties>
    <property name="blocked" value="true"/>

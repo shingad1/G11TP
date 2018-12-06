@@ -175,7 +175,7 @@ public class PlayScreen implements Screen
     }
 
 
-    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npc, ArrayList<NPCController> npcController){
+    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npc, ArrayList<NPCController> npcController, int camX, int camY){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
@@ -183,7 +183,7 @@ public class PlayScreen implements Screen
         overworldMap = mapName;
         map = mapLoader.load(ASSETS_PATH + mapName);
         renderer = new OrthogonalTiledMapRenderer(map);
-        gamecam.position.set(playerX + 182, playerY, 0);
+        gamecam.position.set(playerX + camX, playerY + camY, 0);
         this.batch = batch;
         this.p = p;
         p.setPosition(playerX, playerY);
@@ -252,8 +252,17 @@ public class PlayScreen implements Screen
             npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
             npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-            game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList));
+            game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList,185,0));
             mapState = "Overworld";
+        }
+        if(controller.getCandy()){
+            //dispose
+            ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
+            npcList.add(new NonInteractiveNPC(1088,512,"Overworld", batch, ""));
+            ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
+            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
+            game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 480, 1312, npcList, npcControllerList,0,0));
+            mapState = "CandyLand";
         }
     }
 

@@ -60,6 +60,8 @@ public class PlayerController extends InputAdapter {
      */
     private boolean leave;
 
+    private boolean candy;
+
     private boolean dialogue;
 
     private boolean fight;
@@ -88,6 +90,7 @@ public class PlayerController extends InputAdapter {
 
         this.allLocations = allLocations;
         dialogue = false;
+        candy = false;
 
         reset();
     }
@@ -180,6 +183,8 @@ public class PlayerController extends InputAdapter {
         return positions.pop();
     }
 
+    public boolean getCandy(){return candy;}
+
     public boolean getNewWorld(){ return newWorld; }
 
     /**
@@ -251,6 +256,7 @@ public class PlayerController extends InputAdapter {
                 if (entered) {
                     positions.push(new Vector2(player.getX(), player.getY()));
                 }
+                candy = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("candyLand");
                 collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("blocked");
                 if (collisionY || npcCollision(new Location(player.getX(),player.getY() + 32))) {
                     player.getVelocity().y = 0;
