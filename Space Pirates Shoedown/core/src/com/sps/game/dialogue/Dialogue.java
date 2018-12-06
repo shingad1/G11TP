@@ -132,7 +132,9 @@ public class Dialogue extends JDialog {
             dialogue[1] = "But...you can't beat all of us!!!";
             dialogue[2] = "*DYING*" + " \n " + "*MAP DROPPED*";
         }
-        dialoguesTextArea.setText(dialogue[0]);
+        if(dialogue[0] != null) {
+            dialoguesTextArea.setText(dialogue[0]);
+        }
     }
 
 }
