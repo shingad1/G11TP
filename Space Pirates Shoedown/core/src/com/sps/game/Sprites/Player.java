@@ -165,12 +165,12 @@ public class Player implements Fighter {
      * @param <code>int</code> increase, the amount to increase the health by.
      */
     public void increaseHealth(int increase){
-        if(getHP() == 100){
+       /* if(getHP() == 100){
             HP = 100;
         }
-        else {
+        else {*/
             HP += increase;
-        }
+        //}
     }
 
     public playerAnimation getAnimation(){
