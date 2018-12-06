@@ -35,7 +35,6 @@ public class Dialogue extends JDialog {
         dialogue[1] = "";
         dialogue[2] = "";
         setText(npcName);
-
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonPrevious);

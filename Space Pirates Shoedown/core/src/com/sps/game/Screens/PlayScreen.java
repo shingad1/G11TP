@@ -192,13 +192,13 @@ public class PlayScreen implements Screen
         collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
         hud = new HudScene(game.batch,p);
         mapState = "Overworld";
-        this.controller = controller;
+        this.controller = new PlayerController(this.p,collisionLayer,xbounds,ybounds,null);
         this.npc = npc;
         this.npcController = npcController;
-        controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
         maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
+        this.controller.reset();
     }
 
     /**
@@ -248,6 +248,7 @@ public class PlayScreen implements Screen
         }
         if(controller.getNewWorld()){
             //dispose
+            controller.reset();
             ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
             npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
@@ -257,6 +258,7 @@ public class PlayScreen implements Screen
         }
         if(controller.getCandy()){
             //dispose
+            controller.reset();
             ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
             npcList.add(new NonInteractiveNPC(1088,512,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();

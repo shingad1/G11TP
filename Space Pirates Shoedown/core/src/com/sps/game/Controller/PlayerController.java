@@ -291,9 +291,11 @@ public class PlayerController extends InputAdapter {
     }
 
     public boolean npcCollision(Location location){
-        for (Location npcLocation : allLocations){
-            if(npcLocation.equals(location)){
-                return true;
+        if(allLocations != null) {
+            for (Location npcLocation : allLocations) {
+                if (npcLocation.equals(location)) {
+                    return true;
+                }
             }
         }
         return false;
