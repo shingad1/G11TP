@@ -1,12 +1,7 @@
 package com.sps.game.Controller;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import java.io.IOException;
 
 public class StoryController1 extends JDialog {
@@ -55,6 +50,7 @@ public class StoryController1 extends JDialog {
         counter = 0;
         bob = new ImageIcon[13];
         set();
+
         label.setIcon(bob[counter]);
         label.setText(" ");
 
