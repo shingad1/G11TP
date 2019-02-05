@@ -14,13 +14,16 @@ import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
+    private Map[][] worldMaps = {{new Map(mapLoader.load(ASSETS_PATH + "testMap.tmx"),"Origin"), new Map(mapLoader.load(ASSETS_PATH + "HomeWorldMap2.tmx"), "SpaceshipMap")},
+                                 {null, null}};
+
     public HomeWorldScreen(SpacePiratesShoedown game) {
         super(game);
         overworldMap = "testMap.tmx";
-        map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
-        collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
-        mapState = "Overworld";
+        currentMap = mapLoader.load(ASSETS_PATH + "testMap.tmx");
+        renderer = new OrthogonalTiledMapRenderer(currentMap);
+        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1);
+        currentMapState = "Overworld";
         random = new Random();
         int numNonInteractive = random.nextInt(10) + 5;
         npc = new ArrayList<AbstractNPC>();
@@ -33,7 +36,7 @@ public class HomeWorldScreen extends PlayScreen {
             Location location = new Location(x * 32, y * 32);
             if(checkPosition(location)) {
                 npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), "Overworld", batch, ""));
-                npcController.add(new NPCController(npc.get(i), collisionLayer));
+                npcController.add(new NPCController(npc.get(i), currentCollisionLayer));
                 i++;
             }
         }
@@ -46,8 +49,9 @@ public class HomeWorldScreen extends PlayScreen {
         p.setX(736);
         p.setY(1280);
         p.setBatch(batch);
-        controller = new PlayerController(p, collisionLayer,xbounds,ybounds,allLocations);
+        controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
+
     }
 
     /**
@@ -61,7 +65,7 @@ public class HomeWorldScreen extends PlayScreen {
                 return false;
             }
         }
-        if(collisionLayer.getCell((int) (location.getX() / 32), (int) ((location.getY())/32)).getTile().getProperties().containsKey("blocked")){
+        if(currentCollisionLayer.getCell((int) (location.getX() / 32), (int) ((location.getY())/32)).getTile().getProperties().containsKey("blocked")){
             return false;
         }
         return true;
