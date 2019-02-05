@@ -6,6 +6,7 @@ import com.sps.game.Sprites.AbstractEnemy;
 import com.sps.game.Sprites.BasicEnemy;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
+import com.sps.game.dialogue.Dialogue;
 
 /**
  * This class has all the methods used in the battle scene, in order to increase/decrease the player's/ enemies lives
@@ -95,6 +96,9 @@ public class CombatSystem
             }
             if ((player.getHP() == 0) || (enemy.getHealth() == 0)) {
                 finished = true;
+                if(finished){
+                    Dialogue d = new Dialogue("Enemy");
+                }
             }
         }
     }
