@@ -25,6 +25,7 @@ import com.sps.game.Sprites.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 /**
@@ -33,13 +34,13 @@ import java.util.Stack;
  * @version 1.0
  */
 
-public class PlayScreen implements Screen
+public abstract class PlayScreen implements Screen
 {
 
     /**
      * Constant field to direct where the file is located.
      */
-    private static final String ASSETS_PATH = "core/assets/tiledassets/";
+    public static final String ASSETS_PATH = "core/assets/tiledassets/";
     /**
      * Holds a version of the game.
      * @see #handleInput #render
@@ -48,21 +49,21 @@ public class PlayScreen implements Screen
     /**
      * Holds the tmx file.
      */
-    private TmxMapLoader mapLoader;
+    protected TmxMapLoader mapLoader;
     /**
      * Displays the tmx file.
      */
-    private TiledMap map;
+    protected TiledMap map;
     /**
      * Sets the view and displays it to the screen.
      * @see #update #render
      */
-    private OrthogonalTiledMapRenderer renderer;
+    protected OrthogonalTiledMapRenderer renderer;
     /**
      * Holds what the view port will display.
      * @see #handleInput #update #render
      */
-    private OrthographicCamera gamecam;
+    protected OrthographicCamera gamecam;
     /**
      * Displays what the user will see.
      */
@@ -77,13 +78,13 @@ public class PlayScreen implements Screen
      * Holds all the sprites that will be displayed on the sreen.
      * @see #render
      */
-    private SpriteBatch batch;
+    protected SpriteBatch batch;
 
     /**
      * Creates instance of the player, which holds the logic of the player.
      * @see #render
      */
-    private Player p;
+    protected Player p;
     /**
      * Holds the texture showing the npcTexture.
      * @see #render
@@ -93,24 +94,24 @@ public class PlayScreen implements Screen
      * Holds a list of NonInteractiveNPC objects.
      * @see #render
      */
-    private ArrayList<AbstractNPC> npc;
+    protected ArrayList<AbstractNPC> npc;
     /**
      * Handles the users input, and updates the players properties accordingly.
      * @see #show #handleInput #combatExit
      */
-    private PlayerController controller;
+    protected PlayerController controller;
     /**
      * Holds the layer of objects which the player cannot go through.
      */
-    private TiledMapTileLayer collisionLayer;
+    protected TiledMapTileLayer collisionLayer;
 
     private Texture cryingNPCTexture;
 
-    private String mapState;
+    protected String mapState;
 
-    private ArrayList<NPCController> npcController;
+    protected ArrayList<NPCController> npcController;
 
-    private ArrayList<Location> allLocations;
+    protected ArrayList<Location> allLocations;
 
     private Boolean pause;
     private static Texture pauseTexture;
@@ -119,49 +120,26 @@ public class PlayScreen implements Screen
 
     private Texture idleOne;
 
-    private String overworldMap;
+    protected String overworldMap;
 
     private com.badlogic.gdx.audio.Music music;
 
     private com.badlogic.gdx.audio.Music sound;
+
+    protected Random random;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
-        overworldMap = "testMap.tmx";
-        map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
-        gamecam.position.set(736, 1280, 0);
-        npcTexture = new Texture(ASSETS_PATH + "../npcIdle.png");
-        cryingNPCTexture = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/Crying NPC/CryingNPC2.png");
-        idleOne = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/InteractiveNPC_Idle/glassesNPC_Behind.png");
         batch = new SpriteBatch();
-        p = new Player(736,1280,batch);
-        npc = new ArrayList<AbstractNPC>();
-        npc.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
-        npc.add(new InteractiveNPC(800,640,"Overworld",batch, "Linda"));
-        npc.add(new NonInteractiveNPC(576, 672,"Overworld", batch, "Merchant"));
-        npc.add(new InteractiveNPCMoving(768, 1216, "Overworld", batch, "", "Bob"));
-        npc.add(new InteractiveNPCMoving(768, 960,"Overworld", batch,"", "Ellie"));
-        npc.add(new InteractiveNPCMoving(768, 832, "Overworld", batch, "", "Mo"));
-        allLocations = new ArrayList<Location>();
-        for (AbstractNPC nonPlayingCharacter : npc){
-            allLocations.add(nonPlayingCharacter.getLocation());
-        }
-        int[] xbounds = {0, 1600};
-        int[] ybounds = {0,1600};
-        collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
-        controller = new PlayerController(p, collisionLayer,xbounds,ybounds,allLocations);
+        p = Player.getPlayer();
+
+
         hud = new HudScene(game.batch,p);
-        mapState = "Overworld";
-        npcController = new ArrayList<NPCController>();
-        npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-        npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
-        npcController.add(new NPCController((InteractiveNPCMoving) npc.get(3), collisionLayer));
-        npcController.add(new NPCController((InteractiveNPCMoving) npc.get(4), collisionLayer));
-        npcController.add(new NPCController((InteractiveNPCMoving) npc.get(5), collisionLayer));
+
+
         maps = new Stack<TiledMap>();
 
         pauseTexture = new Texture("core/assets/pause.png");
@@ -174,7 +152,7 @@ public class PlayScreen implements Screen
 
     }
 
-
+/*
     public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npc, ArrayList<NPCController> npcController, int camX, int camY){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
@@ -200,7 +178,7 @@ public class PlayScreen implements Screen
         pause = false;
         this.controller.reset();
     }
-
+*/
     /**
      * Specifies which controller will be used to check the input.
      */
@@ -253,7 +231,7 @@ public class PlayScreen implements Screen
             npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
             npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-            game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList,185,0));
+           // game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList,185,0));
             mapState = "Overworld";
         }
         if(controller.getCandy()){
@@ -263,7 +241,7 @@ public class PlayScreen implements Screen
             npcList.add(new NonInteractiveNPC(1088,512,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
             npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-            game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
+           // game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
             mapState = "CandyLand";
         }
     }
@@ -420,5 +398,5 @@ public class PlayScreen implements Screen
         return InteractiveNPCsMoving;
     }
 
-
+    public abstract boolean checkPosition(Location location);
 }

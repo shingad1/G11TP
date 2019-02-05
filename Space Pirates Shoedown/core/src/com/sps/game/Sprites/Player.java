@@ -51,18 +51,20 @@ public class Player implements Fighter {
 
     private int defence;
 
-    public Player(int x, int y, SpriteBatch sb){
-        this.x = x;
-        this.y = y;
+    private static Player player = new Player();
+
+    private Player(){ //int x, int y, SpriteBatch sb
+        //this.x = x;
+        //this.y = y;
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
         gold = 50;
         HP = 100;
-        location = new Location(this.x,this.y);
+        location = new Location(0, 0);
         attack = 20;
         defence = 10;
 
-        setAnimations(sb);
+        //setAnimations(sb);
     }
 
     /**
@@ -79,6 +81,20 @@ public class Player implements Fighter {
     }
 
     public HashMap<String,playerAnimation> getFightAnimation(){return fightAnimation;}
+
+    public void setX(int x){
+        this.x = x;
+        location.setX(x);
+    }
+
+    public void setY(int y){
+        this.y = y;
+        location.setY(y);
+    }
+
+    public void setBatch(SpriteBatch sb){
+        setAnimations(sb);
+    }
 
     /**
      * Gets the players X coordinate.
@@ -199,5 +215,9 @@ public class Player implements Fighter {
         fightAnimation.put("basicAttack",new playerAnimation(sb, this, "playerBasicAttack.atlas",1/3f));
         fightAnimation.put("block",new playerAnimation(sb, this, "playerBasicBlock.atlas",1/3f));
 
+    }
+
+    public static Player getPlayer(){
+        return player;
     }
 }
