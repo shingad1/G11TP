@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" source="Tiles5.tsx"/>
+ <tileset firstgid="1" source="watertiles.tsx"/>
+ <tileset firstgid="1" source="redhouse.tsx"/>
+ <tileset firstgid="1" source="StreetLamps.tsx"/>
+ <tileset firstgid="1" source="Resources/Fences.tsx"/>
+ <tileset firstgid="16" source="playground.tsx"/>
+ <tileset firstgid="16" source="Tiles3.tsx"/>
+ <tileset firstgid="16" source="Resources/bluesmallhouse.tsx"/>
+ <tileset firstgid="407" source="Tiles4.tsx"/>
+ <tileset firstgid="407" source="spaceship2.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <properties>
+   <property name="candyLand" value=""/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztmOsNwjAMhNMCAn60PJYAlgCWAEZjXYwEIor6OKetCfQ+yUKcFScHSmXXOUII+V3mEnkQiwqtSUfymprLCB8zUGvSkbymZts+XevQB32ghGue96x8fdbpOZBHa64ADWEasYYQQgip6nc1PW5MbzoEXXoNJG8FfWB5K+gDy1vhn2MtsZHY1uTb1qOzPqppnoX+OXYSe4lDpA90JuqiIec4Spwkzopaqfgo3GcGu0hcJW6eXnr5unVDnflbd+9ffBTBd3T+7mNOb+qvUumdEGLe1aQIfaSFxVkt7qCFD4v/nHuMd497Nvwe2pyGdy828bTMxb9br+JfnrthT+TT129FCCFj5QF91QeL
+  </data>
+ </layer>
+</map>
