@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.0" name="redhouse" tilewidth="32" tileheight="32" tilecount="450" columns="25">
- <image source="img/1/redhouse.png" width="800" height="600"/>
+<tileset version="1.2" tiledversion="1.2.0" name="bluesmallhouse" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="391" columns="23">
+ <image source="bluesmallhouse.png" width="800" height="600"/>
  <tile id="0">
   <properties>
    <property name="blocked" value="true"/>
@@ -16,62 +16,47 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
+ <tile id="23">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
+ <tile id="24">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+ </tile>
  <tile id="25">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="26">
+ <tile id="46">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="27">
+ <tile id="47">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="50">
+ <tile id="48">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="51">
+ <tile id="69">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="52">
+ <tile id="70">
   <properties>
-   <property name="blocked" value="true"/>
+   <property name="enter" value="true"/>
   </properties>
  </tile>
- <tile id="75">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="76">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="77">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="100">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="101">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="102">
+ <tile id="71">
   <properties>
    <property name="blocked" value="true"/>
   </properties>

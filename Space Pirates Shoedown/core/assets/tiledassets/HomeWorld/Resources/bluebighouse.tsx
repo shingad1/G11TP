@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.0" name="Fences" tilewidth="32" tileheight="32" tilecount="18" columns="3">
- <image source="submission_daneeklu/tilesets/fence.png" width="96" height="192"/>
+<tileset version="1.2" tiledversion="1.2.0" name="bluebighouse" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="391" columns="23">
+ <image source="bluebighouse.png" width="800" height="600"/>
  <tile id="0">
   <properties>
    <property name="blocked" value="true"/>
@@ -16,62 +16,47 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="3">
+ <tile id="23">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="4">
+ <tile id="24">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="5">
+ <tile id="25">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="6">
+ <tile id="46">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="7">
+ <tile id="47">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="8">
+ <tile id="48">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="9">
+ <tile id="69">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="10">
+ <tile id="70">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="11">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="12">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="13">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
- </tile>
- <tile id="14">
+ <tile id="71">
   <properties>
    <property name="blocked" value="true"/>
   </properties>
