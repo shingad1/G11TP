@@ -151,7 +151,7 @@ public class PlayerController extends InputAdapter {
         /* The code above breaks down the movement into 8 ticks so that the character doesn't move too fast
         tickCount will be responsible for doing keeping track of the 8 ticks
         The movement will then be confined to moving 32px per key press
-        The camera will also follow the player except for when the player is near the edge of the currentMap
+        The camera will also follow the player except for when the player is near the edge of the map
          */
     }
 
