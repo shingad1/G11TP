@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -23,8 +22,8 @@ import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
 
-import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 /**
@@ -33,13 +32,13 @@ import java.util.Stack;
  * @version 1.0
  */
 
-public class PlayScreen implements Screen
+public abstract class PlayScreen implements Screen
 {
 
     /**
      * Constant field to direct where the file is located.
      */
-    private static final String ASSETS_PATH = "core/assets/tiledassets/";
+    public static final String ASSETS_PATH = "core/assets/tiledassets/";
     /**
      * Holds a version of the game.
      * @see #handleInput #render
@@ -48,21 +47,21 @@ public class PlayScreen implements Screen
     /**
      * Holds the tmx file.
      */
-    private TmxMapLoader mapLoader;
+    protected TmxMapLoader mapLoader;
     /**
      * Displays the tmx file.
      */
-    private TiledMap map;
+    protected TiledMap currentMap;
     /**
      * Sets the view and displays it to the screen.
      * @see #update #render
      */
-    private OrthogonalTiledMapRenderer renderer;
+    protected OrthogonalTiledMapRenderer renderer;
     /**
      * Holds what the view port will display.
      * @see #handleInput #update #render
      */
-    private OrthographicCamera gamecam;
+    protected OrthographicCamera gamecam;
     /**
      * Displays what the user will see.
      */
@@ -77,122 +76,83 @@ public class PlayScreen implements Screen
      * Holds all the sprites that will be displayed on the sreen.
      * @see #render
      */
-    private SpriteBatch batch;
+    protected SpriteBatch batch;
 
     /**
      * Creates instance of the player, which holds the logic of the player.
      * @see #render
      */
-    private Player p;
-    /**
-     * Holds the texture showing the npcTexture.
-     * @see #render
-     */
-    private Texture npcTexture;
+    protected Player p;
     /**
      * Holds a list of NonInteractiveNPC objects.
      * @see #render
      */
-    private ArrayList<AbstractNPC> npc;
+    protected ArrayList<AbstractNPC> npc;
     /**
      * Handles the users input, and updates the players properties accordingly.
      * @see #show #handleInput #combatExit
      */
-    private PlayerController controller;
+    protected PlayerController controller;
     /**
      * Holds the layer of objects which the player cannot go through.
      */
-    private TiledMapTileLayer collisionLayer;
+    protected TiledMapTileLayer currentCollisionLayer;
 
-    private Texture cryingNPCTexture;
+    protected String currentMapState;
 
-    private String mapState;
+    protected ArrayList<NPCController> npcController;
 
-    private ArrayList<NPCController> npcController;
-
-    private ArrayList<Location> allLocations;
+    protected ArrayList<Location> allLocations;
 
     private Boolean pause;
     private static Texture pauseTexture;
 
     private Stack<TiledMap> maps;
 
-    private Texture idleOne;
-
-    private String overworldMap;
+    protected String overworldMap;
 
     private com.badlogic.gdx.audio.Music music;
 
     private com.badlogic.gdx.audio.Music sound;
+
+    protected Random random;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
-        overworldMap = "testMap.tmx";
-        map = mapLoader.load(ASSETS_PATH + "testMap.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
-        gamecam.position.set(736, 1280, 0);
-        npcTexture = new Texture(ASSETS_PATH + "../npcIdle.png");
-        cryingNPCTexture = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/Crying NPC/CryingNPC2.png");
-        idleOne = new Texture(ASSETS_PATH + "../Graphics and Sprites/Home World NPCs/InteractiveNPC_Idle/glassesNPC_Behind.png");
         batch = new SpriteBatch();
-        p = new Player(736,1280,batch);
-        npc = new ArrayList<AbstractNPC>();
-        npc.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
-        npc.add(new InteractiveNPC(800,640,"Overworld",batch, "Linda"));
-        npc.add(new NonInteractiveNPC(576, 672,"Overworld", batch, "Merchant"));
-        npc.add(new InteractiveNPCMoving(768, 1216, "Overworld", batch, "", "Bob"));
-        npc.add(new InteractiveNPCMoving(768, 960,"Overworld", batch,"", "Ellie"));
-        npc.add(new InteractiveNPCMoving(768, 832, "Overworld", batch, "", "Mo"));
-        allLocations = new ArrayList<Location>();
-        for (AbstractNPC nonPlayingCharacter : npc){
-            allLocations.add(nonPlayingCharacter.getLocation());
-        }
-        int[] xbounds = {0, 1600};
-        int[] ybounds = {0,1600};
-        collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
-        controller = new PlayerController(p, collisionLayer,xbounds,ybounds,allLocations);
+        p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
-        mapState = "Overworld";
-        npcController = new ArrayList<NPCController>();
-        npcController.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-        npcController.add(new NPCController((NonInteractiveNPC) npc.get(2), collisionLayer));
-        npcController.add(new NPCController((InteractiveNPCMoving) npc.get(3), collisionLayer));
-        npcController.add(new NPCController((InteractiveNPCMoving) npc.get(4), collisionLayer));
-        npcController.add(new NPCController((InteractiveNPCMoving) npc.get(5), collisionLayer));
         maps = new Stack<TiledMap>();
-
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
-
         music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
-
     }
 
-
+/*
     public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npc, ArrayList<NPCController> npcController, int camX, int camY){
         this.game = game;
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
         overworldMap = mapName;
-        map = mapLoader.load(ASSETS_PATH + mapName);
-        renderer = new OrthogonalTiledMapRenderer(map);
+        currentMap = mapLoader.load(ASSETS_PATH + mapName);
+        renderer = new OrthogonalTiledMapRenderer(currentMap);
         gamecam.position.set(playerX + camX, playerY + camY, 0);
         this.batch = batch;
         this.p = p;
         p.setPosition(playerX, playerY);
         int[] xbounds = {0, 1600};
         int[] ybounds = {0,1600};
-        collisionLayer = (TiledMapTileLayer) map.getLayers().get(1);
+        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1);
         hud = new HudScene(game.batch,p);
-        mapState = "Overworld";
-        this.controller = new PlayerController(this.p,collisionLayer,xbounds,ybounds,null);
+        currentMapState = "Overworld";
+        this.controller = new PlayerController(this.p,currentCollisionLayer,xbounds,ybounds,null);
         this.npc = npc;
         this.npcController = npcController;
         maps = new Stack<TiledMap>();
@@ -200,7 +160,7 @@ public class PlayScreen implements Screen
         pause = false;
         this.controller.reset();
     }
-
+*/
     /**
      * Specifies which controller will be used to check the input.
      */
@@ -220,14 +180,14 @@ public class PlayScreen implements Screen
             gamecam.position.x = 160;
             gamecam.position.y = 160;
             p.setPosition(160,64);
-            maps.push(map);
-            map = mapLoader.load(ASSETS_PATH + "TestBattleScene.tmx");
+            maps.push(currentMap);
+            currentMap = mapLoader.load(ASSETS_PATH + "TestBattleScene.tmx");
             //BasicEnemy.WORLD = "Test Battle Screen";
-            renderer = new OrthogonalTiledMapRenderer(map);
+            renderer = new OrthogonalTiledMapRenderer(currentMap);
             int[] xbounds = {32,320};
             int[] ybounds = {32,320};
-            controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
-            mapState = "House";
+            controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
+            currentMapState = "House";
         }
         if(controller.getLeave()){
             dispose();
@@ -235,16 +195,16 @@ public class PlayScreen implements Screen
             gamecam.position.x = (int) oldPosition.x;
             gamecam.position.y = (int) oldPosition.y;
             p.setPosition((int) oldPosition.x, (int) oldPosition.y);
-            map = mapLoader.load(ASSETS_PATH + this.overworldMap);
-            renderer = new OrthogonalTiledMapRenderer(map);
+            currentMap = mapLoader.load(ASSETS_PATH + this.overworldMap);
+            renderer = new OrthogonalTiledMapRenderer(currentMap);
             int[] xbounds = {0, 1600};
             int[] ybounds = {0,1600};
-            controller.changeCollisionLayer((TiledMapTileLayer) map.getLayers().get(1),xbounds,ybounds);
-            mapState = "Overworld";
+            controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
+            currentMapState = "Overworld";
         }
         if(controller.getFight()){
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
-            mapState = "HouseFight";
+            currentMapState = "HouseFight";
         }
         if(controller.getNewWorld()){
             //dispose
@@ -252,9 +212,9 @@ public class PlayScreen implements Screen
             ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
             npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
-            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-            game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList,185,0));
-            mapState = "Overworld";
+            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
+           // game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList,185,0));
+            currentMapState = "Overworld";
         }
         if(controller.getCandy()){
             //dispose
@@ -262,9 +222,9 @@ public class PlayScreen implements Screen
             ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
             npcList.add(new NonInteractiveNPC(1088,512,"Overworld", batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
-            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), collisionLayer));
-            game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
-            mapState = "CandyLand";
+            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
+           // game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
+            currentMapState = "CandyLand";
         }
     }
 
@@ -286,7 +246,7 @@ public class PlayScreen implements Screen
         }
         handleInput(dt);
         for (int i = 0; i < npcController.size(); i++){
-            if (npc.get(i).getWorld().equals(mapState)) {
+            if (npc.get(i).getWorld().equals(currentMapState)) {
                 npcController.get(i).move(p);
             }
         }
@@ -327,7 +287,7 @@ public class PlayScreen implements Screen
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         for (int i = 0; i < npc.size(); i++) {
-            if (npc.get(i).getWorld().equals(mapState)) {
+            if (npc.get(i).getWorld().equals(currentMapState)) {
                 if(npc.get(i).getAnimation() != null) {
                     npc.get(i).getAnimation().render();
                 }
@@ -373,7 +333,7 @@ public class PlayScreen implements Screen
      */
     @Override
     public void dispose() {
-       map.dispose();
+       currentMap.dispose();
        //player.dispose();
     }
 
@@ -386,7 +346,7 @@ public class PlayScreen implements Screen
         enemyTile.getProperties().remove("basicEnemy");
         enemyTile.getProperties().remove("blocked");
         enemyTile.getProperties().put("invisible","true");
-        mapState = "House";
+        currentMapState = "House";
         game.setScreen(this);
     }
 
@@ -420,5 +380,5 @@ public class PlayScreen implements Screen
         return InteractiveNPCsMoving;
     }
 
-
+    public abstract boolean checkPosition(Location location);
 }
