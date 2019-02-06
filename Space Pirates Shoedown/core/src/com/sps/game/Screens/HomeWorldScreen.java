@@ -1,13 +1,13 @@
 package com.sps.game.Screens;
 
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.Sprites.AbstractNPC;
-import com.sps.game.Sprites.Location;
-import com.sps.game.Sprites.NonInteractiveNPC;
+import com.sps.game.Sprites.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,15 +17,24 @@ public class HomeWorldScreen extends PlayScreen {
     private Map[][] worldMaps = {{new Map(mapLoader.load(ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"),"Origin"), new Map(mapLoader.load(ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx"), "SpaceshipMap")},
                                  {null, null}};
 
+    private Vector2 mapSelector; //selects map from worldMaps
+
+    private int[] xbounds  = {0,1600};
+
+    private int[] ybounds  = {0,1600};
+
     public HomeWorldScreen(SpacePiratesShoedown game) {
         super(game);
-        overworldMap = "HomeWorld/HomeWorldMap1.tmx";
-        currentMap = mapLoader.load(ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx");
-        renderer = new OrthogonalTiledMapRenderer(currentMap);
-        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1);
-        currentMapState = "Overworld";
+        //overworldMap = "HomeWorld/HomeWorldMap1.tmx";
+        mapSelector = new Vector2(0,0); //change when moving worlds
+        Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
+        currentMap = selectedMap.getMap();//change when moving worlds
+        renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
+        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
+        currentMapState = selectedMap.getMapName(); //change when moving worlds
+
         random = new Random();
-        int numNonInteractive = random.nextInt(10) + 5;
+        int numNonInteractive = random.nextInt(20) + 10;
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
         int baseNPCSize = npc.size();
@@ -34,8 +43,14 @@ public class HomeWorldScreen extends PlayScreen {
             int x = random.nextInt(50);
             int y = random.nextInt(50);
             Location location = new Location(x * 32, y * 32);
-            if(checkPosition(location)) {
-                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), "Overworld", batch, ""));
+            String world = "";
+            if(random.nextBoolean()){
+                world = "Origin";
+            } else {
+                world = "SpaceshipMap";
+            }
+            if(checkPosition(location,world)) {
+                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, ""));
                 npcController.add(new NPCController(npc.get(i), currentCollisionLayer));
                 i++;
             }
@@ -44,14 +59,71 @@ public class HomeWorldScreen extends PlayScreen {
         for (AbstractNPC nonPlayingCharacter : npc){
             allLocations.add(nonPlayingCharacter.getLocation());
         }
-        int[] xbounds = {0, 1600};
-        int[] ybounds = {0,1600};
-        p.setX(736);
-        p.setY(1280);
+
+        p.setX(736); //change when moving worlds
+        p.setY(1280); //""
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
-        gamecam.position.set(p.getX(), p.getY(), 0);
+        gamecam.position.set(p.getX(), p.getY(), 0); //change when moving worlds
 
+    }
+
+    @Override
+    public ArrayList<InteractiveNPC> getInteractiveNPC() {
+        ArrayList<InteractiveNPC> interactiveNPCs = new ArrayList<InteractiveNPC>();
+        for(AbstractNPC nonPlayingCharacter : npc){
+            if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
+                interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
+            }
+        }
+        return interactiveNPCs;
+    }
+
+    @Override
+    public ArrayList<NonInteractiveNPC> getNonInteractiveNPC() {
+        ArrayList<NonInteractiveNPC> nonInteractiveNPCs = new ArrayList<NonInteractiveNPC>();
+        for(AbstractNPC nonPlayingCharacter : npc){
+            if(nonPlayingCharacter.getClass() == NonInteractiveNPC.class){
+                nonInteractiveNPCs.add((NonInteractiveNPC) nonPlayingCharacter);
+            }
+        }
+        return nonInteractiveNPCs;
+    }
+
+    @Override
+    public ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving() {
+        ArrayList<InteractiveNPCMoving> InteractiveNPCsMoving = new ArrayList<InteractiveNPCMoving>();
+        for(AbstractNPC InteractiveNPC : npc){
+            if(InteractiveNPC.getClass() == InteractiveNPCMoving.class){
+                InteractiveNPCsMoving.add((InteractiveNPCMoving) InteractiveNPC);
+            }
+        }
+        return InteractiveNPCsMoving;
+    }
+
+    public Vector2 getWorldMapByWorld(String world){
+        for(int i = 0; i < worldMaps.length; i++){
+            for (int j = 0; j < worldMaps[i].length; j++){
+                if (world.equals(worldMaps[i][j].getMapName())){
+                    return new Vector2(i,j);
+                }
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<AbstractNPC> getMapNPC(String world){
+        ArrayList<AbstractNPC> result = new ArrayList<AbstractNPC>();
+        for (int i = 0; i < npc.size(); i++){
+            if (npc.get(i).getWorld().equals(world)){
+                result.add(npc.get(i));
+            }
+        }
+        return result;
+    }
+
+    public Map getMap(Vector2 selector){
+        return worldMaps[Math.round(selector.x)][Math.round(selector.y)];
     }
 
     /**
@@ -59,16 +131,44 @@ public class HomeWorldScreen extends PlayScreen {
      * @param location
      * @return
      */
-    public boolean checkPosition(Location location){
-        for (AbstractNPC nonPlayingCharacter : npc){
+    public boolean checkPosition(Location location, String world){
+        for (AbstractNPC nonPlayingCharacter : getMapNPC(world)){
             if(location.equals(nonPlayingCharacter.getLocation())){
                 return false;
             }
         }
-        if(currentCollisionLayer.getCell((int) (location.getX() / 32), (int) ((location.getY())/32)).getTile().getProperties().containsKey("blocked")){
+        if(getMap(getWorldMapByWorld(world)).getCollisionLayer().getCell((int) (location.getX() / 32), (int) ((location.getY())/32)).getTile().getProperties().containsKey("blocked")){
             return false;
         }
         return true;
+    }
+
+    public void changeMaps(){
+        if (controller.getNewWorldRight()){
+            mapSelector.x += 1;
+            p.setX(0);
+        } else if (controller.getNewWorldLeft()){
+            mapSelector.x -= 1;
+            p.setX(49 * 32);
+        } else if (controller.getNewWorldDown()){
+            mapSelector.y += 1;
+            p.setY(49 * 32);
+        } else if (controller.getNewWorldUp()){
+            mapSelector.y -= 1;
+            p.setY(0);
+        }
+
+        Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
+        currentMap = selectedMap.getMap();//change when moving worlds
+        renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
+        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
+        currentMapState = selectedMap.getMapName(); //change when moving worlds
+
+        gamecam.position.set(p.getX(), p.getY(), 0); //change when moving worlds
+
+        //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
+        //controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
+        controller.newWorldReset();
     }
 
 }

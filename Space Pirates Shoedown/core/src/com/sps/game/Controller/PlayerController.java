@@ -74,7 +74,13 @@ public class PlayerController extends InputAdapter {
 
     private ArrayList<Location> allLocations;
 
-    private boolean newWorld;
+    private boolean newWorldRight; //move to world right i.e. 1,1 to 1,2
+
+    private boolean newWorldLeft; //move to world left i.e. 1,2 to 1,1
+
+    private boolean newWorldUp; //move to world up i.e. 2,1 to 1,1
+
+    private boolean newWorldDown; //move to world down i.e. 1,1 to 2,1
 
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         //dialogue = false;
@@ -93,6 +99,7 @@ public class PlayerController extends InputAdapter {
         candy = false;
 
         reset();
+        newWorldReset();
     }
 
     /**
@@ -185,7 +192,13 @@ public class PlayerController extends InputAdapter {
 
     public boolean getCandy(){return candy;}
 
-    public boolean getNewWorld(){ return newWorld; }
+    public boolean getNewWorldRight(){ return newWorldRight;}
+
+    public boolean getNewWorldLeft(){ return newWorldLeft;}
+
+    public boolean getNewWorldUp(){ return newWorldUp;}
+
+    public boolean getNewWorldDown(){ return newWorldDown;}
 
     /**
      *
@@ -211,6 +224,13 @@ public class PlayerController extends InputAdapter {
         leave = false;
         player.changeState("idle");
         keyPressed = -1;
+    }
+
+    public void newWorldReset(){
+        newWorldRight = false;
+        newWorldLeft = false;
+        newWorldUp = false;
+        newWorldDown = false;
     }
 
     public boolean isPlayerNearProperty(String property, float tiledWidth, float tiledHeight) {
@@ -241,52 +261,68 @@ public class PlayerController extends InputAdapter {
         switch(keycode) {
 
             case Input.Keys.DOWN:
-                leave = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("leave");
-                collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("blocked");
-                if (collisionY || npcCollision(new Location(player.getX(),player.getY() - 32))) {
-                    player.getVelocity().y = 0;
+                if(player.getY() == 0){
+                    newWorldDown = true;
                 } else {
-                    player.getVelocity().y = -4;
-                    player.changeState("down");
-                    isKeyDown = true;
+                    leave = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("leave");
+                    collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                    if (collisionY || npcCollision(new Location(player.getX(), player.getY() - 32))) {
+                        player.getVelocity().y = 0;
+                    } else {
+                        player.getVelocity().y = -4;
+                        player.changeState("down");
+                        isKeyDown = true;
+                    }
+                    break;
                 }
-                break;
             case Input.Keys.UP:
-                entered = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("enter");
-                if (entered) {
-                    positions.push(new Vector2(player.getX(), player.getY()));
-                }
-                candy = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("candyLand");
-                collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("blocked");
-                if (collisionY || npcCollision(new Location(player.getX(),player.getY() + 32))) {
-                    player.getVelocity().y = 0;
+                if (player.getY() == 49 * 32){
+                    newWorldUp = true;
                 } else {
-                    player.getVelocity().y = 4;
-                    player.changeState("down");
-                    isKeyDown = true;
+                    entered = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("enter");
+                    if (entered) {
+                        positions.push(new Vector2(player.getX(), player.getY()));
+                    }
+                    candy = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("candyLand");
+                    collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                    if (collisionY || npcCollision(new Location(player.getX(), player.getY() + 32))) {
+                        player.getVelocity().y = 0;
+                    } else {
+                        player.getVelocity().y = 4;
+                        player.changeState("down");
+                        isKeyDown = true;
+                    }
+                    break;
                 }
-                break;
             case Input.Keys.LEFT:
-                collisionX = collisionLayer.getCell((int) ((player.getX() - 1) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
-                if (collisionX || npcCollision(new Location(player.getX() - 32,player.getY()))) {
-                    player.getVelocity().x = 0;
+                if (player.getX() == 0){
+                    newWorldLeft = true;
                 } else {
-                    player.getVelocity().x = -4;
-                    player.changeState("left");
-                    isKeyDown = true;
+                    collisionX = collisionLayer.getCell((int) ((player.getX() - 1) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                    if (collisionX || npcCollision(new Location(player.getX() - 32, player.getY()))) {
+                        player.getVelocity().x = 0;
+                    } else {
+                        player.getVelocity().x = -4;
+                        player.changeState("left");
+                        isKeyDown = true;
+                    }
+                    break;
                 }
-                break;
             case Input.Keys.RIGHT:
-                newWorld = collisionLayer.getCell((int) ((player.getX() + 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("newWorld");
-                collisionX = collisionLayer.getCell((int) ((player.getX() + 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
-                if (collisionX || npcCollision(new Location(player.getX() + 32,player.getY()))) {
-                    player.getVelocity().x = 0;
+                //newWorld = collisionLayer.getCell((int) ((player.getX() + 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("newWorld");
+                if(player.getX() == 49 * 32) { //If the player reaches the end of the map and presses right move to the map to the right
+                  newWorldRight = true;
                 } else {
-                    player.getVelocity().x = 4;
-                    player.changeState("right");
-                    isKeyDown = true;
+                    collisionX = collisionLayer.getCell((int) ((player.getX() + 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("blocked");
+                    if (collisionX || npcCollision(new Location(player.getX() + 32, player.getY()))) {
+                        player.getVelocity().x = 0;
+                    } else {
+                        player.getVelocity().x = 4;
+                        player.changeState("right");
+                        isKeyDown = true;
+                    }
+                    break;
                 }
-                break;
         }
     }
 
@@ -423,7 +459,5 @@ public class PlayerController extends InputAdapter {
                         dialogue = false;
                     }
                 }
-
-
-            }
+}
 

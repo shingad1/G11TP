@@ -206,6 +206,7 @@ public abstract class PlayScreen implements Screen
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
             currentMapState = "HouseFight";
         }
+        /**
         if(controller.getNewWorld()){
             //dispose
             controller.reset();
@@ -216,6 +217,7 @@ public abstract class PlayScreen implements Screen
            // game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList,185,0));
             currentMapState = "Overworld";
         }
+        */
         if(controller.getCandy()){
             //dispose
             controller.reset();
@@ -286,19 +288,14 @@ public abstract class PlayScreen implements Screen
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
-        for (int i = 0; i < npc.size(); i++) {
-            if (npc.get(i).getWorld().equals(currentMapState)) {
-                if(npc.get(i).getAnimation() != null) {
-                    npc.get(i).getAnimation().render();
-                }
+        ArrayList<AbstractNPC> mapNPC = getMapNPC(currentMapState);
+        if (mapNPC != null) {
+            for (AbstractNPC npc : mapNPC) {
+                if(npc.getAnimation() != null)
+                    npc.getAnimation().render();
             }
         }
         p.getAnimation().render();
-
-        controller.npcInteraction((getInteractiveNPC()), "Linda");
-        controller.npcmoving(getInteractiveNPCMoving(), "Bob");
-        controller.npcmoving(getInteractiveNPCMoving(), "Ellie");
-        controller.npcmoving(getInteractiveNPCMoving(), "Mo");
 
         batch.begin();
         if(pause)
@@ -306,6 +303,8 @@ public abstract class PlayScreen implements Screen
             batch.draw(pauseTexture,gamecam.position.x - 240,gamecam.position.y - 240,480,480);
         }
         batch.end();
+
+        changeMaps();
     }
 
     @Override
@@ -350,35 +349,15 @@ public abstract class PlayScreen implements Screen
         game.setScreen(this);
     }
 
-    public ArrayList<InteractiveNPC> getInteractiveNPC(){
-        ArrayList<InteractiveNPC> interactiveNPCs = new ArrayList<InteractiveNPC>();
-        for(AbstractNPC nonPlayingCharacter : npc){
-            if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
-                interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
-            }
-        }
-        return interactiveNPCs;
-    }
+    public abstract ArrayList<InteractiveNPC> getInteractiveNPC();
 
-    public ArrayList<NonInteractiveNPC> getNonInteractiveNPC(){
-        ArrayList<NonInteractiveNPC> nonInteractiveNPCs = new ArrayList<NonInteractiveNPC>();
-        for(AbstractNPC nonPlayingCharacter : npc){
-            if(nonPlayingCharacter.getClass() == NonInteractiveNPC.class){
-                nonInteractiveNPCs.add((NonInteractiveNPC) nonPlayingCharacter);
-            }
-        }
-        return nonInteractiveNPCs;
-    }
+    public abstract ArrayList<NonInteractiveNPC> getNonInteractiveNPC();
 
-    public ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving(){
-        ArrayList<InteractiveNPCMoving> InteractiveNPCsMoving = new ArrayList<InteractiveNPCMoving>();
-        for(AbstractNPC InteractiveNPC : npc){
-            if(InteractiveNPC.getClass() == InteractiveNPCMoving.class){
-                InteractiveNPCsMoving.add((InteractiveNPCMoving) InteractiveNPC);
-            }
-        }
-        return InteractiveNPCsMoving;
-    }
+    public abstract ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving();
 
-    public abstract boolean checkPosition(Location location);
+    public abstract boolean checkPosition(Location location, String world);
+
+    public abstract ArrayList<AbstractNPC> getMapNPC(String world);
+
+    public abstract void changeMaps();
 }

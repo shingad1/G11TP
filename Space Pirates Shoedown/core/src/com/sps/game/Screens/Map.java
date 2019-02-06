@@ -25,7 +25,7 @@ public class Map {
         return collisionLayer;
     }
 
-    public String mapName(){
+    public String getMapName(){
         return mapName;
     }
 }
