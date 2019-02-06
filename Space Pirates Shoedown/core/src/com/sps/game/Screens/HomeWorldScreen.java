@@ -14,13 +14,13 @@ import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new Map(mapLoader.load(ASSETS_PATH + "HomeWorldMap1.tmx"),"Origin"), new Map(mapLoader.load(ASSETS_PATH + "HomeWorldMap2.tmx"), "SpaceshipMap")},
+    private Map[][] worldMaps = {{new Map(mapLoader.load(ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"),"Origin"), new Map(mapLoader.load(ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx"), "SpaceshipMap")},
                                  {null, null}};
 
     public HomeWorldScreen(SpacePiratesShoedown game) {
         super(game);
-        overworldMap = "testMap.tmx";
-        currentMap = mapLoader.load(ASSETS_PATH + "HomeWorldMap1.tmx");
+        overworldMap = "HomeWorld/HomeWorldMap1.tmx";
+        currentMap = mapLoader.load(ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx");
         renderer = new OrthogonalTiledMapRenderer(currentMap);
         currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1);
         currentMapState = "Overworld";

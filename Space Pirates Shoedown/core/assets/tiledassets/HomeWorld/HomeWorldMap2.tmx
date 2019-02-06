@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
- <tileset firstgid="1" source="Tiles5.tsx"/>
- <tileset firstgid="491" source="watertiles.tsx"/>
- <tileset firstgid="882" source="redhouse.tsx"/>
- <tileset firstgid="1332" source="StreetLamps.tsx"/>
- <tileset firstgid="1344" source="Fences.tsx"/>
- <tileset firstgid="1362" source="playground.tsx"/>
- <tileset firstgid="1618" source="Tiles3.tsx"/>
- <tileset firstgid="2018" source="bluesmallhouse.tsx"/>
- <tileset firstgid="2409" source="Tiles4.tsx"/>
- <tileset firstgid="2517" source="spaceship2.tsx"/>
+ <tileset firstgid="1" source="Resources/Tiles5.tsx"/>
+ <tileset firstgid="491" source="Resources/watertiles.tsx"/>
+ <tileset firstgid="882" source="Resources/redhouse.tsx"/>
+ <tileset firstgid="1332" source="Resources/StreetLamps.tsx"/>
+ <tileset firstgid="1344" source="Resources/Fences.tsx"/>
+ <tileset firstgid="1362" source="Resources/playground.tsx"/>
+ <tileset firstgid="1618" source="Resources/Tiles3.tsx"/>
+ <tileset firstgid="2018" source="Resources/bluesmallhouse.tsx"/>
+ <tileset firstgid="2409" source="Resources/Tiles4.tsx"/>
+ <tileset firstgid="2517" source="Resources/spaceship2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJzt1rENwjAQRuFrAvukYBBPQHoKmIuKwWADUIJEQSxB7ML23fkVr/cn/5EzishIRJudjNWLo/UuUneDQ0c4dIVDV729H1aqsauSG8WBo6WjxrfIffh2lNoCDp278vKee3F42RUOHDW/RRzpjtvuf1Z2leOYBpHw1XEod7e578f7rIf9ul+OS+Q4K3Ok3kfYuA8ru4od8X20dlw/5ToCDhwdOeJix30598OB47mc+6XY4eG/xEreHUS0bgZ56qu7
