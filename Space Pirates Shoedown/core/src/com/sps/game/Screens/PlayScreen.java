@@ -207,7 +207,7 @@ public abstract class PlayScreen implements Screen
             currentMapState = "HouseFight";
         }
         /**
-        if(controller.getNewWorld()){
+        if(controller.getNewWorld()){ //change: if they press a button on the edge of a map
             //dispose
             controller.reset();
             ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
@@ -218,6 +218,8 @@ public abstract class PlayScreen implements Screen
             currentMapState = "Overworld";
         }
         */
+
+        //Randomise the world schtuff
         if(controller.getCandy()){
             //dispose
             controller.reset();
@@ -339,7 +341,7 @@ public abstract class PlayScreen implements Screen
     /**
      * Changes the screen once combat is finished.
      */
-    public void combatExit(){
+    public void combatExit(){ //make this unique to every map
         controller.setFight(false);
         TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("basicEnemy",32,32);
         enemyTile.getProperties().remove("basicEnemy");

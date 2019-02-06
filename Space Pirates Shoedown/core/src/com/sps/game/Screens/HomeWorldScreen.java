@@ -51,7 +51,7 @@ public class HomeWorldScreen extends PlayScreen {
             }
             if(checkPosition(location,world)) {
                 npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, ""));
-                npcController.add(new NPCController(npc.get(i), currentCollisionLayer));
+                npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
                 i++;
             }
         }
@@ -144,31 +144,39 @@ public class HomeWorldScreen extends PlayScreen {
     }
 
     public void changeMaps(){
+        int camX = 0; //shows if the camera needs to move left or right
+        int camY = 0; //shows if the camera needs to go up or down
         if (controller.getNewWorldRight()){
             mapSelector.x += 1;
             p.setX(0);
+            camX = 1;
         } else if (controller.getNewWorldLeft()){
             mapSelector.x -= 1;
             p.setX(49 * 32);
+            camX = -1;
         } else if (controller.getNewWorldDown()){
             mapSelector.y += 1;
             p.setY(49 * 32);
+            camY = -1;
         } else if (controller.getNewWorldUp()){
             mapSelector.y -= 1;
             p.setY(0);
+            camY = 1;
         }
 
-        Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
-        currentMap = selectedMap.getMap();//change when moving worlds
-        renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
-        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
-        currentMapState = selectedMap.getMapName(); //change when moving worlds
+        if(camX != 0 || camY != 0) {
+            Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
+            currentMap = selectedMap.getMap();//change when moving worlds
+            renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
+            currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
+            currentMapState = selectedMap.getMapName(); //change when moving worlds
 
-        gamecam.position.set(p.getX(), p.getY(), 0); //change when moving worlds
+            gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
 
-        //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
-        //controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
-        controller.newWorldReset();
+            //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
+            controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
+            controller.newWorldReset();
+        }
     }
 
 }
