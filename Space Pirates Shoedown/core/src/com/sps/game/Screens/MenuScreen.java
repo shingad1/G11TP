@@ -58,6 +58,10 @@ public class MenuScreen implements Screen {
      * Holds the quit button texture.
      */
     private Texture quitButton;
+
+    private Texture loadButton;
+
+    private Texture creditsButton;
     /**
      * Holds the texture of the twitterButton.
      */
@@ -82,6 +86,8 @@ public class MenuScreen implements Screen {
         logoViewed = new Texture(ASSETS_PATH + "transparentlogo.png");
         playButton = new Texture(ASSETS_PATH + "PlayButton.png");
         quitButton = new Texture(ASSETS_PATH + "QuitButton.png");
+        loadButton = new Texture(ASSETS_PATH + "LoadButton.png");
+        creditsButton = new Texture(ASSETS_PATH + "CreditsButton.png");
         twitterButton = new Texture(ASSETS_PATH + "twitter.png");
         storyTexture = new Texture(ASSETS_PATH + "story.png");
         tutorialTexture = new Texture(ASSETS_PATH + "tutorial.png");
@@ -107,7 +113,7 @@ public class MenuScreen implements Screen {
      * Checks to see if the user has touched the screen and displays the play screen.
      */
     public void handleInput() throws IOException {
-        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 160)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 10))){
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 280)) && (Gdx.input.getX() < ((logo.getWidth() / 2) - 110))){
                if((Gdx.input.getY() > ((background.getHeight() / 2) - 190)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 85))) {
                    if (Gdx.input.justTouched()) {
                        sound.play();
@@ -117,7 +123,7 @@ public class MenuScreen implements Screen {
                }
         }
 
-        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 160)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 10))){
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 280)) && (Gdx.input.getX() < ((logo.getWidth() / 2) - 110))){
             if((Gdx.input.getY() > ((background.getHeight() / 2) + 10)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 285))) {
                 if (Gdx.input.justTouched()) {
                     sound.play();
@@ -133,6 +139,7 @@ public class MenuScreen implements Screen {
                 }
             }
         }
+        /*
 
             if((Gdx.input.getY() > ((storyTexture.getHeight() / 2) + 220 ))&& (Gdx.input.getX() < ((storyTexture.getWidth() / 2) + 150))) {
                 if (Gdx.input.justTouched()) {
@@ -149,7 +156,9 @@ public class MenuScreen implements Screen {
                 dialog.setVisible(true);
             }
         }
+        */
     }
+
 
     /**
      * Displays the different textures onto the screen.
@@ -167,8 +176,10 @@ public class MenuScreen implements Screen {
         game.batch.begin();
         game.batch.draw(background,-((background.getWidth() - Gdx.graphics.getWidth())/2),Gdx.graphics.getHeight() - background.getHeight()); //Texture = background, x = centre of image to center of screen, y = top of image to top of screen
         game.batch.draw(logoViewed,18,Gdx.graphics.getHeight()-logo.getHeight() + 80, 600, 374); //positioned at top centre of the screen
-        game.batch.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
-        game.batch.draw(quitButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
+        game.batch.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) - 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
+        game.batch.draw(quitButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) - 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
+        game.batch.draw(loadButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
+        game.batch.draw(creditsButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
         game.batch.draw(twitterButton, ((Gdx.graphics.getWidth() / 2) - (twitterButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 210));
         game.batch.draw(storyTexture, 0,0);
         game.batch.draw(tutorialTexture, (Gdx.graphics.getWidth()) - 100, 0);

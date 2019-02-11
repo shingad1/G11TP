@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
- <tileset firstgid="1" source="CandyLand/CandyGrass.tsx"/>
- <tileset firstgid="197" source="CandyLandTiles2.tsx"/>
- <tileset firstgid="357" source="CandyLand/house1.tsx"/>
- <tileset firstgid="387" source="CandyLand/candy.tsx"/>
- <tileset firstgid="441" source="decoration_medieval/decoration_medieval/pinkhouse.tsx"/>
- <tileset firstgid="471" source="decoration_medieval/decoration_medieval/pinktree.tsx"/>
- <tileset firstgid="615" source="Tiles5.tsx"/>
- <tileset firstgid="1105" source="CandyLand/ChocolateFountain.tsx"/>
- <tileset firstgid="1106" source="playground.tsx"/>
- <tileset firstgid="1362" source="spaceship2.tsx"/>
+ <tileset firstgid="1" source="Resources/CandyGrass.tsx"/>
+ <tileset firstgid="197" source="Resources/CandyLandTiles2.tsx"/>
+ <tileset firstgid="357" source="Resources/house1.tsx"/>
+ <tileset firstgid="387" source="Resources/candy.tsx"/>
+ <tileset firstgid="441" source="Resources/pinkhouse.tsx"/>
+ <tileset firstgid="471" source="Resources/pinktree.tsx"/>
+ <tileset firstgid="615" source="../HomeWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="1105" source="Resources/ChocolateFountain.tsx"/>
+ <tileset firstgid="1106" source="../HomeWorld/Resources/playground.tsx"/>
+ <tileset firstgid="1362" source="../HomeWorld/Resources/spaceship2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJzt1cEJgDAMQNE4g0e3cB3HFFygB/fRBRRsQUQQNCVN/cK/eCg8mrZBRAIV1+y02h29cmndSTkcOHDgwPFvxxprm/v/bx25enJ0u2ORI4+Oc+nTmKtBOavzgQMHjjLvK/YDBw4cOHB4d+R+T6/hsJkjq7mydmiFQ8cxfgwHDhw4cODAgUPL4a1aHVRGG1RjWR8=

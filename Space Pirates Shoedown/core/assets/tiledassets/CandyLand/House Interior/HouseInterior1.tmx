@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="11" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
+ <tileset firstgid="1" source="Floor.tsx"/>
+ <tileset firstgid="161" source="Classic Interior Objects.tsx"/>
+ <layer id="2" name="Ground" width="11" height="11">
+  <data encoding="base64" compression="zlib">
+   eJwTY2BgECcCSwCxHBDLE4EVRtUOKrUAWJsOUA==
+  </data>
+ </layer>
+ <layer id="3" name="CollisionLayer" width="11" height="11">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxTY2BgUCcCawCxHhDrE4ENGEYBMjAnUl6WiYHBnoBae6g6WyB2J6AWJA9SBwDW2gXp
+  </data>
+ </layer>
+</map>

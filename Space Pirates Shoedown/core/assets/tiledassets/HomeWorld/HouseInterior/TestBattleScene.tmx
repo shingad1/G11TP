@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="11" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
- <tileset firstgid="1" source="Terrain.tsx"/>
- <tileset firstgid="1025" source="Tiles5.tsx"/>
- <tileset firstgid="1515" source="singleEnemyTileset.tsx"/>
+ <tileset firstgid="1" source="Resources/Terrain.tsx"/>
+ <tileset firstgid="1025" source="../Resources/Tiles5.tsx"/>
+ <tileset firstgid="1515" source="Resources/singleEnemyTileset.tsx"/>
  <layer id="1" name="Ground" width="11" height="11" offsetx="0.333333" offsety="-0.333333">
   <data encoding="base64" compression="zlib">
    eJxjYCANvGEkjEfVUk9tEx61xAIAYrhKlA==
