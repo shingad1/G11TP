@@ -219,6 +219,8 @@ public class MenuScreen implements Screen {
         logo.dispose();
         playButton.dispose();
         quitButton.dispose();
+        loadButton.dispose();
+        creditsButton.dispose();
         twitterButton.dispose();
         background.dispose();
         music.dispose();
