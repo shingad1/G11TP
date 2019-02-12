@@ -24,7 +24,7 @@ public class MenuScreen implements Screen {
     /**
      * Constant field to direct where the file is located.
      */
-    private static final String ASSETS_PATH = "core/assets/";
+    private static final String ASSETS_PATH = "core/assets/MenuResources/";
     /**
      * Holds a version of the game.
      * @see #handleInput #render
@@ -94,12 +94,12 @@ public class MenuScreen implements Screen {
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
 
-        music = Gdx.audio.newMusic(Gdx.files.internal(ASSETS_PATH + "Music/bensound-newdawn.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/bensound-newdawn.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
 
-        sound = Gdx.audio.newMusic(Gdx.files.internal(ASSETS_PATH + "Music/click.wav"));
+        sound = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/click.wav"));
         sound.setVolume(0.1f);
     }
 
