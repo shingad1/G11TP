@@ -30,6 +30,16 @@ public class MenuScreen implements Screen {
      * @see #handleInput #render
      */
     private SpacePiratesShoedown game;
+
+    /**
+     * Holds what the view port will display
+     */
+    private OrthographicCamera gamecam;
+    /**
+     * Displays what the user will see
+     * @see #resize
+     */
+    private Viewport gameport;
     /**
      * Holds background image for the Menu Screen.
      * @see #render #dispose
@@ -46,21 +56,16 @@ public class MenuScreen implements Screen {
      */
     private Texture playButton;
     /**
-     * Holds what the view port will display
-     */
-    private OrthographicCamera gamecam;
-    /**
-     * Displays what the user will see
-     * @see #resize
-     */
-    private Viewport gameport;
-    /**
      * Holds the quit button texture.
      */
     private Texture quitButton;
-
+    /**
+     * Holds the load button texture.
+     */
     private Texture loadButton;
-
+    /**
+     * Holds the credits button texture.
+     */
     private Texture creditsButton;
     /**
      * Holds the texture of the twitterButton.
@@ -70,14 +75,23 @@ public class MenuScreen implements Screen {
      * Holds the texture of the logo.
      */
     private Texture logoViewed;
-
-    private com.badlogic.gdx.audio.Music music;
-
-    private com.badlogic.gdx.audio.Music sound;
-
+    /**
+     * Holds the story button texture.
+     */
     private static Texture storyTexture;
-
+    /**
+     * Holds the tutorial button texture.
+     */
     private Texture tutorialTexture;
+
+    /**
+     * Music of menu screen
+     */
+    private com.badlogic.gdx.audio.Music music;
+    /**
+     * Button on-click sound
+     */
+    private com.badlogic.gdx.audio.Music sound;
 
     public MenuScreen(SpacePiratesShoedown game){
         this.game = game;
