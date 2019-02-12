@@ -139,8 +139,8 @@ public class MenuScreen implements Screen {
                 }
             }
         }
-        /*
 
+        /*
             if((Gdx.input.getY() > ((storyTexture.getHeight() / 2) + 220 ))&& (Gdx.input.getX() < ((storyTexture.getWidth() / 2) + 150))) {
                 if (Gdx.input.justTouched()) {
                     StoryController1 dialog = new StoryController1();
@@ -181,8 +181,8 @@ public class MenuScreen implements Screen {
         game.batch.draw(loadButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
         game.batch.draw(creditsButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
         game.batch.draw(twitterButton, ((Gdx.graphics.getWidth() / 2) - (twitterButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 210));
-        game.batch.draw(storyTexture, 0,0);
-        game.batch.draw(tutorialTexture, (Gdx.graphics.getWidth()) - 100, 0);
+        //game.batch.draw(storyTexture, 0,0);
+        //game.batch.draw(tutorialTexture, (Gdx.graphics.getWidth()) - 100, 0);
         game.batch.end();
     }
 
