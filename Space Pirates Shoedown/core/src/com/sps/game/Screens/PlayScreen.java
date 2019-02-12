@@ -307,6 +307,10 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
+
+        scene2dui scene = new scene2dui();
+        scene.create();
+        scene.render();
     }
 
     @Override
