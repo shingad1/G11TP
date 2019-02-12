@@ -24,12 +24,22 @@ public class MenuScreen implements Screen {
     /**
      * Constant field to direct where the file is located.
      */
-    private static final String ASSETS_PATH = "core/assets/";
+    private static final String ASSETS_PATH = "core/assets/MenuResources/";
     /**
      * Holds a version of the game.
      * @see #handleInput #render
      */
     private SpacePiratesShoedown game;
+
+    /**
+     * Holds what the view port will display
+     */
+    private OrthographicCamera gamecam;
+    /**
+     * Displays what the user will see
+     * @see #resize
+     */
+    private Viewport gameport;
     /**
      * Holds background image for the Menu Screen.
      * @see #render #dispose
@@ -46,21 +56,16 @@ public class MenuScreen implements Screen {
      */
     private Texture playButton;
     /**
-     * Holds what the view port will display
-     */
-    private OrthographicCamera gamecam;
-    /**
-     * Displays what the user will see
-     * @see #resize
-     */
-    private Viewport gameport;
-    /**
      * Holds the quit button texture.
      */
     private Texture quitButton;
-
+    /**
+     * Holds the load button texture.
+     */
     private Texture loadButton;
-
+    /**
+     * Holds the credits button texture.
+     */
     private Texture creditsButton;
     /**
      * Holds the texture of the twitterButton.
@@ -70,14 +75,23 @@ public class MenuScreen implements Screen {
      * Holds the texture of the logo.
      */
     private Texture logoViewed;
-
-    private com.badlogic.gdx.audio.Music music;
-
-    private com.badlogic.gdx.audio.Music sound;
-
+    /**
+     * Holds the story button texture.
+     */
     private static Texture storyTexture;
-
+    /**
+     * Holds the tutorial button texture.
+     */
     private Texture tutorialTexture;
+
+    /**
+     * Music of menu screen
+     */
+    private com.badlogic.gdx.audio.Music music;
+    /**
+     * Button on-click sound
+     */
+    private com.badlogic.gdx.audio.Music sound;
 
     public MenuScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -94,12 +108,12 @@ public class MenuScreen implements Screen {
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
 
-        music = Gdx.audio.newMusic(Gdx.files.internal(ASSETS_PATH + "Music/bensound-newdawn.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/bensound-newdawn.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
 
-        sound = Gdx.audio.newMusic(Gdx.files.internal(ASSETS_PATH + "Music/click.wav"));
+        sound = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/click.wav"));
         sound.setVolume(0.1f);
     }
 
@@ -139,8 +153,8 @@ public class MenuScreen implements Screen {
                 }
             }
         }
-        /*
 
+        /*
             if((Gdx.input.getY() > ((storyTexture.getHeight() / 2) + 220 ))&& (Gdx.input.getX() < ((storyTexture.getWidth() / 2) + 150))) {
                 if (Gdx.input.justTouched()) {
                     StoryController1 dialog = new StoryController1();
@@ -181,8 +195,8 @@ public class MenuScreen implements Screen {
         game.batch.draw(loadButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
         game.batch.draw(creditsButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
         game.batch.draw(twitterButton, ((Gdx.graphics.getWidth() / 2) - (twitterButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 210));
-        game.batch.draw(storyTexture, 0,0);
-        game.batch.draw(tutorialTexture, (Gdx.graphics.getWidth()) - 100, 0);
+        //game.batch.draw(storyTexture, 0,0);
+        //game.batch.draw(tutorialTexture, (Gdx.graphics.getWidth()) - 100, 0);
         game.batch.end();
     }
 
@@ -219,6 +233,8 @@ public class MenuScreen implements Screen {
         logo.dispose();
         playButton.dispose();
         quitButton.dispose();
+        loadButton.dispose();
+        creditsButton.dispose();
         twitterButton.dispose();
         background.dispose();
         music.dispose();
