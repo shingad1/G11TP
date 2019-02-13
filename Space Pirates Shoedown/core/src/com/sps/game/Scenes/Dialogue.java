@@ -1,4 +1,4 @@
-package com.sps.game.Screens;
+package com.sps.game.Scenes;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -15,13 +15,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class scene2dui extends ApplicationAdapter implements InputProcessor
+public class Dialogue extends ApplicationAdapter implements InputProcessor
 {
     private Stage stage;
     private Skin skin;
 
     private SpriteBatch batch;
-    private Sprite sprite, sprite1;
+    private Sprite sprite;
 
     int counter;
     String[] dialogue;
@@ -29,7 +29,9 @@ public class scene2dui extends ApplicationAdapter implements InputProcessor
     private Table table;
     private TextButton prevButton, nextButton;
 
-    public scene2dui()
+    private String buttonLogged = "";
+
+    public Dialogue()
     {
         counter = 0;
         dialogue = new String[3];
@@ -38,34 +40,33 @@ public class scene2dui extends ApplicationAdapter implements InputProcessor
         dialogue[1] = "whats up";
         dialogue[2] = "bye";
 
-        create();
-        render();
-        //System.out.println(dialogue[counter]);
+        skin = new Skin(Gdx.files.internal("uiskin.json"));
+        stage = new Stage(new ScreenViewport());
     }
 
     @Override
     public void create()
     {
-        skin = new Skin(Gdx.files.internal("uiskin.json"));
-        stage = new Stage(new ScreenViewport());
+        final Dialog textArea = new Dialog("Dialogues", skin, "default");
+        textArea.text(dialogue[counter]);
 
         table = new Table();
         table.setWidth(stage.getWidth());
         table.setHeight(stage.getHeight()/2);
         table.align(Align.center | Align.bottom);
-        table.padBottom(30);
+        table.padBottom(10);
 
         table.setPosition(0,0);
 
         prevButton = new TextButton("Previous", skin, "default");
         nextButton = new TextButton("Next", skin, "default");
 
-        final Dialog SS = new Dialog("Dialogues", skin, "default");
-
         prevButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("previous button", "confirm previous");
+                buttonLogged = "previous";
+                clickFunction(textArea);
                 event.stop();
             }
         });
@@ -73,48 +74,27 @@ public class scene2dui extends ApplicationAdapter implements InputProcessor
         nextButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("Nex button", "confirm next");
+                Gdx.app.log("Next button", "confirm next");
+                buttonLogged = "next";
+                clickFunction(textArea);
                 event.stop();
             }
         });
 
-        table.add(SS).size(615,300).padBottom(30);
+        table.add(textArea).size(stage.getWidth(),stage.getHeight()/2).padBottom(5);
         table.row();
-        table.add(prevButton).size(200,100).padBottom(30);
-        table.row();
-        table.add(nextButton).size(200, 50);
+        table.add(prevButton).size(150,50).align(Align.bottomLeft).padLeft(170);
+        table.add(nextButton).size(150, 50).align(Align.bottomRight).padRight(170);
 
-        if (counter > 0)
-        {
-            counter --;
-
-            SS.text(dialogue[counter]);
-            //System.out.println(SS.text(dialogue[counter]).show(stage));
-        }
-
-        if (counter < dialogue.length - 1)
-        {
-            counter ++;
-
-            SS.text(dialogue[counter]);
-        }
-
+        textArea.setColor(181.0f/255.0f,122.0f/255.0f,232.0f/255.0f,255.0f/255.0f);
         stage.addActor(table);
 
         batch = new SpriteBatch();
         sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
-        //sprite1 = new Sprite(new Texture(Gdx.files.internal("core/assets/QuitButton.png")));
         sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        /*Timer.schedule(new Timer.Task() {
-            @Override
-            public void run() {
-                sprite.setFlip(false,!sprite.isFlipY());
-            }
-        },10,10,10000);*/
-
-        InputMultiplexer im = new InputMultiplexer(stage, this);
-        Gdx.input.setInputProcessor(im);
+        InputMultiplexer inputMultiplexer = new InputMultiplexer(stage, this);
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override
@@ -146,7 +126,7 @@ public class scene2dui extends ApplicationAdapter implements InputProcessor
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         sprite.setFlip(!sprite.isFlipX(),sprite.isFlipY());
-        return true;
+        return false;
     }
 
     @Override
@@ -169,48 +149,18 @@ public class scene2dui extends ApplicationAdapter implements InputProcessor
         return false;
     }
 
-    /*private void setupListeners()
-    {
-        *//*scene2dui scene = new scene2dui();
-        scene.create();
-        scene.render(); *//*
+    private void clickFunction(Dialog SS){
+        if (buttonLogged.equals("previous") && counter > 0)
+        {
+            counter --;
+            SS.text(dialogue[counter]);
+        }
 
-        prevButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (counter > 0)
-                {
-                    counter --;
-                    dialog.text(dialogue[counter]);
-                    dialog.show(stage);
-                }
-            }
-        });
-
-        nextButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (counter < dialogue.length - 1)
-                {
-                    counter ++;
-                    dialog.text(dialogue[counter]);
-                    dialog.show(stage);
-                }
-            }
-        });
-    }*/
-
-//    public void frame()
-//    {
-//        JFrame frame = new JFrame();
-//        frame.setVisible(true);
-//        frame.setSize(400,400);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//        JPanel panel = new JPanel();
-//        JButton button = new JButton("prev");
-//
-//        panel.add(button);
-//        frame.add(panel);
-//    }
+        if (buttonLogged.equals("next") && counter < dialogue.length - 1)
+        {
+            counter ++;
+            SS.text(dialogue[counter]);
+        }
+        buttonLogged = "";
+    }
 }
