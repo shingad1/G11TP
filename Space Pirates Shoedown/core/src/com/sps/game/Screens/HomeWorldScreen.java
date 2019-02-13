@@ -56,9 +56,7 @@ public class HomeWorldScreen extends PlayScreen {
             }
         }
         allLocations = new ArrayList<Location>();
-        for (AbstractNPC nonPlayingCharacter : npc){
-            allLocations.add(nonPlayingCharacter.getLocation());
-        }
+        changeNpcLocations(selectedMap);
 
         p.setX(736); //change when moving worlds
         p.setY(1280); //""
@@ -172,11 +170,18 @@ public class HomeWorldScreen extends PlayScreen {
             currentMapState = selectedMap.getMapName(); //change when moving worlds
 
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
-
+            changeNpcLocations(selectedMap);
+            controller.changeNpcLocations(allLocations);
             //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
             controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
             controller.newWorldReset();
         }
     }
 
+    private void changeNpcLocations(Map selectedMap) {
+        for (AbstractNPC nonPlayingCharacter : npc) {
+            if (nonPlayingCharacter.getWorld().equals(selectedMap.getMapName()))
+                allLocations.add(nonPlayingCharacter.getLocation());
+        }
+    }
 }

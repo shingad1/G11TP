@@ -459,5 +459,10 @@ public class PlayerController extends InputAdapter {
                         dialogue = false;
                     }
                 }
+
+    public void changeNpcLocations(ArrayList<Location> npcLocations){
+        allLocations = npcLocations;
+    }
 }
+
 
