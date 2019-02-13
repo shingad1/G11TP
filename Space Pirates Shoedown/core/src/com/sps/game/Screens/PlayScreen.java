@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
+import com.sps.game.Scenes.Dialogue;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
@@ -115,6 +116,8 @@ public abstract class PlayScreen implements Screen
     private com.badlogic.gdx.audio.Music music;
 
     private com.badlogic.gdx.audio.Music sound;
+
+    private Dialogue scene = new Dialogue();
 
     protected Random random;
 
@@ -315,10 +318,8 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        //scene2dui scene = new scene2dui();
-
-        //scene.create();
-        //scene.render();
+        /*scene.create();
+        scene.render();*/
     }
 
     @Override

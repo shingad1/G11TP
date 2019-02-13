@@ -3,6 +3,7 @@ package com.sps.game.Scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
@@ -50,6 +51,8 @@ public class HudScene  {
      */
     Label goldCountLabel;
 
+    private Texture pause;
+
     public HudScene(SpriteBatch sb, Player p){
         gold = 100;
         //Instantiating the viewport
@@ -61,8 +64,6 @@ public class HudScene  {
         //Instantiating the goldCountLabel label with the BitmapFont font and the colour white
         goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-
-
         player = p;
     }
     /**
@@ -70,6 +71,7 @@ public class HudScene  {
      */
     public void update(){
         goldCountLabel = new Label(String.format("%02d",player.getGold()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        pause= new Texture("core/assets/pause.png");
         formatting();
     }
     /**
