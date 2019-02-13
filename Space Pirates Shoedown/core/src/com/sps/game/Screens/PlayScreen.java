@@ -19,6 +19,7 @@ import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.Scenes.Dialogue;
 import com.sps.game.Scenes.HudScene;
+import com.sps.game.Scenes.Tutorial;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
@@ -117,6 +118,7 @@ public abstract class PlayScreen implements Screen
     private com.badlogic.gdx.audio.Music sound;
 
     private Dialogue scene = new Dialogue();
+    private Tutorial tut = new Tutorial();
 
     protected Random random;
 
@@ -209,6 +211,7 @@ public abstract class PlayScreen implements Screen
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
             currentMapState = "HouseFight";
         }
+
         /**
         if(controller.getNewWorld()){ //change: if they press a button on the edge of a map
             //dispose
@@ -311,8 +314,8 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        /*scene.create();
-        scene.render();*/
+        tut.create();
+        tut.render();
     }
 
     @Override

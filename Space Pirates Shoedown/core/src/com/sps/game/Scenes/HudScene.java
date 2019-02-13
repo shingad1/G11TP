@@ -12,6 +12,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Sprites.Player;
 
+import javax.swing.*;
+
 /**
  * This class contains the different labels with the information need for the player.
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
@@ -51,7 +53,7 @@ public class HudScene  {
      */
     Label goldCountLabel;
 
-    private Texture pause;
+    private Image pause, tutorial;
 
     public HudScene(SpriteBatch sb, Player p){
         gold = 100;
@@ -64,6 +66,9 @@ public class HudScene  {
         //Instantiating the goldCountLabel label with the BitmapFont font and the colour white
         goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
+        pause = new Image(new Texture("core/assets/pause.png"));
+        tutorial = new Image(new Texture("core/assets/Tutorial.png"));
+
         player = p;
     }
     /**
@@ -71,7 +76,6 @@ public class HudScene  {
      */
     public void update(){
         goldCountLabel = new Label(String.format("%02d",player.getGold()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        pause= new Texture("core/assets/pause.png");
         formatting();
     }
     /**
@@ -87,11 +91,13 @@ public class HudScene  {
         table.setFillParent(true);
         //Adding the goldLabel label to the table with a padding of 10px from the top and left
         table.add(goldLabel).padTop(10).padLeft(10);
-        //Going to a new row
-        table.row();
+        /*//Going to a new row
+        table.row();*/
         //Adding the goldCountLabel label to the table with padding of 10px from the left
         table.add(goldCountLabel).padLeft(10);
         //putting the table on the stage so that it can be drawn
+        table.add(pause).size(50,50).padLeft(20);
+        table.add(tutorial).size(50,50).padLeft(20);
         stage.addActor(table);
     }
 }

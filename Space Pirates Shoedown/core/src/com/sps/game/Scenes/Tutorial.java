@@ -15,46 +15,58 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class Dialogue extends ApplicationAdapter implements InputProcessor
-{
+public class Tutorial extends ApplicationAdapter implements InputProcessor {
+
     private Stage stage;
     private Skin skin;
-
-    private SpriteBatch batch;
-    private Sprite sprite;
-
-    int counter;
-    String[] dialogue;
 
     private Table table;
     private TextButton prevButton, nextButton;
 
     private String buttonLogged = "";
 
-    public Dialogue()
+    private Texture[] tutorialTexture;
+    private int counter;
+
+    private static String ASSETS_PATH = "core/assets/SP/";
+
+    private SpriteBatch batch;
+    private Sprite sprite;
+
+    public Tutorial()
     {
         counter = 0;
-        dialogue = new String[3];
+        tutorialTexture = new Texture[13];
 
-        dialogue[0] = "hi";
-        dialogue[1] = "whats up";
-        dialogue[2] = "bye";
+        tutorialTexture[0] = new Texture(ASSETS_PATH + "Slide1.png");
+        tutorialTexture[1] = new Texture(ASSETS_PATH + "Slide2.png");
+        tutorialTexture[2] = new Texture(ASSETS_PATH + "Slide3.png");
+        tutorialTexture[3] = new Texture(ASSETS_PATH + "Slide4.png");
+        tutorialTexture[4] = new Texture(ASSETS_PATH + "Slide5.png");
+        tutorialTexture[5] = new Texture(ASSETS_PATH + "Slide6.png");
+        tutorialTexture[6] = new Texture(ASSETS_PATH + "Slide7.png");
+        tutorialTexture[7] = new Texture(ASSETS_PATH + "Slide8.png");
+        tutorialTexture[8] = new Texture(ASSETS_PATH + "Slide9.png");
+        tutorialTexture[9] = new Texture(ASSETS_PATH + "Slide10.png");
+        tutorialTexture[10] = new Texture(ASSETS_PATH + "Slide11.png");
+        tutorialTexture[11] = new Texture(ASSETS_PATH + "Slide12.png");
+        tutorialTexture[12] = new Texture(ASSETS_PATH + "Slide13.png");
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));
         stage = new Stage(new ScreenViewport());
+
+        batch = new SpriteBatch();
+        sprite = new Sprite((tutorialTexture[counter]));
+        sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
-    @Override
     public void create()
     {
-        final Dialog textArea = new Dialog("Dialogues", skin, "default");
-        textArea.text(dialogue[counter]);
-
         table = new Table();
         table.setWidth(stage.getWidth());
-        table.setHeight(stage.getHeight()/2);
+        table.setHeight(stage.getHeight());
         table.align(Align.center | Align.bottom);
-        table.padBottom(10);
+        table.padBottom(30);
 
         table.setPosition(0,0);
 
@@ -64,9 +76,8 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
         prevButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("previous button", "confirm previous");
-                buttonLogged = "previous";
-                clickFunction(textArea);
+               buttonLogged = "previous";
+               imageController();
                 event.stop();
             }
         });
@@ -74,24 +85,16 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
         nextButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("Next button", "confirm next");
-                buttonLogged = "next";
-                clickFunction(textArea);
+               buttonLogged = "next";
+               imageController();
                 event.stop();
             }
         });
 
-        table.add(textArea).size(stage.getWidth(),stage.getHeight()/2).padBottom(5);
-        table.row();
-        table.add(prevButton).size(150,50).align(Align.bottomLeft).padLeft(170);
-        table.add(nextButton).size(150, 50).align(Align.bottomRight).padRight(170);
+        table.add(prevButton).size(150,50).align(Align.bottomLeft).padRight(30);
+        table.add(nextButton).size(150, 50).align(Align.bottomRight);
 
-        textArea.setColor(181.0f/255.0f,122.0f/255.0f,232.0f/255.0f,255.0f/255.0f);
         stage.addActor(table);
-
-        batch = new SpriteBatch();
-        sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
-        sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);
@@ -106,6 +109,21 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
         batch.end();
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+    }
+
+    private void imageController(){
+        if (buttonLogged.equals("previous") && counter > 0)
+        {
+            counter --;
+            sprite = new Sprite((tutorialTexture[counter]));
+        }
+
+        if (buttonLogged.equals("next") && counter < tutorialTexture.length - 1)
+        {
+            counter ++;
+            sprite = new Sprite((tutorialTexture[counter]));
+        }
+        buttonLogged = "";
     }
 
     @Override
@@ -125,7 +143,6 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        sprite.setFlip(!sprite.isFlipX(),sprite.isFlipY());
         return false;
     }
 
@@ -147,20 +164,5 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
     @Override
     public boolean scrolled(int amount) {
         return false;
-    }
-
-    private void clickFunction(Dialog textAread){
-        if (buttonLogged.equals("previous") && counter > 0)
-        {
-            counter --;
-            textAread.text(dialogue[counter]);
-        }
-
-        if (buttonLogged.equals("next") && counter < dialogue.length - 1)
-        {
-            counter ++;
-            textAread.text(dialogue[counter]);
-        }
-        buttonLogged = "";
     }
 }
