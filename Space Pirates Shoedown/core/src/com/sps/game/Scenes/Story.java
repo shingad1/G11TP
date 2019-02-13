@@ -98,6 +98,7 @@ public class Story extends ApplicationAdapter implements InputProcessor {
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);
+        sprite.setSize(stage.getWidth(), stage.getHeight());
     }
 
     @Override
