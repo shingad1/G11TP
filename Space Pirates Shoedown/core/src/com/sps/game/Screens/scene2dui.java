@@ -2,23 +2,20 @@ package com.sps.game.Screens;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import javax.swing.*;
-
-public class scene2dui extends ApplicationAdapter
+public class scene2dui extends ApplicationAdapter implements InputProcessor
 {
     private Stage stage;
     private Skin skin;
@@ -26,51 +23,98 @@ public class scene2dui extends ApplicationAdapter
     private SpriteBatch batch;
     private Sprite sprite, sprite1;
 
-    public TextButton prevButton, nextButton;
-    public Dialog dialog;
-
     int counter;
     String[] dialogue;
 
     private Table table;
-    @Override
-    public void create()
-    {
+    private TextButton prevButton, nextButton;
 
+    public scene2dui()
+    {
         counter = 0;
         dialogue = new String[3];
+
         dialogue[0] = "hi";
         dialogue[1] = "whats up";
         dialogue[2] = "bye";
 
+        create();
+        render();
+        //System.out.println(dialogue[counter]);
+    }
+
+    @Override
+    public void create()
+    {
         skin = new Skin(Gdx.files.internal("uiskin.json"));
         stage = new Stage(new ScreenViewport());
 
         table = new Table();
         table.setWidth(stage.getWidth());
         table.setHeight(stage.getHeight()/2);
-        table.align(Align.center| Align.bottom);
+        table.align(Align.center | Align.bottom);
         table.padBottom(30);
 
         table.setPosition(0,0);
 
-        prevButton = new TextButton("Previous", skin);
-        nextButton = new TextButton("Next", skin);
+        prevButton = new TextButton("Previous", skin, "default");
+        nextButton = new TextButton("Next", skin, "default");
 
-        dialog = new Dialog(dialogue[counter], skin);
+        final Dialog SS = new Dialog("Dialogues", skin, "default");
 
-        table.add(prevButton).size(200,50);
-        table.add(nextButton).size(200,50);
+        prevButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("previous button", "confirm previous");
+                event.stop();
+            }
+        });
+
+        nextButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("Nex button", "confirm next");
+                event.stop();
+            }
+        });
+
+        table.add(SS).size(615,300).padBottom(30);
+        table.row();
+        table.add(prevButton).size(200,100).padBottom(30);
+        table.row();
+        table.add(nextButton).size(200, 50);
+
+        if (counter > 0)
+        {
+            counter --;
+
+            SS.text(dialogue[counter]);
+            //System.out.println(SS.text(dialogue[counter]).show(stage));
+        }
+
+        if (counter < dialogue.length - 1)
+        {
+            counter ++;
+
+            SS.text(dialogue[counter]);
+        }
+
         stage.addActor(table);
 
-        setupListeners();
-
-        Gdx.input.setInputProcessor(stage);
-
         batch = new SpriteBatch();
-        sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/playbutton.png")));
-        sprite1 = new Sprite(new Texture(Gdx.files.internal("core/assets/QuitButton.png")));
-        sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/2);
+        sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
+        //sprite1 = new Sprite(new Texture(Gdx.files.internal("core/assets/QuitButton.png")));
+        sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        /*Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                sprite.setFlip(false,!sprite.isFlipY());
+            }
+        },10,10,10000);*/
+
+        InputMultiplexer im = new InputMultiplexer(stage, this);
+        Gdx.input.setInputProcessor(im);
     }
 
     @Override
@@ -84,11 +128,52 @@ public class scene2dui extends ApplicationAdapter
         stage.draw();
     }
 
-    private void setupListeners()
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        sprite.setFlip(!sprite.isFlipX(),sprite.isFlipY());
+        return true;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
+    }
+
+    /*private void setupListeners()
     {
-        /*scene2dui scene = new scene2dui();
+        *//*scene2dui scene = new scene2dui();
         scene.create();
-        scene.render(); */
+        scene.render(); *//*
 
         prevButton.addListener(new ClickListener() {
             @Override
@@ -113,19 +198,19 @@ public class scene2dui extends ApplicationAdapter
                 }
             }
         });
-    }
+    }*/
 
-    public void frame()
-    {
-        JFrame frame = new JFrame();
-        frame.setVisible(true);
-        frame.setSize(400,400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel panel = new JPanel();
-        JButton button = new JButton("prev");
-
-        panel.add(button);
-        frame.add(panel);
-    }
+//    public void frame()
+//    {
+//        JFrame frame = new JFrame();
+//        frame.setVisible(true);
+//        frame.setSize(400,400);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//        JPanel panel = new JPanel();
+//        JButton button = new JButton("prev");
+//
+//        panel.add(button);
+//        frame.add(panel);
+//    }
 }
