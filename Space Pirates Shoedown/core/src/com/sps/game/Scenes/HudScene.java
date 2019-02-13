@@ -12,8 +12,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Sprites.Player;
 
-import javax.swing.*;
-
 /**
  * This class contains the different labels with the information need for the player.
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
@@ -53,7 +51,7 @@ public class HudScene  {
      */
     Label goldCountLabel;
 
-    private Image pause, tutorial;
+    private Image pause, story;
 
     public HudScene(SpriteBatch sb, Player p){
         gold = 100;
@@ -67,7 +65,7 @@ public class HudScene  {
         goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
         pause = new Image(new Texture("core/assets/pause.png"));
-        tutorial = new Image(new Texture("core/assets/tutorial.png"));
+        story = new Image(new Texture("core/assets/story.png"));
 
         player = p;
     }
@@ -97,7 +95,7 @@ public class HudScene  {
         table.add(goldCountLabel).padLeft(10);
         //putting the table on the stage so that it can be drawn
         table.add(pause).size(50,50).padLeft(20);
-        table.add(tutorial).size(50,50).padLeft(20);
+        table.add(story).size(50,50).padLeft(20);
         stage.addActor(table);
     }
 }
