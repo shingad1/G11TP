@@ -1,4 +1,4 @@
-package com.sps.game.Scenes;
+package com.sps.game.Controller;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class Story extends ApplicationAdapter implements InputProcessor {
+public class StoryController extends ApplicationAdapter implements InputProcessor {
 
     private Stage stage;
     private Skin skin;
@@ -33,7 +33,7 @@ public class Story extends ApplicationAdapter implements InputProcessor {
     private SpriteBatch batch;
     private Sprite sprite;
 
-    public Story()
+    public StoryController()
     {
         counter = 0;
         tutorialTexture = new Texture[13];
@@ -57,7 +57,6 @@ public class Story extends ApplicationAdapter implements InputProcessor {
 
         batch = new SpriteBatch();
         sprite = new Sprite((tutorialTexture[counter]));
-        sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     public void create()

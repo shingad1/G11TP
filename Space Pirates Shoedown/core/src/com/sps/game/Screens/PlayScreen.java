@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -16,11 +15,9 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.NPCController;
-import com.sps.game.Controller.PlayerController;
+import com.sps.game.Controller.*;
 import com.sps.game.Scenes.Dialogue;
 import com.sps.game.Scenes.HudScene;
-import com.sps.game.Scenes.Story;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
@@ -119,7 +116,8 @@ public abstract class PlayScreen implements Screen
     private com.badlogic.gdx.audio.Music sound;
 
     private Dialogue scene = new Dialogue();
-    private Story story = new Story();
+    private StoryController storyController = new StoryController();
+    private TutorialController1 tutorialController = new TutorialController1();
 
     protected Random random;
 
@@ -321,8 +319,8 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        story.create();
-        story.render();
+        tutorialController.create();
+        tutorialController.render();
     }
 
     @Override
