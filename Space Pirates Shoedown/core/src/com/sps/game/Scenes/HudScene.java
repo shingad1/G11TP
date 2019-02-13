@@ -67,7 +67,7 @@ public class HudScene  {
         goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
         pause = new Image(new Texture("core/assets/pause.png"));
-        tutorial = new Image(new Texture("core/assets/Tutorial.png"));
+        tutorial = new Image(new Texture("core/assets/tutorial.png"));
 
         player = p;
     }

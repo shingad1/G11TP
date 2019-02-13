@@ -19,7 +19,7 @@ import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.Scenes.Dialogue;
 import com.sps.game.Scenes.HudScene;
-import com.sps.game.Scenes.Tutorial;
+import com.sps.game.Scenes.Story;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
@@ -118,7 +118,7 @@ public abstract class PlayScreen implements Screen
     private com.badlogic.gdx.audio.Music sound;
 
     private Dialogue scene = new Dialogue();
-    private Tutorial tut = new Tutorial();
+    private Story story = new Story();
 
     protected Random random;
 
@@ -314,8 +314,8 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        tut.create();
-        tut.render();
+        story.create();
+        story.render();
     }
 
     @Override

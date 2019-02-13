@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class Tutorial extends ApplicationAdapter implements InputProcessor {
+public class Story extends ApplicationAdapter implements InputProcessor {
 
     private Stage stage;
     private Skin skin;
@@ -33,7 +33,7 @@ public class Tutorial extends ApplicationAdapter implements InputProcessor {
     private SpriteBatch batch;
     private Sprite sprite;
 
-    public Tutorial()
+    public Story()
     {
         counter = 0;
         tutorialTexture = new Texture[13];

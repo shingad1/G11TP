@@ -80,7 +80,7 @@ public class MenuScreen implements Screen {
      */
     private static Texture storyTexture;
     /**
-     * Holds the Tutorial button texture.
+     * Holds the Story button texture.
      */
     private Texture tutorialTexture;
 
@@ -104,7 +104,7 @@ public class MenuScreen implements Screen {
         creditsButton = new Texture(ASSETS_PATH + "CreditsButton.png");
         twitterButton = new Texture(ASSETS_PATH + "twitter.png");
         storyTexture = new Texture(ASSETS_PATH + "story.png");
-        tutorialTexture = new Texture(ASSETS_PATH + "Tutorial.png");
+        tutorialTexture = new Texture(ASSETS_PATH + "Story.png");
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
 
