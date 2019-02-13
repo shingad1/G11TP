@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -298,6 +299,12 @@ public abstract class PlayScreen implements Screen
             }
         }
         p.getAnimation().render();
+        int[] mapLayers = new int[currentMap.getLayers().size() - 1];
+        for (int i = 1; i < currentMap.getLayers().size(); i++)
+            mapLayers[i - 1] = (currentMap.getLayers().getIndex(currentMap.getLayers().get(i)));
+
+        renderer.render(mapLayers);
+
 
         batch.begin();
         if(pause)
@@ -308,10 +315,10 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        scene2dui scene = new scene2dui();
+        //scene2dui scene = new scene2dui();
 
-        scene.create();
-        scene.render();
+        //scene.create();
+        //scene.render();
     }
 
     @Override
