@@ -3,6 +3,7 @@ package com.sps.game.Scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
@@ -50,6 +51,8 @@ public class HudScene  {
      */
     Label goldCountLabel;
 
+    private Image pause, story;
+
     public HudScene(SpriteBatch sb, Player p){
         gold = 100;
         //Instantiating the viewport
@@ -61,7 +64,8 @@ public class HudScene  {
         //Instantiating the goldCountLabel label with the BitmapFont font and the colour white
         goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-
+        pause = new Image(new Texture("core/assets/pause.png"));
+        story = new Image(new Texture("core/assets/story.png"));
 
         player = p;
     }
@@ -85,11 +89,13 @@ public class HudScene  {
         table.setFillParent(true);
         //Adding the goldLabel label to the table with a padding of 10px from the top and left
         table.add(goldLabel).padTop(10).padLeft(10);
-        //Going to a new row
-        table.row();
+        /*//Going to a new row
+        table.row();*/
         //Adding the goldCountLabel label to the table with padding of 10px from the left
         table.add(goldCountLabel).padLeft(10);
         //putting the table on the stage so that it can be drawn
+        table.add(pause).size(50,50).padLeft(20);
+        table.add(story).size(50,50).padLeft(20);
         stage.addActor(table);
     }
 }

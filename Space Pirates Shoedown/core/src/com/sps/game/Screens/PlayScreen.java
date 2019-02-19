@@ -15,8 +15,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.NPCController;
-import com.sps.game.Controller.PlayerController;
+import com.sps.game.Controller.*;
+import com.sps.game.Scenes.Dialogue;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
@@ -115,6 +115,10 @@ public abstract class PlayScreen implements Screen
 
     private com.badlogic.gdx.audio.Music sound;
 
+    private Dialogue scene = new Dialogue();
+    private StoryController storyController = new StoryController();
+    private TutorialController1 tutorialController = new TutorialController1();
+
     protected Random random;
 
     public PlayScreen(SpacePiratesShoedown game){
@@ -206,6 +210,7 @@ public abstract class PlayScreen implements Screen
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
             currentMapState = "HouseFight";
         }
+
         /**
         if(controller.getNewWorld()){ //change: if they press a button on the edge of a map
             //dispose
@@ -298,6 +303,12 @@ public abstract class PlayScreen implements Screen
             }
         }
         p.getAnimation().render();
+        int[] mapLayers = new int[currentMap.getLayers().size() - 1];
+        for (int i = 1; i < currentMap.getLayers().size(); i++)
+            mapLayers[i - 1] = (currentMap.getLayers().getIndex(currentMap.getLayers().get(i)));
+
+        renderer.render(mapLayers);
+
 
         batch.begin();
         if(pause)
@@ -308,10 +319,8 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        scene2dui scene = new scene2dui();
-
-        scene.create();
-        scene.render();
+        tutorialController.create();
+        tutorialController.render();
     }
 
     @Override
