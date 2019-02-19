@@ -1,6 +1,5 @@
 package com.sps.game.Screens;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -8,6 +7,7 @@ import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
+import com.sps.game.maps.Map;
 
 import java.util.ArrayList;
 import java.util.Random;

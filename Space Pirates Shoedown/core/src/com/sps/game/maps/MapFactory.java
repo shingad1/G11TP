@@ -1,4 +1,4 @@
-package com.sps.game.Screens;
+package com.sps.game.maps;
 
 import java.util.Hashtable;
 
@@ -20,10 +20,24 @@ public class MapFactory {
             case HomeWorldMap1:
                 map = mapTable.get(MapType.HomeWorldMap1);
                 if(map == null){
-                   // map = new
+                   map = new HomeWorldMap();
+                   mapTable.put(MapType.HomeWorldMap1, map);
                 }
+                break;
+            case HomeWorldMap2:
+                map = mapTable.get(MapType.HomeWorldMap2);
+                if(map == null){
+                    map = new HomeWorldMap2();
+                    mapTable.put(MapType.HomeWorldMap2, map);
+                }
+                break;
+            default:
+                    break;
         }
-        return null;
+        return map;
     }
 
+    public static void clearCache(){
+        mapTable.clear();
+    }
 }
