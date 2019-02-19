@@ -1,6 +1,9 @@
 package com.sps.game.maps;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.sps.game.Sprites.AbstractNPC;
@@ -15,6 +18,8 @@ public class MapManager implements ProfileObserver {
     private Camera camera;
 
     private boolean mapChanged = false;
+
+    private Map map;
 
     private Player player;
 
@@ -45,9 +50,63 @@ public class MapManager implements ProfileObserver {
                 break;
 
             case SAVING_PROFILE:
-                if(currentMap != null){
-                    profileManager.setProperty("currentMapType"), currentMap.;
+                if(map != null){
+                    profileManager.setProperty("currentMapType", map.currentMapType.toString());
                 }
+                profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
+                profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
+                break;
+            default:
+                break;
         }
+    }
+
+    public void loadMap(MapFactory.MapType mapType){
+        Map temp = MapFactory.getMap(mapType);
+        if(map == null){
+            Gdx.app.debug(TAG, "Map does not exist");
+            return;
+        }
+
+        //methods to load music
+        map = temp;
+        mapChanged = true;
+        //clear map method
+        Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
+    }
+
+    public MapLayer getCollisionLayer(){
+        return map.getCollisionLayer();
+    }
+
+    public MapFactory.MapType getCurrentMapType(){
+        return map.getCurrentMapType();
+    }
+
+    public TiledMap getCurrentTiledMap(){
+        if(map == null){
+            loadMap(MapFactory.MapType.HomeWorldMap1); //default
+        }
+        return map.getCurrentMap();
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+
+    public void setCamera(Camera camera){
+        this.camera = camera;
+    }
+
+    public Camera getCamera(){
+        return camera;
+    }
+
+    public boolean hasMapChanged(){
+        return mapChanged;
+    }
+
+    public void setMapChanged(boolean hasMapChanged){
+        this.mapChanged = hasMapChanged;
     }
 }
