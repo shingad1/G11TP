@@ -100,6 +100,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         closeFile();*/
 
         fileStuff(npcName);
+        //textArea.text(dialogue[counter]);
     }
 
     @Override
@@ -166,8 +167,8 @@ public class DialogueController extends ApplicationAdapter implements InputProce
                 dialogue[1] = second;
                 dialogue[2] = third;
             }
-            textArea.text(dialogue[counter]);
         }
+        textArea.text(dialogue[counter]);
     }
 
     private void clickFunction(){

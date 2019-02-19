@@ -322,7 +322,6 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-
         if(dialogBoolean)
         {
             try {
