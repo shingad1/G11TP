@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Animation.npcAnimation;
+import com.sps.game.maps.MapFactory;
 
 import java.util.Random;
 
@@ -36,13 +37,13 @@ public class InteractiveNPC extends AbstractNPC{
 
     private npcAnimation animation;
 
-    private String world;
+    private MapFactory.MapType world;
     /**
      * Holds the name of the InteractiveNPC
      */
     private String name;
 
-    public InteractiveNPC(int x, int y,String world, SpriteBatch sb, String name){
+    public InteractiveNPC(int x, int y,MapFactory.MapType world, SpriteBatch sb, String name){
         this.x = x;
         this.y = y;
         location = new Location(x,y);
@@ -53,7 +54,7 @@ public class InteractiveNPC extends AbstractNPC{
 
     public npcAnimation getAnimation(){return animation;}
 
-    public String getWorld(){return world;}
+    public MapFactory.MapType getWorld(){return world;}
 
     @Override
     public int getX() {

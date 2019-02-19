@@ -20,6 +20,7 @@ import com.sps.game.Scenes.Dialogue;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
+import com.sps.game.maps.MapFactory;
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
 
 import java.util.ArrayList;
@@ -98,7 +99,7 @@ public abstract class PlayScreen implements Screen
      */
     protected TiledMapTileLayer currentCollisionLayer;
 
-    protected String currentMapState;
+    protected MapFactory.MapType currentMapState;
 
     protected ArrayList<NPCController> npcController;
 
@@ -191,7 +192,7 @@ public abstract class PlayScreen implements Screen
             int[] xbounds = {32,320};
             int[] ybounds = {32,320};
             controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
-            currentMapState = "House";
+            //currentMapState = "House";
         }
         if(controller.getLeave()){
             dispose();
@@ -204,11 +205,11 @@ public abstract class PlayScreen implements Screen
             int[] xbounds = {0, 1600};
             int[] ybounds = {0,1600};
             controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
-            currentMapState = "Overworld";
+            //currentMapState = "Overworld";
         }
         if(controller.getFight()){
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
-            currentMapState = "HouseFight";
+            //currentMapState = "HouseFight";
         }
 
         /**
@@ -229,11 +230,11 @@ public abstract class PlayScreen implements Screen
             //dispose
             controller.reset();
             ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
-            npcList.add(new NonInteractiveNPC(1088,512,"Overworld", batch, ""));
+            npcList.add(new NonInteractiveNPC(1088,512,MapFactory.MapType.HomeWorldMap1, batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
             npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
            // game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
-            currentMapState = "CandyLand";
+           // currentMapState = "CandyLand";
         }
     }
 
@@ -361,7 +362,7 @@ public abstract class PlayScreen implements Screen
         enemyTile.getProperties().remove("basicEnemy");
         enemyTile.getProperties().remove("blocked");
         enemyTile.getProperties().put("invisible","true");
-        currentMapState = "House";
+       // currentMapState = "House";
         game.setScreen(this);
     }
 
@@ -371,9 +372,9 @@ public abstract class PlayScreen implements Screen
 
     public abstract ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving();
 
-    public abstract boolean checkPosition(Location location, String world);
+    public abstract boolean checkPosition(Location location, MapFactory.MapType world);
 
-    public abstract ArrayList<AbstractNPC> getMapNPC(String world);
+    public abstract ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map);
 
     public abstract void changeMaps();
 }

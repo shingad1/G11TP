@@ -75,7 +75,7 @@ public final class Utility {
         if(filePathResolver.resolve(mapFileNamePath).exists()){
             ASSET_MANAGER.setLoader(TiledMap.class, new TideMapLoader(filePathResolver));
             ASSET_MANAGER.load(mapFileNamePath, TiledMap.class);
-            ASSET_MANAGER.finishLoadingAsset(mapFileNamePath);
+            //ASSET_MANAGER.finishLoadingAsset(mapFileNamePath);
             Gdx.app.debug(TAG, "Map loaded: " + mapFileNamePath);
         } else {
             Gdx.app.debug(TAG, "Map does not exist: " + mapFileNamePath);

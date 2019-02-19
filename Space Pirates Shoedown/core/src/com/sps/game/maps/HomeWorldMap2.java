@@ -7,7 +7,7 @@ public class HomeWorldMap2 extends Map {
      */
     private static String mapPath = ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx";
 
-    HomeWorldMap2() {
+    public HomeWorldMap2() {
         super(MapFactory.MapType.HomeWorldMap2, mapPath);
     }
 

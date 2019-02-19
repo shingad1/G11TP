@@ -3,12 +3,13 @@ package com.sps.game.maps;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.sps.game.Utility;
 
-public abstract class Map{
+public class Map{//was abstract
 
     private static final String TAG = Map.class.getSimpleName();
 
@@ -24,17 +25,17 @@ public abstract class Map{
     protected Vector2 playerPosition;
     //protected Vector2 convertedUnits;
 
-    protected TiledMap currentMap = null;
+    protected TiledMap currentMap;
 
     protected Array<Vector2> npcPositions;
 
-    protected MapLayer collisionLayer = null;
+    protected TiledMapTileLayer collisionLayer = null;
 
     protected MapFactory.MapType currentMapType;
 
     //protected Array<AbstractNPC> npcs;
 
-    Map(MapFactory.MapType mapType, String fullMapPath){
+    public Map(MapFactory.MapType mapType, String fullMapPath){
         json = new Json();
         playerPosition = new Vector2(0,0);
         currentMapType = mapType;
@@ -51,7 +52,7 @@ public abstract class Map{
             return;
         }
 
-        collisionLayer = currentMap.getLayers().get(1);
+        collisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1);
         if(collisionLayer == null){
             Gdx.app.debug(TAG, "No collision layer");
         }
@@ -71,7 +72,7 @@ public abstract class Map{
         playerPosition = position;
     }
 
-    public MapLayer getCollisionLayer() {
+    public TiledMapTileLayer getCollisionLayer() {
         return collisionLayer;
     }
 
