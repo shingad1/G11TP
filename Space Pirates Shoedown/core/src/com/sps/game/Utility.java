@@ -18,7 +18,7 @@ public final class Utility {
     public static final AssetManager ASSET_MANAGER = new AssetManager();
 
     private static final String TAG = Utility.class.getSimpleName();
-    private final static String UISKIN_PATH = "core/assets/Skins/uiskin.json"
+    private final static String UISKIN_PATH = "core/assets/Skins/uiskin.json";
 
     private static InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
 
@@ -118,6 +118,11 @@ public final class Utility {
         }
     }
 
+    /**
+     * Returns the skin asset loaded
+     * @param skinFileNamePath
+     * @return Returns a skin
+     */
 
     public static Skin loadSkinAsset(String skinFileNamePath) {
         Skin skin = null;
@@ -129,7 +134,6 @@ public final class Utility {
         }
         return skin;
     }
-
 
 
     /**
