@@ -122,6 +122,7 @@ public class StoryController extends ApplicationAdapter implements InputProcesso
         {
             counter ++;
             sprite = new Sprite((tutorialTexture[counter]));
+
         }
         buttonLogged = "";
     }

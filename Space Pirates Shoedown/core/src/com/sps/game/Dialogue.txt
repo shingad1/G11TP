@@ -1,0 +1,4 @@
+FirstNPC;All of my family’s right shoe have been stolen;All my shoes are gone;Help my right foot is cold and moist
+SecondNPC;Quick!;Help me!;A monster in my house
+Enemy;No  don't kill meh, I’ll tell you everything;I've been ordered to come to your planet to take all yarr right shoes because space is cold and my daughter, my poor wee one was cold and i love her and i want her to be safe.;I had to turn to the pirates
+Linda;OMG thank you;I have my house back;I think there’s more on that spaceship that landed or whatever. Have fun dude!
