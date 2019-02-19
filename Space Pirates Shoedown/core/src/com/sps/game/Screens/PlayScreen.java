@@ -319,8 +319,8 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        tutorialController.create();
-        tutorialController.render();
+       // tutorialController.create();
+       // tutorialController.render();
     }
 
     @Override
