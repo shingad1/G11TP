@@ -7,20 +7,23 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TideMapLoader;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+
 
 public final class Utility {
 
     /**
-     * Manafes the loading and storing of assets
+     * Manages the loading and storing of assets
      */
     public static final AssetManager ASSET_MANAGER = new AssetManager();
 
     private static final String TAG = Utility.class.getSimpleName();
+    private final static String UISKIN_PATH = "core/assets/Skins/uiskin.json"
 
     private static InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
 
     /**
-     * Checks to see if the assest it loaded, if it is it will unload it otherwise it will throw an error
+     * Checks to see if the assets it loaded, if it is it will unload it otherwise it will throw an error
      * @param assetFileNamePath
      */
     public static void unloadAsset(String assetFileNamePath){
@@ -82,6 +85,7 @@ public final class Utility {
         }
     }
 
+
     /**
      * Returns the map that has been loaded
      * @param mapFileNamePath
@@ -113,6 +117,20 @@ public final class Utility {
             Gdx.app.debug(TAG, "Texture does not exist " + textureFileNamePath);
         }
     }
+
+
+    public static Skin loadSkinAsset(String skinFileNamePath) {
+        Skin skin = null;
+
+        if (ASSET_MANAGER.isLoaded(skinFileNamePath)) {
+            skin = ASSET_MANAGER.get(skinFileNamePath, Skin.class);
+        } else {
+            Gdx.app.debug(TAG, "Skin is not loaded: " + skinFileNamePath);
+        }
+        return skin;
+    }
+
+
 
     /**
      * Returns the texture asset loaded
