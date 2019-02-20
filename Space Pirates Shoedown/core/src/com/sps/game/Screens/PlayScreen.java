@@ -115,8 +115,6 @@ public abstract class PlayScreen implements Screen
 
     private static Texture pauseTexture;
 
-    private static Texture saveTexture;
-
     private Stack<TiledMap> maps;
 
     protected String overworldMap;
@@ -143,7 +141,6 @@ public abstract class PlayScreen implements Screen
         hud = new HudScene(game.batch,p);
         maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
-        saveTexture = new Texture("core/assets/Buttons/SaveButton.png");
         pause = false;
         music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
         music.setLooping(true);
@@ -332,7 +329,6 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
-        batch.draw(saveTexture, 250, 250);
 
         //tutorialController.create();
         //tutorialController.render();
@@ -408,9 +404,4 @@ public abstract class PlayScreen implements Screen
     public abstract ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map);
 
     public abstract void changeMaps();
-
-    public void saveGame(){
-        ProfileManager.getInstance().saveProfile();
-        System.out.println("Game Saved");
-    }
 }
