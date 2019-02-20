@@ -279,13 +279,13 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
                 String topItemName = inventorySlot.getTopInventoryItem().getName();
                 if( topItemName.equalsIgnoreCase(filterOutName)) continue;
                 //System.out.println("[i] " + i + " itemtype: " + inventorySlot.getTopInventoryItem().getItemTypeID().toString() + " numItems " + numItems);
-                items.add(new InventoryItemLocation(
+                /*items.add(new InventoryItemLocation(
                         i,
                         inventorySlot.getTopInventoryItem().getItemTypeID().toString(),
                         numItems,
                         inventorySlot.getTopInventoryItem().getName()));
             }
-        }
+        }*/
         return items;
     }
 

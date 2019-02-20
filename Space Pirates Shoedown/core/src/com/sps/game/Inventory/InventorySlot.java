@@ -18,14 +18,25 @@ public class InventorySlot extends Stack {
 
     public  InventorySlot(int filterItemType, Image customBackgroundDecal)
     {
+        _numItemsVal = 0;
+        this._filterItemType = filterItemType;
     }
 
-    public static void swapSlots(InventorySlot sourceSlot, InventorySlot targetSlot, InventoryItem sourceActor) {
+    public static void swapSlots(InventorySlot sourceSlot, InventorySlot targetSlot, InventoryItem sourceActor)
+    {
+
     }
 
-    public void decrementItemCount(){}
+    public void decrementItemCount()
+    {
+        _numItemsVal -= _numItemsVal;
+    }
 
-    public void incrementItemCount(){}
+    public void incrementItemCount()
+    {
+        _numItemsVal += _numItemsVal;
+
+    }
 
     public void add(Actor actor){}
 
@@ -36,7 +47,7 @@ public class InventorySlot extends Stack {
     }
 
     public int getNumItems() {
-        return 0;
+        return _numItemsVal;
     }
 
     public InventoryItem getTopInventoryItem() {
@@ -44,9 +55,11 @@ public class InventorySlot extends Stack {
     }
 
     public void clearAllInventoryItems() {
+        _numItemsVal = 0;
     }
 
     public boolean hasItem() {
+        //if(){}
         return false;
     }
 

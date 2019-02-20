@@ -1,8 +1,14 @@
 package com.sps.game.Inventory;
 
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
+import com.sps.game.Utility;
+
+import javax.swing.*;
+import java.awt.*;
 
 public enum ItemUseType {
     ITEM_RESTORE_HEALTH(1),
@@ -16,7 +22,10 @@ public enum ItemUseType {
     ARMOR_HELMET(256),
     ARMOR_CHEST(512),
     ARMOR_FEET(1024);
-    private int _itemUseType;
+    int _itemUseType;
+    Component _playerSlotsTable;
+    Table _equipSlots;
+    JPopupMenu playerSlotsTable;
 
     ItemUseType(int itemUseType) {
         this._itemUseType = itemUseType;
@@ -47,5 +56,30 @@ public enum ItemUseType {
             }
         }
         return items;
+    }
+
+    public void createTable()
+    {
+        _playerSlotsTable.setBackground(new Image(
+                new NinePatch(Utility.STATUSUI_TEXTUREATLAS.createPatch(
+                        "dialog"))).
+
+                getDrawable());
+
+        _equipSlots.add();
+        _equipSlots.add(headSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.row();
+        _equipSlots.add(leftArmSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.add(chestSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.add(rightArmSlot).size(
+                        _slotWidth, _slotHeight);
+        _equipSlots.row();
+        _equipSlots.add();
+        _equipSlots.right().add(legsSlot).size(_slotWidth, _slotHeight);
+
+        playerSlotsTable.add((Action) _equipSlots);
+        playerSlotsTable.add(_playerSlotsTable).padBottom(20).row();
+        playerSlotsTable.add(_inventorySlotTable).row();
+        playerSlotsTable.pack();
     }
 }

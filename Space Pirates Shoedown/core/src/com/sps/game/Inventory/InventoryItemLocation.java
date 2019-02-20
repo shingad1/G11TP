@@ -14,4 +14,7 @@ public enum InventoryItemLocation {
     public int getNumberItemsAtLocation() {
         return  0;
     }
+
+    public void setLocationIndex(int i) {
+    }
 }
