@@ -1,4 +1,4 @@
-package com.sps.game.Scenes;
+package com.sps.game.Controller;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -15,11 +15,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class Dialogue extends ApplicationAdapter implements InputProcessor
-{
-    private Stage stage;
-    private Skin skin;
+import java.io.*;
 
+public class DialogueController extends ApplicationAdapter implements InputProcessor
+{
     private SpriteBatch batch;
     private Sprite sprite;
 
@@ -31,25 +30,24 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
 
     private String buttonLogged = "";
 
-    public Dialogue()
+    public Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+    public Stage stage = new Stage(new ScreenViewport());
+
+    final Dialog textArea = new Dialog("Dialogues", skin);
+
+    public DialogueController()
     {
         counter = 0;
         dialogue = new String[3];
 
-        dialogue[0] = "hi";
-        dialogue[1] = "whats up";
-        dialogue[2] = "bye";
+        dialogue[0] = "";
+        dialogue[1] = "";
+        dialogue[2] = "";
 
-        skin = new Skin(Gdx.files.internal("uiskin.json"));
-        stage = new Stage(new ScreenViewport());
+        textArea.text(dialogue[counter]);
     }
 
-    @Override
-    public void create()
-    {
-        final Dialog textArea = new Dialog("Dialogues", skin, "default");
-        textArea.text(dialogue[counter]);
-
+    public void create(String npcName) throws IOException {
         table = new Table();
         table.setWidth(stage.getWidth());
         table.setHeight(stage.getHeight()/2);
@@ -66,7 +64,7 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("previous button", "confirm previous");
                 buttonLogged = "previous";
-                clickFunction(textArea);
+                clickFunction();
                 event.stop();
             }
         });
@@ -76,7 +74,7 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("Next button", "confirm next");
                 buttonLogged = "next";
-                clickFunction(textArea);
+                clickFunction();
                 event.stop();
             }
         });
@@ -95,6 +93,13 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);
+
+        /*openFile();
+        readFile(npcName);
+        closeFile();*/
+
+        readingFile(npcName);
+        //textArea.text(dialogue[counter]);
     }
 
     @Override
@@ -106,6 +111,89 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
         batch.end();
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+    }
+
+    /*public void openFile()
+    {
+        try{
+            scanner = new Scanner(new File("core/src/com/sps/game/Dialogue.txt"));
+        }catch (Exception e){
+            System.out.println("Could not find file :(");
+        }
+    }
+
+    public void readFile(String npcName)
+    {
+        while(scanner.hasNext())
+        {
+            String name = scanner.next();
+            String first = scanner.next();
+            String second = scanner.next();
+            String third = scanner.next();
+
+            if(npcName.equals(name))
+            {
+                dialogue[0] = first;
+                dialogue[1] = second;
+                dialogue[2] = third;
+            }
+        }
+        textArea.text(dialogue[counter]);
+    }
+
+    public void closeFile()
+    {
+        scanner.close();
+    }*/
+
+    private void readingFile(String npcName) throws IOException
+    {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader( "core/src/com/sps/game/Dialogue.txt"));
+
+        String line;
+        while((line = bufferedReader.readLine()) != null)
+        {
+            String temp[] = line.split("\\;");
+
+            String name = temp[0];
+            String first = temp[1];
+            String second = temp[2];
+            String third = temp[3];
+            //String aBoolean = temp[4];
+
+            if(npcName.equals(name))
+            {
+                //if(aBoolean.equals("false")) {
+                    dialogue[0] = first;
+                    dialogue[1] = second;
+                    dialogue[2] = third;
+
+                    /*String tempFile = "temp.txt";
+                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tempFile, true));
+                    PrintWriter printWriter = new PrintWriter(bufferedWriter);
+
+                    printWriter.println(dialogue[0] + ";" + dialogue[1] + ";" + dialogue[2] + ";" + "true");
+                    tempFile.renameTo();
+                }*/
+            }
+        }
+        bufferedReader.close();
+        textArea.text(dialogue[counter]);
+    }
+
+    private void clickFunction(){
+        if (buttonLogged.equals("previous") && counter > 0)
+        {
+            counter --;
+            textArea.text(dialogue[counter]);
+        }
+
+        if (buttonLogged.equals("next") && counter < dialogue.length - 1)
+        {
+            counter ++;
+            textArea.text(dialogue[counter]);
+        }
+        buttonLogged = "";
     }
 
     @Override
@@ -147,20 +235,5 @@ public class Dialogue extends ApplicationAdapter implements InputProcessor
     @Override
     public boolean scrolled(int amount) {
         return false;
-    }
-
-    private void clickFunction(Dialog textAread){
-        if (buttonLogged.equals("previous") && counter > 0)
-        {
-            counter --;
-            textAread.text(dialogue[counter]);
-        }
-
-        if (buttonLogged.equals("next") && counter < dialogue.length - 1)
-        {
-            counter ++;
-            textAread.text(dialogue[counter]);
-        }
-        buttonLogged = "";
     }
 }

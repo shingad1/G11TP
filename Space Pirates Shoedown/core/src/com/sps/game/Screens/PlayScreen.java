@@ -19,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.*;
-import com.sps.game.Scenes.Dialogue;
+import com.sps.game.Controller.DialogueController;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
@@ -28,6 +28,7 @@ import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
@@ -121,11 +122,13 @@ public abstract class PlayScreen implements Screen
 
     private com.badlogic.gdx.audio.Music sound;
 
-    private Dialogue scene = new Dialogue();
+    private DialogueController dialogController = new DialogueController();
     private StoryController storyController = new StoryController();
     private TutorialController1 tutorialController = new TutorialController1();
 
     protected Random random;
+
+    private boolean dialogBoolean = true;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -328,6 +331,19 @@ public abstract class PlayScreen implements Screen
 
         //tutorialController.create();
         //tutorialController.render();
+
+        if(dialogBoolean)
+        {
+            try {
+                dialogController.create("Linda");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            dialogController.render();
+        }
+        dialogController.render();
+        dialogBoolean = false;
+
     }
 
     @Override

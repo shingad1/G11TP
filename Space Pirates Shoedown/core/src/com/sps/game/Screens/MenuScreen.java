@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.StoryController1;
-import com.sps.game.Controller.TutorialController;
 import com.sps.game.SpacePiratesShoedown;
 
 import java.io.IOException;
