@@ -14,9 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import java.io.*;
 
 public class DialogueController extends ApplicationAdapter implements InputProcessor
 {
@@ -149,7 +149,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
 
     private void readingFile(String npcName) throws IOException
     {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("core/src/com/sps/game/Dialogue.txt"));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader( "core/src/com/sps/game/Dialogue.txt"));
 
         String line;
         while((line = bufferedReader.readLine()) != null)
@@ -160,14 +160,25 @@ public class DialogueController extends ApplicationAdapter implements InputProce
             String first = temp[1];
             String second = temp[2];
             String third = temp[3];
+            //String aBoolean = temp[4];
 
             if(npcName.equals(name))
             {
-                dialogue[0] = first;
-                dialogue[1] = second;
-                dialogue[2] = third;
+                //if(aBoolean.equals("false")) {
+                    dialogue[0] = first;
+                    dialogue[1] = second;
+                    dialogue[2] = third;
+
+                    /*String tempFile = "temp.txt";
+                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tempFile, true));
+                    PrintWriter printWriter = new PrintWriter(bufferedWriter);
+
+                    printWriter.println(dialogue[0] + ";" + dialogue[1] + ";" + dialogue[2] + ";" + "true");
+                    tempFile.renameTo();
+                }*/
             }
         }
+        bufferedReader.close();
         textArea.text(dialogue[counter]);
     }
 

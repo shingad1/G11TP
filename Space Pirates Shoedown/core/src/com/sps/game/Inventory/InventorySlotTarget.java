@@ -1,4 +1,3 @@
-/*
 package com.sps.game.Inventory;
 
 public class InventorySlotTarget extends Target {
@@ -65,4 +64,3 @@ public class InventorySlotTarget extends Target {
         }
     }
 }
-*/

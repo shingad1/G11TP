@@ -1,4 +1,3 @@
-/*
 package com.sps.game.Inventory;
 
 import com.badlogic.gdx.Gdx;
@@ -43,4 +42,3 @@ public class InventoryItemFactory {
         return item;
     }
 }
-*/

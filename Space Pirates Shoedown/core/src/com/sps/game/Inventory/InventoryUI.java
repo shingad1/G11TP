@@ -1,4 +1,3 @@
-/*
 package com.sps.game.Inventory;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -97,4 +96,3 @@ public class InventoryUI extends Window {
         return _inventoryActors;
     }
 }
-*/

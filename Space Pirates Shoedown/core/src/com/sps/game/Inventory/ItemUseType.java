@@ -1,4 +1,3 @@
-/*
 package com.sps.game.Inventory;
 
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -104,4 +103,3 @@ public enum ItemUseType {
         return items;
     }
 }
-*/

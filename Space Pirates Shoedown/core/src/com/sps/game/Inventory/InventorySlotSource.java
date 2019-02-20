@@ -1,4 +1,3 @@
-/*
 package com.sps.game.Inventory;
 
 public class InventorySlotSource extends Source
@@ -22,4 +21,3 @@ public class InventorySlotSource extends Source
         }
     }
 }
-*/
