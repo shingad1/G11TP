@@ -4,6 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 
+import java.awt.image.renderable.ParameterBlock;
+
 public class InventorySlotSource extends DragAndDrop.Source
 {
     private InventorySlot _sourceSlot;
@@ -11,6 +13,10 @@ public class InventorySlotSource extends DragAndDrop.Source
 
     public InventorySlotSource(Actor actor) {
         super(actor);
+    }
+
+    public InventorySlotSource(InventorySlot inventorySlot, ParameterBlock dragAndDrop) {
+        super();
     }
 
     @Override
@@ -29,5 +35,9 @@ public class InventorySlotSource extends DragAndDrop.Source
         if( target == null ){
             _sourceSlot.add(payload.getDragActor());
         }
+    }
+
+    public InventorySlot getSourceSlot() {
+        return null;
     }
 }

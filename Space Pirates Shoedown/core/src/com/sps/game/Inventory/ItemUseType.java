@@ -1,6 +1,5 @@
 package com.sps.game.Inventory;
 
-import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
@@ -44,9 +43,7 @@ public enum ItemUseType {
             if( inventorySlot == null ) continue;
             int numItems = inventorySlot.getNumItems();
             if( numItems > 0 ){
-                items.add(new InventoryItemLocation(i,
-                        inventorySlot.getTopInventoryItem(
-                        ).getItemTypeID().toString(), numItems));
+                items.add(new InventoryItemLocation(i,inventorySlot.getTopInventoryItem().getItemTypeID().toString(), numItems));
             }
         }
         return items;

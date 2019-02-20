@@ -20,19 +20,37 @@ public class InventorySlot extends Stack {
     {
     }
 
-    public void decrementItemCount();
+    public static void swapSlots(InventorySlot sourceSlot, InventorySlot targetSlot, InventoryItem sourceActor) {
+    }
 
-    public void incrementItemCount();
+    public void decrementItemCount(){}
 
-    public void add(Actor actor);
+    public void incrementItemCount(){}
 
-    public void add(Array array);
+    public void add(Actor actor){}
+
+    public void add(Array array){}
 
     public Array AllInventoryItems() {
         return null;
     }
 
     public int getNumItems() {
+        return 0;
+    }
+
+    public InventoryItem getTopInventoryItem() {
         return null;
+    }
+
+    public void clearAllInventoryItems() {
+    }
+
+    public boolean hasItem() {
+        return false;
+    }
+
+    public boolean doesAcceptItemUseType(int itemUseType) {
+        return false;
     }
 }

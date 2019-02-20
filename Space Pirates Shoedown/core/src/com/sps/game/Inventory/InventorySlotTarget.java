@@ -1,5 +1,6 @@
 package com.sps.game.Inventory;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
@@ -9,7 +10,13 @@ import java.awt.image.renderable.ParameterBlock;
 
 public class InventorySlotTarget extends DragAndDrop.Target {
 
-    private ParameterBlock _dragAndDrop;
+    ParameterBlock _dragAndDrop;
+    InventorySlot _targetSlot;
+
+
+    public InventorySlotTarget(Actor actor) {
+        super(actor);
+    }
 
     @Override
     public boolean drag(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
