@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TideMapLoader;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -19,8 +20,12 @@ public final class Utility {
 
     private static final String TAG = Utility.class.getSimpleName();
     private final static String UISKIN_PATH = "core/assets/Skins/uiskin.json";
-
+    private final static String ITEMS_TEXTURE_ATLAS_PATH = "core/assets/Inventory/items.atlas";
     private static InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
+
+
+    public static TextureAtlas ITEMS_TEXTUREATLAS = new TextureAtlas(ITEMS_TEXTURE_ATLAS_PATH);
+
 
     /**
      * Checks to see if the assets it loaded, if it is it will unload it otherwise it will throw an error
@@ -30,7 +35,7 @@ public final class Utility {
         if(ASSET_MANAGER.isLoaded(assetFileNamePath)){
             ASSET_MANAGER.unload(assetFileNamePath);
         } else{
-            Gdx.app.debug(TAG, "Assest is not loaded; There is nothing to unload " + assetFileNamePath);
+            Gdx.app.debug(TAG, "Assets is not loaded; There is nothing to unload " + assetFileNamePath);
         }
     }
 
