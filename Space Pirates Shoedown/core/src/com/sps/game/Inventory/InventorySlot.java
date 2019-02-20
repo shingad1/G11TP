@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
+import com.sps.game.Utility;
 
 public class InventorySlot extends Stack implements InventorySlotObserver{
 

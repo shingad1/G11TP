@@ -1,3 +1,4 @@
+/*
 package com.sps.game.Inventory;
 
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -11,10 +12,6 @@ import com.badlogic.gdx.utils.Array;
 import com.sps.game.Inventory.InventoryItem.ItemUseType;
 import com.sps.game.Utility;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f78072f8a3d42f35263d55693ce709d0d094497c
 public class InventoryUI extends Window implements InventorySubject, InventorySlotObserver {
 
     private int _numSlots = 50;
@@ -282,13 +279,14 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
                 String topItemName = inventorySlot.getTopInventoryItem().getName();
                 if (topItemName.equalsIgnoreCase(filterOutName)) continue;
                 //System.out.println("[i] " + i + " itemtype: " + inventorySlot.getTopInventoryItem().getItemTypeID().toString() + " numItems " + numItems);
-                /*items.add(new InventoryItemLocation(
+items.add(new InventoryItemLocation(
                         i,
                         inventorySlot.getTopInventoryItem().getItemTypeID().toString(),
                         numItems,
                         inventorySlot.getTopInventoryItem().getName()));
             }
-        }*/
+        }
+
                 return items;
             }
 
@@ -465,9 +463,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
                 for (InventoryObserver observer : _observers) {
                     observer.onNotify(value, event);
                 }
-<<<<<<< HEAD
             }
-=======
                 break;
             default:
                 break;addObserver
@@ -490,8 +486,16 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
             _observers.removeValue(observer, true);
         }
     }
->>>>>>> f78072f8a3d42f35263d55693ce709d0d094497c
 
-        }
+    @Override
+    public void notify(String value, InventoryObserver.InventoryEvent event) {
+
     }
+
+    @Override
+    public void onNotify(InventorySlot slot, SlotEvent event) {
+
+    }
+
 }
+*/

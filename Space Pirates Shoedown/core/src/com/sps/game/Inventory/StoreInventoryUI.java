@@ -114,7 +114,7 @@ public class StoreInventoryUI extends Window implements InventorySlotObserver, S
             }
         }
 
-        for (int i = 1; i <= InventoryUI._numSlots; i++) {
+        for (int i = 1; i <= InventoryUI.numSlots; i++) {
             InventorySlot inventorySlot = new InventorySlot();
             inventorySlot.addListener(new InventorySlotTooltipListener(inventorySlotTooltip));
             inventorySlot.addObserver(this);

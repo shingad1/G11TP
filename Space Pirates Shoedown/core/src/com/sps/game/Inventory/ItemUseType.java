@@ -36,7 +36,7 @@ public enum ItemUseType {
     }
 
     public Table getInventorySlotTable() {
-        return _inventorySlotTable;
+        return inventorySlotTable;
     }
     public Table getEquipSlotTable() {
         return _equipSlots;
@@ -67,15 +67,15 @@ public enum ItemUseType {
                 getDrawable());
 
         _equipSlots.add();
-        _equipSlots.add(headSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.add(headSlot).size(slotWidth, _slotHeight);
         _equipSlots.row();
-        _equipSlots.add(leftArmSlot).size(_slotWidth, _slotHeight);
-        _equipSlots.add(chestSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.add(leftArmSlot).size(slotWidth, _slotHeight);
+        _equipSlots.add(chestSlot).size(slotWidth, _slotHeight);
         _equipSlots.add(rightArmSlot).size(
-                        _slotWidth, _slotHeight);
+                        slotWidth, _slotHeight);
         _equipSlots.row();
         _equipSlots.add();
-        _equipSlots.right().add(legsSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.right().add(legsSlot).size(slotWidth, _slotHeight);
 
         playerSlotsTable.add((Action) _equipSlots);
         playerSlotsTable.add(_playerSlotsTable).padBottom(20).row();
