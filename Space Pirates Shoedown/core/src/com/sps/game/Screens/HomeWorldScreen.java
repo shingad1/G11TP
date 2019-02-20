@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new Map(MapFactory.MapType.HomeWorldMap1, ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"), new Map(MapFactory.MapType.HomeWorldMap2, ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx")},
+    private Map[][] worldMaps = {{new Map(MapFactory.MapType.HomeWorldMap1, ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"), new Map(MapFactory.MapType.HomeWorldMap2, ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx")},
                                  {null, null}};
 
     private Vector2 mapSelector; //selects map from worldMaps
@@ -28,7 +28,7 @@ public class HomeWorldScreen extends PlayScreen {
 
     public HomeWorldScreen(SpacePiratesShoedown game) {
         super(game);
-        overworldMap = "HomeWorld/HomeWorldMap1.tmx";
+        //overworldMap = "HomeWorld/HomeWorldMap1.tmx";
         mapSelector = new Vector2(0,0); //change when moving worlds
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
         currentMap = selectedMap.getCurrentMap();//change when moving worlds
