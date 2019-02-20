@@ -321,7 +321,7 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
-
+/*
         if(dialogBoolean)
         {
             try {
@@ -332,7 +332,7 @@ public abstract class PlayScreen implements Screen
             dialogController.render();
         }
         dialogController.render();
-        dialogBoolean = false;
+        dialogBoolean = false;*/
     }
 
     @Override

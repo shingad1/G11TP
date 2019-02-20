@@ -21,7 +21,7 @@ public class InventorySlotSource extends DragAndDrop.Source
     public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) {
         DragAndDrop.Payload payload = new DragAndDrop.Payload();
         _sourceSlot = (InventorySlot) getActor().getParent();
-        _sourceSlot.decrementItemCount();
+        _sourceSlot.decrementItemCount(true);
         payload.setDragActor(getActor());
         _dragAndDrop.setDragActorPosition(-x, -y + getActor().getHeight());
         return payload;

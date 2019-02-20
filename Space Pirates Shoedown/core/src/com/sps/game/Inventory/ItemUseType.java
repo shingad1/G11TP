@@ -1,3 +1,4 @@
+/*
 package com.sps.game.Inventory;
 
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -7,8 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.sps.game.Utility;
 
-import javax.swing.*;
-import java.awt.*;
 
 public enum ItemUseType {
     ITEM_RESTORE_HEALTH(1),
@@ -21,7 +20,7 @@ public enum ItemUseType {
     ARMOR_SHIELD(128),
     ARMOR_HELMET(256),
     ARMOR_CHEST(512),
-    ARMOR_FEET(1024);
+    ARMOR_FEET(1024),
     int _itemUseType;
     Component _playerSlotsTable;
     Table _equipSlots;
@@ -83,3 +82,4 @@ public enum ItemUseType {
         playerSlotsTable.pack();
     }
 }
+*/
