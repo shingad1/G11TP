@@ -21,11 +21,13 @@ public final class Utility {
     private static final String TAG = Utility.class.getSimpleName();
     private final static String UISKIN_PATH = "core/assets/Skins/uiskin.json";
     private final static String ITEMS_TEXTURE_ATLAS_PATH = "core/assets/Inventory/items.atlas";
+    private final static String STATUSUI_SKIN_PATH = "core/assets/Inventory/statusui.json";
+    private final static String STATUSUI_TEXTURE_ATLAS_PATH = "core/assets/Inventory/statusui.atlas";
     private static InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
 
-
+    public static TextureAtlas STATUSUI_TEXTUREATLAS = new TextureAtlas(STATUSUI_TEXTURE_ATLAS_PATH);
     public static TextureAtlas ITEMS_TEXTUREATLAS = new TextureAtlas(ITEMS_TEXTURE_ATLAS_PATH);
-
+    public static Skin STATUSUI_SKIN = new Skin (Gdx.files.internal(STATUSUI_SKIN_PATH), STATUSUI_TEXTUREATLAS);
 
     /**
      * Checks to see if the assets it loaded, if it is it will unload it otherwise it will throw an error

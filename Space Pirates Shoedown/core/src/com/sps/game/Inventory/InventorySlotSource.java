@@ -11,12 +11,10 @@ public class InventorySlotSource extends DragAndDrop.Source
     private InventorySlot _sourceSlot;
     private DragAndDrop _dragAndDrop;
 
-    public InventorySlotSource(Actor actor) {
-        super(actor);
-    }
-
-    public InventorySlotSource(InventorySlot inventorySlot, ParameterBlock dragAndDrop) {
-        super();
+    public InventorySlotSource(InventorySlot sourceSlot, DragAndDrop dragAndDrop) {
+        super(sourceSlot.getTopInventoryItem());
+        this._sourceSlot= sourceSlot;
+        this._dragAndDrop= dragAndDrop;
     }
 
     @Override
