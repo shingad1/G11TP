@@ -142,8 +142,7 @@ public abstract class PlayScreen implements Screen
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
-
-        TextButton saveButton = new TextButton("Save", new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))));
+        
     }
 
 /*
