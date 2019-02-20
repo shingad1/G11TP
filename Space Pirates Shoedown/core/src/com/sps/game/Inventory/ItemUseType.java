@@ -27,56 +27,6 @@ public enum ItemUseType {
         return _itemUseType;
     }
 
-    _playerSlotsTable.setBackground(new
-
-    Image(
- new NinePatch(Utility.STATUSUI_TEXTUREATLAS.createPatch(
-            "dialog"))).
-
-    getDrawable());
-
-    _equipSlots.add();
- _equipSlots.add(headSlot).
-
-    size(_slotWidth, _slotHeight);
- _equipSlots.row();
- _equipSlots.add(leftArmSlot).
-
-    size(
-            _slotWidth, _slotHeight);
- _equipSlots.add(chestSlot).
-
-    size(_slotWidth, _slotHeight);
- _equipSlots.add(rightArmSlot).
-
-    size(
-            _slotWidth, _slotHeight);
- _equipSlots.row();
- _equipSlots.add();
- _equipSlots.right().
-
-    add(legsSlot).
-
-    size(
-            _slotWidth, _slotHeight);
-
- playerSlotsTable.add(_equipSlots);
- this.
-
-    add(_playerSlotsTable).
-
-    padBottom(20).
-
-    row();
- this.
-
-    add(_inventorySlotTable).
-
-    row();
- this.
-
-    pack();
-
     public Table getInventorySlotTable() {
         return _inventorySlotTable;
     }
@@ -84,8 +34,7 @@ public enum ItemUseType {
         return _equipSlots;
     }
 
-    public Array<InventoryItemLocation> getInventory(Table
-                                                             targetTable){
+    public Array<InventoryItemLocation> getInventory(Table targetTable){
         Array<Cell> cells = targetTable.getCells();
         Array<InventoryItemLocation> items = new
                 Array<InventoryItemLocation>();

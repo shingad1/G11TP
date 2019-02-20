@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.utils.Array;
 
-public abstract class InventorySlot extends Stack {
+public class InventorySlot extends Stack {
 
     private Label _numItemsLabel;
     private int _numItemsVal, _filterItemType;
@@ -20,13 +20,19 @@ public abstract class InventorySlot extends Stack {
     {
     }
 
-    public abstract void decrementItemCount();
+    public void decrementItemCount();
 
-    public abstract void incrementItemCount();
+    public void incrementItemCount();
 
-    public abstract void add(Actor actor);
+    public void add(Actor actor);
 
-    public abstract void add(Array array);
+    public void add(Array array);
 
-    public abstract Array AllInventoryItems();
+    public Array AllInventoryItems() {
+        return null;
+    }
+
+    public int getNumItems() {
+        return null;
+    }
 }

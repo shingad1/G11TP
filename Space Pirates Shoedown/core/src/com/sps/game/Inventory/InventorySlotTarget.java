@@ -1,8 +1,23 @@
 package com.sps.game.Inventory;
 
-public class InventorySlotTarget extends Target {
+import com.badlogic.gdx.scenes.scene2d.ui.Cell;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
+import com.badlogic.gdx.utils.Array;
+
+import java.awt.image.renderable.ParameterBlock;
+
+public class InventorySlotTarget extends DragAndDrop.Target {
+
+    private ParameterBlock _dragAndDrop;
+
     @Override
-    public void drop(Source source, Payload payload, float x,
+    public boolean drag(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
+        return false;
+    }
+
+    @Override
+    public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x,
                      float y, int pointer) {
         InventoryItem sourceActor = (InventoryItem)
                 payload.getDragActor();
@@ -44,7 +59,7 @@ public class InventorySlotTarget extends Target {
         for(int i = 0; i < inventoryItems.size; i++){
             InventoryItemLocation itemLocation =
                     inventoryItems.get(i);
-            ItemTypeID itemTypeID = ItemTypeID.valueOf(
+            InventoryItem.ItemTypeID itemTypeID = InventoryItem.ItemTypeID.valueOf(
                     itemLocation.getItemTypeAtLocation());
             InventorySlot inventorySlot =
                     ((InventorySlot)cells.get(
@@ -56,7 +71,6 @@ public class InventorySlotTarget extends Target {
                 inventorySlot.add(
                         InventoryItemFactory.getInstance(
                         ).getInventoryItem(itemTypeID));
-
                 _dragAndDrop.addSource(new
                         InventorySlotSource(inventorySlot, _dragAndDrop));
 
