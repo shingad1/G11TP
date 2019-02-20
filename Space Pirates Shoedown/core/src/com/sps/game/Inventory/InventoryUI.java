@@ -11,13 +11,10 @@ import com.badlogic.gdx.utils.Array;
 import com.sps.game.Inventory.InventoryItem.ItemUseType;
 import com.sps.game.Utility;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f78072f8a3d42f35263d55693ce709d0d094497c
-public class InventoryUI extends Window implements InventorySubject, InventorySlotObserver {
+public class InventoryUI extends Window implements InventorySubject, InventorySlotObserver{
 
-    private int _numSlots = 50;
+    public final static int _numSlots = 50;
     public static final String PLAYER_INVENTORY = "Player_Inventory";
     public static final String STORE_INVENTORY = "Store_Inventory";
 
@@ -40,7 +37,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
 
     private InventorySlotTooltip _inventorySlotTooltip;
 
-    public InventoryUI(Frame owner) {
+    public InventoryUI(){
         super("Inventory", Utility.STATUSUI_SKIN, "solidbackground");
 
         _observers = new Array<InventoryObserver>();
@@ -103,17 +100,17 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
                 ItemUseType.ARMOR_FEET.getValue(),
                 new Image(Utility.ITEMS_TEXTUREATLAS.findRegion("inv_boot")));
 
-        headSlot.addObserver(this);
-        leftArmSlot.addObserver(this);
-        rightArmSlot.addObserver(this);
-        chestSlot.addObserver(this);
-        legsSlot.addObserver(this);
-
         headSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
         leftArmSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
         rightArmSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
         chestSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
         legsSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
+
+        headSlot.addObserver(this);
+        leftArmSlot.addObserver(this);
+        rightArmSlot.addObserver(this);
+        chestSlot.addObserver(this);
+        legsSlot.addObserver(this);
 
         _dragAndDrop.addTarget(new InventorySlotTarget(headSlot));
         _dragAndDrop.addTarget(new InventorySlotTarget(leftArmSlot));
@@ -124,7 +121,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
         _playerSlotsTable.setBackground(new Image(new NinePatch(Utility.STATUSUI_TEXTUREATLAS.createPatch("dialog"))).getDrawable());
 
         //layout
-        for (int i = 1; i <= _numSlots; i++) {
+        for(int i = 1; i <= _numSlots; i++){
             InventorySlot inventorySlot = new InventorySlot();
             inventorySlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
             _dragAndDrop.addTarget(new InventorySlotTarget(inventorySlot));
@@ -133,13 +130,13 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
 
             inventorySlot.addListener(new ClickListener() {
                                           @Override
-                                          public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                                          public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                                               super.touchUp(event, x, y, pointer, button);
-                                              if (getTapCount() == 2) {
-                                                  InventorySlot slot = (InventorySlot) event.getListenerActor();
-                                                  if (slot.hasItem()) {
+                                              if( getTapCount() == 2 ){
+                                                  InventorySlot slot = (InventorySlot)event.getListenerActor();
+                                                  if( slot.hasItem() ){
                                                       InventoryItem item = slot.getTopInventoryItem();
-                                                      if (item.isConsumable()) {
+                                                      if( item.isConsumable() ){
                                                           String itemInfo = item.getItemUseType() + Component.MESSAGE_TOKEN + item.getItemUseTypeValue();
                                                           InventoryUI.this.notify(itemInfo, InventoryObserver.InventoryEvent.ITEM_CONSUMED);
                                                           slot.removeActor(item);
@@ -154,7 +151,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
             );
 
 
-            if (i % _lengthSlotRow == 0) {
+            if(i % _lengthSlotRow == 0){
                 _inventorySlotTable.row();
             }
         }
@@ -182,7 +179,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
         this.pack();
     }
 
-    public DragAndDrop getDragAndDrop() {
+    public DragAndDrop getDragAndDrop(){
         return _dragAndDrop;
     }
 
@@ -194,7 +191,7 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
         return _equipSlots;
     }
 
-    public void resetEquipSlots() {
+    public void resetEquipSlots(){
         _DPVal = 0;
         _APVal = 0;
 
@@ -205,62 +202,62 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
         notify(String.valueOf(_APVal), InventoryObserver.InventoryEvent.UPDATED_AP);
     }
 
-    public static void clearInventoryItems(Table targetTable) {
+    public static void clearInventoryItems(Table targetTable){
         Array<Cell> cells = targetTable.getCells();
-        for (int i = 0; i < cells.size; i++) {
-            InventorySlot inventorySlot = (InventorySlot) cells.get(i).getActor();
-            if (inventorySlot == null) continue;
+        for( int i = 0; i < cells.size; i++){
+            InventorySlot inventorySlot = (InventorySlot)cells.get(i).getActor();
+            if( inventorySlot == null ) continue;
             inventorySlot.clearAllInventoryItems(false);
         }
     }
 
-    public static Array<InventoryItemLocation> removeInventoryItems(String name, Table inventoryTable) {
+    public static Array<InventoryItemLocation> removeInventoryItems(String name, Table inventoryTable){
         Array<Cell> cells = inventoryTable.getCells();
         Array<InventoryItemLocation> items = new Array<InventoryItemLocation>();
-        for (int i = 0; i < cells.size; i++) {
-            InventorySlot inventorySlot = ((InventorySlot) cells.get(i).getActor());
-            if (inventorySlot == null) continue;
+        for(int i = 0; i < cells.size; i++){
+            InventorySlot inventorySlot =  ((InventorySlot)cells.get(i).getActor());
+            if( inventorySlot == null ) continue;
             inventorySlot.removeAllInventoryItemsWithName(name);
         }
         return items;
     }
 
-    public static void populateInventory(Table targetTable, Array<InventoryItemLocation> inventoryItems, DragAndDrop draganddrop, String defaultName, boolean disableNonDefaultItems) {
+    public static void populateInventory(Table targetTable, Array<InventoryItemLocation> inventoryItems, DragAndDrop draganddrop, String defaultName, boolean disableNonDefaultItems){
         clearInventoryItems(targetTable);
 
         Array<Cell> cells = targetTable.getCells();
-        for (int i = 0; i < inventoryItems.size; i++) {
+        for(int i = 0; i < inventoryItems.size; i++){
             InventoryItemLocation itemLocation = inventoryItems.get(i);
             InventoryItem.ItemTypeID itemTypeID = InventoryItem.ItemTypeID.valueOf(itemLocation.getItemTypeAtLocation());
-            InventorySlot inventorySlot = ((InventorySlot) cells.get(itemLocation.getLocationIndex()).getActor());
+            InventorySlot inventorySlot =  ((InventorySlot)cells.get(itemLocation.getLocationIndex()).getActor());
 
-            for (int index = 0; index < itemLocation.getNumberItemsAtLocation(); index++) {
+            for( int index = 0; index < itemLocation.getNumberItemsAtLocation(); index++ ){
                 InventoryItem item = InventoryItemFactory.getInstance().getInventoryItem(itemTypeID);
-                String itemName = itemLocation.getItemNameProperty();
-                if (itemName == null || itemName.isEmpty()) {
+                String itemName =  itemLocation.getItemNameProperty();
+                if( itemName == null || itemName.isEmpty() ){
                     item.setName(defaultName);
-                } else {
+                }else{
                     item.setName(itemName);
                 }
 
                 inventorySlot.add(item);
-                if (item.getName().equalsIgnoreCase(defaultName)) {
+                if( item.getName().equalsIgnoreCase(defaultName) ){
                     draganddrop.addSource(new InventorySlotSource(inventorySlot, draganddrop));
-                } else if (disableNonDefaultItems == false) {
+                }else if( disableNonDefaultItems == false ){
                     draganddrop.addSource(new InventorySlotSource(inventorySlot, draganddrop));
                 }
             }
         }
     }
 
-    public static Array<InventoryItemLocation> getInventory(Table targetTable) {
+    public static Array<InventoryItemLocation> getInventory(Table targetTable){
         Array<Cell> cells = targetTable.getCells();
         Array<InventoryItemLocation> items = new Array<InventoryItemLocation>();
-        for (int i = 0; i < cells.size; i++) {
-            InventorySlot inventorySlot = ((InventorySlot) cells.get(i).getActor());
-            if (inventorySlot == null) continue;
+        for(int i = 0; i < cells.size; i++){
+            InventorySlot inventorySlot =  ((InventorySlot)cells.get(i).getActor());
+            if( inventorySlot == null ) continue;
             int numItems = inventorySlot.getNumItems();
-            if (numItems > 0) {
+            if( numItems > 0 ){
                 items.add(new InventoryItemLocation(
                         i,
                         inventorySlot.getTopInventoryItem().getItemTypeID().toString(),
@@ -271,206 +268,178 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
         return items;
     }
 
-    public static Array<InventoryItemLocation> getInventoryFiltered(Table targetTable, String filterOutName) {
+    public static Array<InventoryItemLocation> getInventoryFiltered(Table targetTable, String filterOutName){
         Array<Cell> cells = targetTable.getCells();
         Array<InventoryItemLocation> items = new Array<InventoryItemLocation>();
-        for (int i = 0; i < cells.size; i++) {
-            InventorySlot inventorySlot = ((InventorySlot) cells.get(i).getActor());
-            if (inventorySlot == null) continue;
+        for(int i = 0; i < cells.size; i++){
+            InventorySlot inventorySlot =  ((InventorySlot)cells.get(i).getActor());
+            if( inventorySlot == null ) continue;
             int numItems = inventorySlot.getNumItems();
-            if (numItems > 0) {
+            if( numItems > 0 ){
                 String topItemName = inventorySlot.getTopInventoryItem().getName();
-                if (topItemName.equalsIgnoreCase(filterOutName)) continue;
+                if( topItemName.equalsIgnoreCase(filterOutName)) continue;
                 //System.out.println("[i] " + i + " itemtype: " + inventorySlot.getTopInventoryItem().getItemTypeID().toString() + " numItems " + numItems);
-                /*items.add(new InventoryItemLocation(
+                items.add(new InventoryItemLocation(
                         i,
                         inventorySlot.getTopInventoryItem().getItemTypeID().toString(),
                         numItems,
                         inventorySlot.getTopInventoryItem().getName()));
             }
-        }*/
-                return items;
-            }
+        }
+        return items;
+    }
 
-            public static Array<InventoryItemLocation> getInventory (Table targetTable, String name){
-                Array<Cell> cells = targetTable.getCells();
-                Array<InventoryItemLocation> items = new Array<InventoryItemLocation>();
-                for (int i = 0; i < cells.size; i++) {
-                    InventorySlot inventorySlot = ((InventorySlot) cells.get(i).getActor());
-                    if (inventorySlot == null) continue;
-                    int numItems = inventorySlot.getNumItems(name);
-                    if (numItems > 0) {
-                        //System.out.println("[i] " + i + " itemtype: " + inventorySlot.getTopInventoryItem().getItemTypeID().toString() + " numItems " + numItems);
-                        items.add(new InventoryItemLocation(
-                                i,
-                                inventorySlot.getTopInventoryItem().getItemTypeID().toString(),
-                                numItems,
-                                name));
+    public static Array<InventoryItemLocation> getInventory(Table targetTable, String name){
+        Array<Cell> cells = targetTable.getCells();
+        Array<InventoryItemLocation> items = new Array<InventoryItemLocation>();
+        for(int i = 0; i < cells.size; i++){
+            InventorySlot inventorySlot =  ((InventorySlot)cells.get(i).getActor());
+            if( inventorySlot == null ) continue;
+            int numItems = inventorySlot.getNumItems(name);
+            if( numItems > 0 ){
+                //System.out.println("[i] " + i + " itemtype: " + inventorySlot.getTopInventoryItem().getItemTypeID().toString() + " numItems " + numItems);
+                items.add(new InventoryItemLocation(
+                        i,
+                        inventorySlot.getTopInventoryItem().getItemTypeID().toString(),
+                        numItems,
+                        name));
+            }
+        }
+        return items;
+    }
+
+    public static Array<InventoryItemLocation> getInventoryFiltered(Table sourceTable, Table targetTable, String filterOutName){
+        Array<InventoryItemLocation> items = getInventoryFiltered(targetTable, filterOutName);
+        Array<Cell> sourceCells = sourceTable.getCells();
+        int index = 0;
+        for( InventoryItemLocation item : items ) {
+            for (; index < sourceCells.size; index++) {
+                InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
+                if (inventorySlot == null) continue;
+                int numItems = inventorySlot.getNumItems();
+                if (numItems == 0) {
+                    item.setLocationIndex(index);
+                    //System.out.println("[index] " + index + " itemtype: " + item.getItemTypeAtLocation() + " numItems " + numItems);
+                    index++;
+                    break;
+                }
+            }
+            if( index == sourceCells.size ){
+                //System.out.println("[index] " + index + " itemtype: " + item.getItemTypeAtLocation() + " numItems " + item.getNumberItemsAtLocation());
+                item.setLocationIndex(index-1);
+            }
+        }
+        return items;
+    }
+
+
+    public static void setInventoryItemNames(Table targetTable, String name){
+        Array<Cell> cells = targetTable.getCells();
+        for(int i = 0; i < cells.size; i++){
+            InventorySlot inventorySlot =  ((InventorySlot)cells.get(i).getActor());
+            if( inventorySlot == null ) continue;
+            inventorySlot.updateAllInventoryItemNames(name);
+        }
+    }
+
+    public boolean doesInventoryHaveSpace(){
+        Array<Cell> sourceCells = _inventorySlotTable.getCells();
+        int index = 0;
+
+        for (; index < sourceCells.size; index++) {
+            InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
+            if (inventorySlot == null) continue;
+            int numItems = inventorySlot.getNumItems();
+            if (numItems == 0) {
+                return true;
+            }else{
+                index++;
+            }
+        }
+        return false;
+    }
+
+   //Uses Entity - we possibly do not need ot use this class.
+
+/*
+    public void addEntityToInventory(Entity entity, String itemName){
+        Array<Cell> sourceCells = _inventorySlotTable.getCells();
+        int index = 0;
+
+        for (; index < sourceCells.size; index++) {
+            InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
+            if (inventorySlot == null) continue;
+            int numItems = inventorySlot.getNumItems();
+            if (numItems == 0) {
+                InventoryItem inventoryItem = InventoryItemFactory.getInstance().getInventoryItem(ItemTypeID.valueOf(entity.getEntityConfig().getItemTypeID()));
+                inventoryItem.setName(itemName);
+                inventorySlot.add(inventoryItem);
+                _dragAndDrop.addSource(new InventorySlotSource(inventorySlot, _dragAndDrop));
+                break;
+            }
+        }
+    }
+*/
+    public void removeQuestItemFromInventory(String questID){
+        Array<Cell> sourceCells = _inventorySlotTable.getCells();
+        for (int index = 0; index < sourceCells.size; index++) {
+            InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
+            if (inventorySlot == null) continue;
+            InventoryItem item = inventorySlot.getTopInventoryItem();
+            if( item == null ) continue;
+            String inventoryItemName = item.getName();
+            if (inventoryItemName != null && inventoryItemName.equals(questID) ) {
+                inventorySlot.clearAllInventoryItems(false);
+            }
+        }
+    }
+
+    public Array<Actor> getInventoryActors(){
+        return _inventoryActors;
+    }
+
+    @Override
+    public void onNotify(InventorySlot slot, SlotEvent event) {
+        switch(event)
+        {
+            case ADDED_ITEM:
+                InventoryItem addItem = slot.getTopInventoryItem();
+                if( addItem == null ) return;
+                if( addItem.isInventoryItemOffensive() ){
+                    _APVal += addItem.getItemUseTypeValue();
+                    _APValLabel.setText(String.valueOf(_APVal));
+                    notify(String.valueOf(_APVal), InventoryObserver.InventoryEvent.UPDATED_AP);
+
+                    if( addItem.isInventoryItemOffensiveWand() ){
+                        notify(String.valueOf(addItem.getItemUseTypeValue()), InventoryObserver.InventoryEvent.ADD_WAND_AP);
                     }
-                }
-                return items;
-            }
 
-            public static Array<InventoryItemLocation> getInventoryFiltered (Table sourceTable, Table
-            targetTable, String filterOutName){
-                Array<InventoryItemLocation> items = getInventoryFiltered(targetTable, filterOutName);
-                Array<Cell> sourceCells = sourceTable.getCells();
-                int index = 0;
-                for (InventoryItemLocation item : items) {
-                    for (; index < sourceCells.size; index++) {
-                        InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
-                        if (inventorySlot == null) continue;
-                        int numItems = inventorySlot.getNumItems();
-                        if (numItems == 0) {
-                            item.setLocationIndex(index);
-                            //System.out.println("[index] " + index + " itemtype: " + item.getItemTypeAtLocation() + " numItems " + numItems);
-                            index++;
-                            break;
-                        }
+                }else if( addItem.isInventoryItemDefensive() ){
+                    _DPVal += addItem.getItemUseTypeValue();
+                    _DPValLabel.setText(String.valueOf(_DPVal));
+                    notify(String.valueOf(_DPVal), InventoryObserver.InventoryEvent.UPDATED_DP);
+                }
+                break;
+            case REMOVED_ITEM:
+                InventoryItem removeItem = slot.getTopInventoryItem();
+                if( removeItem == null ) return;
+                if( removeItem.isInventoryItemOffensive() ){
+                    _APVal -= removeItem.getItemUseTypeValue();
+                    _APValLabel.setText(String.valueOf(_APVal));
+                    notify(String.valueOf(_APVal), InventoryObserver.InventoryEvent.UPDATED_AP);
+
+                    if( removeItem.isInventoryItemOffensiveWand() ){
+                        notify(String.valueOf(removeItem.getItemUseTypeValue()), InventoryObserver.InventoryEvent.REMOVE_WAND_AP);
                     }
-                    if (index == sourceCells.size) {
-                        //System.out.println("[index] " + index + " itemtype: " + item.getItemTypeAtLocation() + " numItems " + item.getNumberItemsAtLocation());
-                        item.setLocationIndex(index - 1);
-                    }
+
+                }else if( removeItem.isInventoryItemDefensive() ){
+                    _DPVal -= removeItem.getItemUseTypeValue();
+                    _DPValLabel.setText(String.valueOf(_DPVal));
+                    notify(String.valueOf(_DPVal), InventoryObserver.InventoryEvent.UPDATED_DP);
                 }
-                return items;
-            }
-
-
-            public static void setInventoryItemNames (Table targetTable, String name){
-                Array<Cell> cells = targetTable.getCells();
-                for (int i = 0; i < cells.size; i++) {
-                    InventorySlot inventorySlot = ((InventorySlot) cells.get(i).getActor());
-                    if (inventorySlot == null) continue;
-                    inventorySlot.updateAllInventoryItemNames(name);
-                }
-            }
-
-            public boolean doesInventoryHaveSpace () {
-                Array<Cell> sourceCells = _inventorySlotTable.getCells();
-                int index = 0;
-
-                for (; index < sourceCells.size; index++) {
-                    InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
-                    if (inventorySlot == null) continue;
-                    int numItems = inventorySlot.getNumItems();
-                    if (numItems == 0) {
-                        return true;
-                    } else {
-                        index++;
-                    }
-                }
-                return false;
-            }
-
-            public void addEntityToInventory (Entity entity, String itemName){
-                Array<Cell> sourceCells = _inventorySlotTable.getCells();
-                int index = 0;
-
-                for (; index < sourceCells.size; index++) {
-                    InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
-                    if (inventorySlot == null) continue;
-                    int numItems = inventorySlot.getNumItems();
-                    if (numItems == 0) {
-                        InventoryItem inventoryItem = InventoryItemFactory.getInstance().getInventoryItem(ItemTypeID.valueOf(entity.getEntityConfig().getItemTypeID()));
-                        inventoryItem.setName(itemName);
-                        inventorySlot.add(inventoryItem);
-                        _dragAndDrop.addSource(new InventorySlotSource(inventorySlot, _dragAndDrop));
-                        break;
-                    }
-                }
-            }
-
-            public void removeQuestItemFromInventory (String questID){
-                Array<Cell> sourceCells = _inventorySlotTable.getCells();
-                for (int index = 0; index < sourceCells.size; index++) {
-                    InventorySlot inventorySlot = ((InventorySlot) sourceCells.get(index).getActor());
-                    if (inventorySlot == null) continue;
-                    InventoryItem item = inventorySlot.getTopInventoryItem();
-                    if (item == null) continue;
-                    String inventoryItemName = item.getName();
-                    if (inventoryItemName != null && inventoryItemName.equals(questID)) {
-                        inventorySlot.clearAllInventoryItems(false);
-                    }
-                }
-            }
-
-            public Array<Actor> getInventoryActors () {
-                return _inventoryActors;
-            }
-
-            @Override
-            public void onNotify (InventorySlot slot, SlotEvent event){
-                switch (event) {
-                    case ADDED_ITEM:
-                        InventoryItem addItem = slot.getTopInventoryItem();
-                        if (addItem == null) return;
-                        if (addItem.isInventoryItemOffensive()) {
-                            _APVal += addItem.getItemUseTypeValue();
-                            _APValLabel.setText(String.valueOf(_APVal));
-                            notify(String.valueOf(_APVal), InventoryObserver.InventoryEvent.UPDATED_AP);
-
-                            if (addItem.isInventoryItemOffensiveWand()) {
-                                notify(String.valueOf(addItem.getItemUseTypeValue()), InventoryObserver.InventoryEvent.ADD_WAND_AP);
-                            }
-
-                        } else if (addItem.isInventoryItemDefensive()) {
-                            _DPVal += addItem.getItemUseTypeValue();
-                            _DPValLabel.setText(String.valueOf(_DPVal));
-                            notify(String.valueOf(_DPVal), InventoryObserver.InventoryEvent.UPDATED_DP);
-                        }
-                        break;
-                    case REMOVED_ITEM:
-                        InventoryItem removeItem = slot.getTopInventoryItem();
-                        if (removeItem == null) return;
-                        if (removeItem.isInventoryItemOffensive()) {
-                            _APVal -= removeItem.getItemUseTypeValue();
-                            _APValLabel.setText(String.valueOf(_APVal));
-                            notify(String.valueOf(_APVal), InventoryObserver.InventoryEvent.UPDATED_AP);
-
-                            if (removeItem.isInventoryItemOffensiveWand()) {
-                                notify(String.valueOf(removeItem.getItemUseTypeValue()), InventoryObserver.InventoryEvent.REMOVE_WAND_AP);
-                            }
-
-                        } else if (removeItem.isInventoryItemDefensive()) {
-                            _DPVal -= removeItem.getItemUseTypeValue();
-                            _DPValLabel.setText(String.valueOf(_DPVal));
-                            notify(String.valueOf(_DPVal), InventoryObserver.InventoryEvent.UPDATED_DP);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public void addObserver (InventoryObserver inventoryObserver){
-                _observers.add(inventoryObserver);
-            }
-
-            @Override
-            public void removeObserver (InventoryObserver inventoryObserver){
-                _observers.removeValue(inventoryObserver, true);
-            }
-
-            @Override
-            public void removeAllObservers () {
-                for (InventoryObserver observer : _observers) {
-                    _observers.removeValue(observer, true);
-                }
-            }
-
-            @Override
-            public void notify (String value, InventoryObserver.InventoryEvent event){
-                for (InventoryObserver observer : _observers) {
-                    observer.onNotify(value, event);
-                }
-<<<<<<< HEAD
-            }
-=======
                 break;
             default:
-                break;addObserver
+                break;
         }
     }
 
@@ -490,8 +459,11 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
             _observers.removeValue(observer, true);
         }
     }
->>>>>>> f78072f8a3d42f35263d55693ce709d0d094497c
 
+    @Override
+    public void notify(String value, InventoryObserver.InventoryEvent event) {
+        for(InventoryObserver observer: _observers){
+            observer.onNotify(value, event);
         }
     }
 }

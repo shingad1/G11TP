@@ -15,15 +15,15 @@ public class InventoryItemLocation {
         this.itemNameProperty = itemNameProperty;
     }
 
-    public String getItemNameProperty(){
+    public String getItemNameProperty() {
         return itemNameProperty;
     }
 
-    public void setItemNameProperty(String itemNameProperty){
+    public void setItemNameProperty(String itemNameProperty) {
         this.itemNameProperty = itemNameProperty;
     }
 
-    public String getItemTypeAtLocation(){
+    public String getItemTypeAtLocation() {
         return itemTypeAtLocation;
     }
 
@@ -35,8 +35,12 @@ public class InventoryItemLocation {
         return locationIndex;
     }
 
+    public void setLocationIndex(int locationIndex) {
+        this.locationIndex = locationIndex;
+    }
+
     public int getNumberItemsAtLocation() {
-        return  numberItemsAtLocation;
+        return numberItemsAtLocation;
     }
 
     public void setNumberItemsAtLocation(int numberItemsAtLocation) {
