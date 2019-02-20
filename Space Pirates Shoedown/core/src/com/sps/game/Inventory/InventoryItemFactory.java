@@ -29,7 +29,7 @@ public class InventoryItemFactory {
 
     private InventoryItemFactory() {
         ArrayList<JsonValue> list = json.fromJson(ArrayList.class, Gdx.files.internal(INVENTORY_ITEM));
-        _inventoryItemList = new Hashtable<ItemTypeID, InventoryItem>()
+        _inventoryItemList = new Hashtable<ItemTypeID, InventoryItem>();
 
         for (JsonValue jsonVal : list) {
             InventoryItem inventoryItem = json.readValue(InventoryItem.class, jsonVal);
