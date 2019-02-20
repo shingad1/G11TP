@@ -329,8 +329,12 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
+
         //tutorialController.create();
         //tutorialController.render();
+
+
+/*
 
         if(dialogBoolean)
         {
@@ -342,7 +346,11 @@ public abstract class PlayScreen implements Screen
             dialogController.render();
         }
         dialogController.render();
+
         dialogBoolean = false;
+
+
+        dialogBoolean = false;*/
 
     }
 

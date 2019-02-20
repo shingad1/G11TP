@@ -1,3 +1,4 @@
+/*
 package com.sps.game.Inventory;
 
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -7,8 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.sps.game.Utility;
 
-import javax.swing.*;
-import java.awt.*;
 
 public enum ItemUseType {
     ITEM_RESTORE_HEALTH(1),
@@ -21,7 +20,7 @@ public enum ItemUseType {
     ARMOR_SHIELD(128),
     ARMOR_HELMET(256),
     ARMOR_CHEST(512),
-    ARMOR_FEET(1024);
+    ARMOR_FEET(1024),
     int _itemUseType;
     Component _playerSlotsTable;
     Table _equipSlots;
@@ -36,7 +35,7 @@ public enum ItemUseType {
     }
 
     public Table getInventorySlotTable() {
-        return _inventorySlotTable;
+        return inventorySlotTable;
     }
     public Table getEquipSlotTable() {
         return _equipSlots;
@@ -67,15 +66,15 @@ public enum ItemUseType {
                 getDrawable());
 
         _equipSlots.add();
-        _equipSlots.add(headSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.add(headSlot).size(slotWidth, _slotHeight);
         _equipSlots.row();
-        _equipSlots.add(leftArmSlot).size(_slotWidth, _slotHeight);
-        _equipSlots.add(chestSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.add(leftArmSlot).size(slotWidth, _slotHeight);
+        _equipSlots.add(chestSlot).size(slotWidth, _slotHeight);
         _equipSlots.add(rightArmSlot).size(
-                        _slotWidth, _slotHeight);
+                        slotWidth, _slotHeight);
         _equipSlots.row();
         _equipSlots.add();
-        _equipSlots.right().add(legsSlot).size(_slotWidth, _slotHeight);
+        _equipSlots.right().add(legsSlot).size(slotWidth, _slotHeight);
 
         playerSlotsTable.add((Action) _equipSlots);
         playerSlotsTable.add(_playerSlotsTable).padBottom(20).row();
@@ -83,3 +82,4 @@ public enum ItemUseType {
         playerSlotsTable.pack();
     }
 }
+*/

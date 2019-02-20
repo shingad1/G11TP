@@ -150,7 +150,7 @@ public class StoreInventoryUI extends Window implements InventorySlotObserver, S
                                    public void clicked(InputEvent event, float x, float y) {
                                        if (fullValue > 0 && playerTotal >= fullValue) {
                                            playerTotal -= fullValue;
-                                           StoreInventoryUI.this.notify(Integer.toString(playerTotal), StoreInventoryEvent.PLAYER_GP_TOTAL_UPDATED);
+                                           StoreInventoryUI.this.notify(Integer.toString(playerTotal), StoreInventoryObserver.StoreInventoryEvent.PLAYER_GP_TOTAL_UPDATED);
                                            fullValue = 0;
                                            buyTotalLabel.setText(BUY + " : " + fullValue + GP);
 
@@ -169,7 +169,7 @@ public class StoreInventoryUI extends Window implements InventorySlotObserver, S
                                     public void clicked(InputEvent event, float x, float y) {
                                         if (tradeInVal > 0) {
                                             playerTotal += tradeInVal;
-                                            StoreInventoryUI.this.notify(Integer.toString(playerTotal), StoreInventoryEvent.PLAYER_GP_TOTAL_UPDATED);
+                                            StoreInventoryUI.this.notify(Integer.toString(playerTotal), StoreInventoryObserver.StoreInventoryEvent.PLAYER_GP_TOTAL_UPDATED);
                                             tradeInVal = 0;
                                             sellTotalLabel.setText(SELL + " : " + tradeInVal + GP);
 
@@ -216,7 +216,7 @@ public class StoreInventoryUI extends Window implements InventorySlotObserver, S
         Array<InventoryItemLocation> playerItemsInPlayerInventory = InventoryUI.getInventoryFiltered(playerInventorySlotTable, InventoryUI.STORE_INVENTORY);
         Array<InventoryItemLocation> playerItemsInStoreInventory = InventoryUI.getInventoryFiltered(playerInventorySlotTable, inventorySlotTable, InventoryUI.STORE_INVENTORY);
         playerItemsInPlayerInventory.addAll(playerItemsInStoreInventory);
-        StoreInventoryUI.this.notify(json.toJson(playerItemsInPlayerInventory), StoreInventoryEvent.PLAYER_INVENTORY_UPDATED);
+        StoreInventoryUI.this.notify(json.toJson(playerItemsInPlayerInventory), StoreInventoryObserver.StoreInventoryEvent.PLAYER_INVENTORY_UPDATED);
     }
 
     public void cleanupStoreInventory() {

@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.sps.game.Utility;
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 
 public class InventorySlot extends Stack implements InventorySlotSubject {
 

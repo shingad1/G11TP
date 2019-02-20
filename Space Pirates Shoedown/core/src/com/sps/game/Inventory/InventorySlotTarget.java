@@ -59,7 +59,7 @@ public class InventorySlotTarget extends DragAndDrop.Target {
             }
         }
     }
-
+/*
     public void populateInventory(Table targetTable,
                                   Array<InventoryItemLocation> inventoryItems){
         Array<Cell> cells = targetTable.getCells();
@@ -83,5 +83,5 @@ public class InventorySlotTarget extends DragAndDrop.Target {
 
             }
         }
-    }
+    }*/
 }
