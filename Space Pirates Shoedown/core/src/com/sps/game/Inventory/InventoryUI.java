@@ -1,17 +1,20 @@
 package com.sps.game.Inventory;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.sps.game.Inventory.InventoryItem.ItemUseType;
 import com.sps.game.Utility;
-import java.awt.*;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f78072f8a3d42f35263d55693ce709d0d094497c
 public class InventoryUI extends Window implements InventorySubject, InventorySlotObserver {
 
     private int _numSlots = 50;
@@ -100,17 +103,17 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
                 ItemUseType.ARMOR_FEET.getValue(),
                 new Image(Utility.ITEMS_TEXTUREATLAS.findRegion("inv_boot")));
 
-        headSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
-        leftArmSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
-        rightArmSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
-        chestSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
-        legsSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
-
         headSlot.addObserver(this);
         leftArmSlot.addObserver(this);
         rightArmSlot.addObserver(this);
         chestSlot.addObserver(this);
         legsSlot.addObserver(this);
+
+        headSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
+        leftArmSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
+        rightArmSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
+        chestSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
+        legsSlot.addListener(new InventorySlotTooltipListener(_inventorySlotTooltip));
 
         _dragAndDrop.addTarget(new InventorySlotTarget(headSlot));
         _dragAndDrop.addTarget(new InventorySlotTarget(leftArmSlot));
@@ -462,7 +465,32 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
                 for (InventoryObserver observer : _observers) {
                     observer.onNotify(value, event);
                 }
+<<<<<<< HEAD
             }
+=======
+                break;
+            default:
+                break;addObserver
+        }
+    }
+
+    @Override
+    public void addObserver(InventoryObserver inventoryObserver) {
+        _observers.add(inventoryObserver);
+    }
+
+    @Override
+    public void removeObserver(InventoryObserver inventoryObserver) {
+        _observers.removeValue(inventoryObserver, true);
+    }
+
+    @Override
+    public void removeAllObservers() {
+        for(InventoryObserver observer: _observers){
+            _observers.removeValue(observer, true);
+        }
+    }
+>>>>>>> f78072f8a3d42f35263d55693ce709d0d094497c
 
         }
     }
