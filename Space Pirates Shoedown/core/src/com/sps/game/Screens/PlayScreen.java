@@ -112,7 +112,10 @@ public abstract class PlayScreen implements Screen
     protected ArrayList<Location> allLocations;
 
     private Boolean pause;
+
     private static Texture pauseTexture;
+
+    private static Texture saveTexture;
 
     private Stack<TiledMap> maps;
 
@@ -140,6 +143,7 @@ public abstract class PlayScreen implements Screen
         hud = new HudScene(game.batch,p);
         maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
+        saveTexture = new Texture("core/assets/Buttons/SaveButton.png");
         pause = false;
         music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
         music.setLooping(true);
@@ -328,14 +332,11 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
-
+        batch.draw(saveTexture, 250, 250);
 
         //tutorialController.create();
         //tutorialController.render();
-
-
 /*
-
         if(dialogBoolean)
         {
             try {
