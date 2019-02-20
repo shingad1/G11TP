@@ -53,4 +53,7 @@ public class InventorySlot extends Stack {
     public boolean doesAcceptItemUseType(int itemUseType) {
         return false;
     }
+
+    public void removeAllInventoryItemsWithName(String name) {
+    }
 }

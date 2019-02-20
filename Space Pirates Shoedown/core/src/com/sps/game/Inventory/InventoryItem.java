@@ -28,7 +28,7 @@ public class InventoryItem extends Image{
     }
 
 
-    private enum ItemUseType {
+    public enum ItemUseType {
         ITEM_RESTORE_HEALTH(1),
         ITEM_RESTORE_MP(2),
         ITEM_DAMAGE(4),
