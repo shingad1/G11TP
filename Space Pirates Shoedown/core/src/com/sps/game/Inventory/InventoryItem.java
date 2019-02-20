@@ -5,20 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
 public class InventoryItem {
+    public InventoryItem(TextureRegion textureRegion, int itemAttributes, ItemTypeID itemTypeID, int itemUseType)
+    {
 
-    */
-/**
-     * Inventory Items are images (loaded from the textureAtlas file items.atlas and items.png under Assets/Inventory.
-     * InventoryItem objects also contain some metadata specific to the item.
-     *//*
-
-
-
-    private int itemAttributes;
-    private int itemUseType;
-    private String itemShortDescription;
-
-    public InventoryItem(TextureRegion textureRegion, int itemAttributes, ItemTypeID itemTypeID, int itemUseType)  {
     }
 
     public InventoryItem() { }
@@ -26,7 +15,10 @@ public class InventoryItem {
 
     }
 
-    public ItemTypeID getItemTypeID() { }
+    public ItemTypeID getItemTypeID()
+    {
+        return ItemTypeID;
+    }
     public int getItemAttributes() { }
     public void setItemAttributes(int itemAttributes) { }
     public int getItemUseType() { }
@@ -35,11 +27,5 @@ public class InventoryItem {
     public void setItemShortDescription(String itemShortDescription) { }
     public boolean isStackable() {}
     public boolean isSameItemType(InventoryItem candidateInventoryItem) { }
-
-
-
-
-
-
 }
 */

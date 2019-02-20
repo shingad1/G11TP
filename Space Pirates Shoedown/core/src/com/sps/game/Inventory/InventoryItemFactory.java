@@ -9,13 +9,12 @@ import com.badlogic.gdx.utils.Scaling;
 import com.sps.game.Utility;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class InventoryItemFactory {
 
     private Json json = new Json();
 
-    private final String INVENTORY_ITEM = "scripts/inventory_items.json";
+    private final String INVENTORY_ITEM = "assets/Inventory/inventory.json";
 
     private static InventoryItemFactory instance = null;
 
@@ -30,7 +29,7 @@ public class InventoryItemFactory {
 
     private InventoryItemFactory(){
         ArrayList<JsonValue> list = json.fromJson(ArrayList.class, Gdx.files.internal(INVENTORY_ITEM));
-        inventoryItemList = new Hashtable<ItemTypeID, InventoryItem>();
+        HashMap <ItemTypeID, InventoryItem> inventoryItemList = new Hashtable<ItemTypeID, InventoryItem>();
         for(JsonValue jsonVal : list){
             InventoryItem inventoryItem = json.readValue(InventoryItem.class, jsonVal);
             inventoryItemList.put(inventoryItem.getItemTypeID(), inventoryItem);

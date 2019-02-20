@@ -45,7 +45,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         dialogue[1] = "";
         dialogue[2] = "";
 
-        //textArea.text(dialogue[counter]);
+        textArea.text(dialogue[counter]);
     }
 
     public void create(String npcName) throws IOException {
@@ -99,7 +99,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         readFile(npcName);
         closeFile();*/
 
-        fileStuff(npcName);
+        readingFile(npcName);
         //textArea.text(dialogue[counter]);
     }
 
@@ -147,19 +147,19 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         scanner.close();
     }*/
 
-    private void fileStuff(String npcName) throws IOException
+    private void readingFile(String npcName) throws IOException
     {
         BufferedReader bufferedReader = new BufferedReader(new FileReader("core/src/com/sps/game/Dialogue.txt"));
 
-        String line = null;
+        String line;
         while((line = bufferedReader.readLine()) != null)
         {
-            String str[] = line.split("\\;");
+            String temp[] = line.split("\\;");
 
-            String name = str[0];
-            String first = str[1];
-            String second = str[2];
-            String third = str[3];
+            String name = temp[0];
+            String first = temp[1];
+            String second = temp[2];
+            String third = temp[3];
 
             if(npcName.equals(name))
             {
