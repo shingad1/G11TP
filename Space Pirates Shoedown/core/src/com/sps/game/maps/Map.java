@@ -29,7 +29,7 @@ public class Map{//was abstract
 
     protected Array<Vector2> npcPositions;
 
-    protected TiledMapTileLayer collisionLayer = null;
+    protected TiledMapTileLayer collisionLayer;
 
     protected MapFactory.MapType currentMapType;
 

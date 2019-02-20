@@ -21,6 +21,8 @@ import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
 import com.sps.game.maps.MapFactory;
+import com.sps.game.profile.ProfileManager;
+import com.sps.game.profile.ProfileObserver;
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
 
 import java.util.ArrayList;
@@ -320,8 +322,8 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        tutorialController.create();
-        tutorialController.render();
+        //tutorialController.create();
+        //tutorialController.render();
     }
 
     @Override
@@ -362,7 +364,7 @@ public abstract class PlayScreen implements Screen
         enemyTile.getProperties().remove("basicEnemy");
         enemyTile.getProperties().remove("blocked");
         enemyTile.getProperties().put("invisible","true");
-       // currentMapState = "House";
+       //currentMapState = "House";
         game.setScreen(this);
     }
 
@@ -377,4 +379,9 @@ public abstract class PlayScreen implements Screen
     public abstract ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map);
 
     public abstract void changeMaps();
+
+    public void saveGame(){
+        ProfileManager.getInstance().saveProfile();
+        System.out.println("Game Saved");
+    }
 }

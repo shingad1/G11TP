@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TideMapLoader;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public final class Utility {
 
@@ -73,9 +74,9 @@ public final class Utility {
             return;
         }
         if(filePathResolver.resolve(mapFileNamePath).exists()){
-            ASSET_MANAGER.setLoader(TiledMap.class, new TideMapLoader(filePathResolver));
+            ASSET_MANAGER.setLoader(TiledMap.class, new TmxMapLoader(filePathResolver));//was tideMapLoader
             ASSET_MANAGER.load(mapFileNamePath, TiledMap.class);
-            //ASSET_MANAGER.finishLoadingAsset(mapFileNamePath);
+            ASSET_MANAGER.finishLoadingAsset(mapFileNamePath);
             Gdx.app.debug(TAG, "Map loaded: " + mapFileNamePath);
         } else {
             Gdx.app.debug(TAG, "Map does not exist: " + mapFileNamePath);
