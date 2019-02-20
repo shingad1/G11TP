@@ -1,20 +1,45 @@
 package com.sps.game.Inventory;
 
-public enum InventoryItemLocation {
-    ;
+public class InventoryItemLocation {
 
-    public int getLocationIndex() {
-        return 0;
+    private int locationIndex, numberItemsAtLocation;
+    private String itemTypeAtLocation, itemNameProperty;
+
+    public InventoryItemLocation(){
     }
 
-    public String getItemTypeAtLocation() {
-        return "";
+    public InventoryItemLocation( int locationIndex, String itemTypeAtLocation, int numberItemsAtLocation, String itemNameProperty){
+        this.locationIndex = locationIndex;
+        this.itemTypeAtLocation = itemTypeAtLocation;
+        this.numberItemsAtLocation = numberItemsAtLocation;
+        this.itemNameProperty = itemNameProperty;
+    }
+
+    public String getItemNameProperty(){
+        return itemNameProperty;
+    }
+
+    public void setItemNameProperty(String itemNameProperty){
+        this.itemNameProperty = itemNameProperty;
+    }
+
+    public String getItemTypeAtLocation(){
+        return itemTypeAtLocation;
+    }
+
+    public void setItemTypeAtLocation(String itemTypeAtLocation) {
+        this.itemTypeAtLocation = itemTypeAtLocation;
+    }
+
+    public int getLocationIndex() {
+        return locationIndex;
     }
 
     public int getNumberItemsAtLocation() {
-        return  0;
+        return  numberItemsAtLocation;
     }
 
-    public void setLocationIndex(int i) {
+    public void setNumberItemsAtLocation(int numberItemsAtLocation) {
+        this.numberItemsAtLocation = numberItemsAtLocation;
     }
 }
