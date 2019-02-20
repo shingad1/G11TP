@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.sps.game.Inventory.InventoryItem.ItemUseType;
 import com.sps.game.Utility;
@@ -278,13 +279,13 @@ public class InventoryUI extends Window implements InventorySubject, InventorySl
                 String topItemName = inventorySlot.getTopInventoryItem().getName();
                 if( topItemName.equalsIgnoreCase(filterOutName)) continue;
                 //System.out.println("[i] " + i + " itemtype: " + inventorySlot.getTopInventoryItem().getItemTypeID().toString() + " numItems " + numItems);
-                items.add(new InventoryItemLocation(
+                /*items.add(new InventoryItemLocation(
                         i,
                         inventorySlot.getTopInventoryItem().getItemTypeID().toString(),
                         numItems,
                         inventorySlot.getTopInventoryItem().getName()));
             }
-        }
+        }*/
         return items;
     }
 
