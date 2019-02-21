@@ -259,7 +259,7 @@ public abstract class PlayScreen implements Screen
         handleInput(dt);
         for (int i = 0; i < npcController.size(); i++){
             if (npc.get(i).getWorld().equals(currentMapState)) {
-                npcController.get(i).move(p);
+                npcController.get(i).move();
             }
         }
         hud.update();

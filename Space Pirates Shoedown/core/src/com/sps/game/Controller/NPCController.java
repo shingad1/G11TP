@@ -77,7 +77,7 @@ public class NPCController
             return (collisionY || playerInLocation(tempLocation) || npcInLocation(tempLocation));
         }
         if(npc.getVelocity().y < 0){
-            tempLocation = new Location(Math.round(npc.getLocation().getX()),Math.round(npc.getLocation().getY() - 32))
+            tempLocation = new Location(Math.round(npc.getLocation().getX()),Math.round(npc.getLocation().getY() - 32));
             if(getTileInDirection(Direction.DOWN) != null)
                 collisionY = getTileInDirection(Direction.DOWN).getProperties().containsKey("blocked");
             return (collisionY || playerInLocation(tempLocation) || npcInLocation(tempLocation));
