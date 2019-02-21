@@ -3,6 +3,7 @@ package com.sps.game.Sprites;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Animation.npcAnimation;
+import com.sps.game.maps.MapFactory;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -38,7 +39,7 @@ public class InteractiveNPCMoving extends AbstractNPC {
      *
      * @see #getWorld()
      */
-    private String world;
+    private MapFactory.MapType world;
     /**
      * changes the speed of the NPC
      *
@@ -61,7 +62,7 @@ public class InteractiveNPCMoving extends AbstractNPC {
     private String name;
 
 
-    public InteractiveNPCMoving(int x, int y, String world, SpriteBatch sb, String role) {
+    public InteractiveNPCMoving(int x, int y, MapFactory.MapType world, SpriteBatch sb, String role) {
         this.x = x;
         this.y = y;
 
@@ -101,7 +102,7 @@ public class InteractiveNPCMoving extends AbstractNPC {
     /**
      * Returns the world
      */
-    public String getWorld() {
+    public MapFactory.MapType getWorld() {
         return world;
     }
 

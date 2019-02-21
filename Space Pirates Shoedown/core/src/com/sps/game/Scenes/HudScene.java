@@ -6,11 +6,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Sprites.Player;
+import com.sps.game.profile.ProfileManager;
 
 /**
  * This class contains the different labels with the information need for the player.
@@ -53,6 +56,14 @@ public class HudScene  {
 
     private Image pause, story;
 
+    private Texture saveTexture;
+
+    private TextureRegion saveTextureRegion;
+
+    private TextureRegionDrawable saveTextureRegionDrawable;
+
+    private ImageButton saveButton;
+
     public HudScene(SpriteBatch sb, Player p){
         gold = 100;
         //Instantiating the viewport
@@ -67,6 +78,10 @@ public class HudScene  {
         pause = new Image(new Texture("core/assets/pause.png"));
         story = new Image(new Texture("core/assets/story.png"));
 
+        saveTexture = new Texture("core/assets/Buttons/SaveButton.png");
+        saveTextureRegion = new TextureRegion(saveTexture);
+        saveTextureRegionDrawable = new TextureRegionDrawable(saveTextureRegion);
+        saveButton = new ImageButton(saveTextureRegionDrawable);
         player = p;
     }
     /**
@@ -97,5 +112,16 @@ public class HudScene  {
         table.add(pause).size(50,50).padLeft(20);
         table.add(story).size(50,50).padLeft(20);
         stage.addActor(table);
+        //stage.addActor(saveButton);
+        //Gdx.input.setInputProcessor(stage);
+/*
+        saveButton.addListener(new EventListener() {
+            @Override
+            public boolean handle(Event event) {
+                ProfileManager.getInstance().saveProfile();
+                System.out.println("Game Saved");
+                return true;
+            }
+        });*/
     }
 }

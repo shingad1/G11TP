@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TideMapLoader;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-
 
 public final class Utility {
 
@@ -83,7 +83,7 @@ public final class Utility {
             return;
         }
         if(filePathResolver.resolve(mapFileNamePath).exists()){
-            ASSET_MANAGER.setLoader(TiledMap.class, new TideMapLoader(filePathResolver));
+            ASSET_MANAGER.setLoader(TiledMap.class, new TmxMapLoader(filePathResolver));//was tideMapLoader
             ASSET_MANAGER.load(mapFileNamePath, TiledMap.class);
             ASSET_MANAGER.finishLoadingAsset(mapFileNamePath);
             Gdx.app.debug(TAG, "Map loaded: " + mapFileNamePath);

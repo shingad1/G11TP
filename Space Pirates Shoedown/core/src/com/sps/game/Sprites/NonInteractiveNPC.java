@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Animation.npcAnimation;
 import com.sps.game.Animation.playerAnimation;
+import com.sps.game.maps.MapFactory;
 
 public class NonInteractiveNPC extends AbstractNPC {
 
@@ -40,7 +41,7 @@ public class NonInteractiveNPC extends AbstractNPC {
          *
          * @see #getWorld()
          */
-        private String world;
+        private MapFactory.MapType world;
         /**
          * changes the speed of the NPC
          *
@@ -63,7 +64,7 @@ public class NonInteractiveNPC extends AbstractNPC {
         private String name;
 
     //"npc<ROLE><Direction>.atlas" camel case i.e. "npcMerchantDown.atlas" do this for ALL AbstractNPC
-        public NonInteractiveNPC(int x, int y, String world, SpriteBatch sb, String role) {
+        public NonInteractiveNPC(int x, int y, MapFactory.MapType world, SpriteBatch sb, String role) {
             this.x = x;
             this.y = y;
             this.world = world;
@@ -98,7 +99,7 @@ public class NonInteractiveNPC extends AbstractNPC {
         /**
          * Returns the world
          */
-        public String getWorld() {
+        public MapFactory.MapType getWorld() {
             return world;
         }
 

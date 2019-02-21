@@ -1,6 +1,5 @@
 package com.sps.game.Screens;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -8,13 +7,17 @@ import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
+import com.sps.game.maps.HomeWorldMap;
+import com.sps.game.maps.HomeWorldMap2;
+import com.sps.game.maps.Map;
+import com.sps.game.maps.MapFactory;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new Map(mapLoader.load(ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"),"Origin"), new Map(mapLoader.load(ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx"), "SpaceshipMap")},
+    private Map[][] worldMaps = {{new Map(MapFactory.MapType.HomeWorldMap1, ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"), new Map(MapFactory.MapType.HomeWorldMap2, ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx")},
                                  {null, null}};
 
     private Vector2 mapSelector; //selects map from worldMaps
@@ -28,10 +31,10 @@ public class HomeWorldScreen extends PlayScreen {
         //overworldMap = "HomeWorld/HomeWorldMap1.tmx";
         mapSelector = new Vector2(0,0); //change when moving worlds
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
-        currentMap = selectedMap.getMap();//change when moving worlds
+        currentMap = selectedMap.getCurrentMap();//change when moving worlds
         renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
-        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
-        currentMapState = selectedMap.getMapName(); //change when moving worlds
+        currentCollisionLayer = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)].getCollisionLayer(); //change when moving worlds
+        currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
 
         random = new Random();
         int numNonInteractive = random.nextInt(20) + 10;
@@ -43,11 +46,11 @@ public class HomeWorldScreen extends PlayScreen {
             int x = random.nextInt(49);
             int y = random.nextInt(49);
             Location location = new Location(x * 32, y * 32);
-            String world = "";
+            MapFactory.MapType world;
             if(random.nextBoolean()){
-                world = "Origin";
+                world = MapFactory.MapType.HomeWorldMap1;
             } else {
-                world = "SpaceshipMap";
+                world = MapFactory.MapType.HomeWorldMap2;
             }
             if(checkPosition(location,world)) {
                 npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, ""));
@@ -99,10 +102,10 @@ public class HomeWorldScreen extends PlayScreen {
         return InteractiveNPCsMoving;
     }
 
-    public Vector2 getWorldMapByWorld(String world){
+    public Vector2 getWorldMapByWorld(MapFactory.MapType map){
         for(int i = 0; i < worldMaps.length; i++){
             for (int j = 0; j < worldMaps[i].length; j++){
-                if (world.equals(worldMaps[i][j].getMapName())){
+                if (map.equals(worldMaps[i][j].getCurrentMapType())){
                     return new Vector2(i,j);
                 }
             }
@@ -110,10 +113,10 @@ public class HomeWorldScreen extends PlayScreen {
         return null;
     }
 
-    public ArrayList<AbstractNPC> getMapNPC(String world){
+    public ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map){
         ArrayList<AbstractNPC> result = new ArrayList<AbstractNPC>();
         for (int i = 0; i < npc.size(); i++){
-            if (npc.get(i).getWorld().equals(world)){
+            if (npc.get(i).getWorld().equals(map)){
                 result.add(npc.get(i));
             }
         }
@@ -129,13 +132,13 @@ public class HomeWorldScreen extends PlayScreen {
      * @param location
      * @return
      */
-    public boolean checkPosition(Location location, String world){
-        for (AbstractNPC nonPlayingCharacter : getMapNPC(world)){
+    public boolean checkPosition(Location location, MapFactory.MapType map){
+        for (AbstractNPC nonPlayingCharacter : getMapNPC(map)){
             if(location.equals(nonPlayingCharacter.getLocation())){
                 return false;
             }
         }
-        if(getMap(getWorldMapByWorld(world)).getCollisionLayer().getCell((int) (location.getX() / 32), (int) ((location.getY())/32)).getTile().getProperties().containsKey("blocked")){
+        if(getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) (location.getX() / 32), (int) ((location.getY())/32)).getTile().getProperties().containsKey("blocked")){
             return false;
         }
         return true;
@@ -164,10 +167,10 @@ public class HomeWorldScreen extends PlayScreen {
 
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
-            currentMap = selectedMap.getMap();//change when moving worlds
+            currentMap = selectedMap.getCurrentMap();//change when moving worlds
             renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
             currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
-            currentMapState = selectedMap.getMapName(); //change when moving worlds
+            currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
 
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
@@ -180,7 +183,7 @@ public class HomeWorldScreen extends PlayScreen {
 
     private void changeNpcLocations(Map selectedMap) {
         for (AbstractNPC nonPlayingCharacter : npc) {
-            if (nonPlayingCharacter.getWorld().equals(selectedMap.getMapName()))
+            if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());
         }
     }

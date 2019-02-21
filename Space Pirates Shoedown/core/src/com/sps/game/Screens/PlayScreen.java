@@ -7,12 +7,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.*;
@@ -20,7 +23,13 @@ import com.sps.game.Controller.DialogueController;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
+<<<<<<< HEAD
 import com.sun.org.apache.xpath.internal.operations.Bool;
+=======
+import com.sps.game.maps.MapFactory;
+import com.sps.game.profile.ProfileManager;
+import com.sps.game.profile.ProfileObserver;
+>>>>>>> 45bcdce6abf95934ede8d2579020e6d555ad05ba
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
 
 import java.io.IOException;
@@ -100,13 +109,14 @@ public abstract class PlayScreen implements Screen
      */
     protected TiledMapTileLayer currentCollisionLayer;
 
-    protected String currentMapState;
+    protected MapFactory.MapType currentMapState;
 
     protected ArrayList<NPCController> npcController;
 
     protected ArrayList<Location> allLocations;
 
     private Boolean pause;
+
     private static Texture pauseTexture;
 
     private Stack<TiledMap> maps;
@@ -140,6 +150,7 @@ public abstract class PlayScreen implements Screen
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
+        
     }
 
 /*
@@ -183,7 +194,7 @@ public abstract class PlayScreen implements Screen
      */
     public void handleInput(float dt){
         controller.action(gamecam);
-        if(controller.getEntered()){
+        /*if(controller.getEntered()){
             dispose();
             gamecam.position.x = 160;
             gamecam.position.y = 160;
@@ -195,8 +206,8 @@ public abstract class PlayScreen implements Screen
             int[] xbounds = {32,320};
             int[] ybounds = {32,320};
             controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
-            currentMapState = "House";
-        }
+            //currentMapState = "House";
+        }*/
         if(controller.getLeave()){
             dispose();
             Vector2 oldPosition = controller.popPosition();
@@ -208,11 +219,11 @@ public abstract class PlayScreen implements Screen
             int[] xbounds = {0, 1600};
             int[] ybounds = {0,1600};
             controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
-            currentMapState = "Overworld";
+            //currentMapState = "Overworld";
         }
         if(controller.getFight()){
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
-            currentMapState = "HouseFight";
+            //currentMapState = "HouseFight";
         }
 
         /**
@@ -233,11 +244,11 @@ public abstract class PlayScreen implements Screen
             //dispose
             controller.reset();
             ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
-            npcList.add(new NonInteractiveNPC(1088,512,"Overworld", batch, ""));
+            npcList.add(new NonInteractiveNPC(1088,512,MapFactory.MapType.HomeWorldMap1, batch, ""));
             ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
             npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
            // game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
-            currentMapState = "CandyLand";
+           // currentMapState = "CandyLand";
         }
     }
 
@@ -307,9 +318,9 @@ public abstract class PlayScreen implements Screen
             }
         }
         p.getAnimation().render();
-        int[] mapLayers = new int[currentMap.getLayers().size() - 1];
-        for (int i = 1; i < currentMap.getLayers().size(); i++)
-            mapLayers[i - 1] = (currentMap.getLayers().getIndex(currentMap.getLayers().get(i)));
+        int[] mapLayers = new int[currentMap.getLayers().size() - 3];
+        for (int i = 3; i < currentMap.getLayers().size(); i++)
+            mapLayers[i - 3] = (currentMap.getLayers().getIndex(currentMap.getLayers().get(i)));
 
         renderer.render(mapLayers);
 
@@ -322,6 +333,12 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
+<<<<<<< HEAD
+=======
+        //tutorialController.create();
+        //tutorialController.render();
+/*
+>>>>>>> 45bcdce6abf95934ede8d2579020e6d555ad05ba
         if(dialogBoolean)
         {
             try {
@@ -332,7 +349,16 @@ public abstract class PlayScreen implements Screen
             dialogController.render();
         }
         dialogController.render();
+<<<<<<< HEAD
         dialogBoolean = false;
+=======
+
+        dialogBoolean = false;
+
+
+        dialogBoolean = false;*/
+
+>>>>>>> 45bcdce6abf95934ede8d2579020e6d555ad05ba
     }
 
     @Override
@@ -372,7 +398,7 @@ public abstract class PlayScreen implements Screen
         enemyTile.getProperties().remove("basicEnemy");
         enemyTile.getProperties().remove("blocked");
         enemyTile.getProperties().put("invisible","true");
-        currentMapState = "House";
+       //currentMapState = "House";
         game.setScreen(this);
     }
 
@@ -382,9 +408,9 @@ public abstract class PlayScreen implements Screen
 
     public abstract ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving();
 
-    public abstract boolean checkPosition(Location location, String world);
+    public abstract boolean checkPosition(Location location, MapFactory.MapType world);
 
-    public abstract ArrayList<AbstractNPC> getMapNPC(String world);
+    public abstract ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map);
 
     public abstract void changeMaps();
 }

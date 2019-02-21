@@ -5,6 +5,7 @@ import com.sps.game.Animation.enemyAnimation;
 import com.sps.game.Animation.npcAnimation;
 import com.sps.game.Controller.CombatSystem;
 import com.sps.game.Screens.Fighter;
+import com.sps.game.maps.MapFactory;
 
 import java.util.HashMap;
 
@@ -46,7 +47,7 @@ public abstract class AbstractNPC {
 
     public abstract void setX(float newX);
 
-    public abstract String getWorld();
+    public abstract MapFactory.MapType getWorld();
 
     public abstract npcAnimation getAnimation();
 
