@@ -9,6 +9,7 @@ import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.NonInteractiveNPC;
 import com.sps.game.Sprites.Player;
+import com.sps.game.maps.MapFactory;
 
 import javax.swing.text.Position;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class NPCController
      * Holds which layer of the TiledMap contains objects that the user can not pass through.
      * @see #collisionDetection
      */
-    private static HashMap<String, ArrayList<NPCController>> npcControllers = new HashMap<String, ArrayList<NPCController>>(); //Stores all npc controllers to use for interaction between controllers
+    private static HashMap<MapFactory.MapType, ArrayList<NPCController>> npcControllers = new HashMap<MapFactory.MapType, ArrayList<NPCController>>(); //Stores all npc controllers to use for interaction between controllers
 
     private static int controllerCurrentID = 0; //Used to give each controller a unique ID
 

@@ -112,8 +112,8 @@ public class HudScene  {
         table.add(pause).size(50,50).padLeft(20);
         table.add(story).size(50,50).padLeft(20);
         stage.addActor(table);
-        stage.addActor(saveButton);
-        Gdx.input.setInputProcessor(stage);
+        //stage.addActor(saveButton);
+        //Gdx.input.setInputProcessor(stage);
 /*
         saveButton.addListener(new EventListener() {
             @Override
