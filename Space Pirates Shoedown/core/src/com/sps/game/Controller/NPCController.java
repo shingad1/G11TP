@@ -72,26 +72,26 @@ public class NPCController
 
         if(npc.getVelocity().y > 0){
             tempLocation = new Location(Math.round(npc.getLocation().getX()),Math.round(npc.getLocation().getY() + 32));
-            if(getTileInDirection(Direction.UP) != null)
+            if(getCellInDirection(Direction.UP) != null)
                 collisionY = getTileInDirection(Direction.UP).getProperties().containsKey("blocked");
             //npcBody.getPosition.y = new Position;
             return (collisionY || playerInLocation(tempLocation) || npcInLocation(tempLocation));
         }
         if(npc.getVelocity().y < 0){
             tempLocation = new Location(Math.round(npc.getLocation().getX()),Math.round(npc.getLocation().getY() - 32));
-            if(getTileInDirection(Direction.DOWN) != null)
+            if(getCellInDirection(Direction.DOWN) != null)
                 collisionY = getTileInDirection(Direction.DOWN).getProperties().containsKey("blocked");
             return (collisionY || playerInLocation(tempLocation) || npcInLocation(tempLocation));
         }
         if(npc.getVelocity().x > 0){
             tempLocation = new Location(Math.round(npc.getLocation().getX() + 32),Math.round(npc.getLocation().getY()));
-            if(getTileInDirection(Direction.RIGHT) != null)
+            if(getCellInDirection(Direction.RIGHT) != null)
                 collisionX = getTileInDirection(Direction.RIGHT).getProperties().containsKey("blocked");
             return (collisionX || playerInLocation(tempLocation) || npcInLocation(tempLocation));
         }
         if(npc.getVelocity().x < 0){
             tempLocation = new Location(Math.round(npc.getLocation().getX() - 32),Math.round(npc.getLocation().getY()));
-            if(getTileInDirection(Direction.LEFT) != null)
+            if(getCellInDirection(Direction.LEFT) != null)
                 collisionX = getTileInDirection(Direction.LEFT).getProperties().containsKey("blocked");
             return (collisionX || playerInLocation(tempLocation) || npcInLocation(tempLocation));
         }
@@ -111,6 +111,16 @@ public class NPCController
             case DOWN : return collisionLayer.getCell((int) (npc.getX() / tiledWidth), (int) ((npc.getY() - 32)/tiledHeight)).getTile();
             case RIGHT : return collisionLayer.getCell((int) ((npc.getX() + 32) / tiledWidth), (int) (npc.getY()/tiledHeight)).getTile();
             case LEFT : return collisionLayer.getCell((int) ((npc.getX() - 32) / tiledWidth), (int) (npc.getY()/tiledHeight)).getTile();
+        }
+        return null;
+    }
+
+    private TiledMapTileLayer.Cell getCellInDirection(Direction direction){
+        switch (direction){
+            case UP : return collisionLayer.getCell((int) (npc.getX() / tiledWidth), (int) ((npc.getY() + 32)/tiledHeight));
+            case DOWN : return collisionLayer.getCell((int) (npc.getX() / tiledWidth), (int) ((npc.getY() - 32)/tiledHeight));
+            case RIGHT : return collisionLayer.getCell((int) ((npc.getX() + 32) / tiledWidth), (int) (npc.getY()/tiledHeight));
+            case LEFT : return collisionLayer.getCell((int) ((npc.getX() - 32) / tiledWidth), (int) (npc.getY()/tiledHeight));
         }
         return null;
     }

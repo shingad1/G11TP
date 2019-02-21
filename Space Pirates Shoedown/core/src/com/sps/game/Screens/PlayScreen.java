@@ -190,7 +190,7 @@ public abstract class PlayScreen implements Screen
      */
     public void handleInput(float dt){
         controller.action(gamecam);
-        if(controller.getEntered()){
+        /*if(controller.getEntered()){
             dispose();
             gamecam.position.x = 160;
             gamecam.position.y = 160;
@@ -203,7 +203,7 @@ public abstract class PlayScreen implements Screen
             int[] ybounds = {32,320};
             controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
             //currentMapState = "House";
-        }
+        }*/
         if(controller.getLeave()){
             dispose();
             Vector2 oldPosition = controller.popPosition();
@@ -314,9 +314,9 @@ public abstract class PlayScreen implements Screen
             }
         }
         p.getAnimation().render();
-        int[] mapLayers = new int[currentMap.getLayers().size() - 1];
-        for (int i = 1; i < currentMap.getLayers().size(); i++)
-            mapLayers[i - 1] = (currentMap.getLayers().getIndex(currentMap.getLayers().get(i)));
+        int[] mapLayers = new int[currentMap.getLayers().size() - 3];
+        for (int i = 3; i < currentMap.getLayers().size(); i++)
+            mapLayers[i - 3] = (currentMap.getLayers().getIndex(currentMap.getLayers().get(i)));
 
         renderer.render(mapLayers);
 
