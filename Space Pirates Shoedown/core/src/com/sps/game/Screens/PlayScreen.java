@@ -20,6 +20,7 @@ import com.sps.game.Controller.DialogueController;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
 
 import java.io.IOException;
@@ -312,7 +313,6 @@ public abstract class PlayScreen implements Screen
 
         renderer.render(mapLayers);
 
-
         batch.begin();
         if(pause)
         {
@@ -321,7 +321,7 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
-/*
+
         if(dialogBoolean)
         {
             try {
@@ -332,7 +332,7 @@ public abstract class PlayScreen implements Screen
             dialogController.render();
         }
         dialogController.render();
-        dialogBoolean = false;*/
+        dialogBoolean = false;
     }
 
     @Override
@@ -361,7 +361,6 @@ public abstract class PlayScreen implements Screen
     @Override
     public void dispose() {
        currentMap.dispose();
-       //player.dispose();
     }
 
     /**
