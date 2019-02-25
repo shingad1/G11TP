@@ -23,13 +23,9 @@ import com.sps.game.Controller.DialogueController;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
-<<<<<<< HEAD
-import com.sun.org.apache.xpath.internal.operations.Bool;
-=======
 import com.sps.game.maps.MapFactory;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
->>>>>>> 45bcdce6abf95934ede8d2579020e6d555ad05ba
 //import com.sun.tools.internal.ws.processor.model.ModelVisitor;
 
 import java.io.IOException;
@@ -333,12 +329,10 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-<<<<<<< HEAD
-=======
         //tutorialController.create();
         //tutorialController.render();
 /*
->>>>>>> 45bcdce6abf95934ede8d2579020e6d555ad05ba
+
         if(dialogBoolean)
         {
             try {
@@ -349,16 +343,14 @@ public abstract class PlayScreen implements Screen
             dialogController.render();
         }
         dialogController.render();
-<<<<<<< HEAD
+
         dialogBoolean = false;
-=======
 
         dialogBoolean = false;
 
 
         dialogBoolean = false;*/
 
->>>>>>> 45bcdce6abf95934ede8d2579020e6d555ad05ba
     }
 
     @Override
