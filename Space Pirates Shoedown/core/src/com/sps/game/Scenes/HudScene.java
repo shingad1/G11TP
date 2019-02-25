@@ -12,10 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Inventory.InventoryObserver;
-import com.sps.game.Inventory.InventoryUI;
+import com.sps.game.Inventory2.Inventory;
 import com.sps.game.Sprites.Player;
-import com.sps.game.profile.ProfileManager;
 
 /**
  * This class contains the different labels with the information need for the player.
@@ -66,7 +64,7 @@ public class HudScene  {
 
     private ImageButton saveButton;
 
-    public InventoryUI inventory;
+    public Inventory inventory;
 
 
     public HudScene(SpriteBatch sb, Player p){
@@ -88,11 +86,7 @@ public class HudScene  {
         saveTextureRegionDrawable = new TextureRegionDrawable(saveTextureRegion);
         saveButton = new ImageButton(saveTextureRegionDrawable);
         player = p;
-        inventory = new InventoryUI();
-        inventory.setKeepWithinStage(false);
-        inventory.setMovable(false);
-        inventory.setVisible(true);
-        inventory.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        inventory = new Inventory();
     }
     /**
      * this method updates the GoldCounterLabel and also calls onto another method

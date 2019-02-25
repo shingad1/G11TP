@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Inventory2.Inventory;
 import com.sps.game.Sprites.InteractiveNPC;
 import com.sps.game.Sprites.InteractiveNPCMoving;
 import com.sps.game.Sprites.Location;
@@ -82,6 +83,8 @@ public class PlayerController extends InputAdapter {
 
     private boolean newWorldDown; //move to world down i.e. 1,1 to 2,1
 
+    private Inventory inventory;
+
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         //dialogue = false;
         this.player = p;
@@ -121,6 +124,10 @@ public class PlayerController extends InputAdapter {
                 case Input.Keys.A:
                     fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
                     break;
+                case Input.Keys.I:
+                    inventory = new Inventory();
+                    inventory.show();
+                    System.out.println("Inventory Loaded");
                 default:
                     collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
             }

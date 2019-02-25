@@ -21,8 +21,7 @@ public class Inventory extends ScreenAdapter {
     public String UISKIN_PATH = "core/assets/Inventory/uiskin.json";
 
     public Inventory() {
-        final Skin skin = new Skin();
-        skin.add("uiskin", UISKIN_PATH);
+        final Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
         stage.setDebugAll(true);
 
         final List<String> inventory = new List<String>(skin);
@@ -45,10 +44,10 @@ public class Inventory extends ScreenAdapter {
 
             @Override
             public Payload dragStart(InputEvent event, float x, float y, int pointer) {
-                String item = inventory.getSelected();
-                payload.setObject(item);
-                inventory.getItems().removeIndex(inventory.getSelectedIndex());
-                payload.setDragActor(new Label(item, skin));
+                String item = inventory.getSelected(); //get the item from the inventory
+                payload.setObject(item);               //set the item to the payload
+                inventory.getItems().removeIndex(inventory.getSelectedIndex()); //remove the selected item from the inventory
+                payload.setDragActor(new Label(item, skin)); //set the drag actor to be the payload.
                 payload.setInvalidDragActor(new Label(item + " (\"No thanks!\")", skin));
                 payload.setValidDragActor(new Label(item + " (\"I'll buy this!\")", skin));
                 return payload;
