@@ -1,6 +1,7 @@
 package com.sps.game.Scenes;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -25,17 +26,30 @@ public class InventoryHud {
     Label inventoryLabel;
     private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     private List<String> inventory = new List<String>(skin);
+    private List<String> merchant = new List(skin);
 
     public InventoryHud(SpriteBatch sb, Player p) {
-        //final Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
 
-//        stage.setDebugAll(true);
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         inventoryLabel = new Label("inventory", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         player = p;
 
-        inventory.setItems("Axe", "Fuel", "Helmet", "Flux Capacitor", "Shoes", "Hamster", "Hammer", "Pirates Eye", "Cucumber");
+        //In the future, change this to actual instances of class item.
+        inventory.setItems("Axe",
+                           "Fuel",
+                           "Helmet",
+                           "Flux Capacitor",
+                           "Shoes",
+                           "Hamster",
+                           "Hammer",
+                           "Pirates Eye",
+                           "Cucumber");
+
+
+        merchant.setItems("Shoe Laces",
+                          "Sword"
+                         );
     }
 
     private void formatting() {
@@ -44,17 +58,39 @@ public class InventoryHud {
         table.center();
         table.setFillParent(true);
         table.add("Player").row();
+        table.add("Merchant").padLeft(150).row();
         table.add(inventory);
+        table.add(merchant);
         show();
         stage.addActor(table);
     }
+
 
     public void show() {
         Gdx.input.setInputProcessor(stage);
     }
 
     public void update() {
-        formatting();
+        int count = 0;
+        if (Gdx.input.isKeyPressed(Input.Keys.I)) {
+            formatting();
+            count ++;
+        }
+
+        /* If the count value is uneven then it will dispose it - only carried out
+            when pressing I will remove the inventory.
+         */
+/*
+        if ((count % 2 == 0) && (Gdx.input.isKeyPressed(Input.Keys.I))) {
+            dispose();
+        }
+*/
+
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            dispose();
+        }
+
+
     }
 
     public void dispose() {
