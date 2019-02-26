@@ -54,7 +54,7 @@ public class HudScene  {
      */
     Label goldCountLabel;
 
-    private Image pause, story;
+    private Image pause, story, inventoryImg;
 
     private Texture saveTexture;
 
@@ -80,6 +80,7 @@ public class HudScene  {
 
         pause = new Image(new Texture("core/assets/pause.png"));
         story = new Image(new Texture("core/assets/story.png"));
+        inventoryImg = new Image(new Texture("core/assets/Inventory/backpack.png"));
 
         saveTexture = new Texture("core/assets/Buttons/SaveButton.png");
         saveTextureRegion = new TextureRegion(saveTexture);
@@ -115,6 +116,7 @@ public class HudScene  {
         //putting the table on the stage so that it can be drawn
         table.add(pause).size(50,50).padLeft(20);
         table.add(story).size(50,50).padLeft(20);
+        table.add(inventoryImg).size(50, 50).pad(20);
         stage.addActor(table);
         //stage.addActor(saveButton);
         //Gdx.input.setInputProcessor(stage);

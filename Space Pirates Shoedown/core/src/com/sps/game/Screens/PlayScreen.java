@@ -20,6 +20,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.*;
 import com.sps.game.Controller.DialogueController;
+import com.sps.game.Inventory2.Inventory;
+import com.sps.game.Scenes.InventoryHud;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
@@ -78,6 +80,13 @@ public abstract class PlayScreen implements Screen
      * @see #render
      */
     private HudScene hud;
+
+
+    /**
+     * Holds instance of the InventoryHud class, which displays vital Inventory information to the user.
+     * @see #render
+     */
+    private InventoryHud inventoryHud;
 
     /**
      * Holds all the sprites that will be displayed on the sreen.
@@ -139,6 +148,7 @@ public abstract class PlayScreen implements Screen
         batch = new SpriteBatch();
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
+        inventoryHud = new InventoryHud(game.batch,p);
         maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -271,6 +281,7 @@ public abstract class PlayScreen implements Screen
             }
         }
         hud.update();
+        inventoryHud.update();
         gamecam.update();
         renderer.setView(gamecam);
     }
@@ -305,6 +316,7 @@ public abstract class PlayScreen implements Screen
 
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
+        inventoryHud.stage.draw();
         batch.setProjectionMatrix(gamecam.combined);
         ArrayList<AbstractNPC> mapNPC = getMapNPC(currentMapState);
         if (mapNPC != null) {

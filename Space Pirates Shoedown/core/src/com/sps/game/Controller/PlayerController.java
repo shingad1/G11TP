@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Inventory2.Inventory;
+import com.sps.game.Scenes.InventoryHud;
 import com.sps.game.Sprites.InteractiveNPC;
 import com.sps.game.Sprites.InteractiveNPCMoving;
 import com.sps.game.Sprites.Location;
@@ -125,9 +127,13 @@ public class PlayerController extends InputAdapter {
                     fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
                     break;
                 case Input.Keys.I:
-                    inventory = new Inventory();
-                    inventory.show();
+                    SpriteBatch sb = new SpriteBatch();
+                    InventoryHud hud = new InventoryHud(sb, Player.getPlayer());
+                    hud.update();
                     System.out.println("Inventory Loaded");
+                    hud.dispose();
+                case Input.Keys.O:
+                    break;
                 default:
                     collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
             }
