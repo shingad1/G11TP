@@ -45,7 +45,12 @@ public class InventoryHud {
         table.setFillParent(true);
         table.add("Player").row();
         table.add(inventory);
+        show();
         stage.addActor(table);
+    }
+
+    public void show() {
+        Gdx.input.setInputProcessor(stage);
     }
 
     public void update() {
