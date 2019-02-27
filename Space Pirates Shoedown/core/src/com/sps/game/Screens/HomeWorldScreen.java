@@ -1,5 +1,9 @@
 package com.sps.game.Screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -26,6 +30,9 @@ public class HomeWorldScreen extends PlayScreen {
 
     private int[] ybounds  = {0,1600};
 
+    //private ArrayList<InteractiveNPC> interactiveNPC;
+    private SpriteBatch spriteBatch;
+    private Sprite sprite;
 
     public HomeWorldScreen(SpacePiratesShoedown game) {
         super(game);
@@ -192,5 +199,16 @@ public class HomeWorldScreen extends PlayScreen {
             if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());
         }
+    }
+
+    private void setInteractiveNPC(){
+        spriteBatch = new SpriteBatch();
+        sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
+        sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        interactiveNPC = new ArrayList<InteractiveNPC>();
+        spriteBatch.begin();
+        sprite.draw(spriteBatch);
+        interactiveNPC.add(new InteractiveNPC(736, 1408, MapFactory.MapType.HomeWorldMap1, spriteBatch, "Bob"));
+        spriteBatch.end();
     }
 }

@@ -130,8 +130,6 @@ public abstract class PlayScreen implements Screen
     protected String overworldMap;
 
     private com.badlogic.gdx.audio.Music music;
-
-    private com.badlogic.gdx.audio.Music sound;
     private MapManager mapManager;
     private DialogueController dialogController = new DialogueController();
     private StoryController storyController = new StoryController();
@@ -139,7 +137,10 @@ public abstract class PlayScreen implements Screen
 
     protected Random random;
 
-    private boolean dialogBoolean = true;
+    protected ArrayList<InteractiveNPC> interactiveNPC;
+
+    private pauseController pauseController;
+    private Boolean dialogBoolean;
 
     public static enum GameState{
         Saving,
@@ -169,7 +170,7 @@ public abstract class PlayScreen implements Screen
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
-
+        dialogBoolean = true;
     }
 
     /**
@@ -337,11 +338,7 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        //tutorialController.create();
-        //tutorialController.render();
-/*
-
-        if(dialogBoolean)
+        /*if(dialogBoolean)
         {
             try {
                 dialogController.create("Linda");
@@ -351,13 +348,11 @@ public abstract class PlayScreen implements Screen
             dialogController.render();
         }
         dialogController.render();
-
-        dialogBoolean = false;
-
-        dialogBoolean = false;
-
-
         dialogBoolean = false;*/
+
+        pauseController = new pauseController();
+        pauseController.create();
+        pauseController.render();
 
     }
 

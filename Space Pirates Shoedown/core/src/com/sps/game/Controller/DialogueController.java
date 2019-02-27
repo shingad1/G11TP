@@ -40,6 +40,8 @@ public class DialogueController extends ApplicationAdapter implements InputProce
 
     final Dialog textArea = new Dialog("Dialogues", skin);
 
+    private InputMultiplexer inputMultiplexer;
+
     public DialogueController()
     {
         counter = 0;
@@ -88,14 +90,10 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                stage.dispose();
-                Color oldColour = sprite.getColor();
-                sprite.setColor(oldColour.r, oldColour.g, oldColour.b, 0);
-                //batch.begin();
-                //batch.dispose();
-                //batch.end();
-                /*temp = false;
-                playScreen.setBool(temp);*/
+                stage.clear();
+                Gdx.input.setInputProcessor(inputMultiplexer);
+                inputMultiplexer = null;
+                batch.dispose();
             }
         });
 
@@ -115,7 +113,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
         sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        InputMultiplexer inputMultiplexer = new InputMultiplexer(stage, this);
+        inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);
 
         /*openFile();

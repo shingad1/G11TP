@@ -9,4 +9,8 @@
         titleFont: default-font
       }
     }
+
+    com.badlogic.gdx.scene2d.ui.Window$WindowStyle: {
+    "default": {"titleFont": "black64", "background": "default.background", "stageBackground": "default.selection"}
+    }
 }
