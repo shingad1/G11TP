@@ -1,5 +1,9 @@
 package com.sps.game.Screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -25,6 +29,9 @@ public class HomeWorldScreen extends PlayScreen {
     private int[] xbounds  = {0,1600};
 
     private int[] ybounds  = {0,1600};
+
+    private SpriteBatch spriteBatch;
+    private Sprite sprite;
 
 
     public HomeWorldScreen(SpacePiratesShoedown game) {
@@ -60,7 +67,10 @@ public class HomeWorldScreen extends PlayScreen {
             }
         }
 
-        //interactiveNPCS.add();
+        spriteBatch = new SpriteBatch();
+        sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
+
+        interactiveNPCS.add(new InteractiveNPC(Math.round(736), Math.round(672), MapFactory.MapType.HomeWorldMap1, game.batch, "Bob"));
 
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);

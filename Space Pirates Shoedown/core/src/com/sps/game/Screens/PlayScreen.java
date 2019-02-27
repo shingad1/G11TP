@@ -170,7 +170,7 @@ public abstract class PlayScreen implements Screen
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
-
+        interactiveNPCS = new ArrayList<InteractiveNPC>();
     }
 
     /**
