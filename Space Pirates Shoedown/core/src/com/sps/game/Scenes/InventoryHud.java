@@ -2,6 +2,8 @@ package com.sps.game.Scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Controller.PlayerController;
 import com.sps.game.Inventory2.Inventory;
 import com.sps.game.Sprites.Player;
 
@@ -27,13 +30,17 @@ public class InventoryHud {
     private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     private List<String> inventory = new List<String>(skin);
     private List<String> merchant = new List(skin);
+    private PlayerController playerController;
+    private InputMultiplexer multiplexer = new InputMultiplexer();
 
-    public InventoryHud(SpriteBatch sb, Player p) {
+
+    public InventoryHud(SpriteBatch sb, PlayerController playerController) {
 
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         inventoryLabel = new Label("inventory", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        player = p;
+        player = Player.getPlayer();
+        this.playerController = playerController;
 
         //In the future, change this to actual instances of class item.
         inventory.setItems("Axe",
@@ -61,19 +68,22 @@ public class InventoryHud {
         table.add("Merchant").padLeft(150).row();
         table.add(inventory);
         table.add(merchant);
-        show();
+
         stage.addActor(table);
     }
 
 
     public void show() {
         Gdx.input.setInputProcessor(stage);
+        InputProcessor processor = Gdx.input.getInputProcessor();
+        multiplexer.addProcessor(processor);
     }
 
     public void update() {
         int count = 0;
         if (Gdx.input.isKeyPressed(Input.Keys.I)) {
             formatting();
+            show();
             count ++;
         }
 
@@ -85,15 +95,15 @@ public class InventoryHud {
             dispose();
         }
 */
-
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            dispose();
+        if (Gdx.input.isKeyPressed(Input.Keys.O)) {
+            //Gdx.input.setInputProcessor(playerController);
+            stage.clear();
+            multiplexer.removeProcessor(Gdx.input.getInputProcessor());
         }
-
-
     }
 
     public void dispose() {
         stage.dispose();
     }
+
 }

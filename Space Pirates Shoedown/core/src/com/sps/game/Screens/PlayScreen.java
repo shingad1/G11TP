@@ -148,7 +148,7 @@ public abstract class PlayScreen implements Screen
         batch = new SpriteBatch();
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
-        inventoryHud = new InventoryHud(game.batch,p);
+        inventoryHud = new InventoryHud(game.batch,controller);
         maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -316,7 +316,7 @@ public abstract class PlayScreen implements Screen
 
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
-        inventoryHud.stage.draw();
+        inventoryHud.stage.draw(); //drawing the user hud
         batch.setProjectionMatrix(gamecam.combined);
         ArrayList<AbstractNPC> mapNPC = getMapNPC(currentMapState);
         if (mapNPC != null) {

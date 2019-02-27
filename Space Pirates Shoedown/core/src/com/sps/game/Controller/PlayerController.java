@@ -127,12 +127,10 @@ public class PlayerController extends InputAdapter {
                     fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
                     break;
                 case Input.Keys.I:
-                    SpriteBatch sb = new SpriteBatch();
-                    InventoryHud hud = new InventoryHud(sb, Player.getPlayer());
-                    hud.update();
                     System.out.println("Inventory Loaded");
-                    hud.dispose();
+                    break;
                 case Input.Keys.O:
+                    System.out.println("Inventory exit");
                     break;
                 default:
                     collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
