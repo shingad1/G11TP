@@ -58,8 +58,9 @@ public class HomeWorldScreen extends PlayScreen {
                 i++;
             }
         }
-        allLocations = new ArrayList<Location>();
-        changeNpcLocations(selectedMap);
+
+        interactiveNPCS = new ArrayList<InteractiveNPC>();
+        interactiveNPCS.add(new InteractiveNPC(736, 1408, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
 
         p.setX(736); //change when moving worlds
         p.setY(1280); //""
