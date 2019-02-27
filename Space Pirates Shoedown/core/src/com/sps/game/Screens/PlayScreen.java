@@ -340,7 +340,7 @@ public abstract class PlayScreen implements Screen
         //tutorialController.create();
         //tutorialController.render();
 
-        if(dialogBoolean)
+        /*if(dialogBoolean)
         {
             try {
                 dialogController.create("Linda");
@@ -356,7 +356,7 @@ public abstract class PlayScreen implements Screen
         dialogBoolean = false;
 
 
-        dialogBoolean = false;
+        dialogBoolean = false;*/
 
     }
 
