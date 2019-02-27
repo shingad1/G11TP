@@ -15,6 +15,7 @@ import com.sps.game.Sprites.InteractiveNPCMoving;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 import com.sps.game.dialogue.Dialogue;
+import com.sps.game.profile.ProfileManager;
 
 import javax.swing.*;
 import java.lang.Math;
@@ -131,6 +132,7 @@ public class PlayerController extends InputAdapter {
                     break;
                 case Input.Keys.O:
                     System.out.println("Inventory exit");
+
                     break;
                 default:
                     collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
@@ -475,5 +477,3 @@ public class PlayerController extends InputAdapter {
         allLocations = npcLocations;
     }
 }
-
-

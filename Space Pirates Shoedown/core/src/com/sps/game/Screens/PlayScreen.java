@@ -25,10 +25,11 @@ import com.sps.game.Scenes.InventoryHud;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
-
 import com.sps.game.maps.MapFactory;
+import com.sps.game.maps.MapManager;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -131,7 +132,7 @@ public abstract class PlayScreen implements Screen
     private com.badlogic.gdx.audio.Music music;
 
     private com.badlogic.gdx.audio.Music sound;
-
+    private MapManager mapManager;
     private DialogueController dialogController = new DialogueController();
     private StoryController storyController = new StoryController();
     private TutorialController1 tutorialController = new TutorialController1();
@@ -142,9 +143,12 @@ public abstract class PlayScreen implements Screen
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
+        mapManager = new MapManager();
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
+        mapManager.setPlayer(p);
+        mapManager.setCamera(gamecam);
         batch = new SpriteBatch();
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
@@ -156,7 +160,7 @@ public abstract class PlayScreen implements Screen
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
-        
+
     }
 
 /*
@@ -191,7 +195,11 @@ public abstract class PlayScreen implements Screen
      */
     @Override
     public void show() {
+        ProfileManager.getInstance().addObserver(mapManager);
         Gdx.input.setInputProcessor(controller);
+        if(renderer == null){
+            renderer = new OrthogonalTiledMapRenderer(mapManager.getCurrentTiledMap());
+        }
     }
 
     /**
@@ -292,6 +300,11 @@ public abstract class PlayScreen implements Screen
      */
     @Override
     public void render(float delta) {
+        if(mapManager.hasMapChanged()){
+            renderer.setMap(mapManager.getCurrentTiledMap());
+            gamecam.update();
+            mapManager.setMapChanged(false);
+        }
         if(pause)
         {
             if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
@@ -341,11 +354,10 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-
         //tutorialController.create();
         //tutorialController.render();
 /*
->>>>>>> 45bcdce6abf95934ede8d2579020e6d555ad05ba
+
         if(dialogBoolean)
         {
             try {
@@ -356,9 +368,8 @@ public abstract class PlayScreen implements Screen
             dialogController.render();
         }
         dialogController.render();
-<<<<<<< HEAD
+
         dialogBoolean = false;
-=======
 
         dialogBoolean = false;
 
