@@ -91,6 +91,7 @@ public class MenuScreen implements Screen {
      */
     private com.badlogic.gdx.audio.Music sound;
 
+
     public MenuScreen(SpacePiratesShoedown game){
         this.game = game;
         background = new Texture(ASSETS_PATH + "spacebackground.jpg");
