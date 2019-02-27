@@ -32,8 +32,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
 
     private String buttonLogged = "";
 
-    private PlayScreen playScreen;
-    private Boolean temp,temp1;
+    private InputMultiplexer inputMultiplexer;
 
     public Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     public Stage stage = new Stage(new ScreenViewport());
@@ -88,14 +87,11 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                stage.dispose();
-                Color oldColour = sprite.getColor();
-                sprite.setColor(oldColour.r, oldColour.g, oldColour.b, 0);
-                //batch.begin();
-                //batch.dispose();
+                stage.clear();
+                Gdx.input.setInputProcessor(inputMultiplexer);
+                inputMultiplexer = null;
                 //batch.end();
-                /*temp = false;
-                playScreen.setBool(temp);*/
+
             }
         });
 
@@ -115,7 +111,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
         sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        InputMultiplexer inputMultiplexer = new InputMultiplexer(stage, this);
+        inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);
 
         /*openFile();
