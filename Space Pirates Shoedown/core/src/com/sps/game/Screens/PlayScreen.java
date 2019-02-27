@@ -132,9 +132,18 @@ public abstract class PlayScreen implements Screen
 
     private boolean dialogBoolean = true;
 
+    public static enum GameState{
+        Saving,
+        Loading,
+        Running
+    }
+
+    private static GameState gameState;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         mapManager = new MapManager();
+        setGameState(GameState.Running);
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
@@ -153,39 +162,13 @@ public abstract class PlayScreen implements Screen
         
     }
 
-/*
-    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npc, ArrayList<NPCController> npcController, int camX, int camY){
-        this.game = game;
-        gamecam = new OrthographicCamera(480,480);
-        gameport = new FitViewport(1600, 1600, gamecam);
-        mapLoader = new TmxMapLoader();
-        overworldMap = mapName;
-        currentMap = mapLoader.load(ASSETS_PATH + mapName);
-        renderer = new OrthogonalTiledMapRenderer(currentMap);
-        gamecam.position.set(playerX + camX, playerY + camY, 0);
-        this.batch = batch;
-        this.p = p;
-        p.setPosition(playerX, playerY);
-        int[] xbounds = {0, 1600};
-        int[] ybounds = {0,1600};
-        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1);
-        hud = new HudScene(game.batch,p);
-        currentMapState = "Overworld";
-        this.controller = new PlayerController(this.p,currentCollisionLayer,xbounds,ybounds,null);
-        this.npc = npc;
-        this.npcController = npcController;
-        maps = new Stack<TiledMap>();
-        pauseTexture = new Texture("core/assets/pause.png");
-        pause = false;
-        this.controller.reset();
-    }
-*/
     /**
      * Specifies which controller will be used to check the input.
      */
     @Override
     public void show() {
         ProfileManager.getInstance().addObserver(mapManager);
+        setGameState(GameState.Loading);
         Gdx.input.setInputProcessor(controller);
         if(renderer == null){
             renderer = new OrthogonalTiledMapRenderer(mapManager.getCurrentTiledMap());
@@ -405,6 +388,25 @@ public abstract class PlayScreen implements Screen
         enemyTile.getProperties().put("invisible","true");
        //currentMapState = "House";
         game.setScreen(this);
+    }
+
+    public static void setGameState(GameState gs){
+        switch (gs){
+            case Saving:
+                ProfileManager.getInstance().saveProfile();
+                gameState = GameState.Saving;
+                break;
+            case Loading:
+                ProfileManager.getInstance().loadProfile();
+                gameState = GameState.Running;
+                break;
+            case Running:
+                gameState = GameState.Running;
+                break;
+                default:
+                    gameState = GameState.Running;
+                    break;
+        }
     }
 
     public abstract ArrayList<InteractiveNPC> getInteractiveNPC();
