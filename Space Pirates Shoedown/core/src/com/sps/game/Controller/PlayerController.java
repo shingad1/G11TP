@@ -12,6 +12,7 @@ import com.sps.game.Sprites.InteractiveNPCMoving;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 import com.sps.game.dialogue.Dialogue;
+import com.sps.game.profile.ProfileManager;
 
 import javax.swing.*;
 import java.lang.Math;
@@ -120,6 +121,10 @@ public class PlayerController extends InputAdapter {
             switch(keycode){
                 case Input.Keys.A:
                     fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
+                    break;
+                case Input.Keys.X:
+                    ProfileManager.getInstance().saveProfile();
+                    System.out.println("Game saved");
                     break;
                 default:
                     collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);

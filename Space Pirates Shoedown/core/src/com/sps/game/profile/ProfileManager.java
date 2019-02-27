@@ -3,6 +3,7 @@ package com.sps.game.profile;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
 
@@ -25,6 +26,8 @@ public class ProfileManager extends ProfileSubject {
 
     public static final String DEFAULT_PROFILE = "default";
 
+    private boolean isNewProfile = false;
+
     private ProfileManager(){
         json = new Json();
         _profiles = new Hashtable<String, FileHandle>();
@@ -44,6 +47,13 @@ public class ProfileManager extends ProfileSubject {
         return profileManager;
     }
 
+    public void setIsNewProfile(boolean isNewProfile){
+        this.isNewProfile = isNewProfile;
+    }
+
+    public boolean getIsNewProfile(){
+        return this.isNewProfile;
+    }
     /**
      * Creates an array of profile Strings to display in the UI
      * @return profiles
@@ -159,14 +169,27 @@ public class ProfileManager extends ProfileSubject {
      * those properties can correctly initialize's the data.
      */
     public void loadProfile(){
+        if(isNewProfile){
+            notify(this, ProfileObserver.ProfileEvent.CLEAR_CURRENT_PROFILE);
+            saveProfile();
+        }
+
         String fullProfileFileName = profileName + SAVEGAME_SUFFIX;
         boolean doesProfileFileExist = Gdx.files.internal(fullProfileFileName).exists();
+
         if(!doesProfileFileExist){
             System.out.println("File doesn't exist!");
             return;
         }
+
+        FileHandle encodedFile = _profiles.get(profileName);
+        String s = encodedFile.readString();
+
+        String decodedFile = Base64Coder.decodeString(s);
+
         profileProperties = json.fromJson(ObjectMap.class, _profiles.get(profileName));
         notify(this, ProfileObserver.ProfileEvent.PROFILE_LOADED);
+        isNewProfile = false;
     }
 
     /**

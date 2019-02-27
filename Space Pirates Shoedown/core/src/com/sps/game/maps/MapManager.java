@@ -11,6 +11,8 @@ import com.sps.game.Sprites.Player;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
 
+import javax.swing.text.html.parser.Entity;
+
 public class MapManager implements ProfileObserver {
 
     private static final String TAG = MapManager.class.getSimpleName();
@@ -56,6 +58,13 @@ public class MapManager implements ProfileObserver {
                 profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
                 profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;
+            case CLEAR_CURRENT_PROFILE:
+                map = null;
+                profileManager.setProperty("currentMapType", MapFactory.MapType.HomeWorldMap1.toString());
+                MapFactory.clearCache();
+                profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
+                profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
+                break;
             default:
                 break;
         }
@@ -75,6 +84,14 @@ public class MapManager implements ProfileObserver {
         Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
     }
 
+    public void unregisterCurrentMapEntityObservers(){
+       //todo for entities
+    }
+/*
+    public void registerCurrentMapEntityObservers(ComponentObserver observer){
+        //todo for entities
+    }
+*/
     public MapLayer getCollisionLayer(){
         return map.getCollisionLayer();
     }
@@ -93,6 +110,8 @@ public class MapManager implements ProfileObserver {
     public void setPlayer(Player player){
         this.player = player;
     }
+
+    public Player getPlayer(){ return this.player;}
 
     public void setCamera(Camera camera){
         this.camera = camera;

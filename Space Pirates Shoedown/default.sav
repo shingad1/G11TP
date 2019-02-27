@@ -1,1 +1,8 @@
-{}
+{
+homeWorldMap2StartPosition: {
+	class: com.badlogic.gdx.math.Vector2
+}
+homeWorldMap1StartPosition: {
+	class: com.badlogic.gdx.math.Vector2
+}
+}

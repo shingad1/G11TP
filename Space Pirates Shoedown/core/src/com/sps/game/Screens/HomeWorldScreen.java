@@ -133,15 +133,19 @@ public class HomeWorldScreen extends PlayScreen {
      * @return
      */
     public boolean checkPosition(Location location, MapFactory.MapType map){
-        for (AbstractNPC nonPlayingCharacter : getMapNPC(map)){
-            if(location.equals(nonPlayingCharacter.getLocation())){
+        for (AbstractNPC nonPlayingCharacter : getMapNPC(map)) {
+            if (location.equals(nonPlayingCharacter.getLocation())) {
                 return false;
             }
         }
-        if(getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) (location.getX() / 32), (int) ((location.getY())/32)).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, map) == null || getCell(location,map).getTile().getProperties().containsKey("blocked")){
             return false;
         }
         return true;
+    }
+
+    public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
+        return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) (location.getX() / 32), (int) ((location.getY())/32));
     }
 
     public void changeMaps(){
