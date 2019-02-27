@@ -140,6 +140,7 @@ public abstract class PlayScreen implements Screen
     protected Random random;
 
     private boolean dialogBoolean = true;
+    protected ArrayList<InteractiveNPC> interactiveNPCS;
 
     public static enum GameState{
         Saving,

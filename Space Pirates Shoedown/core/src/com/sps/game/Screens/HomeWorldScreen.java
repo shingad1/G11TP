@@ -60,6 +60,8 @@ public class HomeWorldScreen extends PlayScreen {
             }
         }
 
+        //interactiveNPCS.add();
+
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
 
