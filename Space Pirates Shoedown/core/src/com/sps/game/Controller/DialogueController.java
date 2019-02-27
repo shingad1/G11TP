@@ -4,7 +4,6 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -15,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.sps.game.Screens.PlayScreen;
 
 import java.io.*;
 
@@ -28,12 +26,9 @@ public class DialogueController extends ApplicationAdapter implements InputProce
     String[] dialogue;
 
     private Table table;
-    private TextButton prevButton, nextButton, exitButton;
+    private TextButton prevButton, nextButton;
 
     private String buttonLogged = "";
-
-    private PlayScreen playScreen;
-    private Boolean temp,temp1;
 
     public Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     public Stage stage = new Stage(new ScreenViewport());
@@ -63,7 +58,6 @@ public class DialogueController extends ApplicationAdapter implements InputProce
 
         prevButton = new TextButton("Previous", skin, "default");
         nextButton = new TextButton("Next", skin, "default");
-        exitButton = new TextButton("Exit", skin, "default");
 
         prevButton.addListener(new ClickListener() {
             @Override
@@ -85,28 +79,10 @@ public class DialogueController extends ApplicationAdapter implements InputProce
             }
         });
 
-        exitButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y){
-                stage.dispose();
-                Color oldColour = sprite.getColor();
-                sprite.setColor(oldColour.r, oldColour.g, oldColour.b, 0);
-                //batch.begin();
-                //batch.dispose();
-                //batch.end();
-                /*temp = false;
-                playScreen.setBool(temp);*/
-            }
-        });
-
         table.add(textArea).size(stage.getWidth(),stage.getHeight()/2).padBottom(5);
         table.row();
-        table.add(prevButton).size(150,50);
-        table.row();
-        table.add(exitButton).size(150,50);
-        table.row();
-        table.add(nextButton).size(150, 50);
-
+        table.add(prevButton).size(150,50).align(Align.bottomLeft).padLeft(170);
+        table.add(nextButton).size(150, 50).align(Align.bottomRight).padRight(170);
 
         textArea.setColor(181.0f/255.0f,122.0f/255.0f,232.0f/255.0f,255.0f/255.0f);
         stage.addActor(table);
