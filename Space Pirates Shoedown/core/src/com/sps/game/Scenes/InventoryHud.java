@@ -23,15 +23,14 @@ import java.util.ArrayList;
 
 public class InventoryHud {
 
-    private Player player;
     public Stage stage;
     private Viewport viewport;
     Label inventoryLabel;
     private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     private List<String> inventory = new List<String>(skin);
     private List<String> merchant = new List(skin);
-    private PlayerController playerController;
-    private InputMultiplexer multiplexer = new InputMultiplexer();
+
+    private InputProcessor oldInput;
 
 
     public InventoryHud(SpriteBatch sb, PlayerController playerController) {
@@ -39,8 +38,6 @@ public class InventoryHud {
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         inventoryLabel = new Label("inventory", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        player = Player.getPlayer();
-        this.playerController = playerController;
 
         //In the future, change this to actual instances of class item.
         inventory.setItems("Axe",
@@ -74,31 +71,20 @@ public class InventoryHud {
 
 
     public void show() {
+        oldInput = Gdx.input.getInputProcessor();
         Gdx.input.setInputProcessor(stage);
-        InputProcessor processor = Gdx.input.getInputProcessor();
-        multiplexer.addProcessor(processor);
     }
 
     public void update() {
-        int count = 0;
-        if (Gdx.input.isKeyPressed(Input.Keys.I)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.I) && oldInput == null) {
             formatting();
             show();
-            count ++;
         }
 
-        /* If the count value is uneven then it will dispose it - only carried out
-            when pressing I will remove the inventory.
-         */
-/*
-        if ((count % 2 == 0) && (Gdx.input.isKeyPressed(Input.Keys.I))) {
-            dispose();
-        }
-*/
-        if (Gdx.input.isKeyPressed(Input.Keys.O)) {
-            //Gdx.input.setInputProcessor(playerController);
+        if (Gdx.input.isKeyPressed(Input.Keys.O) && oldInput != null) {
             stage.clear();
-            multiplexer.removeProcessor(Gdx.input.getInputProcessor());
+            Gdx.input.setInputProcessor(oldInput);
+            oldInput = null;
         }
     }
 
