@@ -59,6 +59,43 @@ public class InventoryHud {
         table.add(merchant);
 
         stage.addActor(table);
+
+
+    /*
+            Table inventoryTable = new Table(skin);
+            inventoryTable.setDebug(true);
+//            inventoryTable.setBackground();
+            inventoryTable.padRight(250);
+            inventoryTable.setFillParent(true);
+            inventoryTable.add("Player").row();
+            inventoryTable.add(inventory);
+            inve
+            inventoryTable.add("Test");
+
+            stage.addActor(inventoryTable);
+
+            Table merchantTable = new Table(skin);
+            merchantTable.padLeft(250);
+            merchantTable.setFillParent(true);
+            merchantTable.add("Merchant").row();
+            merchantTable.add(merchant);
+            stage.addActor(merchantTable);
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
