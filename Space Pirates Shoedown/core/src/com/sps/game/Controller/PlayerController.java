@@ -4,20 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import com.sps.game.Inventory2.Inventory;
-import com.sps.game.Scenes.InventoryHud;
 import com.sps.game.Sprites.InteractiveNPC;
 import com.sps.game.Sprites.InteractiveNPCMoving;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 import com.sps.game.dialogue.Dialogue;
-import com.sps.game.profile.ProfileManager;
 
-import javax.swing.*;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -85,8 +80,6 @@ public class PlayerController extends InputAdapter {
     private boolean newWorldUp; //move to world up i.e. 2,1 to 1,1
 
     private boolean newWorldDown; //move to world down i.e. 1,1 to 2,1
-
-    private Inventory inventory;
 
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         //dialogue = false;
