@@ -26,6 +26,7 @@ public class HomeWorldScreen extends PlayScreen {
 
     private int[] ybounds  = {0,1600};
 
+
     public HomeWorldScreen(SpacePiratesShoedown game) {
         super(game);
         //overworldMap = "HomeWorld/HomeWorldMap1.tmx";
@@ -58,6 +59,7 @@ public class HomeWorldScreen extends PlayScreen {
                 i++;
             }
         }
+
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
 

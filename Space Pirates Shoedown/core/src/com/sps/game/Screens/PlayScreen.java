@@ -7,20 +7,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.*;
 import com.sps.game.Controller.DialogueController;
-import com.sps.game.Inventory2.Inventory;
 import com.sps.game.Scenes.InventoryHud;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
@@ -28,10 +24,8 @@ import com.sps.game.Sprites.*;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.maps.MapManager;
 import com.sps.game.profile.ProfileManager;
-import com.sps.game.profile.ProfileObserver;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
@@ -141,9 +135,18 @@ public abstract class PlayScreen implements Screen
 
     private boolean dialogBoolean = true;
 
+    public static enum GameState{
+        Saving,
+        Loading,
+        Running
+    }
+
+    private static GameState gameState;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         mapManager = new MapManager();
+        setGameState(GameState.Running);
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
@@ -163,39 +166,13 @@ public abstract class PlayScreen implements Screen
 
     }
 
-/*
-    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npc, ArrayList<NPCController> npcController, int camX, int camY){
-        this.game = game;
-        gamecam = new OrthographicCamera(480,480);
-        gameport = new FitViewport(1600, 1600, gamecam);
-        mapLoader = new TmxMapLoader();
-        overworldMap = mapName;
-        currentMap = mapLoader.load(ASSETS_PATH + mapName);
-        renderer = new OrthogonalTiledMapRenderer(currentMap);
-        gamecam.position.set(playerX + camX, playerY + camY, 0);
-        this.batch = batch;
-        this.p = p;
-        p.setPosition(playerX, playerY);
-        int[] xbounds = {0, 1600};
-        int[] ybounds = {0,1600};
-        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1);
-        hud = new HudScene(game.batch,p);
-        currentMapState = "Overworld";
-        this.controller = new PlayerController(this.p,currentCollisionLayer,xbounds,ybounds,null);
-        this.npc = npc;
-        this.npcController = npcController;
-        maps = new Stack<TiledMap>();
-        pauseTexture = new Texture("core/assets/pause.png");
-        pause = false;
-        this.controller.reset();
-    }
-*/
     /**
      * Specifies which controller will be used to check the input.
      */
     @Override
     public void show() {
         ProfileManager.getInstance().addObserver(mapManager);
+        setGameState(GameState.Loading);
         Gdx.input.setInputProcessor(controller);
         if(renderer == null){
             renderer = new OrthogonalTiledMapRenderer(mapManager.getCurrentTiledMap());
@@ -417,6 +394,25 @@ public abstract class PlayScreen implements Screen
         enemyTile.getProperties().put("invisible","true");
        //currentMapState = "House";
         game.setScreen(this);
+    }
+
+    public static void setGameState(GameState gs){
+        switch (gs){
+            case Saving:
+                ProfileManager.getInstance().saveProfile();
+                gameState = GameState.Saving;
+                break;
+            case Loading:
+                ProfileManager.getInstance().loadProfile();
+                gameState = GameState.Running;
+                break;
+            case Running:
+                gameState = GameState.Running;
+                break;
+                default:
+                    gameState = GameState.Running;
+                    break;
+        }
     }
 
     public abstract ArrayList<InteractiveNPC> getInteractiveNPC();

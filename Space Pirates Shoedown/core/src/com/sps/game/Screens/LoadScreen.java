@@ -104,8 +104,10 @@ public class LoadScreen implements Screen {
                                         String fileName = listProfiles.getSelected().toString();
                                         if(fileName != null && !fileName.isEmpty()){
                                             FileHandle file = ProfileManager.getInstance().getProfileFile(fileName);
+                                            ProfileManager.getInstance().loadProfile();
                                             if(file != null){
                                                 ProfileManager.getInstance().setCurrentProfile(fileName);
+                                                PlayScreen.setGameState(PlayScreen.GameState.Loading);
                                                 //LoadScreen.this.notify(); for changing audio
                                                 game.setScreen(new HomeWorldScreen(game));//will need to change
                                             }

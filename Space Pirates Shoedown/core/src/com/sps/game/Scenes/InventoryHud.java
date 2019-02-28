@@ -2,16 +2,14 @@ package com.sps.game.Scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -109,10 +107,12 @@ public class InventoryHud {
         stage.addActor(table);
 
 
-        /*
+
+    /*
             Table inventoryTable = new Table(skin);
             inventoryTable.setDebug(true);
-//          inventoryTable.setBackground();
+//            inventoryTable.setBackground();
+
             inventoryTable.padRight(250);
             inventoryTable.setFillParent(true);
             inventoryTable.add("Player").row();
@@ -129,6 +129,7 @@ public class InventoryHud {
             merchantTable.add(merchant);
             stage.addActor(merchantTable);
     */
+
 
     }
 

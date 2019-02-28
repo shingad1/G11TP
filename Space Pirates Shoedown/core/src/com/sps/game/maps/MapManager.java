@@ -52,9 +52,11 @@ public class MapManager implements ProfileObserver {
                 break;
 
             case SAVING_PROFILE:
-                if(map != null){
+                map = MapFactory.getMap(getCurrentMapType());
+                if(map != null) {
                     profileManager.setProperty("currentMapType", map.currentMapType.toString());
                 }
+
                 profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
                 profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;
@@ -72,7 +74,7 @@ public class MapManager implements ProfileObserver {
 
     public void loadMap(MapFactory.MapType mapType){
         Map temp = MapFactory.getMap(mapType);
-        if(map == null){
+        if(temp == null){
             Gdx.app.debug(TAG, "Map does not exist");
             return;
         }
