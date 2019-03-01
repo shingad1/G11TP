@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
+import java.util.ArrayList;
 
 
 public class InventoryHud {
@@ -28,7 +29,9 @@ public class InventoryHud {
     Label inventoryLabel;
     private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     private List<String> inventory = new List<String>(skin);
-    private List<String> merchant = new List(skin);
+    private List<String> merchant = new List<String>(skin);
+    private ArrayList <String> rejectedItems = new ArrayList<String>();
+
 
     private InputProcessor oldInput;
 
@@ -54,6 +57,10 @@ public class InventoryHud {
         merchant.setItems("Shoe Laces",
                 "Sword"
         );
+
+        rejectedItems.add("Hamster");
+        rejectedItems.add("Shoes");
+
 
 
         DragAndDrop dnd = new DragAndDrop();
@@ -83,8 +90,15 @@ public class InventoryHud {
         dnd.addTarget(new Target(merchant) {
             @Override
             public boolean drag(Source source, Payload payload, float x, float y, int pointer) {
+                for(int i = 0; i < rejectedItems.size(); i++) {
+                    if (rejectedItems.get(i).equals((payload.getObject()))) {
+                        return !(rejectedItems.get(i).equals(payload.getObject()));
+                    }
+                }
                 return !"Cucumber".equals(payload.getObject());
+
             }
+
 
             @Override
             public void drop(Source source, Payload payload, float x, float y, int pointer) {
@@ -93,9 +107,11 @@ public class InventoryHud {
         });
     }
 
+
     private void formatting() {
         stage = new Stage();
         Table table = new Table(skin);
+        table.setDebug(true);
         table.defaults();
         table.center();
         table.setFillParent(true);
@@ -146,11 +162,22 @@ public class InventoryHud {
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.O) && oldInput != null) {
-            stage.clear();
+            //stage.clear();
+            stage.dispose();
             Gdx.input.setInputProcessor(oldInput);
             oldInput = null;
         }
     }
+
+
+    private void addRejectedItem(String item) {
+        rejectedItems.add(item);
+    }
+
+    private ArrayList getRejectedItems() {
+        return rejectedItems;
+    }
+
 
     public void dispose() {
         stage.dispose();
