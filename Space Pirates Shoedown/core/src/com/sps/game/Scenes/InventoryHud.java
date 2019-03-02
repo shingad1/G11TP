@@ -109,43 +109,24 @@ public class InventoryHud {
 
 
     private void formatting() {
+
         stage = new Stage();
+        Label inventorylabel = new Label("Inventory", skin);
+        Label merchantLabel = new Label ("Merchant", skin);
+
         Table table = new Table(skin);
         table.setDebug(true);
         table.defaults();
         table.center();
         table.setFillParent(true);
-        table.add("Player").row();
-        table.add("Merchant").padLeft(150).row();
+        table.add(inventorylabel);
+        table.add(merchantLabel);
+        table.row();
         table.add(inventory);
         table.add(merchant);
 
+
         stage.addActor(table);
-
-
-
-    /*
-            Table inventoryTable = new Table(skin);
-            inventoryTable.setDebug(true);
-//            inventoryTable.setBackground();
-
-            inventoryTable.padRight(250);
-            inventoryTable.setFillParent(true);
-            inventoryTable.add("Player").row();
-            inventoryTable.add(inventory);
-
-            inventoryTable.add("Test");
-
-            stage.addActor(inventoryTable);
-
-            Table merchantTable = new Table(skin);
-            merchantTable.padLeft(250);
-            merchantTable.setFillParent(true);
-            merchantTable.add("Merchant").row();
-            merchantTable.add(merchant);
-            stage.addActor(merchantTable);
-    */
-
 
     }
 
