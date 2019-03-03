@@ -52,11 +52,11 @@ public class MapManager implements ProfileObserver {
                 break;
 
             case SAVING_PROFILE:
-                map = MapFactory.getMap(getCurrentMapType());
+                //map = MapFactory.getMap(getCurrentMapType());
                 if(map != null) {
                     profileManager.setProperty("currentMapType", map.currentMapType.toString());
+                    //profileManager.setProperty("currentCollisionLayer", map.getCollisionLayer());
                 }
-
                 profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
                 profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;

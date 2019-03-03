@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.sps.game.Utility;
 
-public class Map{//was abstract
+public abstract class Map{//was abstract
 
     private static final String TAG = Map.class.getSimpleName();
 
@@ -35,7 +35,7 @@ public class Map{//was abstract
 
     //protected Array<AbstractNPC> npcs;
 
-    public Map(MapFactory.MapType mapType, String fullMapPath){
+    Map(MapFactory.MapType mapType, String fullMapPath){
         json = new Json();
         playerPosition = new Vector2(0,0);
         currentMapType = mapType;
@@ -78,5 +78,9 @@ public class Map{//was abstract
 
     public TiledMap getCurrentMap(){
         return currentMap;
+    }
+
+    protected void dispose(){
+
     }
 }

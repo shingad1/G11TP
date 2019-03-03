@@ -75,8 +75,6 @@ public abstract class PlayScreen implements Screen
      * @see #render
      */
     private HudScene hud;
-
-
     /**
      * Holds instance of the InventoryHud class, which displays vital Inventory information to the user.
      * @see #render
@@ -400,7 +398,7 @@ public abstract class PlayScreen implements Screen
         switch (gs){
             case Saving:
                 ProfileManager.getInstance().saveProfile();
-                gameState = GameState.Saving;
+                //gameState = GameState.Saving;
                 break;
             case Loading:
                 ProfileManager.getInstance().loadProfile();

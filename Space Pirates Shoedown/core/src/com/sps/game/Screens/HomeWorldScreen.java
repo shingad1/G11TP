@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new Map(MapFactory.MapType.HomeWorldMap1, ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"), new Map(MapFactory.MapType.HomeWorldMap2, ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx")},
+    private Map[][] worldMaps = {{new HomeWorldMap(), new HomeWorldMap2()},
                                  {null, null}};
 
     private Vector2 mapSelector; //selects map from worldMaps

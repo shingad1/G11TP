@@ -38,6 +38,9 @@ public class MapFactory {
     }
 
     public static void clearCache(){
+        for(Map map: mapTable.values()){
+            map.dispose();
+        }
         mapTable.clear();
     }
 }
