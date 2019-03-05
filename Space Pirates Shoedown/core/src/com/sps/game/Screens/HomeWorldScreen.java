@@ -11,8 +11,6 @@ import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
-import com.sps.game.maps.HomeWorldMap;
-import com.sps.game.maps.HomeWorldMap2;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 
