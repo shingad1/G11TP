@@ -86,7 +86,7 @@ public class MapManager implements ProfileObserver {
         //methods to load music
         map = temp;
         mapChanged = true;
-        //clear map method
+        //clearCurrentSelectedMapEntity();
         Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
     }
 
