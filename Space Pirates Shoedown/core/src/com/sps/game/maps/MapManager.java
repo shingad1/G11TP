@@ -27,9 +27,6 @@ public class MapManager implements ProfileObserver {
 
     private Array<AbstractNPC> npcs;
 
-    public MapManager(){
-    }
-
     @Override
     public void onNotify(ProfileManager profileManager, ProfileEvent event) {
         switch (event){
@@ -55,12 +52,11 @@ public class MapManager implements ProfileObserver {
                 break;
 
             case SAVING_PROFILE:
-                //map = MapFactory.getMap(getCurrentMapType());
+                map = MapFactory.getMap(getCurrentMapType());
                 if(map != null) {
-                    profileManager.setProperty("currentMapType", map.getCurrentMapType().toString());
-                    System.out.println(map.getCurrentMapType().toString());
-                    //profileManager.setProperty("currentCollisionLayer", map.getCollisionLayer());
+                    profileManager.setProperty("currentMapType", map.currentMapType.toString());
                 }
+
                 profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
                 profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;
@@ -86,7 +82,7 @@ public class MapManager implements ProfileObserver {
         //methods to load music
         map = temp;
         mapChanged = true;
-        //clearCurrentSelectedMapEntity();
+        //clear map method
         Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
     }
 

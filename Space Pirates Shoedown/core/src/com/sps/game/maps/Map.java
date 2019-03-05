@@ -7,11 +7,9 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
-import com.sps.game.Sprites.Location;
-import com.sps.game.Sprites.Player;
 import com.sps.game.Utility;
 
-public abstract class Map{//was abstract
+public class Map{//was abstract
 
     private static final String TAG = Map.class.getSimpleName();
 
@@ -25,8 +23,6 @@ public abstract class Map{//was abstract
     protected Json json; //may need to be removed
 
     protected Vector2 playerPosition;
-
-    protected Player p;
     //protected Vector2 convertedUnits;
 
     protected TiledMap currentMap;
@@ -39,10 +35,9 @@ public abstract class Map{//was abstract
 
     //protected Array<AbstractNPC> npcs;
 
-    Map(MapFactory.MapType mapType, String fullMapPath){
+    public Map(MapFactory.MapType mapType, String fullMapPath){
         json = new Json();
-        p = Player.getPlayer();
-        playerPosition = p.getVelocity();
+        playerPosition = new Vector2(0,0);
         currentMapType = mapType;
         if(fullMapPath == null || fullMapPath.isEmpty()){
             Gdx.app.debug(TAG, "Map is invalid: " + fullMapPath);
@@ -69,19 +64,12 @@ public abstract class Map{//was abstract
         return currentMapType;
     }
 
-    public void setMapType(MapFactory.MapType type){
-        currentMapType = type;
-    }
-
     public Vector2 getPlayerPosition(){
-        Location loc = p.getLocation();
-        playerPosition = new Vector2(loc.getX(), loc.getY());
         return playerPosition;
     }
 
     public void setPlayerPosition(Vector2 position){
-        System.out.println(position.x + " " + position.y);
-        p.setPosition((int) position.x, (int) position.y);
+        playerPosition = position;
     }
 
     public TiledMapTileLayer getCollisionLayer() {
@@ -90,9 +78,5 @@ public abstract class Map{//was abstract
 
     public TiledMap getCurrentMap(){
         return currentMap;
-    }
-
-    protected void dispose(){
-
     }
 }

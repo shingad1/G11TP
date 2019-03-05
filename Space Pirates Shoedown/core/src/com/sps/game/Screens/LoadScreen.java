@@ -109,7 +109,6 @@ public class LoadScreen implements Screen {
                                                 ProfileManager.getInstance().setCurrentProfile(fileName);
                                                 PlayScreen.setGameState(PlayScreen.GameState.Loading);
                                                 //LoadScreen.this.notify(); for changing audio
-
                                                 game.setScreen(new HomeWorldScreen(game));//will need to change
                                             }
                                         }
