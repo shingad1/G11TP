@@ -1,38 +1,31 @@
-    package com.sps.game.Controller;
+package com.sps.game.Controller;
 
-    import com.badlogic.gdx.Gdx;
-    import com.badlogic.gdx.Input;
-    import com.badlogic.gdx.InputAdapter;
-    import com.badlogic.gdx.graphics.OrthographicCamera;
-    import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-    import com.badlogic.gdx.maps.tiled.TiledMapTile;
-    import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-    import com.badlogic.gdx.math.Vector2;
-    import com.sps.game.Inventory2.Inventory;
-    import com.sps.game.Scenes.InventoryHud;
-    import com.sps.game.Sprites.InteractiveNPC;
-    import com.sps.game.Sprites.InteractiveNPCMoving;
-    import com.sps.game.Sprites.Location;
-    import com.sps.game.Sprites.Player;
-    import com.sps.game.dialogue.Dialogue;
-    import com.sps.game.profile.ProfileManager;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Screens.PlayScreen;
+import com.sps.game.Sprites.InteractiveNPC;
+import com.sps.game.Sprites.InteractiveNPCMoving;
+import com.sps.game.Sprites.Location;
+import com.sps.game.Sprites.Player;
+import com.sps.game.dialogue.Dialogue;
+import com.sps.game.profile.ProfileManager;
 
-    import javax.swing.*;
-    import java.io.IOException;
-    import java.lang.Math;
-    import java.util.ArrayList;
-    import java.util.Stack;
+import java.lang.Math;
+import java.util.ArrayList;
+import java.util.Stack;
 
-    /**
-    * This class creates a controller for the player which checks for any collisions and allows the player to move
-    * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
-    * @version 1.0
-    */
+/**
+ * This class creates a controller for the player which checks for any collisions and allows the player to move
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * @version 1.0
+ */
 
-    public class PlayerController extends InputAdapter {
-
-    //JSON json;
-
+public class PlayerController extends InputAdapter {
     private int[] xbounds;
     private int[] ybounds;
     /**
@@ -144,6 +137,32 @@
             collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
     }
     }
+        boolean collisionY = false;
+        boolean collisionX = false;
+
+        //float oldX = player.getX(), oldY = player.getY();
+        float tiledWidth = collisionLayer.getTileWidth(), tiledHeight = collisionLayer.getTileHeight();
+        if(!(isKeyDown)) { //starts the 8 tick count for the movement (in other words, movement is separated into 8 ticks)
+            keyPressed = keycode;
+            switch(keycode){
+                case Input.Keys.A:
+                    fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
+                    break;
+                case Input.Keys.X:
+                   // ProfileManager.getInstance().saveProfile();
+                    PlayScreen.setGameState(PlayScreen.GameState.Saving);
+                    System.out.println("Game Saved");
+                    break;
+                case Input.Keys.I:
+                    System.out.println("Inventory Loaded");
+                    break;
+                case Input.Keys.O:
+                    System.out.println("Inventory exit");
+                    break;
+                default:
+                    collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
+            }
+        }
 
     return false; //if input event was absorbed
     }

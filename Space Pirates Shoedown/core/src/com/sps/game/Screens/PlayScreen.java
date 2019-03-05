@@ -1,53 +1,44 @@
-    package com.sps.game.Screens;
+package com.sps.game.Screens;
 
-    import com.badlogic.gdx.Gdx;
-    import com.badlogic.gdx.Input;
-    import com.badlogic.gdx.Screen;
-    import com.badlogic.gdx.graphics.GL20;
-    import com.badlogic.gdx.graphics.OrthographicCamera;
-    import com.badlogic.gdx.graphics.Texture;
-    import com.badlogic.gdx.graphics.g2d.Animation;
-    import com.badlogic.gdx.graphics.g2d.Sprite;
-    import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-    import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-    import com.badlogic.gdx.maps.tiled.TiledMap;
-    import com.badlogic.gdx.maps.tiled.TiledMapTile;
-    import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-    import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-    import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-    import com.badlogic.gdx.math.Vector2;
-    import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-    import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-    import com.badlogic.gdx.utils.viewport.FitViewport;
-    import com.badlogic.gdx.utils.viewport.Viewport;
-    import com.sps.game.Animation.npcAnimation;
-    import com.sps.game.Controller.*;
-    import com.sps.game.Controller.DialogueController;
-    import com.sps.game.Inventory2.Inventory;
-    import com.sps.game.Scenes.InventoryHud;
-    import com.sps.game.Scenes.HudScene;
-    import com.sps.game.SpacePiratesShoedown;
-    import com.sps.game.Sprites.*;
-    import com.sps.game.maps.MapFactory;
-    import com.sps.game.maps.MapManager;
-    import com.sps.game.profile.ProfileManager;
-    import com.sps.game.profile.ProfileObserver;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.Controller.*;
+import com.sps.game.Controller.DialogueController;
+import com.sps.game.inventory.InventoryHud;
+import com.sps.game.Scenes.HudScene;
+import com.sps.game.SpacePiratesShoedown;
+import com.sps.game.Sprites.*;
+import com.sps.game.maps.Map;
+import com.sps.game.maps.MapFactory;
+import com.sps.game.maps.MapManager;
+import com.sps.game.profile.ProfileManager;
 
 
-    import java.io.IOException;
-    import java.util.ArrayList;
-    import java.util.Random;
-    import java.util.Stack;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Stack;
 
-    /**
-    * This class launches the play screen, from where the play last left off.
-    * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
-    * @version 1.0
-    */
+/**
+ * This class launches the play screen, from where the play last left off.
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * @version 1.0
+ */
 
-    public abstract class PlayScreen implements Screen
-    {
-
+public abstract class PlayScreen implements Screen
+{
     /**
      * Constant field to direct where the file is located.
      */
@@ -56,7 +47,7 @@
      * Holds a version of the game.
      * @see #handleInput #render
      */
-    private SpacePiratesShoedown game;
+    protected SpacePiratesShoedown game;
     /**
      * Holds the tmx file.
      */
@@ -84,8 +75,6 @@
      * @see #render
      */
     private HudScene hud;
-
-
     /**
      * Holds instance of the InventoryHud class, which displays vital Inventory information to the user.
      * @see #render
@@ -391,7 +380,7 @@
         switch (gs){
             case Saving:
                 ProfileManager.getInstance().saveProfile();
-                gameState = GameState.Saving;
+                //gameState = GameState.Saving;
                 break;
             case Loading:
                 ProfileManager.getInstance().loadProfile();
@@ -417,4 +406,10 @@
     public abstract ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map);
 
     public abstract void changeMaps();
-    }
+
+    public abstract Map getMap(Vector2 selector);
+
+    public abstract Vector2 getWorldMapByWorld(MapFactory.MapType map);
+
+    public abstract void changeNpcLocations(Map selectedMap);
+}
