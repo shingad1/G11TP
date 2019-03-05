@@ -68,7 +68,7 @@ public class HomeWorldScreen extends PlayScreen {
         for(int x = 0; x <= 6; x++ ) {
             npc.add(new InteractiveNPC(736, 960, MapFactory.MapType.HomeWorldMap1, batch, "Linda"));
             npc.add(new InteractiveNPC(736, 1152, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
-            //npcController.add(new NPCController(interactiveNPCS.get(x),currentCollisionLayer));
+            npc.add(new InteractiveNPC(736, 1280, MapFactory.MapType.HomeWorldMap1, batch,"Lee"));
         }
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
@@ -190,7 +190,7 @@ public class HomeWorldScreen extends PlayScreen {
 
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
-            controller.changeNpcLocations(allLocations);
+            //controller.changeNpcLocations(allLocations);
             //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
             controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
             controller.newWorldReset();

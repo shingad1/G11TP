@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Animation.npcAnimation;
 import com.sps.game.maps.MapFactory;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class InteractiveNPC extends AbstractNPC{
@@ -37,7 +38,7 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Vector2 velocity;
 
-    private npcAnimation animation;
+    private npcAnimation animation, animation3;
 
     private MapFactory.MapType world;
     /**
@@ -50,15 +51,20 @@ public class InteractiveNPC extends AbstractNPC{
         this.y = y;
         location = new Location(x,y);
         animation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
+        animation3 = new npcAnimation(sb, this, "npcIdle.atlas", 1/2f);
+
         this.world = world;
         setName(name);
     }
 
-    public npcAnimation getAnimation(){return animation;}
-
-    public npcAnimation setAnimation(npcAnimation npcAnimation)
-    {
-        return this.animation = npcAnimation;
+    public npcAnimation getAnimation(){
+        if (this.name.equals("Linda")){
+            return animation;
+        }
+        else
+        {
+            return animation3;
+        }
     }
 
     public MapFactory.MapType getWorld(){return world;}

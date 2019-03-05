@@ -57,4 +57,6 @@ public abstract class AbstractNPC {
     public abstract void changeState(String newState);
 
     public abstract String getType();
+
+    public abstract String getName();
 }

@@ -323,23 +323,6 @@
                 if(npc.getAnimation() != null) {
                     npc.getAnimation().render();
                 }
-                /*else if(npc.getType().equals("InteractiveNPC") || npc instanceof InteractiveNPC)
-                {
-                    SpriteBatch batch1 = new SpriteBatch();
-                    Sprite sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/Graphics and Sprites/Home World NPCs/InteractiveNPC_Idle/glassesNPC_Behind.png")));
-                    sprite.setSize(100,100);
-                    batch1.begin();
-                    sprite.draw(batch1);
-                    batch1.end();
-
-                    npcAnimation npcAnimation = new npcAnimation(batch1, interactiveNPCS.get(0), "Bob", 1/2f);
-                    ((InteractiveNPC) npc).setAnimation(npcAnimation).render();
-                    //npc.getAnimation().render();
-                }
-                else{
-                    System.out.println("No npc");
-                   // System.out.println(interactiveNPCS.get(0).getName());
-                }*/
             }
         }
         p.getAnimation().render();
@@ -358,29 +341,9 @@
 
         changeMaps();
 
-        //tutorialController.create();
-        //tutorialController.render();
-
-        try {
-            dialogController.create("Linda");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        dialogController.render();
-
-        /*if(dialogBoolean)
-        {
-            try {
-                dialogController.create("Linda");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //dialogController.render();
-            //dialogBoolean = false;
-        }
-        dialogController.render();
-
-        //dialogBoolean = false;*/
+        /*for (int i = 0; i < getInteractiveNPC().size(); i++) {
+            controller.npcInteraction(getInteractiveNPC().get(i).getName());
+        }*/
     }
 
     @Override

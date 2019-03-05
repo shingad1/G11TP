@@ -1,9 +1,6 @@
 package com.sps.game.Controller;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -89,6 +86,8 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
+                //if(Gdx.input.isKeyPressed(Input.Keys.B)){
+                Gdx.app.log("Exit button", "confirm exit");
                 stage.clear();
                 Gdx.input.setInputProcessor(inputMultiplexer);
                 inputMultiplexer = null;

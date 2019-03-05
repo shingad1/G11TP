@@ -128,4 +128,6 @@ public class NonInteractiveNPC extends AbstractNPC {
         public String getType() {
             return "NonInteractiveNPC";
         }
+
+        public String getName(){return  "";}
 }
