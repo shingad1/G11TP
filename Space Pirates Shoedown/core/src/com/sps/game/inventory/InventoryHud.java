@@ -34,13 +34,14 @@ public class InventoryHud {
     private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     private List<String> inventory = new List<String>(skin);
     private List<String> merchant = new List<String>(skin);
-    private List<Image> itemImages = new List<Image>(skin);
+    private ArrayList<Image> itemImages = new ArrayList<Image>();
 
     private ArrayList <String> rejectedItems = new ArrayList<String>();
     private InventoryController inventoryController;
 
     private Texture texture = new Texture("core/assets/Inventory/images/sword.png");
     Image swordImage = new Image(texture);
+    Image swordImage2;
 
     private InputProcessor oldInput;
 
@@ -49,9 +50,18 @@ public class InventoryHud {
 
         swordImage.setPosition(100, 100);
 
-
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
+        stage.addActor(swordImage);
+
+
+        //ISSUE = the itemImages list is not getting populated
+        swordImage2 = itemImages.get(2);
+        swordImage2.setPosition(150, 150);
+        stage.addActor(swordImage2);
+
+
+
         inventoryLabel = new Label("inventory", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         inventoryController = new InventoryController();
         inventory = inventoryController.getInventoryList();
@@ -104,8 +114,14 @@ public class InventoryHud {
             }
         });
     }
+/*
+    private void addImageToStage() {
+        for (Image image : itemImages) {
+            stage.addActor(image);
+        }
+    }
 
-
+*/
     private void formatting() {
 
         stage = new Stage();
@@ -125,7 +141,7 @@ public class InventoryHud {
         table.row();
         table.add(inventory);
         table.add(merchant);
-        table.add(itemImages);
+        //table.add(itemImages);
 
 
 
@@ -141,6 +157,7 @@ public class InventoryHud {
     }
 
     public void update() {
+
         if (Gdx.input.isKeyPressed(Input.Keys.I) && oldInput == null) {
             formatting();
             show();
