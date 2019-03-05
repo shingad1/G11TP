@@ -35,12 +35,10 @@ public class InventoryHud {
     private List<String> inventory = new List<String>(skin);
     private List<String> merchant = new List<String>(skin);
     private List<Image> itemImages = new List<Image>(skin);
-
     private ArrayList <String> rejectedItems = new ArrayList<String>();
-   //private InventoryController inventoryController;
-
-//    private Texture texture = new Texture("core/assets/Inventory/images/sword.png");
-//    Image swordImage = new Image(texture);
+    private InventoryController inventoryController;
+    private Texture texture = new Texture("core/assets/Inventory/images/sword.png");
+    Image swordImage = new Image(texture);
 
     private InputProcessor oldInput;
 
@@ -53,9 +51,9 @@ public class InventoryHud {
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         inventoryLabel = new Label("inventory", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        //inventoryController = new InventoryController();
-        //inventory = inventoryController.getInventoryList();
-        //merchant = inventoryController.getMerchantList();
+        inventoryController = new InventoryController();
+        inventory = inventoryController.getInventoryList();
+        merchant = inventoryController.getMerchantList();
 
         rejectedItems.add("Hamster");
         rejectedItems.add("Shoes");

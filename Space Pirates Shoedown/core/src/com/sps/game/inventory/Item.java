@@ -24,7 +24,7 @@ public class Item {
 
     public Item (String name, String description, int Id, String filePath) {
         this.filepath = filePath;
-//        imageTexture = new Texture(filePath);
+        imageTexture = new Texture(filePath);
         itemImage = new Image(imageTexture);
         this.name = name;
         this.description = description;
