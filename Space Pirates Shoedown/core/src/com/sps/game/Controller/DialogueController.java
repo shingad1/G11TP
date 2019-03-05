@@ -49,6 +49,8 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         dialogue[2] = "";
 
         textArea.text(dialogue[counter]);
+        //batch = new SpriteBatch();
+        //sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
     }
 
     public void create(String npcName) throws IOException {

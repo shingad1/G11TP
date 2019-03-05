@@ -1,7 +1,9 @@
 package com.sps.game.Sprites;
 
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Animation.npcAnimation;
 import com.sps.game.maps.MapFactory;
@@ -54,6 +56,11 @@ public class InteractiveNPC extends AbstractNPC{
 
     public npcAnimation getAnimation(){return animation;}
 
+    public npcAnimation setAnimation(npcAnimation npcAnimation)
+    {
+        return this.animation = npcAnimation;
+    }
+
     public MapFactory.MapType getWorld(){return world;}
 
     @Override
@@ -97,7 +104,4 @@ public class InteractiveNPC extends AbstractNPC{
     }
 
     public String getType() {return "InteractiveNPC";}
-
-
-
 }

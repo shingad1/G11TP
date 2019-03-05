@@ -28,8 +28,7 @@ public class HomeWorldScreen extends PlayScreen {
 
     private int[] ybounds  = {0,1600};
 
-    private SpriteBatch spriteBatch;
-    private Sprite sprite;
+    private ArrayList<InteractiveNPC> interactive;
 
 
     public HomeWorldScreen(SpacePiratesShoedown game) {
@@ -41,6 +40,7 @@ public class HomeWorldScreen extends PlayScreen {
         renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
         currentCollisionLayer = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)].getCollisionLayer(); //change when moving worlds
         currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
+        interactive = new ArrayList<InteractiveNPC>();
 
         random = new Random();
         int numNonInteractive = random.nextInt(20) + 10;
@@ -65,11 +65,11 @@ public class HomeWorldScreen extends PlayScreen {
             }
         }
 
-        spriteBatch = new SpriteBatch();
-        sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
-
-        interactiveNPCS.add(new InteractiveNPC(Math.round(736), Math.round(672), MapFactory.MapType.HomeWorldMap1, game.batch, "Bob"));
-
+        for(int x = 0; x <= 6; x++ ) {
+            npc.add(new InteractiveNPC(736, 960, MapFactory.MapType.HomeWorldMap1, batch, "Linda"));
+            npc.add(new InteractiveNPC(736, 1152, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
+            //npcController.add(new NPCController(interactiveNPCS.get(x),currentCollisionLayer));
+        }
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
 
