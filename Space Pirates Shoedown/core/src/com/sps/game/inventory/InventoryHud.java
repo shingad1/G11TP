@@ -54,13 +54,13 @@ public class InventoryHud {
         stage = new Stage(viewport, sb);
         stage.addActor(swordImage);
 
-
+/*
         //ISSUE = the itemImages list is not getting populated
         swordImage2 = itemImages.get(2);
         swordImage2.setPosition(150, 150);
         stage.addActor(swordImage2);
 
-
+*/
 
         inventoryLabel = new Label("inventory", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         inventoryController = new InventoryController();
