@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.PlayerController;
@@ -29,12 +28,13 @@ import java.util.Iterator;
 public class InventoryHud {
 
     public Stage stage;
+    public SpriteBatch sb;
     private Viewport viewport;
     Label inventoryLabel;
     private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     private List<String> inventory = new List<String>(skin);
     private List<String> merchant = new List<String>(skin);
-    private ArrayList<Image> itemImages = new ArrayList<Image>();
+    private List<Image> itemImages = new List<Image>(skin);
 
     private ArrayList <String> rejectedItems = new ArrayList<String>();
     private InventoryController inventoryController;
@@ -48,24 +48,18 @@ public class InventoryHud {
 
     public InventoryHud(SpriteBatch sb, PlayerController playerController) {
 
-        swordImage.setPosition(100, 100);
-
+        //swordImage.setPosition(100, 100);
+        this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         stage.addActor(swordImage);
 
-/*
-        //ISSUE = the itemImages list is not getting populated
-        swordImage2 = itemImages.get(2);
-        swordImage2.setPosition(150, 150);
-        stage.addActor(swordImage2);
-
-*/
 
         inventoryLabel = new Label("inventory", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         inventoryController = new InventoryController();
         inventory = inventoryController.getInventoryList();
         merchant = inventoryController.getMerchantList();
+        itemImages = inventoryController.getImageList();
 
         rejectedItems.add("Hamster");
         rejectedItems.add("Shoes");
@@ -141,12 +135,9 @@ public class InventoryHud {
         table.row();
         table.add(inventory);
         table.add(merchant);
-        //table.add(itemImages);
 
-
-
-
-
+        table.add(itemImages.getSelected());
+        stage.addActor(itemImages); //because we want it to draw
         stage.addActor(table);
     }
 
