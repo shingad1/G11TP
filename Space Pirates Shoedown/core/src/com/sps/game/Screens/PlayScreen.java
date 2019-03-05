@@ -215,31 +215,6 @@ public abstract class PlayScreen implements Screen
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
             //currentMapState = "HouseFight";
         }
-
-        /**
-        if(controller.getNewWorld()){ //change: if they press a button on the edge of a map
-            //dispose
-            controller.reset();
-            ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
-            npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
-            ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
-            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
-           // game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList,185,0));
-            currentMapState = "Overworld";
-        }
-        */
-
-        //Randomise the world schtuff
-        if(controller.getCandy()){
-            //dispose
-            controller.reset();
-            ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
-            npcList.add(new NonInteractiveNPC(1088,512,MapFactory.MapType.HomeWorldMap1, batch, ""));
-            ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
-            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
-           // game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
-           // currentMapState = "CandyLand";
-        }
     }
 
     /**
