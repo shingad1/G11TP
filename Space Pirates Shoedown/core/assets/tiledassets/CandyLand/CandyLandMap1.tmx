@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" source="Resources/CandyGrass.tsx"/>
  <tileset firstgid="197" source="Resources/CandyLandTiles2.tsx"/>
  <tileset firstgid="357" source="Resources/house1.tsx"/>
@@ -31,7 +31,7 @@
  </layer>
  <layer id="4" name="Collision Layer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztmFsKAyEMRWXo/rrDfs8ySynCIOZxnUSTViHQoiY5eZjSUkp5HeUnljXHR9+K2FS7WeXK8XzklKwcNQerOaja0J5bzaH1y5ODsoWcR3VY1JWVzdUcnnW1OeZz7P6IlY/NMY9DO7uicbR3uLnKzejVHFS8s3BwvmTikHRk5rC0b3VGMwd78aX2uDveHJUFqSs0B//IMVKfGo7z+IqGg+rtu35rOEbeK2u/VnNwb2xkjhOcFzM5qP7g3tyzs0dxtPY8uVAOzaxYIZsjhv/VvmU+ZvQDwoFIOyt78UD8QWNgxSGxcPatfqdYcUi+9qTa5eoTqV8vDknnnX0tBzUzkTpB/ZS+j3Bo9Gi5qHNSnCifItWVNg4W+Ri13+rnepiKNVXXvbtROEb2Rzgk36n91o/rO2vNcdXv1R9aP3uf73AgtcPlZSbHzP/hvORXOTLLXvHWG8kgk2Y=
+   eJztmG0KwyAMhqXsfrvhfveYowyhhCS+aoyxUwiUapM8+TDQlFL6HOkRy5rj0jcjNtnuqnLneL/WlM3Rb5cT9Bw9782B+jWSQ7JVc75WB6pb47CyOZtjZF1tDn+O3R+x8rE5/DjQ2RWNg36jzVVtRs/mkOK9CkfJl1U4SjpW5rC0b3VG4uDiyuUBFQ+OzELfazpqc/CPHC31iXCcx09QRq63e/1GOKT+sMrHCLHm0O7YyBxn5bzw5JD6Q7tzT2FfupdH12QrBzIrZsjmiOF/tm+ZD49+QDlqhc5KagPVLcWAi+MIjhKL5rdFziw5Sr5yku221rEXR0lnzz7KwTEjdmv6XKpzSw5ED8olnSvFSfIpUl2hcbDIR6t9ql/rYSnWUl1z30bhaNlv4Sj5Lu1TP+73rDXHXf+o/kD95J57OGpqR8uLJ4fnf7hR8lSOlWWveOsLleiYNg==
   </data>
  </layer>
  <layer id="5" name="Doors" width="50" height="50">
