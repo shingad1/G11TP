@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new Map(MapFactory.MapType.HomeWorldMap1, ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"), new Map(MapFactory.MapType.HomeWorldMap2, ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx")},
+    private Map[][] worldMaps = {{new HomeWorldMap(), new HomeWorldMap2()},
                                  {null, null}};
 
     private Vector2 mapSelector; //selects map from worldMaps
@@ -25,6 +25,7 @@ public class HomeWorldScreen extends PlayScreen {
     private int[] xbounds  = {0,1600};
 
     private int[] ybounds  = {0,1600};
+
 
     public HomeWorldScreen(SpacePiratesShoedown game) {
         super(game);
@@ -58,6 +59,7 @@ public class HomeWorldScreen extends PlayScreen {
                 i++;
             }
         }
+
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
 
@@ -133,15 +135,19 @@ public class HomeWorldScreen extends PlayScreen {
      * @return
      */
     public boolean checkPosition(Location location, MapFactory.MapType map){
-        for (AbstractNPC nonPlayingCharacter : getMapNPC(map)){
-            if(location.equals(nonPlayingCharacter.getLocation())){
+        for (AbstractNPC nonPlayingCharacter : getMapNPC(map)) {
+            if (location.equals(nonPlayingCharacter.getLocation())) {
                 return false;
             }
         }
-        if(getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) (location.getX() / 32), (int) ((location.getY())/32)).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, map) == null || getCell(location,map).getTile().getProperties().containsKey("blocked")){
             return false;
         }
         return true;
+    }
+
+    public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
+        return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) (location.getX() / 32), (int) ((location.getY())/32));
     }
 
     public void changeMaps(){
@@ -168,10 +174,11 @@ public class HomeWorldScreen extends PlayScreen {
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
             currentMap = selectedMap.getCurrentMap();//change when moving worlds
+            //selectedMap.setMapType(selectedMap.getCurrentMapType());
             renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
             currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
             currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
-
+            System.out.println(currentMapState);
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
             controller.changeNpcLocations(allLocations);

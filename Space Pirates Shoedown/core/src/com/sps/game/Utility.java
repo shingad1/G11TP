@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TideMapLoader;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Json;
 
 public final class Utility {
 
@@ -19,10 +20,10 @@ public final class Utility {
     public static final AssetManager ASSET_MANAGER = new AssetManager();
 
     private static final String TAG = Utility.class.getSimpleName();
-    private final static String UISKIN_PATH = "core/assets/Skins/uiskin.json";
     private final static String ITEMS_TEXTURE_ATLAS_PATH = "core/assets/Inventory/items.atlas";
     private final static String STATUSUI_SKIN_PATH = "core/assets/Inventory/statusui.json";
     private final static String STATUSUI_TEXTURE_ATLAS_PATH = "core/assets/Inventory/statusui.atlas";
+    private final static String UISKIN_TEXTURE_PATH = "core/assets/Inventory/uiskin.json";
     private static InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
 
     public static TextureAtlas STATUSUI_TEXTUREATLAS = new TextureAtlas(STATUSUI_TEXTURE_ATLAS_PATH);
@@ -156,5 +157,15 @@ public final class Utility {
             Gdx.app.debug(TAG, "Texture is not loaded: " + textureFileNamePath);
         }
         return texture;
+    }
+
+    public static Json getJsonAsset(String jsonFileNamePath) {
+        Json json = null;
+        if(ASSET_MANAGER.isLoaded(jsonFileNamePath)) {
+            json = ASSET_MANAGER.get(jsonFileNamePath, json.getClass());
+        } else {
+            Gdx.app.debug(TAG, "Json File is not loaded: " + jsonFileNamePath);
+        }
+        return json;
     }
 }

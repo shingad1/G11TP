@@ -11,6 +11,8 @@ import com.sps.game.Sprites.Player;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
 
+import javax.swing.text.html.parser.Entity;
+
 public class MapManager implements ProfileObserver {
 
     private static final String TAG = MapManager.class.getSimpleName();
@@ -24,6 +26,9 @@ public class MapManager implements ProfileObserver {
     private Player player;
 
     private Array<AbstractNPC> npcs;
+
+    public MapManager(){
+    }
 
     @Override
     public void onNotify(ProfileManager profileManager, ProfileEvent event) {
@@ -50,9 +55,19 @@ public class MapManager implements ProfileObserver {
                 break;
 
             case SAVING_PROFILE:
-                if(map != null){
-                    profileManager.setProperty("currentMapType", map.currentMapType.toString());
+                //map = MapFactory.getMap(getCurrentMapType());
+                if(map != null) {
+                    profileManager.setProperty("currentMapType", map.getCurrentMapType().toString());
+                    System.out.println(map.getCurrentMapType().toString());
+                    //profileManager.setProperty("currentCollisionLayer", map.getCollisionLayer());
                 }
+                profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
+                profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
+                break;
+            case CLEAR_CURRENT_PROFILE:
+                map = null;
+                profileManager.setProperty("currentMapType", MapFactory.MapType.HomeWorldMap1.toString());
+                MapFactory.clearCache();
                 profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
                 profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;
@@ -63,7 +78,7 @@ public class MapManager implements ProfileObserver {
 
     public void loadMap(MapFactory.MapType mapType){
         Map temp = MapFactory.getMap(mapType);
-        if(map == null){
+        if(temp == null){
             Gdx.app.debug(TAG, "Map does not exist");
             return;
         }
@@ -71,10 +86,18 @@ public class MapManager implements ProfileObserver {
         //methods to load music
         map = temp;
         mapChanged = true;
-        //clear map method
+        //clearCurrentSelectedMapEntity();
         Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
     }
 
+    public void unregisterCurrentMapEntityObservers(){
+       //todo for entities
+    }
+/*
+    public void registerCurrentMapEntityObservers(ComponentObserver observer){
+        //todo for entities
+    }
+*/
     public MapLayer getCollisionLayer(){
         return map.getCollisionLayer();
     }
@@ -93,6 +116,8 @@ public class MapManager implements ProfileObserver {
     public void setPlayer(Player player){
         this.player = player;
     }
+
+    public Player getPlayer(){ return this.player;}
 
     public void setCamera(Camera camera){
         this.camera = camera;

@@ -65,7 +65,7 @@ public class LoadScreen implements Screen {
 
         ProfileManager.getInstance().storeAllProfiles();
         listProfiles = new List(new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))), "inventory"); //takes in a skin and string
-        final Array<String> list = ProfileManager.getInstance().getProfilelList();
+        Array<String> list = ProfileManager.getInstance().getProfilelList();
         listProfiles.setItems(list);
 
         ScrollPane scrollPane = new ScrollPane(listProfiles);
@@ -78,6 +78,7 @@ public class LoadScreen implements Screen {
         Table bottomTable = new Table();
         //layout of menu
         table.center();
+        table.setFillParent(true);
         table.padBottom(loadButton.getHeight());
         table.add(scrollPane).center();
 
@@ -103,9 +104,12 @@ public class LoadScreen implements Screen {
                                         String fileName = listProfiles.getSelected().toString();
                                         if(fileName != null && !fileName.isEmpty()){
                                             FileHandle file = ProfileManager.getInstance().getProfileFile(fileName);
+                                            ProfileManager.getInstance().loadProfile();
                                             if(file != null){
                                                 ProfileManager.getInstance().setCurrentProfile(fileName);
+                                                PlayScreen.setGameState(PlayScreen.GameState.Loading);
                                                 //LoadScreen.this.notify(); for changing audio
+
                                                 game.setScreen(new HomeWorldScreen(game));//will need to change
                                             }
                                         }

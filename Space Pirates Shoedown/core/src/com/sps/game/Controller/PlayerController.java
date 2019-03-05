@@ -7,13 +7,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Screens.PlayScreen;
 import com.sps.game.Sprites.InteractiveNPC;
 import com.sps.game.Sprites.InteractiveNPCMoving;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 import com.sps.game.dialogue.Dialogue;
+import com.sps.game.profile.ProfileManager;
 
-import javax.swing.*;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -120,6 +121,17 @@ public class PlayerController extends InputAdapter {
             switch(keycode){
                 case Input.Keys.A:
                     fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
+                    break;
+                case Input.Keys.X:
+                   // ProfileManager.getInstance().saveProfile();
+                    PlayScreen.setGameState(PlayScreen.GameState.Saving);
+                    System.out.println("Game Saved");
+                    break;
+                case Input.Keys.I:
+                    System.out.println("Inventory Loaded");
+                    break;
+                case Input.Keys.O:
+                    System.out.println("Inventory exit");
                     break;
                 default:
                     collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
@@ -464,5 +476,3 @@ public class PlayerController extends InputAdapter {
         allLocations = npcLocations;
     }
 }
-
-
