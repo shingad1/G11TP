@@ -57,7 +57,7 @@ public class MapManager implements ProfileObserver {
             case SAVING_PROFILE:
                 //map = MapFactory.getMap(getCurrentMapType());
                 if(map != null) {
-                    profileManager.setProperty("currentMapType", map.getCurrentMapType());
+                    profileManager.setProperty("currentMapType", map.getCurrentMapType().toString());
                     System.out.println(map.getCurrentMapType().toString());
                     //profileManager.setProperty("currentCollisionLayer", map.getCollisionLayer());
                 }

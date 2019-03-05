@@ -1,16 +1,16 @@
 {
 homeWorldMap2StartPosition: {
 	class: com.badlogic.gdx.math.Vector2
-	x: 64
-	y: 832
+	x: 992
+	y: 1248
 }
 homeWorldMap1StartPosition: {
 	class: com.badlogic.gdx.math.Vector2
-	x: 64
-	y: 832
+	x: 992
+	y: 1248
 }
 currentMapType: {
-	class: com.sps.game.maps.MapFactory$MapType
+	class: java.lang.String
 	value: HomeWorldMap1
 }
 }
