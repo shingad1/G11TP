@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/Tiles5.tsx"/>
+ <tileset firstgid="491" source="Resources/variousTerrain.tsx"/>
+ <tileset firstgid="2539" source="Resources/sandPath.tsx"/>
+ <tileset firstgid="2548" source="Resources/sandPath2.tsx"/>
+ <tileset firstgid="2557" source="Resources/beachDesert.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJy9mcFR41AQRF3lE1lsKIRCHJYOhEIohEIQbEFxWu1iU+PH69EXVu3hl7AlfU3PdPeMxXQ8HE7Lmpc1nY+n8t2pOT/huqkc57LStfxuxt92bsYzprJqbPUeOz/L8+3zLTh4zSzn6vnp6Dk4ybW2f4254ny9O/x6++Fa7n1kLphbYp4ktllinCR2w3P5e4nn/v3ucCjreWV9Xbvc+0wesxYWO7+fjl4vYkmcnnbAkWqfuEZNdHqhNsipunfF8bHEtXx+6NZyzUPCYbVhznndmddPG5Zy/AP5JXbyveK+XG8ct/tN38KHtTXMk87LUb+r/NQ6XDwgeWejz11wJF++HFf09PV91z9qrRa896M8HuH935U0Sk2N4DAP6Hpi8ohz3p7eP2v/zBwzNtOg9aguf/SA5DtpFrC8EYd5s2mTz6RvpryZByRurXFtrR7GGfP4uh/9Ks0d1Cy9z3JvMbBeVo80j3VzA/kw2ovOubyaYaz+rAljIw5itb6feGRH43Xwsqv6mK9zLqnXJRw231hObN6gNvnsNRycXTpOoV9d4TAfYg7SnJH0Tl6u+ZflqtNjqgdj63ST+GZ7kHcdJ4yzxttOH8nLrd52ndWVxwvu5P30zqSZlIvkl/R0y3fCkfKZYkg+ZX5CL194+rhxNv63qldyUVvGvTUcXQ5Q0y1z5LfFOrJ2XZ0Sr4yLpkfrSbfgMG0wDsuzcOKrzomzxvG377/zXrauhVcvXY9M/nOSGDjTdzNPp3PqMmnO+jv9MfUB+mGHwzRl3tHNu6lHz9jbzm/tO1Znei/7fMXTefdIf0iY7Njt2+V7jR8Jh93PWpiPpNl3pO+Yls0nGFtXD5unzLONN6lOyb+SJ5nOBvpHO7d3z7XnW/9IWkl6sntSHzIcNget5dm4mPJKflpvSV6Xctf5Ffcxr7Japxpabx/h5QgHOl6Zhq0OCR9jMX4lbJ1/WP07HImviaud7g1rfV/7ep5BTNspp8xFp/OUD8ub4T7J/em5ycuZhwXz4bes+v65zmiYy59qvIlHqX+M+ov1DPbzW+Za9sfOc5L/rNXDdGm9cw8cprVOHwnfHHCk/SquW3GkfmAxmqcwz917Guq7HveoB2MxftkMYX1mZD41f7kFR9J/8gP6lGEynVtfIJY9fr9u4Z/5wYg+rGfUvf4njhpLmgtHdM6a3KqP7nd7+r9siifhsDnNfHsvv2LN07uOtcX//5pXWV99/XwnvPldSH0fYrPCHnwlH5M3GE9t5iJ28x1i2QsH5w+bBcmJ5G+ptuYbNSc/rXOtd5prZ4nfeMf72Iesj6c+zdql2cvqy31SXySu7mj1sucaJ1M89hzLY8X/B2JbTDg=
+  </data>
+ </layer>
+ <layer id="9" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2EEKgDAMAMH4q/7/N/7Ck5cQiorKNqwwiIJpF/HiiIhx0Xnk63z/7rzZzGr2bL38zNO9dbJv76jmVucv1v6bHSydOqJJR5f3YQeHHSx2sNjBYgeLHSx2MNnBsnpHl+/DDhY7WOxgsYPF/7ssdrDYwWIHix0sdrB07RDDAZpj0Bw=
+  </data>
+ </layer>
+ <layer id="10" name="Doors" width="50" height="50" locked="1">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer id="8" name="Tree" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmtEOwyAIRfvsT7vE/Yd+6kZWMuIc3TrbAbnnhQYj2NSbInFZHuQ0x17u9pqeln3ljV8bk3G1nJK6xvnVtjU22yJ8I782JuNqOfv37New185Cxv0kZ52c/2xy9128UtP8vXA2I314BPqwB/RhB+jDFlyfeNdHC6IPgtfvWR+jutcjR9Xa/0A7V3mB9xXhWR+8n7zrg8gB/h9EDaAPiWd9MBH0QXjXB84f9ohw/iAinD+gD3tAH3aAPuwRQR/oX9kD/Ss7oH9lC/Sv7BGhfyX3lWd9RKyvtHtS/KyNHTmf/dqYrK/KxnNLr3emtubsnU98c0+LuAEo9pgL
+  </data>
+ </layer>
+</map>
