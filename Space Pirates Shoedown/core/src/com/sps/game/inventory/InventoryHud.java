@@ -19,7 +19,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
+import com.badlogic.gdx.graphics.Texture;
+
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class InventoryHud {
@@ -30,29 +34,31 @@ public class InventoryHud {
     private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     private List<String> inventory = new List<String>(skin);
     private List<String> merchant = new List<String>(skin);
+    private List<Image> itemImages = new List<Image>(skin);
+
     private ArrayList <String> rejectedItems = new ArrayList<String>();
     private InventoryController inventoryController;
 
+    private Texture texture = new Texture("core/assets/Inventory/images/sword.png");
+    Image swordImage = new Image(texture);
 
     private InputProcessor oldInput;
 
 
     public InventoryHud(SpriteBatch sb, PlayerController playerController) {
 
+        swordImage.setPosition(100, 100);
+
+
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         inventoryLabel = new Label("inventory", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         inventoryController = new InventoryController();
-
-
-        //In the future, change this to actual instances of class item.
         inventory = inventoryController.getInventoryList();
         merchant = inventoryController.getMerchantList();
 
         rejectedItems.add("Hamster");
         rejectedItems.add("Shoes");
-
-
 
         DragAndDrop dnd = new DragAndDrop();
         dnd.addSource(new DragAndDrop.Source(inventory) {
@@ -66,6 +72,7 @@ public class InventoryHud {
                 payload.setDragActor(new Label(item, skin));
                 payload.setInvalidDragActor(new Label(item + " (\"No thanks!\")", skin));
                 payload.setValidDragActor(new Label(item + " (\"I'll buy this!\")", skin));
+
                 return payload;
             }
 
@@ -104,6 +111,7 @@ public class InventoryHud {
         stage = new Stage();
         Label inventorylabel = new Label("Inventory", skin);
         Label merchantLabel = new Label ("Merchant", skin);
+        Label imageLabel = new Label ("Icon", skin);
 
         Table table = new Table(skin);
         table.setDebug(true);
@@ -111,14 +119,19 @@ public class InventoryHud {
         table.center();
         table.setFillParent(true);
         table.add(inventorylabel);
+
         table.add(merchantLabel);
+        table.add(imageLabel);
         table.row();
         table.add(inventory);
         table.add(merchant);
+        table.add(itemImages);
+
+
+
 
 
         stage.addActor(table);
-
     }
 
 
