@@ -6,14 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-
-/*
-This class is responsible for holding the collections of the user's inventory, merchant inventory, and the
-     icons of the inventory items that are selected.
- */
-
 public class InventoryController {
-    //Skin used for each lists
     private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
 
     //The list that will be holding the players items
@@ -24,7 +17,6 @@ public class InventoryController {
 
     //The list that holds the image of each item
     public List<Image> itemImageList = new List<Image>(skin);
-
 
     //List of all available items in the game
     public Item fuel;
@@ -41,11 +33,10 @@ public class InventoryController {
 
 
     public InventoryController() {
-        //Create the inventory objects
         setItems();
 
 
-        //Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
+        //Providing the string representation for each item in the inventory list, to be printed.
         inventory.setItems(fuel.getName(),
                            axe.getName(),
                            fluxCapacitor.getName(),
@@ -57,13 +48,13 @@ public class InventoryController {
 
 
         //Providing the string representation for each item in the merchant list, to be printed
+
         merchantInventory.setItems(shoeLaces.getName(),
                                    sword.getName());
 
 
-        /*Each item object is responsible for it's own image.
-            Create a list which holds the image of each object.
-         */
+        //Populating the list of images for each item, with their respective image object.
+
         itemImageList.setItems(fuel.getImage(),
                                axe.getImage(),
                                fluxCapacitor.getImage(),
@@ -77,18 +68,9 @@ public class InventoryController {
 
         }
 
-/*
 
-    public Item matchStringToImage (String itemName) {
-        Iterator<String> iterator = inventory.getItems().iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().equals(itemImageList.getName())) {
 
-            }
-        }
-    }
 
-*/
 
     //Setting the values of the items
     private void setItems() {
@@ -103,8 +85,6 @@ public class InventoryController {
         shoeLaces = new Item("Shoe Laces", "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/potion.png");
         sword = new Item("Sword", "Hack your way to the final boss", 10, "core/assets/Inventory/images/axe.png");
     }
-
-    //Accessor methods
 
     public List<String> getInventoryList() {
         return inventory;
