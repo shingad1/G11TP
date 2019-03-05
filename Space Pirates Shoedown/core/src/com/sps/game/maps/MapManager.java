@@ -27,6 +27,9 @@ public class MapManager implements ProfileObserver {
 
     private Array<AbstractNPC> npcs;
 
+    public MapManager(){
+    }
+
     @Override
     public void onNotify(ProfileManager profileManager, ProfileEvent event) {
         switch (event){
@@ -54,7 +57,8 @@ public class MapManager implements ProfileObserver {
             case SAVING_PROFILE:
                 //map = MapFactory.getMap(getCurrentMapType());
                 if(map != null) {
-                    profileManager.setProperty("currentMapType", map.currentMapType.toString());
+                    profileManager.setProperty("currentMapType", map.getCurrentMapType());
+                    System.out.println(map.getCurrentMapType().toString());
                     //profileManager.setProperty("currentCollisionLayer", map.getCollisionLayer());
                 }
                 profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());

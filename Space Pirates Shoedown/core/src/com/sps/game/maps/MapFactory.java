@@ -11,10 +11,11 @@ public class MapFactory {
 
     public static enum MapType{
         HomeWorldMap1,
-        HomeWorldMap2   //need to add the others
+        HomeWorldMap2,
+        test//need to add the others
     }
 
-    public static Map getMap(MapType mapType){
+    static public Map getMap(MapType mapType){
         Map map = null;
         switch (mapType){
             case HomeWorldMap1:

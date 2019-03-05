@@ -174,6 +174,7 @@ public class HomeWorldScreen extends PlayScreen {
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
             currentMap = selectedMap.getCurrentMap();//change when moving worlds
+            //selectedMap.setMapType(selectedMap.getCurrentMapType());
             renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
             currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
             currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
