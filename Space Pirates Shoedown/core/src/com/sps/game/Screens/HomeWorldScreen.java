@@ -7,18 +7,15 @@ import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
-import com.sps.game.maps.HomeWorldMap;
-import com.sps.game.maps.HomeWorldMap2;
-import com.sps.game.maps.Map;
-import com.sps.game.maps.MapFactory;
+import com.sps.game.maps.*;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new Map(MapFactory.MapType.HomeWorldMap1, ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"), new Map(MapFactory.MapType.HomeWorldMap2, ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx")},
-                                 {null, null}};
+    private Map[][] worldMaps = {{new HomeWorldMap(), new HomeWorldMap2()},
+                                 {new CandyWorldMap(), new CandyWorldMap2()}};
 
     private Vector2 mapSelector; //selects map from worldMaps
 
@@ -170,14 +167,24 @@ public class HomeWorldScreen extends PlayScreen {
             p.setY(0);
             camY = 1;
         }
-
+        else if(currentMapState.equals(MapFactory.MapType.HomeWorldMap2)){
+            if(p.getLocation().equals(new Location(1056, 256))){
+                mapSelector.y += 1;
+                mapSelector.x -= 1;
+                p.setX(384);
+                p.setY(1280);
+                camY = 1;
+            }
+        }
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
             currentMap = selectedMap.getCurrentMap();//change when moving worlds
+            //selectedMap.setMapType(selectedMap.getCurrentMapType());
             renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
             currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
             currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
 
+            System.out.println(currentMapState);
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
             controller.changeNpcLocations(allLocations);
@@ -187,7 +194,7 @@ public class HomeWorldScreen extends PlayScreen {
         }
     }
 
-    private void changeNpcLocations(Map selectedMap) {
+    public void changeNpcLocations(Map selectedMap) {//change back to private
         for (AbstractNPC nonPlayingCharacter : npc) {
             if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());
