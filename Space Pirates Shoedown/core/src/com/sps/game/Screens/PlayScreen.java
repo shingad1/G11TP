@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.*;
 import com.sps.game.Controller.DialogueController;
-import com.sps.game.Scenes.InventoryHud;
+import com.sps.game.inventory.InventoryHud;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;

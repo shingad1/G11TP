@@ -1,4 +1,4 @@
-package com.sps.game.Scenes;
+package com.sps.game.inventory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -31,6 +31,7 @@ public class InventoryHud {
     private List<String> inventory = new List<String>(skin);
     private List<String> merchant = new List<String>(skin);
     private ArrayList <String> rejectedItems = new ArrayList<String>();
+    private InventoryController inventoryController;
 
 
     private InputProcessor oldInput;
@@ -41,22 +42,12 @@ public class InventoryHud {
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         inventoryLabel = new Label("inventory", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        inventoryController = new InventoryController();
+
 
         //In the future, change this to actual instances of class item.
-        inventory.setItems("Axe",
-                "Fuel",
-                "Helmet",
-                "Flux Capacitor",
-                "Shoes",
-                "Hamster",
-                "Hammer",
-                "Pirates Eye",
-                "Cucumber");
-
-
-        merchant.setItems("Shoe Laces",
-                "Sword"
-        );
+        inventory = inventoryController.getInventoryList();
+        merchant = inventoryController.getMerchantList();
 
         rejectedItems.add("Hamster");
         rejectedItems.add("Shoes");
@@ -158,7 +149,6 @@ public class InventoryHud {
     private ArrayList getRejectedItems() {
         return rejectedItems;
     }
-
 
     public void dispose() {
         stage.dispose();
