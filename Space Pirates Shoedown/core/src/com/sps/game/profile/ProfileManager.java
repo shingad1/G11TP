@@ -120,7 +120,8 @@ public class ProfileManager extends ProfileSubject {
 
         if(Gdx.files.isLocalStorageAvailable()){
             file = Gdx.files.local(fullFilename);
-            file.writeString(fileData, !overwrite);
+            String encodedString = Base64Coder.encodeString(fileData);
+            file.writeString(encodedString, !overwrite);
         }
 
         _profiles.put(profileName, file);
@@ -185,9 +186,9 @@ public class ProfileManager extends ProfileSubject {
         FileHandle encodedFile = _profiles.get(profileName);
         String s = encodedFile.readString();
 
-        //String decodedFile = Base64Coder.decodeString(s);
+        String decodedFile = Base64Coder.decodeString(s);
 
-        profileProperties = json.fromJson(ObjectMap.class, _profiles.get(profileName));
+        profileProperties = json.fromJson(ObjectMap.class, decodedFile);
         notify(this, ProfileObserver.ProfileEvent.PROFILE_LOADED);
         isNewProfile = false;
     }
