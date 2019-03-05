@@ -12,7 +12,8 @@ public class MapFactory {
     public static enum MapType{
         HomeWorldMap1,
         HomeWorldMap2,
-        test//need to add the others
+        CandyWorld1,
+        CandyWorld2
     }
 
     static public Map getMap(MapType mapType){
