@@ -1,6 +1,5 @@
 package com.sps.game.Sprites;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.Animation.enemyAnimation;
 import com.sps.game.Animation.npcAnimation;
@@ -56,7 +55,6 @@ public abstract class AbstractNPC {
 
     public abstract void changeState(String newState);
 
-    public abstract String getType();
 
-    public abstract String getName();
+
 }

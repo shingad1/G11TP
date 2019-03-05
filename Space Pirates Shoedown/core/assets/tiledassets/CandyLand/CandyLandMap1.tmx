@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" source="Resources/CandyGrass.tsx"/>
  <tileset firstgid="197" source="Resources/CandyLandTiles2.tsx"/>
  <tileset firstgid="357" source="Resources/house1.tsx"/>
@@ -10,19 +10,28 @@
  <tileset firstgid="1105" source="Resources/ChocolateFountain.tsx"/>
  <tileset firstgid="1106" source="../HomeWorld/Resources/playground.tsx"/>
  <tileset firstgid="1362" source="../HomeWorld/Resources/spaceship2.tsx"/>
- <layer id="1" name="Tile Layer 1" width="50" height="50">
+ <tileset firstgid="1363" source="Resources/candyTiles.tsx"/>
+ <tileset firstgid="1723" source="Resources/pinkCandyTree.tsx"/>
+ <tileset firstgid="1729" source="Resources/whiteCandyTree.tsx"/>
+ <tileset firstgid="1735" source="Resources/terrain.tsx"/>
+ <tileset firstgid="2759" source="Resources/gingerBreadHouse.tsx"/>
+ <tileset firstgid="2784" source="Resources/gingerBreadHouse2.tsx"/>
+ <tileset firstgid="2809" source="Resources/candyCaneDecor2.tsx"/>
+ <tileset firstgid="2815" source="Resources/candyCaneDecor1.tsx"/>
+ <tileset firstgid="2821" source="Resources/candySmall1.tsx"/>
+ <tileset firstgid="2822" source="Resources/candyFence.tsx"/>
+ <tileset firstgid="2826" source="Resources/candySmall2.tsx"/>
+ <tileset firstgid="2827" source="Resources/CandyCaneDecor3.tsx"/>
+ <tileset firstgid="2833" source="Resources/CandyCaneDecor4.tsx"/>
+ <tileset firstgid="2839" source="Resources/candyArch.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-<<<<<<< HEAD
-   eJztWltu2zAQJGAIUX2S6BD9sXPL9K89Q38bIEWSo/QKihGgEqJFxuNZkoGlrD70sSC5fGSGs7uMDT+mlB4322wh+9mk9KuJaa/ZyzyeB99LE9Nes9fjsdu/291kPL4TY7bD1B73H+f+TvOanevF1W6vjbHynPWPkxkPO3duHnZuSY8SH8SNXJBrpB65uNkBPsXL2gP4o/Tw4ob5GV6OLea9pvxQd+7h5z1r0QNxHvaXsaY4on9t+cE4MVcOkx0Flyg95n6vo/SY+72O0uNp6L9Mhn30PVGffbg2Sg+FtwY/c7e5aD28+63x4ThaDxVbnj65PWvRQ8WUF2dqfVi9SvPXrAg9vg9v19u3D+Ox8uf2ROkxYvBw2Ryu4T63Ufnh3a/SJcfH+kvrcT/Yj0brUXPPuXhC/9J6/BnsofH18HiUYoo5ReVHTczk1jCf6PwoxX4pX6LrlYojxqlsjfXKq7e52sVx9FXfJ/5N75bLj1zOe/2v/j6Reaj88OI+p5Od89peZyfqo42+mvfcewtK+YJxdSI8Y9vDuKfxCdb0Ysxrl/58buf0Dg/EpNYgT6WR7V/687mdg5i9eGFf315qc6JxrR7/blLq2vN2tNtW+9nsHBVPyjBeFFcvrkp6jHhvBU7z25w3Rj28+O4dnKifWovnlfTo2vP7Z2NtuI96IC5sVc5zPeJaxftLeiAmvGeLp649x85rvXqlYkzpoOqs4lKTH5wjfOfoR65dQQ/mwHqoHGcdzFejB8YU40Y+iN/WKT0YL3NTscXcmHdNfnTtJU72cY7bPL7nnOvqXVDYuV5x/zN6IDYVY8gBW65X6q5ZI1Wr1NuD+VbSA3GyFpjbyo/5gX+bcap3XWnHbyPqV9KD3wzv7rle8fvh4VX/S+Vq8mt7qWkuP7bfM1zfzvl7hs02m9P+AyYV9Q8=
-=======
-   eJzt1cEJgDAMQNE4g0e3cB3HFFygB/fRBRRsQUQQNCVN/cK/eCg8mrZBRAIV1+y02h29cmndSTkcOHDgwPFvxxprm/v/bx25enJ0u2ORI4+Oc+nTmKtBOavzgQMHjjLvK/YDBw4cOHB4d+R+T6/hsJkjq7mydmiFQ8cxfgwHDhw4cODAgUPL4a1aHVRGG1RjWR8=
->>>>>>> parent of 2e1878a... Merge branch 'master' into npc
+   eJztWkFuwjAQtIRQU15CHtEL9KftG/oBJMpT+oWAKpWoWTFMZu0gAptDDivbG9vMeHbXELFLKe1mm+1B9rFM6XMZ096zlnl8n32HZUx7z1qPx2L1b++d8fhdjNk2XbtdXfb9SuOa7evF1WKljbHyM+tvOzMetu/YPGzfkh4lPogbuSDXSD1ycbMAfIqXtRvwR+nhxQ3zM7wcW8x7SvmhztzDz2umogfi3Kz6saY4on9q+cE4MVc2nW0Flyg9xr6vo/QY+76O0mN/7h86wz769tRnH86N0kPhHYKfuduzaD288x3iw3G0Hiq2PH1ya6aih4opL87U/LB6lcavWRF6vJ3vrt/Xi/FY+XNrovRoMXi47BnO4T63Ufnhna/SJcfH+pF6DDnnXDyhP1oPj0cppphTlB5DYiY3h/lMTY8SXi+PIvVQ+FW9ysXfFOqVV29ztYvj6FnvE/m9osqPXM57/We/T+T3iio/vLjP6WT7HKv77ER9tNZ3y/2Rq0/e/W77nAhP2zYwbmh8gjmNGPPcR/8+t30ahwdiUnOQp9LI1j/697ntg5i9eGFfU/W1OdF4qB4/LynV1XXb2rrSfjbbR8WTMowXxdWLq5IeLd61wGl+e+aNUQ8vvhsHJ+qn5uJ+JT3q6vr82Vgb7qMeiAtblfNcj7hW8fqSHogJz9niqa6usfNcr16pGFM6qDqruAzJD84RPnP0I9e6oAdzYD1UjrMO5huiB8YU40Y+iN/mKT0YL3NTscXcmPeQ/KirPk72cY7bc7zPOdfVvaCwc73i/i16IDYVY8gBW65X6qxZI1Wr1N2D+VbSA3GyFpjbyo/5gZ/NONW9rrTjuxH1K+nBd4Z39lyv+P7w8KrvUrmafKz6mubyY/4/w/3tmP9nmG22Me0PBuL1Kw==
   </data>
  </layer>
- <layer id="2" name="CollisionLayer" width="50" height="50">
+ <layer id="4" name="Collision Layer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-<<<<<<< HEAD
-   eJztmGsKwzAIgEPZ/XbD/e4xRxmBIj4TtWYkICtLqn4+4lhrrX2O9hfLm+PS90Rsut1V5c7xfq0pm2PeLibac/B8NofWr0gOypblvFWHVjfH4WXzaY7Iutoc+Ry7P2rlY3PkcWhnVzUO+A43V7kZ/TQHFe9VOCRfVuGQdKzM4Wnf6wzFgcUVy4NWMjg6C/ye02HNQTRHl0ocM/XJcZzHT7SMWG/P+l0hHxHi3R/cHVuZ4zTOiwoc3J17EvvUvRxdk6McmlmRKZujhv+R+cjoB4zj+pz9nQhnJRYriz/YM4xjBIfEItVDlXxofMWk2x2t4ywOSefMvpYDY9bYtfQ5VeeeHBo9Wi7qnBQnyqdKdaWNg0c+Ru1D/VwPU7Gm6hp7twrHyP4Ih+Q7tQ/9uN+z3hx3/VH9ofUTe57hsNQOl5dMjsz/4aLkXzlWlr3qrS+q05nJ
+   eJztmFsKAyEMRWXo/rrDfs8ySynCIOZxnUSTViHQoiY5eZjSUkp5HeUnljXHR9+K2FS7WeXK8XzklKwcNQerOaja0J5bzaH1y5ODsoWcR3VY1JWVzdUcnnW1OeZz7P6IlY/NMY9DO7uicbR3uLnKzejVHFS8s3BwvmTikHRk5rC0b3VGMwd78aX2uDveHJUFqSs0B//IMVKfGo7z+IqGg+rtu35rOEbeK2u/VnNwb2xkjhOcFzM5qP7g3tyzs0dxtPY8uVAOzaxYIZsjhv/VvmU+ZvQDwoFIOyt78UD8QWNgxSGxcPatfqdYcUi+9qTa5eoTqV8vDknnnX0tBzUzkTpB/ZS+j3Bo9Gi5qHNSnCifItWVNg4W+Ri13+rnepiKNVXXvbtROEb2Rzgk36n91o/rO2vNcdXv1R9aP3uf73AgtcPlZSbHzP/hvORXOTLLXvHWG8kgk2Y=
   </data>
  </layer>
  <layer id="5" name="Doors" width="50" height="50">
@@ -32,10 +41,7 @@
  </layer>
  <layer id="2" name="Misc" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzVWtmSFEUUrR6nB+hCQFkUQVb1HzRCFiMQ5IWACP0evoRn/4FFWRr3BRUUMBQUXBEVQfbl5HSd6dN3bmZXdXfNTN+IE125cm+em6eyksmyjh2eyrIjwHHgxNT4lGmsPwocA04Cp8aoTP9Z/x7wPtAGTo9Rmf6zvqq9O7EwQP9tnoW2YfyMxToqe72RZdsa3XnpP/NslHFwbi+O7fBhR2P2r7VYv13AmxIH/WeeqXHvsC/X4NBEL2Jx6NrYOXYDe5xfa7F+lg/6T5+VD+4dGtdAfU/Fwbm1XtdxULPzaF5Zn3XvaJ31PRWHHad8DBuH5YPcx3z2/DnQ7J9XATYv6+SD3Ht65dVVATmeCz7se1yNdYNqlnJcNx/2Pa59vX06iP5qHHXxwTXz9KoOzIde1YG51qtUPB+0suxD4CPgY+CTVrf/JTxfBn4CfgautHrnmWu9ouV5li0Fmnl3jk/h22fA58AXwJfi61U8/wL8CvwG/G7isOto91KZuip6xfan4f+yvLf+DHz7Cvga+AY4K77+gec/gWvAX8D1BB9l/I21ldUr2nLEsMLEcQ6+fQt8B5wHLoivf+P5H+Bf4AbwXwk+UjHE+pTVK8uLli/Ct+8L/37A74/i60083wL+B24Dd/rwUSYGr+9C0qth4iirV1PIpUXA4uKXz0vybrttiz2HMXXzEdOroE/t4pk5F8ptaSN6ci/PDj5uZQeV12YeX0cvjv2T1fnYN9mB1asW/OHYmW/4wu/QZuO4WXwDTaCtkXfj0Lnq5INxWL3iGgZjztHnpujXDI9F30n4/JSsgeVDeRrl/mAcVq/CGtoceQb+PJsXbYXN7K9sdq7RnsOY54G1wAvyPq2DD6tXYQ2ZI/RtJepW5b18kMe70Nd7LT+Odei/HngR2DCiOGLvc6tXYc2ZI/RtNXxYY/hg233E8KCI41XM/5rcGWzEmE3AZmBLTXyQB0+vvDMf8922PQQetboap7q9FXgJeBl4JY/7ViUOC/Lg6ZV35msn2siP3Q9l/RwG5MHTK+/M1060xfZDFX8GXQN7X618eGe+dqItth+oc5ob9pfwNCEY5wimvnKcva9WPmJnvlhbq6MBs/YDdS6VDyx7mhCMcwRTX/vp1ajyNhh1LpUPLNs1oHGO6T3o3MPE9GqUcaTmTN3JlLGYXukc/KZlneao9Ytm7xCDlTk7V2lf7JyjrV7pv89vWtbZPNf9yzH2DjHsJXteJoLp2eBx2H9SZrsdx356brN6pWtsv2ltnmtcPO+SX/YJ2mbPyxqHng0anbNQj/FsrcZ+eo62emVzVGO20Lh43rX5Nr2ecl72+GAZZ6BwXp5+Zp7odxCN/dQ3q1ep/crnnVj7N0p+Q3h5od9jsXbmSb/xMb2yvtF0L7yFGPaaOFQTNC7mTex+jnlj7/aYJ2z3xmtexfTK6pDuhf2I4YC5u7GaoHwEi53HuN7e3Z5+Q3vjlY+YXtn3ib6HvPyhJlheyUfsrMb19u72tN0br3zE9Mr7/xBa6r1neSUfsfMY19u721M+vPHKR0yvvPdJmXjsOPIRO6uxPXa3lxqvfMT0KuVrlba6rZ9ejRusXs333x8NW7b7ZKH8PVLV8tt4H7zTmP+/Pxq2/ASNcw/h
-=======
-   eJztmslrFEEUxruC/gUevalXLybGfQVXiJqAy8WjG2644YbbTb2pKIgSURQ95KCHHNxwIy64MdHoxUxOGkw8BRW8+RXdT18/XtVUd3oyiRj40VX1qmveV193V/VkmkwULQPLwQrQNELrK8EqsBqsGcF10nOjbmQi/ah1Pnnx+bF2ELo+4dxuUBZjzEJ9NpgD5ipH+9cFPsZFZz8ap5Ifg9FAfMUYfSY91gKUF4JFYLFytBq6QU+ixdWPxgnxQ0Jz0FqXxtX/B/r+dPgh+9r8PyQaSEdP0mb1uHIJvT/49UFzwHP36TCgTrTxeaTcKf9ycvwMehMdZaaHa8rjB10fWu4+HT5PbZlyLzMdVsOXhF6mo8zKefzQro+W0WHXlQafR66D5y/pVXTk8UO7PvLC59GXu09TFj+KeF5pY8l57Iti+sG3hH5x5HHXONVaP1xjyHkciGJ+JQwIZLtrnKFez+U8Un7GxNjyGBMj2wdy+lENXH5wxpoYLZbVj4kmxpXPOsTWgw1gI9gEJidoMdc8cqYo7VpbFj+4Bm2vtBnlLWAr2Aa2B8Zc63lWHXnvD7kW7kB5J9gFdoM9gTGXH658XbFQPy6gfJHV5Vq4F+V9YD84AA4GxjQ/fBpcfUL9uIryNVaXa+EhxA6DI+AoOGbCYnIeQzRofYfb8yqvjlA/OqNisJ/tm8dq+2Fz6IjSz6qOpI1iBJ0zDvvH8WACOG7ifpXmUdPRPKpYP6hMzyqfju+IT0L+9aABnDLpMWrpB+VHzyrK2ca4R7YtYp/H+w2H+4Pyo2cVz096JJF6a+kHfTdBuVHdxrhHPh1y/ayFH/TdBOVGdRvjHkmmoc90obeWfrj2e65YxJ4DRKV3ybw6JD4/tP0e5anFuI7Q3IrC54e236M8tVjEfBhqHT4/tP0e6dBipIHv+a/bsvn7fus6avjOoXFD/ND2e5SrKybfv26ifCvDPRCKHLfa7+dFfu/iG7va+91GjHkWnCtwbBqvMcAP3/v5VBO/h/M2vp/k59k5awWXCtRB44X44fuOwQWt3fzcUlRdKvnBofXZp4HvJ3m7/Sy6DuS632biuN3jnwAnkz68XnLse86btI6i7g++n5Q66DqQubQnudg9/mlwJunD61xHPeoN4DK4YrL7YWljsXkozzd6TOKaT+6HK94RpeMz0H+mSccq+SHv43ZWX4LyUqPH5Lm+PNsz6tBiWfyQ38M149gSeA2Wknm/De6Au+AeuG/SfmhxrkOL57k/5HtEKKVk3h+Ah+AReAyemLQfWpzr0OJ57g/tWRTyTCM/OsBT8Aw8By9EnnniIX7I9SPL/6Tk+mHn/SV4BV6DN+CtyDNPPMSPrOu567w/axbaOsE78B50GbGm5YxnvT+GO//q70tq/fup/7+/iuu/ASrxvR0=
->>>>>>> parent of 2e1878a... Merge branch 'master' into npc
+   eJzVWldu3EAM1Tq246zSe+/JHRIgFUj9s4HkPD5JvnOH9LLpvTek916cXpw3tp6XS5NaybtyIfAgaTgzIIecJ2p2o6hf9rVH0X7gCHC0few8U9h+ADgIHAOOj6Fn2s/2Q8BhoAKcGEPPtJ/teWVvy+gA7dd5FnSN2On52ixZV4qi9aXqvLSfedZMPzi35ccG2LCxNPiqxeu3Bdgq/KD9zDMp3DvsyzXY01ILzw+5NnqObcB246rF66fjQftps4wH9w6FayBtT/ODc8t2uY5DFT2PzCtts9w7sk3bnuaHHifj0agfOh6MvWezZU9XW/28CtB5WWQ8GHuLr6y2PGCMhyMe+j0uhW1D5SwZ46Ljod/jsq+1T4fCv9KPouLBNbP4qgiMBF8VgeHmqzR/Tpaj6BRwGjgDnC1X+z/E/SPgMfAEeFqunWe4+YoSx1E0EWiLq3Ocg23ngQvAReCSsPUZ7p8DL4CXwCvlh15HvZeytOXhK+onwf7JcW37Zdh2BbgKXAOuC1tf4/4N8BZ4B7xPiUcWez1dVr6iTIEPU5UfN2DbTeAWcBu4I2z9gPuPwCfgM/AlQzzSfPD6ZOUrHRf5fBe23Uvsu4/rA2FrD+6/At+A78CPOvHI4oPVdzTxVSN+ZOWrduTSeKAjufJ+QlzVa513H8YUHQ+PrwI/VZJ75lx4rggdUZN7cdTdW466ZVzbYn8dLT86W/PHw+OrMuzh2IFv+MTuoNN+9CTfQC3QleKqH3KuIuPh8RXXMAhzjja3Cf4aiGPStxU2jxNroOMh49TM/eHxVVhDnSPTYM/0ONElMrC/osG5RpmDMXOBecB88T5tZjw8vgpryByhbTPQNjOujQfj+BP8+qts+7EA/RcCi4DFTfIjK1+FNWeO0LZZsGG2igd1v+HDn8SPNZh/rTgzWIIxS4FlwPKC4pHGV1bNx3zXur/Av3KV4yRvrwBWAquA1bFvWx4/LF0Qi6+smq+SomN89H7Iamcj0Hku42HVfJUUnbcf8tgz1DWgWHxl1XyVFJ23H8hzMjf0lbA4IQjn0LZqPyy+8mo+T1fu54BB+4E8Z62jPju1OCEI59C2ctxAzeGcXzUjb8lzll6fyeg1oHCOINY5DH1r9KyqXt56c6adyWQR9qVvel2C8JuWbTJHtV0UfYYYJEvtnEffYdTRjINelyD8pmWbznO5fzlGnyGGvaTrZSKIrA16w/4Tz9Trcewn6zb9+5pcY/1Nq/Nc+sV6l/Fln8Btul6WfsjaoNRfC9UIa2sp7CfraP37ms5R6bOG9Iv1rs63vvUU9bIVDz6jBgr1ct8980R+B1HYT9qm+Sptv/J+E9Z+c8ZvCCsv5PeYp2ee1Bvv8ZW2jSL3wg74sFP5ITlB+sW88c7nmDf6bI95Qr01XuaVx1eah+Re6IQPXersRnOCjEcQrx7jeltne/Ib2hov4+HxlX6fyPeQlT/kBB1XxsOr1bje1tme1FvjZTw8vrJ+D6Gkvfd0XBkPrx7jeltnezIe1ngZD4+vrPdJFn/0OMbDq9Wo98720sbLeHh8lWZrHl3RUo+vxho0X430/48afdb7ZLT8Hynv8y68D3aXRv7/R40+/wfkSg1J
   </data>
  </layer>
 </map>

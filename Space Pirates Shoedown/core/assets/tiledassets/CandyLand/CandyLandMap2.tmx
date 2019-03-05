@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/CandyGrass.tsx"/>
+ <tileset firstgid="197" source="Resources/CandyLandTiles2.tsx"/>
+ <tileset firstgid="357" source="Resources/house1.tsx"/>
+ <tileset firstgid="387" source="Resources/candy.tsx"/>
+ <tileset firstgid="441" source="Resources/pinkhouse.tsx"/>
+ <tileset firstgid="471" source="Resources/pinktree.tsx"/>
+ <tileset firstgid="615" source="../HomeWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="1105" source="Resources/ChocolateFountain.tsx"/>
+ <tileset firstgid="1106" source="../HomeWorld/Resources/playground.tsx"/>
+ <tileset firstgid="1362" source="../HomeWorld/Resources/spaceship2.tsx"/>
+ <tileset firstgid="1363" source="Resources/candyTiles.tsx"/>
+ <tileset firstgid="1723" source="Resources/pinkCandyTree.tsx"/>
+ <tileset firstgid="1729" source="Resources/whiteCandyTree.tsx"/>
+ <tileset firstgid="1735" source="Resources/terrain.tsx"/>
+ <tileset firstgid="2759" source="Resources/gingerBreadHouse.tsx"/>
+ <tileset firstgid="2784" source="Resources/candyArch.tsx"/>
+ <tileset firstgid="2800" source="Resources/candyFence.tsx"/>
+ <tileset firstgid="2804" source="Resources/gingerBreadHouse2.tsx"/>
+ <tileset firstgid="2829" source="Resources/candyCaneDecor1.tsx"/>
+ <tileset firstgid="2835" source="Resources/candyCaneDecor2.tsx"/>
+ <tileset firstgid="2841" source="Resources/CandyCaneDecor3.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmsFu4zAMRH3JYfMV+RH7WwMkf9JD+1MLbLxrtZOHGYlG0u4lB0FxbEskhzNk1L5N0/T2Gq/xw+P9ME0ft3Gtzafb86d1vl2fb/P5gXm6bOv25qofl7oPq8+ny5cvj/hw3tabRvNePJbjNM3Hf3Mbv399fb+ODYe/eOj9NrfPbXAN3tO19f31utm1F4/Z7MU9FA/aNsMftXE+3q/X+6691+yq4qB4LFiLays/+KyLMePBtYmNPlvFg5xy+9LW5sM6azzVF8bZxYc56XIr4ZG4xPx1MW1rKx7cv5dbPbtdHvfwSNrGmCb+JX5U/CDv+Azjt3T40fxjjLk2bVc7VK/Uf5c7ScPIc7dvBQ+XOw57p0eKB7mgNup3o+Fw7+mV4kEsibGLV48fTkN718wHcnwdFTx0LfIt5Qj1yuU6uebsc3lMDPfww9WvXvyIx6jWJAwSX8j5ER6MMfMq5bjjR+Ja4nHr05xGEf8RHgued9g4LKhXrsY4LVZfWs/p9IE6M8LD1ViXX1zf4eHqeMqVdSge9JUxqfDDreG0iznLPsDVwVQTNzw/tYZx4J4VflCfdHa4CB6fvlDvXH4xRtfDfS+U6lilfqQ4OA1lTVQ8WAd69ZR40GaXAxV+cN+ELfFRPIgV655b/3rI2k/N3tNfOU1xuLShPabzwfFW738gt4mFYl+t59StpP1qH/nhYpLyhL/33Xs6iMf7Fj+1IV1rvCvPu+vqmUXhTOMOj2Sju6Zto+fd9bN8cXhUz1jUlj3v6fxdeIzqufKAPRh7D+pBO49Ktc9pq+Mh9aTSXykXqYv6jNMsalI7U6OGpn7D6ULqUdJ5otOrpBG9WqafFY9U21MtSf1DG+k8Uftd9nXUVaebLmeIh+u1XEx6sWyjUj/oB3OSuZDygfxgrqSRuKPxqvZXDlv3jMvzdr/h4foMxijlAfFr96q/BxcTH2oa7WLcnvC3g/Ls8Eha5H6juJ6RePzEnPpdcnOBXjH3XF1gTXD85vfEOt2r8CPlfDrjcvVqNjY57pL3LlcdV0b8qPSJrE+utifbnN+01dUQYj3Co9Inutxw9Zc5R211WkE9J67tc6W/cjnK+uFqQLLb9R+pLjhsXI3ae76r+yZNczY7Dqe6k2pEWrPCD1c7iAdzihpX1aLkm8NkLz/SvpqTicusJ4k/yTan4c63Ch6aq7R19LfblOdJz8i/nt28n/Co/O/Ad82PvJvy6n/Mj7xLP17jNZ45/gD52m49
+  </data>
+ </layer>
+ <layer id="5" name="Collision Layer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer id="4" name="Doors" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer id="2" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzlmoly0zAYhOUCARKgQLkLvBV9Hj8O78B93zc0paUJ0CPQFGjDWe7V2D8R/0hKJBxLHnbmm/iQ6107XtudCJHpQk2IizXxR6cwfbrWXx7rvGD+L4HLyvIzmD6rLI91nvu/Aq4qOc+B88ryWOe5f8rFc8YufvwpF88Zu8g/HX9+Xmhe1VpdiF7OujL9vq7fxxobx7dT5+XfeIJtmgO24/si/3T8+XkpWzLDPGjnWYYV+efXhe48FKmTY38j/U+LLAPlaOfLmprxXLyvKNeopXon/638cwl08hwtJY+aiYv3VVmSXsg7+ZefMsNyTkf0c7SUaV0O3ldliedQ/XM6YnAO3ldlSXqxebdl0uXgfVWW6HpdERldsJrTZZ/qetN1zvuqLJGfnsjYyOkx+PJh+6os8RxJkiGnJ5IMvtyWI2RfqTlUJpMM3TpTjlB9ZdJzPG+8AC/BguE5R6dQfWXSIrwvgWXQccgRqq9MegXvr8EK6DrkCNVXJq3C+xvwFrxzyBGqr0zyvT5C9ZVJvtdHbH3le32U0Ve69zrT+53u+tC9fw56H6yqqu6f9C99e7ghxJFGsX585dK3O+F5l+J7EtNHNTkwJsXYdALr9pWU06WvxuFpt+LrGKaPa3xiTIqx6X6sO+CQ4wOu3Y/gE/gMvhTcV/T92QP2DuELY1KMTQ9i7CGHHBvw/RV8A9/Bj4Kfr0zfn6L1E75/Se/YVwLGHPY5zPOV6ftTtDZhH5vBFlADWx32aXu+uoZjcx3cADfBLYfzbBK/J64r97Rt8L0d1EED7Gj0t+H3T34ftD1f3cbYO+AuuAfuF5BjVLL11QP4fggegcfy/8cR57D11TR8N8EMeApmI85h66s5+H4G5kELtCPOEdv7oK9iex/0la2vRtG7o5Ktr6rUu7a+qlLv2vqqSr1r66sq9e7/0FdVUmz/v/IV76vQvz/yned9Ffr3R77z5P9EIsRUEv73R77zpN+RZIVd
+  </data>
+ </layer>
+</map>

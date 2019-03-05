@@ -1,9 +1,5 @@
 package com.sps.game.Screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -11,24 +7,21 @@ import com.sps.game.Controller.NPCController;
 import com.sps.game.Controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
-import com.sps.game.maps.Map;
-import com.sps.game.maps.MapFactory;
+import com.sps.game.maps.*;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new Map(MapFactory.MapType.HomeWorldMap1, ASSETS_PATH + "HomeWorld/HomeWorldMap1.tmx"), new Map(MapFactory.MapType.HomeWorldMap2, ASSETS_PATH + "HomeWorld/HomeWorldMap2.tmx")},
-                                 {null, null}};
+    private Map[][] worldMaps = {{new HomeWorldMap(), new HomeWorldMap2()},
+                                 {new CandyWorldMap(), new CandyWorldMap2()}};
 
     private Vector2 mapSelector; //selects map from worldMaps
 
     private int[] xbounds  = {0,1600};
 
     private int[] ybounds  = {0,1600};
-
-    private ArrayList<InteractiveNPC> interactive;
 
 
     public HomeWorldScreen(SpacePiratesShoedown game) {
@@ -40,7 +33,6 @@ public class HomeWorldScreen extends PlayScreen {
         renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
         currentCollisionLayer = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)].getCollisionLayer(); //change when moving worlds
         currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
-        interactive = new ArrayList<InteractiveNPC>();
 
         random = new Random();
         int numNonInteractive = random.nextInt(20) + 10;
@@ -65,11 +57,6 @@ public class HomeWorldScreen extends PlayScreen {
             }
         }
 
-        for(int x = 0; x <= 6; x++ ) {
-            npc.add(new InteractiveNPC(736, 960, MapFactory.MapType.HomeWorldMap1, batch, "Linda"));
-            npc.add(new InteractiveNPC(736, 1152, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
-            npc.add(new InteractiveNPC(736, 1280, MapFactory.MapType.HomeWorldMap1, batch,"Lee"));
-        }
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
 
@@ -180,24 +167,34 @@ public class HomeWorldScreen extends PlayScreen {
             p.setY(0);
             camY = 1;
         }
-
+        else if(currentMapState.equals(MapFactory.MapType.HomeWorldMap2)){
+            if(p.getLocation().equals(new Location(1056, 256))){
+                mapSelector.y += 1;
+                mapSelector.x -= 1;
+                p.setX(384);
+                p.setY(1280);
+                camY = 1;
+            }
+        }
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
             currentMap = selectedMap.getCurrentMap();//change when moving worlds
+            //selectedMap.setMapType(selectedMap.getCurrentMapType());
             renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
             currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
             currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
 
+            System.out.println(currentMapState);
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
-            //controller.changeNpcLocations(allLocations);
+            controller.changeNpcLocations(allLocations);
             //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
             controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
             controller.newWorldReset();
         }
     }
 
-    private void changeNpcLocations(Map selectedMap) {
+    public void changeNpcLocations(Map selectedMap) {//change back to private
         for (AbstractNPC nonPlayingCharacter : npc) {
             if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());

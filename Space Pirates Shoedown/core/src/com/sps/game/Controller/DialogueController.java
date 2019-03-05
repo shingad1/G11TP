@@ -1,6 +1,9 @@
 package com.sps.game.Controller;
 
-import com.badlogic.gdx.*;
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -29,7 +32,8 @@ public class DialogueController extends ApplicationAdapter implements InputProce
 
     private String buttonLogged = "";
 
-    private InputMultiplexer inputMultiplexer;
+    private PlayScreen playScreen;
+    private Boolean temp,temp1;
 
     public Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     public Stage stage = new Stage(new ScreenViewport());
@@ -46,8 +50,6 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         dialogue[2] = "";
 
         textArea.text(dialogue[counter]);
-        //batch = new SpriteBatch();
-        //sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
     }
 
     public void create(String npcName) throws IOException {
@@ -86,13 +88,14 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y){
-                //if(Gdx.input.isKeyPressed(Input.Keys.B)){
-                Gdx.app.log("Exit button", "confirm exit");
-                stage.clear();
-                Gdx.input.setInputProcessor(inputMultiplexer);
-                inputMultiplexer = null;
+                stage.dispose();
+                Color oldColour = sprite.getColor();
+                sprite.setColor(oldColour.r, oldColour.g, oldColour.b, 0);
+                //batch.begin();
+                //batch.dispose();
                 //batch.end();
-
+                /*temp = false;
+                playScreen.setBool(temp);*/
             }
         });
 
@@ -112,7 +115,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
         sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        inputMultiplexer = new InputMultiplexer(stage, this);
+        InputMultiplexer inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);
 
         /*openFile();

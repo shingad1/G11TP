@@ -11,10 +11,12 @@ public class MapFactory {
 
     public static enum MapType{
         HomeWorldMap1,
-        HomeWorldMap2   //need to add the others
+        HomeWorldMap2,
+        CandyWorld1,
+        CandyWorld2
     }
 
-    public static Map getMap(MapType mapType){
+    static public Map getMap(MapType mapType){
         Map map = null;
         switch (mapType){
             case HomeWorldMap1:
@@ -37,7 +39,13 @@ public class MapFactory {
         return map;
     }
 
+
+
+
     public static void clearCache(){
+        for(Map map: mapTable.values()){
+            map.dispose();
+        }
         mapTable.clear();
     }
 }

@@ -124,10 +124,4 @@ public class NonInteractiveNPC extends AbstractNPC {
 
         public Location getLocation(){return location;}
 
-        @Override
-        public String getType() {
-            return "NonInteractiveNPC";
-        }
-
-        public String getName(){return  "";}
 }

@@ -1,12 +1,1 @@
-{
-homeWorldMap2StartPosition: {
-	class: com.badlogic.gdx.math.Vector2
-}
-homeWorldMap1StartPosition: {
-	class: com.badlogic.gdx.math.Vector2
-}
-currentMapType: {
-	class: java.lang.String
-	value: HomeWorldMap1
-}
-}
+ewpob21lV29ybGRNYXAyU3RhcnRQb3NpdGlvbjogewoJY2xhc3M6IGNvbS5iYWRsb2dpYy5nZHgubWF0aC5WZWN0b3IyCgl4OiAxNDcyCgl5OiA5MjgKfQpob21lV29ybGRNYXAxU3RhcnRQb3NpdGlvbjogewoJY2xhc3M6IGNvbS5iYWRsb2dpYy5nZHgubWF0aC5WZWN0b3IyCgl4OiAxNDcyCgl5OiA5MjgKfQpjdXJyZW50TWFwVHlwZTogewoJY2xhc3M6IGphdmEubGFuZy5TdHJpbmcKCXZhbHVlOiBIb21lV29ybGRNYXAxCn0KfQ
