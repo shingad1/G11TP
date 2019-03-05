@@ -10,16 +10,9 @@ public class Item {
     public String name;
     public int Id;
     public String description;
-    public int rarity;
     public Texture imageTexture;
     public Image itemImage;
     public String filepath;
-
-
-    public int hp;
-    public int dmg;
-    public int Goldvalue;
-    public boolean equipped = false;
 
 
     public Item (String name, String description, int Id, String filePath) {
