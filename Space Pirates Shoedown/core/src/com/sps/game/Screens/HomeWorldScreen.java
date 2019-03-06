@@ -24,7 +24,7 @@ public class HomeWorldScreen extends PlayScreen {
     private int[] ybounds  = {0,1600};
 
 
-    public HomeWorldScreen(SpacePiratesShoedown game) {
+    public HomeWorldScreen(SpacePiratesShoedown game, int px, int py) {
         super(game);
         //overworldMap = "HomeWorld/HomeWorldMap1.tmx";
         mapSelector = new Vector2(0,0); //change when moving worlds
@@ -60,8 +60,8 @@ public class HomeWorldScreen extends PlayScreen {
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
 
-        p.setX(736); //change when moving worlds
-        p.setY(1280); //""
+        p.setX(px); //change when moving worlds
+        p.setY(py); //""
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0); //change when moving worlds
@@ -129,6 +129,10 @@ public class HomeWorldScreen extends PlayScreen {
                 dispose();
                 game.setScreen(new CandyLandScreen(game));
             }
+        }
+        if(p.getLocation().equals(new Location(864, 640))){
+            dispose();
+            game.setScreen(new HouseInteriorScreen(game));
         }
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds

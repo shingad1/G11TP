@@ -119,8 +119,6 @@ public abstract class PlayScreen implements Screen
 
     private static Texture pauseTexture;
 
-    private Stack<TiledMap> maps;
-
     protected String overworldMap;
 
     private com.badlogic.gdx.audio.Music music;
@@ -156,7 +154,6 @@ public abstract class PlayScreen implements Screen
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
-        maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
         music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
@@ -359,6 +356,7 @@ public abstract class PlayScreen implements Screen
     @Override
     public void dispose() {
        currentMap.dispose();
+       music.dispose();
     }
 
     /**

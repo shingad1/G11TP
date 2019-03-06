@@ -131,7 +131,7 @@ public class MenuScreen implements Screen {
                    if (Gdx.input.justTouched()) {
                        sound.play();
                        dispose();
-                       game.setScreen(new HomeWorldScreen(game));
+                       game.setScreen(new HomeWorldScreen(game, 736, 1280));
                    }
                }
         }

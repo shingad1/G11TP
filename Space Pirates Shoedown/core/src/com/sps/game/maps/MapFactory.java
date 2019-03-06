@@ -13,6 +13,7 @@ public class MapFactory {
         HomeWorldMap1,
         HomeWorldMap2,
         HomeInterior,
+        HomeInterior2,
         CandyWorld1,
         CandyWorld2,
         TropicalWorld1,

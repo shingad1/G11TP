@@ -110,7 +110,7 @@ public class LoadScreen implements Screen {
                                                 PlayScreen.setGameState(PlayScreen.GameState.Loading);
                                                 //LoadScreen.this.notify(); for changing audio
 
-                                                game.setScreen(new HomeWorldScreen(game));//will need to change
+                                                game.setScreen(new HomeWorldScreen(game, 736, 1280));//will need to change
                                             }
                                         }
                                     }
