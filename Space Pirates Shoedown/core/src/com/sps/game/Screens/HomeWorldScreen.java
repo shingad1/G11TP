@@ -68,39 +68,6 @@ public class HomeWorldScreen extends PlayScreen {
 
     }
 
-    @Override
-    public ArrayList<InteractiveNPC> getInteractiveNPC() {
-        ArrayList<InteractiveNPC> interactiveNPCs = new ArrayList<InteractiveNPC>();
-        for(AbstractNPC nonPlayingCharacter : npc){
-            if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
-                interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
-            }
-        }
-        return interactiveNPCs;
-    }
-
-    @Override
-    public ArrayList<NonInteractiveNPC> getNonInteractiveNPC() {
-        ArrayList<NonInteractiveNPC> nonInteractiveNPCs = new ArrayList<NonInteractiveNPC>();
-        for(AbstractNPC nonPlayingCharacter : npc){
-            if(nonPlayingCharacter.getClass() == NonInteractiveNPC.class){
-                nonInteractiveNPCs.add((NonInteractiveNPC) nonPlayingCharacter);
-            }
-        }
-        return nonInteractiveNPCs;
-    }
-
-    @Override
-    public ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving() {
-        ArrayList<InteractiveNPCMoving> InteractiveNPCsMoving = new ArrayList<InteractiveNPCMoving>();
-        for(AbstractNPC InteractiveNPC : npc){
-            if(InteractiveNPC.getClass() == InteractiveNPCMoving.class){
-                InteractiveNPCsMoving.add((InteractiveNPCMoving) InteractiveNPC);
-            }
-        }
-        return InteractiveNPCsMoving;
-    }
-
     public Vector2 getWorldMapByWorld(MapFactory.MapType map){
         for(int i = 0; i < worldMaps.length; i++){
             for (int j = 0; j < worldMaps[i].length; j++){
@@ -110,16 +77,6 @@ public class HomeWorldScreen extends PlayScreen {
             }
         }
         return null;
-    }
-
-    public ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map){
-        ArrayList<AbstractNPC> result = new ArrayList<AbstractNPC>();
-        for (int i = 0; i < npc.size(); i++){
-            if (npc.get(i).getWorld().equals(map)){
-                result.add(npc.get(i));
-            }
-        }
-        return result;
     }
 
     public Map getMap(Vector2 selector){
@@ -169,11 +126,8 @@ public class HomeWorldScreen extends PlayScreen {
         }
         if(currentMapState.equals(MapFactory.MapType.HomeWorldMap2)){
             if(p.getLocation().equals(new Location(1056, 256))){
-                mapSelector.y += 1;
-                mapSelector.x -= 1;
-                p.setX(384);
-                p.setY(1280);
-                camY = 1;
+                dispose();
+                game.setScreen(new CandyLandScreen(game));
             }
         } else if (currentMapState.equals(MapFactory.MapType.CandyWorld1)){
             if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
@@ -198,13 +152,6 @@ public class HomeWorldScreen extends PlayScreen {
             //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
             controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
             controller.newWorldReset();
-        }
-    }
-
-    public void changeNpcLocations(Map selectedMap) {//change back to private
-        for (AbstractNPC nonPlayingCharacter : npc) {
-            if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
-                allLocations.add(nonPlayingCharacter.getLocation());
         }
     }
 
