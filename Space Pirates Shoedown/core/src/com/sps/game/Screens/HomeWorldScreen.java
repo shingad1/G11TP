@@ -14,8 +14,8 @@ import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new HomeWorldMap(), new HomeWorldMap2()},
-                                 {new CandyWorldMap(), new CandyWorldMap2()}};
+    private Map[][] worldMaps = {{new HomeWorldMap(), new HomeWorldMap2(), null},
+                                 {new CandyWorldMap(), new CandyWorldMap2(), new TropicalWorld()}};
 
     private Vector2 mapSelector; //selects map from worldMaps
 
@@ -167,13 +167,20 @@ public class HomeWorldScreen extends PlayScreen {
             p.setY(0);
             camY = 1;
         }
-        else if(currentMapState.equals(MapFactory.MapType.HomeWorldMap2)){
+        if(currentMapState.equals(MapFactory.MapType.HomeWorldMap2)){
             if(p.getLocation().equals(new Location(1056, 256))){
                 mapSelector.y += 1;
                 mapSelector.x -= 1;
                 p.setX(384);
                 p.setY(1280);
                 camY = 1;
+            }
+        } else if (currentMapState.equals(MapFactory.MapType.CandyWorld1)){
+            if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
+                mapSelector.x += 2;
+                p.setX(224);
+                p.setY(160);
+                camY = -1;
             }
         }
         if(camX != 0 || camY != 0) {
@@ -184,7 +191,7 @@ public class HomeWorldScreen extends PlayScreen {
             currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
             currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
 
-            System.out.println(currentMapState);
+            System.out.println("Entering " + currentMapState);
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
             controller.changeNpcLocations(allLocations);
@@ -199,5 +206,9 @@ public class HomeWorldScreen extends PlayScreen {
             if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());
         }
+    }
+
+    public static MapFactory.MapType getCurrentMapType(){
+        return currentMapState;
     }
 }

@@ -109,7 +109,7 @@ public abstract class PlayScreen implements Screen
      */
     protected TiledMapTileLayer currentCollisionLayer;
 
-    protected MapFactory.MapType currentMapState;
+    protected static MapFactory.MapType currentMapState;
 
     protected ArrayList<NPCController> npcController;
 

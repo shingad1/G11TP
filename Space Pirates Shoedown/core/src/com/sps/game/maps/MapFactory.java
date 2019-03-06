@@ -13,7 +13,9 @@ public class MapFactory {
         HomeWorldMap1,
         HomeWorldMap2,
         CandyWorld1,
-        CandyWorld2
+        CandyWorld2,
+        TropicalWorld1,
+        TropicalWorld2
     }
 
     static public Map getMap(MapType mapType){
