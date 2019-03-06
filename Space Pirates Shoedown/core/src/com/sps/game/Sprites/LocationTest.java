@@ -1,3 +1,4 @@
+package com.sps.game.Sprites;
 import com.sps.game.Sprites.Location;
 import org.junit.Test;
 
