@@ -10,6 +10,7 @@
     import com.badlogic.gdx.math.Vector2;
     import com.sps.game.Inventory2.Inventory;
     import com.sps.game.Scenes.InventoryHud;
+    import com.sps.game.Screens.PlayScreen;
     import com.sps.game.Sprites.InteractiveNPC;
     import com.sps.game.Sprites.InteractiveNPCMoving;
     import com.sps.game.Sprites.Location;
@@ -390,15 +391,15 @@
 
     }
 
-    public void npcInteraction(String npcName){
+    public void npcInteraction(){
         //if (Gdx.input.isKeyPressed(Input.Keys.B)) {
-            DialogueController dialogController = new DialogueController();
-            try {
-                dialogController.create(npcName);
+            //DialogueController dialogController = new DialogueController();
+            /*try {
+                PlayScreen.dialogController.create(npcName);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-            dialogController.render();
+            }*/
+            PlayScreen.dialogController.render();
         }
     //}
 

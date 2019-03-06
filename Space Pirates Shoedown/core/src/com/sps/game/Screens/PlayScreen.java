@@ -136,7 +136,7 @@
 
     private com.badlogic.gdx.audio.Music sound;
     private MapManager mapManager;
-    private DialogueController dialogController = new DialogueController();
+    public static DialogueController dialogController;
     private StoryController storyController = new StoryController();
     private TutorialController1 tutorialController = new TutorialController1();
 
@@ -152,7 +152,7 @@
 
     private static GameState gameState;
 
-    public PlayScreen(SpacePiratesShoedown game){
+    public PlayScreen(SpacePiratesShoedown game) throws IOException {
         this.game = game;
         mapManager = new MapManager();
         setGameState(GameState.Running);
@@ -173,6 +173,18 @@
         music.setVolume(0.1f);
         music.play();
         npcController = new ArrayList<NPCController>();
+
+        dialogController  = new DialogueController();
+
+        //getInteractiveNPC();
+
+        /*for(int i = 0; i < getInteractiveNPC().size(); i++) {
+            try {
+                dialogController.create(getInteractiveNPC().get(i).getName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }*/
     }
 
     /**
@@ -335,15 +347,17 @@
         batch.begin();
         if(pause)
         {
-            batch.draw(pauseTexture,gamecam.position.x - 240,gamecam.position.y - 240,480,480);
+           batch.draw(pauseTexture,gamecam.position.x - 240,gamecam.position.y - 240,480,480);
         }
         batch.end();
 
         changeMaps();
 
-        /*for (int i = 0; i < getInteractiveNPC().size(); i++) {
-            controller.npcInteraction(getInteractiveNPC().get(i).getName());
-        }*/
+        for (int i = 0; i < getInteractiveNPC().size(); i++) {
+            dialogController.set(getInteractiveNPC().get(i).getName());
+            //controller.npcInteraction();
+        }
+        controller.npcInteraction();
     }
 
     @Override
