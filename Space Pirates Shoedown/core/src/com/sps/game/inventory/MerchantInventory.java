@@ -98,6 +98,7 @@ public class MerchantInventory {
                     //If the rejected item equals to the item that the payload is set to, then reject it.
                     if (rejectedItems.get(i).equals((payload.getObject()))) {
                         return !(rejectedItems.get(i).equals(payload.getObject()));
+
                     }
                 }
                 return !"Cucumber".equals(payload.getObject()); //Cucumber is rejected by default
@@ -107,7 +108,15 @@ public class MerchantInventory {
 
             @Override
             public void drop(Source source, Payload payload, float x, float y, int pointer) {
+
                 merchant.getItems().add((String) payload.getObject());
+                inventory.getItems().removeValue(payload.getObject().toString(), true);
+
+                //Test to see if the item has been added to the merchants inventory
+                System.out.println("merchant: " + merchant.getItems() + "\n");
+
+                //Test to see if the item has been removed from the player's inventory
+                System.out.println("player: " + inventory.getItems() + "\n");
             }
         });
     }

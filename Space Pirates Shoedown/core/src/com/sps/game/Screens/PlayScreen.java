@@ -78,10 +78,10 @@ public abstract class PlayScreen implements Screen
      */
     private HudScene hud;
     /**
-     * Holds instance of the playerInventory class, which displays vital Inventory information to the user.
+     * Holds instance of the MerchantInventory class, which displays vital Inventory information to the user.
      * @see #render
      */
-    private PlayerInventory playerInventory;
+    private MerchantInventory merchantInventory;
 
     /**
      * Holds all the sprites that will be displayed on the sreen.
@@ -155,7 +155,7 @@ public abstract class PlayScreen implements Screen
         batch = new SpriteBatch();
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
-        playerInventory = new PlayerInventory(game.batch,controller);
+        merchantInventory  = new MerchantInventory(game.batch,controller);
         maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -241,7 +241,7 @@ public abstract class PlayScreen implements Screen
             }
         }
         hud.update();
-        playerInventory.update();
+        merchantInventory.update();
         gamecam.update();
         renderer.setView(gamecam);
     }
@@ -281,7 +281,7 @@ public abstract class PlayScreen implements Screen
 
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
-        playerInventory.stage.draw(); //drawing the user hud
+        merchantInventory.stage.draw(); //drawing the user hud
         batch.setProjectionMatrix(gamecam.combined);
         ArrayList<AbstractNPC> mapNPC = getMapNPC(currentMapState);
         if (mapNPC != null) {

@@ -69,7 +69,7 @@ public class PlayerInventory {
             formatting();
             setInput();
         }
-        
+
         if (Gdx.input.isKeyPressed(Input.Keys.O) && oldInput != null) {
             stage.dispose();
             Gdx.input.setInputProcessor(oldInput);
