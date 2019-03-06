@@ -83,6 +83,8 @@ public class PlayerController extends InputAdapter {
 
     private boolean newWorldDown; //move to world down i.e. 1,1 to 2,1
 
+    private boolean enterShip;
+
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         //dialogue = false;
         this.player = p;
@@ -121,6 +123,10 @@ public class PlayerController extends InputAdapter {
             switch(keycode){
                 case Input.Keys.A:
                     fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
+                    break;
+                case Input.Keys.E:
+                    //WILL HAVE IF STATEMENT AROUND IT
+                    enterShip = true;
                     break;
                 case Input.Keys.X:
                    // ProfileManager.getInstance().saveProfile();
@@ -211,6 +217,10 @@ public class PlayerController extends InputAdapter {
     public boolean getNewWorldUp(){ return newWorldUp;}
 
     public boolean getNewWorldDown(){ return newWorldDown;}
+
+    public boolean getEnterShip(){
+        return enterShip;
+    }
 
     /**
      *

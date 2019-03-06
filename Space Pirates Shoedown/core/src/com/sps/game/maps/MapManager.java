@@ -44,12 +44,12 @@ public class MapManager implements ProfileObserver {
                 }
                 loadMap(mapType);
 
-                Vector2 homeWorldMap1StartPosition = profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class);
+                Vector2 homeWorldMap1StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).y);
                 if(homeWorldMap1StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(homeWorldMap1StartPosition);
                 }
 
-                Vector2 homeWorldMap2StartPosition = profileManager.getProperty("HomeWorldMap2StartPosition", Vector2.class);
+                Vector2 homeWorldMap2StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap2StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap2StartPosition", Vector2.class).y);
                 if(homeWorldMap2StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).setPlayerPosition(homeWorldMap2StartPosition);
                 }
