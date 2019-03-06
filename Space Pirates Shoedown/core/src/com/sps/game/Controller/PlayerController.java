@@ -393,15 +393,10 @@
 
     public void npcInteraction(){
         //if (Gdx.input.isKeyPressed(Input.Keys.B)) {
-            //DialogueController dialogController = new DialogueController();
-            /*try {
-                PlayScreen.dialogController.create(npcName);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
-            PlayScreen.dialogController.render();
-        }
-    //}
+        PlayScreen.dialogController.render();
+        //PlayScreen.dialogBoolean = false;
+        //}
+    }
 
         public void npcInteraction(ArrayList<InteractiveNPC> npcList, String npcName) {
             if (!npcList.isEmpty()) {

@@ -27,7 +27,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
     private int counter;
     private String[] dialogue;
 
-    private Map<String, ArrayList<String>> dialogHM;
+    private HashMap<String, ArrayList<String>> dialogHM;
     private ArrayList<String> values;
 
     private Table table;
@@ -42,10 +42,9 @@ public class DialogueController extends ApplicationAdapter implements InputProce
 
     final Dialog textArea = new Dialog("Dialogues", skin);
 
-    public DialogueController() throws IOException {
+    public DialogueController(){
         counter = 0;
         dialogue = new String[3];
-        table = new Table();
 
         dialogue[0] = "";
         dialogue[1] = "";
@@ -58,19 +57,11 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
         sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-
-        prevButton = new TextButton("Previous", skin, "default");
-        nextButton = new TextButton("Next", skin, "default");
-        exitButton = new TextButton("Exit", skin, "default");
-
-        create();
-        addingListener();
-        readingFile();
-
-        textArea.text(dialogue[counter]);
+        //textArea.text(dialogue[counter]);
     }
 
     public void create(){
+        table = new Table();
         table.setWidth(stage.getWidth());
         table.setHeight(stage.getHeight()/2);
         table.align(Align.center | Align.bottom);
@@ -80,25 +71,25 @@ public class DialogueController extends ApplicationAdapter implements InputProce
 
         table.add(textArea).size(stage.getWidth(),stage.getHeight()/2).padBottom(5);
         table.row();
+
+        prevButton = new TextButton("Previous", skin, "default");
+        nextButton = new TextButton("Next", skin, "default");
+        exitButton = new TextButton("Exit", skin, "default");
+
         table.add(prevButton).size(150,50);
         table.row();
         table.add(exitButton).size(150,50);
         table.row();
         table.add(nextButton).size(150, 50);
 
-
         textArea.setColor(181.0f/255.0f,122.0f/255.0f,232.0f/255.0f,255.0f/255.0f);
-
-/*        inputMultiplexer = new InputMultiplexer(stage, this);
-        Gdx.input.setInputProcessor(inputMultiplexer);*/
-    }
-
-    private void addingListener(){
         stage.addActor(table);
+
         prevButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("previous button", "confirm previous");
+                System.out.println("Previous");
                 buttonLogged = "previous";
                 clickFunction();
                 event.stop();
@@ -109,6 +100,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("Next button", "confirm next");
+                System.out.println("Next");
                 buttonLogged = "next";
                 clickFunction();
                 event.stop();
@@ -123,6 +115,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
                 stage.clear();
                 Gdx.input.setInputProcessor(inputMultiplexer);
                 inputMultiplexer = null;
+                PlayScreen.dialogBoolean = false;
                 //batch.end();
 
             }
@@ -130,6 +123,10 @@ public class DialogueController extends ApplicationAdapter implements InputProce
 
         inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);
+
+
+        /*inputMultiplexer = new InputMultiplexer(stage, this);
+        Gdx.input.setInputProcessor(inputMultiplexer);*/
     }
 
     @Override
@@ -150,45 +147,31 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         while ((line = bufferedReader.readLine()) != null) {
             String temp[] = line.split("\\;");
 
-            /*String name = temp[0];
-            String first = temp[1];
-            String second = temp[2];
-            String third = temp[3];*/
-            //String aBoolean = temp[4];
             values.add(temp[1]);
             values.add(temp[2]);
             values.add(temp[3]);
             dialogHM.put(temp[0], values);
         }
-
         bufferedReader.close();
+
+        //textArea.text(dialogue[counter]);
     }
 
     public void set(String npcName)
     {
-        if(npcName.equals(dialogHM.get(npcName)))
-        {
-            //if(aBoolean.equals("false")) {
-            /*dialogue[0] = first;
-            dialogue[1] = second;
-            dialogue[2] = third;*/
-
-            dialogue[0] = values.get(1);
-            dialogue[1] = values.get(2);
-            dialogue[2] = values.get(3);
-
-                    /*String tempFile = "temp.txt";
-                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tempFile, true));
-                    PrintWriter printWriter = new PrintWriter(bufferedWriter);
-
-                    printWriter.println(dialogue[0] + ";" + dialogue[1] + ";" + dialogue[2] + ";" + "true");
-                    tempFile.renameTo();
-                }*/
+        try {
+            readingFile();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+        if (dialogHM.keySet().contains(npcName)) {
+            dialogue[0] = values.get(0);
+            dialogue[1] = values.get(1);
+            dialogue[2] = values.get(2);
+        }
         textArea.text(dialogue[counter]);
     }
-        //textArea.text(dialogue[counter]);
 
     private void clickFunction(){
         if (buttonLogged.equals("previous") && counter > 0)

@@ -136,11 +136,11 @@
 
     private com.badlogic.gdx.audio.Music sound;
     private MapManager mapManager;
-    public static DialogueController dialogController;
+    public static  DialogueController dialogController;
     private StoryController storyController = new StoryController();
     private TutorialController1 tutorialController = new TutorialController1();
 
-    private Boolean dialogBoolean = false;
+    public static Boolean dialogBoolean = false;
 
     protected Random random;
 
@@ -152,7 +152,7 @@
 
     private static GameState gameState;
 
-    public PlayScreen(SpacePiratesShoedown game) throws IOException {
+    public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         mapManager = new MapManager();
         setGameState(GameState.Running);
@@ -175,16 +175,6 @@
         npcController = new ArrayList<NPCController>();
 
         dialogController  = new DialogueController();
-
-        //getInteractiveNPC();
-
-        /*for(int i = 0; i < getInteractiveNPC().size(); i++) {
-            try {
-                dialogController.create(getInteractiveNPC().get(i).getName());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
     }
 
     /**
@@ -290,6 +280,10 @@
         inventoryHud.update();
         gamecam.update();
         renderer.setView(gamecam);
+
+        if(dialogBoolean) {
+            dialogController.create();
+        }
     }
 
     /**
@@ -354,10 +348,14 @@
         changeMaps();
 
         for (int i = 0; i < getInteractiveNPC().size(); i++) {
-            dialogController.set(getInteractiveNPC().get(i).getName());
-            //controller.npcInteraction();
+            PlayScreen.dialogController.set(getInteractiveNPC().get(i).getName());
+            dialogBoolean = true;
         }
-        controller.npcInteraction();
+
+        if (dialogBoolean){
+            controller.npcInteraction();
+        }
+        //dialogBoolean = false;
     }
 
     @Override
