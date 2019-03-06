@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.sps.game.Screens.HomeWorldScreen;
 import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.Sprites.Player;
 import com.sps.game.profile.ProfileManager;
@@ -55,10 +56,10 @@ public class MapManager implements ProfileObserver {
                 break;
 
             case SAVING_PROFILE:
-                //map = MapFactory.getMap(getCurrentMapType());
+                map = MapFactory.getMap(getCurrentMapType());
                 if(map != null) {
-                    profileManager.setProperty("currentMapType", map.getCurrentMapType().toString());
-                    System.out.println(map.getCurrentMapType().toString());
+                    profileManager.setProperty("currentMapType", HomeWorldScreen.getCurrentMapType().toString()); //map.getCurrentMapType().toString()
+                    System.out.println("Saving game as " + HomeWorldScreen.getCurrentMapType().toString());
                     //profileManager.setProperty("currentCollisionLayer", map.getCollisionLayer());
                 }
                 profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
@@ -103,7 +104,7 @@ public class MapManager implements ProfileObserver {
     }
 
     public MapFactory.MapType getCurrentMapType(){
-        return map.getCurrentMapType();
+        return HomeWorldScreen.getCurrentMapType();
     }
 
     public TiledMap getCurrentTiledMap(){

@@ -184,7 +184,7 @@ public class HomeWorldScreen extends PlayScreen {
             currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
             currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
 
-            System.out.println(currentMapState);
+            System.out.println("Entering " + currentMapState);
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
             controller.changeNpcLocations(allLocations);
@@ -199,5 +199,9 @@ public class HomeWorldScreen extends PlayScreen {
             if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());
         }
+    }
+
+    public static MapFactory.MapType getCurrentMapType(){
+        return currentMapState;
     }
 }
