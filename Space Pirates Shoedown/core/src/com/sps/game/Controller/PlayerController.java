@@ -11,10 +11,7 @@
     import com.sps.game.Inventory2.Inventory;
     import com.sps.game.Scenes.InventoryHud;
     import com.sps.game.Screens.PlayScreen;
-    import com.sps.game.Sprites.InteractiveNPC;
-    import com.sps.game.Sprites.InteractiveNPCMoving;
-    import com.sps.game.Sprites.Location;
-    import com.sps.game.Sprites.Player;
+    import com.sps.game.Sprites.*;
     import com.sps.game.dialogue.Dialogue;
     import com.sps.game.profile.ProfileManager;
 
@@ -90,7 +87,6 @@
 
     private Inventory inventory;
 
-    public Boolean dialogueBoolean;
 
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
     //dialogue = false;
@@ -138,8 +134,8 @@
             System.out.println("Inventory exit");
             break;
         case Input.Keys.B:
-            System.out.println("dialogue exit");
-            dialogueBoolean = false;
+            System.out.println("dialogue schtuff");
+
             break;
         default:
             collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
@@ -357,7 +353,7 @@
     return false;
     }
 
-    public boolean npcInProximity(InteractiveNPCMoving npc){
+    public boolean npcInProximity(AbstractNPC npc){
     if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(npc.getLocation())){
     return true;
     }
@@ -391,12 +387,13 @@
 
     }
 
+    /*
     public void npcInteraction(){
-        //if (Gdx.input.isKeyPressed(Input.Keys.B)) {
-        PlayScreen.dialogController.render();
-        //PlayScreen.dialogBoolean = false;
-        //}
-    }
+        if (Gdx.input.isKeyPressed(Input.Keys.B)) {
+            PlayScreen.dialogController.render();
+            PlayScreen.dialogBoolean = false;
+        }
+    }*/
     //}
 
         public void npcInteraction(ArrayList<InteractiveNPC> npcList, String npcName) {

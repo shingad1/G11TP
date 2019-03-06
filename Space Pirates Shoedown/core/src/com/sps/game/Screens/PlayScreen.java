@@ -350,12 +350,10 @@
         changeMaps();
 
         for (int i = 0; i < getInteractiveNPC().size(); i++) {
-            dialogController.set(getInteractiveNPC().get(i).getName());
-            dialogBoolean = true;
-        }
-
-        if (dialogBoolean){
-            controller.npcInteraction();
+            if(controller.npcInProximity(getInteractiveNPC().get(i))) {
+                dialogController.set(getInteractiveNPC().get(i).getName());
+                dialogBoolean = true;
+            }
         }
     }
 
