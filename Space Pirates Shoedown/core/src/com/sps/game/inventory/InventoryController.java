@@ -92,7 +92,7 @@ public class InventoryController {
 
     //Setting the values of the items
     private void setItems() {
-        fuel = new Item("Fuel", "Fuel for your rocket shoes", 1,  "core/assets/Inventory/images/premium-sword.png");
+        fuel = new Item("Fuel", "Fuel for your rocket shoes", 1,  "core/assets/Inventory/images/shoe.png");
         axe = new Item("Axe", "An Axe to cut pirates in half", 2, "core/assets/Inventory/images/premium-sword.png");
         fluxCapacitor = new Item("Flux Capacitor", "Travel through time!", 3, "core/assets/Inventory/images/plate.png");
         shoes = new Item("Shoes", "Some fake shoes", 4, "core/assets/Inventory/images/shoe.png");
