@@ -96,6 +96,15 @@ public class CandyLandScreen extends PlayScreen {
             p.setX(49 * 32);
             camX = -1;
         }
+        if (currentMapState.equals(MapFactory.MapType.CandyWorld1)){
+            if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
+
+                /*mapSelector.x += 2;
+                p.setX(224);
+                p.setY(160);
+                camY = -1;*/
+            }
+        }
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
             currentMap = selectedMap.getCurrentMap();//change when moving worlds

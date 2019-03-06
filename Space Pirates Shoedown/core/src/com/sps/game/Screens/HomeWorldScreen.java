@@ -14,8 +14,8 @@ import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new HomeWorldMap(), new HomeWorldMap2(), null},
-                                 {new CandyWorldMap(), new CandyWorldMap2(), new TropicalWorld()}};
+    private Map[][] worldMaps = {{new HomeWorldMap(), new HomeWorldMap2()},
+                                 {null, null}};
 
     private Vector2 mapSelector; //selects map from worldMaps
 
@@ -129,13 +129,6 @@ public class HomeWorldScreen extends PlayScreen {
                 dispose();
                 game.setScreen(new CandyLandScreen(game));
             }
-        } else if (currentMapState.equals(MapFactory.MapType.CandyWorld1)){
-            if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
-                mapSelector.x += 2;
-                p.setX(224);
-                p.setY(160);
-                camY = -1;
-            }
         }
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
@@ -153,9 +146,5 @@ public class HomeWorldScreen extends PlayScreen {
             controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
             controller.newWorldReset();
         }
-    }
-
-    public static MapFactory.MapType getCurrentMapType(){
-        return currentMapState;
     }
 }

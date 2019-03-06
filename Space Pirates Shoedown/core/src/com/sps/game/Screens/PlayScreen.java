@@ -240,10 +240,11 @@ public abstract class PlayScreen implements Screen
                 npcController.get(i).move();
             }
         }
-        hud.update();
-        merchantInventory.update();
+
         gamecam.update();
         renderer.setView(gamecam);
+        hud.update();
+        merchantInventory.update();
     }
 
     /**
@@ -279,9 +280,7 @@ public abstract class PlayScreen implements Screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
 
-        batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
-        hud.stage.draw(); //actually drawing the graphics
-        merchantInventory.stage.draw(); //drawing the user hud
+
         batch.setProjectionMatrix(gamecam.combined);
         ArrayList<AbstractNPC> mapNPC = getMapNPC(currentMapState);
         if (mapNPC != null) {
@@ -296,6 +295,9 @@ public abstract class PlayScreen implements Screen
             mapLayers[i - 3] = (currentMap.getLayers().getIndex(currentMap.getLayers().get(i)));
 
         renderer.render(mapLayers);
+        batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
+        hud.stage.draw(); //actually drawing the graphics
+        merchantInventory.stage.draw(); //drawing the user hud
 
         batch.begin();
         if(pause)
@@ -327,6 +329,7 @@ public abstract class PlayScreen implements Screen
 
 
         dialogBoolean = false;*/
+
 
     }
 
@@ -443,5 +446,8 @@ public abstract class PlayScreen implements Screen
             if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());
         }
+    }
+    public static MapFactory.MapType getCurrentMapType(){
+        return currentMapState;
     }
 }
