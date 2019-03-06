@@ -444,4 +444,7 @@ public abstract class PlayScreen implements Screen
                 allLocations.add(nonPlayingCharacter.getLocation());
         }
     }
+    public static MapFactory.MapType getCurrentMapType(){
+        return currentMapState;
+    }
 }
