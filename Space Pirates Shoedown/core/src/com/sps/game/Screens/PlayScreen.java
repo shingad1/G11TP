@@ -393,15 +393,47 @@ public abstract class PlayScreen implements Screen
         }
     }
 
-    public abstract ArrayList<InteractiveNPC> getInteractiveNPC();
+    public ArrayList<InteractiveNPC> getInteractiveNPC() {
+        ArrayList<InteractiveNPC> interactiveNPCs = new ArrayList<InteractiveNPC>();
+        for(AbstractNPC nonPlayingCharacter : npc){
+            if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
+                interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
+            }
+        }
+        return interactiveNPCs;
+    }
 
-    public abstract ArrayList<NonInteractiveNPC> getNonInteractiveNPC();
+    public ArrayList<NonInteractiveNPC> getNonInteractiveNPC() {
+        ArrayList<NonInteractiveNPC> nonInteractiveNPCs = new ArrayList<NonInteractiveNPC>();
+        for(AbstractNPC nonPlayingCharacter : npc){
+            if(nonPlayingCharacter.getClass() == NonInteractiveNPC.class){
+                nonInteractiveNPCs.add((NonInteractiveNPC) nonPlayingCharacter);
+            }
+        }
+        return nonInteractiveNPCs;
+    }
 
-    public abstract ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving();
+    public ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving() {
+        ArrayList<InteractiveNPCMoving> InteractiveNPCsMoving = new ArrayList<InteractiveNPCMoving>();
+        for(AbstractNPC InteractiveNPC : npc){
+            if(InteractiveNPC.getClass() == InteractiveNPCMoving.class){
+                InteractiveNPCsMoving.add((InteractiveNPCMoving) InteractiveNPC);
+            }
+        }
+        return InteractiveNPCsMoving;
+    }
 
     public abstract boolean checkPosition(Location location, MapFactory.MapType world);
 
-    public abstract ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map);
+    public ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map) {
+        ArrayList<AbstractNPC> result = new ArrayList<AbstractNPC>();
+        for (int i = 0; i < npc.size(); i++){
+            if (npc.get(i).getWorld().equals(map)){
+                result.add(npc.get(i));
+            }
+        }
+        return result;
+    }
 
     public abstract void changeMaps();
 
@@ -409,5 +441,10 @@ public abstract class PlayScreen implements Screen
 
     public abstract Vector2 getWorldMapByWorld(MapFactory.MapType map);
 
-    public abstract void changeNpcLocations(Map selectedMap);
+    public void changeNpcLocations(Map selectedMap) {
+        for (AbstractNPC nonPlayingCharacter : npc) {
+            if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
+                allLocations.add(nonPlayingCharacter.getLocation());
+        }
+    }
 }

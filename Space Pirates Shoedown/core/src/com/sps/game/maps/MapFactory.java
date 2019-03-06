@@ -12,6 +12,7 @@ public class MapFactory {
     public static enum MapType{
         HomeWorldMap1,
         HomeWorldMap2,
+        HomeInterior,
         CandyWorld1,
         CandyWorld2,
         TropicalWorld1,
