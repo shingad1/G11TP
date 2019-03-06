@@ -1,46 +1,46 @@
-
-
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" source="Resources/CandyGrass.tsx"/>
  <tileset firstgid="197" source="Resources/CandyLandTiles2.tsx"/>
- <tileset firstgid="357" source="Resources/house1.tsx"/>
- <tileset firstgid="387" source="Resources/candy.tsx"/>
- <tileset firstgid="441" source="Resources/pinkhouse.tsx"/>
- <tileset firstgid="471" source="Resources/pinktree.tsx"/>
- <tileset firstgid="615" source="../HomeWorld/Resources/Tiles5.tsx"/>
- <tileset firstgid="1105" source="Resources/ChocolateFountain.tsx"/>
- <tileset firstgid="1106" source="../HomeWorld/Resources/playground.tsx"/>
- <tileset firstgid="1362" source="../HomeWorld/Resources/spaceship2.tsx"/>
- <tileset firstgid="1363" source="Resources/candyTiles.tsx"/>
- <tileset firstgid="1723" source="Resources/pinkCandyTree.tsx"/>
- <tileset firstgid="1729" source="Resources/whiteCandyTree.tsx"/>
- <tileset firstgid="1735" source="Resources/terrain.tsx"/>
- <tileset firstgid="2759" source="Resources/gingerBreadHouse.tsx"/>
- <tileset firstgid="2784" source="Resources/candyArch.tsx"/>
- <tileset firstgid="2800" source="Resources/candyFence.tsx"/>
- <tileset firstgid="2804" source="Resources/gingerBreadHouse2.tsx"/>
- <tileset firstgid="2829" source="Resources/candyCaneDecor1.tsx"/>
- <tileset firstgid="2835" source="Resources/candyCaneDecor2.tsx"/>
- <tileset firstgid="2841" source="Resources/CandyCaneDecor3.tsx"/>
+ <tileset firstgid="357" source="Resources/pinktree.tsx"/>
+ <tileset firstgid="501" source="../HomeWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="991" source="Resources/ChocolateFountain.tsx"/>
+ <tileset firstgid="992" source="../HomeWorld/Resources/spaceship2.tsx"/>
+ <tileset firstgid="993" source="Resources/candyTiles.tsx"/>
+ <tileset firstgid="1353" source="Resources/pinkCandyTree.tsx"/>
+ <tileset firstgid="1359" source="Resources/whiteCandyTree.tsx"/>
+ <tileset firstgid="1365" source="Resources/terrain.tsx"/>
+ <tileset firstgid="2389" source="Resources/gingerBreadHouse.tsx"/>
+ <tileset firstgid="2414" source="Resources/candyArch.tsx"/>
+ <tileset firstgid="2430" source="Resources/candyFence.tsx"/>
+ <tileset firstgid="2434" source="Resources/gingerBreadHouse2.tsx"/>
+ <tileset firstgid="2459" source="Resources/candyCaneDecor1.tsx"/>
+ <tileset firstgid="2465" source="Resources/candyCaneDecor2.tsx"/>
+ <tileset firstgid="2471" source="Resources/CandyCaneDecor3.tsx"/>
+ <tileset firstgid="2477" source="Resources/gingerBreadMansion2.tsx"/>
+ <tileset firstgid="2729" source="Resources/candyPathv2.tsx"/>
+ <tileset firstgid="2732" source="Resources/candySmall1.tsx"/>
+ <tileset firstgid="2733" source="Resources/candySmall2.tsx"/>
+ <tileset firstgid="2734" source="Resources/blockedCandyTree2.tsx"/>
+ <tileset firstgid="2742" source="Resources/blockedCandyTree1.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="5" name="Collision Layer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlu0KgCAMRSV6v97QZ+2vSB9u6nanNzgQhHaPW2k+UsqEGHOd2OzsIfW16BG0emjfiZhfkyOKh7R3rXJLs9ODHjNdWufx8CivOk/9jB7sK8/18M5DDyyPMoMkD5rHKvWgx/z8kr3h6fto2Uui12HVvqIHBj0es9w1c0o8WnOPWJuecd59JTmnazysHC08Zmb92u/+xrR6IPWdth49dUb0qO8R2cEjEvTAYqf/1Soe9T0iO3hEgh5YvJ2JCRnBDYjpAnc=
+   eJztlmsOwyAMg6edZ/c/3/4ilIeduC1UWKrGWkjyEZL28znaRb/vHhfCsboOR8+n+hxFMTJnj2Ho8ni2EJ/zfZTN813dn3FdxIT0ACRPUf67OY5yw/SujDU7C4pzejjyGJE5iB/m3DIcTP9TcYy/Cg5lz838zNzIXs1xer1Frcp+3cnB1hcSa/RMwcHUoWWT3bMrOFR1ztQ+aiPj8GqvymHNyeT1AYYDjZHhUOhwaH17fr11UXx3c2Sq5i7iGO8rLsQu6p/l2EU7xz7qcKylTn1cUVPMO35eZ41nm9Y3AfqswlBZizB5a5BY0LisvfCedzmYvfK+S6J3ivWLiOHIzhEyd37O2Ef2wBtn9jxZecg4OlLkI7Pr/X+aA4mjcq46qvQrz06lx6rUiV3ln+nH0Rxr/KQqudqJo/IevFpZTKvmg4mN6YvjGmt8t7r1jnKo+6Ra1XysxrXKuerqrRy7X7vqLRyz/qPbcH0=
   </data>
  </layer>
  <layer id="4" name="Doors" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1DENAAAIBLGf8W8PL5ggYaBVcNMlAAAAAAAAAEnXdQHAL74LsG8Awx4Bzw==
+   eJztzjENADAIADBe0DNX+P+RQTJaBY0AAOBnr7YHAAAAAPd0bg8AAOCmAXDhALM=
   </data>
  </layer>
  <layer id="2" name="Misc" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
 </map>
