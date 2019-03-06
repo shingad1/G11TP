@@ -16,8 +16,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.profile.ProfileManager;
 
-import java.io.IOException;
-
 public class LoadScreen implements Screen {
 
     /**
@@ -111,11 +109,7 @@ public class LoadScreen implements Screen {
                                                 ProfileManager.getInstance().setCurrentProfile(fileName);
                                                 PlayScreen.setGameState(PlayScreen.GameState.Loading);
                                                 //LoadScreen.this.notify(); for changing audio
-                                                try {
-                                                    game.setScreen(new HomeWorldScreen(game));//will need to change
-                                                } catch (IOException e) {
-                                                    e.printStackTrace();
-                                                }
+                                                game.setScreen(new HomeWorldScreen(game));//will need to change
                                             }
                                         }
                                     }
