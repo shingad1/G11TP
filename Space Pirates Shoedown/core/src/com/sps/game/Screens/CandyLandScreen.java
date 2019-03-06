@@ -79,9 +79,7 @@ public class CandyLandScreen extends PlayScreen {
         return true;
     }
 
-    public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
-        return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
-    }
+
 
     @Override
     public void changeMaps() {
@@ -98,11 +96,8 @@ public class CandyLandScreen extends PlayScreen {
         }
         if (currentMapState.equals(MapFactory.MapType.CandyWorld1)){
             if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
-
-                /*mapSelector.x += 2;
-                p.setX(224);
-                p.setY(160);
-                camY = -1;*/
+                dispose();
+                game.setScreen(new TropicalWorldScreen(game));
             }
         }
         if(camX != 0 || camY != 0) {

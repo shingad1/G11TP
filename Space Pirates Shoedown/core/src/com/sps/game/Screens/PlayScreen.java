@@ -450,4 +450,8 @@ public abstract class PlayScreen implements Screen
     public static MapFactory.MapType getCurrentMapType(){
         return currentMapState;
     }
+
+    public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
+        return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
+    }
 }
