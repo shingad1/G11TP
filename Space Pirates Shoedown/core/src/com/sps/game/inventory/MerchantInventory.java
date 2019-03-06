@@ -20,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import java.util.ArrayList;
 
 
-public class InventoryHud {
+public class MerchantInventory {
 
     public Stage stage; //Handles the input and actors
     public SpriteBatch sb; //Handles drawing
@@ -45,7 +45,7 @@ public class InventoryHud {
     private InputProcessor oldInput;
 
 
-    public InventoryHud(SpriteBatch sb, PlayerController playerController) {
+    public MerchantInventory(SpriteBatch sb, PlayerController playerController) {
 
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
@@ -121,7 +121,7 @@ public class InventoryHud {
         stage = new Stage();
         Label inventorylabel = new Label("Inventory", skin);
         Label merchantLabel = new Label ("Merchant", skin);
-        Label imageLabel = new Label ("Icon", skin);
+        Label imageLabel = new Label ("Item", skin);
 
         Table table = new Table(skin);
         table.setDebug(true);
