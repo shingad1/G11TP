@@ -187,7 +187,7 @@ public class ProfileManager extends ProfileSubject {
 
         String decodedFile = Base64Coder.decodeString(s);
 
-        profileProperties = json.fromJson(ObjectMap.class, decodedFile);
+        profileProperties = json.fromJson(ObjectMap.class, decodedFile);//decodedFile -> _profiles.get(profileName)
         notify(this, ProfileObserver.ProfileEvent.PROFILE_LOADED);
         isNewProfile = false;
     }
