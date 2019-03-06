@@ -10,7 +10,6 @@ import com.sps.game.Sprites.*;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,7 +27,7 @@ public class HomeWorldScreen extends PlayScreen {
     private ArrayList<InteractiveNPC> interactive;
 
 
-    public HomeWorldScreen(SpacePiratesShoedown game) throws IOException {
+    public HomeWorldScreen(SpacePiratesShoedown game) {
         super(game);
         //overworldMap = "HomeWorld/HomeWorldMap1.tmx";
         mapSelector = new Vector2(0,0); //change when moving worlds

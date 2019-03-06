@@ -136,7 +136,9 @@
 
     private com.badlogic.gdx.audio.Music sound;
     private MapManager mapManager;
-    public static  DialogueController dialogController;
+
+    public static DialogueController dialogController;
+
     private StoryController storyController = new StoryController();
     private TutorialController1 tutorialController = new TutorialController1();
 
@@ -341,21 +343,20 @@
         batch.begin();
         if(pause)
         {
-           batch.draw(pauseTexture,gamecam.position.x - 240,gamecam.position.y - 240,480,480);
+            batch.draw(pauseTexture,gamecam.position.x - 240,gamecam.position.y - 240,480,480);
         }
         batch.end();
 
         changeMaps();
 
         for (int i = 0; i < getInteractiveNPC().size(); i++) {
-            PlayScreen.dialogController.set(getInteractiveNPC().get(i).getName());
+            dialogController.set(getInteractiveNPC().get(i).getName());
             dialogBoolean = true;
         }
 
         if (dialogBoolean){
             controller.npcInteraction();
         }
-        //dialogBoolean = false;
     }
 
     @Override

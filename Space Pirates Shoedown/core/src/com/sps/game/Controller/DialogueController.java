@@ -17,7 +17,6 @@ import com.sps.game.Screens.PlayScreen;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DialogueController extends ApplicationAdapter implements InputProcessor
 {
@@ -42,7 +41,8 @@ public class DialogueController extends ApplicationAdapter implements InputProce
 
     final Dialog textArea = new Dialog("Dialogues", skin);
 
-    public DialogueController(){
+    public DialogueController()
+    {
         counter = 0;
         dialogue = new String[3];
 
@@ -75,12 +75,6 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         prevButton = new TextButton("Previous", skin, "default");
         nextButton = new TextButton("Next", skin, "default");
         exitButton = new TextButton("Exit", skin, "default");
-
-        table.add(prevButton).size(150,50);
-        table.row();
-        table.add(exitButton).size(150,50);
-        table.row();
-        table.add(nextButton).size(150, 50);
 
         textArea.setColor(181.0f/255.0f,122.0f/255.0f,232.0f/255.0f,255.0f/255.0f);
         stage.addActor(table);
@@ -115,15 +109,30 @@ public class DialogueController extends ApplicationAdapter implements InputProce
                 stage.clear();
                 Gdx.input.setInputProcessor(inputMultiplexer);
                 inputMultiplexer = null;
-                PlayScreen.dialogBoolean = false;
+                //PlayScreen.dialogBoolean = false;
                 //batch.end();
 
             }
         });
 
+        table.add(textArea).size(stage.getWidth(),stage.getHeight()/2).padBottom(5);
+        table.row();
+        table.add(prevButton).size(150,50);
+        table.row();
+        table.add(exitButton).size(150,50);
+        table.row();
+        table.add(nextButton).size(150, 50);
+
+
+        textArea.setColor(181.0f/255.0f,122.0f/255.0f,232.0f/255.0f,255.0f/255.0f);
+        stage.addActor(table);
+
+        batch = new SpriteBatch();
+        sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/pause.png")));
+        sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
         inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);
-
 
         /*inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);*/
@@ -140,11 +149,13 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         stage.draw();
     }
 
-    private void readingFile() throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("core/src/com/sps/game/Dialogue.txt"));
+    private void readingFile() throws IOException
+    {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader( "core/src/com/sps/game/Dialogue.txt"));
 
         String line;
-        while ((line = bufferedReader.readLine()) != null) {
+        while((line = bufferedReader.readLine()) != null)
+        {
             String temp[] = line.split("\\;");
 
             values.add(temp[1]);
@@ -153,8 +164,6 @@ public class DialogueController extends ApplicationAdapter implements InputProce
             dialogHM.put(temp[0], values);
         }
         bufferedReader.close();
-
-        //textArea.text(dialogue[counter]);
     }
 
     public void set(String npcName)
@@ -170,6 +179,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
             dialogue[1] = values.get(1);
             dialogue[2] = values.get(2);
         }
+
         textArea.text(dialogue[counter]);
     }
 

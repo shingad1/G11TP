@@ -397,6 +397,7 @@
         //PlayScreen.dialogBoolean = false;
         //}
     }
+    //}
 
         public void npcInteraction(ArrayList<InteractiveNPC> npcList, String npcName) {
             if (!npcList.isEmpty()) {
