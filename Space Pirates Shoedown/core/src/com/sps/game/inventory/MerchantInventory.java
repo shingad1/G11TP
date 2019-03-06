@@ -130,8 +130,6 @@ public class MerchantInventory {
      */
     private void formatting() {
 
-        //stage = new Stage();
-
         Label inventorylabel = new Label("Inventory", skin);
         Label merchantLabel = new Label ("Merchant", skin);
         Label imageLabel = new Label ("Item", skin);
@@ -145,13 +143,14 @@ public class MerchantInventory {
 
         table.add(inventorylabel);
 
-        table.setSize(stage.getWidth() / 10, stage.getHeight() / 10 );
-
         table.add(merchantLabel);
         table.add(imageLabel);
         table.row();
+        table.row();
         table.add(inventory);
-        table.add(merchant);
+        table.add(merchant).height(230);
+        merchant.setWidth(200);
+
 
 
 
