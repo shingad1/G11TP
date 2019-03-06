@@ -66,6 +66,10 @@ public class CandyLandScreen extends PlayScreen {
         gamecam.position.set(p.getX(),p.getY(),0);
     }
 
+    public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
+        return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
+    }
+
     @Override
     public boolean checkPosition(Location location, MapFactory.MapType world) {
         for(AbstractNPC nonPlayingCharacter : getMapNPC(world)){

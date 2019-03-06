@@ -100,6 +100,10 @@ public class HomeWorldScreen extends PlayScreen {
         return true;
     }
 
+    public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
+        return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
+    }
+
     public void changeMaps(){
         int camX = 0; //shows if the camera needs to move left or right
         int camY = 0; //shows if the camera needs to go up or down

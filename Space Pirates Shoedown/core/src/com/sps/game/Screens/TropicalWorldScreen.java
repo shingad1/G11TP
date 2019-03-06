@@ -12,20 +12,21 @@ import com.sps.game.Sprites.NonInteractiveNPC;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.maps.TropicalWorldMap;
+import com.sps.game.maps.TropicalWorldMap2;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class TropicalWorldScreen extends PlayScreen {
 
-    private Map[][] worldMaps = {{new TropicalWorldMap(), null},
+    private Map[][] worldMaps = {{new TropicalWorldMap(), new TropicalWorldMap2()},
                                  {null, null}};
 
     private Vector2  mapSelector;
 
     private int[] xbounds = {0,1600};
 
-    private int[] ybounds = {0, 1600};
+    private int[] ybounds = {0,1600};
 
     public TropicalWorldScreen(SpacePiratesShoedown game) {
         super(game);
@@ -80,6 +81,10 @@ public class TropicalWorldScreen extends PlayScreen {
         return true;
     }
 
+    public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
+        return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
+    }
+
     @Override
     public void changeMaps() {
         int camX = 0;
@@ -113,7 +118,6 @@ public class TropicalWorldScreen extends PlayScreen {
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
             controller.changeNpcLocations(allLocations);
-            //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
             controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
             controller.newWorldReset();
         }
