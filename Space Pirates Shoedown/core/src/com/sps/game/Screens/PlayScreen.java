@@ -17,7 +17,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.*;
 import com.sps.game.Controller.DialogueController;
-import com.sps.game.inventory.InventoryHud;
+import com.sps.game.inventory.MerchantInventory;
+import com.sps.game.inventory.PlayerInventory;
 import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Sprites.*;
@@ -77,10 +78,10 @@ public abstract class PlayScreen implements Screen
      */
     private HudScene hud;
     /**
-     * Holds instance of the InventoryHud class, which displays vital Inventory information to the user.
+     * Holds instance of the MerchantInventory class, which displays vital Inventory information to the user.
      * @see #render
      */
-    private InventoryHud inventoryHud;
+    private MerchantInventory merchantInventory;
 
     /**
      * Holds all the sprites that will be displayed on the sreen.
@@ -108,7 +109,7 @@ public abstract class PlayScreen implements Screen
      */
     protected TiledMapTileLayer currentCollisionLayer;
 
-    protected MapFactory.MapType currentMapState;
+    protected static MapFactory.MapType currentMapState;
 
     protected ArrayList<NPCController> npcController;
 
@@ -154,7 +155,7 @@ public abstract class PlayScreen implements Screen
         batch = new SpriteBatch();
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
-        inventoryHud = new InventoryHud(game.batch,controller);
+        merchantInventory  = new MerchantInventory(game.batch,controller);
         maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -215,31 +216,6 @@ public abstract class PlayScreen implements Screen
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
             //currentMapState = "HouseFight";
         }
-
-        /**
-        if(controller.getNewWorld()){ //change: if they press a button on the edge of a map
-            //dispose
-            controller.reset();
-            ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
-            npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
-            ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
-            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
-           // game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList,185,0));
-            currentMapState = "Overworld";
-        }
-        */
-
-        //Randomise the world schtuff
-        if(controller.getCandy()){
-            //dispose
-            controller.reset();
-            ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
-            npcList.add(new NonInteractiveNPC(1088,512,MapFactory.MapType.HomeWorldMap1, batch, ""));
-            ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
-            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
-           // game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
-           // currentMapState = "CandyLand";
-        }
     }
 
     /**
@@ -265,7 +241,7 @@ public abstract class PlayScreen implements Screen
             }
         }
         hud.update();
-        inventoryHud.update();
+        merchantInventory.update();
         gamecam.update();
         renderer.setView(gamecam);
     }
@@ -305,7 +281,7 @@ public abstract class PlayScreen implements Screen
 
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
-        inventoryHud.stage.draw(); //drawing the user hud
+        merchantInventory.stage.draw(); //drawing the user hud
         batch.setProjectionMatrix(gamecam.combined);
         ArrayList<AbstractNPC> mapNPC = getMapNPC(currentMapState);
         if (mapNPC != null) {

@@ -1,0 +1,21 @@
+Credits:
+
+Programmers:
+Miraj,
+Miguel,
+Devin,
+Mahamuda,
+Alex
+
+Graphics:
+Alex,
+Denash,
+Miraj
+
+Story:
+Lainey,
+Natalie,
+Shane
+
+Acknowledgments:
+Mastering LibGDX Game Development- Patrick Hoey

@@ -145,6 +145,15 @@ public class MenuScreen implements Screen {
             }
         }
 
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 110)) && (Gdx.input.getX() < ((logo.getWidth() / 2)))){
+            if((Gdx.input.getY() > ((background.getHeight() / 2) + 10)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 285))) {
+                if(Gdx.input.justTouched()){
+                    dispose();
+                    game.setScreen(new CreditsScreen(game));
+                }
+            }
+        }
+
         if((Gdx.input.getX() > ((logo.getWidth() / 2) - 280)) && (Gdx.input.getX() < ((logo.getWidth() / 2) - 110))){
             if((Gdx.input.getY() > ((background.getHeight() / 2) + 10)) && (Gdx.input.getY() < ((logo.getHeight() / 2) + 285))) {
                 if (Gdx.input.justTouched()) {

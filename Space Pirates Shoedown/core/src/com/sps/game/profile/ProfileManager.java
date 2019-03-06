@@ -120,8 +120,8 @@ public class ProfileManager extends ProfileSubject {
 
         if(Gdx.files.isLocalStorageAvailable()){
             file = Gdx.files.local(fullFilename);
-            String encodedString = Base64Coder.encodeString(fileData);
-            file.writeString(encodedString, !overwrite);
+            //String encodedString = Base64Coder.encodeString(fileData);
+            file.writeString(fileData, !overwrite);//encodedString
         }
 
         _profiles.put(profileName, file);
@@ -179,16 +179,15 @@ public class ProfileManager extends ProfileSubject {
         boolean doesProfileFileExist = Gdx.files.internal(fullProfileFileName).exists();
 
         if(!doesProfileFileExist){
-            System.out.println("File doesn't exist!");
             return;
         }
 
         FileHandle encodedFile = _profiles.get(profileName);
         String s = encodedFile.readString();
 
-        String decodedFile = Base64Coder.decodeString(s);
+        //String decodedFile = Base64Coder.decodeString(s);
 
-        profileProperties = json.fromJson(ObjectMap.class, decodedFile);
+        profileProperties = json.fromJson(ObjectMap.class, _profiles.get(profileName));//decodedFile -> _profiles.get(profileName)
         notify(this, ProfileObserver.ProfileEvent.PROFILE_LOADED);
         isNewProfile = false;
     }
