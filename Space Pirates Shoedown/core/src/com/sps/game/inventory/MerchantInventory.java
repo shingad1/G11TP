@@ -3,12 +3,15 @@ package com.sps.game.inventory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.PlayerController;
@@ -27,7 +30,7 @@ public class MerchantInventory {
     private Viewport viewport;
 
     //The JSON file which is used to format the lists to be displayed.
-    private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
 
 
     private List<String> inventory; //List of inventory strings to be displayed
@@ -127,23 +130,31 @@ public class MerchantInventory {
      */
     private void formatting() {
 
-        stage = new Stage();
         Label inventorylabel = new Label("Inventory", skin);
         Label merchantLabel = new Label ("Merchant", skin);
         Label imageLabel = new Label ("Item", skin);
 
         Table table = new Table(skin);
+
         table.setDebug(true);
         table.defaults();
         table.center();
         table.setFillParent(true);
+
         table.add(inventorylabel);
 
         table.add(merchantLabel);
         table.add(imageLabel);
         table.row();
+        table.row();
         table.add(inventory);
-        table.add(merchant);
+        table.add(merchant).height(230);
+        merchant.setWidth(200);
+
+
+
+
+
 
 /*
         itemImages.addListener(new ClickListener() {

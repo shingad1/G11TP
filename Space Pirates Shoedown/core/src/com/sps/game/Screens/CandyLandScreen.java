@@ -1,5 +1,6 @@
 package com.sps.game.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -36,7 +37,7 @@ public class CandyLandScreen extends PlayScreen {
         currentMapState = selectedMap.getCurrentMapType();
 
         random = new Random();
-        int numNonInteractive = random.nextInt(10) + 10;
+        int numNonInteractive = random.nextInt(15) + 10;
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
         int baseNPCSize = npc.size();
@@ -52,7 +53,20 @@ public class CandyLandScreen extends PlayScreen {
                 world = MapFactory.MapType.CandyWorld2;
             }
             if(checkPosition(location, world)){
-                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, ""));//role to change
+                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, "Gingerbread"));//role to change
+                npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
+                i++;
+            }
+            int x1 = random.nextInt(49);
+            int y1 = random.nextInt(49);
+            Location loc = new Location(x1 * 32, y1 * 32);
+            if(random.nextBoolean()){
+                world = MapFactory.MapType.CandyWorld1;
+            } else{
+                world = MapFactory.MapType.CandyWorld2;
+            }
+            if(checkPosition(location, world)){
+                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, "Muffin"));//role to change
                 npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
                 i++;
             }
@@ -64,6 +78,14 @@ public class CandyLandScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbounds, ybounds, allLocations);
         gamecam.position.set(p.getX(),p.getY(),0);
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/candy.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
+    }
+
+    public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
+        return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
     }
 
     @Override
@@ -79,9 +101,7 @@ public class CandyLandScreen extends PlayScreen {
         return true;
     }
 
-    public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
-        return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
-    }
+
 
     @Override
     public void changeMaps() {
@@ -98,11 +118,8 @@ public class CandyLandScreen extends PlayScreen {
         }
         if (currentMapState.equals(MapFactory.MapType.CandyWorld1)){
             if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
-
-                /*mapSelector.x += 2;
-                p.setX(224);
-                p.setY(160);
-                camY = -1;*/
+                dispose();
+                game.setScreen(new TropicalWorldScreen(game));
             }
         }
         if(camX != 0 || camY != 0) {

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -55,6 +56,11 @@ public class LoadScreen implements Screen {
     private List listProfiles;
 
     private Stage stage; //may change
+
+    /**
+     * Music of the load screen
+     */
+    private com.badlogic.gdx.audio.Music music;
 
     public LoadScreen(final SpacePiratesShoedown game){
         this.game = game;
@@ -110,11 +116,16 @@ public class LoadScreen implements Screen {
                                                 PlayScreen.setGameState(PlayScreen.GameState.Loading);
                                                 //LoadScreen.this.notify(); for changing audio
 
-                                                game.setScreen(new HomeWorldScreen(game));//will need to change
+                                                game.setScreen(new HomeWorldScreen(game, new Vector2(0,0),736, 1280));//will need to change
                                             }
                                         }
                                     }
         });
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/bensound-newdawn.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
     }
 
     @Override

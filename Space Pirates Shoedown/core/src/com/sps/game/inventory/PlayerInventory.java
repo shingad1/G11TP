@@ -20,7 +20,7 @@ public class PlayerInventory {
     public SpriteBatch sb;
     private Viewport viewport;
 
-    private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
 
     private List<String> inventory;
     private List<Image> itemImages;

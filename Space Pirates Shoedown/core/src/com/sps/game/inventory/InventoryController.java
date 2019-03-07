@@ -14,7 +14,7 @@ This class is responsible for holding the collections of the user's inventory, m
 
 public class InventoryController {
     //Skin used for each lists
-    private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
 
     //The list that will be holding the players items
     public List<String> inventory = new List<String>(skin);
@@ -115,6 +115,20 @@ public class InventoryController {
     }
 
     public List<Image> getImageList() { return itemImageList; }
+
+
+    public Skin getSkin() {
+        return skin;
+    }
+
+
+    public void setSkinConfig() {
+        skin.getFont("font-export.fnt").getData().setScale(0.1f);
+        skin.getFont("font-title-export.fnt").getData().setScale(0.1f);
+        skin.getFont("font-subtitle-export.fnt").getData().setScale(0.1f);
+
+
+    }
 
 
 }
