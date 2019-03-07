@@ -52,7 +52,7 @@ public class CandyLandScreen extends PlayScreen {
                 world = MapFactory.MapType.CandyWorld2;
             }
             if(checkPosition(location, world)){
-                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, ""));//role to change
+                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, "Gingerbread"));//role to change
                 npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
                 i++;
             }

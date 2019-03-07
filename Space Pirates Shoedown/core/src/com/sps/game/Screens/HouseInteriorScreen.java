@@ -20,7 +20,7 @@ public class HouseInteriorScreen extends PlayScreen {
     private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2()},
                                  {null, null}};
 
-    private Vector2 interiorSelector;
+    private static Vector2 interiorSelector;
 
     private int[] xbound = {0,1600};
 
@@ -88,5 +88,9 @@ public class HouseInteriorScreen extends PlayScreen {
             }
         }
         return null;
+    }
+
+    public static void setMap(int x){
+        interiorSelector = new Vector2(0,x);
     }
 }

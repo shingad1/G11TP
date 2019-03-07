@@ -12,7 +12,9 @@ import com.sps.game.Sprites.Player;
 import com.sps.game.Utility;
 
 public abstract class Map{//was abstract
-
+    /**
+     * Holds the name of the class
+     */
     private static final String TAG = Map.class.getSimpleName();
 
     /**
@@ -23,21 +25,30 @@ public abstract class Map{//was abstract
     //public static final float UNIT_SCALE = 1/16f;
 
     protected Json json; //may need to be removed
-
+    /**
+     * Holds the current position of the player.
+     */
     protected Vector2 playerPosition;
-
+    /**
+     * Holds an instance of the player.
+     */
     protected Player p;
-    //protected Vector2 convertedUnits;
-
+    /**
+     * Holds the current tiled map to be displayed.
+     */
     protected TiledMap currentMap;
-
-    protected Array<Vector2> npcPositions;
-
+    /**
+     * Holds an array contains all the locations of the npc's.
+     */
+    protected Array<Location> npcPositions;
+    /**
+     * Holds the collision layer of the current map.
+     */
     protected TiledMapTileLayer collisionLayer;
-
+    /**
+     * Holds the type of the current map.
+     */
     protected MapFactory.MapType currentMapType;
-
-    //protected Array<AbstractNPC> npcs;
 
     Map(MapFactory.MapType mapType, String fullMapPath){
         json = new Json();
@@ -65,29 +76,53 @@ public abstract class Map{//was abstract
         //npcPositions = getNPCStartPositions();
     }
 
+    /**
+     * Returns the type of current type of the map.
+     * @return MapFactory.MapType
+     */
     public MapFactory.MapType getCurrentMapType(){
         return currentMapType;
     }
 
+    /**
+     * Sets the type of the map.
+     * @param type
+     */
     public void setMapType(MapFactory.MapType type){
         currentMapType = type;
     }
 
+    /**
+     * Returns the position of the player.
+     * @return
+     */
     public Vector2 getPlayerPosition(){
         Location loc = p.getLocation();
         playerPosition = new Vector2(loc.getX(), loc.getY());
         return playerPosition;
     }
 
+    /**
+     * Sets the position of the player.
+     * @param position
+     */
     public void setPlayerPosition(Vector2 position){
         System.out.println(position.x + " " + position.y);
         p.setPosition((int) position.x, (int) position.y);
     }
 
+    /**
+     * Returns the collision layer of the map.
+     * @return
+     */
     public TiledMapTileLayer getCollisionLayer() {
         return collisionLayer;
     }
 
+    /**
+     * Returns the tiled map.
+     * @return
+     */
     public TiledMap getCurrentMap(){
         return currentMap;
     }

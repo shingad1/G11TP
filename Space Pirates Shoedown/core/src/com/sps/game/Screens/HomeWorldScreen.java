@@ -128,6 +128,9 @@ public class HomeWorldScreen extends PlayScreen {
             if(p.getLocation().equals(new Location(1056, 256))){
                 dispose();
                 game.setScreen(new CandyLandScreen(game));
+            } else if(p.getLocation().equals(new Location(288, 704))){
+                dispose();
+                game.setScreen(new HouseInteriorScreen(game));
             }
         }
         if(p.getLocation().equals(new Location(864, 640))){

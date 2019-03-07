@@ -17,14 +17,26 @@ import com.sps.game.SpacePiratesShoedown;
 
 public class CreditsScreen implements Screen {
 
+    /**
+     * Holds the path of the credits text file.
+     */
     private static String CREDITS_PATH = "core/assets/credits.txt";
 
+    /**
+     * Holds the stage that will display the credits.
+     */
     private Stage stage;
-
+    /**
+     * Holds an instance of the scroll pane
+     */
     private ScrollPane scrollPane;
-
+    /**
+     * Holds an instance of the game.
+     */
     private SpacePiratesShoedown _game;
-
+    /**
+     * Creates a new skin
+     */
     private Skin skin = new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas")));
 
     public CreditsScreen(SpacePiratesShoedown game){

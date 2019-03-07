@@ -182,33 +182,6 @@ public abstract class PlayScreen implements Screen
      */
     public void handleInput(float dt){
         controller.action(gamecam);
-        /*if(controller.getEntered()){
-            dispose();
-            gamecam.position.x = 160;
-            gamecam.position.y = 160;
-            p.setPosition(160,64);
-            maps.push(currentMap);
-            currentMap = mapLoader.load(ASSETS_PATH + "TestBattleScene.tmx");
-            //BasicEnemy.WORLD = "Test Battle Screen";
-            renderer = new OrthogonalTiledMapRenderer(currentMap);
-            int[] xbounds = {32,320};
-            int[] ybounds = {32,320};
-            controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
-            //currentMapState = "House";
-        }*/
-        if(controller.getLeave()){
-            dispose();
-            Vector2 oldPosition = controller.popPosition();
-            gamecam.position.x = (int) oldPosition.x;
-            gamecam.position.y = (int) oldPosition.y;
-            p.setPosition((int) oldPosition.x, (int) oldPosition.y);
-            currentMap = mapLoader.load(ASSETS_PATH + this.overworldMap);
-            renderer = new OrthogonalTiledMapRenderer(currentMap);
-            int[] xbounds = {0, 1600};
-            int[] ybounds = {0,1600};
-            controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
-            //currentMapState = "Overworld";
-        }
         if(controller.getFight()){
             game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
             //currentMapState = "HouseFight";
@@ -448,5 +421,4 @@ public abstract class PlayScreen implements Screen
     public static MapFactory.MapType getCurrentMapType(){
         return currentMapState;
     }
-
 }

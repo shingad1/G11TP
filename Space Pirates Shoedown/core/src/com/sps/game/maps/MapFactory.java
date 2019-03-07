@@ -20,6 +20,11 @@ public class MapFactory {
         TropicalWorld2
     }
 
+    /**
+     * Gets the map according to the MapType and adds it to the map table.
+     * @param mapType
+     * @return
+     */
     static public Map getMap(MapType mapType){
         Map map = null;
         switch (mapType){
@@ -43,9 +48,9 @@ public class MapFactory {
         return map;
     }
 
-
-
-
+    /**
+     * Clears all the maps from the map table.
+     */
     public static void clearCache(){
         for(Map map: mapTable.values()){
             map.dispose();
