@@ -133,6 +133,8 @@ public abstract class PlayScreen implements Screen
 
     private boolean dialogBoolean = true;
 
+    protected static MapFactory.MapType oldState;
+
     public static enum GameState{
         Saving,
         Loading,

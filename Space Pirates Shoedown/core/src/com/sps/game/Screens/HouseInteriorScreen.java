@@ -1,4 +1,5 @@
 package com.sps.game.Screens;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -45,6 +46,10 @@ public class HouseInteriorScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbound, ybound, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/tense.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
     }
 
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
@@ -66,9 +71,13 @@ public class HouseInteriorScreen extends PlayScreen {
 
     @Override
     public void changeMaps() {
-        if(p.getLocation().equals(new Location(800,384 )) || p.getLocation().equals(new Location(832, 384))){
+        if(p.getLocation().equals(new Location(800,384 )) || p.getLocation().equals(new Location(832, 384))){//will change
             dispose();
-            game.setScreen(new HomeWorldScreen(game, 864, 608));
+            if(oldState.equals(MapFactory.MapType.HomeWorldMap1)) {
+                game.setScreen(new HomeWorldScreen(game, new Vector2(0,0),864, 608));
+            } else{
+                game.setScreen(new HomeWorldScreen(game, new Vector2(1,0),288, 640));
+            }
         }
 
     }

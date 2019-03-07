@@ -25,10 +25,10 @@ public class HomeWorldScreen extends PlayScreen {
     private int[] ybounds  = {0,1600};
 
 
-    public HomeWorldScreen(SpacePiratesShoedown game, int px, int py) {
+    public HomeWorldScreen(SpacePiratesShoedown game, Vector2 chosenMap, int px, int py) {
         super(game);
         //overworldMap = "HomeWorld/HomeWorldMap1.tmx";
-        mapSelector = new Vector2(0,0); //change when moving worlds
+        mapSelector = chosenMap; //change when moving worlds
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
         currentMap = selectedMap.getCurrentMap();//change when moving worlds
         renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
@@ -132,11 +132,13 @@ public class HomeWorldScreen extends PlayScreen {
                 dispose();
                 game.setScreen(new CandyLandScreen(game));
             } else if(p.getLocation().equals(new Location(288, 704))){
+                oldState = MapFactory.MapType.HomeWorldMap2;
                 dispose();
                 game.setScreen(new HouseInteriorScreen(game));
             }
         }
-        if(p.getLocation().equals(new Location(864, 640))){
+        if(p.getLocation().equals(new Location(864, 640)) && currentMapState.equals(MapFactory.MapType.HomeWorldMap1)){
+            oldState = MapFactory.MapType.HomeWorldMap1;
             dispose();
             game.setScreen(new HouseInteriorScreen(game));
         }

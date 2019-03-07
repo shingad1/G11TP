@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.SpacePiratesShoedown;
@@ -83,7 +84,7 @@ public class MenuScreen implements Screen {
     private Texture tutorialTexture;
 
     /**
-     * Music of menu screen
+     * Music of the menu screen
      */
     private com.badlogic.gdx.audio.Music music;
     /**
@@ -131,7 +132,7 @@ public class MenuScreen implements Screen {
                    if (Gdx.input.justTouched()) {
                        sound.play();
                        dispose();
-                       game.setScreen(new HomeWorldScreen(game, 736, 1280));
+                       game.setScreen(new HomeWorldScreen(game, new Vector2(0,0),736, 1280));
                    }
                }
         }
