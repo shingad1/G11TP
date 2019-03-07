@@ -16,6 +16,8 @@ import com.sps.game.dialogue.Dialogue;
 
 public class CombatSystem
 {
+    enum Inputs {Q,W,E,R,A,S,D}
+
     private Player player;
     /**
      * creates an instance of the player
@@ -42,7 +44,7 @@ public class CombatSystem
      * @see #getPlayerTurn
      */
 
-    private String chosenMove;
+    private Inputs chosenMove;
 
     private MoveList playerMoveList;
     private MoveList enemyMoveList;
@@ -57,7 +59,6 @@ public class CombatSystem
         playerTurn = true;
         tick = 0;
         finished = false;
-        chosenMove = "";
         animationHandler = new BattleAnimationHandler(p,e,sb,new Location(64,150),new Location(256,150));
     }
     /**
@@ -79,11 +80,11 @@ public class CombatSystem
             if (!(playerTurn) && !(animationHandler.isInAnimation()) && !(animationHandler.isAnimationEnd())) {
                 enemy.battleMove();
                 if(!(chosenMove.equals(""))) {
-                    animationHandler.setupEnemyAnimation(chosenMove);
+                    animationHandler.setupEnemyAnimation("");
                 }
             } else if ((playerTurn) && !(animationHandler.isInAnimation()) && !(animationHandler.isAnimationEnd())){
-                if(!(chosenMove.equals(""))) {
-                    animationHandler.setupPlayerAnimation(chosenMove);
+                if(chosenMove != null) {
+                    animationHandler.setupPlayerAnimation("");
                 }
             }
             if (animationHandler.isAnimationEnd()) {
@@ -110,14 +111,14 @@ public class CombatSystem
         return finished;
     }
 
-    public void doMove(String move){
-        chosenMove = move;
+    public void doMove(Inputs input){
+        chosenMove = input;
     }
 
     //Implementing a 'move list'
     public void applyMove(MoveList userMoveList){
-        userMoveList.use(chosenMove);
-        chosenMove = "";
+        userMoveList.use("");
+        chosenMove = null;
     }
 
 

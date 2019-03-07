@@ -51,7 +51,7 @@ public class ThirdHud
     public void formatting(){
         stage = new Stage();
         Table table = new Table();
-        table.bottom();
+        table.left();
         table.setFillParent(true);
         table.add(AttackLabel).padLeft(20);
         stage.addActor(table);

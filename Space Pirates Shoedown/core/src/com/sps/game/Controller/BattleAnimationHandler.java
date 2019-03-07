@@ -78,7 +78,7 @@ public class BattleAnimationHandler {
             } else {
                 if (frame >= 1.0f){
                     frame = 0.0f;
-                playerAnimationStack.pop();
+                    playerAnimationStack.pop();
                 } else {
                     frame += 0.3f;
                 }
