@@ -36,7 +36,7 @@ public class CandyLandScreen extends PlayScreen {
         currentMapState = selectedMap.getCurrentMapType();
 
         random = new Random();
-        int numNonInteractive = random.nextInt(10) + 10;
+        int numNonInteractive = random.nextInt(15) + 10;
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
         int baseNPCSize = npc.size();
@@ -53,6 +53,19 @@ public class CandyLandScreen extends PlayScreen {
             }
             if(checkPosition(location, world)){
                 npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, "Gingerbread"));//role to change
+                npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
+                i++;
+            }
+            int x1 = random.nextInt(49);
+            int y1 = random.nextInt(49);
+            Location loc = new Location(x1 * 32, y1 * 32);
+            if(random.nextBoolean()){
+                world = MapFactory.MapType.CandyWorld1;
+            } else{
+                world = MapFactory.MapType.CandyWorld2;
+            }
+            if(checkPosition(location, world)){
+                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, "Muffin"));//role to change
                 npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
                 i++;
             }
