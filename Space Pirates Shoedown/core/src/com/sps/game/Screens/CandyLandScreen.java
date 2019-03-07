@@ -1,5 +1,6 @@
 package com.sps.game.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -77,6 +78,10 @@ public class CandyLandScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbounds, ybounds, allLocations);
         gamecam.position.set(p.getX(),p.getY(),0);
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/candy.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
     }
 
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){

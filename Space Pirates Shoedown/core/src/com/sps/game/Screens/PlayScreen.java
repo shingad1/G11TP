@@ -121,7 +121,7 @@ public abstract class PlayScreen implements Screen
 
     protected String overworldMap;
 
-    private com.badlogic.gdx.audio.Music music;
+    protected com.badlogic.gdx.audio.Music music;
 
     private com.badlogic.gdx.audio.Music sound;
     private MapManager mapManager;
@@ -156,11 +156,6 @@ public abstract class PlayScreen implements Screen
         merchantInventory  = new MerchantInventory(game.batch,controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
-        music.setLooping(true);
-        music.setVolume(0.1f);
-        music.play();
-
     }
 
     /**

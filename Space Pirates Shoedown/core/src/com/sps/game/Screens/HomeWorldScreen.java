@@ -1,5 +1,6 @@
 package com.sps.game.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -56,15 +57,17 @@ public class HomeWorldScreen extends PlayScreen {
                 i++;
             }
         }
-
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
-
         p.setX(px); //change when moving worlds
         p.setY(py); //""
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0); //change when moving worlds
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
 
     }
 
