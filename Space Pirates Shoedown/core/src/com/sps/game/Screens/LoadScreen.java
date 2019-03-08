@@ -25,7 +25,7 @@ public class LoadScreen implements Screen {
     private static final String ASSETS_PATH = "core/assets/";
     /**
      * Holds a version of the game.
-     * @see #handleInput #render
+     * @see #render
      */
     private SpacePiratesShoedown game;
     /**
@@ -42,14 +42,6 @@ public class LoadScreen implements Screen {
      * @see #resize
      */
     private Viewport gameport;
-    /**
-     * Holds the load button texture
-     */
-    private Texture loadTexture;
-    /**
-     * Holds the back button texture
-     */
-    private Texture backTexture;
     /**
      * Holds the list of all the game profiles
      */
@@ -68,6 +60,7 @@ public class LoadScreen implements Screen {
         //following may need to change
         stage = new Stage();
         TextButton loadButton = new TextButton("Load", new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))));
+        TextButton backButton = new TextButton("Back", new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))));
 
         ProfileManager.getInstance().storeAllProfiles();
         listProfiles = new List(new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))), "inventory"); //takes in a skin and string
@@ -92,6 +85,7 @@ public class LoadScreen implements Screen {
         bottomTable.setWidth(Gdx.graphics.getWidth());
         bottomTable.center();
         bottomTable.add(loadButton).padRight(50);//to change
+        bottomTable.add(backButton).padRight(50);
 
         stage.addActor(table);
         stage.addActor(bottomTable);
@@ -120,6 +114,18 @@ public class LoadScreen implements Screen {
                                             }
                                         }
                                     }
+        });
+        backButton.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float a, float y, int pointer, int button){
+                dispose();
+                game.setScreen(new MenuScreen(game));
+            }
         });
 
         music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/bensound-newdawn.mp3"));
@@ -170,5 +176,6 @@ public class LoadScreen implements Screen {
     public void dispose() {
         stage.clear();
         stage.dispose();
+        music.dispose();
     }
 }
