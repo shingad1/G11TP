@@ -1,14 +1,13 @@
 package com.sps.game.maps;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
-import com.sps.game.Sprites.Location;
-import com.sps.game.Sprites.Player;
+import com.sps.game.sprites.Location;
+import com.sps.game.sprites.Player;
 import com.sps.game.Utility;
 
 public abstract class Map{//was abstract

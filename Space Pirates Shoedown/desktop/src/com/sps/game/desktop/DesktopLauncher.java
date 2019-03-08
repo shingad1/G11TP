@@ -2,7 +2,7 @@ package com.sps.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.sps.game.Screens.DesktopSplashLauncher;
+import com.sps.game.screens.DesktopSplashLauncher;
 import com.sps.game.SpacePiratesShoedown;
 
 public class DesktopLauncher {

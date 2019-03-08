@@ -17,7 +17,8 @@ public class MapFactory {
         CandyWorld1,
         CandyWorld2,
         TropicalWorld1,
-        TropicalWorld2
+        TropicalWorld2,
+        GraveyardWorld1
     }
 
     /**
