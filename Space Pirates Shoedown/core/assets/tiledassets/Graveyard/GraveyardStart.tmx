@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
+ <tileset firstgid="1" source="Ground.tsx"/>
+ <tileset firstgid="491" source="Spaceship.tsx"/>
+ <tileset firstgid="507" source="Graveyard Tileset 1.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztz7ENACAIAEEczJXYv7RyAxKUXHH9f0ZEAgAAADDOXv0NVR8TXu7H7y/TPro7Kj66GwAAAABecgAhzTA1
+  </data>
+ </layer>
+ <layer id="3" name="NoCollision" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1zEKwCAMBVDpQVy6t/c/THuWDip06aSDpu9BcJQvJJiUAAD6XLXuWis6tnK2HPBnrR+AIkpPRMixB8iwknPS984/uXOk/KqVzZ4hyi6x+m7Xa9bZBwB8i/IPAwDGeQAoJg1a
+  </data>
+ </layer>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztWVtOwzAQtHsH7hAOwHnhF37hEvALdwDEsy3vH1irskhdVib1zG4KHWnlVI53Mx6vvUm7SQi7Yh24PQ0hnIVVaPfX+mtt63itPRefFwN4sNp145bjrHhk3628tH5vPdA61Hh6rf+h/CzWFQt74v8mfv++711/ynUExvfWA/UcbMxj/R4E2Hq89nh8xM3Mjy3+L7z3K9S+xeZjPW8ofuU4Kx7Zdysvrd9bj1YeGtbVHTUPrevMYl0xodWJLHjtV6j4lngh6sHOk9/WiUP9lvcn7Isd8KZqCTkWI+ah2BHYZy0WI+ax2AnYZy2WZcwt/j4uxa7EroE+I+Hcq51PU7GZ2Dxgz8PW8WOpr1h1oUed2AF4xclyv3bOWevRqoN2zq2ru9c8aOecVR6iUXv/QH2rtt53WeuFjf536vT+waqt2XqU7x85/zctP0qw6lzv/EDlCZuP9byh+JXjrHhk3628tH5vPdA61Hh6r/+x5AcT+f/zW7G7uPr/eUKqSxC1CVuPB3neR7Gp2OyH73Co52Aj1SVPYs9xXN9Fh7apLnkTe4+LumQnLAwd5wtGvR50
+  </data>
+ </layer>
+</map>
