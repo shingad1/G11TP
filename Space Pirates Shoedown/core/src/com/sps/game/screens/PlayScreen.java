@@ -106,39 +106,71 @@ public abstract class PlayScreen implements Screen
      * Holds the layer of objects which the player cannot go through.
      */
     protected TiledMapTileLayer currentCollisionLayer;
-
+    /**
+     * Holds the current state of the Map.
+     */
     protected static MapFactory.MapType currentMapState;
-
+    /**
+     * Holds a list of NPC Controllers.
+     */
     protected ArrayList<NPCController> npcController;
-
+    /**
+     * Holds a list of all the NPC locations.
+     */
     protected ArrayList<Location> allLocations;
-
-    private Boolean pause;
-
+    /**
+     * Checks to see if the pause button has been activated. True for pause otherwise false.
+     */
+    private boolean pause;
+    /**
+     * Holds the texture of the pause button
+     */
     private static Texture pauseTexture;
-
-    protected String overworldMap;
-
+    /**
+     * Holds the music track that will be played in the world.
+     */
     protected com.badlogic.gdx.audio.Music music;
-
-    private com.badlogic.gdx.audio.Music sound;
+    /**
+     * Holds an instance of the MapManager for saving that state of it.
+     */
     private MapManager mapManager;
+    /**
+     * Creates and holds a dialogue controller
+     */
     private DialogueController dialogController = new DialogueController();
+    /**
+     * Creates and holds a story controller
+     */
     private StoryController storyController = new StoryController();
+    /**
+     * Creates and holds a tutorial controller
+     */
     private TutorialController1 tutorialController = new TutorialController1();
-
+    /**
+     * Holds a random number generator.
+     */
     protected Random random;
-
+    /**
+     * Holds a boolean value to display a dialogue box. True if the dialogue box should appear, otherwise false.
+     */
     private boolean dialogBoolean = true;
-
+    /**
+     * Holds the MapType of the map, before the player enters the house.
+     */
     protected static MapFactory.MapType oldState;
 
+    /**
+     * Holds the different states the game can be in.
+     */
     public static enum GameState{
         Saving,
         Loading,
         Running
     }
 
+    /**
+     * Holds the current state of the game
+     */
     private static GameState gameState;
 
     public PlayScreen(SpacePiratesShoedown game){
@@ -400,19 +432,38 @@ public abstract class PlayScreen implements Screen
         }
         return result;
     }
-
+    /**
+     * Changes the map that is rendered once the player is on a certain location or going of the screen.
+     */
     public abstract void changeMaps();
-
+    /**
+     * Returns a map from the array according to the vector2 value passed in as a parameter.
+     * @param selector
+     * @return
+     */
     public abstract Map getMap(Vector2 selector);
-
+    /**
+     * Returns a Vector2 value to get a Map according to the map type specified in the parameter.
+     * @param map
+     * @return
+     */
     public abstract Vector2 getWorldMapByWorld(MapFactory.MapType map);
 
+    /**
+     * Adds the locations of the all the NPCs in to an ArrayList.
+     * @param selectedMap
+     */
     public void changeNpcLocations(Map selectedMap) {
         for (AbstractNPC nonPlayingCharacter : npc) {
             if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());
         }
     }
+
+    /**
+     * Returns the current type of the map.
+     * @return
+     */
     public static MapFactory.MapType getCurrentMapType(){
         return currentMapState;
     }

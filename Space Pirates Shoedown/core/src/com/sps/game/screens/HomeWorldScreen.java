@@ -36,7 +36,6 @@ public class HomeWorldScreen extends PlayScreen {
 
     public HomeWorldScreen(SpacePiratesShoedown game, Vector2 chosenMap, int px, int py) {
         super(game);
-        //overworldMap = "HomeWorld/HomeWorldMap1.tmx";
         mapSelector = chosenMap; //change when moving worlds
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
         currentMap = selectedMap.getCurrentMap();//change when moving worlds
