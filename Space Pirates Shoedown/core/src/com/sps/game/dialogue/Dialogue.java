@@ -1,7 +1,6 @@
 package com.sps.game.dialogue;
 
-import com.badlogic.gdx.Gdx;
-import com.sps.game.Sprites.InteractiveNPCMoving;
+import com.sps.game.sprites.InteractiveNPCMoving;
 
 import javax.swing.*;
 import java.awt.event.*;

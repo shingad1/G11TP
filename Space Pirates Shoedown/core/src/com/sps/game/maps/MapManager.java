@@ -6,13 +6,11 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.sps.game.Screens.HomeWorldScreen;
-import com.sps.game.Sprites.AbstractNPC;
-import com.sps.game.Sprites.Player;
+import com.sps.game.screens.HomeWorldScreen;
+import com.sps.game.sprites.AbstractNPC;
+import com.sps.game.sprites.Player;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
-
-import javax.swing.text.html.parser.Entity;
 
 public class MapManager implements ProfileObserver {
 
