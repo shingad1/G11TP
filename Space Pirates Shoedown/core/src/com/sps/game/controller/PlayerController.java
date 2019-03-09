@@ -41,7 +41,7 @@ public class PlayerController extends InputAdapter {
      */
     private int keyPressed;
     /**
-     * Used to regulare actions.
+     * Used to regulate actions.
      * @see #keyDown #action
      */
     private boolean isKeyDown;
