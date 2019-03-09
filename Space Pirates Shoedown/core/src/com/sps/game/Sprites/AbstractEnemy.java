@@ -6,7 +6,7 @@ import com.sps.game.Screens.Fighter;
 
 import java.util.HashMap;
 
-public abstract class AbstractEnemy implements Fighter {
+public abstract class AbstractEnemy extends Fighter {
 
     /**
      * Holds the enemies X coordinate.
@@ -16,12 +16,6 @@ public abstract class AbstractEnemy implements Fighter {
      * Holds the enemies Y coordinate.
      */
     public int y;
-    /**
-     * Holds the health of the enemy.
-     */
-    public int health;
-    protected int attack;
-    protected int defence;
 
     protected CombatSystem system;
 
@@ -39,21 +33,8 @@ public abstract class AbstractEnemy implements Fighter {
      */
     public abstract int getY();
 
-    /**
-     * Abstract method that will return the enemies health.
-     * @return <code>int</code> Health, which stores the enemies health
-     */
-    public abstract int getHealth();
-
     public abstract void battleMove();
 
-    public int getAttack(){return attack;}
-
-    public int getDefence(){return defence;}
-
-    public int getHP(){return health;}
-
-    public void changeHP(int diff){health += diff;}
 
     public void setCombatSystem(CombatSystem system){this.system = system;}
 

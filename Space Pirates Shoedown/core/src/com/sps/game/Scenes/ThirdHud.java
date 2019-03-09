@@ -40,9 +40,18 @@ public class ThirdHud
     /**
      * this method updates the information on the screen, also calls onto another method
      */
-    public void update()
+    public void update(String[] options)
     {
-        AttackLabel = new Label ("To Attack: press the key 'Q'" + "\n" + "To Defend: press the key 'W'", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        AttackLabel = new Label (
+                "Q: " + options[0] +
+                     "W: " + options[1] +
+                     "E: " + options[2] +
+                     "R: " + options[3] +
+                     "\n" +
+                     "A: " + options[4] +
+                     "S: " + options[5] +
+                     "D: " + options[6]
+                ,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
     /**
