@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
+ <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="1515" source="Resources/Floor.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztz8EJACAMBMF87L9Se7AHiQmGGbj/bQQAADDdXrnToUPH/I6uppcdlZ06dOjQcfNtSkcHHTp06NChQ8f/HQAAWQ5cVRCN
+  </data>
+ </layer>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt08EJADAIBEEfSU/23026SBOCKPOYApbj8kQkAACw3rs1dOjQoWNaR1e3jp0d3X+yh44JHV106NChQ4cOHfM7AAAqfFKAqI4=
+  </data>
+ </layer>
+ <layer id="3" name="Door" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztz7EJADAIAEHB/Ydw07Sxs1Xu4Af4CAAAAAAAAAB+lb2trnwAAEw9K4gFIQ==
+  </data>
+ </layer>
+ <layer id="4" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1bEJgDAQRuFAwBkcx04dRF3DRtStUjqWJ9jZJPBDDnyBr5MzjxByxRAuAAAAuLHFsB4az6xqHYvtoW0knll0CDqCaNFBBx3/6Ch5j5TvjbqjZJ7y/Oj4rt3mnTH/e68dpcv+3Xns6G3eWHYeLjve+5Ho8NNhb0I6Mm2OO1T7ooMOOuiggw468s1mEJkqdgAAgPpu1iciOA==
+  </data>
+ </layer>
+</map>

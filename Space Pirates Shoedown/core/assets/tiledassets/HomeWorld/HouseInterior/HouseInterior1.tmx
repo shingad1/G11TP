@@ -1,71 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="11" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
- <tileset firstgid="1" source="Resources/Terrain.tsx"/>
- <tileset firstgid="1025" source="Resources/InteriorTiles.tsx"/>
- <tileset firstgid="1529" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
- <tileset firstgid="2553" source="Resources/Interiorv2.tsx"/>
- <tileset firstgid="3577" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
- <layer id="1" name="Ground" width="11" height="11">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,
-0,3515,3515,3515,3515,3483,3483,3483,3483,3483,0,
-0,3515,3515,3515,3515,3483,3483,3483,3483,3483,0,
-0,3483,3483,3483,3483,3483,3483,1104,3483,3483,0,
-0,3483,3483,3483,3483,3483,3483,3483,3483,3483,0,
-0,3483,3483,3483,3483,3483,3483,3483,3483,3483,0,
-0,3483,3483,3483,3483,3483,3483,3483,1104,3483,0,
-0,3483,3483,3483,3483,3483,3483,3483,3483,3483,0,
-0,3483,3483,3483,3483,3483,3483,3483,3483,3483,0,
-0,3483,3483,3483,3483,492,3483,3483,3483,3483,0,
-0,0,0,0,0,0,0,0,0,0,0
-</data>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
+ <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="1515" source="Resources/IndoorTiles1.tsx"/>
+ <tileset firstgid="1707" source="Resources/IndoorTiles2.tsx"/>
+ <tileset firstgid="1947" source="Resources/InteriorCity.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt0z0OQEAQQOFNNlTi/r074CS4glaBEoVkC1amsTO8SV4/3/6MmXMjERERkdHemC8Y3rDgwIEDBw4cOHDgwPFXx5TL0+go8+uKSKkcsbO04jgmtktsXwuOu2rvXBPUeplFy310+9590HDhSHEfRxLHvO+9BK1GHVr/x/m27gaHLseTTTraHJXX55D6UuxCRERENtsAI/l1uw==
+  </data>
  </layer>
- <layer id="4" name="CollisionLayer" width="11" height="11">
-  <data encoding="csv">
-3632,3632,3632,3632,3632,3632,3632,3632,3632,3632,3632,
-3632,3632,3632,3632,3632,4065,4065,4065,4065,4065,3632,
-3632,3632,3632,3632,3632,4065,3632,3632,3632,3632,3632,
-3632,4065,4065,4065,4065,4065,4065,3632,3632,4065,3632,
-3632,3632,3632,3632,3632,4065,4065,4065,4065,4065,3632,
-3632,3632,3632,3632,3632,4065,4065,4065,4065,4065,3632,
-3632,4065,3632,3632,4065,4065,4065,3632,3632,3632,3632,
-3632,4065,4065,4065,4065,4065,4065,4065,4065,4065,3632,
-3632,3632,4065,4065,4065,4065,4065,4065,4065,4065,3632,
-3632,3632,4065,4065,4065,4065,4065,4065,4065,3632,3632,
-3632,3632,3632,3632,3632,3632,3632,3632,3632,3632,3632
-</data>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt08ENgCAMQFEPuhP7b+MWXg3RSDlIIY/k3fubUvZtKwAAAAAAPzuPuNEz93bWvaNmeXrRjuze7ibD/iP7nelP3Ofo+ddZWr5mmqWjnrWlc+WOTD2td7dyQ+aO6A3OZJUOAIBWFw5tn80=
+  </data>
  </layer>
- <layer id="3" name="Door" width="11" height="11">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0
-</data>
+ <layer id="3" name="Door" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAIA7CD/UPY1BYKsiVYAgAAAAAAAMBXXdcDAIA9A+jIAKU=
+  </data>
  </layer>
- <layer id="2" name="Misc" width="11" height="11">
-  <properties>
-   <property name="blocked" value="true"/>
-  </properties>
-  <data encoding="csv">
-4065,4065,4065,4065,4065,4065,4065,4065,4065,4065,4065,
-4065,2740,2675,2677,2676,0,2769,2577,2578,2769,4065,
-4065,2708,2707,2743,2708,0,2801,2609,2610,2801,4065,
-4065,0,0,0,0,0,0,2641,2642,0,4065,
-4065,2147486674,2759,2760,3026,0,0,0,0,0,4065,
-4065,2147486674,2791,2792,3026,0,0,2766,2765,2765,4065,
-4065,0,2823,2824,0,0,0,2798,2797,2797,4065,
-4065,0,0,0,0,0,0,0,0,0,4065,
-4065,2955,0,0,0,0,0,0,0,2933,4065,
-4065,2987,0,0,0,386,0,0,0,2965,4065,
-4065,4065,4065,4065,4065,4065,4065,4065,4065,4065,4065
-</data>
+ <layer id="4" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt0z1OAlEUxfGDJkiJpXbqApQSXISilW7EQklmDxYWOtZMTamxU6E2LsDPQKux0sIz8gzjy6ADMdwhOTf5ZUIC4f7fy7RngbaIiIiIiIiIiIhMhWfqjuEpB7sndeiuCNwX+88s4u/yd8Gkd+XZBd0UvIsg7jgHsE9n1KAD52EOeKR4WjP4MRYdyTNP6riOE+51jP4zdM9TemfDh+u4YcdSCVimlZJdxx53WaBFemHDLQYdaXPhfX5lR5X712jdsOOIu1Sp5vZ6ox536Q3pSJs699+ibcOOeHZoN/vaqTMPBGV83aNZhz8RdyGsFrJ3VNiwZthx6O3aKAzej40ROups2DTsaHm7hokOvzHLWHRc8j+bKa5ch9/413zf5aQ7xnl3fpswhx28EzQ9kdcWDblL691HvaPrHOz0H3c0DWcvIiIidj4BpQduNw==
+  </data>
  </layer>
 </map>

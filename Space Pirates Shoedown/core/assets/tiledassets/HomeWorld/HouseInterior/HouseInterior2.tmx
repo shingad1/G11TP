@@ -1,37 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="11" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
- <tileset firstgid="1025" source="Resources/Interiorv2.tsx"/>
- <tileset firstgid="2049" source="Resources/InteriorTiles.tsx"/>
- <tileset firstgid="2553" source="Resources/Terrain.tsx"/>
- <layer id="1" name="Ground" width="11" height="11">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1987,1987,1987,1987,1955,0,
-0,1955,1955,1955,1955,1987,1987,1987,1987,1987,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,0,1955,1955,1955,1955,0,
-0,0,0,0,0,0,0,0,0,0,0
-</data>
+ <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="1515" source="Resources/IndoorTiles1.tsx"/>
+ <tileset firstgid="1707" source="Resources/IndoorTiles2.tsx"/>
+ <tileset firstgid="1947" source="Resources/InteriorCity.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1L0KgzAUQOELoZnEZ+67+A7qk2jXurk6tB11EYIkKcGfJO25cBZxuB9yHW8iIxEREVGmXTG/YLjCggMHDhw4cODAgQPHWY6nTtsxaX/meyk7Sm2vsLTOoOX+zXGG7UjH9juZsz6PcRu2fX3VSqRx1Kp4Nx7q6JZde0cPHLst/+p4Lbu+HX0ycpj/X9vg2H/rPlvopOaoVHqOUF+MXYiIiCjPZhEmhDA=
+  </data>
  </layer>
- <layer id="2" name="CollisionLayer" width="11" height="11">
-  <data encoding="csv">
-536870939,2684354603,2684354603,2684354603,2684354603,2684354603,2684354603,2684354603,2684354603,2684354603,2684354587,
-536871030,1051,1052,1584,0,1148,1211,1147,1212,1148,2684354678,
-536871030,1083,1084,0,0,1180,1180,1179,1216,1151,2684354678,
-536871030,1115,1116,0,0,0,0,0,0,1183,2684354678,
-536871030,0,0,0,0,0,0,0,0,0,2684354678,
-536871030,0,0,0,0,0,0,1522,1523,1524,2684354678,
-536871030,1496,1497,1498,0,0,0,1554,1555,1556,2684354678,
-536871030,0,0,0,0,0,0,1586,1587,1588,2684354678,
-536871030,1405,0,0,0,0,0,0,0,1405,2684354678,
-536871030,1437,0,0,0,2938,0,0,0,1437,2684354678,
-536870997,2684354608,2684354608,2684354608,2684354608,2684354608,2684354608,2684354608,2684354608,2684354608,2684354645
-</data>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1DEOgCAQRUEKvRP3v423MLYWCJG4KxmT6Sz+w2DdSqkAAAAAAB879j7RO2d1Ru+Y3XE9re8YvfO+5Wlflv2tjp5zztYx2pP9f9C7bZWO1rvRDaPnvEpHRn+5v2/borfoAADodwLptqTp
+  </data>
+ </layer>
+ <layer id="3" name="Door" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAIA7CD/UPY1BYKsiVYAgAAAAAAAMBXXdcDAIA9A+jIAKU=
+  </data>
+ </layer>
+ <layer id="4" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1T9PAjEYBvC3Z3KuEnc+g8bdz6Cfx1zo9yAXRnB2lFXA2QRn8S8rJjDg4FObgpHj2sHQkjxNfmnu2qTv05cLowOREREREREREREREe2FN/gI9JpAvdvcw1MuMsntXAd7dex663L0RaSAW7gS0fDz7vlQ5AVmuWVyhPQvRt9MjjZqLsXOTguWyPAFbpgcZj96p28yO6NPevKLeY7RN1NX1ehUvHM5mkrkIVv3yTlWdi2lHFXjHXuncI5aP7PN9TNl12LlGKOGx/A43hErxxxnLzy1tXDPXey9DuhfrBxHOLvhqa2j1t9HobbvKyL+rk5w/qn/mlc5ypocZcQcFzj/MjDHAPt7Hnc7zuByhI6U/8+r7vfvt4xn3bO9SDZHSI+GCdT0Hz3atz4QERHRbn0D4FdvUQ==
+  </data>
  </layer>
 </map>
