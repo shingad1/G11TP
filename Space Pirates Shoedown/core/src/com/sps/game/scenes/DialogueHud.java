@@ -29,7 +29,7 @@ public class DialogueHud {
     private String[] dialogue;
 
     private HashMap<String, String[]> dialogHM;
-    private String[] val;
+    //private String[] val;
 
     private Table table;
     private TextButton prevButton, nextButton;
@@ -56,10 +56,15 @@ public class DialogueHud {
 
         dialogHM = new HashMap<String, String[]>();
 
-        val = new String[3];
+        /*val = new String[3];
         val[0] = "";
         val[1] = "";
-        val[2] = "";
+        val[2] = "";*/
+        try {
+            readingFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -159,18 +164,18 @@ public class DialogueHud {
 
     private void set(String npcName)
     {
-        try {
+        /*try {
             readingFile();
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+        for(String key : dialogHM.keySet()) {
+            if (key.equals(npcName)) {
+                dialogue[0] = dialogHM.get(key)[0];
+                dialogue[1] = dialogHM.get(key)[1];
+                dialogue[2] = dialogHM.get(key)[2];
+            }
         }
-
-        if (dialogHM.keySet().contains(npcName)) {
-            dialogue[0] = val[0];
-            dialogue[1] = val[1];
-            dialogue[2] = val[2];
-        }
-
         setLabel();
         textArea.text(label);
     }
@@ -190,12 +195,11 @@ public class DialogueHud {
         BufferedReader bufferedReader = new BufferedReader(new FileReader( "core/src/com/sps/game/Dialogue.txt"));
 
         String line;
+
         while((line = bufferedReader.readLine()) != null)
         {
-            System.out.println(line);
+            String[] val = new String[3];
             String[] temp = line.split(";");
-
-            System.out.println(temp.toString());
 
             val[0] = temp[1];
             val[1] = temp[2];

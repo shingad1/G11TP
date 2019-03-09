@@ -64,11 +64,11 @@ public class HomeWorldScreen extends PlayScreen {
                 i++;
             }
         }
-        for(int x = 0; x <= 6; x++ ) {
+        //for(int x = 0; x <= 6; x++ ) {
             //npc.add(new InteractiveNPC(736, 960, MapFactory.MapType.HomeWorldMap1, batch, "Lol"));
             npc.add(new InteractiveNPC(736, 1152, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
             //npc.add(new InteractiveNPC(736, 1280, MapFactory.MapType.HomeWorldMap1, batch,"Lee"));
-        }
+        //}
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
         p.setX(px); //change when moving worlds
