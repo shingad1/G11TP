@@ -73,8 +73,9 @@ public class HomeWorldScreen extends PlayScreen {
         if(currentMapState.equals(MapFactory.MapType.HomeWorldMap1)) {
             npc.add(new NonInteractiveNPC(576, 704, MapFactory.MapType.HomeWorldMap1, batch, "Merchant"));
             npcController.add(new NPCController(npc.get(npc.size() - 1), getMap(getWorldMapByWorld(MapFactory.MapType.HomeWorldMap1)).getCollisionLayer()));
-            npc.add(new InteractiveNPC(736, 960, MapFactory.MapType.HomeWorldMap1, batch, "Linda"));
-            npc.add(new InteractiveNPC(736, 1152, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
+            npc.add(new InteractiveNPC(768, 1216, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
+            npc.add(new InteractiveNPC(832, 576, MapFactory.MapType.HomeWorldMap1, batch, "ThirdNPC"));//need to make them first talk then they can move away
+            npc.add(new InteractiveNPC(800, 608, MapFactory.MapType.HomeWorldMap1, batch, "Linda"));
         }
 
         allLocations = new ArrayList<Location>();

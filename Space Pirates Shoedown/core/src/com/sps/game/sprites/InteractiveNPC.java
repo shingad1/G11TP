@@ -47,7 +47,7 @@ public class InteractiveNPC extends AbstractNPC{
         this.y = y;
         location = new Location(x,y);
         lindaAnimation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
-        otherAnimation = new npcAnimation(sb, this, "npcIdle.atlas", 1/2f);
+        otherAnimation = new npcAnimation(sb, this, "interactiveHome.atlas", 1/2f);
         this.world = world;
         this.name = name;
     }
