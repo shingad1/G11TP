@@ -148,23 +148,7 @@ public class MerchantInventory {
         table.add(inventory);
         table.add(merchant).height(230);
 
-
-
-
         merchant.setWidth(200);
-
-
-
-
-
-
-/*
-        itemImages.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                 itemImages.getSelected();
-            }
-        });
-*/
 
         /*
             Add the list of images, specifically the one that has been selected

@@ -7,26 +7,50 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.sps.game.inventory.Item;
 
 
-/*
-This class is responsible for holding the collections of the user's inventory, merchant inventory, and the
-     icons of the inventory items that are selected.
+/**
+ *  This class will hold the various collections which are necessary for the player and merchant inventory.
+ *  Specifically, the collection of player items, merchant items, and item images.
+ *  @author Devin Shingadia
+ *  @version 1.0
  */
 
 public class InventoryController {
-    //Skin used for each lists
+
+    /**
+     * Skin object, used for the display of the inventory.
+     * @see #inventory
+     * @see #merchantInventory
+     * @see #itemImageList
+     */
     private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
 
-    //The list that will be holding the players items
+    /**
+     * Collection for the users items
+     * @see com.sps.game.inventory.MerchantInventory
+     * @see com.sps.game.inventory.PlayerInventory
+     */
     public List<String> inventory = new List<String>(skin);
 
-    //The list that will be holding the merchants items
+
+    /**
+     * Collection for the merchants items
+     * @see com.sps.game.inventory.MerchantInventory
+     */
     public List<String> merchantInventory = new List<String>(skin);
 
-    //The list that holds the image of each item
+    /**
+     * Collection for the merchants items
+     * @see com.sps.game.inventory.PlayerInventory
+     * @see com.sps.game.inventory.MerchantInventory
+     */
     public List<Image> itemImageList = new List<Image>(skin);
 
-
-    //List of all available items in the game
+    /**
+     * Item objects which will be used in all collections.
+     * @see #inventory
+     * @see #merchantInventory
+     * @See #itemImageList
+     */
     public Item fuel;
     public Item axe;
     public Item fluxCapacitor;
@@ -39,13 +63,16 @@ public class InventoryController {
     public Item sword;
 
 
-
+    /**
+     * Creates an InventoryController object, populating the collections.
+     */
     public InventoryController() {
-        //Create the inventory objects
         setItems();
 
 
-        //Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
+        /**
+         *         Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
+         */
         inventory.setItems(fuel.getName(),
                            axe.getName(),
                            fluxCapacitor.getName(),
@@ -56,13 +83,15 @@ public class InventoryController {
                            cucumber.getName());
 
 
-        //Providing the string representation for each item in the merchant list, to be printed
+        /**
+         *         Providing the string representation for each item in the merchant list, to be printed
+         */
         merchantInventory.setItems(shoeLaces.getName(),
                                    sword.getName());
 
 
-        /*Each item object is responsible for it's own image.
-            Create a list which holds the image of each object.
+        /**
+         * List of images, which are recieved from the getImage() method called on each item.
          */
         itemImageList.setItems(fuel.getImage(),
                                axe.getImage(),
@@ -77,20 +106,12 @@ public class InventoryController {
 
         }
 
-/*
-
-    public Item matchStringToImage (String itemName) {
-        Iterator<String> iterator = inventory.getItems().iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().equals(itemImageList.getName())) {
-
-            }
-        }
-    }
-
-*/
-
-    //Setting the values of the items
+    /**
+     * Creates the items used in the collections.
+     * @see #inventory
+     * @see #merchantInventory
+     * @see #itemImageList
+     */
     private void setItems() {
         fuel = new Item("Fuel", "Fuel for your rocket shoes", 1,  "core/assets/Inventory/images/shoe.png");
         axe = new Item("Axe", "An Axe to cut pirates in half", 2, "core/assets/Inventory/images/premium-sword.png");
@@ -104,8 +125,10 @@ public class InventoryController {
         sword = new Item("Sword", "Hack your way to the final boss", 10, "core/assets/Inventory/images/axe.png");
     }
 
-    //Accessor methods
-
+    /**
+     *
+     * @return
+     */
     public List<String> getInventoryList() {
         return inventory;
     }
