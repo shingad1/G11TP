@@ -33,7 +33,7 @@ public class DialogueHud {
 
     private HashMap<String, String[]> dialogHM;
     //private Array<String> values;
-    private String val[];
+    private String[] val;
 
     private Table table;
     private TextButton prevButton, nextButton;
@@ -201,12 +201,12 @@ public class DialogueHud {
         String line;
         while((line = bufferedReader.readLine()) != null)
         {
-            String temp[] = line.split(";");
+            System.out.println(line);
+            String[] temp = line.split(";");
 
-            System.out.println(val.length);
+            System.out.println(temp.toString());
 
             val[0] = temp[1];
-            System.out.println(val[0].toString());
             val[1] = temp[2];
             val[2] = temp[3];
 
