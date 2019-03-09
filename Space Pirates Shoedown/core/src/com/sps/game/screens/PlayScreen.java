@@ -16,8 +16,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
-import com.sps.game.controller.DialogueController;
 import com.sps.game.inventory.MerchantInventory;
+import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.sprites.*;
@@ -135,10 +135,6 @@ public abstract class PlayScreen implements Screen
      */
     private MapManager mapManager;
     /**
-     * Creates and holds a dialogue controller
-     */
-    private DialogueController dialogController = new DialogueController();
-    /**
      * Creates and holds a story controller
      */
     private StoryController storyController = new StoryController();
@@ -173,6 +169,8 @@ public abstract class PlayScreen implements Screen
      */
     private static GameState gameState;
 
+    private DialogueHud dialogueHud;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         mapManager = new MapManager();
@@ -186,6 +184,7 @@ public abstract class PlayScreen implements Screen
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
+        dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
     }
@@ -242,7 +241,26 @@ public abstract class PlayScreen implements Screen
         renderer.setView(gamecam);
         hud.update();
         merchantInventory.update();
-    }
+
+        for(int i = 0; i < getInteractiveNPC().size(); i++){
+            InteractiveNPC temp = getInteractiveNPC().get(i);
+            if(controller.npcInProximity1(temp)){
+                System.out.println("nearby");
+                //if(npc.contains(temp)){
+                    /*for(int x = 0; x < npc.size(); x++){
+                        if(npc.contains(getInteractiveNPC().get(x).getName().equals(temp.getName()))){
+                            dialogueHud.update(temp.getName());
+                        }else{System.out.println("np npc in npc");}
+                    }*/
+                //}
+                //else{System.out.println("does not contain");}
+            }else{System.out.println("no npc near by");}
+        }
+    }/*what this should do is check if there is a npc next to the player
+     if that npc is in the npc arraylist
+     if the interactive npc in the arraylist has the same name as temp.getName()
+     if all these are true >>> dialogueHud.update(temp.getName());
+     */
 
     /**
      * Clears the screen and draws the necessary textures.
@@ -295,6 +313,7 @@ public abstract class PlayScreen implements Screen
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
         merchantInventory.stage.draw(); //drawing the user hud
+        dialogueHud.stage.draw();
 
         batch.begin();
         if(pause)
@@ -304,30 +323,6 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
-
-        //tutorialController.create();
-        //tutorialController.render();
-/*
-
-        if(dialogBoolean)
-        {
-            try {
-                dialogController.create("Linda");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            dialogController.render();
-        }
-        dialogController.render();
-
-        dialogBoolean = false;
-
-        dialogBoolean = false;
-
-
-        dialogBoolean = false;*/
-
-
     }
 
     @Override

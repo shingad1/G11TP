@@ -34,7 +34,7 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Vector2 velocity;
 
-    private npcAnimation animation;
+    private npcAnimation lindaAnimation, otherAnimation;
 
     private MapFactory.MapType world;
     /**
@@ -46,12 +46,20 @@ public class InteractiveNPC extends AbstractNPC{
         this.x = x;
         this.y = y;
         location = new Location(x,y);
-        animation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
+        lindaAnimation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
+        otherAnimation = new npcAnimation(sb, this, "npcMerchantIdle.atlas", 1/2f);
         this.world = world;
-        setName(name);
+        this.name = name;
     }
 
-    public npcAnimation getAnimation(){return animation;}
+    public npcAnimation getAnimation(){
+        if(name.equals("Linda")){
+            return lindaAnimation;
+        }
+        else{
+            return otherAnimation;
+        }
+    }
 
     public MapFactory.MapType getWorld(){return world;}
 
@@ -85,10 +93,6 @@ public class InteractiveNPC extends AbstractNPC{
     @Override
     public void changeState(String newState) {
 
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getName() {

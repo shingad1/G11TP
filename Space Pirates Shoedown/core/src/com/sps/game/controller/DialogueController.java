@@ -1,3 +1,4 @@
+/*
 package com.sps.game.controller;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -104,8 +105,10 @@ public class DialogueController extends ApplicationAdapter implements InputProce
                 //batch.begin();
                 //batch.dispose();
                 //batch.end();
-                /*temp = false;
-                playScreen.setBool(temp);*/
+                */
+/*temp = false;
+                playScreen.setBool(temp);*//*
+
             }
         });
 
@@ -128,9 +131,11 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         InputMultiplexer inputMultiplexer = new InputMultiplexer(stage, this);
         Gdx.input.setInputProcessor(inputMultiplexer);
 
-        /*openFile();
+        */
+/*openFile();
         readFile(npcName);
-        closeFile();*/
+        closeFile();*//*
+
 
         readingFile(npcName);
         //textArea.text(dialogue[counter]);
@@ -210,8 +215,10 @@ public class DialogueController extends ApplicationAdapter implements InputProce
             inputMultiplexer = new InputMultiplexer(stage, this);
             Gdx.input.setInputProcessor(inputMultiplexer);
             created = true;
-        /*inputMultiplexer = new InputMultiplexer(stage, this);
-        Gdx.input.setInputProcessor(inputMultiplexer);*/
+        */
+/*inputMultiplexer = new InputMultiplexer(stage, this);
+        Gdx.input.setInputProcessor(inputMultiplexer);*//*
+
     }
 
     @Override
@@ -319,3 +326,4 @@ public class DialogueController extends ApplicationAdapter implements InputProce
         return false;
     }
 }
+*/
