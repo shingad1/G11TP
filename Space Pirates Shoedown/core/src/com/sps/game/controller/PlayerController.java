@@ -12,7 +12,6 @@ import com.sps.game.sprites.InteractiveNPC;
 import com.sps.game.sprites.InteractiveNPCMoving;
 import com.sps.game.sprites.Location;
 import com.sps.game.sprites.Player;
-import com.sps.game.dialogue.Dialogue;
 
 import java.lang.Math;
 import java.util.ArrayList;
@@ -391,7 +390,7 @@ public class PlayerController extends InputAdapter {
         return false;
 
     }
-
+/*
     public void npcInteraction(ArrayList<InteractiveNPC> npcList, String npcName) {
         if (!npcList.isEmpty()) {
             for (int i = 0; i < npcList.size(); i++) {
@@ -479,7 +478,7 @@ public class PlayerController extends InputAdapter {
                     if (switchOff) {
                         dialogue = false;
                     }
-                }
+                }*/
 
     public void changeNpcLocations(ArrayList<Location> npcLocations){
         allLocations = npcLocations;

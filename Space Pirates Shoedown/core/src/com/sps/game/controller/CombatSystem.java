@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.Location;
 import com.sps.game.sprites.Player;
-import com.sps.game.dialogue.Dialogue;
 
 /**
  * This class has all the methods used in the battle scene, in order to increase/decrease the player's/ enemies lives
@@ -95,7 +94,7 @@ public class CombatSystem
             if ((player.getHP() == 0) || (enemy.getHealth() == 0)) {
                 finished = true;
                 if(finished){
-                    Dialogue d = new Dialogue("Enemy");
+                    //Dialogue d = new Dialogue("Enemy");
                 }
             }
         }

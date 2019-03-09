@@ -13,6 +13,12 @@ import com.sps.game.maps.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This class holds all the different maps of the Home World, and contains its own unique functionality,
+ * specific to this world.
+ * @author Miraj Shah, Miguel Abaquin
+ * @version 1.0
+ */
 public class HomeWorldScreen extends PlayScreen {
     /**
      * 2D array, that contains all the maps for the home world

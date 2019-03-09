@@ -17,6 +17,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.profile.ProfileManager;
 
+/**
+ * This class displays all the save files, and loads the chosen file.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class LoadScreen implements Screen {
 
     /**

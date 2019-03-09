@@ -25,14 +25,12 @@ import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.maps.MapManager;
 import com.sps.game.profile.ProfileManager;
-
-
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * This class launches the play screen, from where the play last left off.
- * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * This abstract class contains all the methods common to each subclass.
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia and Mahamuda Akhter
  * @version 1.0
  */
 
@@ -347,10 +345,13 @@ public abstract class PlayScreen implements Screen
         enemyTile.getProperties().remove("basicEnemy");
         enemyTile.getProperties().remove("blocked");
         enemyTile.getProperties().put("invisible","true");
-       //currentMapState = "House";
         game.setScreen(this);
     }
 
+    /**
+     * Sets the state of the game.
+     * @param gs
+     */
     public static void setGameState(GameState gs){
         switch (gs){
             case Saving:
@@ -370,6 +371,10 @@ public abstract class PlayScreen implements Screen
         }
     }
 
+    /**
+     * Returns an ArrayList containing all the InteractiveNPC's in the world.
+     * @return ArrayList interactiveNPCs
+     */
     public ArrayList<InteractiveNPC> getInteractiveNPC() {
         ArrayList<InteractiveNPC> interactiveNPCs = new ArrayList<InteractiveNPC>();
         for(AbstractNPC nonPlayingCharacter : npc){
@@ -380,6 +385,10 @@ public abstract class PlayScreen implements Screen
         return interactiveNPCs;
     }
 
+    /**
+     * Returns an ArrayList containing all the NonInteractiveNPC's in the world.
+     * @return ArrayList nonInteractiveNPCs
+     */
     public ArrayList<NonInteractiveNPC> getNonInteractiveNPC() {
         ArrayList<NonInteractiveNPC> nonInteractiveNPCs = new ArrayList<NonInteractiveNPC>();
         for(AbstractNPC nonPlayingCharacter : npc){
@@ -390,18 +399,29 @@ public abstract class PlayScreen implements Screen
         return nonInteractiveNPCs;
     }
 
+    /**
+     * Returns an ArrayList containing all the Interactive NPCs that can move in the world.
+     * @return ArrayList interactiveNPCsMoving
+     */
     public ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving() {
-        ArrayList<InteractiveNPCMoving> InteractiveNPCsMoving = new ArrayList<InteractiveNPCMoving>();
+        ArrayList<InteractiveNPCMoving> interactiveNPCsMoving = new ArrayList<InteractiveNPCMoving>();
         for(AbstractNPC InteractiveNPC : npc){
             if(InteractiveNPC.getClass() == InteractiveNPCMoving.class){
-                InteractiveNPCsMoving.add((InteractiveNPCMoving) InteractiveNPC);
+                interactiveNPCsMoving.add((InteractiveNPCMoving) InteractiveNPC);
             }
         }
-        return InteractiveNPCsMoving;
+        return interactiveNPCsMoving;
     }
-
+    /**
+     * Changes the map that is rendered once the player is on a certain location or going of the screen
+     */
     public abstract boolean checkPosition(Location location, MapFactory.MapType world);
 
+    /**
+     * Returns an ArrayList of Abstract NPCS, which holds every NPC on the Map.
+     * @param map
+     * @return
+     */
     public ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map) {
         ArrayList<AbstractNPC> result = new ArrayList<AbstractNPC>();
         for (int i = 0; i < npc.size(); i++){
@@ -441,7 +461,7 @@ public abstract class PlayScreen implements Screen
 
     /**
      * Returns the current type of the map.
-     * @return
+     * @return MapFactory.MapType currentMapState
      */
     public static MapFactory.MapType getCurrentMapType(){
         return currentMapState;

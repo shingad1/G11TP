@@ -14,10 +14,15 @@ import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.maps.TropicalWorldMap;
 import com.sps.game.maps.TropicalWorldMap2;
-
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This class holds all the different maps of the Tropical World, and contains its own unique functionality,
+ * specific to this world.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class TropicalWorldScreen extends PlayScreen {
 
     /**

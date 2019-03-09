@@ -15,6 +15,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.sps.game.SpacePiratesShoedown;
 
+/**
+ * This class displays the credits to the user.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class CreditsScreen implements Screen {
 
     /**
@@ -71,12 +76,19 @@ public class CreditsScreen implements Screen {
         stage.addActor(table);
     }
 
+    /**
+     * Sets the visibility of the scroll pane and the input processor.
+     */
     @Override
     public void show() {
         scrollPane.setVisible(true);
         Gdx.input.setInputProcessor(stage);
     }
 
+    /**
+     * Displays credits and scrolls through them.
+     * @param delta
+     */
     @Override
     public void render(float delta) {
         if(delta == 0){
@@ -89,6 +101,11 @@ public class CreditsScreen implements Screen {
         scrollPane.setScrollY(scrollPane.getScrollY() + delta * 20);
     }
 
+    /**
+     * Adjusts the credits screen to fit the screen.
+     * @param width
+     * @param height
+     */
     @Override
     public void resize(int width, int height) {
         stage.getViewport().setScreenSize(width, height);
@@ -112,6 +129,9 @@ public class CreditsScreen implements Screen {
         Gdx.input.setInputProcessor(null);
     }
 
+    /**
+     * Disposes of the stage and resets the scroll pane.
+     */
     @Override
     public void dispose() {
         stage.clear();

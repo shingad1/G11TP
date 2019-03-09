@@ -1,5 +1,10 @@
 package com.sps.game.maps;
 
+/**
+ * This class creates the second house interior map.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class HomeInteriorMap2 extends Map {
 
     /**

@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.PlayerController;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -159,6 +158,8 @@ public class DialogueHud {
 
         if (Gdx.input.isKeyPressed(Input.Keys.E) && oldInput != null) {
             stage.clear();
+            dialogue.clear();
+            counter = 0;
             Gdx.input.setInputProcessor(oldInput);
             oldInput = null;
             if(textArea.getContentTable() != null){
