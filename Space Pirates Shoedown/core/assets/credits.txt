@@ -1,21 +1,28 @@
+SpacePirates Shoedown
+
 Credits:
 
 Programmers:
-Miraj,
-Miguel,
-Devin,
-Mahamuda,
-Alex
+Miraj Shah,
+Miguel Abaquin,
+Devin Shingadia,
+Mahamuda Akhter,
+Alexander Bernini
 
 Graphics:
-Alex,
-Denash,
-Miraj
+Alexander Bernini,
+Denash Sathanantheswaran,
+Miraj Shah
 
 Story:
-Lainey,
-Natalie,
-Shane
+Alainya Wallace,
+Adedolapo Adeyinka,
+Shane Uppal
+
+Testing:
+Alainya Wallace,
+Adedolapo Adeyinka,
+Shane Uppal
 
 Acknowledgments:
 Mastering LibGDX Game Development- Patrick Hoey
