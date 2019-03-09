@@ -129,6 +129,9 @@ public class DialogueHud {
             stage.clear();
             Gdx.input.setInputProcessor(oldInput);
             oldInput = null;
+            if(textArea.getContentTable() != null){
+                textArea.getContentTable().clear();
+            }
         }
     }
 
@@ -153,6 +156,9 @@ public class DialogueHud {
             //textArea.text(dialogue[counter]).pack();
             setLabel();
             textArea.text(label);
+            if(counter == 2){
+                counter = 0;
+            }
         }
         buttonLogged = "";
 
