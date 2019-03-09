@@ -242,20 +242,27 @@ public abstract class PlayScreen implements Screen
         hud.update();
         merchantInventory.update();
 
-        for(int i = 0; i < getInteractiveNPC().size(); i++){
+
+        for(InteractiveNPC npcTemp : getInteractiveNPC()){
+            if(controller.npcInProximity1(npcTemp)){
+                dialogueHud.update(npcTemp.getName());
+            }
+        }
+
+        /*for(int i = 0; i < getInteractiveNPC().size() - 1; i++){
             InteractiveNPC temp = getInteractiveNPC().get(i);
             if(controller.npcInProximity1(temp)){
                 System.out.println("nearby");
-                //if(npc.contains(temp)){
-                    /*for(int x = 0; x < npc.size(); x++){
+                if(npc.contains(temp)){
+                    for(int x = 0; x < npc.size() - 1; x++){
                         if(npc.contains(getInteractiveNPC().get(x).getName().equals(temp.getName()))){
                             dialogueHud.update(temp.getName());
-                        }else{System.out.println("np npc in npc");}
-                    }*/
-                //}
+                        }//else{System.out.println("no npc in npc");}
+                    }
+                }
                 //else{System.out.println("does not contain");}
-            }else{System.out.println("no npc near by");}
-        }
+            }//else{System.out.println("no npc near by");}
+        }*/
     }/*what this should do is check if there is a npc next to the player
      if that npc is in the npc arraylist
      if the interactive npc in the arraylist has the same name as temp.getName()

@@ -188,8 +188,8 @@ public class DialogueHud {
         String line;
         while((line = bufferedReader.readLine()) != null)
         {
-            String temp[] = line.split("\\;");
-
+            String temp[] = line.split(";");
+            System.out.println(line);
             values.add(temp[1]);
             values.add(temp[2]);
             values.add(temp[3]);
