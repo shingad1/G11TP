@@ -1,5 +1,4 @@
-
-package com.sps.game.Controller;
+package com.sps.game.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;

@@ -165,7 +165,7 @@ public class CombatScreen implements Screen {
         cs.update();
         playerHud.update();
         enemyHud.update();
-        ThirdHud.update();
+        //ThirdHud.update(); //needs to have an array as a parameter
     }
     /**
      * Clears the screen and draws the necessary textures.
