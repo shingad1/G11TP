@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.PlayerController;
@@ -17,8 +18,9 @@ import com.sps.game.controller.PlayerController;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+
+import static javax.swing.UIManager.get;
 
 public class DialogueHud {
     public Stage stage;
@@ -29,8 +31,9 @@ public class DialogueHud {
     private int counter;
     private String[] dialogue;
 
-    private HashMap<String, ArrayList<String>> dialogHM;
-    private ArrayList<String> values;
+    private HashMap<String, String[]> dialogHM;
+    //private Array<String> values;
+    private String val[];
 
     private Table table;
     private TextButton prevButton, nextButton;
@@ -55,8 +58,18 @@ public class DialogueHud {
         dialogue[1] = "";
         dialogue[2] = "";
 
-        dialogHM = new HashMap<String, ArrayList<String>>();
-        values = new ArrayList<String>();
+        dialogHM = new HashMap<String, String[]>();
+        //values = new Array<String>(3);
+
+        /*values.set(0, "");
+        values.set(1, "");
+        values.set(2, "");*/
+
+        val = new String[3];
+        val[0] = "";
+        val[1] = "";
+        val[2] = "";
+
     }
 
     private void formatting() {
@@ -162,10 +175,10 @@ public class DialogueHud {
         }
 
         if (dialogHM.keySet().contains(npcName)) {
-            dialogue[0] = dialogHM.get(npcName).get(0);
-            dialogue[1] = dialogHM.get(npcName).get(1);
-            dialogue[2] = dialogHM.get(npcName).get(2);
-        }
+            dialogue[0] = val[0];
+            dialogue[1] = val[1];
+            dialogue[2] = val[2];
+        }//dialogHM.get(npcName).get(2)//values.get(0)
 
         setLabel();
         textArea.text(label);
@@ -189,11 +202,24 @@ public class DialogueHud {
         while((line = bufferedReader.readLine()) != null)
         {
             String temp[] = line.split(";");
-            System.out.println(line);
-            values.add(temp[1]);
+
+            System.out.println(val.length);
+
+            val[0] = temp[1];
+            System.out.println(val[0].toString());
+            val[1] = temp[2];
+            val[2] = temp[3];
+
+            /*values.set(0, temp[1]);
+            values.set(1, temp[2]);
+            values.set(2, temp[3]);*/
+
+            //values.add(temp[1], temp[2], temp[3]);
+            /*values.add(temp[1]);
             values.add(temp[2]);
-            values.add(temp[3]);
-            dialogHM.put(temp[0], values);
+            values.add(temp[3]);*/
+
+            dialogHM.put(temp[0], val);
         }
         bufferedReader.close();
     }
