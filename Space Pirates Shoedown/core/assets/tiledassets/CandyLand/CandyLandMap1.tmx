@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
  <tileset firstgid="1" source="Resources/CandyGrass.tsx"/>
  <tileset firstgid="197" source="Resources/CandyLandTiles2.tsx"/>
  <tileset firstgid="357" source="Resources/house1.tsx"/>
@@ -30,7 +30,7 @@
    eJztWltu2zAQJGAIUX2S6BD9sXPL9K89Q38bIEWSo/QKihGgEqJFxuNZkoGlrD70sSC5fGSGs7uMDT+mlB4322wh+9mk9KuJaa/ZyzyeB99LE9Nes9fjsdu/291kPL4TY7bD1B73H+f+TvOanevF1W6vjbHynPWPkxkPO3duHnZuSY8SH8SNXJBrpB65uNkBPsXL2gP4o/Tw4ob5GV6OLea9pvxQd+7h5z1r0QNxHvaXsaY4on9t+cE4MVcOkx0Flyg95n6vo/SY+72O0uNp6L9Mhn30PVGffbg2Sg+FtwY/c7e5aD28+63x4ThaDxVbnj65PWvRQ8WUF2dqfVi9SvPXrAg9vg9v19u3D+Ox8uf2ROkxYvBw2Ryu4T63Ufnh3a/SJcfH+kvrcT/Yj0brUXPPuXhC/9J6/BnsofH18HiUYoo5ReVHTczk1jCf6PwoxX4pX6LrlYojxqlsjfXKq7e52sVx9FXfJ/5N75bLj1zOe/2v/j6Reaj88OI+p5Od89peZyfqo42+mvfcewtK+YJxdSI8Y9vDuKfxCdb0Ysxrl/58buf0Dg/EpNYgT6WR7V/687mdg5i9eGFf315qc6JxrR7/blLq2vN2tNtW+9nsHBVPyjBeFFcvrkp6jHhvBU7z25w3Rj28+O4dnKifWovnlfTo2vP7Z2NtuI96IC5sVc5zPeJaxftLeiAmvGeLp649x85rvXqlYkzpoOqs4lKTH5wjfOfoR65dQQ/mwHqoHGcdzFejB8YU40Y+iN/WKT0YL3NTscXcmHdNfnTtJU72cY7bPL7nnOvqXVDYuV5x/zN6IDYVY8gBW65X6q5ZI1Wr1NuD+VbSA3GyFpjbyo/5gX+bcap3XWnHbyPqV9KD3wzv7rle8fvh4VX/S+Vq8mt7qWkuP7bfM1zfzvl7hs02m9P+AyYV9Q8=
   </data>
  </layer>
- <layer id="4" name="Collision Layer" width="50" height="50">
+ <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJztmO8OAiEIwF3rWw/S4/SGfb7HbLdycw4QFBAv3Vi39IAff6SVUkrvW7rE0uY49c2ITba7qpQcr/uasipHzsFsDqw2uOdmc3D9suTAbEnOS3Vo1JWWzdkclDwfX9kcMTh6fd79MS8fm8OPgzu7onHU71BzlZrRszmweK/C0fJlFY6WjpU5NO1rncE4oLhCeeCKB0dmqb+ndEhz8I8cI/VJcUDsEv0WfdfDMZoPC9GuK+qOjcJBzQaMw4ulhwO6cw/GHYvlz5JLysGZFZ6yOWL4b5kPj36AOM7P0d+Jx6/3qVhJ/IGe6zhacLRYWvUQJR8cXyHJdnvr2IujpXNkn8sBMXPsSvocq3NNDo4eLhd2rhUnzKdIdcWNg0Y+eu3X+qkexmKN1TX0bhSOnv0ejpbv2H7tR3nPanOU+q36g+sn9DzCIakdKi+eHJ7/w1nJVTlWlr3irQ/+a5pb
   </data>

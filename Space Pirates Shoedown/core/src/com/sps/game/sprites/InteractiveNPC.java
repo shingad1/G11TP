@@ -34,7 +34,7 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Vector2 velocity;
 
-    private npcAnimation animation;
+    private npcAnimation lindaAnimation, otherAnimation;
 
     private MapFactory.MapType world;
     /**
@@ -46,57 +46,76 @@ public class InteractiveNPC extends AbstractNPC{
         this.x = x;
         this.y = y;
         location = new Location(x,y);
-        animation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
+        lindaAnimation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
+        otherAnimation = new npcAnimation(sb, this, "npcIdle.atlas", 1/2f);
         this.world = world;
-        setName(name);
-    }
-
-    public npcAnimation getAnimation(){return animation;}
-
-    public MapFactory.MapType getWorld(){return world;}
-
-    @Override
-    public int getX() {
-        return x;
-    }
-
-    @Override
-    public int getY() {
-        return y;
-    }
-
-    @Override
-    public Vector2 getVelocity() {
-        return null;
-    }
-
-    @Override
-    public void setY(float newY) {
-
-    }
-
-    @Override
-    public void setX(float newX) {
-
-    }
-
-    public Location getLocation(){return location;}
-
-    @Override
-    public void changeState(String newState) {
-
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public npcAnimation getAnimation() {
+        if (getWorld().equals(MapFactory.MapType.HomeWorldMap1) || getWorld().equals(MapFactory.MapType.HomeWorldMap2)) {
+            if (name.equals("Linda")) {
+                otherAnimation = lindaAnimation;
+            } else {
+                otherAnimation = otherAnimation;
+            }
+        /*}
+        else if(getWorld().equals(MapFactory.MapType.CandyWorld1) || getWorld().equals(MapFactory.MapType.CandyWorld2)){
+
+        }
+        else if (getWorld().equals(MapFactory.MapType.TropicalWorld1) || getWorld().equals(MapFactory.MapType.TropicalWorld2)){
+
+        }
+        else if (getWorld().equals(MapFactory.MapType.GraveyardWorld1)){
+
+        }*/
+        }
+        return otherAnimation;
     }
 
-    public String getType() {return "InteractiveNPC";}
+        public MapFactory.MapType getWorld () {
+            return world;
+        }
 
+        @Override
+        public int getX () {
+            return x;
+        }
 
+        @Override
+        public int getY () {
+            return y;
+        }
 
+        @Override
+        public Vector2 getVelocity () {
+            return null;
+        }
+
+        @Override
+        public void setY ( float newY){
+
+        }
+
+        @Override
+        public void setX ( float newX){
+
+        }
+
+        public Location getLocation () {
+            return location;
+        }
+
+        @Override
+        public void changeState (String newState){
+
+        }
+
+        public String getName () {
+            return name;
+        }
+
+        public String getType () {
+            return "InteractiveNPC";
+        }
 }

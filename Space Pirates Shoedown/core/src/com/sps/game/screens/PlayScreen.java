@@ -16,8 +16,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
-import com.sps.game.controller.DialogueController;
 import com.sps.game.inventory.MerchantInventory;
+import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.sprites.*;
@@ -135,10 +135,6 @@ public abstract class PlayScreen implements Screen
      */
     private MapManager mapManager;
     /**
-     * Creates and holds a dialogue controller
-     */
-    private DialogueController dialogController = new DialogueController();
-    /**
      * Creates and holds a story controller
      */
     private StoryController storyController = new StoryController();
@@ -173,6 +169,8 @@ public abstract class PlayScreen implements Screen
      */
     private static GameState gameState;
 
+    private DialogueHud dialogueHud;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         mapManager = new MapManager();
@@ -186,6 +184,7 @@ public abstract class PlayScreen implements Screen
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
+        dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
     }
@@ -219,20 +218,17 @@ public abstract class PlayScreen implements Screen
      * Checks to see if any inputs are happening, and sets the gamecam.
      * @param <code>float</code> dt.
      */
-    public void update(float dt){
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-        {
+    public void update(float dt) {
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             pause = true;
-            try
-            {
+            try {
                 Thread.sleep(100);
-            }catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         handleInput(dt);
-        for (int i = 0; i < npcController.size(); i++){
+        for (int i = 0; i < npcController.size(); i++) {
             if (npc.get(i).getWorld().equals(currentMapState)) {
                 npcController.get(i).move();
             }
@@ -242,6 +238,12 @@ public abstract class PlayScreen implements Screen
         renderer.setView(gamecam);
         hud.update();
         merchantInventory.update();
+        
+        for (InteractiveNPC npcTemp : getInteractiveNPC()) {
+            if (controller.npcInProximity1(npcTemp)) {
+                dialogueHud.update(npcTemp.getName());
+            }
+        }
     }
 
     /**
@@ -295,6 +297,7 @@ public abstract class PlayScreen implements Screen
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
         merchantInventory.stage.draw(); //drawing the user hud
+        dialogueHud.stage.draw();
 
         batch.begin();
         if(pause)
@@ -304,30 +307,6 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
-
-        //tutorialController.create();
-        //tutorialController.render();
-/*
-
-        if(dialogBoolean)
-        {
-            try {
-                dialogController.create("Linda");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            dialogController.render();
-        }
-        dialogController.render();
-
-        dialogBoolean = false;
-
-        dialogBoolean = false;
-
-
-        dialogBoolean = false;*/
-
-
     }
 
     @Override

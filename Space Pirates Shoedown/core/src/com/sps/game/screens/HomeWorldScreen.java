@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class HomeWorldScreen extends PlayScreen {
-
     /**
      * 2D array, that contains all the maps for the home world
      */
@@ -68,7 +67,8 @@ public class HomeWorldScreen extends PlayScreen {
         if(currentMapState.equals(MapFactory.MapType.HomeWorldMap1)) {
             npc.add(new NonInteractiveNPC(576, 704, MapFactory.MapType.HomeWorldMap1, batch, "Merchant"));
             npcController.add(new NPCController(npc.get(npc.size() - 1), getMap(getWorldMapByWorld(MapFactory.MapType.HomeWorldMap1)).getCollisionLayer()));
-
+            npc.add(new InteractiveNPC(736, 960, MapFactory.MapType.HomeWorldMap1, batch, "Linda"));
+            npc.add(new InteractiveNPC(736, 1152, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
         }
 
         allLocations = new ArrayList<Location>();
@@ -180,7 +180,6 @@ public class HomeWorldScreen extends PlayScreen {
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
             currentMap = selectedMap.getCurrentMap();//change when moving worlds
-            //selectedMap.setMapType(selectedMap.getCurrentMapType());
             renderer = new OrthogonalTiledMapRenderer(currentMap); //change when moving worlds
             currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1); //change when moving worlds
             currentMapState = selectedMap.getCurrentMapType(); //change when moving worlds
