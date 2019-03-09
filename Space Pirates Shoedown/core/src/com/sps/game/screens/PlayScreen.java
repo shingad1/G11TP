@@ -461,7 +461,7 @@ public abstract class PlayScreen implements Screen
 
     /**
      * Returns the current type of the map.
-     * @return
+     * @return MapFactory.MapType currentMapState
      */
     public static MapFactory.MapType getCurrentMapType(){
         return currentMapState;
