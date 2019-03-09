@@ -38,7 +38,7 @@ public class DialogueController extends ApplicationAdapter implements InputProce
     private String buttonLogged = "";
 
     private PlayScreen playScreen;
-    private Boolean temp,temp1;
+    private boolean temp,temp1;
 
     private boolean created = false;
 
