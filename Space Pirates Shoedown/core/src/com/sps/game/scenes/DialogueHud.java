@@ -56,10 +56,6 @@ public class DialogueHud {
 
         dialogHM = new HashMap<String, String[]>();
 
-        /*val = new String[3];
-        val[0] = "";
-        val[1] = "";
-        val[2] = "";*/
         try {
             readingFile();
         } catch (IOException e) {
@@ -164,11 +160,6 @@ public class DialogueHud {
 
     private void set(String npcName)
     {
-        /*try {
-            readingFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         for(String key : dialogHM.keySet()) {
             if (key.equals(npcName)) {
                 dialogue[0] = dialogHM.get(key)[0];
