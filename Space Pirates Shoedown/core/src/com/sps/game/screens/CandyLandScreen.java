@@ -12,10 +12,15 @@ import com.sps.game.maps.CandyWorldMap;
 import com.sps.game.maps.CandyWorldMap2;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
-
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This class holds all the different maps of Candy Land, and contains its own unique functionality,
+ * specific to this world.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class CandyLandScreen extends PlayScreen {
 
     /**

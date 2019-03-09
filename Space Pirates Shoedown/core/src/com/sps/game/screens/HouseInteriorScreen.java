@@ -13,9 +13,14 @@ import com.sps.game.maps.HomeInteriorMap;
 import com.sps.game.maps.HomeInteriorMap2;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
-
 import java.util.ArrayList;
 
+/**
+ * This class holds all the different maps for each house interior, and contains its own unique functionality,
+ * specific to the rooms.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class HouseInteriorScreen extends PlayScreen {
 
     /**

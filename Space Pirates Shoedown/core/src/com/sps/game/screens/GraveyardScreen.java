@@ -13,10 +13,15 @@ import com.sps.game.maps.MapFactory;
 import com.sps.game.sprites.AbstractNPC;
 import com.sps.game.sprites.Location;
 import com.sps.game.sprites.NonInteractiveNPC;
-
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This class holds all the different maps of the Graveyard World, and contains its own unique functionality,
+ * specific to this world.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class GraveyardScreen extends PlayScreen {
 
     /**

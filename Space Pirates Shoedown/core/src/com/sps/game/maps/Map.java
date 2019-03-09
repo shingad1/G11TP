@@ -10,7 +10,12 @@ import com.sps.game.sprites.Location;
 import com.sps.game.sprites.Player;
 import com.sps.game.Utility;
 
-public abstract class Map{//was abstract
+/**
+ * This class contains the common methods and fields for each Map.
+ * @author Miraj Shah and Miguel Abaquin.
+ * @version 1.0
+ */
+public abstract class Map{
     /**
      * Holds the name of the class
      */
@@ -20,8 +25,6 @@ public abstract class Map{//was abstract
      * Constant field to direct where the file is located.
      */
     public static final String ASSETS_PATH = "core/assets/tiledassets/";
-
-    //public static final float UNIT_SCALE = 1/16f;
 
     protected Json json; //may need to be removed
     /**
@@ -93,7 +96,7 @@ public abstract class Map{//was abstract
 
     /**
      * Returns the position of the player.
-     * @return
+     * @return Vector2 playerPosition
      */
     public Vector2 getPlayerPosition(){
         Location loc = p.getLocation();
@@ -112,15 +115,15 @@ public abstract class Map{//was abstract
 
     /**
      * Returns the collision layer of the map.
-     * @return
+     * @return TiledMapTileLayer collisionLayer
      */
     public TiledMapTileLayer getCollisionLayer() {
         return collisionLayer;
     }
 
     /**
-     * Returns the tiled map.
-     * @return
+     * Returns the current tiled map.
+     * @return TiledMap currentMap
      */
     public TiledMap getCurrentMap(){
         return currentMap;
