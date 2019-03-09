@@ -62,9 +62,9 @@ public class HomeWorldScreen extends PlayScreen {
         }
 
         for(int x = 0; x <= 6; x++ ) {
-            npc.add(new InteractiveNPC(736, 960, MapFactory.MapType.HomeWorldMap1, batch, "Linda"));
+            npc.add(new InteractiveNPC(736, 960, MapFactory.MapType.HomeWorldMap1, batch, "Lol"));
             npc.add(new InteractiveNPC(736, 1152, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
-            npc.add(new InteractiveNPC(736, 1280, MapFactory.MapType.HomeWorldMap1, batch,"Lee"));
+            //npc.add(new InteractiveNPC(736, 1280, MapFactory.MapType.HomeWorldMap1, batch,"Lee"));
         }
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);

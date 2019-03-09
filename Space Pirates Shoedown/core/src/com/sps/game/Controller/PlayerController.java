@@ -133,10 +133,6 @@
         case Input.Keys.O:
             System.out.println("Inventory exit");
             break;
-        case Input.Keys.B:
-            System.out.println("dialogue schtuff");
-
-            break;
         default:
             collisionCheck(keycode,collisionY,collisionX,tiledWidth,tiledHeight);
     }

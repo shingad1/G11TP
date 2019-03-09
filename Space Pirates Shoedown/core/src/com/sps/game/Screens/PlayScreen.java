@@ -24,6 +24,7 @@
     import com.sps.game.Controller.*;
     import com.sps.game.Controller.DialogueController;
     import com.sps.game.Inventory2.Inventory;
+    import com.sps.game.Scenes.DialogueHud;
     import com.sps.game.Scenes.InventoryHud;
     import com.sps.game.Scenes.HudScene;
     import com.sps.game.SpacePiratesShoedown;
@@ -137,12 +138,10 @@
     private com.badlogic.gdx.audio.Music sound;
     private MapManager mapManager;
 
-    public static DialogueController dialogController;
-
     private StoryController storyController = new StoryController();
     private TutorialController1 tutorialController = new TutorialController1();
 
-    public static Boolean dialogBoolean = false;
+    private DialogueHud dialogueHud;
 
     protected Random random;
 
@@ -176,7 +175,7 @@
         music.play();
         npcController = new ArrayList<NPCController>();
 
-        dialogController  = new DialogueController();
+        dialogueHud = new DialogueHud(game.batch,controller);
     }
 
     /**
@@ -280,12 +279,22 @@
         }
         hud.update();
         inventoryHud.update();
+
+        for(int i = 0; i < getInteractiveNPC().size(); i++) {
+            InteractiveNPC temp = getInteractiveNPC().get(i);
+            if (controller.npcInProximity(temp)) {
+                if(npc.contains(temp)){
+                    for(int x = 0; x < npc.size(); x++){
+                        if(npc.get(x).getName().equals(temp.getName())){
+                            dialogueHud.update(temp.getName());
+                        }
+                        else{System.out.println("no npc");}
+                    }
+                }
+            }
+        }
         gamecam.update();
         renderer.setView(gamecam);
-
-        if(dialogBoolean) {
-            dialogController.create();
-        }
     }
 
     /**
@@ -324,6 +333,7 @@
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
         inventoryHud.stage.draw(); //drawing the user hud
+        dialogueHud.stage.draw();
         batch.setProjectionMatrix(gamecam.combined);
         ArrayList<AbstractNPC> mapNPC = getMapNPC(currentMapState);
         if (mapNPC != null) {
@@ -348,13 +358,6 @@
         batch.end();
 
         changeMaps();
-
-        for (int i = 0; i < getInteractiveNPC().size(); i++) {
-            if(controller.npcInProximity(getInteractiveNPC().get(i))) {
-                dialogController.set(getInteractiveNPC().get(i).getName());
-                dialogBoolean = true;
-            }
-        }
     }
 
     @Override
