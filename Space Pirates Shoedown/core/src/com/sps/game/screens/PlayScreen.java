@@ -218,20 +218,17 @@ public abstract class PlayScreen implements Screen
      * Checks to see if any inputs are happening, and sets the gamecam.
      * @param <code>float</code> dt.
      */
-    public void update(float dt){
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-        {
+    public void update(float dt) {
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             pause = true;
-            try
-            {
+            try {
                 Thread.sleep(100);
-            }catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         handleInput(dt);
-        for (int i = 0; i < npcController.size(); i++){
+        for (int i = 0; i < npcController.size(); i++) {
             if (npc.get(i).getWorld().equals(currentMapState)) {
                 npcController.get(i).move();
             }
@@ -241,33 +238,13 @@ public abstract class PlayScreen implements Screen
         renderer.setView(gamecam);
         hud.update();
         merchantInventory.update();
-
-
-        for(InteractiveNPC npcTemp : getInteractiveNPC()){
-            if(controller.npcInProximity1(npcTemp)){
+        
+        for (InteractiveNPC npcTemp : getInteractiveNPC()) {
+            if (controller.npcInProximity1(npcTemp)) {
                 dialogueHud.update(npcTemp.getName());
             }
         }
-
-        /*for(int i = 0; i < getInteractiveNPC().size() - 1; i++){
-            InteractiveNPC temp = getInteractiveNPC().get(i);
-            if(controller.npcInProximity1(temp)){
-                System.out.println("nearby");
-                if(npc.contains(temp)){
-                    for(int x = 0; x < npc.size() - 1; x++){
-                        if(npc.contains(getInteractiveNPC().get(x).getName().equals(temp.getName()))){
-                            dialogueHud.update(temp.getName());
-                        }//else{System.out.println("no npc in npc");}
-                    }
-                }
-                //else{System.out.println("does not contain");}
-            }//else{System.out.println("no npc near by");}
-        }*/
-    }/*what this should do is check if there is a npc next to the player
-     if that npc is in the npc arraylist
-     if the interactive npc in the arraylist has the same name as temp.getName()
-     if all these are true >>> dialogueHud.update(temp.getName());
-     */
+    }
 
     /**
      * Clears the screen and draws the necessary textures.
