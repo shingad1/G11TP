@@ -1,4 +1,4 @@
-package com.sps.game.Scenes;
+package com.sps.game.scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.PlayerController;
+import com.sps.game.controller.PlayerController;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
