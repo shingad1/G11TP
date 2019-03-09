@@ -47,60 +47,75 @@ public class InteractiveNPC extends AbstractNPC{
         this.y = y;
         location = new Location(x,y);
         lindaAnimation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
-        otherAnimation = new npcAnimation(sb, this, "npcMerchantIdle.atlas", 1/2f);
+        otherAnimation = new npcAnimation(sb, this, "npcIdle.atlas", 1/2f);
         this.world = world;
         this.name = name;
     }
 
-    public npcAnimation getAnimation(){
-        if(name.equals("Linda")){
-            return lindaAnimation;
+    public npcAnimation getAnimation() {
+        if (getWorld().equals(MapFactory.MapType.HomeWorldMap1) || getWorld().equals(MapFactory.MapType.HomeWorldMap2)) {
+            if (name.equals("Linda")) {
+                otherAnimation = lindaAnimation;
+            } else {
+                otherAnimation = otherAnimation;
+            }
+        /*}
+        else if(getWorld().equals(MapFactory.MapType.CandyWorld1) || getWorld().equals(MapFactory.MapType.CandyWorld2)){
+
         }
-        else{
-            return otherAnimation;
+        else if (getWorld().equals(MapFactory.MapType.TropicalWorld1) || getWorld().equals(MapFactory.MapType.TropicalWorld2)){
+
         }
+        else if (getWorld().equals(MapFactory.MapType.GraveyardWorld1)){
+
+        }*/
+        }
+        return otherAnimation;
     }
 
-    public MapFactory.MapType getWorld(){return world;}
+        public MapFactory.MapType getWorld () {
+            return world;
+        }
 
-    @Override
-    public int getX() {
-        return x;
-    }
+        @Override
+        public int getX () {
+            return x;
+        }
 
-    @Override
-    public int getY() {
-        return y;
-    }
+        @Override
+        public int getY () {
+            return y;
+        }
 
-    @Override
-    public Vector2 getVelocity() {
-        return null;
-    }
+        @Override
+        public Vector2 getVelocity () {
+            return null;
+        }
 
-    @Override
-    public void setY(float newY) {
+        @Override
+        public void setY ( float newY){
 
-    }
+        }
 
-    @Override
-    public void setX(float newX) {
+        @Override
+        public void setX ( float newX){
 
-    }
+        }
 
-    public Location getLocation(){return location;}
+        public Location getLocation () {
+            return location;
+        }
 
-    @Override
-    public void changeState(String newState) {
+        @Override
+        public void changeState (String newState){
 
-    }
+        }
 
-    public String getName() {
-        return name;
-    }
+        public String getName () {
+            return name;
+        }
 
-    public String getType() {return "InteractiveNPC";}
-
-
-
+        public String getType () {
+            return "InteractiveNPC";
+        }
 }
