@@ -65,6 +65,13 @@ public class HomeWorldScreen extends PlayScreen {
                 i++;
             }
         }
+        if(currentMapState.equals(MapFactory.MapType.HomeWorldMap1)) {
+            npc.add(new NonInteractiveNPC(576, 704, MapFactory.MapType.HomeWorldMap1, batch, "Merchant"));
+
+        }else if (currentMapState.equals(MapFactory.MapType.HomeWorldMap2)){
+            //npc.add(new NonInteractiveNPC(288, 320, MapFactory.MapType.HomeWorldMap2, batch, "Merchant"));
+        }
+        npcController.add(new NPCController(npc.get(npc.size() - 1), getMap(getWorldMapByWorld(MapFactory.MapType.HomeWorldMap1)).getCollisionLayer()));
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
         p.setX(px); //change when moving worlds
