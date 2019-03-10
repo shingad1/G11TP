@@ -14,10 +14,15 @@ Marketman;I heard you saved Linda’s home...;I think the space pirates are goin
 ThirdNPCAfter;My mum always said oats make you big and strong;Someone clearly had their oats!
 BusinessNPCAfter;Wow you really saved Linda’s home;He must’ve been weak.
 EnemyTwo;You can't board our ship that easily
-SeventhNPC;We are all dedicated to maintaining the sweetness of our world; I hope the pirates don't ruin that
-EigthNP;Why is it getting so warm?;What if our world melts away!?;That would be so sticky and gross...
+MuffinWelcome;Welcome to CandyLand;Our world is pretty sweet;Not so much since the SpacePirates came along...;*sobs*
+MuffinRoleModel;Are you the one?;Sent from the heavens;To save us from these evil pirates;If so, there's more of them in the next map;If not, don't waste my time
+MuffinStranger;You look strange!
+MuffinSeventhNPC;We are all dedicated to maintaining the sweetness of our world; I hope the pirates don't ruin that
+MuffinEigthNP;Why is it getting so warm?;What if our world melts away!?;That would be so sticky and gross...
+MuffinScared;*Scared*;Are you one of them?!;I'll give you all my carrots!;Just don't hurt me!!
+MuffinWimp;There's some scary noises coming from that house;Could you go check that out?;I'm too scared to...;I mean have other things to do
 EnemyThree;...;...;...;AAAAA!;You caught me off guard!;I was in the middle of doing something!;Why is it so cold here?; We're going to heat this place up until the replacement gas for the ship arrives
-NinthNPC;Please help us!;Our guiding lady has fallen ill and is unable to protect our world;Her heart is connected to the sphere of our temple!;I wonder if those bastard pirates had anything to do with this…;Please I know you may have other things to do;but I’m sure our guiding lady can help you once she’s better;The temple can be located towards the south;Please see if our temple is ok
+MuffinNinthNPC;Please help us!;Our guiding lady has fallen ill and is unable to protect our world;Her heart is connected to the sphere of our temple!;I wonder if those bastard pirates had anything to do with this…;Please I know you may have other things to do;but I’m sure our guiding lady can help you once she’s better;The temple can be located towards the south;Please see if our temple is ok
 NinthNPCAfter;Thank you so much!; I don't know what you did but our guiding lady is back on her feet!;She hopes you can stop the pirates melting away our sweet sweet world.
 NinthNPCCondition1;mama can you help this brave warrior;...;hmm she doesn't think you're quite strong enough yet; get good kid try fight some more piratess
 NinthNPCCondition2;mama can you help this brave warrior;...;I think you're ready;cue the epic music

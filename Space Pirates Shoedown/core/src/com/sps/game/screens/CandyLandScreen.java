@@ -41,9 +41,9 @@ public class CandyLandScreen extends PlayScreen {
      */
     private int[] ybounds = {0, 1600};
 
-    public CandyLandScreen(SpacePiratesShoedown game) {
+    public CandyLandScreen(SpacePiratesShoedown game, Vector2 chooseMap, int px, int py) {
         super(game);
-        mapSelector = new Vector2(0,0);
+        mapSelector = chooseMap;
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)];
         currentMap = selectedMap.getCurrentMap();
         renderer = new OrthogonalTiledMapRenderer(currentMap);
@@ -85,10 +85,22 @@ public class CandyLandScreen extends PlayScreen {
                 i++;
             }
         }
+
+        if(currentMapState.equals(MapFactory.MapType.CandyWorld1)){
+            npc.add(new InteractiveNPC(480, 1184, MapFactory.MapType.CandyWorld1, batch, "MuffinWelcome"));
+            npc.add(new InteractiveNPC(1152, 672, MapFactory.MapType.CandyWorld1, batch, "MuffinSeventhNPC"));
+            npc.add(new InteractiveNPC(1504, 864, MapFactory.MapType.CandyWorld1, batch, "MuffinRoleModel"));
+            npc.add(new InteractiveNPC(384, 160, MapFactory.MapType.CandyWorld1, batch, "MuffinStranger"));
+        }
+        npc.add(new InteractiveNPC(832, 832, MapFactory.MapType.CandyWorld2, batch, "MuffinEigthNP"));
+        npc.add(new InteractiveNPC(1408, 448, MapFactory.MapType.CandyWorld2, batch, "MuffinScared"));
+        npc.add(new InteractiveNPC(512, 352, MapFactory.MapType.CandyWorld2, batch, "MuffinWimp"));
+        npc.add(new InteractiveNPC(1088, 1088, MapFactory.MapType.CandyWorld2, batch, "MuffinNinthNPC"));
+
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
-        p.setX(384);
-        p.setY(1280);
+        p.setX(px);
+        p.setY(py);
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbounds, ybounds, allLocations);
         gamecam.position.set(p.getX(),p.getY(),0);
@@ -145,6 +157,18 @@ public class CandyLandScreen extends PlayScreen {
             if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
                 dispose();
                 game.setScreen(new TropicalWorldScreen(game));
+            }
+            if(p.getLocation().equals(new Location(416, 992))){
+                oldState = MapFactory.MapType.CandyWorld1;
+                dispose();
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(0,1)));
+            }
+        }
+        if(currentMapState.equals(MapFactory.MapType.CandyWorld2)){
+            if(p.getLocation().equals(new Location(1152, 1184))){
+                oldState = MapFactory.MapType.CandyWorld2;
+                dispose();
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(1,1)));
             }
         }
         if(camX != 0 || camY != 0) {

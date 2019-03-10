@@ -6,13 +6,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.sps.game.controller.NPCController;
 import com.sps.game.controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
+import com.sps.game.maps.*;
 import com.sps.game.sprites.AbstractNPC;
 import com.sps.game.sprites.InteractiveNPC;
 import com.sps.game.sprites.Location;
-import com.sps.game.maps.HomeInteriorMap;
-import com.sps.game.maps.HomeInteriorMap2;
-import com.sps.game.maps.Map;
-import com.sps.game.maps.MapFactory;
+
 import java.util.ArrayList;
 
 /**
@@ -27,7 +25,7 @@ public class HouseInteriorScreen extends PlayScreen {
      * 2D array, that contains all the different house interiors
      */
     private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2()},
-                                 {null, null}};
+                                 {new CandyInteriorMap(), new CandyMansionMap()}};
     /**
      * Chooses the map to load from the array
      */
@@ -55,8 +53,17 @@ public class HouseInteriorScreen extends PlayScreen {
 
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selected);
-        p.setX(800);
-        p.setY(384);
+        if(currentMapState.equals(MapFactory.MapType.HomeInterior) ||currentMapState.equals(MapFactory.MapType.HomeInterior2 )){
+            System.out.println("home");
+            p.setX(800);
+            p.setY(384);
+        }
+        else if(currentMapState.equals(MapFactory.MapType.CandyInterior) || currentMapState.equals(MapFactory.MapType.CandyMansion)){
+            System.out.println("candy");
+            p.setX(832);
+            p.setY(416);
+        }
+
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbound, ybound, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
@@ -99,9 +106,17 @@ public class HouseInteriorScreen extends PlayScreen {
         if(p.getLocation().equals(new Location(800,352 )) || p.getLocation().equals(new Location(832, 384))){//will change
             dispose();
             if(oldState.equals(MapFactory.MapType.HomeWorldMap1)) {
+                dispose();
                 game.setScreen(new HomeWorldScreen(game, new Vector2(0,0),864, 608));
-            } else{
+            } else if(oldState.equals(MapFactory.MapType.HomeWorldMap2)){
+                dispose();
                 game.setScreen(new HomeWorldScreen(game, new Vector2(1,0),288, 640));
+            } else if(oldState.equals(MapFactory.MapType.CandyWorld1)){
+                dispose();
+                game.setScreen(new CandyLandScreen(game, new Vector2(0,0), 416, 928));
+            } else if(oldState.equals(MapFactory.MapType.CandyWorld2)){
+                dispose();
+                game.setScreen(new CandyLandScreen(game, new Vector2(1,0), 1152, 1152));
             }
         }
 

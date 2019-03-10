@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
  <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
  <tileset firstgid="1515" source="Resources/Floor.tsx"/>
@@ -12,6 +12,7 @@
  <tileset firstgid="3491" source="Resources/CandyLandTiles3.tsx"/>
  <tileset firstgid="3923" source="Resources/CandyFlooring3.tsx"/>
  <tileset firstgid="3924" source="Resources/CandyLandDecorTiles1.tsx"/>
+ <tileset firstgid="4500" source="../../HomeWorld/Resources/Tiles5.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJztlkEOwiAQRbtrdx7OQ6ln0ES9hcfwSKWLSZBkyvzB0jH+l0ykgsADhjoMhBBCCCGEkH/lNbbV9+Y6fYbwrswzr79NerteaB4IET28EcFFkDk90pl5priP9XJvD8nL5TPP0bz8DY+yb22sVpb81HJY5nRO9ZcUp7FeXtuPtbG2xOtxPGDRMjckPOcKCa8HslaWe6kMtP8oHuUz2r/nbKEeQnm3aM+S35E8cqz/Szz77cl3ZBzP2Y3qgczJE/SgBz3qY6D0mFs0D+0djraJ4FH7ztImYn7k662t/S94lGcJ+d2eHmug/nvvB0JPD8udkrfxeFj7b7mvrON41sl6tsr6Fo9atHps0X9PrLkR3YMQsi0zS2iQ4g==
@@ -19,7 +20,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1FEKgCAMAFB/uv85vUVfgYjYICPNN3igIo6JMx8pZQAAYCtXlONW1Htn85c6IKJ+z3frT3PVZ4/K1erP3vqIO3sjVzS+fjewil7/lPPZ+yr6L8xeBwAAAMDKTsL8zC0=
+   eJztlFEOAyEIRL1C0+v2hnupph8mG6II6kDWjsn7WV1hhOF6lXIRQgghhBBC/oq6Pu+irvt+ds4WHa29ul+/Zed8Mr939pKd80iH/G45h0L2e42t+WC2FtL/llheHb275cxZ6StvrBUdvXWKP3q5aXlHao2Kha5Vtg55/2ycHX5teVbOHvR7Wf6z6GjpkrMHrSNr7kT5w1qflTOod0HpiPCH9/5RTGs+iL7ScpzV8aR6eHPStO+oxyk6ZnJEscszWr0s9fTUXHvTSB09X0frkD11io6RV1ZratG3o28Q/ovQocV6Uj1GvblrhkTN28z7kfOWEEKi+QIWWpdK
   </data>
  </layer>
  <layer id="3" name="Door" width="50" height="50">

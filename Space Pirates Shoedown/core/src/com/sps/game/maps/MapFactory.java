@@ -21,6 +21,8 @@ public class MapFactory {
         HomeInterior2,
         CandyWorld1,
         CandyWorld2,
+        CandyInterior,
+        CandyMansion,
         TropicalWorld1,
         TropicalWorld2,
         GraveyardWorld1

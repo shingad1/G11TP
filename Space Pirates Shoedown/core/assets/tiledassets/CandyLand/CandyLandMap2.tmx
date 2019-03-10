@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" source="Resources/CandyGrass.tsx"/>
  <tileset firstgid="197" source="Resources/CandyLandTiles2.tsx"/>
  <tileset firstgid="357" source="Resources/pinktree.tsx"/>
@@ -30,7 +30,7 @@
  </layer>
  <layer id="5" name="Collision Layer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztl10OAjEIhDd6He9/G+9ifNikIRRmKNul2ia8aH/4YKDd49hjlfF6rGEIx/tZ2zbH2JkZhnL01mTFbbQOWr88DiueTOzleWht9mJrcXi503SBaKf3e3Roe8v4RLTNzBllkCyb43oORHsRDqb/ZXGgvRTlyOy5FofGbeWF4chm8DisNbM42PqqwGHVhjenp5XZHFl13vqGxkTOZzl6tRfl0OagepS+3JkPtOYQtn/nyDxbahbRVRUONsbMuu/w4pBhyL7o+SzHKmbpaiXbHLVshOMKduaORzmsXsH8F2GIrO29H601jC+oX+ccL64ZHEyseu8S6045ffHe8iMcno4YjTBr0HtV+5bRfGR00mpEi212j/A4onXY7luVA/EjoqtZHN4+kR57NccsY/pxZY6sXK3EgdyDszk8n6rmg/GN6Yt35yPCmaGr7D55RRwi+ajGVUVXm0PnWN1WHb/CIccH06Fd3A==
+   eJztl10OAjEIhDd6He9/G+9ifNikaSjMULYL2ia8aH/4YKDd49ijyng9ahjC8X7mts0xd2aEoRyjNVFxm62D1i+LQ4snE/v+PLQ2R7HVOKzcSbpAtDP63Tukvfv4eLTNzJll6Fmyc1hzKnAg2vNwMP0vigPtpShHZM/VOCRuLS8MRzSDxaGtWcXB1lcGDq02rDkjrazmiKrz1jc0Jv18lmNUe14OaQ6qx96XO/OB1hzC9u8ckWf3mkV0lYWDjTGz7jusOEQYsi96PstRxTRdVbLNkctmOK5gZ+54lEPrFcx/HgbP2tH7UVvD+IL6dc6x4hrBwcRq9C7R7pTTF+stP8Nh6YjRCLMGvVelbxnJR0YnrUak2Eb3CIvDW4ftvlk5ED88ulrFYe3j6bFXc6wyph9n5ojKVSUO5B5czWH5lDUfjG9MX7w7Hx7OCF1F98kr4uDJRzauLLraHDJHdas6foWjHx9XmV4K
   </data>
  </layer>
  <layer id="4" name="Doors" width="50" height="50">
