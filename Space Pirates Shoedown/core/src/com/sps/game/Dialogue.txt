@@ -1,7 +1,25 @@
-
-Bob;Oh my god my family’s shoes have been stolen!; My toes are so cold what are we going to do!?;I doubt you’re significant enough to help but there’s some in Linda’s house and she’s petrified! If you know anyone brave enough to help her out, please do let them know!;
-Enemy;No  don't kill meh, I’ll tell you everything;I've been ordered to come to your planet to take all yarr right shoes because space is cold and my daughter, my poor wee one was cold and i love her and i want her to be safe.;I had to turn to the pirates
+﻿Bob;Oh my god my family’s shoes have been stolen!;My toes are so cold...; WHAT ARE WE GOING TO DO!?;
+BusinessNPC;I doubt you’re significant enough to help, but there’s some in Linda’s house and she’s petrified!;If you know anyone brave enough to help her out, please do let them know!;
+AnotherNPC;I WAS GOING TO ASK LINDA TO PROM;SOMEONE SAVE HER!;
 ﻿FirstNPC;All of my family’s right shoe have been stolen;All my shoes are gone;Help my right foot is cold and moist
-SecondNPC;Quick!;Help me!;A monster in my house
-Enemy;No  don't kill meh, I’ll tell you everything;I've been ordered to come to your planet to take all yarr right shoes because space is cold and my daughter, my poor wee one was cold and i love her and i want her to be safe.;I had to turn to the pirates
-Linda;OMG thank you;I have my house back;I think there’s more on that spaceship that landed or whatever. Have fun dude!
+ThirdNPC;You’re not thinking of going into Linda’s home, right?;You’d be killed!;Well maybe not but they will steal your remaining shoe!;
+FourthNPC;Who the heck steals shoes?;Such jerks!;
+FifthNPC;I bought new shoes yesterday!; The pirates are going to ruin them;
+SixthNPC:Cheese!; Haha I'm taking photos of people's toes for the local paper!;
+Linda;...;...;There's someone in my home;
+Enemy;Grr.;
+EnemyAfter;Wait no please show mercy don’t kill me! I’ll tell you everything;I had to turn to the pirates;
+Linda;Thanks for that;The creepy old man by the market was asking for you;Something about being the chosen one;You can leave now;
+Marketman;I heard you saved Linda’s home...;I think the space pirates are going to be a big problem...;YOU;YOU MUST SAVE US;You can’t keep going into fights how you just did though;You need to build experience;You'll come across many more pirates on your journey;Through your battles you will come across weapons and power ups to add to your inventory;You can also use your gold to buy weapons;Would you like to buy one now?;I can see you have money on you so do you want one or not?;
+ThirdNPCAfter;My mum always said oats make you big and strong;Someone clearly had their oats!;
+BusinessNPCAfter;Wow you really saved Linda’s home;He must’ve been weak.;
+EnemyTwo;You can't board our ship that easily; 
+SeventhNPC;We are all dedicated to maintaining the sweetness of our world; I hope the pirates don't ruin that;
+EigthNP;Why is it getting so warm?;What if our world melts away!?;That would be so sticky and gross...;
+EnemyThree;...;...;...;AAAAA!;You caught me off guard!;I was in the middle of doing something!;Why is it so cold here?; We're going to heat this place up until the replacement gas for the ship arrives;
+NinthNPC;Please help us!;Our guiding lady has fallen ill and is unable to protect our world;Her heart is connected to the sphere of our temple!;I wonder if those bastard pirates had anything to do with this…;Please I know you may have other things to do;but I’m sure our guiding lady can help you once she’s better;The temple can be located towards the south;Please see if our temple is ok;
+NinthNPCAfter;Thank you so much!; I don't know what you did but our guiding lady is back on her feet!;She hopes you can stop the pirates melting away our sweet sweet world.;
+NinthNPCCondition1;mama can you help this brave warrior;...;hmm she doesn't think you're quite strong enough yet; get good kid try fight some more piratess;
+NinthNPCCondition2;mama can you help this brave warrior;...;I think you're ready;cue the epic music;
+ 
+ 

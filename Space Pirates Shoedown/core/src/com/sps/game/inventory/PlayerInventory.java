@@ -1,6 +1,5 @@
 package com.sps.game.inventory;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -11,9 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.PlayerController;
-
-import java.util.ArrayList;
+import com.sps.game.controller.InventoryController;
+import com.sps.game.controller.PlayerController;
 
 public class PlayerInventory {
     public Stage stage;

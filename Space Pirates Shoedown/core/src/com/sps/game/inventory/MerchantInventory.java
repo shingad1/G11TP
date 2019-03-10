@@ -3,18 +3,16 @@ package com.sps.game.inventory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.PlayerController;
+import com.sps.game.controller.PlayerController;
+import com.sps.game.controller.InventoryController;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
@@ -149,20 +147,8 @@ public class MerchantInventory {
         table.row();
         table.add(inventory);
         table.add(merchant).height(230);
+
         merchant.setWidth(200);
-
-
-
-
-
-
-/*
-        itemImages.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                 itemImages.getSelected();
-            }
-        });
-*/
 
         /*
             Add the list of images, specifically the one that has been selected

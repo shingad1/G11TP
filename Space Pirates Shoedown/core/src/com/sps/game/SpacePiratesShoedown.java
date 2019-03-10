@@ -1,12 +1,9 @@
 package com.sps.game;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.sps.game.Screens.MenuScreen;
-import com.sps.game.Screens.PlayScreen;
-import com.sps.game.Screens.SplashWorker;
+import com.sps.game.screens.MenuScreen;
+import com.sps.game.screens.SplashWorker;
 
 /**
  * This class creates the game and launches the Menu Screen.

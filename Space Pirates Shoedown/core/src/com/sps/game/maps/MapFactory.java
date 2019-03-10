@@ -2,6 +2,11 @@ package com.sps.game.maps;
 
 import java.util.Hashtable;
 
+/**
+ * This class holds each type of map and keeps them in a Hash Table.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class MapFactory {
 
     /**
@@ -17,7 +22,8 @@ public class MapFactory {
         CandyWorld1,
         CandyWorld2,
         TropicalWorld1,
-        TropicalWorld2
+        TropicalWorld2,
+        GraveyardWorld1
     }
 
     /**
