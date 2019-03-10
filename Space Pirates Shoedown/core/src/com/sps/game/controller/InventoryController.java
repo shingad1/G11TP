@@ -45,6 +45,9 @@ public class InventoryController {
      */
     public List<Image> itemImageList = new List<Image>(skin);
 
+    public List<Item> allItems = new List<Item>(skin);
+
+
     /**
      * Item objects which will be used in all collections.
      * @see #inventory
@@ -68,6 +71,18 @@ public class InventoryController {
      */
     public InventoryController() {
         setItems();
+
+
+        allItems.setItems(fuel,
+                          axe,
+                          fluxCapacitor,
+                          shoes,
+                          hamster,
+                          hammer,
+                          piratesEye,
+                          cucumber,
+                          shoeLaces,
+                          sword);
 
 
         /**
@@ -135,6 +150,17 @@ public class InventoryController {
 
     public List<String> getMerchantList() {
         return merchantInventory;
+    }
+
+    public Item findItem(String itemName) {
+        Item foundItem = null;
+
+        for (Item item : allItems.getItems()) {
+            if (itemName.equals(item.getName())) {
+                foundItem =  item;
+            }
+        }
+        return foundItem;
     }
 
     public List<Image> getImageList() { return itemImageList; }
