@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
  <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
  <tileset firstgid="1515" source="Resources/IndoorTiles1.tsx"/>
  <tileset firstgid="1707" source="Resources/IndoorTiles2.tsx"/>
  <tileset firstgid="1947" source="Resources/InteriorCity.tsx"/>
+ <tileset firstgid="2331" source="../Resources/Tiles5.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1L0KgzAUQOELoZnEZ+67+A7qk2jXurk6tB11EYIkKcGfJO25cBZxuB9yHW8iIxEREVGmXTG/YLjCggMHDhw4cODAgQPHWY6nTtsxaX/meyk7Sm2vsLTOoOX+zXGG7UjH9juZsz6PcRu2fX3VSqRx1Kp4Nx7q6JZde0cPHLst/+p4Lbu+HX0ycpj/X9vg2H/rPlvopOaoVHqOUF+MXYiIiCjPZhEmhDA=
+   eJzt1E0KgzAQQOGB0IBQejhP5F16h7Ynad3qzq0L26VuAkKTSPAnSfsG3k5kPkLSnUQ6IiIiokw7Yn7BcIQFBw4cOHDgwIEDB469HI1O29Frf/PvUnZctL2zJTOtlmrJsYdtS4c5p7L4/pc5sxh3w7avr5sSuTt6qHh3PNTxnHZ9OapxrLb8q2OYdn07+mTkmL+/tsGx/q77bKGTmuOq0nOE+mLsQkRERHk2Ard0hIs=
   </data>
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1DEOgCAQRUEKvRP3v423MLYWCJG4KxmT6Sz+w2DdSqkAAAAAAB879j7RO2d1Ru+Y3XE9re8YvfO+5Wlflv2tjp5zztYx2pP9f9C7bZWO1rvRDaPnvEpHRn+5v2/borfoAADodwLptqTp
+   eJzt1EEOQDAUBFALFm7Uc7j/BdxCRGwsqBK/mid5C0kXMyaV+q5LAAAAAAAfm4c80TmfmsZNdI639trf1+dsx+icxyxX+fadatmr9H7UskNpn9r/B7nZWulxdja6w93v3EqPGv3l/j7tFp1FDwCAfAtP8qF3
   </data>
  </layer>
  <layer id="3" name="Door" width="50" height="50">

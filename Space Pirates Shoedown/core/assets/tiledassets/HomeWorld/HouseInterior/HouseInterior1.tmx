@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
  <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
  <tileset firstgid="1515" source="Resources/IndoorTiles1.tsx"/>
  <tileset firstgid="1707" source="Resources/IndoorTiles2.tsx"/>
  <tileset firstgid="1947" source="Resources/InteriorCity.tsx"/>
+ <tileset firstgid="2331" source="../Resources/Tiles5.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJzt0z0OQEAQQOFNNlTi/r074CS4glaBEoVkC1amsTO8SV4/3/6MmXMjERERkdHemC8Y3rDgwIEDBw4cOHDgwPFXx5TL0+go8+uKSKkcsbO04jgmtktsXwuOu2rvXBPUeplFy310+9590HDhSHEfRxLHvO+9BK1GHVr/x/m27gaHLseTTTraHJXX55D6UuxCRERENtsAI/l1uw==
@@ -12,7 +13,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt08ENgCAMQFEPuhP7b+MWXg3RSDlIIY/k3fubUvZtKwAAAAAAPzuPuNEz93bWvaNmeXrRjuze7ibD/iP7nelP3Ofo+ddZWr5mmqWjnrWlc+WOTD2td7dyQ+aO6A3OZJUOAIBWFw5tn80=
+   eJzt07sJgDAUBdAUWriRc7j/Am5hJYpITFKYDydwCFjd+3xZpxBWAAAAAICf7XO+2plLbMt1n2pleTs5/6v2LGPzje3V83vtzCnz7elN3HOUvOtWunxl6qXHM2tKz5F7tNQnde9G7tByj9wd7MkoPQAAUh3If52g
   </data>
  </layer>
  <layer id="3" name="Door" width="50" height="50">

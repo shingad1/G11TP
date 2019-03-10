@@ -31,7 +31,7 @@ public class HouseInteriorScreen extends PlayScreen {
     /**
      * Chooses the map to load from the array
      */
-    private static Vector2 interiorSelector;
+    private Vector2 interiorSelector;
     /**
      * An array containing the bounds of the x axis
      */
@@ -41,9 +41,9 @@ public class HouseInteriorScreen extends PlayScreen {
      */
     private int[] ybound = {0,1600};
 
-    public HouseInteriorScreen(SpacePiratesShoedown game) {
+    public HouseInteriorScreen(SpacePiratesShoedown game, Vector2 chooseMap) {
         super(game);
-        interiorSelector= new Vector2(0,0);
+        interiorSelector= chooseMap;
         Map selected = interiors[Math.round(interiorSelector.y)][Math.round(interiorSelector.x)];
         currentMap = selected.getCurrentMap();
         renderer = new OrthogonalTiledMapRenderer(currentMap);
@@ -51,12 +51,12 @@ public class HouseInteriorScreen extends PlayScreen {
         currentMapState = selected.getCurrentMapType();
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
-        npc.add(new InteractiveNPC(1088, 736, MapFactory.MapType.HomeInterior, batch, ""));
-        //npcController.add(new NPCController(npc.get(0), getMap(getWorldMapByWorld(currentMapState)).getCollisionLayer()));
+        npc.add(new InteractiveNPC(862, 480, MapFactory.MapType.HomeInterior, batch, ""));
+
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selected);
         p.setX(800);
-        p.setY(448);
+        p.setY(384);
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbound, ybound, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
@@ -96,7 +96,7 @@ public class HouseInteriorScreen extends PlayScreen {
      */
     @Override
     public void changeMaps() {
-        if(p.getLocation().equals(new Location(800,384 )) || p.getLocation().equals(new Location(832, 384))){//will change
+        if(p.getLocation().equals(new Location(800,352 )) || p.getLocation().equals(new Location(832, 384))){//will change
             dispose();
             if(oldState.equals(MapFactory.MapType.HomeWorldMap1)) {
                 game.setScreen(new HomeWorldScreen(game, new Vector2(0,0),864, 608));
@@ -130,9 +130,5 @@ public class HouseInteriorScreen extends PlayScreen {
             }
         }
         return null;
-    }
-
-    public static void setMap(int x){
-        interiorSelector = new Vector2(0,x);
     }
 }
