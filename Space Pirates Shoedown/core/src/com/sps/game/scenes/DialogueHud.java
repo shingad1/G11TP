@@ -74,7 +74,10 @@ public class DialogueHud {
      * Holds the current line of text.
      */
     Label label;
-
+    /**
+     * Holds a boolean value, to indicate if an NPC should move or not. True if the NPC can move, otherwise false.
+     */
+    public static boolean move;
 
     public DialogueHud(SpriteBatch sb, PlayerController playerController) {
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
@@ -88,7 +91,6 @@ public class DialogueHud {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -154,6 +156,7 @@ public class DialogueHud {
         if (Gdx.input.isKeyPressed(Input.Keys.B) && oldInput == null) {
             formatting();
             show(npcName);
+            //potentially reset move here?
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.E) && oldInput != null) {
@@ -162,9 +165,12 @@ public class DialogueHud {
             counter = 0;
             Gdx.input.setInputProcessor(oldInput);
             oldInput = null;
-            if(textArea.getContentTable() != null){
+            if(textArea.getContentTable() != null){ //check if needed
                 textArea.getContentTable().clear();
             }
+            /*if(npcName.equals("ThirdNPC")){
+                move = true;
+            }*/
         }
     }
 
@@ -253,5 +259,13 @@ public class DialogueHud {
             dialogHM.put(temp[0], val);
         }
         bufferedReader.close();
+    }
+
+    /**
+     * Returns a boolean indicating if a NPC can move or not. True if they can, False if they can't
+     * @return boolean move
+     */
+    public static boolean getMove(){
+        return move;
     }
 }

@@ -237,7 +237,7 @@ public abstract class PlayScreen implements Screen
         hud.update();
         merchantInventory.update();
         
-        for (InteractiveNPC npcTemp : getInteractiveNPC()) {
+        for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity1(npcTemp)) {
                 dialogueHud.update(npcTemp.getName());
             }
@@ -375,11 +375,14 @@ public abstract class PlayScreen implements Screen
      * Returns an ArrayList containing all the InteractiveNPC's in the world.
      * @return ArrayList interactiveNPCs
      */
-    public ArrayList<InteractiveNPC> getInteractiveNPC() {
-        ArrayList<InteractiveNPC> interactiveNPCs = new ArrayList<InteractiveNPC>();
+    public ArrayList<AbstractNPC> getInteractiveNPC() {
+        ArrayList<AbstractNPC> interactiveNPCs = new ArrayList<AbstractNPC>();
         for(AbstractNPC nonPlayingCharacter : npc){
             if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
                 interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
+            }
+            else  if(nonPlayingCharacter.getClass() == InteractiveNPCMoving.class){
+                interactiveNPCs.add((InteractiveNPCMoving) nonPlayingCharacter);
             }
         }
         return interactiveNPCs;
@@ -395,6 +398,7 @@ public abstract class PlayScreen implements Screen
             if(nonPlayingCharacter.getClass() == NonInteractiveNPC.class){
                 nonInteractiveNPCs.add((NonInteractiveNPC) nonPlayingCharacter);
             }
+
         }
         return nonInteractiveNPCs;
     }

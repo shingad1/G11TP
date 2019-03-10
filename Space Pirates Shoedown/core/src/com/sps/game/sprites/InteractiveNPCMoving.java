@@ -62,7 +62,7 @@ public class InteractiveNPCMoving extends AbstractNPC {
     private String name;
 
 
-    public InteractiveNPCMoving(int x, int y, MapFactory.MapType world, SpriteBatch sb, String role) {
+    public InteractiveNPCMoving(int x, int y, MapFactory.MapType world, SpriteBatch sb, String role, String name) {
         this.x = x;
         this.y = y;
 

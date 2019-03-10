@@ -121,6 +121,11 @@ public class NonInteractiveNPC extends AbstractNPC {
 
         public void changeState(String newState) { state = newState; }
 
-        public Location getLocation(){return location;}
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    public Location getLocation(){return location;}
 
 }
