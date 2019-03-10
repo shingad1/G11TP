@@ -183,13 +183,13 @@ public class HomeWorldScreen extends PlayScreen {
             } else if(p.getLocation().equals(new Location(288, 704))){
                 oldState = MapFactory.MapType.HomeWorldMap2;
                 dispose();
-                game.setScreen(new HouseInteriorScreen(game));
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(1,0)));
             }
         }
         if(p.getLocation().equals(new Location(864, 640)) && currentMapState.equals(MapFactory.MapType.HomeWorldMap1)){
             oldState = MapFactory.MapType.HomeWorldMap1;
             dispose();
-            game.setScreen(new HouseInteriorScreen(game));
+            game.setScreen(new HouseInteriorScreen(game, new Vector2(0,0)));
         }
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds

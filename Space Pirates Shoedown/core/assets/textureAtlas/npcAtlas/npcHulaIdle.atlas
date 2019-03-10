@@ -1,0 +1,11 @@
+npcHulaIdle.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+npcIdle
+  rotate: false
+  xy: 0, 0
+  size: 16, 30
+  orig: 16, 30
+  offset: 0, 0
+  index: -1
