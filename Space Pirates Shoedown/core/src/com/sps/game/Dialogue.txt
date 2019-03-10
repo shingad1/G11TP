@@ -5,7 +5,7 @@ FirstNPC;All of my family’s right shoe have been stolen;All my shoes are gone;
 ThirdNPC;You’re not thinking of going into Linda’s home, right?;You’d be killed!;Well maybe not but they will steal your remaining shoe!
 FourthNPC;Who the heck steals shoes?;Such jerks!
 FifthNPC;I bought new shoes yesterday!; The pirates are going to ruin them
-SixthNPC:Cheese!; Haha I'm taking photos of people's toes for the local paper!;
+SixthNPC;Cheese!; Haha I'm taking photos of people's toes for the local paper!
 Linda;...;...;There's someone in my home
 Enemy;Grr.
 EnemyAfter;Wait no please show mercy don’t kill me! I’ll tell you everything;I had to turn to the pirates
