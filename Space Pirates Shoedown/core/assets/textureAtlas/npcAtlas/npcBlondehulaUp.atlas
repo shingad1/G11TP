@@ -1,0 +1,26 @@
+npcBlondehulaUp.png
+size: 13, 87
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blondeUp1
+  rotate: false
+  xy: 0, 0
+  size: 13, 29
+  orig: 13, 29
+  offset: 0, 0
+  index: -1
+blondeUp2
+  rotate: false
+  xy: 0, 29
+  size: 13, 29
+  orig: 13, 29
+  offset: 0, 0
+  index: -1
+blondeUp3
+  rotate: false
+  xy: 0, 58
+  size: 13, 29
+  orig: 13, 29
+  offset: 0, 0
+  index: -1

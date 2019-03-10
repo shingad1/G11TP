@@ -68,7 +68,20 @@ public class TropicalWorldScreen extends PlayScreen {
                 world = MapFactory.MapType.TropicalWorld2;
             }
             if(checkPosition(location, world)){
-                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, ""));//need to change role
+                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, "Hula"));//need to change role
+                npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
+                i++;
+            }
+            int x1 = random.nextInt(49);
+            int y1 = random.nextInt(49);
+            Location loc = new Location(x1 * 32, y1 * 32);
+            if(random.nextBoolean()){
+                world = MapFactory.MapType.TropicalWorld1;
+            } else{
+                world = MapFactory.MapType.TropicalWorld2;
+            }
+            if(checkPosition(location, world)){
+                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, "Blondehula"));//role to change
                 npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
                 i++;
             }

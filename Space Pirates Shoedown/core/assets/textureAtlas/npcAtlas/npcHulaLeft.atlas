@@ -1,0 +1,25 @@
+npcHulaLeft.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+npcLeft1
+  rotate: false
+  xy: 0, 0
+  size: 13, 29
+  orig: 13, 29
+  offset: 0, 0
+  index: -1
+npcLeft2
+  rotate: false
+  xy: 0, 29
+  size: 13, 29
+  orig: 13, 29
+  offset: 0, 0
+  index: -1
+npcLeft3
+  rotate: false
+  xy: 0, 58
+  size: 13, 29
+  orig: 13, 29
+  offset: 0, 0
+  index: -1
