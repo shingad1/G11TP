@@ -15,9 +15,9 @@
    eJzt07ENgDAMRcF0sH/LUoyEmMAoAmJbdxL9f3IYAwAAAOjo3FYv4Njf+arvX92iI1dHREcuVXZGdPwreuPVOzr8x0/vkalzpiPjzbrcI1Jl52327WTrq7YXAOBLF5crlnk=
   </data>
  </layer>
- <layer id="2" name="CollisionLayer" width="50" height="50" visible="0">
+ <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+   eJzt1csJgDAQRVEX2lP678YuxIWbkM9MEnijXuGsJDDXGE37tiUAAAAAAH5uxaVuyDtGu9QNrT3xrFXPfzuPsTUP9fz5PKPe2FBaH6nD2tZ7Duom6359pSPiWen9C6LMOdtRalHPvOrd8jyDKFp7Ealj5ptbou6ozWtpiXJ2vB2RvrczHbV76g5Po3qeVS3qWegAAACwuQDb16eH
   </data>
  </layer>
  <layer id="3" name="Door" width="50" height="50">
