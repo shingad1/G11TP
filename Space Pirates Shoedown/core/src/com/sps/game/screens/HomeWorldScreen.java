@@ -75,8 +75,15 @@ public class HomeWorldScreen extends PlayScreen {
             npcController.add(new NPCController(npc.get(npc.size() - 1), getMap(getWorldMapByWorld(MapFactory.MapType.HomeWorldMap1)).getCollisionLayer()));
             npc.add(new InteractiveNPC(768, 1216, MapFactory.MapType.HomeWorldMap1, batch, "Bob"));
             npc.add(new InteractiveNPC(832, 576, MapFactory.MapType.HomeWorldMap1, batch, "ThirdNPC"));//need to make them first talk then they can move away
-            npc.add(new InteractiveNPC(800, 608, MapFactory.MapType.HomeWorldMap1, batch, "Linda"));
+            npc.add(new InteractiveNPC(768, 896, MapFactory.MapType.HomeWorldMap1, batch, "BusinessNPC"));
+            npc.add(new InteractiveNPC(224, 192, MapFactory.MapType.HomeWorldMap1, batch, "FirstNPC"));
+            npc.add(new InteractiveNPC(736, 608, MapFactory.MapType.HomeWorldMap1, batch, "AnotherNPC"));
+            //need to add marketman- but dialogue should only work after they defeat the enemy
         }
+        npc.add(new InteractiveNPC(128, 864, MapFactory.MapType.HomeWorldMap2, batch, "FourthNPC"));
+        npc.add(new InteractiveNPC(896, 512, MapFactory.MapType.HomeWorldMap2, batch, "FifthNPC"));
+        npc.add(new InteractiveNPC(1056, 1088, MapFactory.MapType.HomeWorldMap2, batch, "SixthNPC"));
+
 
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
