@@ -1,56 +1,53 @@
-/*
 package com.sps.game.profile;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import java.io.FileReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.ParseException;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
+/*java -classpath.json-simple-1.1.1.jar;
+        java -classpath .;json-simple-1.1.1.jar*/
 
 public class test {
-    public static void main(String[] args) {
+
+    static JSONParser parser;
+    static JSONObject gameState;
+
+    public void test(){
+
+
+        parser = new JSONParser();
+        JSONArray array = null;
         try {
-            FileReader fileReader = new FileReader("default.sav");
-            JSONArray jsonArray = new jsonReader.readArray();
-            JSONParser parser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) parser.parse(fileReader);
-            //JSONArray jsonArray = (JSONArray) parser.parse(new FileReader("default.sav"));
-        }catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        } catch (NullPointerException ex) {
-            ex.printStackTrace();
+            array = (JSONArray) parser.parse(new FileReader("test.json"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
-        for (
-                Object o : jsonArray) {
-            JSONObject person = (JSONObject) o;
+        for (Object object : array) {
+            gameState = (JSONObject) object;
 
-            String strName = (String) person.get("name");
-            System.out.println("Name::::" + strName);
+            String n = "";
 
-            String strCity = (String) person.get("city");
-            System.out.println("City::::" + strCity);
-
-            JSONArray arrays = (JSONArray) person.get("cars");
-            for (Object object : arrays) {
-                System.out.println("cars::::" + object);
+            if (n.equals("x")) {
+                String p = (String) gameState.get("x");
+                int x = Integer.parseInt(p);
+                System.out.println(x);
             }
-            String strJob = (String) person.get("job");
-            System.out.println("Job::::" + strJob);
-            System.out.println();
+
+            /*String strName = (String) gameState.get("name");
+            System.out.println("Name: " + strName);
+
+            int xx = Integer.getInteger("x");
+            (long) x = gameState.get("x");
+            System.out.println(x);
+            int y = gameState.getInt("y");
+            System.out.println(y);*/
         }
 
     }
 }
-*/

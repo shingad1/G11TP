@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
+import com.sps.game.profile.test;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
@@ -167,6 +168,8 @@ public abstract class PlayScreen implements Screen
     /**
      * Holds the current state of the game
      */
+
+    test test;
     private static GameState gameState;
 
     private DialogueHud dialogueHud;
@@ -187,6 +190,8 @@ public abstract class PlayScreen implements Screen
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
+
+        test = new test();
     }
 
     /**
@@ -307,6 +312,8 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
+
+        test.test();
     }
 
     @Override
