@@ -2,7 +2,7 @@ package com.sps.game.sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.sps.game.animation.npcAnimation;
+import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
 
 import java.util.HashMap;
@@ -52,7 +52,7 @@ public class InteractiveNPCMoving extends AbstractNPC {
      * Key = A string which specifies the movement
      * Value = The textureAtlas to display.
      */
-    private HashMap<String, npcAnimation> animation;
+    private HashMap<String, NpcAnimation> animation;
 
     private String state;
 
@@ -70,20 +70,20 @@ public class InteractiveNPCMoving extends AbstractNPC {
         velocity = new Vector2();
         velocity.x = 0;
         velocity.y = 0;
-        animation = new HashMap<String, npcAnimation>();
+        animation = new HashMap<String, NpcAnimation>();
         setName(name);
 
-        animation.put("down", new npcAnimation(sb, this, "npc" + role + "Down.atlas", 1 / 15f));
-        animation.put("up", new npcAnimation(sb, this, "npc" + role + "Up.atlas", 1 / 15f));
-        animation.put("left", new npcAnimation(sb, this, "npc" + role + "Left.atlas", 1 / 15f));
-        animation.put("right", new npcAnimation(sb, this, "npc" + role + "Right.atlas", 1 / 15f));
-        animation.put("idle", new npcAnimation(sb, this, "npc" + role + "Idle.atlas", 1 / 15f));
+        animation.put("down", new NpcAnimation(sb, this, "npc" + role + "Down.atlas", 1 / 15f));
+        animation.put("up", new NpcAnimation(sb, this, "npc" + role + "Up.atlas", 1 / 15f));
+        animation.put("left", new NpcAnimation(sb, this, "npc" + role + "Left.atlas", 1 / 15f));
+        animation.put("right", new NpcAnimation(sb, this, "npc" + role + "Right.atlas", 1 / 15f));
+        animation.put("idle", new NpcAnimation(sb, this, "npc" + role + "Idle.atlas", 1 / 15f));
 
         location = new Location(x, y);
 
     }
 
-    public npcAnimation getAnimation(String direction) {return animation.get(direction);}
+    public NpcAnimation getAnimation(String direction) {return animation.get(direction);}
 
     /**
      * Returns the NPc x Axis
@@ -121,7 +121,7 @@ public class InteractiveNPCMoving extends AbstractNPC {
         x += newX;
     }
 
-    public npcAnimation getAnimation() {
+    public NpcAnimation getAnimation() {
         return animation.get(state);
     }
 

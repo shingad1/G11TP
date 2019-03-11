@@ -9,25 +9,25 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.sps.game.sprites.Location;
 import com.sps.game.sprites.Player;
 
-public class playerAnimation extends ApplicationAdapter {
+public class PlayerAnimation extends ApplicationAdapter {
     /**
      * Holds all the sprites that will be displayed on the screen
-     * @see #playerAnimation
+     * @see #PlayerAnimation
      */
     private SpriteBatch batch;
     /**
      * SpriteSheet created by the TexturePacker
-     * @see #playerAnimation
+     * @see #PlayerAnimation
      */
     private TextureAtlas playerAtlas;
     /**
      * animation object stores a list of objects representing an animated sequence.
-     * @see #playerAnimation
+     * @see #PlayerAnimation
      */
     private Animation <TextureRegion> animation;
     /**
      * Delta time
-     *@see #playerAnimation
+     *@see #PlayerAnimation
      */
     private float timePassed = 0;
     /**
@@ -37,7 +37,7 @@ public class playerAnimation extends ApplicationAdapter {
 
    private Player player;
 
-    public playerAnimation(SpriteBatch sb,Player player,String animationName, float duration) {
+    public PlayerAnimation(SpriteBatch sb, Player player, String animationName, float duration) {
         this.player = player;
         batch = sb;
         playerAtlas = new TextureAtlas(ASSETS_PATH + animationName);

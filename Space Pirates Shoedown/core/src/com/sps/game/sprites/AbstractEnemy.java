@@ -1,6 +1,6 @@
 package com.sps.game.sprites;
 
-import com.sps.game.animation.enemyAnimation;
+import com.sps.game.animation.EnemyAnimation;
 import com.sps.game.controller.CombatSystem;
 import com.sps.game.screens.Fighter;
 
@@ -25,7 +25,7 @@ public abstract class AbstractEnemy implements Fighter {
 
     protected CombatSystem system;
 
-    protected HashMap<String, enemyAnimation> fightAnimation;
+    protected HashMap<String, EnemyAnimation> fightAnimation;
 
     /**
      * Abstract method that will return the enemies X coordinate.
@@ -57,6 +57,6 @@ public abstract class AbstractEnemy implements Fighter {
 
     public void setCombatSystem(CombatSystem system){this.system = system;}
 
-    public abstract HashMap<String,enemyAnimation> getFightAnimation();
+    public abstract HashMap<String, EnemyAnimation> getFightAnimation();
 
 }

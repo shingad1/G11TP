@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.sps.game.sprites.AbstractNPC;
 
-public class npcAnimation extends ApplicationAdapter {
+public class NpcAnimation extends ApplicationAdapter {
     /**
      * Holds all of the sprites that will be displayed on the screen
      */
@@ -32,7 +32,7 @@ public class npcAnimation extends ApplicationAdapter {
 
     private AbstractNPC npc;
 
-    public npcAnimation(SpriteBatch sb, AbstractNPC npc, String animationName, float duration) {
+    public NpcAnimation(SpriteBatch sb, AbstractNPC npc, String animationName, float duration) {
         this.npc = npc;
         batch = sb;
         npcAtlas = new TextureAtlas(ASSETS_PATH + animationName);

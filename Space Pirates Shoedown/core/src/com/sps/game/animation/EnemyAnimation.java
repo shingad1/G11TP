@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.Location;
 
-public class enemyAnimation extends ApplicationAdapter {
+public class EnemyAnimation extends ApplicationAdapter {
     /**
      * Holds all of the sprites that will be displayed on the screen
      */
@@ -33,7 +33,7 @@ public class enemyAnimation extends ApplicationAdapter {
 
     private AbstractEnemy enemy;
 
-    public enemyAnimation(SpriteBatch sb, AbstractEnemy enemy, String animationName, float duration) {
+    public EnemyAnimation(SpriteBatch sb, AbstractEnemy enemy, String animationName, float duration) {
         this.enemy = enemy;
         batch = sb;
         enemyAtlas = new TextureAtlas(ASSETS_PATH + animationName);

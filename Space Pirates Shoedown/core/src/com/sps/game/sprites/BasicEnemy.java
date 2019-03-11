@@ -1,7 +1,7 @@
 package com.sps.game.sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.sps.game.animation.enemyAnimation;
+import com.sps.game.animation.EnemyAnimation;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -12,7 +12,7 @@ public class BasicEnemy extends AbstractEnemy{
      */
     public static String WORLD = "Earth";
 
-    private HashMap<String, enemyAnimation> fightAnimation;
+    private HashMap<String, EnemyAnimation> fightAnimation;
 
     public BasicEnemy(int x, int y, SpriteBatch sb){
         this.x = x;
@@ -21,12 +21,12 @@ public class BasicEnemy extends AbstractEnemy{
         attack = 20;
         defence = 0;
         changeInString();
-        fightAnimation = new HashMap<String, enemyAnimation>();
-        fightAnimation.put("Idle",new enemyAnimation(sb, this, "enemyIdle.atlas", 1/15f));
-        fightAnimation.put("Right",new enemyAnimation(sb, this, "enemyMoveRight.atlas", 1/15f));
-        fightAnimation.put("Left",new enemyAnimation(sb, this, "enemyMoveLeft.atlas", 1/15f));
-        fightAnimation.put("basicAttack",new enemyAnimation(sb, this, "enemyBasicAttack.atlas", 1/3f));
-        fightAnimation.put("block",new enemyAnimation(sb, this, "enemyBasicBlock.atlas", 1/3f));
+        fightAnimation = new HashMap<String, EnemyAnimation>();
+        fightAnimation.put("Idle",new EnemyAnimation(sb, this, "enemyIdle.atlas", 1/15f));
+        fightAnimation.put("Right",new EnemyAnimation(sb, this, "enemyMoveRight.atlas", 1/15f));
+        fightAnimation.put("Left",new EnemyAnimation(sb, this, "enemyMoveLeft.atlas", 1/15f));
+        fightAnimation.put("basicAttack",new EnemyAnimation(sb, this, "enemyBasicAttack.atlas", 1/3f));
+        fightAnimation.put("block",new EnemyAnimation(sb, this, "enemyBasicBlock.atlas", 1/3f));
     }
 
     /**
@@ -39,7 +39,7 @@ public class BasicEnemy extends AbstractEnemy{
         }
     }
 
-    public HashMap<String,enemyAnimation> getFightAnimation(){return fightAnimation;}
+    public HashMap<String, EnemyAnimation> getFightAnimation(){return fightAnimation;}
 
     /**
      * Gets the enemies X coordinate.

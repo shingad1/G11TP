@@ -49,19 +49,21 @@ public class HouseInteriorScreen extends PlayScreen {
         currentMapState = selected.getCurrentMapType();
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
-        npc.add(new InteractiveNPC(862, 480, MapFactory.MapType.HomeInterior, batch, ""));
+        //npc.add(new InteractiveNPC(862, 480, MapFactory.MapType.HomeInterior, batch, ""));
 
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selected);
         if(currentMapState.equals(MapFactory.MapType.HomeInterior) ||currentMapState.equals(MapFactory.MapType.HomeInterior2 )){
-            System.out.println("home");
             p.setX(800);
             p.setY(384);
         }
         else if(currentMapState.equals(MapFactory.MapType.CandyInterior) || currentMapState.equals(MapFactory.MapType.CandyMansion)){
-            System.out.println("candy");
             p.setX(832);
             p.setY(416);
+        }
+
+        if(currentMapState.equals(MapFactory.MapType.HomeInterior)){
+            npc.add(new InteractiveNPC(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
         }
 
         p.setBatch(batch);

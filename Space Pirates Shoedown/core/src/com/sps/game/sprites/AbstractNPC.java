@@ -1,7 +1,7 @@
 package com.sps.game.sprites;
 
 import com.badlogic.gdx.math.Vector2;
-import com.sps.game.animation.npcAnimation;
+import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
 
 
@@ -44,7 +44,7 @@ public abstract class AbstractNPC {
 
     public abstract MapFactory.MapType getWorld();
 
-    public abstract npcAnimation getAnimation();
+    public abstract NpcAnimation getAnimation();
 
     public Location getLocation(){return location;}
 

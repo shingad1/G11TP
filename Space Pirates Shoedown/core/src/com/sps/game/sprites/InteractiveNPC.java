@@ -2,7 +2,7 @@ package com.sps.game.sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.sps.game.animation.npcAnimation;
+import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
 
 import java.util.Random;
@@ -34,7 +34,7 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Vector2 velocity;
 
-    private npcAnimation lindaAnimation, muffinAnimation, otherAnimation;
+    private NpcAnimation lindaAnimation, muffinAnimation, otherAnimation, basicEnemyAnimation;
 
     private MapFactory.MapType world;
     /**
@@ -46,14 +46,15 @@ public class InteractiveNPC extends AbstractNPC{
         this.x = x;
         this.y = y;
         location = new Location(x,y);
-        lindaAnimation = new npcAnimation(sb,this,"cryingNPC.atlas",1/2f);
-        muffinAnimation = new npcAnimation(sb,this,"interactiveCandy.atlas",1/2f);
-        otherAnimation = new npcAnimation(sb, this, "interactiveHome.atlas", 1/2f);
+        lindaAnimation = new NpcAnimation(sb,this,"cryingNPC.atlas",1/2f);
+        muffinAnimation = new NpcAnimation(sb,this,"interactiveCandy.atlas",1/2f);
+        basicEnemyAnimation = new NpcAnimation(sb,this,"regenemyIdle.atlas",1/2f);
+        otherAnimation = new NpcAnimation(sb, this, "interactiveHome.atlas", 1/2f);
         this.world = world;
         this.name = name;
     }
 
-    public npcAnimation getAnimation() {
+    public NpcAnimation getAnimation() {
         if (getWorld().equals(MapFactory.MapType.HomeWorldMap1) || getWorld().equals(MapFactory.MapType.HomeWorldMap2)) {
             if (name.equals("Linda")) {
                 otherAnimation = lindaAnimation;
@@ -65,6 +66,8 @@ public class InteractiveNPC extends AbstractNPC{
             if(name.contains("Muffin")) {
                 otherAnimation = muffinAnimation;
             }
+        }else{
+            otherAnimation = basicEnemyAnimation;
         }
         /*
         else if (getWorld().equals(MapFactory.MapType.TropicalWorld1) || getWorld().equals(MapFactory.MapType.TropicalWorld2)){

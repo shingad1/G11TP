@@ -2,7 +2,7 @@ package com.sps.game.sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.sps.game.animation.playerAnimation;
+import com.sps.game.animation.PlayerAnimation;
 import com.sps.game.screens.Fighter;
 
 import java.util.HashMap;
@@ -39,9 +39,9 @@ public class Player implements Fighter {
     /**
      * Holds the texture showing the player.
      */
-    private HashMap<String,playerAnimation> animation;
+    private HashMap<String, PlayerAnimation> animation;
 
-    private HashMap<String,playerAnimation> fightAnimation;
+    private HashMap<String, PlayerAnimation> fightAnimation;
 
     private String state;
 
@@ -80,7 +80,7 @@ public class Player implements Fighter {
         }
     }
 
-    public HashMap<String,playerAnimation> getFightAnimation(){return fightAnimation;}
+    public HashMap<String, PlayerAnimation> getFightAnimation(){return fightAnimation;}
 
     public void setX(int x){
         this.x = x;
@@ -189,7 +189,7 @@ public class Player implements Fighter {
         //}
     }
 
-    public playerAnimation getAnimation(){
+    public PlayerAnimation getAnimation(){
         return animation.get(state);
     }
 
@@ -202,18 +202,18 @@ public class Player implements Fighter {
     }
 
     private void setAnimations(SpriteBatch sb){
-        animation = new HashMap<String, playerAnimation>();
-        animation.put("down",new playerAnimation(sb,this, "playerDown.atlas",1/15f));
-        animation.put("up",new playerAnimation(sb,this, "playerUp.atlas",1/15f));
-        animation.put("left",new playerAnimation(sb,this, "playerLeft.atlas",1/15f));
-        animation.put("right",new playerAnimation(sb,this, "playerRight.atlas",1/15f));
-        animation.put("idle",new playerAnimation(sb,this, "playerIdle.pack",1/15f));
-        fightAnimation = new HashMap<String, playerAnimation>();
-        fightAnimation.put("Idle",new playerAnimation(sb, this, "combatPlayerIdle.atlas",1/15f));
-        fightAnimation.put("Right",new playerAnimation(sb, this, "playerRight.atlas",1/15f));
-        fightAnimation.put("Left",new playerAnimation(sb, this, "playerLeft.atlas",1/15f));
-        fightAnimation.put("basicAttack",new playerAnimation(sb, this, "playerBasicAttack.atlas",1/3f));
-        fightAnimation.put("block",new playerAnimation(sb, this, "playerBasicBlock.atlas",1/3f));
+        animation = new HashMap<String, PlayerAnimation>();
+        animation.put("down",new PlayerAnimation(sb,this, "playerDown.atlas",1/15f));
+        animation.put("up",new PlayerAnimation(sb,this, "playerUp.atlas",1/15f));
+        animation.put("left",new PlayerAnimation(sb,this, "playerLeft.atlas",1/15f));
+        animation.put("right",new PlayerAnimation(sb,this, "playerRight.atlas",1/15f));
+        animation.put("idle",new PlayerAnimation(sb,this, "playerIdle.pack",1/15f));
+        fightAnimation = new HashMap<String, PlayerAnimation>();
+        fightAnimation.put("Idle",new PlayerAnimation(sb, this, "combatPlayerIdle.atlas",1/15f));
+        fightAnimation.put("Right",new PlayerAnimation(sb, this, "playerRight.atlas",1/15f));
+        fightAnimation.put("Left",new PlayerAnimation(sb, this, "playerLeft.atlas",1/15f));
+        fightAnimation.put("basicAttack",new PlayerAnimation(sb, this, "playerBasicAttack.atlas",1/3f));
+        fightAnimation.put("block",new PlayerAnimation(sb, this, "playerBasicBlock.atlas",1/3f));
 
     }
 
