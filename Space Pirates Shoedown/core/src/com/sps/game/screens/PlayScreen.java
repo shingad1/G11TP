@@ -125,7 +125,7 @@ public abstract class PlayScreen implements Screen
     /**
      * Holds the texture of the pause button
      */
-    private static Texture pauseTexture;
+    private Texture pauseTexture;
     /**
      * Holds the music track that will be played in the world.
      */
@@ -355,7 +355,6 @@ public abstract class PlayScreen implements Screen
         switch (gs){
             case Saving:
                 ProfileManager.getInstance().saveProfile();
-                //gameState = GameState.Saving;
                 break;
             case Loading:
                 ProfileManager.getInstance().loadProfile();
