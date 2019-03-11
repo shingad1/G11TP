@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -33,7 +34,7 @@ public class MerchantInventory {
 
     private List<String> inventory; //List of inventory strings to be displayed
     private List<String> merchant;  //List of merchant strings to be displayed
-    private List<Image> itemImages; //List of Item images to be displayed
+
 
     //Items that the merchant will not accept
     private ArrayList <String> rejectedItems = new ArrayList<String>();
@@ -41,9 +42,13 @@ public class MerchantInventory {
     //Holds the items and initialises them
     private InventoryController inventoryController;
 
-
     //Used for Opening and closing the inventory
     private InputProcessor oldInput;
+
+    private Item clickedItem;
+    private Image clickedImage;
+    private Image imagePlaceholder = new Image();
+    private Label descriptionPlaceholder = new Label("Pick an item", skin);
 
 
     public MerchantInventory(SpriteBatch sb, PlayerController playerController) {
@@ -53,14 +58,14 @@ public class MerchantInventory {
         stage = new Stage(viewport, sb);
 
 
+
         inventoryController = new InventoryController();
 
         //List of inventory item strings to be displayed
         inventory = inventoryController.getInventoryList();
         //List of Merchant item strings to be displayed
         merchant = inventoryController.getMerchantList();
-        //List of Item objects of each item
-        itemImages = inventoryController.getImageList();
+
 
         //Rejected items that the merchant will not accept
         addRejectedItem("Hamster");
@@ -146,18 +151,34 @@ public class MerchantInventory {
         table.row();
         table.row();
         table.add(inventory);
+        inventory.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                clickedItem = inventoryController.findItem(inventory.getSelected());
+                clickedImage = clickedItem.getImage();
+                System.out.println(clickedItem.getName());
+                imagePlaceholder.setDrawable(clickedImage.getDrawable());
+                descriptionPlaceholder.setText(clickedItem.getDescription());
+            }
+        });
+
+        merchant.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                clickedItem = inventoryController.findItem(merchant.getSelected());
+                clickedImage = clickedItem.getImage();
+                System.out.println(clickedItem.getName());
+                imagePlaceholder.setDrawable(clickedImage.getDrawable());
+                descriptionPlaceholder.setText(clickedItem.getDescription());
+            }
+        });
+
         table.add(merchant).height(230);
-
         merchant.setWidth(200);
+        table.add(imagePlaceholder);
+        table.row();
+        table.row();
+        descriptionPlaceholder.setScale(0.25f);
+        table.add(descriptionPlaceholder).colspan(3);
 
-        /*
-            Add the list of images, specifically the one that has been selected
-            Uses the inbuilt listener of list
-         */
-        table.add(itemImages.getSelected());
-
-        // Add the item images to the stage
-        stage.addActor(itemImages);
         stage.addActor(table);
     }
 

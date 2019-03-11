@@ -141,6 +141,7 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
 		font: font
 		fontColor: white
+		background: textfield
 	}
 	subtitle: {
 		font: subtitle
