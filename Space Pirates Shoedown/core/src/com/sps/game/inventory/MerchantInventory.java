@@ -139,7 +139,7 @@ public class MerchantInventory {
 
         Table table = new Table(skin);
 
-        table.setDebug(true);
+        table.setDebug(false);
         table.defaults();
         table.center();
         table.setFillParent(true);

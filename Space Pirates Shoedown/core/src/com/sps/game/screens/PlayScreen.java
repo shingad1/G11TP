@@ -78,7 +78,7 @@ public abstract class PlayScreen implements Screen
      * Holds instance of the MerchantInventory class, which displays vital Inventory information to the user.
      * @see #render
      */
-    private PlayerInventory playerInventory;
+    private MerchantInventory merchantInventory;
 
     /**
      * Holds all the sprites that will be displayed on the sreen.
@@ -184,7 +184,7 @@ public abstract class PlayScreen implements Screen
         batch = new SpriteBatch();
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
-        playerInventory  = new PlayerInventory(game.batch,controller);
+        merchantInventory  = new MerchantInventory(game.batch,controller);
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -238,7 +238,7 @@ public abstract class PlayScreen implements Screen
         gamecam.update();
         renderer.setView(gamecam);
         hud.update();
-        playerInventory.update();
+        merchantInventory.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity1(npcTemp)) {
@@ -297,7 +297,7 @@ public abstract class PlayScreen implements Screen
         renderer.render(mapLayers);
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
-        playerInventory.stage.draw(); //drawing the user hud
+        merchantInventory.stage.draw(); //drawing the user hud
         dialogueHud.stage.draw();
 
         batch.begin();
