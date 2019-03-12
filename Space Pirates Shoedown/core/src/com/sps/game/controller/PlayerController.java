@@ -47,17 +47,6 @@ public class PlayerController extends InputAdapter {
      */
     private TiledMapTileLayer collisionLayer;
 
-    /**
-     * Holds a boolean value to see if the player can enter the building or not.
-     */
-    private boolean entered;
-    /**
-     * Holds a boolean value to see if the player can leave the building or not.
-     */
-    private boolean leave;
-
-    private boolean candy;
-
     private boolean dialogue;
 
     private boolean fight;
@@ -94,7 +83,6 @@ public class PlayerController extends InputAdapter {
 
         this.allLocations = allLocations;
         dialogue = false;
-        candy = false;
 
         reset();
         newWorldReset();
@@ -179,32 +167,6 @@ public class PlayerController extends InputAdapter {
         return fight;
     }
 
-    /**
-     * Gets the value of entered.
-     * @return <code>boolean</code> entered. True if the player can enter, false if the player cannot enter.
-     */
-    public boolean getEntered(){
-        return entered;
-    }
-
-    /**
-     * Gets the value of leave.
-     * @return <code>boolean</code> leave. True if the player can leave, false if the player cannot leave.
-     */
-    public boolean getLeave(){
-        return leave;
-    }
-
-    /**
-     * Returns the last position of the player, before they entered the house.
-     * @return <code>Vector2</code> last position.
-     */
-    public Vector2 popPosition(){
-        return positions.pop();
-    }
-
-    public boolean getCandy(){return candy;}
-
     public boolean getNewWorldRight(){ return newWorldRight;}
 
     public boolean getNewWorldLeft(){ return newWorldLeft;}
@@ -237,8 +199,6 @@ public class PlayerController extends InputAdapter {
         resolve = false;
         player.getVelocity().x = 0;
         player.getVelocity().y = 0;
-        entered = false;
-        leave = false;
         player.changeState("idle");
         keyPressed = -1;
     }
@@ -281,7 +241,6 @@ public class PlayerController extends InputAdapter {
                 if(player.getY() == 0){
                     newWorldDown = true;
                 } else {
-                    leave = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("leave");
                     collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() - 1) / tiledHeight)).getTile().getProperties().containsKey("blocked");
                     if (collisionY || npcCollision(new Location(player.getX(), player.getY() - 32))) {
                         player.getVelocity().y = 0;
@@ -296,11 +255,6 @@ public class PlayerController extends InputAdapter {
                 if (player.getY() == 49 * 32){
                     newWorldUp = true;
                 } else {
-                    entered = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("enter");
-                    if (entered) {
-                        positions.push(new Vector2(player.getX(), player.getY()));
-                    }
-                    candy = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("candyLand");
                     collisionY = collisionLayer.getCell((int) (player.getX() / tiledWidth), (int) ((player.getY() + 32) / tiledHeight)).getTile().getProperties().containsKey("blocked");
                     if (collisionY || npcCollision(new Location(player.getX(), player.getY() + 32))) {
                         player.getVelocity().y = 0;
@@ -326,7 +280,6 @@ public class PlayerController extends InputAdapter {
                     break;
                 }
             case Input.Keys.RIGHT:
-                //newWorld = collisionLayer.getCell((int) ((player.getX() + 32) / tiledWidth), (int) (player.getY() / tiledHeight)).getTile().getProperties().containsKey("newWorld");
                 if(player.getX() == 49 * 32) { //If the player reaches the end of the map and presses right move to the map to the right
                   newWorldRight = true;
                 } else {

@@ -69,7 +69,7 @@ public class DialogueHud {
     /**
      * Displays the current line of text.
      */
-    Dialog textArea = new Dialog("Dialogues", skin);
+    Dialog textArea = new Dialog("Dialogue", skin);
     /**
      * Holds the current line of text.
      */

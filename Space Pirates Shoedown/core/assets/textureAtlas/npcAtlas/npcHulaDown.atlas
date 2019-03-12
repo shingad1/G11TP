@@ -5,21 +5,21 @@ repeat: none
 npcDown1
   rotate: false
   xy: 0, 0
-  size: 16, 30
-  orig: 16, 30
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 npcDown2
   rotate: false
-  xy: 0, 30
-  size: 16, 30
-  orig: 16, 30
+  xy: 32, 0
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 npcDown3
   rotate: false
-  xy: 0, 60
-  size: 16, 30
-  orig: 16, 30
+  xy: 64, 0
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1

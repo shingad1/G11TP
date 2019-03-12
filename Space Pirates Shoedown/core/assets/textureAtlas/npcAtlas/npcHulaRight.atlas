@@ -5,21 +5,21 @@ repeat: none
 npcRight1
   rotate: false
   xy: 0, 0
-  size: 14, 29
-  orig: 14, 29
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 npcRight2
   rotate: false
-  xy: 0, 29
-  size: 14, 29
-  orig: 14, 29
+  xy: 32, 0
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 npcRight3
   rotate: false
-  xy: 0, 58
-  size: 14, 29
-  orig: 14, 29
+  xy: 64, 0
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1

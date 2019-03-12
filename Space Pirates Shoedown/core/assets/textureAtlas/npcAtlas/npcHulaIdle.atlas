@@ -5,7 +5,7 @@ repeat: none
 npcIdle
   rotate: false
   xy: 0, 0
-  size: 16, 30
-  orig: 16, 30
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
