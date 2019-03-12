@@ -6,12 +6,11 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.sps.game.Sprites.AbstractNPC;
-import com.sps.game.Sprites.Player;
+import com.sps.game.screens.HomeWorldScreen;
+import com.sps.game.sprites.AbstractNPC;
+import com.sps.game.sprites.Player;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
-
-import javax.swing.text.html.parser.Entity;
 
 public class MapManager implements ProfileObserver {
 
@@ -27,6 +26,9 @@ public class MapManager implements ProfileObserver {
 
     private Array<AbstractNPC> npcs;
 
+    public MapManager(){
+    }
+
     @Override
     public void onNotify(ProfileManager profileManager, ProfileEvent event) {
         switch (event){
@@ -40,12 +42,12 @@ public class MapManager implements ProfileObserver {
                 }
                 loadMap(mapType);
 
-                Vector2 homeWorldMap1StartPosition = profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class);
+                Vector2 homeWorldMap1StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).y);
                 if(homeWorldMap1StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(homeWorldMap1StartPosition);
                 }
 
-                Vector2 homeWorldMap2StartPosition = profileManager.getProperty("HomeWorldMap2StartPosition", Vector2.class);
+                Vector2 homeWorldMap2StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap2StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap2StartPosition", Vector2.class).y);
                 if(homeWorldMap2StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).setPlayerPosition(homeWorldMap2StartPosition);
                 }
@@ -54,9 +56,10 @@ public class MapManager implements ProfileObserver {
             case SAVING_PROFILE:
                 map = MapFactory.getMap(getCurrentMapType());
                 if(map != null) {
-                    profileManager.setProperty("currentMapType", map.currentMapType.toString());
+                    profileManager.setProperty("currentMapType", HomeWorldScreen.getCurrentMapType().toString()); //map.getCurrentMapType().toString()
+                    System.out.println("Saving game as " + HomeWorldScreen.getCurrentMapType().toString());
+                    //profileManager.setProperty("currentCollisionLayer", map.getCollisionLayer());
                 }
-
                 profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
                 profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;
@@ -82,7 +85,7 @@ public class MapManager implements ProfileObserver {
         //methods to load music
         map = temp;
         mapChanged = true;
-        //clear map method
+        //clearCurrentSelectedMapEntity();
         Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
     }
 
@@ -99,7 +102,7 @@ public class MapManager implements ProfileObserver {
     }
 
     public MapFactory.MapType getCurrentMapType(){
-        return map.getCurrentMapType();
+        return HomeWorldScreen.getCurrentMapType();
     }
 
     public TiledMap getCurrentTiledMap(){

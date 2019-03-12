@@ -1,3 +1,6 @@
-﻿Bob;Oh my god my family’s shoes have been stolen!; My toes are so cold what are we going to do!?;I doubt you’re significant enough to help but there’s some in Linda’s house and she’s petrified! If you know anyone brave enough to help her out, please do let them know!;
+Bob;Oh my god my family’s shoes have been stolen!;My toes are so cold what are we going to do!?;I doubt you’re significant enough to help, but there’s some in Linda’s house and she’s petrified!;If you know anyone brave enough to help her out, please do let them know!;
+Enemy;No  don't kill meh, I’ll tell you everything;I've been ordered to come to your planet to take all yarr right shoes because space is cold and my daughter, my poor wee one was cold and i love her and i want her to be safe.;I had to turn to the pirates
+﻿FirstNPC;All of my family’s right shoe have been stolen;All my shoes are gone;Help my right foot is cold and moist
+SecondNPC;Quick!;Help me!;A monster in my house
 Enemy;No  don't kill meh, I’ll tell you everything;I've been ordered to come to your planet to take all yarr right shoes because space is cold and my daughter, my poor wee one was cold and i love her and i want her to be safe.;I had to turn to the pirates
 Linda;OMG thank you;I have my house back;I think there’s more on that spaceship that landed or whatever. Have fun dude!
