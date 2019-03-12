@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="1">
  <tileset firstgid="1" source="Resources/Tiles5.tsx"/>
  <tileset firstgid="491" source="Resources/variousTerrain.tsx"/>
  <tileset firstgid="2539" source="Resources/sandPath.tsx"/>
@@ -22,7 +22,7 @@
  </layer>
  <layer id="9" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztll2uQiEMhHEXxpWwTnfoo7swvp2QFtrp8HcCSRNzhXY+ptSbU0p5wfg+fDFbL6L5ql363NrLiFK/pX65Xzrr1antt+aJcli9afke9SfCUdPn5WDHnTgkDSWnpOv92oejFn8OydfRHFINtGYPjmge5DeIwSHlKddsDo+PO3K0NEgcVr+jHNE3atFg8SkX31u5D4ePQ1qWvvLsR1i0XJ6FvA9tH8Onu3BYNXjnTIQD0e5lSMT6Vw2sHFaOz5P/Nlmcnh66/q/K9gO9H2vPs3poFAe7Ryw5I3WleoiGVg5EC+Muo7OWkTPqTy8ObbHqjPSjFwfznHZ+BIekicEhzdAdObQzLQ7p7x4OdC5Yc1n92IWjFUwOz8ySziJ3VePw9Lqlj7WeQL0t50IPPyIcrRnck6PWp0wOpK8iOXpyaD7N5mDGLI6ybpTvcKzPEckxevXkGMl5ONbvq5kLvZvDsdZC38KK8QOw8bsY
+   eJztls2tAyEMhEkXUc4pYutMhzmmi2hvK2TD2B7+ViBZil7Ano8xzjtSSseE8XvYYrRej+ardulzbS8jcv1I/Xy/dNaqU9uP5olyoN7UfI/6E+Eo6bNysONOHJKGnFPS9Xmtw1GKk0PytTeHVMNbswVHNI/nN4jBIeXJ12gOi48rctQ0SByo31GO6BtFNCA+Hdn3KPfmsHFIC+kry34Pi5bLsjzvQ9vH8OkuHKgG65yJcHi0WxkSsf5VAysHyvF98t8mi9PSQ9f/Vdl+eO8H7XlWD/XiYPcIkjNSV6rn0VDL4dHCuMvorGXkjPrTikNbrDo9/WjFwTynne/BIWlicEgzdEUO7UyNQ/q7hcM7F9BcqB+rcNSCyWGZWdJZz12VOCy9jvSx1hNeb/O50MKPCEdtBrfkOOP9LL9HBoenryI5WnJoPo3mYMYojrxulG9zzM8RydF7teToybk55u+rkct7N5tjruV9CzPGH9t5uxw=
   </data>
  </layer>
  <layer id="10" name="Doors" width="50" height="50">
