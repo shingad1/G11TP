@@ -165,17 +165,17 @@ public class ProfileManager extends ProfileSubject {
     }
 
     public void getPlayerCoOrdinate() {
-        parser = new org.json.simple.parser.JSONParser();
+        parser = new JSONParser();
         try {
-            array = (org.json.simple.JSONArray) parser.parse(new FileReader("core/src/com/sps/game/profile/test.json"));
+            array = (JSONArray) parser.parse(new FileReader("core/src/com/sps/game/profile/test.json"));
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (org.json.simple.parser.ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
         for (Object o : array) {
-            org.json.simple.JSONObject obj = (org.json.simple.JSONObject) o;
+            JSONObject obj = (JSONObject) o;
 
             int x = Integer.parseInt((String) obj.get("x"));
             System.out.println(x);
