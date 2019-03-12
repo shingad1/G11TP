@@ -1,8 +1,5 @@
-/*
 package com.sps.game.profile;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -10,22 +7,21 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-*/
 /*java -classpath.json-simple-1.1.1.jar;
-        java -classpath .;json-simple-1.1.1.jar*//*
-
+        java -classpath .;json-simple-1.1.1.jar*/
 
 public class test {
 
     static JSONParser parser;
-    static JSONObject game;
-    FileReader fileReader;
+    static JSONObject gameState;
 
     public void test(){
+
+
         parser = new JSONParser();
         JSONArray array = null;
         try {
-            array = (JSONArray) parser.parse(new FileReader("core/src/com/sps/game/profile/test.json"));
+            array = (JSONArray) parser.parse(new FileReader("test.json"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -33,27 +29,25 @@ public class test {
         }
 
         for (Object object : array) {
-            game = (JSONObject) object;
+            gameState = (JSONObject) object;
+
             String n = "";
 
             if (n.equals("x")) {
-                String p = (String) game.get("x");
+                String p = (String) gameState.get("x");
                 int x = Integer.parseInt(p);
                 System.out.println(x);
             }
 
-            */
-/*String strName = (String) gameState.get("name");
+            /*String strName = (String) gameState.get("name");
             System.out.println("Name: " + strName);
 
             int xx = Integer.getInteger("x");
             (long) x = gameState.get("x");
             System.out.println(x);
             int y = gameState.getInt("y");
-            System.out.println(y);*//*
-
+            System.out.println(y);*/
         }
 
     }
 }
-*/
