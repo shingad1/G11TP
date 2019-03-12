@@ -59,7 +59,7 @@ public class CombatHud
      */
     public void update(){
         playerHealthLabel = new Label("Player Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        playerHealthCountLabel = new Label(String.format("%d",player.getHP()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playerHealthCountLabel = new Label(String.format("%d",player.getHealth()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
     /**

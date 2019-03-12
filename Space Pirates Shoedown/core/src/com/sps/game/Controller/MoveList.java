@@ -3,6 +3,7 @@ package com.sps.game.Controller;
 import com.sps.game.Screens.Fighter;
 import com.sps.game.Sprites.Location;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MoveList {
@@ -23,12 +24,14 @@ public class MoveList {
         movelist = new HashMap<String, Move>();
         movelist.put("Attack",new Move(MoveType.attack, Fighter.Stat.health, MoveRange.near, MoveTarget.enemy, -atkDefDiff,false, 0,false, true));
 
+        movelist.put("Shield Bash", new Move(MoveType.defend, Fighter.Stat.health, MoveRange.near, MoveTarget.enemy, -(user.getDefence()), false, 0, false, true));
         movelist.put("Block",new Move(MoveType.defend, Fighter.Stat.defence, MoveRange.far, MoveTarget.self, 10, true, 3, false, false));
         movelist.put("Bravery",new Move(MoveType.defend, Fighter.Stat.attack, MoveRange.far, MoveTarget.self, 10, true, 3, false, false));
         movelist.put("Wind Speed",new Move(MoveType.defend, Fighter.Stat.speed, MoveRange.far, MoveTarget.self, 10, true, 3, false, false));
         movelist.put("Heal",new Move(MoveType.defend, Fighter.Stat.health, MoveRange.far, MoveTarget.self, 25, false, 0, false, true));
         movelist.put("Patch Up", new Move(MoveType.defend, Fighter.Stat.health, MoveRange.far, MoveTarget.self, 10, true, 3, true, true));
 
+        movelist.put("Quick Attack",new Move(MoveType.sneak, Fighter.Stat.health, MoveRange.near, MoveTarget.enemy, -(user.getSpeed()), false, 0, false, true));
         movelist.put("Poison", new Move(MoveType.sneak, Fighter.Stat.health, MoveRange.near, MoveTarget.enemy, -(user.getSpeed() / 2), true, 3, true, true));
         movelist.put("Frighten", new Move(MoveType.sneak, Fighter.Stat.attack, MoveRange.near, MoveTarget.enemy, -10, true, 3, false, false));
         movelist.put("Weaken", new Move(MoveType.sneak, Fighter.Stat.defence, MoveRange.near, MoveTarget.enemy, -10, true, 3, false, false));
@@ -37,16 +40,34 @@ public class MoveList {
 
     public MoveRange getMoveRange(String move){return movelist.get(move).getRange();}
 
+    public HashMap<String,Move> getMovelist(){return movelist;}
+
     public void use(String move){
         Move chosenMove = movelist.get(move);
-        if(MoveTarget.self.equals(chosenMove.getTarget())){
-            chosenMove.use(user);
-        } else {
-            chosenMove.use(target);
+        switch(chosenMove.getTarget()){
+            case self:
+                chosenMove.use(user);
+                break;
+            case enemy:
+                chosenMove.use(target);
+                break;
         }
     }
 
-    private class Move{
+    public HashMap<String,Move> getMovesHashMapByType (MoveType type){
+        ArrayList<String> result = new ArrayList<String>();
+        for(String moveName : movelist.keySet()){
+            if(movelist.get(moveName).getType() == type)
+                result.add(moveName);
+        }
+        return result;
+    }
+
+    public MoveType[] getMoveTypes(){
+        return MoveType.values();
+    }
+
+    public static class Move{
 
         private MoveType type;
         private Fighter.Stat stat;

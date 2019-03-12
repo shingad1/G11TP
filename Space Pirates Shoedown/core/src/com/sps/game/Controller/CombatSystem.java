@@ -8,6 +8,9 @@ import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 import com.sps.game.dialogue.Dialogue;
 
+import java.util.HashMap;
+import java.util.Stack;
+
 /**
  * This class has all the methods used in the battle scene, in order to increase/decrease the player's/ enemies lives
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
@@ -43,6 +46,9 @@ public class CombatSystem
      * keeps track whether the battle is finished or not
      * @see #getPlayerTurn
      */
+    private Stack<HashMap> moveSelectionStack;
+
+    private int moveSelector;
 
     private Inputs chosenMove;
 
@@ -60,6 +66,14 @@ public class CombatSystem
         tick = 0;
         finished = false;
         animationHandler = new BattleAnimationHandler(p,e,sb,new Location(64,150),new Location(256,150));
+
+        HashMap<MoveList.MoveType, HashMap<String, MoveList.Move>> moveSelectionHashMap = new HashMap<MoveList.MoveType, HashMap<String, MoveList.Move>>();
+        for (MoveList.MoveType moveType : playerMoveList.getMoveTypes()){
+            moveSelectionHashMap.put(moveType,playerMoveList.getMovesHashMapByType(moveType));
+        }
+        moveSelectionStack = new Stack<HashMap>();
+        moveSelectionStack.push(moveSelectionHashMap);
+        moveSelector = 0;
     }
     /**
      * Changes the boolean when it is the players turn.
@@ -109,6 +123,26 @@ public class CombatSystem
      */
     public boolean getFinished(){
         return finished;
+    }
+
+    public String[] getOptions(){
+        String[] options = new String[7];
+        for (String option: options) {
+            option = "";
+        }
+        Object[] moveSelectionStackKeySet = moveSelectionStack.peek().keySet().toArray();
+        int moveSelectorEnd = moveSelector + 4;
+        if(moveSelector + 4 > moveSelectionStack.peek().keySet().size())
+            moveSelectorEnd = moveSelectionStack.peek().keySet().size();
+        for(int i = (4 * moveSelector); i < moveSelectorEnd; i++){
+            options[i - moveSelector] = moveSelectionStackKeySet[i - moveSelector].toString();
+        }
+        if(moveSelector * 4 < moveSelectionStackKeySet.length)
+            options[4] = "Page Down";
+        if(moveSelector > 0)
+            options[5] = "Page Up";
+        if(moveSelectionStack.size() > 1)
+            options[6] = "Back";
     }
 
     public void doMove(Inputs input){
