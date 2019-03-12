@@ -59,7 +59,7 @@ public class HouseInteriorScreen extends PlayScreen {
         }
         else if(currentMapState.equals(MapFactory.MapType.CandyInterior) || currentMapState.equals(MapFactory.MapType.CandyMansion)){
             p.setX(832);
-            p.setY(416);
+            p.setY(384);
         }
 
         if(currentMapState.equals(MapFactory.MapType.HomeInterior)){
@@ -105,19 +105,19 @@ public class HouseInteriorScreen extends PlayScreen {
      */
     @Override
     public void changeMaps() {
-        if(p.getLocation().equals(new Location(800,352 )) || p.getLocation().equals(new Location(832, 384))){//will change
+        if(p.getLocation().equals(new Location(800,352 ))) {//will change
             dispose();
-            if(oldState.equals(MapFactory.MapType.HomeWorldMap1)) {
-                dispose();
-                game.setScreen(new HomeWorldScreen(game, new Vector2(0,0),864, 608));
-            } else if(oldState.equals(MapFactory.MapType.HomeWorldMap2)){
-                dispose();
-                game.setScreen(new HomeWorldScreen(game, new Vector2(1,0),288, 640));
-            } else if(oldState.equals(MapFactory.MapType.CandyWorld1)){
-                dispose();
+            if (oldState.equals(MapFactory.MapType.HomeWorldMap1)) {
+                game.setScreen(new HomeWorldScreen(game, new Vector2(0, 0), 864, 608));
+            } else if (oldState.equals(MapFactory.MapType.HomeWorldMap2)) {
+                game.setScreen(new HomeWorldScreen(game, new Vector2(1, 0), 288, 640));
+            }
+        }
+        if(p.getLocation().equals(new Location(832, 352))){
+            dispose();
+            if(oldState.equals(MapFactory.MapType.CandyWorld1)){
                 game.setScreen(new CandyLandScreen(game, new Vector2(0,0), 416, 928));
             } else if(oldState.equals(MapFactory.MapType.CandyWorld2)){
-                dispose();
                 game.setScreen(new CandyLandScreen(game, new Vector2(1,0), 1152, 1152));
             }
         }
