@@ -34,7 +34,7 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Vector2 velocity;
 
-    private NpcAnimation lindaAnimation, muffinAnimation, otherAnimation, basicEnemyAnimation;
+    private NpcAnimation lindaAnimation, muffinAnimation, otherAnimation;
 
     private MapFactory.MapType world;
     /**
@@ -48,7 +48,6 @@ public class InteractiveNPC extends AbstractNPC{
         location = new Location(x,y);
         lindaAnimation = new NpcAnimation(sb,this,"cryingNPC.atlas",1/2f);
         muffinAnimation = new NpcAnimation(sb,this,"interactiveCandy.atlas",1/2f);
-        basicEnemyAnimation = new NpcAnimation(sb,this,"regenemyIdle.atlas",1/2f);
         otherAnimation = new NpcAnimation(sb, this, "interactiveHome.atlas", 1/2f);
         this.world = world;
         this.name = name;
@@ -66,8 +65,6 @@ public class InteractiveNPC extends AbstractNPC{
             if(name.contains("Muffin")) {
                 otherAnimation = muffinAnimation;
             }
-        }else{
-            otherAnimation = basicEnemyAnimation;
         }
         /*
         else if (getWorld().equals(MapFactory.MapType.TropicalWorld1) || getWorld().equals(MapFactory.MapType.TropicalWorld2)){

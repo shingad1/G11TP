@@ -7,6 +7,7 @@ import com.sps.game.controller.NPCController;
 import com.sps.game.controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.maps.*;
+import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.AbstractNPC;
 import com.sps.game.sprites.InteractiveNPC;
 import com.sps.game.sprites.Location;
@@ -47,10 +48,10 @@ public class HouseInteriorScreen extends PlayScreen {
         renderer = new OrthogonalTiledMapRenderer(currentMap);
         currentCollisionLayer = selected.getCollisionLayer();
         currentMapState = selected.getCurrentMapType();
-        npc = new ArrayList<AbstractNPC>();
-        npcController = new ArrayList<NPCController>();
+        //npc = new ArrayList<AbstractNPC>();
+        //npcController = new ArrayList<NPCController>();
         //npc.add(new InteractiveNPC(862, 480, MapFactory.MapType.HomeInterior, batch, ""));
-
+        enemies = new ArrayList<AbstractEnemy>();
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selected);
         if(currentMapState.equals(MapFactory.MapType.HomeInterior) ||currentMapState.equals(MapFactory.MapType.HomeInterior2 )){
@@ -63,7 +64,8 @@ public class HouseInteriorScreen extends PlayScreen {
         }
 
         if(currentMapState.equals(MapFactory.MapType.HomeInterior)){
-            npc.add(new InteractiveNPC(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
+            //npc.add(new InteractiveNPC(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
+            //enemies.add()
         }
 
         p.setBatch(batch);

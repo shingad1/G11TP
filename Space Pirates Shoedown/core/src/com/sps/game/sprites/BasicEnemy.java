@@ -1,45 +1,52 @@
 package com.sps.game.sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.EnemyAnimation;
+import com.sps.game.maps.MapFactory;
 
 import java.util.HashMap;
 import java.util.Random;
 
 public class BasicEnemy extends AbstractEnemy{
-    /**
-     * Holds the value of what world it is.
-     */
-    public static String WORLD = "Earth";
 
-    private HashMap<String, EnemyAnimation> fightAnimation;
+    private MapFactory.MapType world;
 
-    public BasicEnemy(int x, int y, SpriteBatch sb){
+    private int x;
+
+    private int y;
+
+    private Vector2 velocity;
+
+    private String state;
+
+    public BasicEnemy(int x, int y, MapFactory.MapType world, SpriteBatch sb, String role){
         this.x = x;
         this.y = y;
+        velocity = new Vector2(0,0);
+        location = new Location(x,y);
         health = 100;
         attack = 20;
         defence = 0;
-        changeInString();
+
         fightAnimation = new HashMap<String, EnemyAnimation>();
         fightAnimation.put("Idle",new EnemyAnimation(sb, this, "enemyIdle.atlas", 1/15f));
         fightAnimation.put("Right",new EnemyAnimation(sb, this, "enemyMoveRight.atlas", 1/15f));
         fightAnimation.put("Left",new EnemyAnimation(sb, this, "enemyMoveLeft.atlas", 1/15f));
         fightAnimation.put("basicAttack",new EnemyAnimation(sb, this, "enemyBasicAttack.atlas", 1/3f));
         fightAnimation.put("block",new EnemyAnimation(sb, this, "enemyBasicBlock.atlas", 1/3f));
+
+        animation = new HashMap<String, EnemyAnimation>();
+        animation.put("idle", new EnemyAnimation(sb, this, "regenemyIdle.atlas", 1/2f));
     }
 
-    /**
-     * Creates a character according to the value of the world.
-     */
-    private void changeInString() {
-        if(WORLD == "Test Battle Screen")
-        {
-
-        }
-    }
 
     public HashMap<String, EnemyAnimation> getFightAnimation(){return fightAnimation;}
+
+    @Override
+    public void changeState(String newState) {
+        state = newState;
+    }
 
     /**
      * Gets the enemies X coordinate.
@@ -59,6 +66,24 @@ public class BasicEnemy extends AbstractEnemy{
         return y;
     }
 
+    @Override
+    public Vector2 getVelocity() {
+        return velocity;
+    }
+
+    /**
+     * Returns the world the enemy is in.
+     * @return MapFactory.MapType world.
+     */
+    public MapFactory.MapType getWorld(){
+        return world;
+    }
+
+    @Override
+    public EnemyAnimation getAnimation() {
+        return animation.get("idle");
+    }
+
     /**
      * Gets the enemies health level.
      * @return Returns <code>int</code> health level.
@@ -66,6 +91,11 @@ public class BasicEnemy extends AbstractEnemy{
     @Override
     public int getHealth() {
         return health;
+    }
+
+    @Override
+    public void battleMove() {
+
     }
 
     @Override
@@ -82,6 +112,7 @@ public class BasicEnemy extends AbstractEnemy{
         health -= decrease;
     }
 
+    /*
     @Override
     public void battleMove()
     {
@@ -101,4 +132,5 @@ public class BasicEnemy extends AbstractEnemy{
             system.doMove("block");
         }
     }
+    */
 }

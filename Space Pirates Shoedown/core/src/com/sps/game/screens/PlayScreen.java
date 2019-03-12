@@ -97,6 +97,10 @@ public abstract class PlayScreen implements Screen
      */
     protected ArrayList<AbstractNPC> npc;
     /**
+     * Holds a list of the enemies in the room
+     */
+    protected ArrayList<AbstractEnemy> enemies;
+    /**
      * Handles the users input, and updates the players properties accordingly.
      * @see #show #handleInput #combatExit
      */
@@ -210,7 +214,7 @@ public abstract class PlayScreen implements Screen
     public void handleInput(float dt){
         controller.action(gamecam);
         if(controller.getFight()){
-            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
+            //game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
             //currentMapState = "HouseFight";
         }
     }
@@ -289,6 +293,9 @@ public abstract class PlayScreen implements Screen
                     npc.getAnimation().render();
             }
         }
+
+        //ArrayList<AbstractEnemy> mapEnemy = ;
+
         p.getAnimation().render();
         int[] mapLayers = new int[currentMap.getLayers().size() - 3];
         for (int i = 3; i < currentMap.getLayers().size(); i++)
@@ -438,6 +445,13 @@ public abstract class PlayScreen implements Screen
         }
         return result;
     }
+
+/*
+    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map){
+        ArrayList<AbstractEnemy> result = new ArrayList<AbstractEnemy>();
+        for(int i;)
+    }
+*/
     /**
      * Changes the map that is rendered once the player is on a certain location or going of the screen.
      */

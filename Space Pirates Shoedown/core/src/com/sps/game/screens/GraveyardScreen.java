@@ -75,8 +75,8 @@ public class GraveyardScreen extends PlayScreen {
         }
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
-        p.setX(250);//change
-        p.setY(250);//change
+        p.setX(832);
+        p.setY(160);
         p.setBatch(batch);
         controller = new PlayerController(p,currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);

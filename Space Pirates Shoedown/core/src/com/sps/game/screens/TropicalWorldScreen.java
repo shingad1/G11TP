@@ -149,6 +149,12 @@ public class TropicalWorldScreen extends PlayScreen {
             p.setY(0);
             camY = 1;
         }
+        if(currentMapState.equals(MapFactory.MapType.TropicalWorld2)){
+            if(p.getLocation().equals(new Location(1472, 832))){
+                dispose();
+                game.setScreen(new GraveyardScreen(game));
+            }
+        }
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
             currentMap = selectedMap.getCurrentMap();//change when moving worlds

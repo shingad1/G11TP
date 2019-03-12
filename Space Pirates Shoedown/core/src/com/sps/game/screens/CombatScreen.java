@@ -141,7 +141,7 @@ public class CombatScreen implements Screen {
         enemyHud = new EnemyHud(batch,e);
         ThirdHud = new ThirdHud(batch);
         cs = new CombatSystem(p, e, batch);
-        Enemy.setCombatSystem(cs);
+        //Enemy.setCombatSystem(cs);
         combatController = new CombatController(p, e, cs);
         this.playScreen = playScreen;
     }
