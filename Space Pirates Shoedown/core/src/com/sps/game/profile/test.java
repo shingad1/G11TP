@@ -10,10 +10,11 @@ import org.json.simple.parser.ParseException;
 /*java -classpath.json-simple-1.1.1.jar;
         java -classpath .;json-simple-1.1.1.jar*/
 
+
 public class test {
 
     static JSONParser parser;
-    static JSONObject gameState;
+    static JSONObject game;
 
     public void test(){
 
@@ -21,7 +22,7 @@ public class test {
         parser = new JSONParser();
         JSONArray array = null;
         try {
-            array = (JSONArray) parser.parse(new FileReader("test.json"));
+            array = (JSONArray) parser.parse(new FileReader("core/src/com/sps/game/profile/test.json"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -29,12 +30,12 @@ public class test {
         }
 
         for (Object object : array) {
-            gameState = (JSONObject) object;
+            game = (JSONObject) object;
 
             String n = "";
 
-            if (n.equals("x")) {
-                String p = (String) gameState.get("x");
+            if (n.equals("x :")) {
+                String p = (String) game.get("x");
                 int x = Integer.parseInt(p);
                 System.out.println(x);
             }
@@ -46,7 +47,8 @@ public class test {
             (long) x = gameState.get("x");
             System.out.println(x);
             int y = gameState.getInt("y");
-            System.out.println(y);*/
+            System.out.println(y);
+*/
         }
 
     }
