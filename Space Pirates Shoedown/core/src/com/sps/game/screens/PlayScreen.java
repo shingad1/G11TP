@@ -169,7 +169,7 @@ public abstract class PlayScreen implements Screen
      * Holds the current state of the game
      */
 
-    test test;
+    private test test;
     private static GameState gameState;
 
     private DialogueHud dialogueHud;

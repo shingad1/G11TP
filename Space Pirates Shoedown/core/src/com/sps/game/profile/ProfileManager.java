@@ -7,8 +7,16 @@ import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Hashtable;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 
 public class ProfileManager extends ProfileSubject {
 
@@ -27,6 +35,9 @@ public class ProfileManager extends ProfileSubject {
     public static final String DEFAULT_PROFILE = "default";
 
     private boolean isNewProfile = false;
+
+     private JSONParser parser;
+     private  JSONArray array;
 
     private ProfileManager(){
         json = new Json();
@@ -151,6 +162,27 @@ public class ProfileManager extends ProfileSubject {
         }
         property = (T) profileProperties.get(key);
         return property;
+    }
+
+    public void getPlayerCoOrdinate() {
+        parser = new org.json.simple.parser.JSONParser();
+        try {
+            array = (org.json.simple.JSONArray) parser.parse(new FileReader("core/src/com/sps/game/profile/test.json"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+
+        for (Object o : array) {
+            org.json.simple.JSONObject obj = (org.json.simple.JSONObject) o;
+
+            int x = Integer.parseInt((String) obj.get("x"));
+            System.out.println(x);
+
+            int y = Integer.parseInt((String) obj.get("y"));
+            System.out.println(y);
+        }
     }
 
     /**
