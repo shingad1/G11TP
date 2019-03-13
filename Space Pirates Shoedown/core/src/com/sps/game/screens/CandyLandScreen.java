@@ -169,6 +169,10 @@ public class CandyLandScreen extends PlayScreen {
                 oldState = MapFactory.MapType.CandyWorld2;
                 dispose();
                 game.setScreen(new HouseInteriorScreen(game, new Vector2(1,1)));
+            } else if(p.getLocation().equals(new Location(352, 480))){
+                oldState = MapFactory.MapType.CandyWorld2;
+                dispose();
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(3,0)));
             }
         }
         if(camX != 0 || camY != 0) {

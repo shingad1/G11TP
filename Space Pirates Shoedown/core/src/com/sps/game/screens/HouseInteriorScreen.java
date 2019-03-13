@@ -22,8 +22,8 @@ public class HouseInteriorScreen extends PlayScreen {
     /**
      * 2D array, that contains all the different house interiors
      */
-    private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2(), new TropicalInteriorMap()},
-                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2()}};
+    private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2(), new TropicalInteriorMap(), new CandyInteriorMap2()},
+                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2(), null}};
     /**
      * Chooses the map to load from the array
      */
@@ -55,7 +55,7 @@ public class HouseInteriorScreen extends PlayScreen {
             p.setX(800);
             p.setY(384);
         }
-        else if(currentMapState.equals(MapFactory.MapType.CandyInterior) || currentMapState.equals(MapFactory.MapType.CandyMansion)){
+        else if(currentMapState.equals(MapFactory.MapType.CandyInterior) || currentMapState.equals(MapFactory.MapType.CandyMansion) || currentMapState.equals(MapFactory.MapType.CandyInterior2)){
             p.setX(832);
             p.setY(384);
         }
