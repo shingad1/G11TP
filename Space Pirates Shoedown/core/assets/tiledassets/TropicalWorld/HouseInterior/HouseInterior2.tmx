@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Resources/interiorBricksBorders.tsx"/>
  <tileset firstgid="1025" source="Resources/interiorTropicalTilesheet.tsx"/>
  <tileset firstgid="1121" source="Resources/Interior.tsx"/>
@@ -7,6 +7,7 @@
  <tileset firstgid="2657" source="Resources/castle.tsx"/>
  <tileset firstgid="2809" source="Resources/upholstery.tsx"/>
  <tileset firstgid="3321" source="Resources/Tiles5.tsx"/>
+ <tileset firstgid="3811" source="../../HomeWorld/Resources/Tiles5.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJztlUsKwyAQQAcaMIucJKW36KpH6MYD5hQ5Sm/SuiiVoUNiPtWaN/BAiWPmCaO+EfEAAAAAkIWUyF0rHnjgcWyPGhndh9y1pNQ89/t7rHOseY7zeLhp4rU699tesYdeswVxr15akXvzW84tHhZ44IHHMT3ie/+fPEJYta9xsnL39Aih3+/wTz0v2aPW/sADDzxErngU53F77dktZDgty+t36A8AAAAomye6kKqa
@@ -14,7 +15,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlcERgzAMBGkgqYX+u0knmTzys+S7gGxNZh87DAYbrySL83EcJwAAAAAAAAAA2Lye/juf+y+j8WiN7PkdHirR+9Fa0VilxyhmqtssJk7u76qrKMZZzFWPShc1H9leO3j86u14rDojV12i3EVzdu//nzyUfpzN273/LBcdPZz6yPrzShe1vyh91/mvrPLIvq+ej9G1urbUGnJy19nDqSulRqs9ZnHu6OGcZXfOLo9ZzDMPx6WqrgAAAKAnb4B6LCA=
+   eJztlkEOgCAMBP2AevcV/v83/sQYY+IByjah0MMcJkYlwMAWPddlOQEAAAAAAAAAwM21+ds89x+l57U+rPc9PFRq7Wt91Z5FepTWTHVrrcmxv0R7WNlQ1lz1iHRR98OaawaPHvXkrbXZDla2WvPEY2yuVI/Z87f2IqOHJx/W+TzSRT1flHPX810Z5WGNr9ZH6RqdLTVDnr3L7OHJlZLRaI//mN+/RHaPVl2U/onU+p/l0Vpzy8PjEpUrAAAAyMkNB2Ip9A==
   </data>
  </layer>
  <layer id="3" name="Door" width="50" height="50">
