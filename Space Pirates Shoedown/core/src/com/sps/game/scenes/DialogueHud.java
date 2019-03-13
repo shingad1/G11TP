@@ -130,7 +130,7 @@ public class DialogueHud {
             }
         });
 
-        table.add(textArea).size(stage.getWidth(), stage.getHeight() / 2).padBottom(5);
+        table.add(textArea).size(stage.getWidth(), stage.getHeight() / 3).padBottom(5);
         table.row();
         table.add(prevButton).size(150, 50).align(Align.bottomLeft).padLeft(200);
         table.add(nextButton).size(150, 50).align(Align.bottomRight).padRight(200);
