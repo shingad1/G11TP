@@ -7,10 +7,7 @@ import com.sps.game.controller.NPCController;
 import com.sps.game.controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.maps.*;
-import com.sps.game.sprites.AbstractEnemy;
-import com.sps.game.sprites.AbstractNPC;
-import com.sps.game.sprites.InteractiveNPC;
-import com.sps.game.sprites.Location;
+import com.sps.game.sprites.*;
 
 import java.util.ArrayList;
 
@@ -25,8 +22,8 @@ public class HouseInteriorScreen extends PlayScreen {
     /**
      * 2D array, that contains all the different house interiors
      */
-    private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2(), new TropicalInteriorMap()},
-                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2()}};
+    private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2(), new TropicalInteriorMap(), new CandyInteriorMap2()},
+                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2(), null}};
     /**
      * Chooses the map to load from the array
      */
@@ -51,14 +48,14 @@ public class HouseInteriorScreen extends PlayScreen {
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
         //npc.add(new InteractiveNPC(862, 480, MapFactory.MapType.HomeInterior, batch, ""));
-        //enemies = new ArrayList<AbstractEnemy>();
+        enemies = new ArrayList<AbstractEnemy>();
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selected);
         if(currentMapState.equals(MapFactory.MapType.HomeInterior) ||currentMapState.equals(MapFactory.MapType.HomeInterior2 )){
             p.setX(800);
             p.setY(384);
         }
-        else if(currentMapState.equals(MapFactory.MapType.CandyInterior) || currentMapState.equals(MapFactory.MapType.CandyMansion)){
+        else if(currentMapState.equals(MapFactory.MapType.CandyInterior) || currentMapState.equals(MapFactory.MapType.CandyMansion) || currentMapState.equals(MapFactory.MapType.CandyInterior2)){
             p.setX(832);
             p.setY(384);
         }
@@ -67,10 +64,10 @@ public class HouseInteriorScreen extends PlayScreen {
             p.setY(352);
         }
 
-       // if(currentMapState.equals(MapFactory.MapType.HomeInterior)){
+        if(currentMapState.equals(MapFactory.MapType.HomeInterior)){
             //npc.add(new InteractiveNPC(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
-            //enemies.add()
-        //}
+            enemies.add(new BasicEnemy(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
+        }
 
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbound, ybound, allLocations);
@@ -133,7 +130,7 @@ public class HouseInteriorScreen extends PlayScreen {
                 if(currentMapState.equals(MapFactory.MapType.TropicalInterior1)) {
                     game.setScreen(new TropicalWorldScreen(game, 1504, 1344));
                 }
-                else if(currentMapState.equals(MapFactory.MapType.TropicalInterior2)){
+                if(currentMapState.equals(MapFactory.MapType.TropicalInterior2)){
                     game.setScreen(new TropicalWorldScreen(game, 992, 928));
                 }
             }
@@ -164,5 +161,17 @@ public class HouseInteriorScreen extends PlayScreen {
             }
         }
         return null;
+    }
+
+
+    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map){
+        /*ArrayList<AbstractEnemy> result = new ArrayList<AbstractEnemy>();
+            for(int i=0; i < enemies.size(); i++) {
+                if (enemies.get(i).getWorld().equals(map)) {
+                    result.add(enemies.get(i));
+                }
+            }
+        return result;*/
+        return enemies;
     }
 }

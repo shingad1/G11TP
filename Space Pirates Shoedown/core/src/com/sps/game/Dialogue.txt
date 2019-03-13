@@ -26,9 +26,10 @@ MuffinNinthNPC;Please help us!;Our guiding lady has fallen ill and is unable to 
 NinthNPCAfter;Thank you so much!; I don't know what you did but our guiding lady is back on her feet!;She hopes you can stop the pirates melting away our sweet sweet world.
 NinthNPCCondition1;mama can you help this brave warrior;...;hmm she doesn't think you're quite strong enough yet; get good kid try fight some more piratess
 NinthNPCCondition2;mama can you help this brave warrior;...;I think you're ready;cue the epic music
+TropicalWelcome;Our world is falling apart;It's no longer a tropical paradise
 EnemyFour;What how'd you get in!?; Quickly we need to prepare to depart!
 EnemyFive;The ship is ready everyone get your butts on board!;We're going on vacation;You better back off kid;You'll only get yourself hurt;sooner or later.
-PeterNPC;Hi;Seems like we're in quite a pickle here;I don't know how long we'll survive;If;We survive;...;You see we're known for our bright blue ocean.;We gain many tourists from it;That's how we make our income here;There aren't many of us so it works quite well;But now;...;We're probably going to die;Also some pirates had a **** ton of shoes;Oh right I forgot about the censorship in this game;Brilliant.
+TropicalPeterNPC;Hi;Seems like we're in quite a pickle here;I don't know how long we'll survive;If;We survive;...;You see we're known for our bright blue ocean.;We gain many tourists from it;That's how we make our income here;There aren't many of us so it works quite well;But now;...;We're probably going to die;Also some pirates had a **** ton of shoes;Oh right I forgot about the censorship in this game;Brilliant.
 EnemySix;Can you leave us alone?;We got more important business to attend to;...;...;No I don't know where your precious ocean is now back off!
 EnemySeven;But Noah;...;We just stole the ocean
 EnemyEight;Yeah;Are we not building the resort anymore?

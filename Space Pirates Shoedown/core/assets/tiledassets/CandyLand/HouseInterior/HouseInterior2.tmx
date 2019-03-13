@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
+ <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="1515" source="Resources/Floor.tsx"/>
+ <tileset firstgid="1675" source="Resources/CandyLandTiles4.tsx"/>
+ <tileset firstgid="2203" source="Resources/CandyFlooring.tsx"/>
+ <tileset firstgid="2207" source="Resources/Classic Interior Objects.tsx"/>
+ <tileset firstgid="3231" source="Resources/CandyLandDecorTiles2.tsx"/>
+ <tileset firstgid="3487" source="Resources/CandyWindow2.tsx"/>
+ <tileset firstgid="3489" source="Resources/CandyWindow1.tsx"/>
+ <tileset firstgid="3491" source="Resources/CandyLandTiles3.tsx"/>
+ <tileset firstgid="3923" source="../../HomeWorld/Resources/Tiles5.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmM0KxCAMhHv0/a+rPuueBJnGmNLSyS7zQajU/mRMGkmPQwghhBBCCCH+k09ZWy1s784Mv1bWwJh6vHUd1hfmaXxbh7WmzfF9WOSaN/Fy/aoNbYy8wnjcNaaOPr3/iZgwdTyZW9KRQ0eFMUNHBV/w+Cs65jozzu1ihRoz6KjlXDd38fBimCGvrsbDupeZV5b/ke9j+I+aGDpWNdSaa3DMrmO3R1g62N95tCahDhxn3Qd3OjqM2TpqWdda7I+sOVwPZr3CmmXl/K4PZOuIxCDS52bYBy3DXnzOHeyf8DkMHdE+HH3fxScbuO7e/4TmzAkhhBDC5guYsVrG
+  </data>
+ </layer>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztljEOgCAMAB3cjb8x4Ye+2pWYQkDaWvSGW7CpOdoCaV+WBAAAAAAAAOYcqy2eHtreedwMHpJXnjOKh/RN6plSH0XxqNXDIjcedh7eZ9bonP/Fw8NhxEMrDg9fj5nn4403Vus7byTuCx4eDj371+IgxXt69PR+jXOL4aG5p3jgoTWr0qx5e0j/lM7UUg3veSLcH6X1J3jVAwAAAOJwAU082Iw=
+  </data>
+ </layer>
+ <layer id="3" name="Door" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAIA7CD/UPY1BYKsiVYAgAAAAAAAMBnXdcDAIAdA+Y4AKU=
+  </data>
+ </layer>
+ <layer id="4" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlssuBEEUhjsZxKJrIS6x5Q2IBbE1ZmNpYUUEQQRh5ZJxZ/AChifwJIwnQVy2bht/pasyNaWrp7sT1dXJWXypqVOn0ufrqU6dWsHzagRBEARBEARBEMS/c+J73lkCjv34e3iuLY8HcMgC9gUHYn4EWkEbGO3wvDLGBdS2CCr4vQaGQngS6/cW/w/uwWs00Y16elh9Lj2GRayEcUyBxz79YHTJQ0f34EyyOmpuHjzi5Nr26MN77GfRNRWw3sLc9hhAfYNNPDqx3mXwmGZ1ZGzTse/cdK6mWKPHquZxmaHHOgtI41F2xIPXPyuIcol7rvLoEUZezpUaW9H2LGN+k4HHXpPa1Xqlx5WyZ1fbv435jmWPedQ0bqCkvPeiiM35f/eE5clcWx5RvWtFqe80RZ7tfvcNz3sH7SzgMeQ7fkHsFTyDH/At+NJy5Rlbyug7n8BzewUfMfuOKLYcus+L2tlPwrlDHkl6Qp0L8kjtUTXcH0k9Zlj2HrqLeufJ2AhrHFV4H7Ch9APXlj3uwK0BeeeZ1pth8x4kCIIgCMIdfgFNE+5r
+  </data>
+ </layer>
+</map>

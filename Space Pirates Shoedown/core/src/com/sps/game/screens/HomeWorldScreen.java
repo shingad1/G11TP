@@ -115,6 +115,11 @@ public class HomeWorldScreen extends PlayScreen {
         return null;
     }
 
+    @Override
+    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
+        return null;
+    }
+
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
      * @param selector

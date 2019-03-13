@@ -34,7 +34,7 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Vector2 velocity;
 
-    private NpcAnimation lindaAnimation, muffinAnimation, otherAnimation;
+    private NpcAnimation lindaAnimation, muffinAnimation, tropicalAnimation, otherAnimation;
 
     private MapFactory.MapType world;
     /**
@@ -48,6 +48,7 @@ public class InteractiveNPC extends AbstractNPC{
         location = new Location(x,y);
         lindaAnimation = new NpcAnimation(sb,this,"cryingNPC.atlas",1/2f);
         muffinAnimation = new NpcAnimation(sb,this,"interactiveCandy.atlas",1/2f);
+        tropicalAnimation = new NpcAnimation(sb, this, "interactiveTropical.atlas", 1/2f);
         otherAnimation = new NpcAnimation(sb, this, "interactiveHome.atlas", 1/2f);
         this.world = world;
         this.name = name;
@@ -66,10 +67,12 @@ public class InteractiveNPC extends AbstractNPC{
                 otherAnimation = muffinAnimation;
             }
         }
-        /*
         else if (getWorld().equals(MapFactory.MapType.TropicalWorld1) || getWorld().equals(MapFactory.MapType.TropicalWorld2)){
-
+            if(name.contains("Tropical")){
+                otherAnimation = tropicalAnimation;
+            }
         }
+        /*
         else if (getWorld().equals(MapFactory.MapType.GraveyardWorld1)){
 
         }*/
