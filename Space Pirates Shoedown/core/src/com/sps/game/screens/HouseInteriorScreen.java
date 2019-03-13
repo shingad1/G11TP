@@ -49,8 +49,6 @@ public class HouseInteriorScreen extends PlayScreen {
         npcController = new ArrayList<NPCController>();
         //npc.add(new InteractiveNPC(862, 480, MapFactory.MapType.HomeInterior, batch, ""));
         enemies = new ArrayList<AbstractEnemy>();
-        allLocations = new ArrayList<Location>();
-        changeNpcLocations(selected);
         if(currentMapState.equals(MapFactory.MapType.HomeInterior) ||currentMapState.equals(MapFactory.MapType.HomeInterior2 )){
             p.setX(800);
             p.setY(384);
@@ -65,10 +63,10 @@ public class HouseInteriorScreen extends PlayScreen {
         }
 
         if(currentMapState.equals(MapFactory.MapType.HomeInterior)){
-            //npc.add(new InteractiveNPC(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
             enemies.add(new BasicEnemy(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
         }
-
+        allLocations = new ArrayList<Location>();
+        addEnemiesLocations(selected);
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbound, ybound, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);

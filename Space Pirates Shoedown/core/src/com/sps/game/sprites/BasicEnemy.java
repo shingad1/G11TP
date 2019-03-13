@@ -20,9 +20,12 @@ public class BasicEnemy extends AbstractEnemy{
 
     private String state;
 
-    public BasicEnemy(int x, int y, MapFactory.MapType world, SpriteBatch sb, String role){
+    private String name;
+
+    public BasicEnemy(int x, int y, MapFactory.MapType world, SpriteBatch sb, String name){
         this.x = x;
         this.y = y;
+        this.name = name;
         velocity = new Vector2(0,0);
         location = new Location(x,y);
         health = 100;
@@ -42,6 +45,12 @@ public class BasicEnemy extends AbstractEnemy{
 
 
     public HashMap<String, EnemyAnimation> getFightAnimation(){return fightAnimation;}
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
 
     @Override
     public void changeState(String newState) {
