@@ -1,37 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="11" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
- <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
- <tileset firstgid="1025" source="Resources/Interiorv2.tsx"/>
- <tileset firstgid="2049" source="Resources/InteriorTiles.tsx"/>
- <tileset firstgid="2553" source="Resources/Terrain.tsx"/>
- <layer id="1" name="Ground" width="11" height="11">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1987,1987,1987,1987,1955,0,
-0,1955,1955,1955,1955,1987,1987,1987,1987,1987,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,1955,1955,1955,1955,1955,0,
-0,1955,1955,1955,1955,0,1955,1955,1955,1955,0,
-0,0,0,0,0,0,0,0,0,0,0
-</data>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/interiorBricksBorders.tsx"/>
+ <tileset firstgid="1025" source="Resources/interiorTropicalTilesheet.tsx"/>
+ <tileset firstgid="1121" source="Resources/Interior.tsx"/>
+ <tileset firstgid="2145" source="Resources/blonde-wood.tsx"/>
+ <tileset firstgid="2657" source="Resources/castle.tsx"/>
+ <tileset firstgid="2809" source="Resources/upholstery.tsx"/>
+ <tileset firstgid="3321" source="Resources/Tiles5.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlUsKwyAQQAcaMIucJKW36KpH6MYD5hQ5Sm/SuiiVoUNiPtWaN/BAiWPmCaO+EfEAAAAAkIWUyF0rHnjgcWyPGhndh9y1pNQ89/t7rHOseY7zeLhp4rU699tesYdeswVxr15akXvzW84tHhZ44IHHMT3ie/+fPEJYta9xsnL39Aih3+/wTz0v2aPW/sADDzxErngU53F77dktZDgty+t36A8AAAAomye6kKqa
+  </data>
  </layer>
- <layer id="2" name="CollisionLayer" width="11" height="11">
-  <data encoding="csv">
-536870939,2684354603,2684354603,2684354603,2684354603,2684354603,2684354603,2684354603,2684354603,2684354603,2684354587,
-536871030,1051,1052,1584,0,1148,1211,1147,1212,1148,2684354678,
-536871030,1083,1084,0,0,1180,1180,1179,1216,1151,2684354678,
-536871030,1115,1116,0,0,0,0,0,0,1183,2684354678,
-536871030,0,0,0,0,0,0,0,0,0,2684354678,
-536871030,0,0,0,0,0,0,1522,1523,1524,2684354678,
-536871030,1496,1497,1498,0,0,0,1554,1555,1556,2684354678,
-536871030,0,0,0,0,0,0,1586,1587,1588,2684354678,
-536871030,1405,0,0,0,0,0,0,0,1405,2684354678,
-536871030,1437,0,0,0,2938,0,0,0,1437,2684354678,
-536870997,2684354608,2684354608,2684354608,2684354608,2684354608,2684354608,2684354608,2684354608,2684354608,2684354645
-</data>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlcERgzAMBGkgqYX+u0knmTzys+S7gGxNZh87DAYbrySL83EcJwAAAAAAAAAA2Lye/juf+y+j8WiN7PkdHirR+9Fa0VilxyhmqtssJk7u76qrKMZZzFWPShc1H9leO3j86u14rDojV12i3EVzdu//nzyUfpzN273/LBcdPZz6yPrzShe1vyh91/mvrPLIvq+ej9G1urbUGnJy19nDqSulRqs9ZnHu6OGcZXfOLo9ZzDMPx6WqrgAAAKAnb4B6LCA=
+  </data>
+ </layer>
+ <layer id="3" name="Door" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer id="4" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztl91qE0EUx1fIpjvbe/UBRPsU1iu9M/oEvRGrQq3xW5CYC18gUvxmwVpqa0tBDW38aKEXircSFKVE6Z1eqE8Q9T/MGXYymQnZMJuCzIEfk3M6O+f8pzt7dicKQTDh8Xg8Ho/H4/F4PB5nHATjGTmSMW7jkEMdh8HmSDZKlmtscRvIXXWtY5dWw2ocBGugEacxOaekXWOL25B/d63jbBQErEfu66EYGc3l9R4vptcw8kuKz43/LmIfRkCk7AfLSccKatvGuicwngSTUVCdpN+nwGlwhuaskI5yUfiSMumQPrcmat8N9oC9sfDVa1zr2IhE3osYr4Er0AGCy+AqxS7RnA3SUSsGHVYjHQtRGttC3fvBATAWC1811zrU3P3YeMEc5zoahrX2xd2xSuheh5r7plaH7tuM18V1vO8xf2oU52tU/E5y0CFzz2OcicRo8rm1QtEndEtIxyaz6/iMdb6Ac6TFtY71MM01p+2n7repXpPx+IceOr5jrR+gqujgowsdg/Zzm47tHjp0c6lj0H5eCbvr0v9Ppj0Yto4yOA8uWHQkfegwrTssHTXcF7dYZ+w+/AfgIUt1mMykw+bL565LHby3vkWN78AjMMs6++5T+EtgmeImHRXt/DfpPaSFa76Cb7QHTeolSQ466sjxEXwCz8Bz7ay+gv8avGHd9UpLtPgWvYP8xDW/wG/aA7Wnu9aRxfR6VTPF26j/D/hreI4NS4c8K7rpzx1bfJr6xGNaQ/a/vHTcRZ57lOs2xjtM9Ah5Vga1G1T3C1qjmrOOBeRZpFzzGJ8wcY+oZ2VG0WPrg7a4zVzraKDGl1TnKsY11n2vzyk65HeUavI7aid11LV7p27QkdCcVph+R6kmv6Nahv44LB3rffRmafI90fYd1d4hHUcL2d8TXXGM9sqFDo/H4/F4/mf+ATwimTo=
+  </data>
  </layer>
 </map>
