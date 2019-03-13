@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
  <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
  <tileset firstgid="1515" source="Resources/Floor.tsx"/>
@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1TsOgCAQRVELrd0Oa3Sn7sJY2BB+AyRv1GtyKkMyV0TDuiwBAAAAAICfm3GpG+KO3i51Q2lPLGvV89/OrW/NQz1/PE+vNzak1nvqaG2rPQd1U+t+faXD41mp/Qu8zDnakWpRzzzr3bI8Ay9Ke+GpY+Sbm6LuyM3b0nLsPs6OtcPT93akI3dP3WFpVM8zq0U9Cx0AAABtLp59pzI=
+   eJzt1cENgCAQRFEO2hP9d2MXxgMXEoFdMLPEb/JuYmZcCPlIKQMAAAAA8HMrHnWHuoe3l7pDayaWter8j+v0rSnU+es8Xrt1WDXLr3qM9ut9I0KnkXl531Hb5az07oIoOWd77LJvPHvL8g+iaM0iUo863+wZVvd4y+u5Q6LsHct8Ip1/7zyi9bB0VOdZ1UWdhR4AAABjbn15oJM=
   </data>
  </layer>
  <layer id="3" name="Door" width="50" height="50">
