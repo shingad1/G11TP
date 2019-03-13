@@ -17,7 +17,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
-import com.sps.game.inventory.PlayerInventory;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
@@ -245,8 +244,15 @@ public abstract class PlayScreen implements Screen
         merchantInventory.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
-            if (controller.npcInProximity1(npcTemp)) {
+            if (controller.npcInProximity(npcTemp)) {
                 dialogueHud.update(npcTemp.getName());
+            }
+        }
+        if(getClass().equals(HouseInteriorScreen.class)) {
+            for (AbstractEnemy enemy : enemies) {
+                if (controller.enemyInProximity(enemy)) {
+                    dialogueHud.update(enemy.getName());
+                }
             }
         }
     }
@@ -480,14 +486,13 @@ public abstract class PlayScreen implements Screen
             if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());
         }
-        /*for (AbstractEnemy enemy : enemies){
-            if(!enemies.isEmpty()){
-                if(enemy.getWorld().equals(selectedMap.getCurrentMapType()))
-                    allLocations.add(enemy.getLocation());
-            }
-            }*/
     }
 
+    public void addEnemiesLocations(Map selectedMap){
+        for (AbstractEnemy enemy : enemies) {
+            allLocations.add(enemy.getLocation());
+        }
+    }
     /**
      * Returns the current type of the map.
      * @return MapFactory.MapType currentMapState

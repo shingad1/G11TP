@@ -80,6 +80,8 @@ public abstract class AbstractEnemy implements Fighter {
 
     public abstract HashMap<String, EnemyAnimation> getFightAnimation();
 
+    public abstract String getName();
+
     public abstract void changeState(String newState);
 
 }
