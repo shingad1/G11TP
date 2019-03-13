@@ -28,10 +28,10 @@ public class test {
             JSONObject obj = (JSONObject) o;
 
             int x = Integer.parseInt((String) obj.get("x"));
-            System.out.println(x);
+            //System.out.println(x);
 
             int y = Integer.parseInt((String) obj.get("y"));
-            System.out.println(y);
+            //System.out.println(y);
         }
     }
 }
