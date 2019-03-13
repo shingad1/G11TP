@@ -22,7 +22,7 @@
  </layer>
  <layer id="9" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlVuqwzAMRNNdlK4k6+wO+9ldlBIKxegxI8mxAxaICze2rOMZufu2bfuE+b5xObpfqWeU43+dtydyN9b+tn/pu7de2sv2qZ3b1tTqan1ZdRGvSedbulv9eRxSXaQ/1p9VM8foWsER0aMHj6Wl5K9fbpNwWJ6I6rs4cE9n9/eec6lOG6M5GB2vyOExSRyo3lmO7IwiPSA67c13lHtxcBxSIL5i1kdYtFpMROZDW1eh02wclfOv5et+JHJORo9I7yzDN5+P42+VpyvuHdVjFIf1nWXQalWxWH1FZ4K9k54cWY9VeQSp6fmG2ZvpAf0tqNbae7PZOUH6Z2pmfJHh8GpqUXXOWRwaC3qOpjXqa5a3FwfbUwVHe49X5dD2eBzS/xmO6LuA1kL1sDi8Ps/k8LJSD+bNkvZG7sri8LxqcaCBcli9exwZPTIc3hvck8PyaSVHxFeZGj05NJ1Gc1TmKI723Czf4pifI1Pj7OjJcSbn4pjfVyMjejeLY66IzsKM+QGRC6cQ
+   eJztltutAjEMRJcuEJVsnXTIJ12giB8U+TFjOw+ktWShy26cOfE43PM4jnPDfN+4XK1X0oxy/L7nrYmcjbW+1y89996X1rI6tX37mlpdTZdVF/GatL/Vd0ufxyHVRfSx/qyaOaavGY7nw/bDDA6td9LfmrZdOCxPIOsbR3Q+duKQfFrJka3DzHblnEt1+ljNwfTxHzk8JokD7XeWIzujiAakT2f3HOW+ODgOKRBfMe9HWLRaTETmQ3uvok+7cVTOv5av+zeRfTL9iGhnGVq2/4/aZ5WnK84d7ccqDus5y6DVqmKxdEVngj2TkRxZj1V5BKnp+YZZm9GA/hZU99q7s9k5QfQzNTO+yHB4NbWo2mcWh8aC7qP1GvU1yzuKg9VUwdGf479yaGs8Dul7hiN6L6C10H5YHJ7OmRxeVvaDubOktZGzsjg8r1ocaKAclnaPI9OPDId3B4/ksHxayRHxVabGSA6tT6s5KnMVR79vlu/i2J8jU2N2jOSYyXlx7O+rlRE9m4tjr4jOwo75AdBYp/I=
   </data>
  </layer>
  <layer id="10" name="Doors" width="50" height="50">

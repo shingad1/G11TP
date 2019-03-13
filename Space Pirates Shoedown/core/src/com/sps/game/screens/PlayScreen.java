@@ -449,9 +449,9 @@ public abstract class PlayScreen implements Screen
 /*
     public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map){
         ArrayList<AbstractEnemy> result = new ArrayList<AbstractEnemy>();
-        for(int i;)
-    }
-*/
+        for(int i; i < enemies.size(); i++)
+    }*/
+
     /**
      * Changes the map that is rendered once the player is on a certain location or going of the screen.
      */
