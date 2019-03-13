@@ -3,7 +3,6 @@ package com.sps.game.profile;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
 
@@ -167,7 +166,7 @@ public class ProfileManager extends ProfileSubject {
     public void getPlayerCoOrdinate() {
         parser = new JSONParser();
         try {
-            array = (JSONArray) parser.parse(new FileReader("core/src/com/sps/game/profile/test.json"));
+            array = (JSONArray) parser.parse(new FileReader(DEFAULT_PROFILE + SAVEGAME_SUFFIX));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -177,11 +176,13 @@ public class ProfileManager extends ProfileSubject {
         for (Object o : array) {
             JSONObject obj = (JSONObject) o;
 
-            int x = Integer.parseInt((String) obj.get("x"));
+            int x = Integer.parseInt((String) obj.get("x:"));
             System.out.println(x);
+            profileProperties.put("Player's x", x);
 
-            int y = Integer.parseInt((String) obj.get("y"));
+            int y = Integer.parseInt((String) obj.get("y:"));
             System.out.println(y);
+            profileProperties.put("Player's y", y);
         }
     }
 
