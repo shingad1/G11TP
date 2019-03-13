@@ -58,8 +58,6 @@ public class InteractiveNPC extends AbstractNPC{
         if (getWorld().equals(MapFactory.MapType.HomeWorldMap1) || getWorld().equals(MapFactory.MapType.HomeWorldMap2)) {
             if (name.equals("Linda")) {
                 otherAnimation = lindaAnimation;
-            } else {
-                otherAnimation = otherAnimation;
             }
         }
         else if(getWorld().equals(MapFactory.MapType.CandyWorld1) || getWorld().equals(MapFactory.MapType.CandyWorld2)){

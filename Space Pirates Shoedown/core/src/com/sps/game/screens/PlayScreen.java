@@ -480,6 +480,12 @@ public abstract class PlayScreen implements Screen
             if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
                 allLocations.add(nonPlayingCharacter.getLocation());
         }
+        /*for (AbstractEnemy enemy : enemies){
+            if(!enemies.isEmpty()){
+                if(enemy.getWorld().equals(selectedMap.getCurrentMapType()))
+                    allLocations.add(enemy.getLocation());
+            }
+            }*/
     }
 
     /**

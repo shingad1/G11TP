@@ -84,7 +84,10 @@ public class TropicalWorldScreen extends PlayScreen {
                 i++;
             }
         }
-
+        if(currentMapState.equals(MapFactory.MapType.TropicalWorld1)){
+            npc.add(new InteractiveNPC(384,576,MapFactory.MapType.TropicalWorld1, batch, "TropicalWelcome"));
+            npc.add(new InteractiveNPC(288,800,MapFactory.MapType.TropicalWorld1, batch, "TropicalPeterNPC"));
+        }
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
         p.setX(px);
@@ -148,8 +151,6 @@ public class TropicalWorldScreen extends PlayScreen {
             camY = 1;
         }
         if(currentMapState.equals(MapFactory.MapType.TropicalWorld1)){
-            npc.add(new InteractiveNPC(384,576,MapFactory.MapType.TropicalWorld1, batch, "TropicalWelcome"));
-            npc.add(new InteractiveNPC(288,800,MapFactory.MapType.TropicalWorld1, batch, "TropicalPeterNPC"));
             if(p.getLocation().equals(new Location(1504, 1376))){
                 dispose();
                 oldState = MapFactory.MapType.TropicalWorld1;

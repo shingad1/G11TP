@@ -55,25 +55,7 @@ public class GraveyardScreen extends PlayScreen {
         int numNonInteractive = random.nextInt(10) + 10;
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
-        int baseNPCSize = npc.size();
-        int i = 0;
-        while(npc.size() < numNonInteractive + baseNPCSize){
-            int x = random.nextInt(49);
-            int y = random.nextInt(49);
-            Location location = new Location(x * 32,y * 32);
-            MapFactory.MapType world;
-            if(random.nextBoolean()){
-                world = MapFactory.MapType.GraveyardWorld1;
-            }
-            else {
-                world = MapFactory.MapType.GraveyardWorld1; //change
-            }
-            if(checkPosition(location,world)){
-                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, ""));
-                npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
-                i++;
-            }
-        }
+
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
         p.setX(832);
