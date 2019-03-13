@@ -43,7 +43,7 @@ public class TropicalWorldScreen extends PlayScreen {
      */
     private int[] ybounds = {0,1600};
 
-    public TropicalWorldScreen(SpacePiratesShoedown game) {
+    public TropicalWorldScreen(SpacePiratesShoedown game, int px, int py) {
         super(game);
         mapSelector = new Vector2(0,0);
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)];
@@ -89,8 +89,8 @@ public class TropicalWorldScreen extends PlayScreen {
 
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
-        p.setX(320);
-        p.setY(256);
+        p.setX(px);
+        p.setY(py);
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbounds, ybounds, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
@@ -149,8 +149,18 @@ public class TropicalWorldScreen extends PlayScreen {
             p.setY(0);
             camY = 1;
         }
+        if(currentMapState.equals(MapFactory.MapType.TropicalWorld1)){
+            dispose();
+            if(p.getLocation().equals(new Location(1504, 1376))){
+                oldState = MapFactory.MapType.TropicalWorld1;
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(2,0)));
+            }else if(p.getLocation().equals(new Location(992, 960))){
+                oldState = MapFactory.MapType.TropicalWorld1;
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(2,1)));
+            }
+        }
         if(currentMapState.equals(MapFactory.MapType.TropicalWorld2)){
-            if(p.getLocation().equals(new Location(1472, 832))){
+            if(p.getLocation().equals(new Location(1280, 1376))){
                 dispose();
                 game.setScreen(new GraveyardScreen(game));
             }
