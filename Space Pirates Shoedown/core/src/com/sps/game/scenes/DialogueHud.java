@@ -138,6 +138,13 @@ public class DialogueHud {
         stage.addActor(table);
     }
 
+    public boolean isDialogueFinished() {
+        if(counter == 0) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      *
      * @param npcName

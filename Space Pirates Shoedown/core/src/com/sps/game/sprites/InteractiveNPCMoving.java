@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
+import com.sps.game.scenes.DialogueHud;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -54,6 +55,7 @@ public class InteractiveNPCMoving extends AbstractNPC {
      */
     private HashMap<String, NpcAnimation> animation;
 
+
     private String state;
 
     /**
@@ -61,6 +63,9 @@ public class InteractiveNPCMoving extends AbstractNPC {
      */
     private String name;
 
+    private NpcAnimation otherAnimation, thirdAnimation, walkAwayAnimation;
+
+    private DialogueHud dialogue;
 
     public InteractiveNPCMoving(int x, int y, MapFactory.MapType world, SpriteBatch sb, String role, String name) {
         this.x = x;
@@ -81,9 +86,31 @@ public class InteractiveNPCMoving extends AbstractNPC {
 
         location = new Location(x, y);
 
+        //The animation with the exclamation mark around their head
+        otherAnimation = new NpcAnimation(sb, this, "interactiveHome.atlas", 1/2f);
+        walkAwayAnimation = new NpcAnimation(sb, this, "npcRight.atlas", 1/15f);
+
+        //animation of the third guy set to null initially
+        thirdAnimation = null;
+
     }
 
-    public NpcAnimation getAnimation(String direction) {return animation.get(direction);}
+    //public NpcAnimation getAnimation(String direction) {return animation.get(direction);}
+
+    public NpcAnimation getAnimation() {
+
+        if ((getWorld().equals(MapFactory.MapType.HomeWorldMap1) || getWorld().equals(MapFactory.MapType.HomeWorldMap2))) {
+            if (name.equals("ThirdNPC")) {
+                otherAnimation = walkAwayAnimation;
+                System.out.println("Attention");
+            } else if (triggerWalkAwayAnimation() == true) {
+                otherAnimation = walkAwayAnimation;
+                System.out.println("trigger walk away");
+             }
+        }
+        return otherAnimation;
+    }
+
 
     /**
      * Returns the NPc x Axis
@@ -121,8 +148,14 @@ public class InteractiveNPCMoving extends AbstractNPC {
         x += newX;
     }
 
+    /*
     public NpcAnimation getAnimation() {
         return animation.get(state);
+    }
+    */
+
+    public Boolean triggerWalkAwayAnimation() {
+        return true;
     }
 
     public void changeState(String newState) {

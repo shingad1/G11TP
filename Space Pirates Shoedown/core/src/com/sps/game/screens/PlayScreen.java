@@ -244,12 +244,22 @@ public abstract class PlayScreen implements Screen
         hud.update();
         merchantInventory.update();
 
-        for (AbstractNPC npcTemp : getInteractiveNPC()) {
+        for (AbstractNPC npcTemp : getInteractiveNPCMoving()) {
             if (controller.npcInProximity1(npcTemp)) {
                 dialogueHud.update(npcTemp.getName());
+                }
+
+            }
+
+            for (InteractiveNPCMoving interactiveNpcTemp : getInteractiveNPCMoving()) {
+                if (dialogueHud.isDialogueFinished() == true) {
+                    interactiveNpcTemp.triggerWalkAwayAnimation();
+                    System.out.println("true in playscreen");
+                }
             }
         }
-    }
+
+
 
     /**
      * Clears the screen and draws the necessary textures.
