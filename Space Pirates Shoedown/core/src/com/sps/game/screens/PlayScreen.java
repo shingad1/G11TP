@@ -63,7 +63,7 @@ public abstract class PlayScreen implements Screen
      * Holds what the view port will display.
      * @see #handleInput #update #render
      */
-    protected OrthographicCamera gamecam;
+    protected static OrthographicCamera gamecam;
     /**
      * Displays what the user will see.
      */
@@ -175,6 +175,8 @@ public abstract class PlayScreen implements Screen
 
     private DialogueHud dialogueHud;
 
+    miniMapScreen miniMapScreen;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         mapManager = new MapManager();
@@ -191,6 +193,7 @@ public abstract class PlayScreen implements Screen
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
+        //miniMapScreen = new miniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
     }
 
     /**
@@ -327,6 +330,8 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
+
+        //miniMapScreen.miniMap();
     }
 
     @Override
