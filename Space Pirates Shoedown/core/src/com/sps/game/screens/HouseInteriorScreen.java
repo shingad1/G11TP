@@ -162,4 +162,16 @@ public class HouseInteriorScreen extends PlayScreen {
         }
         return null;
     }
+
+
+    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map){
+        /*ArrayList<AbstractEnemy> result = new ArrayList<AbstractEnemy>();
+            for(int i=0; i < enemies.size(); i++) {
+                if (enemies.get(i).getWorld().equals(map)) {
+                    result.add(enemies.get(i));
+                }
+            }
+        return result;*/
+        return enemies;
+    }
 }

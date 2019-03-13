@@ -214,5 +214,10 @@ public class CandyLandScreen extends PlayScreen {
         return null;
     }
 
+    @Override
+    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
+        return null;
+    }
+
 
 }

@@ -294,7 +294,13 @@ public abstract class PlayScreen implements Screen
             }
         }
 
-        //ArrayList<AbstractEnemy> mapEnemy = ;
+        ArrayList<AbstractEnemy> mapEnemy = getMapEnemy(currentMapState);
+        if (mapEnemy != null){
+            for(AbstractEnemy enemy : mapEnemy){
+                if(enemy.getAnimation() != null)
+                    enemy.getAnimation().render();
+            }
+        }
 
         p.getAnimation().render();
         int[] mapLayers = new int[currentMap.getLayers().size() - 3];
@@ -446,12 +452,6 @@ public abstract class PlayScreen implements Screen
         return result;
     }
 
-/*
-    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map){
-        ArrayList<AbstractEnemy> result = new ArrayList<AbstractEnemy>();
-        for(int i; i < enemies.size(); i++)
-    }*/
-
     /**
      * Changes the map that is rendered once the player is on a certain location or going of the screen.
      */
@@ -468,6 +468,8 @@ public abstract class PlayScreen implements Screen
      * @return
      */
     public abstract Vector2 getWorldMapByWorld(MapFactory.MapType map);
+
+    public abstract ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map);
 
     /**
      * Adds the locations of the all the NPCs in to an ArrayList.

@@ -10,6 +10,7 @@ import com.sps.game.controller.PlayerController;
 import com.sps.game.maps.GraveyardMap;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
+import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.AbstractNPC;
 import com.sps.game.sprites.Location;
 import com.sps.game.sprites.NonInteractiveNPC;
@@ -80,7 +81,7 @@ public class GraveyardScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p,currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3")); //change
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/graveyard.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
@@ -175,6 +176,11 @@ public class GraveyardScreen extends PlayScreen {
                 }
             }
         }
+        return null;
+    }
+
+    @Override
+    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;
     }
 }

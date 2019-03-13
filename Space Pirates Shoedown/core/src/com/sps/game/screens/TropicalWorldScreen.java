@@ -7,9 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.sps.game.controller.NPCController;
 import com.sps.game.controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.sprites.AbstractNPC;
-import com.sps.game.sprites.Location;
-import com.sps.game.sprites.NonInteractiveNPC;
+import com.sps.game.sprites.*;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.maps.TropicalWorldMap;
@@ -150,11 +148,14 @@ public class TropicalWorldScreen extends PlayScreen {
             camY = 1;
         }
         if(currentMapState.equals(MapFactory.MapType.TropicalWorld1)){
-            dispose();
+            npc.add(new InteractiveNPC(384,576,MapFactory.MapType.TropicalWorld1, batch, "TropicalWelcome"));
+            npc.add(new InteractiveNPC(288,800,MapFactory.MapType.TropicalWorld1, batch, "TropicalPeterNPC"));
             if(p.getLocation().equals(new Location(1504, 1376))){
+                dispose();
                 oldState = MapFactory.MapType.TropicalWorld1;
                 game.setScreen(new HouseInteriorScreen(game, new Vector2(2,0)));
             }else if(p.getLocation().equals(new Location(992, 960))){
+                dispose();
                 oldState = MapFactory.MapType.TropicalWorld1;
                 game.setScreen(new HouseInteriorScreen(game, new Vector2(2,1)));
             }
@@ -204,6 +205,11 @@ public class TropicalWorldScreen extends PlayScreen {
                 }
             }
         }
+        return null;
+    }
+
+    @Override
+    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;
     }
 }
