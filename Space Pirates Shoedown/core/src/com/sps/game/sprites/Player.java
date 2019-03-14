@@ -128,7 +128,8 @@ public class Player implements Fighter {
         return gold;
     }
 
-    public void updateGold() { gold += 20; }
+    public void increaseGold(int goldValue) { gold += goldValue; }
+    public void decreaseGold(int goldValue) { gold -= goldValue; }
 
     @Override
     public void changeHP(int diff) {

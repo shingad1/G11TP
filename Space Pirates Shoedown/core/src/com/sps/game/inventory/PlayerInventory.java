@@ -31,6 +31,7 @@ public class PlayerInventory {
     private Image clickedImage;
     private Image imagePlaceholder = new Image();
     private Label descriptionPlaceholder = new Label("Pick an item", skin);
+    private Label goldPlaceholder = new Label("Item gold value", skin);
 
 
 
@@ -49,7 +50,7 @@ public class PlayerInventory {
         Label inventoryLabel = new Label("Inventory", skin);
         Label imageLabel = new Label("Item", skin);
 
-        table.setDebug(true);
+        table.setDebug(false);
         table.defaults();
         table.center();
         table.setFillParent(true);
@@ -67,13 +68,16 @@ public class PlayerInventory {
                 System.out.println(clickedItem.getName());
                 imagePlaceholder.setDrawable(clickedImage.getDrawable());
                 descriptionPlaceholder.setText(clickedItem.getDescription());
+                goldPlaceholder.setText("Gold Value: " + clickedItem.getGoldvalue());
             }
         });
+        descriptionPlaceholder.setFontScale(0.75f, 0.75f);
+        goldPlaceholder.setFontScale(0.75f, 0.75f);
 
         table.row();
         table.row();
-        descriptionPlaceholder.setScale(0.25f);
-        table.add(descriptionPlaceholder).colspan(3);
+        table.add(descriptionPlaceholder).colspan(3).row();
+        table.add(goldPlaceholder).colspan(3);
 
         stage.addActor(table);
     }

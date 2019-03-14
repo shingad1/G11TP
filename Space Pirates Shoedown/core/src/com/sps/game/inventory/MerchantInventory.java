@@ -50,6 +50,7 @@ public class MerchantInventory {
     private Image clickedImage;
     private Image imagePlaceholder = new Image();
     private Label descriptionPlaceholder = new Label("Pick an item", skin);
+    private Label goldPlaceholder = new Label("Item gold value", skin);
 
 
     public MerchantInventory(SpriteBatch sb, PlayerController playerController) {
@@ -118,7 +119,7 @@ public class MerchantInventory {
 
                 merchant.getItems().add((String) payload.getObject());
                 inventory.getItems().removeValue(payload.getObject().toString(), true);
-                player.updateGold();
+                player.increaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue);
                 //Test to see if the item has been added to the merchants inventory
                 System.out.println("merchant: " + merchant.getItems() + "\n");
 
@@ -159,6 +160,7 @@ public class MerchantInventory {
                 System.out.println(clickedItem.getName());
                 imagePlaceholder.setDrawable(clickedImage.getDrawable());
                 descriptionPlaceholder.setText(clickedItem.getDescription());
+                goldPlaceholder.setText("Gold Value: " + clickedItem.getGoldvalue());
             }
         });
 
@@ -169,6 +171,7 @@ public class MerchantInventory {
                 System.out.println(clickedItem.getName());
                 imagePlaceholder.setDrawable(clickedImage.getDrawable());
                 descriptionPlaceholder.setText(clickedItem.getDescription());
+                goldPlaceholder.setText("Gold Value: " + clickedItem.getGoldvalue());
             }
         });
 
@@ -177,8 +180,10 @@ public class MerchantInventory {
         table.add(imagePlaceholder);
         table.row();
         table.row();
-        descriptionPlaceholder.setScale(0.25f);
-        table.add(descriptionPlaceholder).colspan(3);
+        descriptionPlaceholder.setFontScale(0.75f, 0.75f);
+        goldPlaceholder.setFontScale(0.75f, 0.75f);
+        table.add(descriptionPlaceholder).colspan(3).row();
+        table.add(goldPlaceholder).colspan(3);
 
         stage.addActor(table);
     }
