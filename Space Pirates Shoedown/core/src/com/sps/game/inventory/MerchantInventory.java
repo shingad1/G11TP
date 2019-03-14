@@ -17,7 +17,7 @@ import com.sps.game.controller.InventoryController;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
-
+import com.sps.game.sprites.Player;
 
 import java.util.ArrayList;
 
@@ -27,6 +27,7 @@ public class MerchantInventory {
     public Stage stage; //Handles the input and actors
     public SpriteBatch sb; //Handles drawing
     private Viewport viewport;
+    public Player player;
 
     //The JSON file which is used to format the lists to be displayed.
     private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
@@ -56,7 +57,7 @@ public class MerchantInventory {
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
-
+        player = player.getPlayer();
 
 
         inventoryController = new InventoryController();
@@ -117,7 +118,7 @@ public class MerchantInventory {
 
                 merchant.getItems().add((String) payload.getObject());
                 inventory.getItems().removeValue(payload.getObject().toString(), true);
-
+                player.updateGold();
                 //Test to see if the item has been added to the merchants inventory
                 System.out.println("merchant: " + merchant.getItems() + "\n");
 
