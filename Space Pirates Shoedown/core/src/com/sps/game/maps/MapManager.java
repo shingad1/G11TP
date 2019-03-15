@@ -109,7 +109,7 @@ public class MapManager implements ProfileObserver {
         map = temp;
         mapChanged = true;
         //clearCurrentSelectedMapEntity();
-        Gdx.app.debug(TAG, "Player Start: (" + getPlayerX() + "," + getPlayerY() + ")");
+        Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
     }
 
     public Vector2 getPlayerX() {
