@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztljEOgCAMAB3cjb8x4Ye+2pWYQkDaWvSGW7CpOdoCaV+WBAAAAAAAAOYcqy2eHtreedwMHpJXnjOKh/RN6plSH0XxqNXDIjcedh7eZ9bonP/Fw8NhxEMrDg9fj5nn4403Vus7byTuCx4eDj371+IgxXt69PR+jXOL4aG5p3jgoTWr0qx5e0j/lM7UUg3veSLcH6X1J3jVAwAAAOJwAU082Iw=
+   eJztljEOgCAMRRncjbcx4Yae2pWYgiBQW/KGt+hP9dGixCOECAAAAAAAANM5t7loeoz2TnMePCSvtKYVD+meNDO5ObLiUerHjNp4jPFomTVrHm/vvJrHKnPlyaMn58XD0/4oZTQ9as55PbkVPDQcWtavxkHKa3q0zH6Ja7fhMXJN8cBj1F79+1ySe6b0Tc318FnHwv8jd/0LWv0AAAAAO9y799fM
   </data>
  </layer>
  <layer id="3" name="Door" width="50" height="50">

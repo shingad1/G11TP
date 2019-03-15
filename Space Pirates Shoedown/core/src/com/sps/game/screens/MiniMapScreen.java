@@ -7,13 +7,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 
-public class miniMapScreen {
+public class MiniMapScreen {
 
     private MapFactory.MapType world;
     private Texture homeMap1, homeMap2, candyMap1, candyMap2, tropicalMap1, tropicalMap2, graveyardMap1, graveyardMap2;
     private SpriteBatch batch;
 
-    public miniMapScreen(MapFactory.MapType world){
+    public MiniMapScreen(MapFactory.MapType world){
         this.world = world;
         homeMap1 = new Texture("core/assets/Worlds/homeMap1.png");
         homeMap2 = new Texture("core/assets/Worlds/homeMap2.png");

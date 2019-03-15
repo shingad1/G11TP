@@ -79,6 +79,7 @@ public class HomeWorldScreen extends PlayScreen {
             npc.add(new InteractiveNPC(224, 192, MapFactory.MapType.HomeWorldMap1, batch, "FirstNPC"));
             npc.add(new InteractiveNPC(736, 608, MapFactory.MapType.HomeWorldMap1, batch, "AnotherNPC"));
             //need to add marketman- but dialogue should only work after they defeat the enemy
+            npc.add(new MerchantNPC(928,1216,MapFactory.MapType.HomeWorldMap1,batch,"Merchant"));
         }
         npc.add(new InteractiveNPC(128, 864, MapFactory.MapType.HomeWorldMap2, batch, "FourthNPC"));
         npc.add(new InteractiveNPC(896, 512, MapFactory.MapType.HomeWorldMap2, batch, "FifthNPC"));
