@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
+ <tileset firstgid="1" source="Ground.tsx"/>
+ <tileset firstgid="491" source="Resources/Castle3.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2OEKgzAMBGB91Abf/xn84QalJJqg0Du9g+CQDfLRpuiWhTu2HsUeObDyBsffIAdG5MCKHHiZ7djWZ8p+V2aHdZ9nO1pX2Z69mu2oetAddwvdEe2n8f5sx9W+9/Yf43pkbWiOcX3acGWdj+zMoDq8M9iC+8iO6jmA7ojWqQ1ONgfDemT2UPQdJMedGWFwZGyMDpZzt+/zrecugyPzDsXyvMv8Pljt3Zzfojqqs47gqBbTc7vXuwUGBsdZ7yyOyn8QyA62c/eJeVcURVGUL2cH9fv3Cw==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztz0EKwCAMRUE9WO9/reJC6KbQWKU1zEC24b9SAAAAgJmO+vWCOVpHpOVP3X1Lb3i6Ldq80nV7pCPavMLd9tHToSNzx9sfu8vS0WTpAAAAgN2dGw8aZw==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzzdTlWEUhdFv7sWAlAZMrWCkBDGWZrQ0opYKJkowgJYGMJRghNIcSgVRLM2hNIFaggmtXP/gVg7zMueZWf3eWRZFURRFURSNhmblsqyMcmYzh7nMYz4LqMiN9MrCVdpYxUKqWcRilrCUZSxP4McKG1eyitWsYS3rqGE9GxL4sdHGTWxmC1vZRi3b2cHOBH7ssnE3ddSzh73sYz8HaEjgR6ONTRzkEIc5QjMtHOVYAj+O23iCk5yilTZOc4aznEvgR7uNHZznAhe5xGWu0ElXAj+u2niN69zgJre4zR3uci+BH/dtfEA3PTykl0c8po8nCfx4auMznvOCl7ziNW94y7sEfry38QMf+cRn+hngC1/5lsCPQRuH+M4PfvKL3wzzh78J/MjlsyxPEWMYyzjGU8wESvIjvbJwE22cxGSmUMpUpjGdGcxM4EcURVEURVEURVEURVH0f/sHSUlLTA==
+  </data>
+ </layer>
+</map>
