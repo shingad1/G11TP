@@ -139,7 +139,6 @@ public class MapManager implements ProfileObserver {
             y = 0;
         }*/
         Vector2 vector2 = new Vector2(x, y);
-        System.out.print(vector2);
         return vector2;
     }
 
