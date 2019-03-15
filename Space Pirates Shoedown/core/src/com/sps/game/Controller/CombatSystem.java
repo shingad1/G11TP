@@ -50,12 +50,14 @@ public class CombatSystem
 
     private int moveSelector;
 
-    private Inputs chosenMove;
-
     private MoveList playerMoveList;
     private MoveList enemyMoveList;
 
     private BattleAnimationHandler animationHandler;
+
+    private boolean playerControl;
+
+    private MoveList.Move chosenMove;
 
     public CombatSystem(Player p, AbstractEnemy e, SpriteBatch sb){
         this.player = p;
@@ -74,6 +76,7 @@ public class CombatSystem
         moveSelectionStack = new Stack<HashMap>();
         moveSelectionStack.push(moveSelectionHashMap);
         moveSelector = 0;
+        playerControl = true;
     }
     /**
      * Changes the boolean when it is the players turn.
@@ -91,6 +94,10 @@ public class CombatSystem
      */
     public void update() {
         if (!(finished)){
+            if(playerControl){
+
+            }
+            /**
             if (!(playerTurn) && !(animationHandler.isInAnimation()) && !(animationHandler.isAnimationEnd())) {
                 enemy.battleMove();
                 if(!(chosenMove.equals(""))) {
@@ -109,11 +116,10 @@ public class CombatSystem
                 }
                 playerTurn = !playerTurn;
             }
-            if ((player.getHP() == 0) || (enemy.getHealth() == 0)) {
+             */
+            if ((player.getHealth() == 0) || (enemy.getHealth() == 0)) {
                 finished = true;
-                if(finished){
-                    Dialogue d = new Dialogue("Enemy");
-                }
+                Dialogue d = new Dialogue("Enemy");
             }
         }
     }
@@ -130,7 +136,7 @@ public class CombatSystem
         for (String option: options) {
             option = "";
         }
-        Object[] moveSelectionStackKeySet = moveSelectionStack.peek().keySet().toArray();
+        Object[] moveSelectionStackKeySet = getMoveSelectionStackKeySet();
         int moveSelectorEnd = moveSelector + 4;
         if(moveSelector + 4 > moveSelectionStack.peek().keySet().size())
             moveSelectorEnd = moveSelectionStack.peek().keySet().size();
@@ -138,21 +144,104 @@ public class CombatSystem
             options[i - moveSelector] = moveSelectionStackKeySet[i - moveSelector].toString();
         }
         if(moveSelector * 4 < moveSelectionStackKeySet.length)
-            options[4] = "Page Down";
+            options[4] = "Next Page";
         if(moveSelector > 0)
-            options[5] = "Page Up";
+            options[5] = "Previous Page";
         if(moveSelectionStack.size() > 1)
             options[6] = "Back";
     }
 
-    public void doMove(Inputs input){
-        chosenMove = input;
+    public Object[] getMoveSelectionStackKeySet(){
+         return moveSelectionStack.peek().keySet().toArray();
+    }
+
+    public void doInput(Inputs input){
+        switch (input){
+            case Q:
+                if(getOptions()[0] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move)) {
+                    moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]));
+                    resetInput(0);
+                } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move){
+                    chosenMove = (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]);
+                    playerControl = false;
+                    resetInput(1);
+                }
+                break;
+            case W:
+                if(getOptions()[1] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move)) {
+                    moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]));
+                    resetInput(0);
+                } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move){
+                    chosenMove = (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]);
+                    playerControl = false;
+                    resetInput(1);
+                }
+                break;
+            case E:
+                if(getOptions()[2] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move)) {
+                    moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]));
+                    resetInput(0);
+                } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move){
+                    chosenMove = (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]);
+                    playerControl = false;
+                    resetInput(1);
+                }
+                break;
+            case R:
+                if(getOptions()[3] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move)) {
+                    moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]));
+                    resetInput(0);
+                } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move){
+                    chosenMove = (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]);
+                    playerControl = false;
+                    resetInput(1);
+                }
+                break;
+            case A:
+                if (moveSelector * 4 < getMoveSelectionStackKeySet().length)
+                    moveSelector++;
+                break;
+            case S:
+                if (moveSelector > 0)
+                    moveSelector--;
+                break;
+            case D:
+                if (moveSelectionStack.size() > 1)
+                    moveSelectionStack.pop();
+                    resetInput(0);
+                break;
+        }
+        /**
+         * The player chooses an action
+         * If the action is not a move then continue giving the player control
+         * If it is a move, then, select the move and the player loses control
+         * The enemy chooses their move and the battle occurs
+         *
+         * Choosing the action
+         * 0-3 (pushes on the moveSelectionStack
+         * 4, 5 and 6 are special (add checks)
+         *  4: scrolls to next page
+         *  5: scrolls back to previous page
+         *  6: goes back
+         */
+    }
+
+    private void resetInput(int resetLevel){
+        moveSelector = 0;
+        if(resetLevel >= 1){ //resets options
+            while(moveSelectionStack.size() > 1){
+                moveSelectionStack.pop();
+            }
+            if(resetLevel >= 2){ //resets the combat system
+                chosenMove = null;
+                playerControl = true;
+            }
+        }
     }
 
     //Implementing a 'move list'
     public void applyMove(MoveList userMoveList){
         userMoveList.use("");
-        chosenMove = null;
     }
 
 

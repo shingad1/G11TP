@@ -58,25 +58,25 @@ public class CombatController extends InputAdapter
             switch(keycode)
             {
                 case Input.Keys.Q:
-                    combatSystem.doMove(CombatSystem.Inputs.Q);
+                    combatSystem.doInput(CombatSystem.Inputs.Q);
                     break;
                 case Input.Keys.W:
-                    combatSystem.doMove(CombatSystem.Inputs.W);
+                    combatSystem.doInput(CombatSystem.Inputs.W);
                     break;
                 case Input.Keys.E:
-                    combatSystem.doMove(CombatSystem.Inputs.E);
+                    combatSystem.doInput(CombatSystem.Inputs.E);
                     break;
                 case Input.Keys.R:
-                    combatSystem.doMove(CombatSystem.Inputs.R);
+                    combatSystem.doInput(CombatSystem.Inputs.R);
                     break;
                 case Input.Keys.A:
-                    combatSystem.doMove(CombatSystem.Inputs.A);
+                    combatSystem.doInput(CombatSystem.Inputs.A);
                     break;
                 case Input.Keys.S:
-                    combatSystem.doMove(CombatSystem.Inputs.S);
+                    combatSystem.doInput(CombatSystem.Inputs.S);
                     break;
                 case Input.Keys.D:
-                    combatSystem.doMove(CombatSystem.Inputs.D);
+                    combatSystem.doInput(CombatSystem.Inputs.D);
                     break;
             }
         }
