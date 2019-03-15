@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Iterator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -29,7 +30,7 @@ public class ProfileManager extends ProfileSubject {
 
     private String profileName;
 
-    private static final String SAVEGAME_SUFFIX = ".sav";
+    private static final String SAVEGAME_SUFFIX = ".json";
 
     public static final String DEFAULT_PROFILE = "default";
 
@@ -166,7 +167,7 @@ public class ProfileManager extends ProfileSubject {
     public void getPlayerCoOrdinate() {
         parser = new JSONParser();
         try {
-            array = (JSONArray) parser.parse(new FileReader(DEFAULT_PROFILE + SAVEGAME_SUFFIX));
+            array = (JSONArray) parser.parse(new FileReader(DEFAULT_PROFILE + ".json"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {

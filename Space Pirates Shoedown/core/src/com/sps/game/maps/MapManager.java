@@ -11,6 +11,16 @@ import com.sps.game.sprites.AbstractNPC;
 import com.sps.game.sprites.Player;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
+import com.sun.javafx.fxml.ParseTraceElement;
+
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
 
 public class MapManager implements ProfileObserver {
 
@@ -42,7 +52,7 @@ public class MapManager implements ProfileObserver {
                 }
                 loadMap(mapType);
 
-                Vector2 homeWorldMap1StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).y);
+                /*Vector2 homeWorldMap1StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).y);
                 if(homeWorldMap1StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(homeWorldMap1StartPosition);
                 }
@@ -50,7 +60,7 @@ public class MapManager implements ProfileObserver {
                 Vector2 homeWorldMap2StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap2StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap2StartPosition", Vector2.class).y);
                 if(homeWorldMap2StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).setPlayerPosition(homeWorldMap2StartPosition);
-                }
+                }*/
                 break;
 
             case SAVING_PROFILE:
@@ -86,7 +96,72 @@ public class MapManager implements ProfileObserver {
         map = temp;
         mapChanged = true;
         //clearCurrentSelectedMapEntity();
-        Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
+        //Gdx.app.debug(TAG, "Player Start: (" + player.getLocation().getX() + "," + player.getLocation().getY() + ")");
+    }
+
+    public int getPlayerX() {
+        int x = 0;
+        JSONParser parser = new JSONParser();
+            JSONArray obj = null;
+            try {
+                obj = (JSONArray) parser.parse(new FileReader(
+                        "default.json"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            for (Object o : obj) {
+                JSONObject obj1 = (JSONObject) o;
+                if (!obj1.containsKey(obj1.get("x:"))) {
+                    System.out.print("doesnot contain");
+                }
+                else
+                {
+                    x = Integer.parseInt((String) obj1.get("x:"));
+                    System.out.println(x);
+                }
+            }
+
+            /*JSONArray jsonArray = (JSONArray) jsonObject.get("homeWorldMap2StartPosition");
+            Iterator iterator = jsonArray.iterator();
+
+            while(iterator.hasNext()){
+                x = Integer.parseInt((String) jsonObject.get("y"));
+                System.out.println(x);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+            return x;
+        }
+
+    public int getPlayerY() {
+        int x = 0;
+        JSONParser parser = new JSONParser();
+        JSONArray obj = null;
+        try {
+            obj = (JSONArray) parser.parse(new FileReader(
+                    ProfileManager.DEFAULT_PROFILE + "default.json"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        for (Object o : obj) {
+            JSONObject obj1 = (JSONObject) o;
+            if (!obj1.containsKey(obj1.get("y:"))) {
+                System.out.print("doesnot contain");
+            }
+            else
+            {
+                x = Integer.parseInt((String) obj1.get("y:"));
+                System.out.println(x);
+            }
+        }
+        return x;
     }
 
     public void unregisterCurrentMapEntityObservers(){

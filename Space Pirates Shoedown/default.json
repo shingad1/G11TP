@@ -1,4 +1,4 @@
-[
+{
 homeWorldMap2StartPosition: {
 	class: com.badlogic.gdx.math.Vector2
 	x: 736
@@ -13,4 +13,4 @@ currentMapType: {
 	class: java.lang.String
 	value: HomeWorldMap1
 }
-]
+}

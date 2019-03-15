@@ -17,7 +17,7 @@ public class test {
     public void test() {
         parser = new JSONParser();
         try {
-            array = (JSONArray) parser.parse(new FileReader("core/src/com/sps/game/profile/test.json"));
+            array = (JSONArray) parser.parse(new FileReader("default.json"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -26,12 +26,15 @@ public class test {
 
         for (Object o : array) {
             JSONObject obj = (JSONObject) o;
-
-            int x = Integer.parseInt((String) obj.get("x"));
-            //System.out.println(x);
-
-            int y = Integer.parseInt((String) obj.get("y"));
-            //System.out.println(y);
+            System.out.print(o.toString());
+            /*if (!(obj.containsValue(obj.get("x:")))) {
+                System.out.print("doesnot contain");
+            }
+            else
+            {
+                int x = Integer.parseInt((String) obj.get("x:"));
+                System.out.println(x);
+            }*/
         }
     }
 }
