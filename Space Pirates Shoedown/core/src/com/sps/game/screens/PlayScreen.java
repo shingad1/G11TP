@@ -180,7 +180,7 @@ public abstract class PlayScreen implements Screen
 
     private DialogueHud dialogueHud;
 
-    miniMapScreen miniMapScreen;
+    MiniMapScreen miniMapScreen;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -199,7 +199,7 @@ public abstract class PlayScreen implements Screen
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
-        //miniMapScreen = new miniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
+        //MiniMapScreen = new MiniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
     }
 
     /**
@@ -339,7 +339,7 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        //miniMapScreen.miniMap();
+        //MiniMapScreen.miniMap();
     }
 
     @Override

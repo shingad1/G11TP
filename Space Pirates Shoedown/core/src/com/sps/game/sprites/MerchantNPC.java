@@ -69,7 +69,7 @@ public class MerchantNPC extends AbstractNPC {
 
     @Override
     public NpcAnimation getAnimation() {
-        return animation.get(state);
+        return animation.get("idle");
     }
 
     @Override
