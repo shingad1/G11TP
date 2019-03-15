@@ -20,6 +20,7 @@ import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
+import com.sps.game.scenes.ItemHud;
 import com.sps.game.sprites.*;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
@@ -80,6 +81,10 @@ public abstract class PlayScreen implements Screen
     private MerchantInventory merchantInventory;
 
     /**
+     *Holds instance of the ItemHud class, which is shown if the user makes a decision on whether to pick up or ignore an item.
+     */
+    private ItemHud itemHud;
+    /*
      * Holds all the sprites that will be displayed on the sreen.
      * @see #render
      */
@@ -190,6 +195,7 @@ public abstract class PlayScreen implements Screen
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
+        itemHud = new ItemHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -245,6 +251,7 @@ public abstract class PlayScreen implements Screen
         renderer.setView(gamecam);
         hud.update();
         merchantInventory.update();
+        itemHud.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
@@ -320,6 +327,7 @@ public abstract class PlayScreen implements Screen
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
         merchantInventory.stage.draw(); //drawing the user hud
+        itemHud.stage.draw();
         dialogueHud.stage.draw();
 
         batch.begin();

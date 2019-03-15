@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.PlayerController;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class MerchantInventory {
 
     public Stage stage; //Handles the input and actors
-    public SpriteBatch sb; //Handles drawing
+    public final SpriteBatch sb; //Handles drawing
     private Viewport viewport;
     public Player player;
 
@@ -53,7 +54,8 @@ public class MerchantInventory {
     private Label goldPlaceholder = new Label("Item gold value", skin);
 
 
-    public MerchantInventory(SpriteBatch sb, PlayerController playerController) {
+
+    public MerchantInventory(final SpriteBatch sb, PlayerController playerController) {
 
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
@@ -84,8 +86,9 @@ public class MerchantInventory {
                 payload.setObject(item);
                 inventory.getItems().removeIndex(inventory.getSelectedIndex());
                 payload.setDragActor(new Label(item, skin));
-                payload.setInvalidDragActor(new Label(item + " (\"No thanks!\")", skin));
-                payload.setValidDragActor(new Label(item + " (\"I'll buy this!\")", skin));
+                payload.setInvalidDragActor(new Label("I don't want your " + item + "!", skin));
+                payload.setValidDragActor(new Label("I'll buy your " + item + "\n"  + "for" +  + inventoryController.findItem(item).getGoldvalue()
+                        + " gold!" , skin));
 
                 return payload;
             }
@@ -207,6 +210,7 @@ public class MerchantInventory {
             formatting(); //Create the table, etc.
             setInput();   //Set the new input to be onto the stage; transfer control of input to inventory system.
                           //Also sets oldInput field to be not null.
+            //inventory.setItems(inventoryController.inventory.getItems());
         }
 
         /*

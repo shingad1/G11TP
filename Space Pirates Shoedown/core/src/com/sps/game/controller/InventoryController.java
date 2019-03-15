@@ -65,6 +65,7 @@ public class InventoryController {
     public Item shoeLaces;
     public Item sword;
     public Item socks;
+    public Item foundItem;
 
 
     /**
@@ -95,7 +96,8 @@ public class InventoryController {
                            shoeLaces.getName(),
                            cucumber.getName(),
                            fluxCapacitor.getName()
-        );
+
+                );
 
 
         /**
@@ -168,6 +170,12 @@ public class InventoryController {
     }
 
     public List<Image> getImageList() { return itemImageList; }
+
+    public void addToInventory(Item foundItem) {
+        this.foundItem = foundItem;
+        inventory.getItems().add(foundItem.getName());
+        System.out.println("player: " + inventory.getItems() + "\n");
+    }
 
 
 
