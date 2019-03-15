@@ -87,7 +87,14 @@ public class TropicalWorldScreen extends PlayScreen {
         if(currentMapState.equals(MapFactory.MapType.TropicalWorld1)){
             npc.add(new InteractiveNPC(384,576,MapFactory.MapType.TropicalWorld1, batch, "TropicalWelcome"));
             npc.add(new InteractiveNPC(288,800,MapFactory.MapType.TropicalWorld1, batch, "TropicalPeterNPC"));
+            npc.add(new InteractiveNPC(800,1472,MapFactory.MapType.TropicalWorld1, batch, "TropicalNPC17"));
+            npc.add(new InteractiveNPC(1184,1472, MapFactory.MapType.TropicalWorld1, batch, "TropicalNPC4"));
+
         }
+            npc.add(new InteractiveNPC(448,896, MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC8"));
+            npc.add(new InteractiveNPC(1376,352,MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC12"));
+            npc.add(new InteractiveNPC(608,960,MapFactory.MapType.TropicalWorld2, batch,"TropicalNPC7"));
+            npc.add(new InteractiveNPC(1184,1024,MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC2"));
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
         p.setX(px);

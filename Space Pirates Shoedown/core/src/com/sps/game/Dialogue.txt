@@ -49,22 +49,16 @@ ElevnthNPC;I'm so bored without the ocean!!!!;MUUUUUUUUUUUUUUUUUUUUM!
 TwelfthNPC;Fall Out Boy was supposed to be doing a show here next week!; But now they're going to see our ocean-less beach and leave; I saved up for this for so long!
 13NPC;I hate swimming pools;People always pee in them;So gross...;But if they don't mind sitting in each other's pee;Then good luck to them.
 TropicalNPC1;Those pirates have swag!
-TropicalNPC2;Haha you only got one shoe!;Hahaha;Hahaha;Everything I love is dead.
-TropicalNPC3;I wish they stole the sand instead; I hate getting sand between my toes
+TropicalNPC2;I wish they stole the sand instead; I hate getting sand between my toes
 TropicalNPC4;Life's a beach!;I never understood that saying...
 TropicalNPC5;Do you have any socks I can borrow?;
 TropicalNPC6;My dad always told me space pirates didn't existed;LOOK WHO'S WRONG NOW PHAHAHAHAHAHA
 TropicalNPC7;Hula lessons for this evening have been cancelled due to the current disruption
 TropicalNPC8;My mummy told me if I pray hard enough our ocean will come back
-TropicalNPC9;I never liked it here anyways; I was hoping to move to CandyLand next month
-TropicalNPC10;Panini;haha I like that word;Panini Panini Panini!!!
-TropicalNPC11;AAAAAAAAAAAA!;I have a headache
-TropicalNPC12;Kim Kardashian and Kanye got married on our beach!;Haha gotcha;That didn't happen; This is a game silly
-TropicalNPC13;Do you have a hoover that I can borrow?;Mine disappeared
+TropicalNPC12;You look a lot like that statue!;That bird looks a lot like that statue!;My hand looks a lot like that statue!;Hey!;Where did the water go?
 TropicalNPC15;Are any of those space pirates single?;They have really strong arms
 TropicalNPC16;I'm really sad about our ocean leaving...
-TropicalNPC17;I wish I was a cute fluffy sheep; Baaaa!
-TropicalNPC18;ITS TOO HOT!;MY GOD!;SOMEONE KILL ME
+TropicalNPC17;ITS TOO HOT!;MY GOD!;SOMEONE KILL ME;Or at least get me a fan!
 TropicalNPC19;I love watching the sunset here;It's so beautiful
 TropicalNPC20;You're so heroic;and brave;and spicy;do you wanna get dinner tonight?
 LemonadeNPC;Hey there;I thought of a great idea for tourists;Well the pirates...;they’re our current tourists to some extent;I thought I could make a lemonade stand like in the movies to try gather sales!;The pirates will get pretty thirsty after all that building...;Do you think you could find me some lemons?;I think the ocean affected our growth of fruits;Is lemon a fruit?;...;...;You think the ocean didn’t have anything to do with the lemons;You know what,;can you just help me find these lemons
