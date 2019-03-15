@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.sps.game.screens.HomeWorldScreen;
@@ -11,16 +12,16 @@ import com.sps.game.sprites.AbstractNPC;
 import com.sps.game.sprites.Player;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
-import com.sun.javafx.fxml.ParseTraceElement;
 
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Iterator;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 public class MapManager implements ProfileObserver {
 
@@ -35,6 +36,8 @@ public class MapManager implements ProfileObserver {
     private Player player;
 
     private Array<AbstractNPC> npcs;
+
+    public static final String JSON_FILE="default.json";
 
     public MapManager(){
     }
@@ -51,6 +54,16 @@ public class MapManager implements ProfileObserver {
                     mapType = MapFactory.MapType.valueOf(currentMap);
                 }
                 loadMap(mapType);
+
+                //MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(getPlayerX());
+                Vector2 homeWorldMap1StartPosition = new Vector2(getPlayerX());
+                if(homeWorldMap1StartPosition != null){
+                    MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(homeWorldMap1StartPosition);
+                }
+                Vector2 homeWorldMap2StartPosition = new Vector2(getPlayerX());
+                if(homeWorldMap2StartPosition != null){
+                    MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(homeWorldMap2StartPosition);
+                }
 
                 /*Vector2 homeWorldMap1StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).y);
                 if(homeWorldMap1StartPosition != null){
@@ -96,72 +109,63 @@ public class MapManager implements ProfileObserver {
         map = temp;
         mapChanged = true;
         //clearCurrentSelectedMapEntity();
-        //Gdx.app.debug(TAG, "Player Start: (" + player.getLocation().getX() + "," + player.getLocation().getY() + ")");
+        Gdx.app.debug(TAG, "Player Start: (" + getPlayerX() + "," + getPlayerY() + ")");
     }
 
-    public int getPlayerX() {
+    public Vector2 getPlayerX() {
         int x = 0;
-        JSONParser parser = new JSONParser();
-            JSONArray obj = null;
+        int y = 0;
+        ProfileManager profileManager = new ProfileManager();
+        if (profileManager.doesProfileExist(JSON_FILE)) {
+            InputStream fis = null;
             try {
-                obj = (JSONArray) parser.parse(new FileReader(
-                        "default.json"));
+                fis = new FileInputStream(JSON_FILE);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            JsonReader jsonReader = Json.createReader(fis);
+            JsonObject jsonObject = jsonReader.readObject();
+            jsonReader.close();
+            try {
+                fis.close();
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
             }
-
-            for (Object o : obj) {
-                JSONObject obj1 = (JSONObject) o;
-                if (!obj1.containsKey(obj1.get("x:"))) {
-                    System.out.print("doesnot contain");
-                }
-                else
-                {
-                    x = Integer.parseInt((String) obj1.get("x:"));
-                    System.out.println(x);
-                }
-            }
-
-            /*JSONArray jsonArray = (JSONArray) jsonObject.get("homeWorldMap2StartPosition");
-            Iterator iterator = jsonArray.iterator();
-
-            while(iterator.hasNext()){
-                x = Integer.parseInt((String) jsonObject.get("y"));
-                System.out.println(x);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-            return x;
+            x = jsonObject.getInt("x");
+            y = jsonObject.getInt("y");
         }
+        /*else{
+            x =0;
+            y = 0;
+        }*/
+        Vector2 vector2 = new Vector2(x, y);
+        return vector2;
+    }
 
     public int getPlayerY() {
-        int x = 0;
-        JSONParser parser = new JSONParser();
-        JSONArray obj = null;
-        try {
-            obj = (JSONArray) parser.parse(new FileReader(
-                    ProfileManager.DEFAULT_PROFILE + "default.json"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        for (Object o : obj) {
-            JSONObject obj1 = (JSONObject) o;
-            if (!obj1.containsKey(obj1.get("y:"))) {
-                System.out.print("doesnot contain");
+        int y = 0;
+        ProfileManager profileManager = new ProfileManager();
+        if (profileManager.doesProfileExist(JSON_FILE)) {
+            InputStream fis = null;
+            try {
+                fis = new FileInputStream(JSON_FILE);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-            else
-            {
-                x = Integer.parseInt((String) obj1.get("y:"));
-                System.out.println(x);
+            JsonReader jsonReader = Json.createReader(fis);
+            JsonObject jsonObject = jsonReader.readObject();
+            jsonReader.close();
+            try {
+                fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            y = jsonObject.getInt("y");
         }
-        return x;
+        else {
+            y = 0;
+        }
+        return y;
     }
 
     public void unregisterCurrentMapEntityObservers(){

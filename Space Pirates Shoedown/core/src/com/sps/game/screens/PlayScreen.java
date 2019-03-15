@@ -313,14 +313,11 @@ public abstract class PlayScreen implements Screen
 
         changeMaps();
 
-        test.test();
-        test.test();
-
-       /* MapManager mapManager = new MapManager();
+        MapManager mapManager = new MapManager();
         System.out.println(mapManager.getPlayerX());
         System.out.println(mapManager.getPlayerY());
         mapManager.getPlayerX();
-        mapManager.getPlayerY();*/
+        mapManager.getPlayerY();
     }
 
     @Override

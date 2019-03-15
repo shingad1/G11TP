@@ -5,23 +5,10 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
-
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Iterator;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 
 public class ProfileManager extends ProfileSubject {
-
-    private Json json;
-
     private static ProfileManager profileManager;
 
     private Hashtable<String, FileHandle> _profiles = null;
@@ -36,10 +23,9 @@ public class ProfileManager extends ProfileSubject {
 
     private boolean isNewProfile = false;
 
-     private JSONParser parser;
-     private  JSONArray array;
+    private Json json;
 
-    private ProfileManager(){
+    public ProfileManager(){
         json = new Json();
         _profiles = new Hashtable<String, FileHandle>();
         _profiles.clear();
@@ -162,29 +148,6 @@ public class ProfileManager extends ProfileSubject {
         }
         property = (T) profileProperties.get(key);
         return property;
-    }
-
-    public void getPlayerCoOrdinate() {
-        parser = new JSONParser();
-        try {
-            array = (JSONArray) parser.parse(new FileReader(DEFAULT_PROFILE + ".json"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        for (Object o : array) {
-            JSONObject obj = (JSONObject) o;
-
-            int x = Integer.parseInt((String) obj.get("x:"));
-            System.out.println(x);
-            profileProperties.put("Player's x", x);
-
-            int y = Integer.parseInt((String) obj.get("y:"));
-            System.out.println(y);
-            profileProperties.put("Player's y", y);
-        }
     }
 
     /**
