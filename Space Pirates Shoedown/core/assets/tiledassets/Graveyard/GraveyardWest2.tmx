@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Ground.tsx"/>
  <tileset firstgid="491" source="Resources/Castle3.tsx"/>
+ <tileset firstgid="797" source="../TropicalWorld/Resources/Tiles5.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt2OEKgzAMBGB91Abf/xn84QalJJqg0Du9g+CQDfLRpuiWhTu2HsUeObDyBsffIAdG5MCKHHiZ7djWZ8p+V2aHdZ9nO1pX2Z69mu2oetAddwvdEe2n8f5sx9W+9/Yf43pkbWiOcX3acGWdj+zMoDq8M9iC+8iO6jmA7ojWqQ1ONgfDemT2UPQdJMedGWFwZGyMDpZzt+/zrecugyPzDsXyvMv8Pljt3Zzfojqqs47gqBbTc7vXuwUGBsdZ7yyOyn8QyA62c/eJeVcURVGUL2cH9fv3Cw==
+   eJztmGsKhDAMhO3BchjD3v8M+2MVSjeuTRU6487AoAhCPvOw7bJwy8vH7BIHlp7AsTOIA0PiwJI48DSb41XusW9XZg6v7mdzrJV7Y448myPLg85x1egcR/XUPp/NcVb3Uf0x5qOXDY2jzc/aXNn6wxI9Y6ActrnNgZfv2WwEHGdzwIA5bNBIHKMMKBwjcaPU1VE8bPmIvm/GDsJx9f/NMHfrOHvWX6gcI0bi6NlDsax3mfeD2dg9eBeVI9vrCBxZR1wsHPUZKGM+fsXOwpE5g0DmYJu7d/S7JEmSJP2z3hRW6iw=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztz0EKwCAMRUE9WO9/reJC6KbQWKU1zEC24b9SAAAAgJmO+vWCOVpHpOVP3X1Lb3i6Ldq80nV7pCPavMLd9tHToSNzx9sfu8vS0WTpAAAAgN2dGw8aZw==
+   eJzt1dEJgDAMRVHFudzC/WeRIoFSqFIayUu5F4IfKuSI6Lbl7jqeyR4OrVZwmAGHRji0wqFXtKN+lh6DA8dKDm+LSjhw/N1KjnPP6Sh723HEYdcpVHaxaff7MkQ76t1bR+/c2z0qjvYZZ3LM7N5OVJ6GSEfvvRoZhfdq9v+t8t31ckT/B3HgwIEDBw4cOFQcRERECt19HMDX
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJztzzdTlWEUhdFv7sWAlAZMrWCkBDGWZrQ0opYKJkowgJYGMJRghNIcSgVRLM2hNIFaggmtXP/gVg7zMueZWf3eWRZFURRFURSNhmblsqyMcmYzh7nMYz4LqMiN9MrCVdpYxUKqWcRilrCUZSxP4McKG1eyitWsYS3rqGE9GxL4sdHGTWxmC1vZRi3b2cHOBH7ssnE3ddSzh73sYz8HaEjgR6ONTRzkEIc5QjMtHOVYAj+O23iCk5yilTZOc4aznEvgR7uNHZznAhe5xGWu0ElXAj+u2niN69zgJre4zR3uci+BH/dtfEA3PTykl0c8po8nCfx4auMznvOCl7ziNW94y7sEfry38QMf+cRn+hngC1/5lsCPQRuH+M4PfvKL3wzzh78J/MjlsyxPEWMYyzjGU8wESvIjvbJwE22cxGSmUMpUpjGdGcxM4EcURVEURVEURVEURVH0f/sHSUlLTA==
+  </data>
+ </layer>
+ <layer id="4" name="Tile Layer 4" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
   </data>
  </layer>
 </map>

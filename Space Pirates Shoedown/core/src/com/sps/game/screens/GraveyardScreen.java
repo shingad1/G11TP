@@ -8,6 +8,7 @@ import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.controller.NPCController;
 import com.sps.game.controller.PlayerController;
 import com.sps.game.maps.GraveyardMap;
+import com.sps.game.maps.GraveyardWestMap;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.sprites.AbstractEnemy;
@@ -28,7 +29,7 @@ public class GraveyardScreen extends PlayScreen {
     /**
      * 2D array, that contains all the maps for the graveyard world
      */
-    private Map[][] worldMaps = {{new GraveyardMap(), null},
+    private Map[][] worldMaps = {{new GraveyardWestMap(), new GraveyardMap()},
                                  {null, null}};
     /**
      * Chooses the map to load from the array
@@ -43,16 +44,14 @@ public class GraveyardScreen extends PlayScreen {
      */
     private int[] ybounds = {0,1600};
 
-    public GraveyardScreen(SpacePiratesShoedown game) {
+    public GraveyardScreen(SpacePiratesShoedown game, Vector2 selector) {
         super(game);
-        mapSelector = new Vector2(0,0);
+        mapSelector = selector;
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)];
         currentMap = selectedMap.getCurrentMap();
         renderer = new OrthogonalTiledMapRenderer(currentMap);
         currentCollisionLayer = selectedMap.getCollisionLayer();
         currentMapState = getCurrentMapType();
-        random = new Random();
-        int numNonInteractive = random.nextInt(10) + 10;
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
 

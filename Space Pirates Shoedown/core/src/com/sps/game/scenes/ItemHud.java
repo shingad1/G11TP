@@ -147,7 +147,7 @@ public class ItemHud {
     }
 
     public void update() {
-        if (Gdx.input.isKeyPressed(Input.Keys.E) && oldInput == null) {
+        if (Gdx.input.isKeyPressed(Input.Keys.H) && oldInput == null) {
             formatting();
             setInput();
         }

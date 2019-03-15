@@ -15,9 +15,9 @@ import com.sps.game.sprites.AbstractNPC;
 import com.sps.game.sprites.Player;
 import java.io.FileReader;
 import java.util.Iterator;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
+//import org.json.simple.parser.JSONParser;
 
 /**
  * This class stores the current state of the Map.
