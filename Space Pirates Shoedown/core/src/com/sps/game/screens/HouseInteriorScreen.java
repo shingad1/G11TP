@@ -79,6 +79,7 @@ public class HouseInteriorScreen extends PlayScreen {
             enemies.add(new BasicEnemy(320,288,MapFactory.MapType.CandyMansion,batch,"EnemyCandySix"));
             enemies.add(new BasicEnemy(384,672,MapFactory.MapType.CandyMansion,batch,"EnemyCandySeven"));
             enemies.add(new BasicEnemy(1248,800, MapFactory.MapType.CandyMansion,batch,"EnemyCandyEight"));
+            enemies.add(new HeadEnemy(832, 928,MapFactory.MapType.CandyMansion,batch,"HeadEnemyCandy"));
         } else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1)){
             enemies.add(new BasicEnemy(928,768,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalTwo"));
             enemies.add(new BasicEnemy(448,832,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalOne"));
@@ -187,15 +188,12 @@ public class HouseInteriorScreen extends PlayScreen {
         return null;
     }
 
-
+    /**
+     * Returns an array list with all the enemies on the map.
+     * @param map
+     * @return ArrayList<AbstractEnemy> enemies
+     */
     public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map){
-        /*ArrayList<AbstractEnemy> result = new ArrayList<AbstractEnemy>();
-            for(int i=0; i < enemies.size(); i++) {
-                if (enemies.get(i).getWorld().equals(map)) {
-                    result.add(enemies.get(i));
-                }
-            }
-        return result;*/
         return enemies;
     }
 }

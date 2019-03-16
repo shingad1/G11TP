@@ -177,7 +177,9 @@ public abstract class PlayScreen implements Screen
      * Holds the current state of the game
      */
     private static GameState gameState;
-
+    /**
+     * Holds an instance of the DialogueHud, that displays the dialogue of the NPC or enemy.
+     */
     private DialogueHud dialogueHud;
 
     MiniMapScreen miniMapScreen;
