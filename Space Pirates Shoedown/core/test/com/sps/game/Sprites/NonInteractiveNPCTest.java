@@ -1,23 +1,25 @@
 package com.sps.game.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class NonInteractiveNPCTest {
 
+    private SpriteBatch sb;
+    private NonInteractiveNPC nonnteractiveNPC;
 
-    NonInteractiveNPC nonnteractiveNPC = new NonInteractiveNPC(12, 9, "Candy Land",sb, "Pirate");
-
-    public void create() {
-        SpriteBatch sb = new SpriteBatch();
+    @Before
+    public void setup() {
+        sb = new SpriteBatch();
+        nonnteractiveNPC = new NonInteractiveNPC(12, 9, "Candy Land",sb, "Pirate");
     }
 
     @Test
     public void getX() {
-
         assertEquals(12, nonnteractiveNPC.getX());
-
     }
 
     @org.junit.Test
