@@ -27,6 +27,19 @@ Shane Uppal
 Acknowledgments:
 Mastering LibGDX Game Development- Patrick Hoey
 
+Graphic Sources:
+Home World Sources:
+
+Candy Land Sources:
+https://gameartpartners.com/downloads/the-candy-land-platformer-tileset/
+https://www.deviantart.com/spritemight/art/Candy-Land-Set-01-375163812
+https://www.amazon.com/LFEEY-Candyland-Photography-Amusement-Background/dp/B07FGW2D3Y
+https://opengameart.org/content/wooden-house-with-animated-door-pixel-art
+
+Tropical World Sources:
+
+Graveyard World Sources:
+
 Music:
 Home World Music:
 Candy Land Music: https://www.melodyloops.com/my-music/longoloops/orchestral-game/

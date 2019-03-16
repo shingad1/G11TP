@@ -11,10 +11,8 @@ import com.sps.game.maps.GraveyardMap;
 import com.sps.game.maps.GraveyardWestMap;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
-import com.sps.game.sprites.AbstractEnemy;
-import com.sps.game.sprites.AbstractNPC;
-import com.sps.game.sprites.Location;
-import com.sps.game.sprites.NonInteractiveNPC;
+import com.sps.game.sprites.*;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -51,9 +49,11 @@ public class GraveyardScreen extends PlayScreen {
         currentMap = selectedMap.getCurrentMap();
         renderer = new OrthogonalTiledMapRenderer(currentMap);
         currentCollisionLayer = selectedMap.getCollisionLayer();
-        currentMapState = getCurrentMapType();
+        currentMapState = selectedMap.getCurrentMapType();
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
+
+        npc.add(new InteractiveNPC(864,192,MapFactory.MapType.GraveyardWorld1, batch,"Gravewelcome"));
 
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
