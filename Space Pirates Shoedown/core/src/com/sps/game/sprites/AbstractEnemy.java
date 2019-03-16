@@ -1,11 +1,7 @@
 package com.sps.game.sprites;
 
-import com.badlogic.gdx.math.Vector2;
-import com.sps.game.animation.EnemyAnimation;
-import com.sps.game.controller.CombatSystem;
-import com.sps.game.maps.MapFactory;
-import com.sps.game.screens.Fighter;
 
+import com.sps.game.screens.Fighter;
 import java.util.HashMap;
 /**
  * This class holds the basic implementation of all types of enemies.
