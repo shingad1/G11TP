@@ -3,6 +3,7 @@ package com.sps.game.Sprites;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.Animation.enemyAnimation;
 import com.sps.game.Controller.CombatSystem;
+import com.sps.game.Controller.MoveList;
 import com.sps.game.Screens.Fighter;
 
 import java.util.HashMap;
@@ -85,7 +86,7 @@ public class BasicEnemy extends AbstractEnemy{
     }
 
     @Override
-    public void battleMove()
+    public void battleMove(MoveList moveList)
     {
         Random rand = new Random();
 
@@ -94,13 +95,13 @@ public class BasicEnemy extends AbstractEnemy{
             int temp = 1;
             switch (temp) {
                 case 1:
-                    system.doMove("basicAttack");
+                    system.assignMove("Attack", moveList.getMovelist().get("Attack"), false);
                     break;
             }
         }
         else
         {
-            system.doMove("block");
+            system.assignMove("Block", moveList.getMovelist().get("Block"), false);
         }
     }
 }

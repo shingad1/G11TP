@@ -55,10 +55,10 @@ public class MoveList {
     }
 
     public HashMap<String,Move> getMovesHashMapByType (MoveType type){
-        ArrayList<String> result = new ArrayList<String>();
+        HashMap<String,Move> result = new HashMap<String, Move>();
         for(String moveName : movelist.keySet()){
             if(movelist.get(moveName).getType() == type)
-                result.add(moveName);
+                result.put(moveName,movelist.get(moveName));
         }
         return result;
     }

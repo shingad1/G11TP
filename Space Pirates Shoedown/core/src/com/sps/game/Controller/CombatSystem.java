@@ -21,6 +21,8 @@ public class CombatSystem
 {
     enum Inputs {Q,W,E,R,A,S,D}
 
+    enum BattleOutcome {Win, Draw, Lose}
+
     private Player player;
     /**
      * creates an instance of the player
@@ -61,7 +63,9 @@ public class CombatSystem
     private String playerChosenMoveKey;
 
     private MoveList.Move enemyChosenMove;
-    private String enemyChosenMoveKey
+    private String enemyChosenMoveKey;
+
+    private boolean resolveOnce;
 
     public CombatSystem(Player p, AbstractEnemy e, SpriteBatch sb){
         this.player = p;
@@ -81,6 +85,8 @@ public class CombatSystem
         moveSelectionStack.push(moveSelectionHashMap);
         moveSelector = 0;
         playerControl = true;
+
+        resolveOnce = false;
     }
     /**
      * Changes the boolean when it is the players turn.
@@ -94,40 +100,49 @@ public class CombatSystem
     }
 
     /**
-     * This updates the battle scene so the enemy and the player has equal chances.
+     * This updates the battle.
+     * The battle relies on a Rock, Paper, Scissors system. The player may end up not getting hit or they may never hit the enemy.
+     * There are 3 different move types: attack, defend, sneak
+     * And this is how the rock, paper, scissors is represented (--> means strong against)
+     *      Attack --> Sneak --> Defend --> Attack
      */
     public void update() {
         if (!(finished)){
-            if(playerControl){
+            if(playerControl && !(animationHandler.isInAnimation())){
                 if(playerChosenMove != null && !(playerChosenMoveKey.equals(""))){
                     playerControl = false;
                 }
-            } else {
-                //enemy move selection
+            } else if(!animationHandler.isInAnimation()){
+                enemy.battleMove(enemyMoveList);
             }
             if(playerChosenMove != null && enemyChosenMove != null){
-                //resolve battle
-            }
-            /**
-            if (!(playerTurn) && !(animationHandler.isInAnimation()) && !(animationHandler.isAnimationEnd())) {
-                enemy.battleMove();
-                if(!(chosenMove.equals(""))) {
-                    animationHandler.setupEnemyAnimation("");
+                BattleOutcome outcome = resolveCombat();
+                if (outcome == BattleOutcome.Win && !resolveOnce){
+                    animationHandler.setupPlayerAnimation(playerChosenMoveKey);
+                    resolveOnce = true;
+                } else if (outcome == BattleOutcome.Lose && !resolveOnce){
+                    animationHandler.setupEnemyAnimation(enemyChosenMoveKey);
+                    resolveOnce = true;
+                } else if (outcome == BattleOutcome.Draw && !resolveOnce){
+                    player.combatUpdate();
+                    enemy.combatUpdate();
+                    resetInput(2);
                 }
-            } else if ((playerTurn) && !(animationHandler.isInAnimation()) && !(animationHandler.isAnimationEnd())){
-                if(chosenMove != null) {
-                    animationHandler.setupPlayerAnimation("");
+
+                if(animationHandler.isAnimationEnd()){
+                    switch(outcome){
+                        case Win:
+                            applyMove(playerMoveList,playerChosenMoveKey);
+                            break;
+                        case Lose:
+                            applyMove(enemyMoveList,enemyChosenMoveKey);
+                            break;
+                    }
+                    player.combatUpdate();
+                    enemy.combatUpdate();
+                    resetInput(2);
                 }
             }
-            if (animationHandler.isAnimationEnd()) {
-                if(!(playerTurn)) {
-                    applyMove(enemyMoveList);
-                } else {
-                    applyMove(playerMoveList);
-                }
-                playerTurn = !playerTurn;
-            }
-             */
             if ((player.getHealth() == 0) || (enemy.getHealth() == 0)) {
                 finished = true;
                 Dialogue d = new Dialogue("Enemy");
@@ -142,6 +157,11 @@ public class CombatSystem
         return finished;
     }
 
+    /**
+     * This method sets up a string array of options for the player during combat
+     *
+     * @return String[] options
+     */
     public String[] getOptions(){
         String[] options = new String[7];
         for (String option: options) {
@@ -160,88 +180,118 @@ public class CombatSystem
             options[5] = "Previous Page";
         if(moveSelectionStack.size() > 1)
             options[6] = "Back";
+
+        return options;
     }
 
     public Object[] getMoveSelectionStackKeySet(){
          return moveSelectionStack.peek().keySet().toArray();
     }
 
+    /**
+     * This translates the input from player and enemy and updates the combat system
+     *
+     * @param input
+     * @param inputByPlayer
+     */
     public void doInput(Inputs input, boolean inputByPlayer){
-        switch (input){
-            case Q:
-                if(getOptions()[0] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move)) {
-                    moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]));
+        if((inputByPlayer && playerControl) || !(inputByPlayer && playerControl)) {
+            switch (input) {
+                case Q:
+                    if (getOptions()[0] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move)) {
+                        moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]));
+                        resetInput(0);
+                    } else if (moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move) {
+                        assignMove(getOptions()[0], (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]), inputByPlayer);
+                    }
+                    break;
+                case W:
+                    if (getOptions()[1] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move)) {
+                        moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]));
+                        resetInput(0);
+                    } else if (moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move) {
+                        assignMove(getOptions()[1], (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]), inputByPlayer);
+                    }
+                    break;
+                case E:
+                    if (getOptions()[2] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move)) {
+                        moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]));
+                        resetInput(0);
+                    } else if (moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move) {
+                        assignMove(getOptions()[2], (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]), inputByPlayer);
+                    }
+                    break;
+                case R:
+                    if (getOptions()[3] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move)) {
+                        moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]));
+                        resetInput(0);
+                    } else if (moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move) {
+                        assignMove(getOptions()[3], (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]), inputByPlayer);
+                    }
+                    break;
+                case A:
+                    if (moveSelector * 4 < getMoveSelectionStackKeySet().length)
+                        moveSelector++;
+                    break;
+                case S:
+                    if (moveSelector > 0)
+                        moveSelector--;
+                    break;
+                case D:
+                    if (moveSelectionStack.size() > 1)
+                        moveSelectionStack.pop();
                     resetInput(0);
-                } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move){
-                    assignMove(getOptions()[0],( MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]), inputByPlayer);
-                }
-                break;
-            case W:
-                if(getOptions()[1] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move)) {
-                    moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]));
-                    resetInput(0);
-                } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move){
-                    assignMove(getOptions()[1],( MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]), inputByPlayer);
-                }
-                break;
-            case E:
-                if(getOptions()[2] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move)) {
-                    moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]));
-                    resetInput(0);
-                } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move){
-                    assignMove(getOptions()[2],( MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]), inputByPlayer);
-                }
-                break;
-            case R:
-                if(getOptions()[3] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move)) {
-                    moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]));
-                    resetInput(0);
-                } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move){
-                    assignMove(getOptions()[3],( MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]), inputByPlayer);
-                }
-                break;
-            case A:
-                if (moveSelector * 4 < getMoveSelectionStackKeySet().length)
-                    moveSelector++;
-                break;
-            case S:
-                if (moveSelector > 0)
-                    moveSelector--;
-                break;
-            case D:
-                if (moveSelectionStack.size() > 1)
-                    moveSelectionStack.pop();
-                    resetInput(0);
-                break;
+                    break;
+            }
         }
-        /**
-         * The player chooses an action
-         * If the action is not a move then continue giving the player control
-         * If it is a move, then, select the move and the player loses control
-         * The enemy chooses their move and the battle occurs
-         *
-         * Choosing the action
-         * 0-3 (pushes on the moveSelectionStack
-         * 4, 5 and 6 are special (add checks)
-         *  4: scrolls to next page
-         *  5: scrolls back to previous page
-         *  6: goes back
-         */
     }
 
+    /**
+     * This method assigns a MoveList.Move to a variable (either to a player or an enemy)
+     *
+     * @param moveKey (Name of the move)
+     * @param move (MoveList.Move)
+     * @param inputByPlayer (Is the input made by the player or not)
+     */
     public void assignMove(String moveKey, MoveList.Move move, boolean inputByPlayer){
-        if(playerControl && inputByPlayer){
-            playerChosenMoveKey = moveKey;
-            playerChosenMove = move;
-        } else if(!(inputByPlayer)) {
-            enemyChosenMoveKey = moveKey;
-            enemyChosenMove = move;
+        if((inputByPlayer && playerControl) || !(inputByPlayer && playerControl)) {
+            if (playerControl && inputByPlayer) {
+                playerChosenMoveKey = moveKey;
+                playerChosenMove = move;
+            } else if (!(inputByPlayer)) {
+                enemyChosenMoveKey = moveKey;
+                enemyChosenMove = move;
+            }
+            resetInput(1);
         }
-        resetInput(1);
     }
 
-    private boolean resolveCombat(){
-        
+    /**
+     * evaluates the rock, paper, scissors part of the combat.
+     * Returns BattleOutcome.Win if the player's move type beats the enemy's move type etc.
+     *
+     * @return BattleOutcome (Win, Draw, Lose)
+     */
+    private BattleOutcome resolveCombat(){
+        if(playerChosenMove.getType() == getStrongOrWeakType(enemyChosenMove, true)) return BattleOutcome.Win;
+        if(playerChosenMove.getType() == getStrongOrWeakType(enemyChosenMove, false)) return BattleOutcome.Lose;
+        return BattleOutcome.Draw;
+    }
+
+    private MoveList.MoveType getStrongOrWeakType(MoveList.Move move, boolean weakAgainst){
+        MoveList.MoveType type = null;
+        switch(move.getType()){
+            case attack:
+                type = weakAgainst ? MoveList.MoveType.defend : MoveList.MoveType.sneak;
+                break;
+            case defend:
+                type = weakAgainst ? MoveList.MoveType.sneak : MoveList.MoveType.attack;
+                break;
+            case sneak:
+                type = weakAgainst ? MoveList.MoveType.attack : MoveList.MoveType.defend;
+                break;
+        }
+        return type;
     }
 
     private void resetInput(int resetLevel){
@@ -256,13 +306,14 @@ public class CombatSystem
                 playerControl = true;
                 enemyChosenMoveKey = "";
                 enemyChosenMove = null;
+                resolveOnce = false;
             }
         }
     }
 
     //Implementing a 'move list'
-    public void applyMove(MoveList userMoveList){
-        userMoveList.use("");
+    public void applyMove(MoveList userMoveList, String move){
+        userMoveList.use(move);
     }
 
 

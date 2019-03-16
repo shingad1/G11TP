@@ -2,6 +2,7 @@ package com.sps.game.Sprites;
 
 import com.sps.game.Animation.enemyAnimation;
 import com.sps.game.Controller.CombatSystem;
+import com.sps.game.Controller.MoveList;
 import com.sps.game.Screens.Fighter;
 
 import java.util.HashMap;
@@ -33,7 +34,7 @@ public abstract class AbstractEnemy extends Fighter {
      */
     public abstract int getY();
 
-    public abstract void battleMove();
+    public abstract void battleMove(MoveList moveList);
 
 
     public void setCombatSystem(CombatSystem system){this.system = system;}
