@@ -3,6 +3,7 @@ package com.sps.game.Sprites;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class LocationTest {
 
@@ -28,6 +29,12 @@ public class LocationTest {
     public void setY() {
         location.setY(58);
         assertEquals(58, location.getY(),0);
+    }
+
+    @Test
+    public void equals(){
+        com.sps.game.sprites.Location anotherLocation = new com.sps.game.sprites.Location(95, 22);
+        assertFalse(anotherLocation==location);
     }
 
 }
