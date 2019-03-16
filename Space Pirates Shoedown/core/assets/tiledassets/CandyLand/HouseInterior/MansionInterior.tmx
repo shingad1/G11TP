@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
+ <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="1515" source="Resources/Floor.tsx"/>
+ <tileset firstgid="1675" source="Resources/CandyLandTiles4.tsx"/>
+ <tileset firstgid="2203" source="Resources/CandyFlooring.tsx"/>
+ <tileset firstgid="2207" source="Resources/Classic Interior Objects.tsx"/>
+ <tileset firstgid="3231" source="Resources/CandyLandDecorTiles2.tsx"/>
+ <tileset firstgid="3487" source="Resources/CandyWindow2.tsx"/>
+ <tileset firstgid="3489" source="Resources/CandyWindow1.tsx"/>
+ <tileset firstgid="3491" source="Resources/CandyLandTiles3.tsx"/>
+ <tileset firstgid="3923" source="Resources/CandyFlooring3.tsx"/>
+ <tileset firstgid="3924" source="Resources/CandyLandDecorTiles1.tsx"/>
+ <tileset firstgid="4500" source="../../HomeWorld/Resources/Tiles5.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlkEOwiAQRbtrdx7OQ6ln0ES9hcfwSKWLSZBkyvzB0jH+l0ykgsADhjoMhBBCCCGEkH/lNbbV9+Y6fYbwrswzr79NerteaB4IET28EcFFkDk90pl5priP9XJvD8nL5TPP0bz8DY+yb22sVpb81HJY5nRO9ZcUp7FeXtuPtbG2xOtxPGDRMjckPOcKCa8HslaWe6kMtP8oHuUz2r/nbKEeQnm3aM+S35E8cqz/Szz77cl3ZBzP2Y3qgczJE/SgBz3qY6D0mFs0D+0djraJ4FH7ztImYn7k662t/S94lGcJ+d2eHmug/nvvB0JPD8udkrfxeFj7b7mvrON41sl6tsr6Fo9atHps0X9PrLkR3YMQsi0zS2iQ4g==
+  </data>
+ </layer>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlFEOAyEIRL1C0+v2hnupph8mG6II6kDWjsn7WV1hhOF6lXIRQgghhBBC/oq6Pu+irvt+ds4WHa29ul+/Zed8Mr939pKd80iH/G45h0L2e42t+WC2FtL/llheHb275cxZ6StvrBUdvXWKP3q5aXlHao2Kha5Vtg55/2ycHX5teVbOHvR7Wf6z6GjpkrMHrSNr7kT5w1qflTOod0HpiPCH9/5RTGs+iL7ScpzV8aR6eHPStO+oxyk6ZnJEscszWr0s9fTUXHvTSB09X0frkD11io6RV1ZratG3o28Q/ovQocV6Uj1GvblrhkTN28z7kfOWEEKi+QIWWpdK
+  </data>
+ </layer>
+ <layer id="3" name="Door" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAIA7CD/UPY1BYKsiVYAgAAAAAAAMBnXdcDAIAdA+Y4AKU=
+  </data>
+ </layer>
+ <layer id="4" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmEtPVDEUx6tjZqJOhxjd+AwYNbgDo34BBdSt7kXvgFF8kPiIuvEColvRlbrwsdJPMPAFCDvkUwifwY3/Tu/xHkt7p72DQExP8ktvb9vb829PHzNLFSGWIpFIJBKJRCKRSEde1oVYrThJXaBdutW+c8bgT6smxDz4InXqgsoXau12W+67qWMZfv0AX6VOXVD5yjbUcQv+/IRfqwGs1drttl1c9VbFH9uNMd8D9kqdryOVoCHzOqp+Nh9pCbz8moFfr9CHD6jbno9+puMg/D0EDmd+H0F6FBxjOlR9NR9ZX17M5Lq9x5fW7a+6Tj9JzTx7T2tV1R9gOnxsoJq3bbF+OvUVqmPZWJ+fpYa/o7Wq5qOMqfkI7StURwXf2SXd65TKZ/Ht10xHgnFuOuZmDO/HWRnapWif+uwRayV17IePB8Ab8AKkGep5ClC5aRPw865Dxz28v+8ZfzQeTfQxBsZlOR1+vWkbwvdHwLCd1Abqp0MF/dB4PIL/j8GTTdBBa8Sxp1n3HlobvR7zMynzfsroUPEzncURwfOmjpblXsL3IbqXLNTyNd4fsM+V1fFA6rFwpaaOZc97yQrTEbJfl9HhM9+mDt+7yRrTYa4nWjMjljVVRkfRfPdhTI/LPDXPEDVXlxpCXGZcaeh5VNabneW2NUV7+KxlbWX3sSAdNN/vpIbbIPJnZJ6aOpS/o/D7BuNmI49FupOofk7gHXESnMrq8Dylm7VfcXsKv58xnjfysgGm4yz8I86B85kOnqe0Gx1vpYZbIjVFOmx7AzfSETpemz0fnYx08FiiZzPGNiKuzDuRzcw7lo/R3YrHEj2bMbYRcRVyJ+LWVy3Ol7EyOhx3pTYjlrEfMspPG36rPD8Tiu5Wym73CHEHTPR0p6PoN6Athvh/Bqr9oKFjsLq+TpGOKfg/DWa61LET8XghQz0LcDFDWO7r3Mcmnr9X/i5HPm2yc6yTjvfw/wP42KUO1e6q1JBdkxqbmf/hLIJvmlSxaPxPYOqwxZGjj3+27z6U63UwUgvr+rDF0UbouG45u3ZITUEfpXXY4qhbHYllT5mD//sy5pgWdVarvSoJ1JF47FlktBcmgTqov07xpTSMFsdUkRbve4nx/WAdSb7fO8+S4eK5cGowvl+E+f0QHZFI5D/gN/YVNrs=
+  </data>
+ </layer>
+</map>

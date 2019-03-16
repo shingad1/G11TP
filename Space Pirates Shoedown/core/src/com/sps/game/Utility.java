@@ -5,29 +5,40 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TideMapLoader;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Json;
 
 public final class Utility {
 
     /**
-     * Manafes the loading and storing of assets
+     * Manages the loading and storing of assets
      */
     public static final AssetManager ASSET_MANAGER = new AssetManager();
 
     private static final String TAG = Utility.class.getSimpleName();
-
+    private final static String ITEMS_TEXTURE_ATLAS_PATH = "core/assets/Inventory/items.atlas";
+    private final static String STATUSUI_SKIN_PATH = "core/assets/Inventory/statusui.json";
+    private final static String STATUSUI_TEXTURE_ATLAS_PATH = "core/assets/Inventory/statusui.atlas";
+    private final static String UISKIN_TEXTURE_PATH = "core/assets/Inventory/uiskin.json";
     private static InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
 
+    public static TextureAtlas STATUSUI_TEXTUREATLAS = new TextureAtlas(STATUSUI_TEXTURE_ATLAS_PATH);
+    public static TextureAtlas ITEMS_TEXTUREATLAS = new TextureAtlas(ITEMS_TEXTURE_ATLAS_PATH);
+    public static Skin STATUSUI_SKIN = new Skin (Gdx.files.internal(STATUSUI_SKIN_PATH), STATUSUI_TEXTUREATLAS);
+
     /**
-     * Checks to see if the assest it loaded, if it is it will unload it otherwise it will throw an error
+     * Checks to see if the assets it loaded, if it is it will unload it otherwise it will throw an error
      * @param assetFileNamePath
      */
     public static void unloadAsset(String assetFileNamePath){
         if(ASSET_MANAGER.isLoaded(assetFileNamePath)){
             ASSET_MANAGER.unload(assetFileNamePath);
         } else{
-            Gdx.app.debug(TAG, "Assest is not loaded; There is nothing to unload " + assetFileNamePath);
+            Gdx.app.debug(TAG, "Assets is not loaded; There is nothing to unload " + assetFileNamePath);
         }
     }
 
@@ -73,7 +84,7 @@ public final class Utility {
             return;
         }
         if(filePathResolver.resolve(mapFileNamePath).exists()){
-            ASSET_MANAGER.setLoader(TiledMap.class, new TideMapLoader(filePathResolver));
+            ASSET_MANAGER.setLoader(TiledMap.class, new TmxMapLoader(filePathResolver));//was tideMapLoader
             ASSET_MANAGER.load(mapFileNamePath, TiledMap.class);
             ASSET_MANAGER.finishLoadingAsset(mapFileNamePath);
             Gdx.app.debug(TAG, "Map loaded: " + mapFileNamePath);
@@ -81,6 +92,7 @@ public final class Utility {
             Gdx.app.debug(TAG, "Map does not exist: " + mapFileNamePath);
         }
     }
+
 
     /**
      * Returns the map that has been loaded
@@ -115,6 +127,24 @@ public final class Utility {
     }
 
     /**
+     * Returns the skin asset loaded
+     * @param skinFileNamePath
+     * @return Returns a skin
+     */
+
+    public static Skin loadSkinAsset(String skinFileNamePath) {
+        Skin skin = null;
+
+        if (ASSET_MANAGER.isLoaded(skinFileNamePath)) {
+            skin = ASSET_MANAGER.get(skinFileNamePath, Skin.class);
+        } else {
+            Gdx.app.debug(TAG, "Skin is not loaded: " + skinFileNamePath);
+        }
+        return skin;
+    }
+
+
+    /**
      * Returns the texture asset loaded
      * @param textureFileNamePath
      * @return
@@ -127,5 +157,15 @@ public final class Utility {
             Gdx.app.debug(TAG, "Texture is not loaded: " + textureFileNamePath);
         }
         return texture;
+    }
+
+    public static Json getJsonAsset(String jsonFileNamePath) {
+        Json json = null;
+        if(ASSET_MANAGER.isLoaded(jsonFileNamePath)) {
+            json = ASSET_MANAGER.get(jsonFileNamePath, json.getClass());
+        } else {
+            Gdx.app.debug(TAG, "Json File is not loaded: " + jsonFileNamePath);
+        }
+        return json;
     }
 }

@@ -1,0 +1,43 @@
+SpacePirates Shoedown
+
+Credits:
+
+Programmers:
+Miraj Shah,
+Miguel Abaquin,
+Devin Shingadia,
+Mahamuda Akhter,
+Alexander Bernini
+
+Graphics:
+Alexander Bernini,
+Denash Sathanantheswaran,
+Miraj Shah
+
+Story:
+Alainya Wallace,
+Adedolapo Adeyinka,
+Shane Uppal
+
+Testing:
+Alainya Wallace,
+Adedolapo Adeyinka,
+Shane Uppal
+
+Acknowledgments:
+Mastering LibGDX Game Development- Patrick Hoey
+
+Music:
+Home World Music:
+Candy Land Music: https://www.melodyloops.com/my-music/longoloops/orchestral-game/
+Tropical World Music: https://www.melodyloops.com/my-music/longoloops/the-dream-of-the-dancing-turtles/ 
+Tense Music:
+	Planet Hell by Serge Narcissoff | https://soundcloud.com/sergenarcissoff
+	Music promoted by https://www.free-stock-music.com
+	Creative Commons Attribution-ShareAlike 3.0 Unported
+	https://creativecommons.org/licenses/by-sa/3.0/deed.en_US
+Graveyard Music:
+	It’s In The Fog by Darren-Curtis | https://soundcloud.com/desperate-measurez
+	Music promoted by https://www.free-stock-music.com
+	Creative Commons Attribution 3.0 Unported License
+	https://creativecommons.org/licenses/by/3.0/deed.en_US
