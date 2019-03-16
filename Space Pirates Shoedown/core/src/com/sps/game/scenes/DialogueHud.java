@@ -69,7 +69,7 @@ public class DialogueHud {
     /**
      * Displays the current line of text.
      */
-    Dialog textArea = new Dialog("Dialogue", skin);
+    Dialog textArea = new Dialog("", skin);
     /**
      * Holds the current line of text.
      */
@@ -156,7 +156,6 @@ public class DialogueHud {
         if (Gdx.input.isKeyPressed(Input.Keys.B) && oldInput == null) {
             formatting();
             show(npcName);
-            //potentially reset move here?
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.E) && oldInput != null) {
