@@ -23,7 +23,7 @@ public class PlayerInventory {
 
     private List<String> inventory;
 
-    private InventoryController inventoryController;
+    private InventoryController inventoryController = InventoryController.getInstance();
     private InputProcessor oldInput;
     private Table table;
 
@@ -39,7 +39,6 @@ public class PlayerInventory {
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
-        inventoryController = new InventoryController();
         inventory = inventoryController.getInventoryList();
     }
 

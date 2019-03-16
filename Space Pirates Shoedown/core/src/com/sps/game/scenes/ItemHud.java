@@ -4,7 +4,6 @@ package com.sps.game.scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -12,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
@@ -23,8 +21,6 @@ import com.sps.game.controller.PlayerController;
 import com.sps.game.inventory.Item;
 import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
-
-import java.awt.*;
 
 /**
  * This class is what the user will see, when they pick up an item
@@ -44,13 +40,9 @@ public class ItemHud {
      */
     private InputProcessor oldInput;
     /**
-     * The label which will display the item name
-     */
-    private Label itemLabel;
-    /**
      * Get the items from the inventoryController
      */
-    private InventoryController inventoryController;
+    private InventoryController inventoryController = InventoryController.getInstance();
     /**
      * The user will see the table
      */
@@ -66,16 +58,18 @@ public class ItemHud {
     private PlayerInventory playerInventory;
     private MerchantInventory merchantInventory;
     private String buttonClicked;
+    private Label pickUpLabel;
     private Item nearbyItem;
+    private Label itemName;
 
     public ItemHud(SpriteBatch sb, PlayerController playerController) {
-        inventoryController = new InventoryController();
         playerInventory = new PlayerInventory(sb, playerController);
         merchantInventory = new MerchantInventory(sb, playerController);
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
-        itemLabel = new Label("Item name", skin);
+        pickUpLabel = new Label("Do you want to pick up this item?", skin);
+        itemName = new Label("Item name", skin);
         isPickedUp = false;
 
     }
@@ -87,7 +81,7 @@ public class ItemHud {
         table.setHeight(stage.getHeight() / 3);
         table.align(Align.center);
         table.setFillParent(true);
-        table.setDebug(true);
+        table.setDebug(false);
 
         yesButton = new TextButton("Yes", skin, "default");
         noButton = new TextButton("No", skin, "default");
@@ -118,12 +112,21 @@ public class ItemHud {
             }
         });
 
-        itemLabel.setText("Do you want to pick up this item?");
-        table.add(itemLabel).colspan(2).row();
+        pickUpLabel.setText("Do you want to pick up this item?");
+        itemName.setText(nearbyItem.getName());
+        imagePlaceholder.setScale(1.25f, 1.25f);
+
+
+
+
+        table.add(pickUpLabel).colspan(2).row();
+        pickUpLabel.setFontScale(0.8f, 0.8f);
         table.row();
         table.add(imagePlaceholder).colspan(2).row();
-        table.add(yesButton).size(150, 50).align(Align.bottomLeft).padLeft(200);
-        table.add(noButton).size(150, 50).align(Align.bottomRight).padRight(200);
+        table.add(itemName).colspan(2).row();
+        itemName.setFontScale(0.6f, 0.6f);
+        table.add(yesButton).size(150, 50).align(Align.bottomLeft).padLeft(175).padTop(25);
+        table.add(noButton).size(150, 50).align(Align.bottomRight).padRight(175).padTop(25);
         stage.addActor(table);
     }
 
@@ -131,6 +134,9 @@ public class ItemHud {
         if (buttonClicked.equals("yes")) {
             System.out.println("Yes clicked");
             inventoryController.addToInventory(inventoryController.findItem(nearbyItem.getName()));
+            Gdx.input.setInputProcessor(oldInput);
+            stage.dispose();
+            oldInput = null;
         }
 
         if (buttonClicked.equals("no")) {
