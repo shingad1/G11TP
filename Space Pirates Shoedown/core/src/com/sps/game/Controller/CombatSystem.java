@@ -57,7 +57,11 @@ public class CombatSystem
 
     private boolean playerControl;
 
-    private MoveList.Move chosenMove;
+    private MoveList.Move playerChosenMove;
+    private String playerChosenMoveKey;
+
+    private MoveList.Move enemyChosenMove;
+    private String enemyChosenMoveKey
 
     public CombatSystem(Player p, AbstractEnemy e, SpriteBatch sb){
         this.player = p;
@@ -95,7 +99,14 @@ public class CombatSystem
     public void update() {
         if (!(finished)){
             if(playerControl){
-
+                if(playerChosenMove != null && !(playerChosenMoveKey.equals(""))){
+                    playerControl = false;
+                }
+            } else {
+                //enemy move selection
+            }
+            if(playerChosenMove != null && enemyChosenMove != null){
+                //resolve battle
             }
             /**
             if (!(playerTurn) && !(animationHandler.isInAnimation()) && !(animationHandler.isAnimationEnd())) {
@@ -155,16 +166,14 @@ public class CombatSystem
          return moveSelectionStack.peek().keySet().toArray();
     }
 
-    public void doInput(Inputs input){
+    public void doInput(Inputs input, boolean inputByPlayer){
         switch (input){
             case Q:
                 if(getOptions()[0] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move)) {
                     moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]));
                     resetInput(0);
                 } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move){
-                    chosenMove = (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]);
-                    playerControl = false;
-                    resetInput(1);
+                    assignMove(getOptions()[0],( MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]), inputByPlayer);
                 }
                 break;
             case W:
@@ -172,9 +181,7 @@ public class CombatSystem
                     moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]));
                     resetInput(0);
                 } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move){
-                    chosenMove = (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]);
-                    playerControl = false;
-                    resetInput(1);
+                    assignMove(getOptions()[1],( MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]), inputByPlayer);
                 }
                 break;
             case E:
@@ -182,9 +189,7 @@ public class CombatSystem
                     moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]));
                     resetInput(0);
                 } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move){
-                    chosenMove = (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]);
-                    playerControl = false;
-                    resetInput(1);
+                    assignMove(getOptions()[2],( MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]), inputByPlayer);
                 }
                 break;
             case R:
@@ -192,9 +197,7 @@ public class CombatSystem
                     moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]));
                     resetInput(0);
                 } else if(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move){
-                    chosenMove = (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]);
-                    playerControl = false;
-                    resetInput(1);
+                    assignMove(getOptions()[3],( MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]), inputByPlayer);
                 }
                 break;
             case A:
@@ -226,6 +229,21 @@ public class CombatSystem
          */
     }
 
+    public void assignMove(String moveKey, MoveList.Move move, boolean inputByPlayer){
+        if(playerControl && inputByPlayer){
+            playerChosenMoveKey = moveKey;
+            playerChosenMove = move;
+        } else if(!(inputByPlayer)) {
+            enemyChosenMoveKey = moveKey;
+            enemyChosenMove = move;
+        }
+        resetInput(1);
+    }
+
+    private boolean resolveCombat(){
+        
+    }
+
     private void resetInput(int resetLevel){
         moveSelector = 0;
         if(resetLevel >= 1){ //resets options
@@ -233,8 +251,11 @@ public class CombatSystem
                 moveSelectionStack.pop();
             }
             if(resetLevel >= 2){ //resets the combat system
-                chosenMove = null;
+                playerChosenMoveKey = "";
+                playerChosenMove = null;
                 playerControl = true;
+                enemyChosenMoveKey = "";
+                enemyChosenMove = null;
             }
         }
     }
