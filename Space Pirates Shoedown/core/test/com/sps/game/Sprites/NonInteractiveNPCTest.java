@@ -1,20 +1,23 @@
 package com.sps.game.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.sps.game.maps.MapFactory;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
 
 public class NonInteractiveNPCTest {
 
+    private MapFactory.MapType world;
+    private com.sps.game.sprites.NonInteractiveNPC nonnteractiveNPC;
     private SpriteBatch sb;
-    private NonInteractiveNPC nonnteractiveNPC;
+
 
     @Before
     public void setup() {
         sb = new SpriteBatch();
-        nonnteractiveNPC = new NonInteractiveNPC(12, 9, "Candy Land",sb, "Pirate");
+        nonnteractiveNPC = new com.sps.game.sprites.NonInteractiveNPC(12, 9, world,sb, "Pirate");
     }
 
     @Test

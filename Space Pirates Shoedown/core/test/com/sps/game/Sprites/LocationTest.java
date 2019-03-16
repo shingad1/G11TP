@@ -1,12 +1,12 @@
 package com.sps.game.Sprites;
-import com.sps.game.Sprites.Location;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class LocationTest {
 
-    private Location location = new Location(12,15);
+    private com.sps.game.sprites.Location location = new com.sps.game.sprites.Location(12,15);
 
     @Test
     public void getX() {
