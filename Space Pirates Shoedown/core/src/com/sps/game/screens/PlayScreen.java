@@ -34,9 +34,7 @@ import java.util.Random;
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia and Mahamuda Akhter
  * @version 1.0
  */
-
-public abstract class PlayScreen implements Screen
-{
+public abstract class PlayScreen implements Screen {
 
     /**
      * Constant field to direct where the file is located.
@@ -177,7 +175,9 @@ public abstract class PlayScreen implements Screen
      * Holds the current state of the game
      */
     private static GameState gameState;
-
+    /**
+     * Holds an instance of the DialogueHud, that displays the dialogue of the NPC or enemy.
+     */
     private DialogueHud dialogueHud;
 
     MiniMapScreen miniMapScreen;
@@ -477,22 +477,27 @@ public abstract class PlayScreen implements Screen
     public abstract void changeMaps();
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter.
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return Map
      */
     public abstract Map getMap(Vector2 selector);
     /**
      * Returns a Vector2 value to get a Map according to the map type specified in the parameter.
-     * @param map
-     * @return
+     * @param MapFactory.MapType map
+     * @return Vector2
      */
     public abstract Vector2 getWorldMapByWorld(MapFactory.MapType map);
 
+    /**
+     * Returns an ArrayList containing all the enemies on the map.
+     * @param MapFactory.MapType map
+     * @return ArrayList<AbstractEnemy>
+     */
     public abstract ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map);
 
     /**
-     * Adds the locations of the all the NPCs in to an ArrayList.
-     * @param selectedMap
+     * Adds the locations of all the NPCs in to an ArrayList.
+     * @param Map selectedMap
      */
     public void changeNpcLocations(Map selectedMap) {
         for (AbstractNPC nonPlayingCharacter : npc) {
@@ -501,6 +506,10 @@ public abstract class PlayScreen implements Screen
         }
     }
 
+    /**
+     * Adds the locations of all the NPCs in to an ArrayList
+     * @param Map selectedMap
+     */
     public void addEnemiesLocations(Map selectedMap){
         for (AbstractEnemy enemy : enemies) {
             allLocations.add(enemy.getLocation());

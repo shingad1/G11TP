@@ -16,6 +16,8 @@ import com.sps.game.inventory.Item;
 
 public class InventoryController {
 
+    private static InventoryController instance = new InventoryController();
+
     /**
      * Skin object, used for the display of the inventory.
      * @see #inventory
@@ -71,7 +73,7 @@ public class InventoryController {
     /**
      * Creates an InventoryController object, populating the collections.
      */
-    public InventoryController() {
+    private InventoryController() {
         setItems();
 
 
@@ -120,6 +122,10 @@ public class InventoryController {
                                shoeLaces.getImage(),
                                sword.getImage());
 
+        }
+
+        public static InventoryController getInstance() {
+            return instance;
         }
 
     /**

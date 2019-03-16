@@ -19,7 +19,6 @@ import java.util.Stack;
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
  * @version 1.0
  */
-
 public class PlayerController extends InputAdapter {
 
     //JSON json;

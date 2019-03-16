@@ -42,7 +42,7 @@ public class MerchantInventory {
     private ArrayList <String> rejectedItems = new ArrayList<String>();
 
     //Holds the items and initialises them
-    private InventoryController inventoryController;
+    private InventoryController inventoryController = InventoryController.getInstance();
 
     //Used for Opening and closing the inventory
     private InputProcessor oldInput;
@@ -61,9 +61,6 @@ public class MerchantInventory {
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         player = player.getPlayer();
-
-
-        inventoryController = new InventoryController();
 
         //List of inventory item strings to be displayed
         inventory = inventoryController.getInventoryList();
