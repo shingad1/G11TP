@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/interiorBricksBorders.tsx"/>
+ <tileset firstgid="1025" source="Resources/interiorTropicalTilesheet.tsx"/>
+ <tileset firstgid="1121" source="Resources/Interior.tsx"/>
+ <tileset firstgid="2145" source="Resources/blonde-wood.tsx"/>
+ <tileset firstgid="2657" source="Resources/castle.tsx"/>
+ <tileset firstgid="2809" source="Resources/upholstery.tsx"/>
+ <tileset firstgid="3321" source="Resources/Tiles5.tsx"/>
+ <tileset firstgid="3811" source="../../HomeWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="4301" source="../Resources/Tiles5.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlUsKgCAUAIUCW3SSolu06ghtOmCn6CjepDaSSJ9XZIZNMBia9sbPc8iVGgAAAAAgClee2LHigQce//ZIkUmvxI7lSszSdvvullu+bv1bc2L0Wp5x1Mcf03gO/jdP4J7VplCqz9+lLvDYAw888NjnKM/a/0pysiT+SaexHtY3xF2Syr7CA4+QHpI8JM1LrMe/PVo8PufRLWOWNxmze/2qAOcDAAAAvs0M3pSzEw==
+  </data>
+ </layer>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1LERgCAMhWELFtD913A/CzuOQIhJwLu/+Bo8JA8C5TyOAgAAAAAAgGn39ZLG6+/1uEVUBm2t1hyjPYvK45mjtdYOOb7Micrhsber74Y2Y9Y8cth7Q9Nrf8pQv2Oaf+6cpffP1hrZPafN3RuXsq3m1X+rzdaccQajNVp1zNaccdelGqUatDmy3yxrf1tyaM4/K4e2xtG7FXlHvN+hrJ4CAAD7ewBIT8NI
+  </data>
+ </layer>
+ <layer id="3" name="Door" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztw0EJAAAIBLCLYP9Klrq3EYQNlgAAAAAAwD87NwAAAEABecEDbQ==
+  </data>
+ </layer>
+ <layer id="4" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmL1KA0EQx0+5SzCVjaAPIn4UaqWdsUuZB9BSQVAPe0UbrcQ8giL41ShYW2hnYVLkCdTKQgPOcDvcZNm9XI65Rmbgz+7tzu7Obz9uL2mGQdBUqVQqlUqlUqlUKpWYFkCLQ2qlQBuXlgQ5lkFP1eFUL9DGJRh7X5pjxIrtthYEd6D7WlpGPnVPG9vPJ6qX5ngeD4IxSEc94+9GSTpmfJFjJkqejypBcAzai1J/LG+D3k3aMWk7TOuxvTRHDH12of8a5N9Ae1hm8hg3CX26Zj0aps0FMFyCzqO0HvULPj9hkvZMiqL6RgkcLegTDWP9hudzLAuTPOdA244Sjti0IbP97DK7Dk2aYx3mZ6Oa9v8AZY9h/9g8X2fsLhZf+WQlEZVJcxwAw2E17X/QfCKHL1YXB9osxD9lNF8ph4P6d8XtEnJMsLktwhGXcD7s/eNbC86Bcc2ZmPJw2D4tw4HlEhyD7nMaN8uHxO95six/SQ567+bdU755j6P+e57mH/P8Xtph94w0R0uAo2U46H4gDrqXqPzM3DMd4X1VdD1cex85XuC8XIFeM94baL0SOIqsh4/jA+L/An0yDpuN/KU58pxh+zz7OOz3EspmI5PmKPLd7rI872y+NtIcdAY3Ib8VJt+HKHrm338TOTjIXGeFr400B41xAvnTMPk+RNEzj286g8Peb66zwq0sjmvI32Q8k+XloDXyvR/K4rDHdcVDHK56Fwc3vs/K4OhEbhbfvDYzOOyzzI3vszLuwZ7nt4TL8nDweH0mfQ+uhjL/4RTRmtmHEhwqlUqlUv1n/QFC7xtK
+  </data>
+ </layer>
+</map>

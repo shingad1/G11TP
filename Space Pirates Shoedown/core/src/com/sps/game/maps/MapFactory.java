@@ -28,6 +28,7 @@ public class MapFactory {
         TropicalWorld2,
         TropicalInterior1,
         TropicalInterior2,
+        TropicalInterior3,
         GraveyardWorld1,
         GraveyardWest
     }

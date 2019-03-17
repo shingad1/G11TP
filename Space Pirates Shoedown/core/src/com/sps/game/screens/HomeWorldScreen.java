@@ -57,7 +57,7 @@ public class HomeWorldScreen extends PlayScreen {
         while(npc.size() < numNonInteractive + baseNPCSize){
             int x = random.nextInt(49);
             int y = random.nextInt(49);
-            Location location = new Location(x * 32, y * 32);
+            Location location = new Location(x * 32, y * 32);//make sure location is not somewhere that blocks player position
             MapFactory.MapType world;
             if(random.nextBoolean()){
                 world = MapFactory.MapType.HomeWorldMap1;

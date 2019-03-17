@@ -23,7 +23,7 @@ public class HouseInteriorScreen extends PlayScreen {
      * 2D array, that contains all the different house interiors
      */
     private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2(), new TropicalInteriorMap(), new CandyInteriorMap2()},
-                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2(), null}};
+                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2(), new TropicalInteriorMap3()}};
     /**
      * Chooses the map to load from the array
      */
@@ -57,7 +57,7 @@ public class HouseInteriorScreen extends PlayScreen {
             p.setX(832);
             p.setY(384);
         }
-        else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1) || currentMapState.equals(MapFactory.MapType.TropicalInterior2)){
+        else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1) || currentMapState.equals(MapFactory.MapType.TropicalInterior2) || currentMapState.equals(MapFactory.MapType.TropicalInterior3)){
             p.setX(768);
             p.setY(352);
         }
@@ -153,10 +153,14 @@ public class HouseInteriorScreen extends PlayScreen {
             dispose();
             if(oldState.equals(MapFactory.MapType.TropicalWorld1)){
                 if(currentMapState.equals(MapFactory.MapType.TropicalInterior1)) {
-                    game.setScreen(new TropicalWorldScreen(game, 1504, 1344));
+                    game.setScreen(new TropicalWorldScreen(game,new Vector2(0,0), 1504, 1344));
                 }
                 if(currentMapState.equals(MapFactory.MapType.TropicalInterior2)){
-                    game.setScreen(new TropicalWorldScreen(game, 992, 928));
+                    game.setScreen(new TropicalWorldScreen(game,new Vector2(0,0), 992, 928));
+                }
+            } else if(oldState.equals(MapFactory.MapType.TropicalWorld2)){
+                if(currentMapState.equals(MapFactory.MapType.TropicalInterior3)){
+                    game.setScreen(new TropicalWorldScreen(game,new Vector2(1,0), 1216, 672));
                 }
             }
         }

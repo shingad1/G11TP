@@ -41,9 +41,9 @@ public class TropicalWorldScreen extends PlayScreen {
      */
     private int[] ybounds = {0,1600};
 
-    public TropicalWorldScreen(SpacePiratesShoedown game, int px, int py) {
+    public TropicalWorldScreen(SpacePiratesShoedown game, Vector2 selector,int px, int py) {
         super(game);
-        mapSelector = new Vector2(0,0);
+        mapSelector = selector;
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)];
         currentMap = selectedMap.getCurrentMap();
         renderer = new OrthogonalTiledMapRenderer(currentMap);
@@ -172,6 +172,10 @@ public class TropicalWorldScreen extends PlayScreen {
             if(p.getLocation().equals(new Location(1280, 1376))){
                 dispose();
                 game.setScreen(new GraveyardScreen(game, new Vector2(1,0)));
+            } else if(p.getLocation().equals(new Location(1216,736))){
+                dispose();
+                oldState = MapFactory.MapType.TropicalWorld2;
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(3,1)));
             }
         }
         if(camX != 0 || camY != 0) {
