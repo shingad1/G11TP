@@ -1,12 +1,12 @@
 package com.sps.game.sprites;
 
-import java.util.HashMap;
-import java.util.Random;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
+
+import java.util.HashMap;
+import java.util.Random;
 
 public class NonInteractiveNPC extends AbstractNPC {
 
