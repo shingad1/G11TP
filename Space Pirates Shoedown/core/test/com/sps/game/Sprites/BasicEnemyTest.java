@@ -84,11 +84,15 @@ public class BasicEnemyTest {
 
     @Test
     public void changeDefence() {
+        basicEnemy.changeDefence(9);
+        assertEquals(29,basicEnemy.changeDefence(););
 
     }
 
     @Test
     public void changeAttack() {
+        basicEnemy.changeAttack(9);
+        assertEquals(29,basicEnemy.changeAttack(););
     }
 
     @Test
