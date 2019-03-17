@@ -19,6 +19,7 @@ import java.util.Stack;
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
  * @version 1.0
  */
+
 public class PlayerController extends InputAdapter {
 
     //JSON json;
@@ -306,7 +307,7 @@ public class PlayerController extends InputAdapter {
         return false;
     }
 
-    public boolean npcInProximity(AbstractNPC npc){
+    public boolean npcInProximity(InteractiveNPCMoving npc){
         if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(npc.getLocation())){
             return true;
         }
@@ -320,24 +321,24 @@ public class PlayerController extends InputAdapter {
             return true;
         }
         return false;
+
     }
 
-
-
-    public boolean enemyInProximity(AbstractEnemy enemy){
-        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(enemy.getLocation())){
+    public boolean npcInProximity1(AbstractNPC npc){
+        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(npc.getLocation())){
             return true;
         }
-        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) - 32)).equals(enemy.getLocation())){
+        if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) - 32)).equals(npc.getLocation())){
             return true;
         }
-        if((new Location(Math.round(player.getLocation().getX()) + 32,Math.round(player.getLocation().getY()))).equals(enemy.getLocation())){
+        if((new Location(Math.round(player.getLocation().getX()) + 32,Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
             return true;
         }
-        if((new Location(Math.round(player.getLocation().getX()) - 32,Math.round(player.getLocation().getY()))).equals(enemy.getLocation())){
+        if((new Location(Math.round(player.getLocation().getX()) - 32,Math.round(player.getLocation().getY()))).equals(npc.getLocation())){
             return true;
         }
         return false;
+
     }
 /*
     public void npcInteraction(ArrayList<InteractiveNPC> npcList, String npcName) {
@@ -345,7 +346,7 @@ public class PlayerController extends InputAdapter {
             for (int i = 0; i < npcList.size(); i++) {
                 InteractiveNPC tempNPC = npcList.get(i);
                 String temp = tempNPC.getName();
-                if (npcInProximity(tempNPC) && dialogue == false && tempNPC.getType().equals("InteractiveNPC")) {
+                if (npcInProximity1(tempNPC) && dialogue == false && tempNPC.getType().equals("InteractiveNPC")) {
                     if (Gdx.input.isKeyPressed(Input.Keys.B)) {
                         if (temp.equals(npcName)) {
                                     Dialogue dialog2 = new Dialogue(npcName);

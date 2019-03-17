@@ -8,39 +8,21 @@ import com.sps.game.maps.MapFactory;
 import java.util.HashMap;
 import java.util.Random;
 
-/**
- * This class creates a Basic Enemy.
- * @author Miraj Shah, Miguel Abaquin
- * @version 1.0
- */
 public class BasicEnemy extends AbstractEnemy{
-    /**
-     * Holds the world the basic enemy will be rendered in.
-     */
+
     private MapFactory.MapType world;
-    /**
-     * Holds the X value of the basic enemy.
-     */
+
     private int x;
-    /**
-     * Holds the Y value of the basic enemy.
-     */
+
     private int y;
-    /**
-     * Holds the basic enemies vector 2.
-     */
+
     private Vector2 velocity;
-    /**
-     * Holds the name of the basic enemy.
-     */
-    private String name;
 
     private String state;
 
-    public BasicEnemy(int x, int y, MapFactory.MapType world, SpriteBatch sb, String name){
+    public BasicEnemy(int x, int y, MapFactory.MapType world, SpriteBatch sb, String role){
         this.x = x;
         this.y = y;
-        this.name = name;
         velocity = new Vector2(0,0);
         location = new Location(x,y);
         health = 100;
@@ -58,35 +40,9 @@ public class BasicEnemy extends AbstractEnemy{
         animation.put("idle", new EnemyAnimation(sb, this, "regenemyIdle.atlas", 1/2f));
     }
 
-    /**
-     * Returns a HashMap containing all the fight animations of the enemy.
-     * The key is the name of the enemy.
-     * The value is an Enemy Animation.
-     * @return HashMap<String,EnemyAnimation> fightAnimation
-     */
+
     public HashMap<String, EnemyAnimation> getFightAnimation(){return fightAnimation;}
 
-    /**
-     * Returns the world the enemy is in.
-     * @return MapFactory.MapType world.
-     */
-    public MapFactory.MapType getWorld(){
-        return world;
-    }
-
-    /**
-     * Returns the name of the enemy.
-     * @return String name
-     */
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Changes the state of the enemy.
-     * @param newState
-     */
     @Override
     public void changeState(String newState) {
         state = newState;
@@ -110,23 +66,24 @@ public class BasicEnemy extends AbstractEnemy{
         return y;
     }
 
-    /**
-     * Gets the velocity of the enemy.
-     * @return Vector2 velocity
-     */
     @Override
     public Vector2 getVelocity() {
         return velocity;
     }
 
     /**
-     * Gets the current animation of the enemy, outside of the battle.
-     * @return EnemyAnimation
+     * Returns the world the enemy is in.
+     * @return MapFactory.MapType world.
      */
+    public MapFactory.MapType getWorld(){
+        return world;
+    }
+
     @Override
     public EnemyAnimation getAnimation() {
         return animation.get("idle");
     }
+
     /**
      * Gets the enemies health level.
      * @return Returns <code>int</code> health level.
@@ -136,31 +93,20 @@ public class BasicEnemy extends AbstractEnemy{
         return health;
     }
 
-    /**
-     *
-     */
     @Override
     public void battleMove() {
 
     }
 
-    /**
-     *
-     * @param diff
-     */
     @Override
     public void changeDefence(int diff){defence += diff;}
 
-    /**
-     *
-     * @param diff
-     */
     @Override
     public void changeAttack(int diff){attack += diff;}
 
     /**
      * Decreases the enemies health by an inputted value.
-     * @param <code>int</code>decrease, the amount to decrease the health by.
+     * @param <code>int</code> decrease, the amount to decrease the health by.
      */
     public void decreaseHealth(int decrease){
         health -= decrease;

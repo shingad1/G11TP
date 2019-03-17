@@ -8,11 +8,11 @@ import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.controller.NPCController;
 import com.sps.game.controller.PlayerController;
 import com.sps.game.maps.GraveyardMap;
-import com.sps.game.maps.GraveyardWestMap;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
-import com.sps.game.sprites.*;
-
+import com.sps.game.sprites.AbstractNPC;
+import com.sps.game.sprites.Location;
+import com.sps.game.sprites.NonInteractiveNPC;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,7 +27,7 @@ public class GraveyardScreen extends PlayScreen {
     /**
      * 2D array, that contains all the maps for the graveyard world
      */
-    private Map[][] worldMaps = {{new GraveyardWestMap(), new GraveyardMap()},
+    private Map[][] worldMaps = {{new GraveyardMap(), null},
                                  {null, null}};
     /**
      * Chooses the map to load from the array
@@ -42,19 +42,37 @@ public class GraveyardScreen extends PlayScreen {
      */
     private int[] ybounds = {0,1600};
 
-    public GraveyardScreen(SpacePiratesShoedown game, Vector2 selector) {
+    public GraveyardScreen(SpacePiratesShoedown game) {
         super(game);
-        mapSelector = selector;
+        mapSelector = new Vector2(0,0);
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)];
         currentMap = selectedMap.getCurrentMap();
         renderer = new OrthogonalTiledMapRenderer(currentMap);
         currentCollisionLayer = selectedMap.getCollisionLayer();
-        currentMapState = selectedMap.getCurrentMapType();
+        currentMapState = getCurrentMapType();
+        random = new Random();
+        int numNonInteractive = random.nextInt(10) + 10;
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
-
-        npc.add(new InteractiveNPC(864,192,MapFactory.MapType.GraveyardWorld1, batch,"Gravewelcome"));
-
+        int baseNPCSize = npc.size();
+        int i = 0;
+        while(npc.size() < numNonInteractive + baseNPCSize){
+            int x = random.nextInt(49);
+            int y = random.nextInt(49);
+            Location location = new Location(x * 32,y * 32);
+            MapFactory.MapType world;
+            if(random.nextBoolean()){
+                world = MapFactory.MapType.GraveyardWorld1;
+            }
+            else {
+                world = MapFactory.MapType.GraveyardWorld1; //change
+            }
+            if(checkPosition(location,world)){
+                npc.add(new NonInteractiveNPC(Math.round(location.getX()), Math.round(location.getY()), world, batch, ""));
+                npcController.add(new NPCController(npc.get(i), getMap(getWorldMapByWorld(world)).getCollisionLayer()));
+                i++;
+            }
+        }
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
         p.setX(832);
@@ -62,7 +80,7 @@ public class GraveyardScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p,currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/graveyard.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3")); //change
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
@@ -157,11 +175,6 @@ public class GraveyardScreen extends PlayScreen {
                 }
             }
         }
-        return null;
-    }
-
-    @Override
-    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;
     }
 }

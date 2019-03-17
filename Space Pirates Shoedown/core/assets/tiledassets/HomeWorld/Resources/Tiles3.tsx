@@ -221,11 +221,6 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="226">
-  <properties>
-   <property name="nonpc" value="true"/>
-  </properties>
- </tile>
  <tile id="228">
   <properties>
    <property name="blocked" value="true"/>

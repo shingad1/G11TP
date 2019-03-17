@@ -4,8 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
 
-import java.util.ArrayList;
-
 
 public abstract class AbstractNPC {
     /**
@@ -24,9 +22,7 @@ public abstract class AbstractNPC {
      * @see
      */
     private Vector2 velocity;
-    /**
-     * Holds the location of the NPC.
-     */
+
     protected Location location;
 
     /**
@@ -38,7 +34,7 @@ public abstract class AbstractNPC {
      */
     public abstract int getY();
     /**
-     * Returns the velocity of the NPC.
+     *
      */
     public abstract Vector2 getVelocity();
 

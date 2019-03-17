@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Resources/interiorBricksBorders.tsx"/>
  <tileset firstgid="1025" source="Resources/interiorTropicalTilesheet.tsx"/>
  <tileset firstgid="1121" source="Resources/Interior.tsx"/>
@@ -7,7 +7,6 @@
  <tileset firstgid="2657" source="Resources/castle.tsx"/>
  <tileset firstgid="2809" source="Resources/upholstery.tsx"/>
  <tileset firstgid="3321" source="Resources/Tiles5.tsx"/>
- <tileset firstgid="3811" source="../../HomeWorld/Resources/Tiles5.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJztlUsKgCAUAIWCXHSSolu06ghtPGCn6CjdpDZSSFJK5acRBnzZyzeZqUohFAAAAAAEwaWFrhUPPPD4t0eOzNVO6Fpcar47rvtmji0O8T6W6prjvWbuWfy2x3GvdlKIsfyWVuJhAw888MAjJQ99Vp3Nabseo4c+r/U8ZpyKRy7fFR54pORh+1887dFnsh45eQzbM2tPpsIvr3lhfwAAAEDcrCmPpSg=
@@ -15,7 +14,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztl9sJwzAMRb1Aab87RfZfoUuFUgRCRLJE6wf0BA7BedS+0pXqHLfWDgAAAAAAAAAAKPG8t/Z6fM4R8ox+R5Drevw+9PsylmdG6cii1xtdv9I6SoPVEc3d0+b9luiz92b46mqs12t1eH6LYrEyH7YO7Lqi/Ok5R3mrSqVudAx0fldr8LTYOHtaRtb6N160vrI1lfHZLrnI1MduGjxPVXSM6Lv6f9fWo+cfb11RzGf2Xdtbor7Z07dCR2VvsrOOrIYKs3XoObxY276/Yz70HFFu7L4vW/+z9ldZHVGtR3HP+u6XOnr0vqOq/QIAAAD+hxPfQxXR
+   eJztlWEKgzAMRr3Adhbvf5vdZPRHQcr69cuwSwZPeGi1Sl6S1vNxHCcAAAAAAAAAAIR5PeNz2rgz3mvX7bjO7+Pxnbs9XGbzP7nNxjvr4cSi3GbfGs+7PWaxqLHycOqXVQ/Vh6seVXnLIrJuKnuo/nFds+NXHqua7V4fd/WVE38Vh1Utsjyu/12nP5RHpM9+md9Izit4uP2g9tcKHq5DhEwPJ9f/UA9Vm/7M9cjYs9xYZvn9dp1lrY/qHgAAAFCXNzDWNzs=
   </data>
  </layer>
  <layer id="3" name="Door" width="50" height="50">

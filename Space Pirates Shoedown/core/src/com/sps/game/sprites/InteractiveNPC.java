@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class InteractiveNPC extends AbstractNPC{
@@ -35,7 +34,7 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Vector2 velocity;
 
-    private NpcAnimation lindaAnimation, muffinAnimation, tropicalAnimation, enemyAnimation, otherAnimation;
+    private NpcAnimation lindaAnimation, muffinAnimation, otherAnimation;
 
     private MapFactory.MapType world;
     /**
@@ -43,18 +42,12 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private String name;
 
-    public static ArrayList<Location> allInteractiveNPCLocations = new ArrayList<Location>();
-
     public InteractiveNPC(int x, int y,MapFactory.MapType world, SpriteBatch sb, String name){
         this.x = x;
         this.y = y;
         location = new Location(x,y);
-        allInteractiveNPCLocations.add(location);
-
         lindaAnimation = new NpcAnimation(sb,this,"cryingNPC.atlas",1/2f);
         muffinAnimation = new NpcAnimation(sb,this,"interactiveCandy.atlas",1/2f);
-        tropicalAnimation = new NpcAnimation(sb, this, "interactiveTropical.atlas", 1/2f);
-        enemyAnimation = new NpcAnimation(sb, this, "interactiveEnemy.atlas", 1/2f);
         otherAnimation = new NpcAnimation(sb, this, "interactiveHome.atlas", 1/2f);
         this.world = world;
         this.name = name;
@@ -64,6 +57,8 @@ public class InteractiveNPC extends AbstractNPC{
         if (getWorld().equals(MapFactory.MapType.HomeWorldMap1) || getWorld().equals(MapFactory.MapType.HomeWorldMap2)) {
             if (name.equals("Linda")) {
                 otherAnimation = lindaAnimation;
+            } else {
+                otherAnimation = otherAnimation;
             }
         }
         else if(getWorld().equals(MapFactory.MapType.CandyWorld1) || getWorld().equals(MapFactory.MapType.CandyWorld2)){
@@ -71,31 +66,20 @@ public class InteractiveNPC extends AbstractNPC{
                 otherAnimation = muffinAnimation;
             }
         }
+        /*
         else if (getWorld().equals(MapFactory.MapType.TropicalWorld1) || getWorld().equals(MapFactory.MapType.TropicalWorld2)){
-            if(name.contains("Tropical")){
-                otherAnimation = tropicalAnimation;
-            }
+
         }
-        else if (getWorld().equals(MapFactory.MapType.GraveyardWorld1) || getWorld().equals(MapFactory.MapType.GraveyardWest)){
-            if(name.contains("Grave")){
-                otherAnimation = enemyAnimation;
-            }
-        }
+        else if (getWorld().equals(MapFactory.MapType.GraveyardWorld1)){
+
+        }*/
 
         return otherAnimation;
     }
 
-    public MapFactory.MapType getWorld () {
+        public MapFactory.MapType getWorld () {
             return world;
         }
-
-    public String getName () {
-        return name;
-    }
-
-    public String getType () {
-        return "InteractiveNPC";
-    }
 
         @Override
         public int getX () {
@@ -129,5 +113,13 @@ public class InteractiveNPC extends AbstractNPC{
         @Override
         public void changeState (String newState){
 
+        }
+
+        public String getName () {
+            return name;
+        }
+
+        public String getType () {
+            return "InteractiveNPC";
         }
 }

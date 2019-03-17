@@ -58,7 +58,7 @@ public class Player implements Fighter {
         //this.y = y;
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
-        gold = 20;
+        gold = 50;
         HP = 100;
         location = new Location(0, 0);
         attack = 20;
@@ -127,9 +127,6 @@ public class Player implements Fighter {
     public int getGold(){
         return gold;
     }
-
-    public void increaseGold(int goldValue) { gold += goldValue; }
-    public void decreaseGold(int goldValue) { gold -= goldValue; }
 
     @Override
     public void changeHP(int diff) {

@@ -7,7 +7,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.sps.game.controller.NPCController;
 import com.sps.game.controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.sprites.*;
+import com.sps.game.sprites.AbstractNPC;
+import com.sps.game.sprites.Location;
+import com.sps.game.sprites.NonInteractiveNPC;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.maps.TropicalWorldMap;
@@ -41,7 +43,7 @@ public class TropicalWorldScreen extends PlayScreen {
      */
     private int[] ybounds = {0,1600};
 
-    public TropicalWorldScreen(SpacePiratesShoedown game, int px, int py) {
+    public TropicalWorldScreen(SpacePiratesShoedown game) {
         super(game);
         mapSelector = new Vector2(0,0);
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)];
@@ -84,21 +86,11 @@ public class TropicalWorldScreen extends PlayScreen {
                 i++;
             }
         }
-        if(currentMapState.equals(MapFactory.MapType.TropicalWorld1)){
-            npc.add(new InteractiveNPC(384,576,MapFactory.MapType.TropicalWorld1, batch, "TropicalWelcome"));
-            npc.add(new InteractiveNPC(288,800,MapFactory.MapType.TropicalWorld1, batch, "TropicalPeterNPC"));
-            npc.add(new InteractiveNPC(800,1472,MapFactory.MapType.TropicalWorld1, batch, "TropicalNPC17"));
-            npc.add(new InteractiveNPC(1184,1472, MapFactory.MapType.TropicalWorld1, batch, "TropicalNPC4"));
 
-        }
-            npc.add(new InteractiveNPC(448,896, MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC8"));
-            npc.add(new InteractiveNPC(1376,352,MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC12"));
-            npc.add(new InteractiveNPC(608,960,MapFactory.MapType.TropicalWorld2, batch,"TropicalNPC7"));
-            npc.add(new InteractiveNPC(1184,1024,MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC2"));
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
-        p.setX(px);
-        p.setY(py);
+        p.setX(320);
+        p.setY(256);
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbounds, ybounds, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
@@ -157,21 +149,10 @@ public class TropicalWorldScreen extends PlayScreen {
             p.setY(0);
             camY = 1;
         }
-        if(currentMapState.equals(MapFactory.MapType.TropicalWorld1)){
-            if(p.getLocation().equals(new Location(1504, 1376))){
-                dispose();
-                oldState = MapFactory.MapType.TropicalWorld1;
-                game.setScreen(new HouseInteriorScreen(game, new Vector2(2,0)));
-            }else if(p.getLocation().equals(new Location(992, 960))){
-                dispose();
-                oldState = MapFactory.MapType.TropicalWorld1;
-                game.setScreen(new HouseInteriorScreen(game, new Vector2(2,1)));
-            }
-        }
         if(currentMapState.equals(MapFactory.MapType.TropicalWorld2)){
-            if(p.getLocation().equals(new Location(1280, 1376))){
+            if(p.getLocation().equals(new Location(1472, 832))){
                 dispose();
-                game.setScreen(new GraveyardScreen(game, new Vector2(1,0)));
+                game.setScreen(new GraveyardScreen(game));
             }
         }
         if(camX != 0 || camY != 0) {
@@ -213,11 +194,6 @@ public class TropicalWorldScreen extends PlayScreen {
                 }
             }
         }
-        return null;
-    }
-
-    @Override
-    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;
     }
 }
