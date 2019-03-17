@@ -4,10 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.sps.game.screens.PlayScreen;
-import com.sps.game.sprites.AbstractNPC;
-import com.sps.game.sprites.InteractiveNPC;
-import com.sps.game.sprites.Location;
-import com.sps.game.sprites.Player;
+import com.sps.game.sprites.*;
 import com.sps.game.maps.MapFactory;
 
 import java.util.ArrayList;
@@ -256,6 +253,16 @@ public class NPCController {
         ArrayList<Location> interactiveNPCs = InteractiveNPC.allInteractiveNPCLocations;
         for(Location loc : interactiveNPCs){
             if(location.equals(loc)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean merchantNPCInLocation(Location location) {
+        ArrayList<Location> merchantNPCs = MerchantNPC.allMerchantNPCLocations;
+        for(Location loc : merchantNPCs){
+            if (location.equals(loc)){
                 return true;
             }
         }

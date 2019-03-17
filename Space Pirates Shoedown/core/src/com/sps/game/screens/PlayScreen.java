@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
+import com.sps.game.inventory.PlayerInventory;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
@@ -77,6 +78,11 @@ public abstract class PlayScreen implements Screen {
      * @see #render
      */
     private MerchantInventory merchantInventory;
+    /**
+     * Holds instance of the PlayerInventory class, which displays vital Inventory information to the user.
+     * @see #render
+     */
+    private PlayerInventory playerInventory;
 
     /**
      *Holds instance of the ItemHud class, which is shown if the user makes a decision on whether to pick up or ignore an item.
@@ -179,6 +185,7 @@ public abstract class PlayScreen implements Screen {
      * Holds an instance of the DialogueHud, that displays the dialogue of the NPC or enemy.
      */
     private DialogueHud dialogueHud;
+    public Boolean merchantDetected;
 
     MiniMapScreen miniMapScreen;
 
@@ -195,12 +202,15 @@ public abstract class PlayScreen implements Screen {
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
+        playerInventory = new PlayerInventory(game.batch, controller);
         itemHud = new ItemHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
+        merchantDetected = false;
         //MiniMapScreen = new MiniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
     }
+
 
     /**
      * Specifies which controller will be used to check the input.
@@ -250,22 +260,50 @@ public abstract class PlayScreen implements Screen {
         gamecam.update();
         renderer.setView(gamecam);
         hud.update();
-        merchantInventory.update();
         itemHud.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
                 dialogueHud.update(npcTemp.getName());
+                System.out.println(npcTemp.getName() + " In proximity");
+
+                if (!(npcTemp instanceof MerchantNPC)) {
+                    merchantDetected = false;
+                    System.out.println(merchantDetected);
+                }
+
+                if (npcTemp instanceof MerchantNPC) {
+                    merchantDetected = true;
+                    System.out.println(merchantDetected);
+                    if (    Gdx.input.isKeyPressed(Input.Keys.DOWN) ||
+                            Gdx.input.isKeyPressed(Input.Keys.UP) ||
+                            Gdx.input.isKeyPressed(Input.Keys.LEFT)  ||
+                            Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
+                        merchantDetected = false;
+                        System.out.println(merchantDetected);
+                    }
+                }
+
             }
         }
+
+
         if(getClass().equals(HouseInteriorScreen.class)) {
             for (AbstractEnemy enemy : enemies) {
                 if (controller.enemyInProximity(enemy)) {
                     dialogueHud.update(enemy.getName());
                 }
             }
+            }
+
+        if (merchantDetected == true) {
+            merchantInventory.update();
+        } else {
+            playerInventory.update();
         }
     }
+
+
 
     /**
      * Clears the screen and draws the necessary textures.
@@ -326,7 +364,13 @@ public abstract class PlayScreen implements Screen {
         renderer.render(mapLayers);
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
-        merchantInventory.stage.draw(); //drawing the user hud
+
+        if (merchantDetected == true) {
+            merchantInventory.stage.draw();
+        } else {
+            playerInventory.stage.draw();
+        }
+
         itemHud.stage.draw();
         dialogueHud.stage.draw();
 
@@ -415,6 +459,9 @@ public abstract class PlayScreen implements Screen {
         for(AbstractNPC nonPlayingCharacter : npc){
             if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
                 interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
+            }
+            if(nonPlayingCharacter.getClass() == MerchantNPC.class) {
+                interactiveNPCs.add((MerchantNPC) nonPlayingCharacter);
             }
             else  if(nonPlayingCharacter.getClass() == InteractiveNPCMoving.class){
                 interactiveNPCs.add((InteractiveNPCMoving) nonPlayingCharacter);

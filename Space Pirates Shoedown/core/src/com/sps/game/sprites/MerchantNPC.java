@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -22,19 +23,24 @@ public class MerchantNPC extends AbstractNPC {
     private String state;
     private String name;
 
-    public MerchantNPC(int x, int y, MapFactory.MapType world, SpriteBatch sb, String role) {
+    public static ArrayList<Location>allMerchantNPCLocations = new ArrayList<Location>();
+
+    public MerchantNPC(int x, int y, MapFactory.MapType world, SpriteBatch sb, String name) {
         this.x = x;
         this.y = y;
         this.world = world;
+        this.name = name;
         velocity = new Vector2();
         velocity.x = 0;
         velocity.y = 0;
         animation = new HashMap<String, NpcAnimation>();
+        location = new Location(x, y);
+
+        allMerchantNPCLocations.add(location);
 
         //Placeholder for the merchant
-        animation.put("idle",new NpcAnimation(sb,this, "npc"+ role +"Idle.atlas",1/15f));
+        animation.put("idle",new NpcAnimation(sb,this, "npcMerchant" +"Idle.atlas",1/15f));
 
-        location = new Location(x, y);
     }
 
     @Override

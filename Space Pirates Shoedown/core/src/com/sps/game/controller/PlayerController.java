@@ -320,8 +320,9 @@ public class PlayerController extends InputAdapter {
             return true;
         }
         return false;
-
     }
+
+
 
     public boolean enemyInProximity(AbstractEnemy enemy){
         if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(enemy.getLocation())){
