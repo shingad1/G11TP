@@ -265,22 +265,22 @@ public abstract class PlayScreen implements Screen {
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
                 dialogueHud.update(npcTemp.getName());
-                System.out.println(npcTemp.getName() + " In proximity");
+                //System.out.println(npcTemp.getName() + " In proximity");
 
                 if (!(npcTemp instanceof MerchantNPC)) {
                     merchantDetected = false;
-                    System.out.println(merchantDetected);
+                    //System.out.println(merchantDetected);
                 }
 
                 if (npcTemp instanceof MerchantNPC) {
                     merchantDetected = true;
-                    System.out.println(merchantDetected);
+                    //System.out.println(merchantDetected);
                     if (    Gdx.input.isKeyPressed(Input.Keys.DOWN) ||
                             Gdx.input.isKeyPressed(Input.Keys.UP) ||
                             Gdx.input.isKeyPressed(Input.Keys.LEFT)  ||
                             Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
                         merchantDetected = false;
-                        System.out.println(merchantDetected);
+                        //System.out.println(merchantDetected);
                     }
                 }
 
