@@ -10,6 +10,7 @@
  <tileset firstgid="1105" source="Resources/ChocolateFountain.tsx"/>
  <tileset firstgid="1106" source="../HomeWorld/Resources/playground.tsx"/>
  <tileset firstgid="1362" source="../HomeWorld/Resources/spaceship2.tsx"/>
+<<<<<<< HEAD
  <tileset firstgid="1363" source="Resources/candyTiles.tsx"/>
  <tileset firstgid="1723" source="Resources/pinkCandyTree.tsx"/>
  <tileset firstgid="1729" source="Resources/whiteCandyTree.tsx"/>
@@ -31,12 +32,16 @@
  <tileset firstgid="3131" source="Resources/candyRoof1.tsx"/>
  <tileset firstgid="3215" source="../HomeWorld/Resources/Tiles3.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
+=======
+ <layer id="1" name="Tile Layer 1" width="50" height="50">
+>>>>>>> parent of e145baf... Merge branch 'master' into testing
   <data encoding="base64" compression="zlib">
-   eJztmEFu20AMRQ1kY8Q5iKV9L5DkQD1BL5deStKmMGyiLy+fY6dIk00EDGRJoxl+8vOT8stut3v5hPG/j8/A8I3j/TjW/W63XcaCwXtr82wNo+bXuz5+PJzHR+PYZNcGezac13BNfGuY9x4ctGML/qj7IxyneXf35/F8Gb5+Dtcej5fz032/b+EgFvpkk2+W/Vtfr1i3cNT8u/s8bKuf3cH2J/z2ft2xBr+bp+RInY1jvYKji9NTwPIccCz717aOMDgOfraFdRiP0/0Rb+jzhKvOj7hvu5x3vLaN5hH51uFYgSPxxvjK3sQtzrGPO54nnyec1s2U51vDq+Tzzn6/Y/vNb+NJ+Px+0nPGYwnxoJ3z4XyeDj3nHBPXlZGGJ95087o8X4Cj0ydiYK48XsZTwJJ8eG0Ya6rB9bzLc/PwNE62n66Ph+zfEQfovzoSNv+2vqU4jXTX75/OJz4VFtsw4nTXk+yC37x30i5jGOmVNeNk/3x4izP1MJ2vRof5k2xI/r0FR/0u++23EQfee3RaZWydJnQ4mB9H8Mm94KiP+NfDeLoavt6Ao+ZVTqfcNp5bcXx0r84j4SAG19SkU+bdV+JYEAdqbNKo6TDOxa/EQVsLw3zBNIFb80W/Ut+T6sCth2tginvKT+MghkVYiIfcq9g4ZrbDh/XB2pfud7XR/wOkdSb4foJ2FZ7COh3e7mN9NPfcz3a9LvGULTP2LT+7v6r3yJ2j+DUjPwof45N4YDyu/6kmMfb03SKbjMOct/9S3Dmn+Mc6WnPoA9pBbtaZvi87eY82mFfX/LLsX8fUOW5dqP1Zf2bYfjz87dvsd+NgDnrPlB+pJhhL+db84LsdB8oPtK34SP8w71LPxTwc5Xmqc3XteDgX1+bMMdJsx9/6ay0xjk4/Us6Ufzst5O/Umxl70qbUYyV//N6dh79rR74kv601Xa1yXUl1zvbaj659tMk4kk/YX1Fn7evEA/POsRjNo79TfnO9xCuuewy5mnLa/B5p3SgWzL9Ua2p/cz3hIF7qSNIxY0k1mfd+PpxHh7M01zWIGpe4lfSK2uj17IekU+s+Y0gxof9rTPLdJGwpz1MdJH+SDi+y55pGJa3h/SMwML5VP2uOOcg1ujrImtTxJN3v6kK9M8G2uj9hn1Qnku3W+i4e1KNOy71eh4ffleVj9h32hf2UOEs/JV7Ztlu4nXLedYD/G9Uz9gQp71N97ernqJ4zx43NuBIHqDHOEWpO0gnzJ2kbber6XfLKGvTr4TzSmsRylN4kjU651vUDxcnEh1GfOB/erme9Mw/oB+se47lqpFiluCdd6+qg1078dV4kfvG/lo4/zr/EH+ZYaYVtS7yq9/1tSv1J9XHBe+wr0jojPiauEVf6hhv1JdZM+qP247cSv/3MA89Nse4w0q/8VhjxyvGs95kvZQ+/tdlTJM2fgWHbv+496GPqwYz1F6xBP9b52ndt0knH2ZxI3Lf+k7esj3Vde86ak3iacHyP7/GR4w8txSlt
+   eJzt1cEJgDAMQNE4g0e3cB3HFFygB/fRBRRsQUQQNCVN/cK/eCg8mrZBRAIV1+y02h29cmndSTkcOHDgwPFvxxprm/v/bx25enJ0u2ORI4+Oc+nTmKtBOavzgQMHjjLvK/YDBw4cOHB4d+R+T6/hsJkjq7mydmiFQ8cxfgwHDhw4cODAgUPL4a1aHVRGG1RjWR8=
   </data>
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
+<<<<<<< HEAD
    eJztmH0KwjAMxYv4n3gOj+NZvJBnlSGDUvqR5OWl3dggIC7t8stL2q0ppfS9pfS++9s2b5Slk3FYbEUOhh47SwQTmyNKm4uDwyH1L/tawiHt656/J4OUQxu3B49WN4seub0ef5tdfyhH7/ln4EDrkrFeefVHL04Nj8Q3Yj8f9bY3R218uZYw6sQjR956WGo7mkMSA9qvnn2u5aj9PgLH53kOPXKOVczS5xuHZ5/P4vBer1bkmMXk+Z5Ym0cSg0fOIr4HGXFbOKI4kbG196syh0wGph6sGkbyPYpDw5H71TREa6f1TAmLVY/Wfek6OZpvFgfDT/J/j8NSt8j+0ZtLqiuyf0hyJeVFbdb3eTSHtl8146M4LPXM0GPU414c3vU3ioOlR+mP9k/tfn4OyuZAdWhxlGe5URylRkzOaD1Gvsi8R6irlTnycagO5TqA5JShh5RpdQ7N+P2aybFb72yvxr0qB6JnznFku671rh8OLCmL
   </data>
  </layer>
@@ -48,6 +53,9 @@
  <layer id="2" name="Misc" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJy9muevVFUUxe97MO/J3FEs2AsoSiIJRI2YJ/bYgg1FEBGxxpbYNfpBgcFPKNE/wc/+D3bw2WIXUcCIKPbee1k7c5but2ef2+bO7OSXmXuYmbvXOeeus8/hJUknHh1JksfA02D9SH3XEke3kmRen+F9HwdPgA3gmRqvB6WD930SPAXGwbM1Xg9KB+9bNh4ZLkYzTdqejt+bSfs3UJcOPY+ZX5k8LZ5WT8ef0PCHo+NwcGwOs53f0/M4pmO3NEl2T4vrYN9k6fgbGv4yOkTDfDCCe42CnRymgDFHj57HDD77zGMPfHcaeHh4IjEd7Jt/mrhIiz0f1HAcOB7cD04Fp4HTwRngTIXtH+asx4PPPmNP5LJXOjH3LB3smyF8Z1j1X2xeUIPEAryeBc4HF4BF4EKwGCxRWB02Z/l3++x7uWfpYEyChsnpxHZ57q0uapBYivcXg8vA5eAKcCW4ClytsDpiOXvP66JG/rwS7Ly0v+cFv3MNcroW3AhuAjeDW8CtitscHZ5feW15NJQPcIzL6OB37kBOd4L7wD3gXrASrAJtsAasdnRYv5Jgm3x2b+S3D9gX7FfQs/QYF9XB73h9vw6sBQ+F1wdbnX7TOqxfyT3ZJu/3x+cPAAeCgwrq0Hnz+gjc68jAUa1uHYyVoc9Xqb7Xv6Xf5/mVZjpynwEOBocYHd5zYGH+c9U952RoYd+vVX1fRIf2K73+TAk5z8TroeAwMMvo8J6DrPznGS15Y2MjS0esvvJyew7r2vPgBfBi8//vcr2XyMvfckxNOqw3Zf3GS8j9ZfAKeBW81uz8G9d7ibK1LceFY6PnxKh5z3ni9ZVXX3n+Im2vI+83wJtgI3gr6OB6X0VHTFMW3lh79VVsPDYh77fBO2Az2NLsHu8sHXXX6hrrV7Fxkfdbkfe7Iff38Lqt2e0NWTpitXodePVVL2Tp8Gr1uqi6H7RBv9A1oLffiVFk/5S1nyrqV3nh1TdjBbQwf7t/8rwqtp8SvPtXiZhfWC223+e38usCiVi9s3ByB31/eIl4Su0x1vL3GkXqAquDedtr7VfwEvGUrmiEtcHWvr2GrY970aH9Cl4inpK8D7aDD8CHYEfQZmtfCe7Be9FRpHaO6eA4eH71EXL7GHwCPgWfBR229pXgHrxXHV7fxdq1Do6D51ef47NfgC/BV+DroMPWvhLcg8eC5x8nBE4EJ7W6Pxfru1g75wHHwfOrb/CZb8F34Hvwg/PMxPZF9M7R4I08/zg7cA4419ER67tYO+cBx8H6pZxn/IjP/gR+Br+AXx0d2k/tXkLX8Tz/WBa4BCx3dMT6LtbOecBxiNVXeeGd23Ivoet4nn9cF7ge3NDqrsu8vmtE2kfUeHMcbH1VJmLnULqO1+cfwl3gbmc8qkSeX5WNrNqG5x+3d2jzDKSXSNFHrTTfrxjeWevJ4BTwgPKerNqG5x/tDm2egTQqerXEzvjuLunENVSfVdl9oHfWeh5YGNroPZyj3pooOnj2BNr2DCQvvPVjKu6xa9Bh/crT4Z21XgpWhDbrPfTCKvULfdyen8TWD+Zr/crTob2GPuO1MeiFXv2Slz/33Pb8JLZ+MF/rV54Oes0a5TNemw2vfvH8fTzxPU8/s7H1I1ZfeTrsWauH5z1e/eL5+7iDhPaN2Jocq688HTznJvRO3bba0eGF9vf/aqOk+2xPosgZjq35s/xqnVq/eG7fDjrYXsZ7GPQD0eGd7Uk714g8HUX8ip5JtHeSouOhg34g+fJsT55jnu1JO9eIWEhdVNSv+h2S7ybzHG8JOrhG2OCcLONXg4it5jne5tTWOjgny/hV1ehnf+j/O83yq7qoElXuY/2q7r9XGvS1fU769fdL/b5eMpQkFw3V//dKg77+Fw7ivTY=
+=======
+   eJztmslrFEEUxruC/gUevalXLybGfQVXiJqAy8WjG2644YbbTb2pKIgSURQ95KCHHNxwIy64MdHoxUxOGkw8BRW8+RXdT18/XtVUd3oyiRj40VX1qmveV193V/VkmkwULQPLwQrQNELrK8EqsBqsGcF10nOjbmQi/ah1Pnnx+bF2ELo+4dxuUBZjzEJ9NpgD5ipH+9cFPsZFZz8ap5Ifg9FAfMUYfSY91gKUF4JFYLFytBq6QU+ixdWPxgnxQ0Jz0FqXxtX/B/r+dPgh+9r8PyQaSEdP0mb1uHIJvT/49UFzwHP36TCgTrTxeaTcKf9ycvwMehMdZaaHa8rjB10fWu4+HT5PbZlyLzMdVsOXhF6mo8zKefzQro+W0WHXlQafR66D5y/pVXTk8UO7PvLC59GXu09TFj+KeF5pY8l57Iti+sG3hH5x5HHXONVaP1xjyHkciGJ+JQwIZLtrnKFez+U8Un7GxNjyGBMj2wdy+lENXH5wxpoYLZbVj4kmxpXPOsTWgw1gI9gEJidoMdc8cqYo7VpbFj+4Bm2vtBnlLWAr2Aa2B8Zc63lWHXnvD7kW7kB5J9gFdoM9gTGXH658XbFQPy6gfJHV5Vq4F+V9YD84AA4GxjQ/fBpcfUL9uIryNVaXa+EhxA6DI+AoOGbCYnIeQzRofYfb8yqvjlA/OqNisJ/tm8dq+2Fz6IjSz6qOpI1iBJ0zDvvH8WACOG7ifpXmUdPRPKpYP6hMzyqfju+IT0L+9aABnDLpMWrpB+VHzyrK2ca4R7YtYp/H+w2H+4Pyo2cVz096JJF6a+kHfTdBuVHdxrhHPh1y/ayFH/TdBOVGdRvjHkmmoc90obeWfrj2e65YxJ4DRKV3ybw6JD4/tP0e5anFuI7Q3IrC54e236M8tVjEfBhqHT4/tP0e6dBipIHv+a/bsvn7fus6avjOoXFD/ND2e5SrKybfv26ifCvDPRCKHLfa7+dFfu/iG7va+91GjHkWnCtwbBqvMcAP3/v5VBO/h/M2vp/k59k5awWXCtRB44X44fuOwQWt3fzcUlRdKvnBofXZp4HvJ3m7/Sy6DuS632biuN3jnwAnkz68XnLse86btI6i7g++n5Q66DqQubQnudg9/mlwJunD61xHPeoN4DK4YrL7YWljsXkozzd6TOKaT+6HK94RpeMz0H+mSccq+SHv43ZWX4LyUqPH5Lm+PNsz6tBiWfyQ38M149gSeA2Wknm/De6Au+AeuG/SfmhxrkOL57k/5HtEKKVk3h+Ah+AReAyemLQfWpzr0OJ57g/tWRTyTCM/OsBT8Aw8By9EnnniIX7I9SPL/6Tk+mHn/SV4BV6DN+CtyDNPPMSPrOu567w/axbaOsE78B50GbGm5YxnvT+GO//q70tq/fup/7+/iuu/ASrxvR0=
+>>>>>>> parent of e145baf... Merge branch 'master' into testing
   </data>
  </layer>
 </map>

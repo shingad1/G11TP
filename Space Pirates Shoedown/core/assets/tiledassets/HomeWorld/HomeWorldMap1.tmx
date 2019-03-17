@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="1">
  <tileset firstgid="1" source="Resources/Tiles5.tsx"/>
@@ -30,3 +31,32 @@
   </data>
  </layer>
 </map>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/Tiles5.tsx"/>
+ <tileset firstgid="491" source="Resources/Fences.tsx"/>
+ <tileset firstgid="509" source="Resources/Tiles4.tsx"/>
+ <tileset firstgid="617" source="Resources/Tiles3.tsx"/>
+ <tileset firstgid="1017" source="Resources/playground.tsx"/>
+ <tileset firstgid="1273" source="Resources/redhouse.tsx"/>
+ <tileset firstgid="1723" source="Resources/bluesmallhouse.tsx"/>
+ <tileset firstgid="2114" source="Resources/bluebighouse.tsx"/>
+ <tileset firstgid="2505" source="Resources/StreetLamps.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1UEOQDAQRuHGkXoup7RyLFuRaKZ02s7ft3gbQn0MckopEzm2/2j0tSs7vI/BgaOHo/U72dJR8w1Qc7SaATVH63D0myvLPcGBA4ePo/RNX8URpVUcvefq67lVHG9rqDnO7X8zzBWO+RzPfcqOo9AsDksRHJbnYVlr5P88Sr0ds74fNWvhwIEDh6fjvg3HeIfKXEVJ3UFEml34xdW/
+  </data>
+ </layer>
+ <layer id="9" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlUEOxSAIRHusrv/9D9Vt04gzI6D444JF1QCPAXpf13UfO5ZkvwCbFacXM9onc16Zw3NfieNu+P/ezeKwcrC+LZ/MfPTYUJ2V+WvlqsatMB8KxwpDfcXWOTMnpjcZPWb+BzI5VvSI+mZHjp30YPp8B45IPViuXt1G/aH/7Y56RHPM4v1qweSg7GRGb6aHkQZsTtX7yqPhzhzMvx71F+o7tk9V3yv1sDh786XubnUulXzRucWo8DEcSLPeLmNqieqn9Iy6d1EcD4f6drSHLA5vXTxzjuIy/anMVsTsoJn06sHOUm8mMjhG56MCB2Jp+R3t5UhbFfcfObw7CnFk70g1RiTH+67lC32jOMp5FofKpcb36KHkxNRRfR81H2ytPW9m6vH+VvwiDvQ2Sw9Va4Ujs6/e5yM6V+OwbDSv7w5hOSJmqbIdjjrG9vsOdjhqGbNbd7IHf9Jigw==
+  </data>
+ </layer>
+ <layer id="8" name="Tree" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzlWk1sVUUUvp13Wx4LxSgJ1oWCLBoClCayKQolWEkgKcUSF2JQ0MS4Kq0rkxo1/kRNtHWhNGykygJMTXQFJEBgBSF5/Fi69KcLXCgoARZtwYXfyZ3JPW/enJnp62vrw5d8mXvP/J1vvpm558597UmSbADa6zx9Fui8D1LDpwvYUYeprceWGuBWQ5Lc8OBOQ2364bD1qEWbN+HnZpUkAynui+gD6Cxm92S/OQc8fHqYvAuL3XXJ7uJPfrao7PpF+L8beKmY3bcIPKQ+YkB1fXqYvJLQR2mxmz/52aZ59MH/fuBNzaNN4CH1QWiFjuuAN1LZD58eZg2N6T42qhxbtN2UsXmsUxk+hv+fAJ8Wc5uLx5iHxyb43wG8JfAYC+jBtW5F/w8gfRBYou+lOTGp1/M08DX8PwSMFMvt87k+uNakwTKkjwLNSa5JaE7MF3x6GK2XQM+HgBW4fhJYyWyhOVENQvu2a++OeX48AX+XA6txvQZYy2xzMba0fnqg92OpG5Rnr7G5eH7Ugocv/ykHj7l4nteCxyGM+4jWexrpXeCevn9mhnrEPpt8z8lq2iMff4DPP2q/H25MkkeApY0yj9j9yjUuUjnJHruvkY9n0MdZ3c9q+L8GWOvhEbNfGdjjIpWT7LH7Gvl4GRyuaB6d6O85YGtjeZlYPez4yh4XKb7idUM215wjH7ep/H4P+nsZeEX3u22GevD46mhaOS5SfMXr+mz8V7J49Ggeo9YcHhX23dj46kRaOS5SfMXr+mz8x+fcJHve/WX5e90R24Ti3XpBKN6tF4TiXYoFSTMer8fC1OPtueKm20L8JNkprvLNHZce9O5WTSxLewLVa7F40Nr8DXkTeu1uTzMbve+WgIvApTQv+3aaoRfYD/Tp8tLc6RU40rtbNbEs7QlUr83BY4LxMDZKf4btF+BXiwddv4P0XeA9zUPaW3oFjk8X8OwENgKbgA5gQ6Gy/jX4+7vKU26zedh1jR7cNpCWlx3E/RDwRRqOIV16SDy+hH9fMR+ncD2t8pTbfDzWMx52zEP29bocz5N4+Parbvi8E3ge6AF2ATuAo/DvO+bjKVyftnx22ei5cLIJecDppmzdTun1y2MebrfzpHdi335FYz8KX75XeerS4wquf7J8dtkIY/D/KjDeVG63Y57YPEkPHufQ2J+BL2dVnnI9TNnHYdsKHAB6gRcKme2AYy39Af//BK5bPFyxYEyepAffZ9vhx1X4O67ytJ3pUaqCR7IoSRoAtajcbsc8sXmSHnyf7YIf9+DvPypPu5gepuzKggyp31rjfoivXHrMR198DR5P487nj6eV7cTq4Wv/ThVnTK7z4vP6mUDvqoTNGh0aFKNR/vm0sp1YPaj+Z5jjnwODwFChPM8ebxNvmDbtMvZ5MeGY5rFXZeDlX1cZKP9YWtlOrB5UfwS+fwN8CxwO8LDbtMvsdJzbnYvkcS5w5hfSow/t9AP7dR8HkQ4rPw8zXnaZvQ5fhjWPV1UGnrdPZaD84QCPkB4fop2PVGW9mG9KMWWORPI4Mgs9+HcCuv9A9/N+QA/CRERsyvl2O8aK0B3RV0gP/p3A2IiD4RE6H5TONOx6fL/i9tdU5Xcf6azJp8eKJP9OwDkYHr53xWaHHvY5UoiH6/uVdNZk68HHin8nmGooB8XP0rviqjTj8bdn3z3BeJhznpgzHumsydbjv/BtaaZwnV/V+tvSfOD/cn5VT+B6LPR/jmabkh5dycL/52i2qdnDFvq/R7NNicO/zFxmMg==
+  </data>
+ </layer>
+</map>
+>>>>>>> parent of e145baf... Merge branch 'master' into testing

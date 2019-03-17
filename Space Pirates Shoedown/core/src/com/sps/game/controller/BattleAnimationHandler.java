@@ -1,10 +1,16 @@
 package com.sps.game.Controller;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+<<<<<<< HEAD:Space Pirates Shoedown/core/src/com/sps/game/controller/BattleAnimationHandler.java
+=======
+import com.sps.game.Animation.enemyAnimation;
+import com.sps.game.Animation.playerAnimation;
+>>>>>>> parent of e145baf... Merge branch 'master' into testing:Space Pirates Shoedown/core/src/com/sps/game/Controller/BattleAnimationHandler.java
 import com.sps.game.Sprites.AbstractEnemy;
 import com.sps.game.Sprites.Location;
 import com.sps.game.Sprites.Player;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 public class BattleAnimationHandler {

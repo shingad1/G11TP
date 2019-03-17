@@ -16,25 +16,24 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.Controller.*;
-import com.sps.game.inventory.MerchantInventory;
-import com.sps.game.scenes.DialogueHud;
-import com.sps.game.scenes.HudScene;
+import com.sps.game.Scenes.Dialogue;
+import com.sps.game.Scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.scenes.ItemHud;
 import com.sps.game.Sprites.*;
-import com.sps.game.maps.Map;
-import com.sps.game.maps.MapFactory;
-import com.sps.game.maps.MapManager;
-import com.sps.game.profile.ProfileManager;
+//import com.sun.tools.internal.ws.processor.model.ModelVisitor;
+
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Stack;
 
 /**
- * This abstract class contains all the methods common to each subclass.
- * @author Miraj Shah, Miguel Abaquin, Devin Shingadia and Mahamuda Akhter
+ * This class launches the play screen, from where the play last left off.
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
  * @version 1.0
  */
-public abstract class PlayScreen implements Screen {
+
+public abstract class PlayScreen implements Screen
+{
 
     /**
      * Constant field to direct where the file is located.
@@ -44,7 +43,7 @@ public abstract class PlayScreen implements Screen {
      * Holds a version of the game.
      * @see #handleInput #render
      */
-    protected SpacePiratesShoedown game;
+    private SpacePiratesShoedown game;
     /**
      * Holds the tmx file.
      */
@@ -62,7 +61,7 @@ public abstract class PlayScreen implements Screen {
      * Holds what the view port will display.
      * @see #handleInput #update #render
      */
-    protected static OrthographicCamera gamecam;
+    protected OrthographicCamera gamecam;
     /**
      * Displays what the user will see.
      */
@@ -72,17 +71,8 @@ public abstract class PlayScreen implements Screen {
      * @see #render
      */
     private HudScene hud;
-    /**
-     * Holds instance of the MerchantInventory class, which displays vital Inventory information to the user.
-     * @see #render
-     */
-    private MerchantInventory merchantInventory;
 
     /**
-     *Holds instance of the ItemHud class, which is shown if the user makes a decision on whether to pick up or ignore an item.
-     */
-    private ItemHud itemHud;
-    /*
      * Holds all the sprites that will be displayed on the sreen.
      * @see #render
      */
@@ -99,10 +89,6 @@ public abstract class PlayScreen implements Screen {
      */
     protected ArrayList<AbstractNPC> npc;
     /**
-     * Holds a list of the enemies in the room
-     */
-    protected ArrayList<AbstractEnemy> enemies;
-    /**
      * Handles the users input, and updates the players properties accordingly.
      * @see #show #handleInput #combatExit
      */
@@ -111,108 +97,80 @@ public abstract class PlayScreen implements Screen {
      * Holds the layer of objects which the player cannot go through.
      */
     protected TiledMapTileLayer currentCollisionLayer;
-    /**
-     * Holds the current state of the Map.
-     */
-    protected static MapFactory.MapType currentMapState;
-    /**
-     * Holds a list of NPC Controllers.
-     */
+
+    protected String currentMapState;
+
     protected ArrayList<NPCController> npcController;
-    /**
-     * Holds a list of all the NPC locations.
-     */
+
     protected ArrayList<Location> allLocations;
-    /**
-     * Checks to see if the pause button has been activated. True for pause otherwise false.
-     */
-    private boolean pause;
-    /**
-     * Holds the texture of the pause button
-     */
+
+    private Boolean pause;
     private static Texture pauseTexture;
-    /**
-     * Holds the music track that will be played in the world.
-     */
-    protected com.badlogic.gdx.audio.Music music;
-    /**
-     * Holds an instance of the MapManager for saving that state of it.
-     */
-    private MapManager mapManager;
-    /**
-     * Creates and holds a story controller
-     */
+
+    private Stack<TiledMap> maps;
+
+    protected String overworldMap;
+
+    private com.badlogic.gdx.audio.Music music;
+
+    private com.badlogic.gdx.audio.Music sound;
+
+    private Dialogue scene = new Dialogue();
     private StoryController storyController = new StoryController();
-    /**
-     * Creates and holds a tutorial controller
-     */
     private TutorialController1 tutorialController = new TutorialController1();
-    /**
-     * Holds a random number generator.
-     */
+
     protected Random random;
-    /**
-     * Holds a boolean value to display a dialogue box. True if the dialogue box should appear, otherwise false.
-     */
-    private boolean dialogBoolean = true;
-    /**
-     * Holds the MapType of the map, before the player enters the house.
-     */
-    protected static MapFactory.MapType oldState;
-
-    int count = 0;
-
-    /**
-     * Holds the different states the game can be in.
-     */
-    public static enum GameState{
-        Saving,
-        Loading,
-        Running
-    }
-
-    /**
-     * Holds the current state of the game
-     */
-    private static GameState gameState;
-    /**
-     * Holds an instance of the DialogueHud, that displays the dialogue of the NPC or enemy.
-     */
-    private DialogueHud dialogueHud;
-
-    MiniMapScreen miniMapScreen;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
-        mapManager = new MapManager();
-        setGameState(GameState.Running);
         gamecam = new OrthographicCamera(480,480);
         gameport = new FitViewport(1600, 1600, gamecam);
         mapLoader = new TmxMapLoader();
-        mapManager.setPlayer(p);
-        mapManager.setCamera(gamecam);
         batch = new SpriteBatch();
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
-        merchantInventory  = new MerchantInventory(game.batch,controller);
-        itemHud = new ItemHud(game.batch, controller);
-        dialogueHud = new DialogueHud(game.batch, controller);
+        maps = new Stack<TiledMap>();
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
-        //MiniMapScreen = new MiniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
+        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
     }
 
+/*
+    public PlayScreen(SpacePiratesShoedown game, String mapName, SpriteBatch batch, Player p, PlayerController controller, int playerX, int playerY, ArrayList<AbstractNPC> npc, ArrayList<NPCController> npcController, int camX, int camY){
+        this.game = game;
+        gamecam = new OrthographicCamera(480,480);
+        gameport = new FitViewport(1600, 1600, gamecam);
+        mapLoader = new TmxMapLoader();
+        overworldMap = mapName;
+        currentMap = mapLoader.load(ASSETS_PATH + mapName);
+        renderer = new OrthogonalTiledMapRenderer(currentMap);
+        gamecam.position.set(playerX + camX, playerY + camY, 0);
+        this.batch = batch;
+        this.p = p;
+        p.setPosition(playerX, playerY);
+        int[] xbounds = {0, 1600};
+        int[] ybounds = {0,1600};
+        currentCollisionLayer = (TiledMapTileLayer) currentMap.getLayers().get(1);
+        hud = new HudScene(game.batch,p);
+        currentMapState = "Overworld";
+        this.controller = new PlayerController(this.p,currentCollisionLayer,xbounds,ybounds,null);
+        this.npc = npc;
+        this.npcController = npcController;
+        maps = new Stack<TiledMap>();
+        pauseTexture = new Texture("core/assets/pause.png");
+        pause = false;
+        this.controller.reset();
+    }
+*/
     /**
      * Specifies which controller will be used to check the input.
      */
     @Override
     public void show() {
-        ProfileManager.getInstance().addObserver(mapManager);
-        setGameState(GameState.Loading);
         Gdx.input.setInputProcessor(controller);
-        if(renderer == null){
-            renderer = new OrthogonalTiledMapRenderer(mapManager.getCurrentTiledMap());
-        }
     }
 
     /**
@@ -221,9 +179,61 @@ public abstract class PlayScreen implements Screen {
      */
     public void handleInput(float dt){
         controller.action(gamecam);
+        if(controller.getEntered()){
+            dispose();
+            gamecam.position.x = 160;
+            gamecam.position.y = 160;
+            p.setPosition(160,64);
+            maps.push(currentMap);
+            currentMap = mapLoader.load(ASSETS_PATH + "TestBattleScene.tmx");
+            //BasicEnemy.WORLD = "Test Battle Screen";
+            renderer = new OrthogonalTiledMapRenderer(currentMap);
+            int[] xbounds = {32,320};
+            int[] ybounds = {32,320};
+            controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
+            currentMapState = "House";
+        }
+        if(controller.getLeave()){
+            dispose();
+            Vector2 oldPosition = controller.popPosition();
+            gamecam.position.x = (int) oldPosition.x;
+            gamecam.position.y = (int) oldPosition.y;
+            p.setPosition((int) oldPosition.x, (int) oldPosition.y);
+            currentMap = mapLoader.load(ASSETS_PATH + this.overworldMap);
+            renderer = new OrthogonalTiledMapRenderer(currentMap);
+            int[] xbounds = {0, 1600};
+            int[] ybounds = {0,1600};
+            controller.changeCollisionLayer((TiledMapTileLayer) currentMap.getLayers().get(1),xbounds,ybounds);
+            currentMapState = "Overworld";
+        }
         if(controller.getFight()){
-            //game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
-            //currentMapState = "HouseFight";
+            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
+            currentMapState = "HouseFight";
+        }
+
+        /**
+        if(controller.getNewWorld()){ //change: if they press a button on the edge of a map
+            //dispose
+            controller.reset();
+            ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
+            npcList.add(new NonInteractiveNPC(960,960,"Overworld", batch, ""));
+            ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
+            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
+           // game.setScreen(new PlayScreen(game, "HomeWorldMap2.tmx", batch, p, controller, 64, 864, npcList, npcControllerList,185,0));
+            currentMapState = "Overworld";
+        }
+        */
+
+        //Randomise the world schtuff
+        if(controller.getCandy()){
+            //dispose
+            controller.reset();
+            ArrayList<AbstractNPC> npcList = new ArrayList<AbstractNPC>();
+            npcList.add(new NonInteractiveNPC(1088,512,"Overworld", batch, ""));
+            ArrayList<NPCController> npcControllerList = new ArrayList<NPCController>();
+            npcControllerList.add(new NPCController((NonInteractiveNPC) npc.get(0), currentCollisionLayer));
+           // game.setScreen(new PlayScreen(game, "CandyLandMap1.tmx", batch, p, controller, 416, 1216, npcList, npcControllerList,0,0));
+            currentMapState = "CandyLand";
         }
     }
 
@@ -231,40 +241,27 @@ public abstract class PlayScreen implements Screen {
      * Checks to see if any inputs are happening, and sets the gamecam.
      * @param <code>float</code> dt.
      */
-    public void update(float dt) {
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+    public void update(float dt){
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+        {
             pause = true;
-            try {
+            try
+            {
                 Thread.sleep(100);
-            } catch (InterruptedException e) {
+            }catch (InterruptedException e)
+            {
                 e.printStackTrace();
             }
         }
         handleInput(dt);
-        for (int i = 0; i < npcController.size(); i++) {
+        for (int i = 0; i < npcController.size(); i++){
             if (npc.get(i).getWorld().equals(currentMapState)) {
-                npcController.get(i).move();
+                npcController.get(i).move(p);
             }
         }
-
+        hud.update();
         gamecam.update();
         renderer.setView(gamecam);
-        hud.update();
-        merchantInventory.update();
-        itemHud.update();
-
-        for (AbstractNPC npcTemp : getInteractiveNPC()) {
-            if (controller.npcInProximity(npcTemp)) {
-                dialogueHud.update(npcTemp.getName());
-            }
-        }
-        if(getClass().equals(HouseInteriorScreen.class)) {
-            for (AbstractEnemy enemy : enemies) {
-                if (controller.enemyInProximity(enemy)) {
-                    dialogueHud.update(enemy.getName());
-                }
-            }
-        }
     }
 
     /**
@@ -273,11 +270,6 @@ public abstract class PlayScreen implements Screen {
      */
     @Override
     public void render(float delta) {
-        if(mapManager.hasMapChanged()){
-            renderer.setMap(mapManager.getCurrentTiledMap());
-            gamecam.update();
-            mapManager.setMapChanged(false);
-        }
         if(pause)
         {
             if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
@@ -300,7 +292,8 @@ public abstract class PlayScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
 
-
+        batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
+        hud.stage.draw(); //actually drawing the graphics
         batch.setProjectionMatrix(gamecam.combined);
         ArrayList<AbstractNPC> mapNPC = getMapNPC(currentMapState);
         if (mapNPC != null) {
@@ -309,26 +302,13 @@ public abstract class PlayScreen implements Screen {
                     npc.getAnimation().render();
             }
         }
-
-        ArrayList<AbstractEnemy> mapEnemy = getMapEnemy(currentMapState);
-        if (mapEnemy != null){
-            for(AbstractEnemy enemy : mapEnemy){
-                if(enemy.getAnimation() != null)
-                    enemy.getAnimation().render();
-            }
-        }
-
         p.getAnimation().render();
-        int[] mapLayers = new int[currentMap.getLayers().size() - 3];
-        for (int i = 3; i < currentMap.getLayers().size(); i++)
-            mapLayers[i - 3] = (currentMap.getLayers().getIndex(currentMap.getLayers().get(i)));
+        int[] mapLayers = new int[currentMap.getLayers().size() - 1];
+        for (int i = 1; i < currentMap.getLayers().size(); i++)
+            mapLayers[i - 1] = (currentMap.getLayers().getIndex(currentMap.getLayers().get(i)));
 
         renderer.render(mapLayers);
-        batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
-        hud.stage.draw(); //actually drawing the graphics
-        merchantInventory.stage.draw(); //drawing the user hud
-        itemHud.stage.draw();
-        dialogueHud.stage.draw();
+
 
         batch.begin();
         if(pause)
@@ -339,7 +319,8 @@ public abstract class PlayScreen implements Screen {
 
         changeMaps();
 
-        //MiniMapScreen.miniMap();
+        tutorialController.create();
+        tutorialController.render();
     }
 
     @Override
@@ -368,7 +349,7 @@ public abstract class PlayScreen implements Screen {
     @Override
     public void dispose() {
        currentMap.dispose();
-       music.dispose();
+       //player.dispose();
     }
 
     /**
@@ -380,146 +361,19 @@ public abstract class PlayScreen implements Screen {
         enemyTile.getProperties().remove("basicEnemy");
         enemyTile.getProperties().remove("blocked");
         enemyTile.getProperties().put("invisible","true");
+        currentMapState = "House";
         game.setScreen(this);
     }
 
-    /**
-     * Sets the state of the game.
-     * @param gs
-     */
-    public static void setGameState(GameState gs){
-        switch (gs){
-            case Saving:
-                ProfileManager.getInstance().saveProfile();
-                //gameState = GameState.Saving;
-                break;
-            case Loading:
-                ProfileManager.getInstance().loadProfile();
-                gameState = GameState.Running;
-                break;
-            case Running:
-                gameState = GameState.Running;
-                break;
-                default:
-                    gameState = GameState.Running;
-                    break;
-        }
-    }
+    public abstract ArrayList<InteractiveNPC> getInteractiveNPC();
 
-    /**
-     * Returns an ArrayList containing all the InteractiveNPC's in the world.
-     * @return ArrayList interactiveNPCs
-     */
-    public ArrayList<AbstractNPC> getInteractiveNPC() {
-        ArrayList<AbstractNPC> interactiveNPCs = new ArrayList<AbstractNPC>();
-        for(AbstractNPC nonPlayingCharacter : npc){
-            if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
-                interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
-            }
-            else  if(nonPlayingCharacter.getClass() == InteractiveNPCMoving.class){
-                interactiveNPCs.add((InteractiveNPCMoving) nonPlayingCharacter);
-            }
-        }
-        return interactiveNPCs;
-    }
+    public abstract ArrayList<NonInteractiveNPC> getNonInteractiveNPC();
 
-    /**
-     * Returns an ArrayList containing all the NonInteractiveNPC's in the world.
-     * @return ArrayList nonInteractiveNPCs
-     */
-    public ArrayList<NonInteractiveNPC> getNonInteractiveNPC() {
-        ArrayList<NonInteractiveNPC> nonInteractiveNPCs = new ArrayList<NonInteractiveNPC>();
-        for(AbstractNPC nonPlayingCharacter : npc){
-            if(nonPlayingCharacter.getClass() == NonInteractiveNPC.class){
-                nonInteractiveNPCs.add((NonInteractiveNPC) nonPlayingCharacter);
-            }
+    public abstract ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving();
 
-        }
-        return nonInteractiveNPCs;
-    }
+    public abstract boolean checkPosition(Location location, String world);
 
-    /**
-     * Returns an ArrayList containing all the Interactive NPCs that can move in the world.
-     * @return ArrayList interactiveNPCsMoving
-     */
-    public ArrayList<InteractiveNPCMoving> getInteractiveNPCMoving() {
-        ArrayList<InteractiveNPCMoving> interactiveNPCsMoving = new ArrayList<InteractiveNPCMoving>();
-        for(AbstractNPC InteractiveNPC : npc){
-            if(InteractiveNPC.getClass() == InteractiveNPCMoving.class){
-                interactiveNPCsMoving.add((InteractiveNPCMoving) InteractiveNPC);
-            }
-        }
-        return interactiveNPCsMoving;
-    }
-    /**
-     * Changes the map that is rendered once the player is on a certain location or going of the screen
-     */
-    public abstract boolean checkPosition(Location location, MapFactory.MapType world);
+    public abstract ArrayList<AbstractNPC> getMapNPC(String world);
 
-    /**
-     * Returns an ArrayList of Abstract NPCS, which holds every NPC on the Map.
-     * @param map
-     * @return
-     */
-    public ArrayList<AbstractNPC> getMapNPC(MapFactory.MapType map) {
-        ArrayList<AbstractNPC> result = new ArrayList<AbstractNPC>();
-        for (int i = 0; i < npc.size(); i++){
-            if (npc.get(i).getWorld().equals(map)){
-                result.add(npc.get(i));
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Changes the map that is rendered once the player is on a certain location or going of the screen.
-     */
     public abstract void changeMaps();
-    /**
-     * Returns a map from the array according to the vector2 value passed in as a parameter.
-     * @param Vector2 selector
-     * @return Map
-     */
-    public abstract Map getMap(Vector2 selector);
-    /**
-     * Returns a Vector2 value to get a Map according to the map type specified in the parameter.
-     * @param MapFactory.MapType map
-     * @return Vector2
-     */
-    public abstract Vector2 getWorldMapByWorld(MapFactory.MapType map);
-
-    /**
-     * Returns an ArrayList containing all the enemies on the map.
-     * @param MapFactory.MapType map
-     * @return ArrayList<AbstractEnemy>
-     */
-    public abstract ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map);
-
-    /**
-     * Adds the locations of all the NPCs in to an ArrayList.
-     * @param Map selectedMap
-     */
-    public void changeNpcLocations(Map selectedMap) {
-        for (AbstractNPC nonPlayingCharacter : npc) {
-            if (nonPlayingCharacter.getWorld().equals(selectedMap.getCurrentMapType()))
-                allLocations.add(nonPlayingCharacter.getLocation());
-        }
-    }
-
-    /**
-     * Adds the locations of all the NPCs in to an ArrayList
-     * @param Map selectedMap
-     */
-    public void addEnemiesLocations(Map selectedMap){
-        for (AbstractEnemy enemy : enemies) {
-            allLocations.add(enemy.getLocation());
-        }
-    }
-    /**
-     * Returns the current type of the map.
-     * @return MapFactory.MapType currentMapState
-     */
-    public static MapFactory.MapType getCurrentMapType(){
-        return currentMapState;
-    }
 }

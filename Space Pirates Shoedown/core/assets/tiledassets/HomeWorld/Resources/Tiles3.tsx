@@ -221,11 +221,14 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
+<<<<<<< HEAD
  <tile id="226">
   <properties>
    <property name="nonpc" value="true"/>
   </properties>
  </tile>
+=======
+>>>>>>> parent of e145baf... Merge branch 'master' into testing
  <tile id="228">
   <properties>
    <property name="blocked" value="true"/>

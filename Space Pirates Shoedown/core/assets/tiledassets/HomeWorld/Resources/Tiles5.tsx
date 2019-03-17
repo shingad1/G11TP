@@ -418,9 +418,4 @@
    <property name="blocked" value="true"/>
   </properties>
  </tile>
- <tile id="488">
-  <properties>
-   <property name="invisible" value="true"/>
-  </properties>
- </tile>
 </tileset>

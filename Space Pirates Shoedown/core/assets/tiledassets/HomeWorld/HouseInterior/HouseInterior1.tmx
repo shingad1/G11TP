@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
- <tileset firstgid="1" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
- <tileset firstgid="1025" source="../../TropicalWorld/Resources/Tiles5.tsx"/>
- <tileset firstgid="1515" source="Resources/IndoorTiles1.tsx"/>
- <tileset firstgid="1707" source="Resources/IndoorTiles2.tsx"/>
- <tileset firstgid="1947" source="Resources/InteriorCity.tsx"/>
- <tileset firstgid="2331" source="../Resources/Tiles5.tsx"/>
- <layer id="1" name="Ground" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJzt0z0OQEAQQOFNNlTi/r074CS4glaBEoVkC1amsTO8SV4/3/6MmXMjERERkdHemC8Y3rDgwIEDBw4cOHDgwPFXx5TL0+go8+uKSKkcsbO04jgmtktsXwuOu2rvXBPUeplFy310+9590HDhSHEfRxLHvO+9BK1GHVr/x/m27gaHLseTTTraHJXX55D6UuxCRERENtsAI/l1uw==
-  </data>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="11" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" source="Resources/Terrain.tsx"/>
+ <tileset firstgid="1025" source="InteriorTiles.tsx"/>
+ <tileset firstgid="1529" source="Resources/InteriorTilesRoomVariantRed.tsx"/>
+ <tileset firstgid="1769" source="Resources/Interiorv2.tsx"/>
+ <layer id="1" name="Ground" width="11" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,2731,2731,2731,2731,2699,2699,2699,2699,2699,0,
+0,2731,2731,2731,2731,2699,2699,2699,2699,2699,0,
+0,2699,2699,2699,2699,2699,2699,1104,2699,2699,0,
+0,2699,2699,2699,2699,2699,2699,2699,2699,2699,0,
+0,2699,2699,2699,2699,2699,2699,2699,2699,2699,0,
+0,2699,2699,2699,2699,2699,2699,2699,1104,2699,0,
+0,2699,2699,2699,2699,2699,2699,2699,2699,2699,0,
+0,2699,2699,2699,2699,2699,2699,2699,2699,2699,0,
+0,2699,2699,2699,2699,492,2699,2699,2699,2699,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
- <layer id="2" name="CollisionLayer" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJzt07sJgDAUBdAUWriRc7j/Am5hJYpITFKYDydwCFjd+3xZpxBWAAAAAICf7XO+2plLbMt1n2pleTs5/6v2LGPzje3V83vtzCnz7elN3HOUvOtWunxl6qXHM2tKz5F7tNQnde9G7tByj9wd7MkoPQAAUh3If52g
-  </data>
- </layer>
- <layer id="3" name="Door" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJztzgEJAAAIA7CD/UPY1BYKsiVYAgAAAAAAAMBXXdcDAIA9A+jIAKU=
-  </data>
- </layer>
- <layer id="4" name="Misc" width="50" height="50">
-  <data encoding="base64" compression="zlib">
-   eJzt0z1OAlEUxfGDJkiJpXbqApQSXISilW7EQklmDxYWOtZMTamxU6E2LsDPQKux0sIz8gzjy6ADMdwhOTf5ZUIC4f7fy7RngbaIiIiIiIiIiIhMhWfqjuEpB7sndeiuCNwX+88s4u/yd8Gkd+XZBd0UvIsg7jgHsE9n1KAD52EOeKR4WjP4MRYdyTNP6riOE+51jP4zdM9TemfDh+u4YcdSCVimlZJdxx53WaBFemHDLQYdaXPhfX5lR5X712jdsOOIu1Sp5vZ6ox536Q3pSJs699+ibcOOeHZoN/vaqTMPBGV83aNZhz8RdyGsFrJ3VNiwZthx6O3aKAzej40ROups2DTsaHm7hokOvzHLWHRc8j+bKa5ch9/413zf5aQ7xnl3fpswhx28EzQ9kdcWDblL691HvaPrHOz0H3c0DWcvIiIidj4BpQduNw==
-  </data>
+ <layer id="2" name="CollisionLayer" width="11" height="11">
+  <properties>
+   <property name="blocked" value="true"/>
+  </properties>
+  <data encoding="csv">
+536872467,2684356131,2684356131,2684356131,2684356131,2684356131,2684356131,2684356131,2684356131,2684356131,2684356115,
+536872558,1956,1891,1893,1892,0,1985,1793,1794,1985,2684356206,
+536872558,1924,1923,1959,1924,0,2017,1825,1826,2017,2684356206,
+536872558,0,0,0,0,0,0,1857,1858,0,2684356206,
+536872558,2147485890,1975,1976,2242,0,0,0,0,0,2684356206,
+536872558,2147485890,2007,2008,2242,0,0,1982,1981,1981,2684356206,
+536872558,0,2039,2040,0,0,0,2014,2013,2013,2684356206,
+536872558,0,0,0,0,0,0,0,0,0,2684356206,
+536872558,2171,0,0,0,0,0,0,0,2149,2684356206,
+536872558,2203,0,0,0,386,0,0,0,2181,2684356206,
+536872525,2684356136,2684356136,2684356136,2684356136,2684356136,2684356136,2684356136,2684356136,2684356136,2684356173
+</data>
  </layer>
 </map>

@@ -1,9 +1,10 @@
 package com.sps.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.sps.game.screens.MenuScreen;
-import com.sps.game.screens.SplashWorker;
+import com.sps.game.Screens.MenuScreen;
+import com.sps.game.Screens.SplashWorker;
 
 /**
  * This class creates the game and launches the Menu Screen.
@@ -19,24 +20,6 @@ public class SpacePiratesShoedown extends Game {
 	 */
 	public SpriteBatch batch;
 	private SplashWorker splashWorker;
-	/*private static PlayScreen playScreen;
-	private static MenuScreen menuScreen;
-
-	public static enum ScreenType{
-		PlayGame,
-		MainMenu
-	}
-
-	public Screen getScreenType(ScreenType screenType){
-		switch (screenType){
-			case PlayGame:
-				return playScreen;
-			case MainMenu:
-				return menuScreen;
-				default:
-					return menuScreen;
-		}
-	}*/
 
 	@Override
 	public void create () {

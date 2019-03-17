@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="1">
  <tileset firstgid="1" source="Resources/Tiles5.tsx"/>
  <tileset firstgid="491" source="Resources/watertiles.tsx"/>
  <tileset firstgid="882" source="Resources/redhouse.tsx"/>
@@ -12,9 +12,10 @@
  <tileset firstgid="2517" source="Resources/spaceship2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1jsOgCAQRVEq3Q+Fq3IB7snKHRoTG4wfUBmY4Ra354Rn0DvnPBE9NiqrFUfpXcTuBkcd4agrHHXV2vuhJYld5dwoDhwlHRLfIveBQ4Mj16atOay851YcUrvCgUPKIfEt4oh3LN19WnaV4phOynW3qe/HdtahD9Pq+Os+rOyqtGPew4EDx7XjGI735/rikPwvyeXQknUHEYWt4fKwAQ==
+   eJzt1rENwjAQRmE3gX1SMIgngJ4C5qJiMLIBiCBRkJMgtpDtu/MrXu9P/iNnDCGMRLTa0Vi9OFrvInU3OHSEQ1c4dNXb+2GlGrsquVEcOFo6anyL3IdvR6kt4NC5Ky/vuReHl13hwFHzW8SR7rhufmdlVzmOwxBC/Gg/lLvb3Pfjddbddtk3x1k4TsocqfcRV+7Dyq6kQ95Ha8flXa4j4sDRkUMmHbf53JMDx30+9+NPR65Z639JKYeVvDuIaNkTUCWsow==
   </data>
  </layer>
+<<<<<<< HEAD
  <layer id="3" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJztl0tOAzEMhlOhqJdhyaLHKTdoT8sZWNAbgGgWI9Eojv370ZBRKv0qeTn+xo8Op5TSaWkpSJ+HObVXjhlZOIbROY7kvoWj3ofmbJlLoM9aDmpvzw61xt0vOePBwdmR5q+EcySHNXefxYHUUQSH9Vl9vLTXWvOSdcRmby+Su7Noceju6o0jObR3ob8XUh8p22jf1bJYbLX8Q+v8P8TDI6887+GebT3HvSMgeWWVJh4S1tEc0tglQy+gOHrnOLuoD72Yaf3h/EByuNU3NZwRjJZ4eWtvHJJYWWLp0TOQnkT50vrWcNR7vGpByljGb8c2B3dO6l/N1usHWo6ijYPS9v8OxcH5Ypnjns9fFQ5LHUpq6xkcFiE5bpmTrFmZy5nXRr5p5yI43vPj+Jxj4xvFcc2P+XPJ8b4jHNJ8r3XO/Xs85MHBcdXxGM2B1rQmR7cPNY7koGKnrbVR8aBiNHs80H7SYmn97c3B2fm61/Wt02slfpX3Hu4dLprj+87wMzkHlXf1HsSeJ8dM2ivHjCzSPFxa0uoX98XdkQ==
@@ -26,11 +27,14 @@
   </data>
  </layer>
  <layer id="2" name="Objects" width="50" height="50">
+=======
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+>>>>>>> parent of e145baf... Merge branch 'master' into testing
   <properties>
    <property name="candyLand" value=""/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzdWklsVlUUflLe/VsTLBqj4EZtgUIdMFqBn6QIhQghtLjDhUPiioVDIi4aB0xXmoImuFAjbAjOsHEBC2UIKwaFhMRCcVrYWkVNNKkLBhP9bt65+c87vdP//4/h0eTLee+cO33v6z3v3D+vmiTJUqBacrsSWHUdWMOnHxgooZV69KRJ0peUC3rNUo/FJeSh1yz16C0hj16LHjz+KOIrBFZbfD5/TLyeMdc4nrPUg8dWoc90VcNfaebbRTDtlqjM/xTwNPM/nma4leLngQss/i2ux2jMEWATwwj55Xptvr7Er4fu82ILxgVeAv5jPLjftH0eeIHm4XHDoxW2TeVjk4wH9xsetnka0WML+m8F3hLj2PxjbA4eNzxmwc5W+dg4rfe0mOt06p+/Xj0+RP+PgI/FODb/JJuDxw2P+bALVD72D613Qsw1kfrnl++HkB4H0P8gcKgl22f9tN9c/hUR8dgxBxw+k2tj9Vip9Ub/M8BoSz7m8sfE6xnT1Va+H3x6lAk+PcoEnx56L81UjY2r+/G92EPvojdg3wQOU6619e1Au05gDs19BO2OAseo/VI1dZ/79NB76a4Geeh+fC+a6/dg3wdOOThoPIi+D+m10txn0HYUOEt91qqp+9ynR2+TevC96KvbblR5K/Er+v4GnPOMF9ofzejB79vp/jvM/z3wA1vHHSpvNZ5A/EkP93Yx/pXKV3fSvL9jbX8Af7I1dqu81XgW8edYm810PZTmx4vRw1bv1lPj2mrTi/BdAv71POuXEXsFeJW1eZuut5GVOSL0Ptc1hcahtho+I5iacS+wj65NjWvqIzMWzy/3Y7yFwAP0TOfCzgO66H5Y11XAVg9XV74y51wbD9s4hsdGGk/mxgnBg+eXZRjzEWA5jf0w7CKdg+j+A7TdDuygPmOUp03OluNxPWxr1esYarPHhojHII0nc+NGwaOX3h/6egB2PfBYZA6ZpDxtcvZ05c5XLh7DDh7DxONdGk/mxkHB43IjpMenDh6mFjc85HnHdZ67XAidPwyPnyv4PwXGK9n932ntHKfv5XlH8og968f6ZC4M5SvD4wLWfxG4RDwSlechzzuSh8kZPDe5zt+3IVZV2bm/amn3jEXrkB672zLMbE2Sm4FbWrPYLqaHBj/vGJ+NB89Nod8Rqmqqz9YupMe6tHYG68L6z92Ac2lrzd/P4vy8w/vxeWfA3gS0F+SL1aNI6Hlvh50FzE5qeYL7bO18vlg9ioTW6G7YDqAzqenVjC9WD1995fpdj9feh0Wbe4B7gfsK8sXqobXrQH6aA8wD5gOvYZ2bHXtUg9fevrNS0Qjlq06sfS7QVcmut2Gd73h4dEfWGkUjpIern4ztDDx7Na141KNH7PP4okEeoT0YyyOkx178L+2rhHkYPT7X705gTxrHg9f+HKZeLkqPDZUMof8ro8eXsF8B++vgMWjhMVgnj5Aer1cyhHgYHIf/a+Cba0yPCjgsrIOHCyE9RlDDLUlqKFoPw2MD6fIJsKwS5nEA8YNpmIepxfqAniTDclafFa2Hj4d8b2ucgO9kBA/buhrJu6F6dxzvtV/UVMvrG9t7+0f4frqCPKQeZf0OQOpR1u8ApB5l/Q6A63G1vzlq1prfE402ZbX699AkufrfHjVr9d//AWHbcA==
+   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
   </data>
  </layer>
 </map>
