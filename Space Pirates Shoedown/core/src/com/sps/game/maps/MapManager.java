@@ -6,11 +6,18 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.sps.game.maps.MapFactory.MapType;
+import com.sps.game.profile.ProfileManager;
+import com.sps.game.profile.ProfileObserver;
+import com.sps.game.profile.ProfileObserver.ProfileEvent;
 import com.sps.game.screens.HomeWorldScreen;
 import com.sps.game.sprites.AbstractNPC;
 import com.sps.game.sprites.Player;
-import com.sps.game.profile.ProfileManager;
-import com.sps.game.profile.ProfileObserver;
+import java.io.FileReader;
+import java.util.Iterator;
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
+//import org.json.simple.parser.JSONParser;
 
 /**
  * This class stores the current state of the Map.

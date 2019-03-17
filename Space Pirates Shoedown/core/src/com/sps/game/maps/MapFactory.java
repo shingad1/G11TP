@@ -22,10 +22,14 @@ public class MapFactory {
         CandyWorld1,
         CandyWorld2,
         CandyInterior,
+        CandyInterior2,
         CandyMansion,
         TropicalWorld1,
         TropicalWorld2,
-        GraveyardWorld1
+        TropicalInterior1,
+        TropicalInterior2,
+        GraveyardWorld1,
+        GraveyardWest
     }
 
     /**

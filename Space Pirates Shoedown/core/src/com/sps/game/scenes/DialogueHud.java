@@ -69,7 +69,7 @@ public class DialogueHud {
     /**
      * Displays the current line of text.
      */
-    Dialog textArea = new Dialog("Dialogue", skin);
+    Dialog textArea = new Dialog("", skin);
     /**
      * Holds the current line of text.
      */
@@ -130,7 +130,7 @@ public class DialogueHud {
             }
         });
 
-        table.add(textArea).size(stage.getWidth(), stage.getHeight() / 2).padBottom(5);
+        table.add(textArea).size(stage.getWidth(), stage.getHeight() / 3).padBottom(5);
         table.row();
         table.add(prevButton).size(150, 50).align(Align.bottomLeft).padLeft(200);
         table.add(nextButton).size(150, 50).align(Align.bottomRight).padRight(200);
@@ -163,7 +163,6 @@ public class DialogueHud {
         if (Gdx.input.isKeyPressed(Input.Keys.B) && oldInput == null) {
             formatting();
             show(npcName);
-            //potentially reset move here?
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.E) && oldInput != null) {

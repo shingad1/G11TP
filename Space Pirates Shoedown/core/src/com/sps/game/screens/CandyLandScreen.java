@@ -156,7 +156,7 @@ public class CandyLandScreen extends PlayScreen {
         if (currentMapState.equals(MapFactory.MapType.CandyWorld1)){
             if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
                 dispose();
-                game.setScreen(new TropicalWorldScreen(game));
+                game.setScreen(new TropicalWorldScreen(game, 320, 256));
             }
             if(p.getLocation().equals(new Location(416, 992))){
                 oldState = MapFactory.MapType.CandyWorld1;
@@ -169,6 +169,10 @@ public class CandyLandScreen extends PlayScreen {
                 oldState = MapFactory.MapType.CandyWorld2;
                 dispose();
                 game.setScreen(new HouseInteriorScreen(game, new Vector2(1,1)));
+            } else if(p.getLocation().equals(new Location(352, 480))){
+                oldState = MapFactory.MapType.CandyWorld2;
+                dispose();
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(3,0)));
             }
         }
         if(camX != 0 || camY != 0) {
@@ -211,6 +215,11 @@ public class CandyLandScreen extends PlayScreen {
                 }
             }
         }
+        return null;
+    }
+
+    @Override
+    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;
     }
 

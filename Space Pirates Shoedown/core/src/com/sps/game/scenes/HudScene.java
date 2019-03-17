@@ -67,15 +67,15 @@ public class HudScene  {
 
 
     public HudScene(SpriteBatch sb, Player p){
-        gold = 100;
+      //  gold = 100;
         //Instantiating the viewport
         viewport = new FitViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), new OrthographicCamera());
         //Instantiating the stage
         stage = new Stage(viewport, sb);
         //Instantiating the goldLabel label with the BitmapFont font and the colour white
-        goldLabel = new Label("Gold",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+       // goldLabel = new Label("Gold",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         //Instantiating the goldCountLabel label with the BitmapFont font and the colour white
-        goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+       // goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
         pause = new Image(new Texture("core/assets/pause.png"));
         story = new Image(new Texture("core/assets/story.png"));
@@ -92,7 +92,7 @@ public class HudScene  {
      * this method updates the GoldCounterLabel and also calls onto another method
      */
     public void update(){
-        goldCountLabel = new Label(String.format("%02d",player.getGold()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        goldCountLabel = new Label("Gold: " + String.format("%02d",player.getGold()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
     /**

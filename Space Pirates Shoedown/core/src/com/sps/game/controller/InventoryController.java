@@ -16,6 +16,8 @@ import com.sps.game.inventory.Item;
 
 public class InventoryController {
 
+    private static InventoryController instance = new InventoryController();
+
     /**
      * Skin object, used for the display of the inventory.
      * @see #inventory
@@ -64,12 +66,14 @@ public class InventoryController {
     public Item cucumber;
     public Item shoeLaces;
     public Item sword;
+    public Item socks;
+    public Item foundItem;
 
 
     /**
      * Creates an InventoryController object, populating the collections.
      */
-    public InventoryController() {
+    private InventoryController() {
         setItems();
 
 
@@ -82,27 +86,26 @@ public class InventoryController {
                           piratesEye,
                           cucumber,
                           shoeLaces,
-                          sword);
+                          sword,
+                          socks
+                                );
 
 
         /**
          *         Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
          */
-        inventory.setItems(fuel.getName(),
-                           axe.getName(),
-                           fluxCapacitor.getName(),
-                           shoes.getName(),
-                           hamster.getName(),
-                           hammer.getName(),
-                           piratesEye.getName(),
-                           cucumber.getName());
+        inventory.setItems(socks.getName(),
+                           shoeLaces.getName(),
+                           cucumber.getName(),
+                           fluxCapacitor.getName()
+
+                );
 
 
         /**
          *         Providing the string representation for each item in the merchant list, to be printed
          */
-        merchantInventory.setItems(shoeLaces.getName(),
-                                   sword.getName());
+        merchantInventory.setItems(sword.getName());
 
 
         /**
@@ -121,6 +124,10 @@ public class InventoryController {
 
         }
 
+        public static InventoryController getInstance() {
+            return instance;
+        }
+
     /**
      * Creates the items used in the collections.
      * @see #inventory
@@ -128,16 +135,17 @@ public class InventoryController {
      * @see #itemImageList
      */
     private void setItems() {
-        fuel = new Item("Fuel", "Fuel for your rocket shoes", 1,  "core/assets/Inventory/images/shoe.png");
-        axe = new Item("Axe", "An Axe to cut pirates in half", 2, "core/assets/Inventory/images/premium-sword.png");
-        fluxCapacitor = new Item("Flux Capacitor", "Travel through time!", 3, "core/assets/Inventory/images/plate.png");
-        shoes = new Item("Shoes", "Some fake shoes", 4, "core/assets/Inventory/images/shoe.png");
-        hamster = new Item("Hamster", "A rare hamster", 5, "core/assets/Inventory/images/premium-axe.png");
-        hammer = new Item("Hammer", "1.5x more effective at killing pirates", 6, "core/assets/Inventory/images/hammer.png");
-        piratesEye = new Item("Pirates Eye", "Gives the ability to spot pirates a mile away!", 7, "core/assets/Inventory/images/silvershoe.png");
-        cucumber = new Item("Cucumber", "A useless cucumber", 8, "core/assets/Inventory/images/wood.png");
-        shoeLaces = new Item("Shoe Laces", "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/potion.png");
-        sword = new Item("Sword", "Hack your way to the final boss", 10, "core/assets/Inventory/images/axe.png");
+        fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1,  "core/assets/Inventory/images/shoe.png");
+        axe = new Item("Axe", 20, "An Axe to cut pirates in half", 2, "core/assets/Inventory/images/premium-sword.png");
+        fluxCapacitor = new Item("Flux Capacitor", 200,"Travel through time!", 3, "core/assets/Inventory/images/plate.png");
+        shoes = new Item("Shoes", 50,  "Some fake shoes", 4, "core/assets/Inventory/images/shoe.png");
+        hamster = new Item("Hamster", 1, "A rare hamster", 5, "core/assets/Inventory/images/premium-axe.png");
+        hammer = new Item("Hammer", 25, "1.5x more effective at killing pirates", 6, "core/assets/Inventory/images/hammer.png");
+        piratesEye = new Item("Pirates Eye", 250, "Gives the ability to spot pirates a mile away!", 7, "core/assets/Inventory/images/silvershoe.png");
+        cucumber = new Item("Cucumber", 0, "A useless cucumber", 8, "core/assets/Inventory/images/wood.png");
+        shoeLaces = new Item("Shoe Laces", 25, "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/potion.png");
+        sword = new Item("Sword", 100, "Hack your way to the final boss", 10, "core/assets/Inventory/images/axe.png");
+        socks = new Item("Socks", 3, "Next best substitute for shoes", 11, "core/assets/Inventory/images/potion.png");
     }
 
     /**
@@ -163,7 +171,17 @@ public class InventoryController {
         return foundItem;
     }
 
+    public Integer getGoldValue(Item item) {
+        return item.getGoldvalue();
+    }
+
     public List<Image> getImageList() { return itemImageList; }
+
+    public void addToInventory(Item foundItem) {
+        this.foundItem = foundItem;
+        inventory.getItems().add(foundItem.getName());
+        System.out.println("player: " + inventory.getItems() + "\n");
+    }
 
 
 

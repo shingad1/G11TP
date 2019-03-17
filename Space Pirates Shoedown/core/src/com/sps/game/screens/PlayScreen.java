@@ -21,6 +21,7 @@ import com.sps.game.inventory.PlayerInventory;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
+import com.sps.game.scenes.ItemHud;
 import com.sps.game.sprites.*;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
@@ -34,9 +35,7 @@ import java.util.Random;
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia and Mahamuda Akhter
  * @version 1.0
  */
-
-public abstract class PlayScreen implements Screen
-{
+public abstract class PlayScreen implements Screen {
 
     /**
      * Constant field to direct where the file is located.
@@ -64,7 +63,7 @@ public abstract class PlayScreen implements Screen
      * Holds what the view port will display.
      * @see #handleInput #update #render
      */
-    protected OrthographicCamera gamecam;
+    protected static OrthographicCamera gamecam;
     /**
      * Displays what the user will see.
      */
@@ -79,8 +78,17 @@ public abstract class PlayScreen implements Screen
      * @see #render
      */
     private MerchantInventory merchantInventory;
+    /**
+     * Holds instance of the PlayerInventory class, which displays vital Inventory information to the user.
+     * @see #render
+     */
+    private PlayerInventory playerInventory;
 
     /**
+     *Holds instance of the ItemHud class, which is shown if the user makes a decision on whether to pick up or ignore an item.
+     */
+    private ItemHud itemHud;
+    /*
      * Holds all the sprites that will be displayed on the sreen.
      * @see #render
      */
@@ -173,8 +181,13 @@ public abstract class PlayScreen implements Screen
      * Holds the current state of the game
      */
     private static GameState gameState;
-
+    /**
+     * Holds an instance of the DialogueHud, that displays the dialogue of the NPC or enemy.
+     */
     private DialogueHud dialogueHud;
+    public Boolean merchantDetected;
+
+    MiniMapScreen miniMapScreen;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -189,10 +202,15 @@ public abstract class PlayScreen implements Screen
         p = Player.getPlayer();
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
+        playerInventory = new PlayerInventory(game.batch, controller);
+        itemHud = new ItemHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
+        merchantDetected = false;
+        //MiniMapScreen = new MiniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
     }
+
 
     /**
      * Specifies which controller will be used to check the input.
@@ -242,7 +260,8 @@ public abstract class PlayScreen implements Screen
         gamecam.update();
         renderer.setView(gamecam);
         hud.update();
-        merchantInventory.update();
+        itemHud.update();
+
 
         for (AbstractNPC npcTemp : getInteractiveNPCMoving()) {
             if (controller.npcInProximity1(npcTemp)) {
@@ -256,8 +275,49 @@ public abstract class PlayScreen implements Screen
                     interactiveNpcTemp.triggerWalkAwayAnimation();
                     System.out.println("true in playscreen");
                 }
+
+        for (AbstractNPC npcTemp : getInteractiveNPC()) {
+            if (controller.npcInProximity(npcTemp)) {
+                dialogueHud.update(npcTemp.getName());
+                System.out.println(npcTemp.getName() + " In proximity");
+
+                if (!(npcTemp instanceof MerchantNPC)) {
+                    merchantDetected = false;
+                    System.out.println(merchantDetected);
+                }
+
+                if (npcTemp instanceof MerchantNPC) {
+                    merchantDetected = true;
+                    System.out.println(merchantDetected);
+                    if (    Gdx.input.isKeyPressed(Input.Keys.DOWN) ||
+                            Gdx.input.isKeyPressed(Input.Keys.UP) ||
+                            Gdx.input.isKeyPressed(Input.Keys.LEFT)  ||
+                            Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
+                        merchantDetected = false;
+                        System.out.println(merchantDetected);
+                    }
+                }
+
             }
         }
+
+
+        if(getClass().equals(HouseInteriorScreen.class)) {
+            for (AbstractEnemy enemy : enemies) {
+                if (controller.enemyInProximity(enemy)) {
+                    dialogueHud.update(enemy.getName());
+                }
+            }
+
+            }
+
+        if (merchantDetected == true) {
+            merchantInventory.update();
+        } else {
+            playerInventory.update();
+        }
+
+
 
 
 
@@ -304,7 +364,13 @@ public abstract class PlayScreen implements Screen
             }
         }
 
-        //ArrayList<AbstractEnemy> mapEnemy = ;
+        ArrayList<AbstractEnemy> mapEnemy = getMapEnemy(currentMapState);
+        if (mapEnemy != null){
+            for(AbstractEnemy enemy : mapEnemy){
+                if(enemy.getAnimation() != null)
+                    enemy.getAnimation().render();
+            }
+        }
 
         p.getAnimation().render();
         int[] mapLayers = new int[currentMap.getLayers().size() - 3];
@@ -314,7 +380,14 @@ public abstract class PlayScreen implements Screen
         renderer.render(mapLayers);
         batch.setProjectionMatrix(hud.stage.getCamera().combined); //setting the display what the hud should see
         hud.stage.draw(); //actually drawing the graphics
-        merchantInventory.stage.draw(); //drawing the user hud
+
+        if (merchantDetected == true) {
+            merchantInventory.stage.draw();
+        } else {
+            playerInventory.stage.draw();
+        }
+
+        itemHud.stage.draw();
         dialogueHud.stage.draw();
 
         batch.begin();
@@ -325,6 +398,8 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
+
+        //MiniMapScreen.miniMap();
     }
 
     @Override
@@ -401,6 +476,9 @@ public abstract class PlayScreen implements Screen
             if(nonPlayingCharacter.getClass() == InteractiveNPC.class){
                 interactiveNPCs.add((InteractiveNPC) nonPlayingCharacter);
             }
+            if(nonPlayingCharacter.getClass() == MerchantNPC.class) {
+                interactiveNPCs.add((MerchantNPC) nonPlayingCharacter);
+            }
             else  if(nonPlayingCharacter.getClass() == InteractiveNPCMoving.class){
                 interactiveNPCs.add((InteractiveNPCMoving) nonPlayingCharacter);
             }
@@ -456,32 +534,33 @@ public abstract class PlayScreen implements Screen
         return result;
     }
 
-/*
-    public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map){
-        ArrayList<AbstractEnemy> result = new ArrayList<AbstractEnemy>();
-        for(int i;)
-    }
-*/
     /**
      * Changes the map that is rendered once the player is on a certain location or going of the screen.
      */
     public abstract void changeMaps();
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter.
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return Map
      */
     public abstract Map getMap(Vector2 selector);
     /**
      * Returns a Vector2 value to get a Map according to the map type specified in the parameter.
-     * @param map
-     * @return
+     * @param MapFactory.MapType map
+     * @return Vector2
      */
     public abstract Vector2 getWorldMapByWorld(MapFactory.MapType map);
 
     /**
-     * Adds the locations of the all the NPCs in to an ArrayList.
-     * @param selectedMap
+     * Returns an ArrayList containing all the enemies on the map.
+     * @param MapFactory.MapType map
+     * @return ArrayList<AbstractEnemy>
+     */
+    public abstract ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map);
+
+    /**
+     * Adds the locations of all the NPCs in to an ArrayList.
+     * @param Map selectedMap
      */
     public void changeNpcLocations(Map selectedMap) {
         for (AbstractNPC nonPlayingCharacter : npc) {
@@ -490,6 +569,15 @@ public abstract class PlayScreen implements Screen
         }
     }
 
+    /**
+     * Adds the locations of all the NPCs in to an ArrayList
+     * @param Map selectedMap
+     */
+    public void addEnemiesLocations(Map selectedMap){
+        for (AbstractEnemy enemy : enemies) {
+            allLocations.add(enemy.getLocation());
+        }
+    }
     /**
      * Returns the current type of the map.
      * @return MapFactory.MapType currentMapState
