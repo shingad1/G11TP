@@ -1,9 +1,9 @@
-package com.sps.game.controller;
+package com.sps.game.Controller;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.sps.game.sprites.AbstractEnemy;
-import com.sps.game.sprites.Location;
-import com.sps.game.sprites.Player;
+import com.sps.game.Sprites.AbstractEnemy;
+import com.sps.game.Sprites.Location;
+import com.sps.game.Sprites.Player;
 
 import java.util.Stack;
 

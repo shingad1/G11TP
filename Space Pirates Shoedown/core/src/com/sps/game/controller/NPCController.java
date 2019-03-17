@@ -1,13 +1,13 @@
-package com.sps.game.controller;
+package com.sps.game.Controller;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.sps.game.screens.PlayScreen;
-import com.sps.game.sprites.AbstractNPC;
+import com.sps.game.Screens.PlayScreen;
+import com.sps.game.Sprites.AbstractNPC;
 import com.sps.game.sprites.InteractiveNPC;
-import com.sps.game.sprites.Location;
-import com.sps.game.sprites.Player;
+import com.sps.game.Sprites.Location;
+import com.sps.game.Sprites.Player;
 import com.sps.game.maps.MapFactory;
 
 import java.util.ArrayList;

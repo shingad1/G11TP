@@ -1,4 +1,4 @@
-package com.sps.game.sprites;
+package com.sps.game.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;

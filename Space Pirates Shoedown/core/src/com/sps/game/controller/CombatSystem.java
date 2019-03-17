@@ -1,9 +1,10 @@
-package com.sps.game.controller;
+package com.sps.game.Controller;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.sps.game.sprites.AbstractEnemy;
-import com.sps.game.sprites.Location;
-import com.sps.game.sprites.Player;
+import com.sps.game.Sprites.Location;
+import com.sps.game.Controller.MoveList;
+import com.sps.game.Sprites.AbstractEnemy;
+import com.sps.game.Sprites.Player;
 
 /**
  * This class has all the methods used in the battle scene, in order to increase/decrease the player's/ enemies lives

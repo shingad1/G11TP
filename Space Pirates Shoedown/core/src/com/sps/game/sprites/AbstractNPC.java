@@ -1,10 +1,8 @@
-package com.sps.game.sprites;
+package com.sps.game.Sprites;
 
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
-
-import java.util.ArrayList;
 
 
 public abstract class AbstractNPC {
@@ -27,7 +25,7 @@ public abstract class AbstractNPC {
     /**
      * Holds the location of the NPC.
      */
-    protected Location location;
+    protected  Location location;
 
     /**
      * Returns the NPc x Axis

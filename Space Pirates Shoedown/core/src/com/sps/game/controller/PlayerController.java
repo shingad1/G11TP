@@ -1,16 +1,16 @@
-package com.sps.game.controller;
+package com.sps.game.Controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.sps.game.Sprites.AbstractNPC;
+import com.sps.game.Sprites.Location;
 import com.sps.game.screens.PlayScreen;
-import com.sps.game.sprites.*;
+import com.sps.game.sprites.Player;
 
-import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Stack;
 

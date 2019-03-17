@@ -11,8 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.controller.InventoryController;
-import com.sps.game.controller.PlayerController;
+import com.sps.game.Controller.InventoryController;
+import com.sps.game.Controller.PlayerController;
 
 public class PlayerInventory {
     public Stage stage;

@@ -1,9 +1,11 @@
-package com.sps.game.sprites;
+package com.sps.game.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.NpcAnimation;
 import com.sps.game.maps.MapFactory;
+import com.sps.game.Sprites.AbstractNPC;
+import com.sps.game.Sprites.Location;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -77,7 +79,7 @@ public class NonInteractiveNPC extends AbstractNPC {
             animation.put("right",new NpcAnimation(sb,this, "npc"+ role +"Right.atlas",1/15f));
             animation.put("idle",new NpcAnimation(sb,this, "npc"+ role +"Idle.atlas",1/15f));
 
-            com.sps.game.sprites.Location location = new com.sps.game.sprites.Location(x, y);
+            Location location = new Location(x, y);
         }
 
         /**

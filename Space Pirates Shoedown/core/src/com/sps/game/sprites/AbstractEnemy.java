@@ -1,8 +1,7 @@
-package com.sps.game.sprites;
+package com.sps.game.Sprites;
 
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.EnemyAnimation;
-import com.sps.game.controller.CombatSystem;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.screens.Fighter;
 

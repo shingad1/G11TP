@@ -1,4 +1,4 @@
-package com.sps.game.screens;
+package com.sps.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -15,13 +15,13 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.controller.*;
+import com.sps.game.Controller.*;
 import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.scenes.ItemHud;
-import com.sps.game.sprites.*;
+import com.sps.game.Sprites.*;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.maps.MapManager;

@@ -1,9 +1,10 @@
-package com.sps.game.controller;
+package com.sps.game.Controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.sps.game.sprites.BasicEnemy;
-import com.sps.game.sprites.Player;
+import com.sps.game.Sprites.BasicEnemy;
+import com.sps.game.Sprites.Player;
+import com.sps.game.Controller.CombatSystem;
 
 /**
  * This class creates the combat system page where the battle takes place

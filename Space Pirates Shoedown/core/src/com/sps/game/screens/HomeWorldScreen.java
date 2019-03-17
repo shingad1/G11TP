@@ -1,14 +1,22 @@
-package com.sps.game.screens;
+package com.sps.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.sps.game.controller.NPCController;
-import com.sps.game.controller.PlayerController;
+import com.sps.game.Controller.NPCController;
+import com.sps.game.Controller.PlayerController;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.sprites.*;
-import com.sps.game.maps.*;
+import com.sps.game.Sprites.AbstractEnemy;
+import com.sps.game.Sprites.AbstractNPC;
+import com.sps.game.Sprites.Location;
+import com.sps.game.Sprites.NonInteractiveNPC;
+import com.sps.game.sprites.InteractiveNPC;
+import com.sps.game.sprites.MerchantNPC;
+import com.sps.game.maps.HomeWorldMap;
+import com.sps.game.maps.HomeWorldMap2;
+import com.sps.game.maps.Map;
+import com.sps.game.maps.MapFactory;
 
 import java.util.ArrayList;
 import java.util.Random;

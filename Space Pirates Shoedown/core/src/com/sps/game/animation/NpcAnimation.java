@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.sps.game.sprites.AbstractNPC;
+import com.sps.game.Sprites.AbstractNPC;
 
 public class NpcAnimation extends ApplicationAdapter {
     /**

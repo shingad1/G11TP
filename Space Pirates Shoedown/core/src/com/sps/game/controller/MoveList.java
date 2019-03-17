@@ -1,4 +1,4 @@
-package com.sps.game.controller;
+package com.sps.game.Controller;
 
 import com.sps.game.screens.Fighter;
 

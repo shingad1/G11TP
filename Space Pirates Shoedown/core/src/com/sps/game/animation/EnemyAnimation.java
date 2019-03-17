@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.sps.game.sprites.AbstractEnemy;
-import com.sps.game.sprites.Location;
+import com.sps.game.Sprites.AbstractEnemy;
+import com.sps.game.Sprites.Location;
 
 public class EnemyAnimation extends ApplicationAdapter {
     /**
