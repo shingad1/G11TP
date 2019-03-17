@@ -63,7 +63,7 @@ public class CombatHud
         formatting();
     }
     /**
-     * this method formats the labels so it displayed on the correct position
+     * This method formats the labels so it displayed on the correct position
      */
     public void formatting(){
         stage = new Stage();

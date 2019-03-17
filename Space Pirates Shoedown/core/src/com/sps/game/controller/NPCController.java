@@ -237,8 +237,8 @@ public class NPCController {
     /**
      * Returns a boolean to see if there is an NPC is in the location they are about to move to.
      * True if there is an NPC in that location, otherwise false.
-     * @param location
-     * @return
+     * @param Location location
+     * @return boolean
      */
     private boolean npcInLocation(Location location){
         ArrayList<NPCController> worldNPCs = npcControllers.get(npc.getWorld());
@@ -249,6 +249,12 @@ public class NPCController {
         return false;
     }
 
+    /**
+     * Returns a boolean to see if there is an Interactive NPC in the location they are about to move to.
+     * True if there is an interactive NPC in that location, otherwise false.
+     * @param Location location
+     * @return boolean
+     */
     private boolean interactiveNPCInLocation(Location location){
         ArrayList<Location> interactiveNPCs = InteractiveNPC.allInteractiveNPCLocations;
         for(Location loc : interactiveNPCs){
@@ -259,6 +265,12 @@ public class NPCController {
         return false;
     }
 
+    /**
+     * Returns a boolean to see if there is a Merchant in the location they are about to move to.
+     * True if there is a Merchant in that location, otherwise false.
+     * @param Location location
+     * @return boolean
+     */
     private boolean merchantNPCInLocation(Location location) {
         ArrayList<Location> merchantNPCs = MerchantNPC.allMerchantNPCLocations;
         for(Location loc : merchantNPCs){

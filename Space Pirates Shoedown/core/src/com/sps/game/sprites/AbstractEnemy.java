@@ -62,10 +62,7 @@ public abstract class AbstractEnemy implements Fighter {
      * @return MapFactory.MapType world.
      */
     public abstract MapFactory.MapType getWorld();
-    /**
-     * Gets the current animation of the enemy, outside of the battle.
-     * @return EnemyAnimation
-     */
+
     public abstract EnemyAnimation getAnimation();
 
     /**

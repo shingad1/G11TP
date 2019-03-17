@@ -109,8 +109,9 @@ public class TropicalWorldScreen extends PlayScreen {
     }
     /**
      * Checks if the location is occupied by an npc or a blocked tile
-     * @param location
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType world
+     * @return boolean, True if there is no NPC or blocked tile or nonpc tile otherwise false.
      */
     @Override
     public boolean checkPosition(Location location, MapFactory.MapType world) {
@@ -126,9 +127,9 @@ public class TropicalWorldScreen extends PlayScreen {
     }
     /**
      * Returns a cell according to the Map and the location
-     * @param location
-     * @param map
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType map
+     * @return TiledMapTileLayer.Cell
      */
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
         return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
@@ -196,8 +197,8 @@ public class TropicalWorldScreen extends PlayScreen {
     }
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return map
      */
     @Override
     public Map getMap(Vector2 selector) {
@@ -220,6 +221,11 @@ public class TropicalWorldScreen extends PlayScreen {
         return null;
     }
 
+    /**
+     * Returns an ArrayList containing all the enemies on the map.
+     * @param MapFactory.MapType map
+     * @return ArrayList<AbstractEnemy>
+     */
     @Override
     public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;

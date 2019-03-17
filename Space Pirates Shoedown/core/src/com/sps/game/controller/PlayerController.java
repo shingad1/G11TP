@@ -1,18 +1,14 @@
 package com.sps.game.controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.math.Vector2;
 import com.sps.game.screens.PlayScreen;
 import com.sps.game.sprites.*;
-
 import java.lang.Math;
 import java.util.ArrayList;
-import java.util.Stack;
 
 /**
  * This class creates a controller for the player which checks for any collisions and allows the player to move
@@ -21,9 +17,13 @@ import java.util.Stack;
  */
 public class PlayerController extends InputAdapter {
 
-    //JSON json;
-
+    /**
+     * Holds the xbounds of the Map in the Map in an array.
+     */
     private int[] xbounds;
+    /**
+     * Holds the ybounds of the Map in the Map in an array.
+     */
     private int[] ybounds;
     /**
      * Creates instance of the player, which holds the logic of the player to control it.
@@ -46,16 +46,10 @@ public class PlayerController extends InputAdapter {
      */
     private TiledMapTileLayer collisionLayer;
 
-    private boolean dialogue;
-
-    private boolean fight;
-    /**
-     * Holds the stack of the old positions of the player before he enters the room.
-     */
-    private Stack<Vector2> positions;
-
     private boolean resolve;
-
+    /**
+     * Holds all the locations of all the NPCs on the map.
+     */
     private ArrayList<Location> allLocations;
 
     private boolean newWorldRight; //move to world right i.e. 1,1 to 1,2
@@ -78,10 +72,8 @@ public class PlayerController extends InputAdapter {
             xbounds[i] = xbound[i];
             ybounds[i] = ybound[i];
         }
-        positions = new Stack<Vector2>();
 
         this.allLocations = allLocations;
-        dialogue = false;
 
         reset();
         newWorldReset();
@@ -104,7 +96,7 @@ public class PlayerController extends InputAdapter {
             keyPressed = keycode;
             switch(keycode){
                 case Input.Keys.A:
-                    fight = isPlayerNearProperty("basicEnemy",tiledWidth, tiledHeight);
+
                     break;
                 case Input.Keys.E:
                     //WILL HAVE IF STATEMENT AROUND IT
@@ -162,27 +154,40 @@ public class PlayerController extends InputAdapter {
          */
     }
 
-    public boolean getFight(){
-        return fight;
-    }
-
+    /**
+     * Gets the boolean value of newWorldRight.
+     * @return boolean newWorldRight
+     */
     public boolean getNewWorldRight(){ return newWorldRight;}
-
+    /**
+     * Gets the boolean value of newWorldLeft.
+     * @return boolean newWorldLeft
+     */
     public boolean getNewWorldLeft(){ return newWorldLeft;}
-
+    /**
+     * Gets the boolean value of newWorldUp.
+     * @return boolean newWorldUp
+     */
     public boolean getNewWorldUp(){ return newWorldUp;}
-
+    /**
+     * Gets the boolean value of newWorldDown.
+     * @return boolean newWorldDown
+     */
     public boolean getNewWorldDown(){ return newWorldDown;}
 
+    /**
+     * Gets the boolean value of enterShip.
+     * @return boolean enterShip
+     */
     public boolean getEnterShip(){
         return enterShip;
     }
 
     /**
-     *
-     * @param newLayer
-     * @param xbound
-     * @param ybound
+     * Changes the current collision layer, to the collision layer of the current map.
+     * @param TiledMapLayer newLayer
+     * @param int[] xbound
+     * @param int[] ybound
      */
     public void changeCollisionLayer(TiledMapTileLayer newLayer, int[] xbound, int[] ybound){
         collisionLayer = newLayer;
@@ -193,6 +198,9 @@ public class PlayerController extends InputAdapter {
         }
     }
 
+    /**
+     * Resets the all the values.
+     */
     public void reset(){
         isKeyDown = false;
         resolve = false;
@@ -202,6 +210,9 @@ public class PlayerController extends InputAdapter {
         keyPressed = -1;
     }
 
+    /**
+     * Resest the values of the newWorld variables
+     */
     public void newWorldReset(){
         newWorldRight = false;
         newWorldLeft = false;
@@ -209,10 +220,24 @@ public class PlayerController extends InputAdapter {
         newWorldDown = false;
     }
 
+    /**
+     * Checks to see if the player is near a tile with a particular property.
+     * @param String property
+     * @param float tiledWidth
+     * @param float tiledHeight
+     * @return boolean
+     */
     public boolean isPlayerNearProperty(String property, float tiledWidth, float tiledHeight) {
         return (getTileNearPlayerWithProperty(property, tiledWidth, tiledHeight) != null);
     }
 
+    /**
+     * Get a tile with a particular property
+     * @param String property
+     * @param float tiledWidth
+     * @param float tiledHeight
+     * @return TiledMapTile
+     */
     public TiledMapTile getTileNearPlayerWithProperty(String property, float tiledWidth, float tiledHeight){
         if (collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile().getProperties().containsKey(property)){
             return collisionLayer.getCell((int)((player.getX() + 32)/tiledWidth),(int)(player.getY()/tiledHeight)).getTile();
@@ -226,16 +251,16 @@ public class PlayerController extends InputAdapter {
         return null;
     }
 
-    public void setFight(boolean bool){
-        fight = bool;
-        if(fight == false){
-            collisionLayer.setVisible(false);
-        }
-    }
-
+    /**
+     * Checks to see if the player can move in a particular direction and moves them if they can.
+     * @param int keycode
+     * @param boolean collisionY
+     * @param boolean collisionX
+     * @param float tiledWidth
+     * @param float tiledHeight
+     */
     public void collisionCheck(int keycode, boolean collisionY, boolean collisionX, float tiledWidth, float tiledHeight){
         switch(keycode) {
-
             case Input.Keys.DOWN:
                 if(player.getY() == 0){
                     newWorldDown = true;
@@ -295,6 +320,11 @@ public class PlayerController extends InputAdapter {
         }
     }
 
+    /**
+     * Returns a boolean if there is a NPC in the location the player wants to move to.
+     * @param Location location
+     * @return boolean
+     */
     public boolean npcCollision(Location location){
         if(allLocations != null) {
             for (Location npcLocation : allLocations) {
@@ -306,6 +336,11 @@ public class PlayerController extends InputAdapter {
         return false;
     }
 
+    /**
+     * Checks to see if there is an NPC near the player.
+     * @param AbstractNPC npc
+     * @return boolean
+     */
     public boolean npcInProximity(AbstractNPC npc){
         if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(npc.getLocation())){
             return true;
@@ -322,8 +357,11 @@ public class PlayerController extends InputAdapter {
         return false;
     }
 
-
-
+    /**
+     * Checks to see if there is an enemy near the player.
+     * @param AbstractEnemy enemy
+     * @return boolean
+     */
     public boolean enemyInProximity(AbstractEnemy enemy){
         if((new Location(Math.round(player.getLocation().getX()),Math.round(player.getLocation().getY()) + 32)).equals(enemy.getLocation())){
             return true;
@@ -339,96 +377,11 @@ public class PlayerController extends InputAdapter {
         }
         return false;
     }
-/*
-    public void npcInteraction(ArrayList<InteractiveNPC> npcList, String npcName) {
-        if (!npcList.isEmpty()) {
-            for (int i = 0; i < npcList.size(); i++) {
-                InteractiveNPC tempNPC = npcList.get(i);
-                String temp = tempNPC.getName();
-                if (npcInProximity(tempNPC) && dialogue == false && tempNPC.getType().equals("InteractiveNPC")) {
-                    if (Gdx.input.isKeyPressed(Input.Keys.B)) {
-                        if (temp.equals(npcName)) {
-                                    Dialogue dialog2 = new Dialogue(npcName);
-                                    dialogue = true;
-                                    if (temp.equals(npcName)) {
-                                        player.getVelocity().x = -4;
-                                        try
-                                        {
-                                            Thread.sleep(100);
-                                        }catch (InterruptedException e)
-                                        {
-                                            e.printStackTrace();
-                                        }
-                                        player.changeState("left");
-                                        isKeyDown = true;
-                                        dialog2.pack();
-                                        dialog2.setVisible(true);
-                                    }
-                        }
-                        boolean switchOff = true;
 
-                        if (dialogue == true) {
-                            for (InteractiveNPC npc2 : npcList) {
-                                switchOff = false;
-                            }
-
-                        }
-
-                        if (switchOff) {
-                            dialogue = false;
-                        }
-                    }
-
-                }
-
-
-                boolean switchOff = true;
-                if (dialogue == true) {
-                    for (InteractiveNPC npc : npcList) {
-                            switchOff = false;
-
-                    }
-                }
-                if (switchOff) {
-                    dialogue = false;
-                }
-            }
-        }
-    }
-
-
-                public void npcmoving (ArrayList < InteractiveNPCMoving > npcList, String npcName) {
-
-                    for (int i = 0; i < npcList.size(); i++) {
-                        InteractiveNPCMoving tempNPC = npcList.get(i);
-                        String temp = tempNPC.getName();
-
-                        if (npcInProximity(tempNPC) && dialogue == false && (tempNPC.getType().equals("InteractiveNPCMoving"))) {
-                            Dialogue dialog = new Dialogue(npcName);
-                            dialogue = true;
-
-                            if (temp.equals(npcName)) {
-                                dialog.pack();
-                                dialog.setVisible(true);
-                            }
-                        }
-                    }
-
-                    boolean switchOff = true;
-                    if (dialogue == true) {
-                        for (InteractiveNPCMoving npc : npcList) {
-                            if (npcInProximity(npc)) {
-                                switchOff = false;
-                            }
-
-                        }
-                    }
-
-                    if (switchOff) {
-                        dialogue = false;
-                    }
-                }*/
-
+    /**
+     * Adds all the NPCs to the allLocations ArrayList
+     * @param npcLocations
+     */
     public void changeNpcLocations(ArrayList<Location> npcLocations){
         allLocations = npcLocations;
     }

@@ -8,6 +8,11 @@ import com.sps.game.maps.MapFactory;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * This class creates the Interactive NPC
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia and Mahamuda Akhter
+ * @version 1.0
+ */
 public class InteractiveNPC extends AbstractNPC{
     /**
      * Stores the NPC character's x co-ordinate
@@ -30,19 +35,25 @@ public class InteractiveNPC extends AbstractNPC{
      */
     private Random random;
     /**
-     *changes the speed of the NPC
+     * Changes the speed of the NPC.
      * @see
      */
     private Vector2 velocity;
-
+    /**
+     * Holds the different animations of the different types of NPCs.
+     */
     private NpcAnimation lindaAnimation, muffinAnimation, tropicalAnimation, enemyAnimation, otherAnimation;
-
+    /**
+     * Holds the type of the map.
+     */
     private MapFactory.MapType world;
     /**
-     * Holds the name of the InteractiveNPC
+     * Holds the name of the InteractiveNPC.
      */
     private String name;
-
+    /**
+     * Creates and holds all the locations of all the interactive npc.
+     */
     public static ArrayList<Location> allInteractiveNPCLocations = new ArrayList<Location>();
 
     public InteractiveNPC(int x, int y,MapFactory.MapType world, SpriteBatch sb, String name){
@@ -59,7 +70,10 @@ public class InteractiveNPC extends AbstractNPC{
         this.world = world;
         this.name = name;
     }
-
+    /**
+     * Gets the current animation of the NPC.
+     * @return NpcAnimation
+     */
     public NpcAnimation getAnimation() {
         if (getWorld().equals(MapFactory.MapType.HomeWorldMap1) || getWorld().equals(MapFactory.MapType.HomeWorldMap2)) {
             if (name.equals("Linda")) {
@@ -85,49 +99,79 @@ public class InteractiveNPC extends AbstractNPC{
         return otherAnimation;
     }
 
+    /**
+     * Gets the world the NPC is in
+     * @return MapFactory.MapType world
+     */
     public MapFactory.MapType getWorld () {
-            return world;
-        }
-
+        return world;
+    }
+    /**
+     * Get the name of the NPC.
+     * @return String name
+     */
     public String getName () {
         return name;
     }
 
+    /**
+     * Gets the type of the NPC.
+     * @return String
+     */
     public String getType () {
         return "InteractiveNPC";
     }
+    /**
+     * Returns the NPC x Axis
+     */
+    @Override
+    public int getX() {
+        return x;
+    }
+    /**
+     * Returns the NPC Y Axis
+     */
+    @Override
+    public int getY() {
+        return y;
+    }
+    /**
+     * Returns the velocity of the NPC.
+     */
+    @Override
+    public Vector2 getVelocity() {
+        return velocity;
+    }
+    /**
+     * Sets the value of the Y coordinate.
+     * @param float newY
+     */
+    @Override
+    public void setY(float newY) {
 
-        @Override
-        public int getX () {
-            return x;
-        }
+    }
+    /**
+     * Sets the value of the X coordinate.
+     * @param float newX
+     */
+    @Override
+    public void setX(float newX) {
 
-        @Override
-        public int getY () {
-            return y;
-        }
+    }
 
-        @Override
-        public Vector2 getVelocity () {
-            return null;
-        }
+    /**
+     * Gets the current Location of the NPC
+     * @return
+     */
+    public Location getLocation() {
+        return location;
+    }
+    /**
+     * Changes the state of the NPC.
+     * @param String newState
+     */
+    @Override
+    public void changeState(String newState) {
 
-        @Override
-        public void setY ( float newY){
-
-        }
-
-        @Override
-        public void setX ( float newX){
-
-        }
-
-        public Location getLocation () {
-            return location;
-        }
-
-        @Override
-        public void changeState (String newState){
-
-        }
+    }
 }

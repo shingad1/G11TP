@@ -231,10 +231,10 @@ public abstract class PlayScreen implements Screen {
      */
     public void handleInput(float dt){
         controller.action(gamecam);
-        if(controller.getFight()){
-            //game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
-            //currentMapState = "HouseFight";
-        }
+        /*if(controller.getFight()){
+            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
+            currentMapState = "HouseFight";
+        }*/
     }
 
     /**
@@ -419,7 +419,7 @@ public abstract class PlayScreen implements Screen {
      * Changes the screen once combat is finished.
      */
     public void combatExit(){ //make this unique to every map
-        controller.setFight(false);
+        //controller.setFight(false);
         TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("basicEnemy",32,32);
         enemyTile.getProperties().remove("basicEnemy");
         enemyTile.getProperties().remove("blocked");

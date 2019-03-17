@@ -111,17 +111,17 @@ public class CandyLandScreen extends PlayScreen {
     }
     /**
      * Returns a cell according to the Map and the location
-     * @param location
-     * @param map
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType map
+     * @return TiledMapTileLayer.Cell
      */
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
         return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
     }
     /**
-     * Checks if the location is occupied by an npc or a blocked tile
-     * @param location
-     * @return
+     * Checks if the location is occupied by an npc or a blocked tile.
+     * @param Location location
+     * @return boolean, True if there is no NPC or blocked tile or nonpc tile otherwise false.
      */
     @Override
     public boolean checkPosition(Location location, MapFactory.MapType world) {
@@ -130,7 +130,7 @@ public class CandyLandScreen extends PlayScreen {
                 return false;
             }
         }
-        if(getCell(location, world) == null || getCell(location, world).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, world) == null || getCell(location, world).getTile().getProperties().containsKey("blocked") || getCell(location, world).getTile().getProperties().containsKey("nonpc")){
             return false;
         }
         return true;
@@ -138,7 +138,7 @@ public class CandyLandScreen extends PlayScreen {
 
 
     /**
-     * Changes the map that is rendered once the player is on a certain location or going of the screen
+     * Changes the map that is rendered once the player is on a certain location or going of the screen.
      */
     @Override
     public void changeMaps() {
@@ -194,8 +194,8 @@ public class CandyLandScreen extends PlayScreen {
     }
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return Map
      */
     @Override
     public Map getMap(Vector2 selector) {
@@ -203,8 +203,8 @@ public class CandyLandScreen extends PlayScreen {
     }
     /**
      * Returns a Vector2 value to get a Map according to the map type specified in the parameter
-     * @param map
-     * @return
+     * @param MapFactory.MapType map
+     * @return Vector2
      */
     @Override
     public Vector2 getWorldMapByWorld(MapFactory.MapType map) {
@@ -217,7 +217,11 @@ public class CandyLandScreen extends PlayScreen {
         }
         return null;
     }
-
+    /**
+     * Returns an ArrayList containing all the enemies on the map.
+     * @param MapFactory.MapType map
+     * @return ArrayList<AbstractEnemy>
+     */
     @Override
     public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;

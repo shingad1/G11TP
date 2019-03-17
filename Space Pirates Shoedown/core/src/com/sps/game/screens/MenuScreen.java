@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  * This class sets-up the Menu Screen with the relevant images.
- * @author Miraj Shah, Miguel Abaquin, Devin Shingadia.
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia, Alex Bernini.
  * @version 1.0
  */
 

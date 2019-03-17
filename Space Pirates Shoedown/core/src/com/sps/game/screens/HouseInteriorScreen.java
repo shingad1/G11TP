@@ -100,16 +100,17 @@ public class HouseInteriorScreen extends PlayScreen {
     }
     /**
      * Returns a cell according to the Map and the location
-     * @param location
-     * @param map
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType map
+     * @return TiledMapTileLayer.Cell
      */
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
         return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
     }
     /**
      * Checks if the location is occupied by an npc or a blocked tile
-     * @param location
+     * @param Location location
+     * @param MapFactory.MapType map
      * @return
      */
     @Override
@@ -168,8 +169,8 @@ public class HouseInteriorScreen extends PlayScreen {
     }
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return Map
      */
     @Override
     public Map getMap(Vector2 selector) {
@@ -177,8 +178,8 @@ public class HouseInteriorScreen extends PlayScreen {
     }
     /**
      * Returns a Vector2 value to get a Map according to the map type specified in the parameter
-     * @param map
-     * @return
+     * @param MapFactory.MapType map
+     * @return Vector2
      */
     @Override
     public Vector2 getWorldMapByWorld(MapFactory.MapType map) {

@@ -6,7 +6,11 @@ import com.sps.game.maps.MapFactory;
 
 import java.util.ArrayList;
 
-
+/**
+ * This class holds the basic implementation of all types of NPCs.
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * @version 1.0
+ */
 public abstract class AbstractNPC {
     /**
      * Stores the NPC character's x co-ordinate
@@ -30,7 +34,7 @@ public abstract class AbstractNPC {
     protected Location location;
 
     /**
-     * Returns the NPc x Axis
+     * Returns the NPC x Axis
      */
     public abstract int getX();
     /**
@@ -42,17 +46,45 @@ public abstract class AbstractNPC {
      */
     public abstract Vector2 getVelocity();
 
+    /**
+     * Sets the value of the Y coordinate.
+     * @param float newY
+     */
     public abstract void setY(float newY);
 
+    /**
+     * Sets the value of the X coordinate.
+     * @param newX
+     */
     public abstract void setX(float newX);
 
+    /**
+     * Gets the world the NPC is in
+     * @return MapFactory.MapType world
+     */
     public abstract MapFactory.MapType getWorld();
 
+    /**
+     * Gets the current animation of the NPC.
+     * @return NpcAnimation
+     */
     public abstract NpcAnimation getAnimation();
 
+    /**
+     * Gets the location of the NPC.
+     * @return Location location
+     */
     public Location getLocation(){return location;}
 
+    /**
+     * Changes the state of the NPC.
+     * @param String newState
+     */
     public abstract void changeState(String newState);
 
+    /**
+     * Get the name of the NPC.
+     * @return String name
+     */
     public abstract String getName();
 }

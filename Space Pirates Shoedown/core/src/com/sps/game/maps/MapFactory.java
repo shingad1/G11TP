@@ -14,6 +14,9 @@ public class MapFactory {
      */
     private static Hashtable<MapType, Map> mapTable = new Hashtable<MapType, Map>();
 
+    /**
+     * Holds all the type of maps in the game.
+     */
     public static enum MapType{
         HomeWorldMap1,
         HomeWorldMap2,

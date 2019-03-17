@@ -37,25 +37,35 @@ public class Player implements Fighter {
      */
     private Vector2 velocity;
     /**
-     * Holds the texture showing the player.
+     * Holds the animation showing the player.
      */
     private HashMap<String, PlayerAnimation> animation;
-
+    /**
+     * Holds all the animations for the player during the combat
+     */
     private HashMap<String, PlayerAnimation> fightAnimation;
-
+    /**
+     * Holds the current state of the Player.
+     */
     private String state;
-
+    /**
+     * Holds the current location of the player.
+     */
     private Location location;
-
+    /**
+     * Holds the attack damage of the player.
+     */
     private int attack;
-
+    /**
+     * Holds the defence of the player.
+     */
     private int defence;
-
+    /**
+     * Holds the instance of the player.
+     */
     private static Player player = new Player();
 
-    private Player(){ //int x, int y, SpriteBatch sb
-        //this.x = x;
-        //this.y = y;
+    private Player(){
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
         gold = 20;
@@ -63,8 +73,6 @@ public class Player implements Fighter {
         location = new Location(0, 0);
         attack = 20;
         defence = 10;
-
-        //setAnimations(sb);
     }
 
     /**
@@ -80,18 +88,34 @@ public class Player implements Fighter {
         }
     }
 
+    /**
+     * Gets the HashMap containing the fight animations of the Player
+     * @return HashMap<String,PlayerAnimation> fightAnimation
+     */
     public HashMap<String, PlayerAnimation> getFightAnimation(){return fightAnimation;}
 
+    /**
+     * Sets the X value of the player.
+     * @param int x
+     */
     public void setX(int x){
         this.x = x;
         location.setX(x);
     }
 
+    /**
+     * Sets the Y value of the player.
+     * @param int y
+     */
     public void setY(int y){
         this.y = y;
         location.setY(y);
     }
 
+    /**
+     * Sets the sprite batch of the player
+     * @param SpriteBatch sb
+     */
     public void setBatch(SpriteBatch sb){
         setAnimations(sb);
     }
@@ -128,14 +152,30 @@ public class Player implements Fighter {
         return gold;
     }
 
+    /**
+     * Increases the value of the players gold
+     * @param int goldValue
+     */
     public void increaseGold(int goldValue) { gold += goldValue; }
+    /**
+     * Decreases the value of the players gold
+     * @param int goldValue
+     */
     public void decreaseGold(int goldValue) { gold -= goldValue; }
 
+    /**
+     * Changes the value of the players health
+     * @param int diff
+     */
     @Override
     public void changeHP(int diff) {
         increaseHealth(diff); //if diff is negative, implicitly takes away health points
     }
 
+    /**
+     * Gets the attack value of the player.
+     * @return
+     */
     @Override
     public int getAttack() {
         return attack;
@@ -149,14 +189,26 @@ public class Player implements Fighter {
         return HP;
     }
 
+    /**
+     * Gets the defence value of the player.
+     * @return
+     */
     @Override
     public int getDefence() {
         return defence;
     }
 
+    /**
+     * Changes the value of the defence.
+     * @param int diff
+     */
     @Override
     public void changeDefence(int diff){defence += diff;}
 
+    /**
+     * Changes the value of the attack
+     * @param int diff
+     */
     @Override
     public void changeAttack(int diff){attack += diff;}
 
@@ -192,18 +244,38 @@ public class Player implements Fighter {
         //}
     }
 
+    /**
+     * Gets the animation of the player according to its state.
+     * @return PlayerAnimation
+     */
     public PlayerAnimation getAnimation(){
         return animation.get(state);
     }
 
+    /**
+     * Changes the state of the player.
+     * @param String newState
+     */
     public void changeState(String newState){state = newState;}
 
+    /**
+     * Gets the current location of the player.
+     * @return Location location
+     */
     public Location getLocation(){return location;}
 
+    /**
+     * Changes the sprite batch of the player
+     * @param SpriteBatch sb
+     */
     public void changeSpriteBatch(SpriteBatch sb){
         setAnimations(sb);
     }
 
+    /**
+     * Sers the animations of the player.
+     * @param SpriteBatch sb
+     */
     private void setAnimations(SpriteBatch sb){
         animation = new HashMap<String, PlayerAnimation>();
         animation.put("down",new PlayerAnimation(sb,this, "playerDown.atlas",1/15f));
@@ -220,6 +292,10 @@ public class Player implements Fighter {
 
     }
 
+    /**
+     * Gets the instance of the player.
+     * @return
+     */
     public static Player getPlayer(){
         return player;
     }

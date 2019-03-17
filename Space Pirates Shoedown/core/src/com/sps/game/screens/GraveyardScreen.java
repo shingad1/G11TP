@@ -69,8 +69,8 @@ public class GraveyardScreen extends PlayScreen {
     }
     /**
      * Checks if the location is occupied by an npc or a blocked tile
-     * @param location
-     * @return
+     * @param Location location
+     * @return boolean, True if there is no NPC or blocked tile or nonpc tile otherwise false.
      */
     @Override
     public boolean checkPosition(Location location, MapFactory.MapType world) {
@@ -79,16 +79,16 @@ public class GraveyardScreen extends PlayScreen {
                 return false;
             }
         }
-        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked") || getCell(location, world).getTile().getProperties().containsKey("nonpc")){
             return false;
         }
         return true;
     }
     /**
      * Returns a cell according to the Map and the location
-     * @param location
-     * @param map
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType map
+     * @return TiledMapTileLayer.Cell
      */
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
         return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
@@ -129,15 +129,14 @@ public class GraveyardScreen extends PlayScreen {
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
             controller.changeNpcLocations(allLocations);
-            //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
             controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
             controller.newWorldReset();
         }
     }
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return Map
      */
     @Override
     public Map getMap(Vector2 selector) {
@@ -145,8 +144,8 @@ public class GraveyardScreen extends PlayScreen {
     }
     /**
      * Returns a Vector2 value to get a Map according to the map type specified in the parameter
-     * @param map
-     * @return
+     * @param MapFactory.MapType map
+     * @return Vector2
      */
     @Override
     public Vector2 getWorldMapByWorld(MapFactory.MapType map) {
@@ -159,7 +158,11 @@ public class GraveyardScreen extends PlayScreen {
         }
         return null;
     }
-
+    /**
+     * Returns an ArrayList containing all the enemies on the map.
+     * @param MapFactory.MapType map
+     * @return ArrayList<AbstractEnemy>
+     */
     @Override
     public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;

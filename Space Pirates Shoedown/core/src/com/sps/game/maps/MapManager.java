@@ -55,8 +55,8 @@ public class MapManager implements ProfileObserver {
 
     /**
      * Observes the current events and takes out the appropriate action according to the event.
-     * @param profileManager
-     * @param event
+     * @param ProfileManager profileManager
+     * @param ProfileEvent event
      */
     @Override
     public void onNotify(ProfileManager profileManager, ProfileEvent event) {

@@ -61,7 +61,6 @@ public class LoadScreen implements Screen {
 
     public LoadScreen(final SpacePiratesShoedown game){
         this.game = game;
-        //loadButton = new Texture(ASSETS_PATH + "LoadButton.png");
         //following may need to change
         stage = new Stage();
         TextButton loadButton = new TextButton("Load", new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))));
@@ -139,6 +138,9 @@ public class LoadScreen implements Screen {
         music.play();
     }
 
+    /**
+     * Displays all the profiles to the user.
+     */
     @Override
     public void show() {
         Array<String> list = ProfileManager.getInstance().getProfilelList();
@@ -146,6 +148,10 @@ public class LoadScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
     }
 
+    /**
+     * Renders the stage
+     * @param float delta
+     */
     @Override
     public void render(float delta) {
         if(delta == 0){
@@ -157,6 +163,11 @@ public class LoadScreen implements Screen {
         stage.draw();
     }
 
+    /**
+     * Adjusts the stage to the size of the screen
+     * @param int width
+     * @param int height
+     */
     @Override
     public void resize(int width, int height) {
         stage.getViewport().setScreenSize(width, height);
@@ -177,6 +188,9 @@ public class LoadScreen implements Screen {
         Gdx.input.setInputProcessor(null);
     }
 
+    /**
+     * Clears the stafe and disposes of the stage and music
+     */
     @Override
     public void dispose() {
         stage.clear();
