@@ -13,15 +13,13 @@ import com.sps.game.sprites.Player;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
 import org.json.simple.parser.ParseException;
-
 import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class MapManager implements ProfileObserver {
 
@@ -116,10 +114,11 @@ public class MapManager implements ProfileObserver {
     public void getPlayerX() {
         int x = 0;
         int y = 0;
+
         ProfileManager profileManager = new ProfileManager();
         if (profileManager.doesProfileExist("default")) {
             FileReader file = null;
-            org.json.simple.parser.JSONParser parser = new org.json.simple.parser.JSONParser();
+            JSONParser parser = new JSONParser();
             try {
                 file = new FileReader("default.json");
             } catch (FileNotFoundException e) {
@@ -133,7 +132,7 @@ public class MapManager implements ProfileObserver {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            org.json.simple.JSONObject jsonObject = (org.json.simple.JSONObject) obj;
+            JSONObject jsonObject = (JSONObject) obj;
             Iterator<String> iterator = jsonObject.keySet().iterator();
 
             for(Iterator iterator1 = jsonObject.keySet().iterator(); iterator.hasNext();) {
