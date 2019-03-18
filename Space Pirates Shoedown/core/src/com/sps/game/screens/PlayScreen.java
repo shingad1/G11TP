@@ -187,7 +187,7 @@ public abstract class PlayScreen implements Screen {
     private DialogueHud dialogueHud;
     public Boolean merchantDetected;
 
-    MiniMapScreen miniMapScreen;
+    //MiniMapScreen miniMapScreen;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
