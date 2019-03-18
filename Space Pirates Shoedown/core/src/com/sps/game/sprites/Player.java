@@ -68,7 +68,7 @@ public class Player implements Fighter {
     private Player(){
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
-        gold = 20;
+        gold = 10000;
         HP = 100;
         location = new Location(0, 0);
         attack = 20;

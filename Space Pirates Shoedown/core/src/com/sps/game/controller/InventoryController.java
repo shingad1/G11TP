@@ -144,7 +144,7 @@ public class InventoryController {
         piratesEye = new Item("Pirates Eye", 250, "Gives the ability to spot pirates a mile away!", 7, "core/assets/Inventory/images/silvershoe.png");
         cucumber = new Item("Cucumber", 0, "A useless cucumber", 8, "core/assets/Inventory/images/wood.png");
         shoeLaces = new Item("Shoe Laces", 25, "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/potion.png");
-        sword = new Item("Sword", 100, "Hack your way to the final boss", 10, "core/assets/Inventory/images/axe.png");
+        sword = new Item("Sword", 1000, "Hack your way to the final boss", 10, "core/assets/Inventory/images/axe.png");
         socks = new Item("Socks", 3, "Next best substitute for shoes", 11, "core/assets/Inventory/images/potion.png");
     }
 

@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.PlayerController;
@@ -67,11 +66,94 @@ public class MerchantInventory {
         //List of Merchant item strings to be displayed
         merchant = inventoryController.getMerchantList();
 
-
         //Rejected items that the merchant will not accept
         addRejectedItem("Hamster");
         addRejectedItem("Shoes");
 
+        dragAndDropPlayer();
+        dragAndDropMerchant();
+    }
+
+    public void dragAndDropMerchant() {
+        DragAndDrop dnd = new DragAndDrop();
+        dnd.addSource(new DragAndDrop.Source(merchant) {
+            final Payload payload = new Payload();
+
+            @Override
+            public DragAndDrop.Payload dragStart(InputEvent inputEvent, float x, float y, int pointer) {
+                String item = merchant.getSelected();
+                payload.setObject(item);
+                merchant.getItems().removeIndex(merchant.getSelectedIndex());
+                payload.setDragActor(new Label(item, skin));
+                payload.setInvalidDragActor(new Label("I don't want your " + item + "!", skin));
+                payload.setValidDragActor(new Label("I'll buy your " + item + "\n" + "for" + +inventoryController.findItem(item).getGoldvalue()
+                        + " gold!", skin));
+
+                return payload;
+            }
+
+
+            @Override
+            public void dragStop(InputEvent event, float x, float y, int pointer, Payload payload, Target target) {
+                if (target == null){
+                    merchant.getItems().add((String) payload.getObject());
+                }
+            }
+        });
+
+        dnd.addTarget(new Target(inventory) {
+            @Override
+            public boolean drag(Source source, Payload payload, float x, float y, int pointer) {
+
+                //Create hud here?
+
+
+                for (int i = 0; i < rejectedItems.size(); i++) {
+                    //If the rejected item equals to the item that the payload is set to, then reject it.
+                    if (rejectedItems.get(i).equals((payload.getObject()))) {
+                        return !(rejectedItems.get(i).equals(payload.getObject()));
+
+                    }
+                }
+                return !"Cucumber".equals(payload.getObject()); //Cucumber is rejected by default
+
+            }
+
+            @Override
+            public void drop(Source source, Payload payload, float x, float y, int pointer) {
+
+                if (Player.getPlayer().getGold() > inventoryController.findItem(merchant.getSelected()).getGoldvalue()) {
+                    inventory.getItems().add((String) payload.getObject());
+                    merchant.getItems().removeValue(payload.getObject().toString(), true);
+                    System.out.println(inventoryController.findItem(payload.getObject().toString()).getName() + " Has been sold for: " +
+                                       inventoryController.findItem(payload.getObject().toString()).getGoldvalue());
+
+                    //Test to see if the item has been added to the merchants inventory
+                    System.out.println("merchant: " + inventory.getItems() + "\n");
+
+                    //Test to see if the item has been removed from the player's inventory
+                    System.out.println("player: " + merchant.getItems() + "\n");
+
+
+                } else {
+                    merchant.getItems().add(payload.getObject().toString());
+                    //Test to see if the item has been added to the merchants inventory
+                    System.out.println("inventory: " + inventory.getItems() + "\n");
+
+                    //Test to see if the item has been removed from the player's inventory
+                    System.out.println("merchant: " + merchant.getItems() + "\n");
+                }
+
+                if (player.getGold() > inventoryController.findItem(payload.getObject().toString()).goldValue + 15) {
+                    player.decreaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue + 15);
+                }
+
+            }
+        });
+    }
+
+
+    public void dragAndDropPlayer() {
         //Drag and drop functionality
         DragAndDrop dnd = new DragAndDrop();
         dnd.addSource(new DragAndDrop.Source(inventory) {
@@ -84,8 +166,8 @@ public class MerchantInventory {
                 inventory.getItems().removeIndex(inventory.getSelectedIndex());
                 payload.setDragActor(new Label(item, skin));
                 payload.setInvalidDragActor(new Label("I don't want your " + item + "!", skin));
-                payload.setValidDragActor(new Label("I'll buy your " + item + "\n"  + "for" +  + inventoryController.findItem(item).getGoldvalue()
-                        + " gold!" , skin));
+                payload.setValidDragActor(new Label("I'll buy your " + item + "\n" + "for" + +inventoryController.findItem(item).getGoldvalue()
+                        + " gold!", skin));
 
                 return payload;
             }
@@ -102,7 +184,7 @@ public class MerchantInventory {
         dnd.addTarget(new Target(merchant) {
             @Override
             public boolean drag(Source source, Payload payload, float x, float y, int pointer) {
-                for(int i = 0; i < rejectedItems.size(); i++) {
+                for (int i = 0; i < rejectedItems.size(); i++) {
                     //If the rejected item equals to the item that the payload is set to, then reject it.
                     if (rejectedItems.get(i).equals((payload.getObject()))) {
                         return !(rejectedItems.get(i).equals(payload.getObject()));
@@ -112,7 +194,6 @@ public class MerchantInventory {
                 return !"Cucumber".equals(payload.getObject()); //Cucumber is rejected by default
 
             }
-
 
             @Override
             public void drop(Source source, Payload payload, float x, float y, int pointer) {
