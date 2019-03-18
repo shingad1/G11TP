@@ -1,6 +1,5 @@
 package com.sps.game.inventory;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -9,43 +8,48 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.PlayerController;
-
-import java.util.ArrayList;
+import com.sps.game.controller.InventoryController;
+import com.sps.game.controller.PlayerController;
 
 public class PlayerInventory {
     public Stage stage;
     public SpriteBatch sb;
     private Viewport viewport;
 
-    private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
 
     private List<String> inventory;
-    private List<Image> itemImages;
 
-    private InventoryController inventoryController;
+    private InventoryController inventoryController = InventoryController.getInstance();
     private InputProcessor oldInput;
+    private Table table;
+
+    private Item clickedItem;
+    private Image clickedImage;
+    private Image imagePlaceholder = new Image();
+    private Label descriptionPlaceholder = new Label("Pick an item", skin);
+    private Label goldPlaceholder = new Label("Item gold value", skin);
+
 
 
     public PlayerInventory(SpriteBatch sb, PlayerController playerController) {
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
-
-        inventoryController = new InventoryController();
         inventory = inventoryController.getInventoryList();
-        itemImages = inventoryController.getImageList();
     }
 
+
     private void formatting() {
+        table = new Table();
         stage = new Stage();
         Label inventoryLabel = new Label("Inventory", skin);
         Label imageLabel = new Label("Item", skin);
 
-        Table table = new Table(skin);
-        table.setDebug(true);
+        table.setDebug(false);
         table.defaults();
         table.center();
         table.setFillParent(true);
@@ -53,10 +57,27 @@ public class PlayerInventory {
         table.add(imageLabel);
         table.row();
         table.add(inventory);
-        table.add(itemImages.getSelected());
+        table.add(imagePlaceholder);
 
+        //Get the item from the inventory list
+        inventory.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                clickedItem = inventoryController.findItem(inventory.getSelected());
+                clickedImage = clickedItem.getImage();
+                System.out.println(clickedItem.getName());
+                imagePlaceholder.setDrawable(clickedImage.getDrawable());
+                descriptionPlaceholder.setText(clickedItem.getDescription());
+                goldPlaceholder.setText("Gold Value: " + clickedItem.getGoldvalue());
+            }
+        });
+        descriptionPlaceholder.setFontScale(0.75f, 0.75f);
+        goldPlaceholder.setFontScale(0.75f, 0.75f);
 
-        stage.addActor(itemImages);
+        table.row();
+        table.row();
+        table.add(descriptionPlaceholder).colspan(3).row();
+        table.add(goldPlaceholder).colspan(3);
+
         stage.addActor(table);
     }
     public void setInput() {
@@ -72,6 +93,8 @@ public class PlayerInventory {
 
         if (Gdx.input.isKeyPressed(Input.Keys.O) && oldInput != null) {
             stage.dispose();
+            table.clearChildren();
+            table.reset();
             Gdx.input.setInputProcessor(oldInput);
             oldInput = null;
         }

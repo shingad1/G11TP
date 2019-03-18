@@ -10,22 +10,43 @@ import com.badlogic.gdx.utils.ObjectMap;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+/**
+ * This class creates a '.sav' file, storing all the different attributes of the game.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class ProfileManager extends ProfileSubject {
-
-    private Json json;
-
-    private static ProfileManager profileManager;
-
-    private Hashtable<String, FileHandle> _profiles = null;
-
-    private ObjectMap<String, Object> profileProperties = new ObjectMap<String, Object>();
-
-    private String profileName;
-
+    /**
+     * Holds the '.sav' file extension.
+     */
     private static final String SAVEGAME_SUFFIX = ".sav";
-
+    /**
+     * Holds default name of the file.
+     */
     public static final String DEFAULT_PROFILE = "default";
-
+    /**
+     * Holds a JSON instance.
+     */
+    private Json json;
+    /**
+     * Holds a static instance of the profileManager.
+     */
+    private static ProfileManager profileManager;
+    /**
+     * HashMap that holds all the saved profiles. The key is the name of the profile and the value is the FileHandle
+     */
+    private Hashtable<String, FileHandle> _profiles = null;
+    /**
+     * Creates an ObjectMap where the key is the name and the value is an object.
+     */
+    private ObjectMap<String, Object> profileProperties = new ObjectMap<String, Object>();
+    /**
+     * Holds the name of the profile.
+     */
+    private String profileName;
+    /**
+     * Holds a boolean value to see if a new profile has been created.
+     */
     private boolean isNewProfile = false;
 
     private ProfileManager(){
@@ -47,10 +68,18 @@ public class ProfileManager extends ProfileSubject {
         return profileManager;
     }
 
+    /**
+     * Changes the boolean value to true once a profile is created, otherwise false.
+     * @param boolean isNewProfile
+     */
     public void setIsNewProfile(boolean isNewProfile){
         this.isNewProfile = isNewProfile;
     }
 
+    /**
+     * Gets the value of isNewProfile.
+     * @return boolean isNewProfile
+     */
     public boolean getIsNewProfile(){
         return this.isNewProfile;
     }
@@ -68,8 +97,8 @@ public class ProfileManager extends ProfileSubject {
 
     /**
      * Returns the file handle if it exists for the specified profile name
-     * @param profile
-     * @return
+     * @param String profile
+     * @return FileHandle
      */
     public FileHandle getProfileFile(String profile){
         if(!doesProfileExist(profile)){
@@ -80,8 +109,8 @@ public class ProfileManager extends ProfileSubject {
 
     /**
      * Checks to see if the profile name exists in the hashtable
-     * @param profileName
-     * @return True if the file exists and false if it does not
+     * @param String profileName
+     * @return boolean True if the file exists and false if it does not
      */
     public boolean doesProfileExist(String profileName){
         return _profiles.containsKey(profileName);
@@ -105,9 +134,9 @@ public class ProfileManager extends ProfileSubject {
      * Takes a profile name string, a serialized JSON string of data and a boolean value whether or not we want to
      * overwite the file if it exists. Create the file based on the profile name and see if it exits. If the file does
      * exist, it will ve overwritten.
-     * @param profileName
-     * @param fileData
-     * @param overwrite
+     * @param String profileName
+     * @param String fileData
+     * @param boolean overwrite
      */
     public void writeProfileToStorage(String profileName, String fileData, boolean overwrite){
         String fullFilename = profileName + SAVEGAME_SUFFIX;
@@ -129,8 +158,8 @@ public class ProfileManager extends ProfileSubject {
 
     /**
      * Will add a key/value pair property to the ObjectMap member object
-     * @param key
-     * @param object
+     * @param String key
+     * @param Object object
      */
     public void setProperty(String key, Object object){
         profileProperties.put(key, object);
@@ -139,10 +168,9 @@ public class ProfileManager extends ProfileSubject {
     /**
      * Takes a key string and a calls type as input parameters. If it cannot find the key it will return null
      * otherwise it will return the value found cast to the class type
-     * @param key
-     * @param type
-     * @param <T>
-     * @return
+     * @param String key
+     * @param Class<T> type
+     * @return T
      */
     public <T extends Object> T getProperty(String key, Class<T> type){
         T property = null;
@@ -195,7 +223,7 @@ public class ProfileManager extends ProfileSubject {
     /**
      * Sets the profile string passed in as the currently loaded profile, if it exists,
      * otherwise it loads the default profile
-     * @param pName
+     * @param String pName
      */
     public void setCurrentProfile(String pName){
         if( doesProfileExist(pName)){

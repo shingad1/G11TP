@@ -2,43 +2,47 @@
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" source="Resources/CandyGrass.tsx"/>
  <tileset firstgid="197" source="Resources/CandyLandTiles2.tsx"/>
- <tileset firstgid="357" source="Resources/house1.tsx"/>
- <tileset firstgid="387" source="Resources/candy.tsx"/>
- <tileset firstgid="441" source="Resources/pinkhouse.tsx"/>
- <tileset firstgid="471" source="Resources/pinktree.tsx"/>
- <tileset firstgid="615" source="../HomeWorld/Resources/Tiles5.tsx"/>
- <tileset firstgid="1105" source="Resources/ChocolateFountain.tsx"/>
- <tileset firstgid="1106" source="../HomeWorld/Resources/playground.tsx"/>
- <tileset firstgid="1362" source="../HomeWorld/Resources/spaceship2.tsx"/>
- <tileset firstgid="1363" source="Resources/candyTiles.tsx"/>
- <tileset firstgid="1723" source="Resources/pinkCandyTree.tsx"/>
- <tileset firstgid="1729" source="Resources/whiteCandyTree.tsx"/>
- <tileset firstgid="1735" source="Resources/terrain.tsx"/>
- <tileset firstgid="2759" source="Resources/gingerBreadHouse.tsx"/>
- <tileset firstgid="2784" source="Resources/candyArch.tsx"/>
- <tileset firstgid="2800" source="Resources/candyFence.tsx"/>
- <tileset firstgid="2804" source="Resources/gingerBreadHouse2.tsx"/>
- <tileset firstgid="2829" source="Resources/candyCaneDecor1.tsx"/>
- <tileset firstgid="2835" source="Resources/candyCaneDecor2.tsx"/>
- <tileset firstgid="2841" source="Resources/CandyCaneDecor3.tsx"/>
+ <tileset firstgid="357" source="Resources/pinktree.tsx"/>
+ <tileset firstgid="501" source="../HomeWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="991" source="Resources/ChocolateFountain.tsx"/>
+ <tileset firstgid="992" source="../HomeWorld/Resources/spaceship2.tsx"/>
+ <tileset firstgid="993" source="Resources/candyTiles.tsx"/>
+ <tileset firstgid="1353" source="Resources/pinkCandyTree.tsx"/>
+ <tileset firstgid="1359" source="Resources/whiteCandyTree.tsx"/>
+ <tileset firstgid="1365" source="Resources/terrain.tsx"/>
+ <tileset firstgid="2389" source="Resources/gingerBreadHouse.tsx"/>
+ <tileset firstgid="2414" source="Resources/candyArch.tsx"/>
+ <tileset firstgid="2430" source="Resources/candyFence.tsx"/>
+ <tileset firstgid="2434" source="Resources/gingerBreadHouse2.tsx"/>
+ <tileset firstgid="2459" source="Resources/candyCaneDecor1.tsx"/>
+ <tileset firstgid="2465" source="Resources/candyCaneDecor2.tsx"/>
+ <tileset firstgid="2471" source="Resources/CandyCaneDecor3.tsx"/>
+ <tileset firstgid="2477" source="Resources/gingerBreadMansion2.tsx"/>
+ <tileset firstgid="2729" source="Resources/candyPathv2.tsx"/>
+ <tileset firstgid="2732" source="Resources/candySmall1.tsx"/>
+ <tileset firstgid="2733" source="Resources/candySmall2.tsx"/>
+ <tileset firstgid="2734" source="Resources/blockedCandyTree2.tsx"/>
+ <tileset firstgid="2742" source="Resources/blockedCandyTree1.tsx"/>
+ <tileset firstgid="2750" source="../TropicalWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="3240" source="../HomeWorld/Resources/Tiles3.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="5" name="Collision Layer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlu0KgCAMRSV6v97QZ+2vSB9u6nanNzgQhHaPW2k+UsqEGHOd2OzsIfW16BG0emjfiZhfkyOKh7R3rXJLs9ODHjNdWufx8CivOk/9jB7sK8/18M5DDyyPMoMkD5rHKvWgx/z8kr3h6fto2Uui12HVvqIHBj0es9w1c0o8WnOPWJuecd59JTmnazysHC08Zmb92u/+xrR6IPWdth49dUb0qO8R2cEjEvTAYqf/1Soe9T0iO3hEgh5YvJ2JCRnBDYjpAnc=
+   eJztmEEOAiEMRSe69iae1Dt6FzMLEtIU+j90sFVIupECfeVTcI5jtyztecthCMf7Hts2x9yaHoZytMZ45W32HNRxWRy9fDK5l+uhZ7OV2x6HtXeaLhDttH4fbdrcMj8j2mZ8ZhkkS3QOyycDx9n/emA1iOFg6l9UDs+a2+OQ3IXD8kc4vBksjtrv5JAxruBgz5fFIcdcwdE7G5ZPSyurObzOeR0bmhPpz3LUfR4cmg+qRxnLN/cDPXMI279zeK4tNYvoKgoHm2Nm3NmsPHgYMi+6PsuRxXq6ymSbI5bNcFzBztzxKEevVjB9IwwjY1vvx94YJhY0ruJj5dWDg8lV613Su1NKLNZbfobD0hGjEWYMeq9q/2W0GBmd1BrRcutdIywObe36GwAyb3YOVlerOIrV3zJG41rFscqYehyZw2uvMnEg9+BqDiumqPvBxGbdsZH2Y4TTQ1fedfKKPIzsRzSuKLraHDpHdsvafoVDtg8NEl1v
   </data>
  </layer>
  <layer id="4" name="Doors" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1DENAAAIBLGf8W8PL5ggYaBVcNMlAAAAAAAAAEnXdQHAL74LsG8Awx4Bzw==
+   eJztz0ENACAMALF9QQ8aMIP/PyaWLNlaBXcRAAB0dnZ1QY7b5AMAAACY4a3qAgAAmOkDTN4BAw==
   </data>
  </layer>
  <layer id="2" name="Misc" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
 </map>

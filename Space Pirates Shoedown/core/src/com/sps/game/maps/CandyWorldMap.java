@@ -1,5 +1,10 @@
 package com.sps.game.maps;
 
+/**
+ * This class creates the first map of Candy Land.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class CandyWorldMap extends Map {
 
     /**

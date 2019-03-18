@@ -8,14 +8,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sps.game.Controller.PlayerController;
+import com.sps.game.controller.PlayerController;
+import com.sps.game.controller.InventoryController;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
-
+import com.sps.game.sprites.Player;
 
 import java.util.ArrayList;
 
@@ -23,43 +26,47 @@ import java.util.ArrayList;
 public class MerchantInventory {
 
     public Stage stage; //Handles the input and actors
-    public SpriteBatch sb; //Handles drawing
+    public final SpriteBatch sb; //Handles drawing
     private Viewport viewport;
+    public Player player;
 
     //The JSON file which is used to format the lists to be displayed.
-    private Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
 
 
     private List<String> inventory; //List of inventory strings to be displayed
     private List<String> merchant;  //List of merchant strings to be displayed
-    private List<Image> itemImages; //List of Item images to be displayed
+
 
     //Items that the merchant will not accept
     private ArrayList <String> rejectedItems = new ArrayList<String>();
 
     //Holds the items and initialises them
-    private InventoryController inventoryController;
-
+    private InventoryController inventoryController = InventoryController.getInstance();
 
     //Used for Opening and closing the inventory
     private InputProcessor oldInput;
 
+    private Item clickedItem;
+    private Image clickedImage;
+    private Image imagePlaceholder = new Image();
+    private Label descriptionPlaceholder = new Label("Pick an item", skin);
+    private Label goldPlaceholder = new Label("Item gold value", skin);
 
-    public MerchantInventory(SpriteBatch sb, PlayerController playerController) {
+
+
+    public MerchantInventory(final SpriteBatch sb, PlayerController playerController) {
 
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
-
-
-        inventoryController = new InventoryController();
+        player = player.getPlayer();
 
         //List of inventory item strings to be displayed
         inventory = inventoryController.getInventoryList();
         //List of Merchant item strings to be displayed
         merchant = inventoryController.getMerchantList();
-        //List of Item objects of each item
-        itemImages = inventoryController.getImageList();
+
 
         //Rejected items that the merchant will not accept
         addRejectedItem("Hamster");
@@ -76,8 +83,9 @@ public class MerchantInventory {
                 payload.setObject(item);
                 inventory.getItems().removeIndex(inventory.getSelectedIndex());
                 payload.setDragActor(new Label(item, skin));
-                payload.setInvalidDragActor(new Label(item + " (\"No thanks!\")", skin));
-                payload.setValidDragActor(new Label(item + " (\"I'll buy this!\")", skin));
+                payload.setInvalidDragActor(new Label("I don't want your " + item + "!", skin));
+                payload.setValidDragActor(new Label("I'll buy your " + item + "\n"  + "for" +  + inventoryController.findItem(item).getGoldvalue()
+                        + " gold!" , skin));
 
                 return payload;
             }
@@ -111,7 +119,7 @@ public class MerchantInventory {
 
                 merchant.getItems().add((String) payload.getObject());
                 inventory.getItems().removeValue(payload.getObject().toString(), true);
-
+                player.increaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue);
                 //Test to see if the item has been added to the merchants inventory
                 System.out.println("merchant: " + merchant.getItems() + "\n");
 
@@ -127,40 +135,56 @@ public class MerchantInventory {
      */
     private void formatting() {
 
-        stage = new Stage();
         Label inventorylabel = new Label("Inventory", skin);
         Label merchantLabel = new Label ("Merchant", skin);
         Label imageLabel = new Label ("Item", skin);
 
         Table table = new Table(skin);
-        table.setDebug(true);
+
+        table.setDebug(false);
         table.defaults();
         table.center();
         table.setFillParent(true);
+
         table.add(inventorylabel);
 
         table.add(merchantLabel);
         table.add(imageLabel);
         table.row();
+        table.row();
         table.add(inventory);
-        table.add(merchant);
-
-/*
-        itemImages.addListener(new ClickListener() {
-            public void clicked (InputEvent event, float x, float y) {
-                 itemImages.getSelected();
+        inventory.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                clickedItem = inventoryController.findItem(inventory.getSelected());
+                clickedImage = clickedItem.getImage();
+                System.out.println(clickedItem.getName());
+                imagePlaceholder.setDrawable(clickedImage.getDrawable());
+                descriptionPlaceholder.setText(clickedItem.getDescription());
+                goldPlaceholder.setText("Gold Value: " + clickedItem.getGoldvalue());
             }
         });
-*/
 
-        /*
-            Add the list of images, specifically the one that has been selected
-            Uses the inbuilt listener of list
-         */
-        table.add(itemImages.getSelected());
+        merchant.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                clickedItem = inventoryController.findItem(merchant.getSelected());
+                clickedImage = clickedItem.getImage();
+                System.out.println(clickedItem.getName());
+                imagePlaceholder.setDrawable(clickedImage.getDrawable());
+                descriptionPlaceholder.setText(clickedItem.getDescription());
+                goldPlaceholder.setText("Gold Value: " + clickedItem.getGoldvalue());
+            }
+        });
 
-        // Add the item images to the stage
-        stage.addActor(itemImages);
+        table.add(merchant).height(230);
+        merchant.setWidth(200);
+        table.add(imagePlaceholder);
+        table.row();
+        table.row();
+        descriptionPlaceholder.setFontScale(0.75f, 0.75f);
+        goldPlaceholder.setFontScale(0.75f, 0.75f);
+        table.add(descriptionPlaceholder).colspan(3).row();
+        table.add(goldPlaceholder).colspan(3);
+
         stage.addActor(table);
     }
 
@@ -183,6 +207,7 @@ public class MerchantInventory {
             formatting(); //Create the table, etc.
             setInput();   //Set the new input to be onto the stage; transfer control of input to inventory system.
                           //Also sets oldInput field to be not null.
+            //inventory.setItems(inventoryController.inventory.getItems());
         }
 
         /*

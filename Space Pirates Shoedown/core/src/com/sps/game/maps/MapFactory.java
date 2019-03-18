@@ -2,6 +2,11 @@ package com.sps.game.maps;
 
 import java.util.Hashtable;
 
+/**
+ * This class holds each type of map and keeps them in a Hash Table.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class MapFactory {
 
     /**
@@ -9,16 +14,33 @@ public class MapFactory {
      */
     private static Hashtable<MapType, Map> mapTable = new Hashtable<MapType, Map>();
 
+    /**
+     * Holds all the type of maps in the game.
+     */
     public static enum MapType{
         HomeWorldMap1,
         HomeWorldMap2,
         HomeInterior,
+        HomeInterior2,
         CandyWorld1,
         CandyWorld2,
+        CandyInterior,
+        CandyInterior2,
+        CandyMansion,
         TropicalWorld1,
-        TropicalWorld2
+        TropicalWorld2,
+        TropicalInterior1,
+        TropicalInterior2,
+        TropicalInterior3,
+        GraveyardWorld1,
+        GraveyardWest
     }
 
+    /**
+     * Gets the map according to the MapType and adds it to the map table.
+     * @param mapType
+     * @return
+     */
     static public Map getMap(MapType mapType){
         Map map = null;
         switch (mapType){
@@ -42,9 +64,9 @@ public class MapFactory {
         return map;
     }
 
-
-
-
+    /**
+     * Clears all the maps from the map table.
+     */
     public static void clearCache(){
         for(Map map: mapTable.values()){
             map.dispose();

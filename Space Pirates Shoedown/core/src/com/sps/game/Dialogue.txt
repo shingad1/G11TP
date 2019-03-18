@@ -1,7 +1,85 @@
-
-Bob;Oh my god my family’s shoes have been stolen!; My toes are so cold what are we going to do!?;I doubt you’re significant enough to help but there’s some in Linda’s house and she’s petrified! If you know anyone brave enough to help her out, please do let them know!;
-Enemy;No  don't kill meh, I’ll tell you everything;I've been ordered to come to your planet to take all yarr right shoes because space is cold and my daughter, my poor wee one was cold and i love her and i want her to be safe.;I had to turn to the pirates
-﻿FirstNPC;All of my family’s right shoe have been stolen;All my shoes are gone;Help my right foot is cold and moist
-SecondNPC;Quick!;Help me!;A monster in my house
-Enemy;No  don't kill meh, I’ll tell you everything;I've been ordered to come to your planet to take all yarr right shoes because space is cold and my daughter, my poor wee one was cold and i love her and i want her to be safe.;I had to turn to the pirates
-Linda;OMG thank you;I have my house back;I think there’s more on that spaceship that landed or whatever. Have fun dude!
+Bob;Oh my god my family’s shoes have been stolen!;My toes are so cold...; WHAT ARE WE GOING TO DO!?
+BusinessNPC;I doubt you’re significant enough to help,;but there’s some in Linda’s house and she’s petrified!;If you know anyone brave enough to help her out, please do let them know!
+AnotherNPC;I WAS GOING TO ASK LINDA TO PROM;SOMEONE SAVE HER!
+FirstNPC;All of my family’s right shoe have been stolen;All my shoes are gone;Help, my right foot is cold and moist
+ThirdNPC;You’re not thinking of going into Linda’s home, right?;You’d be killed!;Well maybe not but they will steal your remaining shoe!
+FourthNPC;Who the heck steals shoes?;Such jerks!
+FifthNPC;I bought new shoes yesterday!; The pirates are going to ruin them
+SixthNPC;Cheese!; Haha I'm taking photos of people's toes for the local paper!
+Linda;...;...;There's someone in my home
+Enemyreg1;Grr.
+EnemyAfter;Wait no please show mercy don’t kill me! I’ll tell you everything;I had to turn to the pirates
+Linda;Thanks for that;The creepy old man by the market was asking for you;Something about being the chosen one;You can leave now
+Marketman;I heard you saved Linda’s home...;I think the space pirates are going to be a big problem...;YOU;YOU MUST SAVE US;You can’t keep going into fights how you just did though;You need to build experience;You'll come across many more pirates on your journey;Through your battles you will come across weapons and power ups to add to your inventory;You can also use your gold to buy weapons;Would you like to buy one now?;I can see you have money on you so do you want one or not?
+ThirdNPCAfter;My mum always said oats make you big and strong;Someone clearly had their oats!
+BusinessNPCAfter;Wow you really saved Linda’s home;He must’ve been weak.
+EnemyTwo;Wha' do ye wants
+EnemyThree;Move aside sprog; unless ye wants t' loose yer other shoe!
+Enemy;You can't board our ship that easily
+MuffinWelcome;Welcome to CandyLand;Our world is pretty sweet;Not so much since the SpacePirates came along...;*sobs*
+MuffinRoleModel;Are you the one?;Sent from the heavens;To save us from these evil pirates;If so, there's more of them in the next map;If not, don't waste my time
+MuffinStranger;You look strange!
+MuffinSeventhNPC;We are all dedicated to maintaining the sweetness of our world; I hope the pirates don't ruin that
+MuffinEigthNP;Why is it getting so warm?;What if our world melts away!?;That would be so sticky and gross...
+MuffinScared;I'm scared;Are you one of them?!;I'll give you all my carrots!;Just don't hurt me!!
+MuffinWimp;There's some scary noises coming from that house;Could you go check that out?;I'm too scared to...;I mean have other things to do
+EnemyCandyOne;...;AAAAA!;Ye caught me off guard!;I was in th' middle o' doin' somethin'!;Why be it so cold here?; We be goin' t' heat this ship up; 'til th' replacement gas fer th' ship arrives
+EnemyCandyTwo;I'd rather loot candy than shoes; but I be th' weird one in th' cabin
+EnemyCandyThree;Wha' are ye doin' here?;I knew we were bein' too load when we broke in
+EnemyCandyFour;Don't I look pretty?; Stealin' shoes does loot it out o' ye; So 'tis important t' look pretty while doin' it
+EnemyCandyFive;Avast!;Ye won't pass!
+EnemyCandySix;'tis ye!;Why are ye bullyin' us!;*crying*;Wha' 'ave we ever done t' ye...;Oh..right..th' boots
+EnemyCandySeven;I hate candy;Can nah wait t' get out o' here!
+EnemyCandyEight;Blimey!;Oh;'tis ye;go away afore ye get hurt
+HeadEnemyCandy;So ye're th' famous...;I dunno yer name..;'twon't matter soon anyways...;Time t' stop ye comin' in our way
+MuffinNinthNPC;Please help us!;Our guiding lady has fallen ill and is unable to protect our world;Her heart is connected to the sphere of our temple!;I wonder if those bastard pirates had anything to do with this…;Please I know you may have other things to do;but I’m sure our guiding lady can help you once she’s better;The temple can be located towards the south;Please see if our temple is ok
+NinthNPCAfter;Thank you so much!; I don't know what you did but our guiding lady is back on her feet!;She hopes you can stop the pirates melting away our sweet sweet world.
+NinthNPCCondition1;mama can you help this brave warrior;...;hmm she doesn't think you're quite strong enough yet; get good kid try fight some more piratess
+NinthNPCCondition2;mama can you help this brave warrior;...;I think you're ready;cue the epic music
+TropicalWelcome;Our world is falling apart;It's no longer a tropical paradise
+EnemyFour;Wha' how'd ye get in!?;Quickly we needs t' prepare t' depart!
+EnemyTropicalOne;Oh great 'tis ye;I has hopin' t' retire here;Why do ye 'ave t' crush our dreams?
+EnemyTropicalTwo;Ye killed me best matey!;Prepare t' die!
+EnemyFive;The ship is ready everyone get your butts on board!;We're going on vacation;You better back off kid;You'll only get yourself hurt;sooner or later.
+TropicalPeterNPC;Hi;Seems like we're in quite a pickle here;I don't know how long we'll survive;If;We survive;...;You see we're known for our bright blue ocean.;We gain many tourists from it;That's how we make our income here;There aren't many of us so it works quite well;But now;...;We're probably going to die;Also some pirates had a **** ton of shoes;Oh right I forgot about the censorship in this game;Brilliant.
+EnemySix;Can ye leave us alone?;We got more important business t' attend t';No I dunno where yer precious ocean be now back off!
+EnemySeven;Can nah wait fer our private resort t' open;Damn!;Was nah meant t' tell ye that
+PeterNPC;So these pirates are building a resort world?;Hmmmmm...
+TenthNPC;You can't deny a resort sounds pretty dope!
+ElevnthNPC;I'm so bored without the ocean!!!!;MUUUUUUUUUUUUUUUUUUUUM!
+TwelfthNPC;Fall Out Boy was supposed to be doing a show here next week!; But now they're going to see our ocean-less beach and leave; I saved up for this for so long!
+13NPC;I hate swimming pools;People always pee in them;So gross...;But if they don't mind sitting in each other's pee;Then good luck to them.
+TropicalNPC1;Those pirates have swag!
+TropicalNPC2;I wish they stole the sand instead; I hate getting sand between my toes
+TropicalNPC4;Life's a beach!;I never understood that saying...
+TropicalNPC5;Do you have any socks I can borrow?;
+TropicalNPC6;My dad always told me space pirates didn't existed;LOOK WHO'S WRONG NOW PHAHAHAHAHAHA
+TropicalNPC7;Hula lessons for this evening have been cancelled due to the current disruption
+TropicalNPC8;My mummy told me if I pray hard enough our ocean will come back
+TropicalNPC12;You look a lot like that statue!;That bird looks a lot like that statue!;My hand looks a lot like that statue!;Hey!;Where did the water go?
+TropicalNPC15;Are any of those space pirates single?;They have really strong arms
+TropicalNPC16;I'm really sad about our ocean leaving...
+TropicalNPC17;ITS TOO HOT!;MY GOD!;SOMEONE KILL ME;Or at least get me a fan!
+TropicalNPC19;I love watching the sunset here;It's so beautiful
+TropicalNPC20;You're so heroic;and brave;and spicy;do you wanna get dinner tonight?
+LemonadeNPC;Hey there;I thought of a great idea for tourists;Well the pirates...;they’re our current tourists to some extent;I thought I could make a lemonade stand like in the movies to try gather sales!;The pirates will get pretty thirsty after all that building...;Do you think you could find me some lemons?;I think the ocean affected our growth of fruits;Is lemon a fruit?;...;...;You think the ocean didn’t have anything to do with the lemons;You know what,;can you just help me find these lemons
+LemonadeNPC;What now?;...;...;You can’t find the lemons?;They’re towards the south.;It’s a bit dangerous up there so be careful.;Might be a helpful place to grind too;This is an RPG after all.;Sorry I meant adventure;Can't upset Peter can we?
+StrandedNPC;Oh my god another human;I've been out here for days;I was robbed by some pirates;...;Where am I?;Could I stick with you?;My daughter is probably worried sick about me.;I have beef jerky?
+Gravewelcome;I don't agree wit' our ways any more;T' leave scallywags wit' only one boot be th' worst thin' ye can do;I managed t' escape, but th' gate locked behind me...;I must go now...;CandyLand sounds like a pretty sweet place t' go
+EnemyNine;What do you guys want?;Oh, it’s that old man again.;Well we’re not giving back your backpack back.;And what are you going to do about it.
+EnemyNineAfter;Ok fine take it;We already ate all your sandwiches
+StrandedNPC;YOU WHAT!!!
+StrandedNPCItem;You knoe these pirates are no fun.;I've been carrying this baseball bat for years;passing it down for generations;for whomever is next to save and guard our planet;I think you've proven yourself;And also this thing is heavy so just take it;TAKE IT!
+StrandedNPCReunion;Angelica!;It's been so long;You've grown so much;I'm sorry I wasn't there to watch and support you during tha-
+LemonadeNPCAfter;Dad you've been gone for an hour;I'm sorry if he caused you any problems.;Did you get the lemons?;Sweet;Or should I say...;No I'm not going there.;Let's get this business on the road!
+StrandedNPCReunion;You can’t start a business you’re only 26!;We’ll talk more about this plan later;but don’t you think this young hero deserves a reward of some type?
+LemonadeNPCAfter;Fine.;Pirates seems to be getting far with the resort;But think of the amount of pee that will happen in that pool;That would be enough for anyone to bail on their plans.
+EnemyTen;Man this heat is really getting to me;Let's take a break laddies;We got some OJ at the back!
+EnemyEleven;LADDIES WE HAVE A CODE YELLOW ALERT FOR THE POOL!!!!
+EnemyTwelve;YOU WILL NOT DEFEAT US;NO ONE PEES IN THE POOL AND GETS AWAY WITH IT!
+PeterNPC;EVERYONE STOP.;Space pirates;I am here to offer you a deal.;Us locals really do like the idea of your resort.;It would really benefit us.;We’d love to work co-operatively with you if you’re willing to give back our ocean.;You’re more than welcome to live with us on our home planet;as well as share our income with us all.;But please, give back our ocean.
+Enemy13;Well Captain never paid us so I'm in!
+PeterNPCAfter;I appreciate all of your work here;but I think what these pirates need is some love and self-value.;Maybe here they can get that.;And find inner peace.
+Captain;WHO TOLD YOU GUYS YOU COULD GO ON VACATION!;ARE YOU THE ONE PREVENTING MY PLANS IN SHOE DOMINATION?;HOW DARE THEE.;I WILL COLLECT ALL THE REMAINING SHOES MY USELESS HENCHMEN HAVE COLLECTED AND COMPLETE MY EVIL SCHEME.;YOUR FEET WILL NEVER BE PROTECTED AGAIN
+PeterNPCAfterCaptain;I think you got a date with a captain in order to get your shoes back.;I wish you the best of luck in your final shoe-down.;Now I need to comfort these poor pirates and get them to fix our ocean.;But thank you.;Here is something to help you in your final battle.
+CaptainFinal;SO YOU’VE COME ALL THIS WAY FOR YOUR PRECIOUS SHOES EH?;WELL IT’S TOO LATE.;SOON ALL US PIRATES WILL NO LONGER HAVE TO DEAL WITH COLD FEET WHICH WILL THEN TAKE US TO OUR FINAL PLAN.;THE EXECUTION…;OF THE WORLD!!!!

@@ -12,22 +12,52 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Json;
 
+/**
+ * The class loads the assets used in the game.
+ * @author Miraj Shah, Devin Shingadia
+ * @version 1.0
+ */
 public final class Utility {
 
     /**
-     * Manages the loading and storing of assets
+     * Manages the loading and storing of assets.
      */
     public static final AssetManager ASSET_MANAGER = new AssetManager();
-
+    /**
+     * Holds the name of the class.
+     */
     private static final String TAG = Utility.class.getSimpleName();
+    /**
+     * Holds the path of the items texture.
+     */
     private final static String ITEMS_TEXTURE_ATLAS_PATH = "core/assets/Inventory/items.atlas";
+    /**
+     * Holds the path of the status ui skin.
+     */
     private final static String STATUSUI_SKIN_PATH = "core/assets/Inventory/statusui.json";
+    /**
+     * Holds the path of the status ui texture.
+     */
     private final static String STATUSUI_TEXTURE_ATLAS_PATH = "core/assets/Inventory/statusui.atlas";
+    /**
+     * Holds the path of the ui skin
+     */
     private final static String UISKIN_TEXTURE_PATH = "core/assets/Inventory/uiskin.json";
+    /**
+     * Creates an InternalFileHandleResolver
+     */
     private static InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
-
+    /**
+     * Creates a new texture atlas for the Status UI
+     */
     public static TextureAtlas STATUSUI_TEXTUREATLAS = new TextureAtlas(STATUSUI_TEXTURE_ATLAS_PATH);
+    /**
+     * Creates a new texture atlas for the items
+     */
     public static TextureAtlas ITEMS_TEXTUREATLAS = new TextureAtlas(ITEMS_TEXTURE_ATLAS_PATH);
+    /**
+     * Creates a skin.
+     */
     public static Skin STATUSUI_SKIN = new Skin (Gdx.files.internal(STATUSUI_SKIN_PATH), STATUSUI_TEXTUREATLAS);
 
     /**
@@ -44,7 +74,7 @@ public final class Utility {
 
     /**
      * Returns the progress of the AssetManager as a percentage
-     * @return
+     * @return float
      */
     public static float loadCompleted(){
         return ASSET_MANAGER.getProgress();
@@ -52,7 +82,7 @@ public final class Utility {
 
     /**
      * Returns the number of assets left to load
-     * @return
+     * @return int
      */
     public static int numberAssetsQueued(){
         return ASSET_MANAGER.getQueuedAssets();
@@ -60,7 +90,7 @@ public final class Utility {
 
     /**
      * Used to help load assets asynchronously in order to process the preload queue
-     * @return
+     * @return int
      */
     public static boolean updateAssetLoading(){
         return ASSET_MANAGER.update();
@@ -68,8 +98,8 @@ public final class Utility {
 
     /**
      * Returns true is the asset is loaded otherwise false
-     * @param fileName
-     * @return
+     * @param String fileName
+     * @return boolean
      */
     public static boolean isAssetLoaded(String fileName){
         return ASSET_MANAGER.isLoaded(fileName);
@@ -77,7 +107,7 @@ public final class Utility {
 
     /**
      * Loads the TMX file using the file path specified
-     * @param mapFileNamePath
+     * @param String mapFileNamePath
      */
     public static void loadMapAsset(String mapFileNamePath){
         if(mapFileNamePath == null || mapFileNamePath.isEmpty()){
@@ -96,8 +126,8 @@ public final class Utility {
 
     /**
      * Returns the map that has been loaded
-     * @param mapFileNamePath
-     * @return
+     * @param String mapFileNamePath
+     * @return TiledMap
      */
     public static TiledMap getMapAsset(String mapFileNamePath){
         TiledMap map = null;
@@ -112,7 +142,7 @@ public final class Utility {
 
     /**
      * Loads the images file as a Texture asset
-     * @param textureFileNamePath
+     * @param String textureFileNamePath
      */
     public static void loadTextureAsset(String textureFileNamePath){
         if(textureFileNamePath == null || textureFileNamePath.isEmpty()){
@@ -128,8 +158,8 @@ public final class Utility {
 
     /**
      * Returns the skin asset loaded
-     * @param skinFileNamePath
-     * @return Returns a skin
+     * @param String skinFileNamePath
+     * @return Skin
      */
 
     public static Skin loadSkinAsset(String skinFileNamePath) {
@@ -146,8 +176,8 @@ public final class Utility {
 
     /**
      * Returns the texture asset loaded
-     * @param textureFileNamePath
-     * @return
+     * @param String textureFileNamePath
+     * @return Texture
      */
     public static Texture getTextureAssest(String textureFileNamePath){
         Texture texture = null;
@@ -159,6 +189,11 @@ public final class Utility {
         return texture;
     }
 
+    /**
+     * Returns the JSON asset.
+     * @param String jsonFileNamePath
+     * @return JSON
+     */
     public static Json getJsonAsset(String jsonFileNamePath) {
         Json json = null;
         if(ASSET_MANAGER.isLoaded(jsonFileNamePath)) {
