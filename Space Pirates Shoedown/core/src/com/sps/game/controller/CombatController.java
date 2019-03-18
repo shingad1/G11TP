@@ -2,6 +2,7 @@ package com.sps.game.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.BasicEnemy;
 import com.sps.game.sprites.Player;
 
@@ -20,7 +21,7 @@ public class CombatController extends InputAdapter
      * @see #keyDown
      */
 
-    private BasicEnemy enemy;
+    private AbstractEnemy enemy;
     /**
      * Creates instance of the enemy, sets the enemy parameter into this local variable
      * @see #CombatController
@@ -38,7 +39,7 @@ public class CombatController extends InputAdapter
      * @see #keyDown
      */
 
-    public CombatController(Player p, BasicEnemy e, CombatSystem cs){
+    public CombatController(Player p, AbstractEnemy e, CombatSystem cs){
         this.player = p;
         this.enemy = e;
         combatSystem = cs;

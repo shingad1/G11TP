@@ -288,18 +288,27 @@ public abstract class PlayScreen implements Screen {
         }
 
 
-        if(getClass().equals(HouseInteriorScreen.class)) {
+        /*if(getClass().equals(HouseInteriorScreen.class)) {
             for (AbstractEnemy enemy : enemies) {
                 if (controller.enemyInProximity(enemy)) {
                     dialogueHud.update(enemy.getName());
                 }
             }
-            }
+        }*/
 
         if (merchantDetected == true) {
             merchantInventory.update();
         } else {
             playerInventory.update();
+        }
+        if(controller.getEnemyEncounter()){
+            for (AbstractEnemy enemy : enemies){
+                if(controller.enemyInProximity(enemy)){
+                    game.setScreen(new CombatScreen(game,p,enemy,this,currentMap));
+                    controller.resetEnemyEncounter();
+                }
+            }
+            controller.resetEnemyEncounter();
         }
     }
 

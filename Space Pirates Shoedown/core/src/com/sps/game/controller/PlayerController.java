@@ -62,6 +62,8 @@ public class PlayerController extends InputAdapter {
 
     private boolean enterShip;
 
+    private boolean enemyEncounter;
+
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         //dialogue = false;
         this.player = p;
@@ -96,7 +98,7 @@ public class PlayerController extends InputAdapter {
             keyPressed = keycode;
             switch(keycode){
                 case Input.Keys.A:
-
+                    enemyEncounter = true;
                     break;
                 case Input.Keys.E:
                     //WILL HAVE IF STATEMENT AROUND IT
@@ -385,4 +387,8 @@ public class PlayerController extends InputAdapter {
     public void changeNpcLocations(ArrayList<Location> npcLocations){
         allLocations = npcLocations;
     }
+
+    public boolean getEnemyEncounter(){return enemyEncounter;}
+
+    public void resetEnemyEncounter(){enemyEncounter = false;}
 }
