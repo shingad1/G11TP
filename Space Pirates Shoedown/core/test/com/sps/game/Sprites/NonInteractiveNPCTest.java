@@ -2,12 +2,14 @@ package com.sps.game.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.maps.MapFactory;
+import com.sps.test.GdxTestRunner;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 
-
+@RunWith(GdxTestRunner.class)
 public class NonInteractiveNPCTest {
 
     private SpriteBatch sb;

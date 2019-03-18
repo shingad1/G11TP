@@ -4,10 +4,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.sprites.BasicEnemy;
 import com.sps.game.sprites.Player;
+import com.sps.test.GdxTestRunner;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import static org.junit.Assert.assertTrue;
 
+@RunWith(GdxTestRunner.class)
 public class CombatControllerTest {
 
     private SpriteBatch sb;
