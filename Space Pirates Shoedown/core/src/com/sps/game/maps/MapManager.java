@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.sps.game.screens.HomeWorldScreen;
@@ -14,12 +13,9 @@ import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
 import org.json.simple.parser.ParseException;
 import java.io.*;
-import java.util.Arrays;
-import java.util.Iterator;
-import org.json.simple.JSONArray;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class MapManager implements ProfileObserver {
 
@@ -54,15 +50,15 @@ public class MapManager implements ProfileObserver {
                 }
                 loadMap(mapType);
 
-                //MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(getPlayerX());
-               /* Vector2 homeWorldMap1StartPosition = new Vector2(getPlayerX());
+                //MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(getPlayerCoOrdinate());
+                Vector2 homeWorldMap1StartPosition = new Vector2(getPlayerCoOrdinate());
                 if(homeWorldMap1StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(homeWorldMap1StartPosition);
                 }
-                Vector2 homeWorldMap2StartPosition = new Vector2(getPlayerX());
+                Vector2 homeWorldMap2StartPosition = new Vector2(getPlayerCoOrdinate());
                 if(homeWorldMap2StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).setPlayerPosition(homeWorldMap2StartPosition);
-                }*/
+                }
 
                 /*Vector2 homeWorldMap1StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).y);
                 if(homeWorldMap1StartPosition != null){
@@ -80,17 +76,16 @@ public class MapManager implements ProfileObserver {
                 if(map != null) {
                     profileManager.setProperty("currentMapType", HomeWorldScreen.getCurrentMapType().toString()); //map.getCurrentMapType().toString()
                     System.out.println("Saving game as " + HomeWorldScreen.getCurrentMapType().toString());
-                    //profileManager.setProperty("currentCollisionLayer", map.getCollisionLayer());
                 }
-                profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
-                profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
+                profileManager.setProperty("\"" + "HomeWorldMap1StartPosition" + "\"", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
+                profileManager.setProperty("HomeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;
             case CLEAR_CURRENT_PROFILE:
                 map = null;
                 profileManager.setProperty("currentMapType", MapFactory.MapType.HomeWorldMap1.toString());
                 MapFactory.clearCache();
-                profileManager.setProperty("homeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
-                profileManager.setProperty("homeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
+                profileManager.setProperty('\"' + "HomeWorldMap1StartPosition" + '\"', MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
+                profileManager.setProperty("HomeWorldMap2StartPosition" , MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;
             default:
                 break;
@@ -111,9 +106,9 @@ public class MapManager implements ProfileObserver {
         Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
     }
 
-    public void getPlayerX() {
-        int x = 0;
-        int y = 0;
+    public Vector2 getPlayerCoOrdinate() {
+        Vector2 vector2;
+        Long x,y;
 
         ProfileManager profileManager = new ProfileManager();
         if (profileManager.doesProfileExist("default")) {
@@ -133,17 +128,14 @@ public class MapManager implements ProfileObserver {
                 e.printStackTrace();
             }
             JSONObject jsonObject = (JSONObject) obj;
-            Iterator<String> iterator = jsonObject.keySet().iterator();
+            String currentMap = (String)((JSONObject) jsonObject.get("currentMapType")).get("value");
+            x = (Long) (((JSONObject) jsonObject.get(currentMap + "StartPosition")).get("x"));
+            y = (Long) (((JSONObject) jsonObject.get(currentMap + "StartPosition")).get("y"));
 
-            for(Iterator iterator1 = jsonObject.keySet().iterator(); iterator.hasNext();) {
-                String key = (String) iterator1.next();
-                char[] array = key.toCharArray();
-                System.out.print(array);
-                System.out.println(jsonObject.get(key) + "\n");
-            }
-            /*Vector2 vector2 = new Vector2(x, y);
-            return vector2;*/
+            vector2 = new Vector2(x,y);
+            return vector2;
         }
+        return null;
     }
 
     public void unregisterCurrentMapEntityObservers(){

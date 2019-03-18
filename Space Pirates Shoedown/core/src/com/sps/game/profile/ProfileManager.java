@@ -108,7 +108,7 @@ public class ProfileManager extends ProfileSubject {
      */
     public void writeProfileToStorage(String profileName, String fileData, boolean overwrite){
         String fullFilename = profileName + SAVEGAME_SUFFIX;
-        boolean localFileExists = Gdx.files.internal(fullFilename).exists();
+        boolean localFileExists = Gdx.files.internal( fullFilename).exists();
         if(localFileExists && !overwrite){
             return;
         }
@@ -137,7 +137,6 @@ public class ProfileManager extends ProfileSubject {
      * Takes a key string and a calls type as input parameters. If it cannot find the key it will return null
      * otherwise it will return the value found cast to the class type
      * @param key
-     * @param type
      * @param <T>
      * @return
      */

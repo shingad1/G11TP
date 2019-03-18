@@ -1,16 +1,16 @@
 {
-"homeWorldMap2StartPosition": {
-	"class": "com.badlogic.gdx.math.Vector2",
-	"x": 736,
-	"y": 1280
-},
-"homeWorldMap1StartPosition": {
-	"class": "com.badlogic.gdx.math.Vector2",
-	"x": 736,
-	"y": 1280
-},
-"currentMapType": {
-	"class": "java.lang.String",
-	"value": "HomeWorldMap1"
+"HomeWorldMap1StartPosition": {
+	class: com.badlogic.gdx.math.Vector2
+	x: 736
+	y: 1280
+}
+HomeWorldMap2StartPosition: {
+	class: com.badlogic.gdx.math.Vector2
+	x: 736
+	y: 1280
+}
+currentMapType: {
+	class: java.lang.String
+	value: HomeWorldMap1
 }
 }

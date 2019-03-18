@@ -312,14 +312,6 @@ public abstract class PlayScreen implements Screen
         batch.end();
 
         changeMaps();
-
-        test test = new test();
-        test.test();
-
-        MapManager mapManager = new MapManager();
-        mapManager.getPlayerX();
-        //System.out.println(mapManager.getPlayerX());
-        //mapManager.getPlayerX();
     }
 
     @Override
