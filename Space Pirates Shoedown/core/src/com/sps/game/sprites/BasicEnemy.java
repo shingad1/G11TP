@@ -1,10 +1,10 @@
-package com.sps.game.Sprites;
+package com.sps.game.sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.sps.game.Animation.enemyAnimation;
-import com.sps.game.Controller.CombatSystem;
-import com.sps.game.Controller.MoveList;
-import com.sps.game.Screens.Fighter;
+import com.sps.game.animation.EnemyAnimation;
+import com.sps.game.controller.CombatSystem;
+import com.sps.game.controller.MoveList;
+import com.sps.game.screens.Fighter;
 
 import java.util.HashMap;
 import java.util.Random;
