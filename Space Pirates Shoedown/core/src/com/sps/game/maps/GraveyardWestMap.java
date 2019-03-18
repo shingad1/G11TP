@@ -6,7 +6,7 @@ package com.sps.game.maps;
  */
 public class GraveyardWestMap extends Map {
     /**
-     * Holds the file path of the Home World map
+     * Holds the file path of the Graveyard west map
      */
     private static String mapPath = ASSETS_PATH + "Graveyard/GraveyardWest2.tmx";
 

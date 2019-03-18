@@ -172,7 +172,7 @@ public class TropicalWorldScreen extends PlayScreen {
         if(currentMapState.equals(MapFactory.MapType.TropicalWorld2)){
             if(p.getLocation().equals(new Location(1280, 1376))){
                 dispose();
-                game.setScreen(new GraveyardScreen(game, new Vector2(1,0)));
+                game.setScreen(new GraveyardScreen(game, new Vector2(1,1), 832, 160));
             } else if(p.getLocation().equals(new Location(1216,736))){
                 dispose();
                 oldState = MapFactory.MapType.TropicalWorld2;

@@ -22,8 +22,8 @@ public class HouseInteriorScreen extends PlayScreen {
     /**
      * 2D array, that contains all the different house interiors
      */
-    private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2(), new TropicalInteriorMap(), new CandyInteriorMap2()},
-                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2(), new TropicalInteriorMap3()}};
+    private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2(), new TropicalInteriorMap(), new CandyInteriorMap2(), new GraveyardWestInteriorMap()},
+                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2(), new TropicalInteriorMap3(), null}};
     /**
      * Chooses the map to load from the array
      */
@@ -60,6 +60,9 @@ public class HouseInteriorScreen extends PlayScreen {
         else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1) || currentMapState.equals(MapFactory.MapType.TropicalInterior2) || currentMapState.equals(MapFactory.MapType.TropicalInterior3)){
             p.setX(768);
             p.setY(352);
+        } else if(currentMapState.equals(MapFactory.MapType.GraveyardWestInterior)){
+            p.setX(800);
+            p.setY(576);
         }
 
         if(currentMapState.equals(MapFactory.MapType.HomeInterior)){
@@ -163,6 +166,12 @@ public class HouseInteriorScreen extends PlayScreen {
                 if(currentMapState.equals(MapFactory.MapType.TropicalInterior3)){
                     game.setScreen(new TropicalWorldScreen(game,new Vector2(1,0), 1216, 672));
                 }
+            }
+        }
+        if(p.getLocation().equals(new Location(800,544))){
+            dispose();
+            if(oldState.equals(MapFactory.MapType.GraveyardWest)){
+                game.setScreen(new GraveyardScreen(game,new Vector2(0,1),1088,736));
             }
         }
 

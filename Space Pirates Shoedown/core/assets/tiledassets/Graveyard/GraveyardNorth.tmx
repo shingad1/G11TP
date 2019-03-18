@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="../TropicalWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="491" source="Ground.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztz8EJgDAUBcFfsNhgmvMsiEQIvCTOYe67raoaAADwW8eDdNOIh9Ve3h5Weel5WOHFx1x8zGeHh56XdNuIl3QTAAAAkHUG7fDw5SXdyN0FCrHTRA==
+  </data>
+ </layer>
+ <layer id="2" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmjESwjAMBB2ewivy/9/wC4o0TMZJpPhOOjkUaihkrVY2HsPaWlsnic9SO/4cWhHF8X5tkclxVgO7PjUfbH8sjmhPqj5GOdh93OdHrYfwgWa/k8/KkX0u9db//Qy9P7J4exzMWli5K59Xo3OVvVdYPpBcR7mu1oj+/lDzocb75H2uUvuRD++sKNxHehzsOplRba4sHJX6b/Vxdb9UC8W5svbLe+6y3SByRd/bWcGYK6Y/y/dg5VB5dx/1lV0/2sdZXyrse5QPz1s2oi/7HFHnFTunhyNivu6ukbXP0T3x3BMVfKn5QLtUe7+K8uGpmfVbB4Ijel4qcozwVeCYxcfsHJXfRWf00eOI/G8Xa50vIyAFSQ==
+  </data>
+ </layer>
+ <layer id="3" name="Doors" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer id="4" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztWUEOwzAI6/8/sV236/bAtYdKUUQSG0zTarXU01ZwDAGSLsuNf8NjfZ4n5oDye63PW8THix4HlN9nfb6Ez4z49Ti0fovyOEP8NkR5sPGroYonGqes/e/RkeFS27f8KdbmyXdm7bV9yx+6Ns96e1xLLllaWv5H+llc0H3nsY3A8j/iFKk1mbZrjDQZcYnkTrSelohqUr+vrJ0tW2yuI5zq95W50rLF+kD/X65XmSstW6wPVV06Apn9Mhsl95aW7PrUsxFir+Te0pKtQ+rcQuwhecDWIXVuqezV+s/aA1GU+qvmyxko9ffMlyqgerE9e/+/ej5v8UH1Ymfr7NjUttB9yc7W7OzP7i2mnjB5EK1TmfHLOqdZ8JzdUP9HntM8UPnf1zmrb6h7rje3mbtshS6eszmiVW8WQO7eRvD2GMRWid4sgNy9jXx4e4wF5TcClC9jE/WjvA9S82X9qN6J8M3q6dYcmQlFr7G0QM/72d9WGFic0fP+kbPRCIwWTL3doLrHmQ00rlfFVe87UFwt31q48+3GDRw/CVT+QQ==
+  </data>
+ </layer>
+</map>

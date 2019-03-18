@@ -7,10 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.controller.NPCController;
 import com.sps.game.controller.PlayerController;
-import com.sps.game.maps.GraveyardMap;
-import com.sps.game.maps.GraveyardWestMap;
-import com.sps.game.maps.Map;
-import com.sps.game.maps.MapFactory;
+import com.sps.game.maps.*;
 import com.sps.game.sprites.*;
 
 import java.util.ArrayList;
@@ -27,8 +24,8 @@ public class GraveyardScreen extends PlayScreen {
     /**
      * 2D array, that contains all the maps for the graveyard world
      */
-    private Map[][] worldMaps = {{new GraveyardWestMap(), new GraveyardMap()},
-                                 {null, null}};
+    private Map[][] worldMaps = {{null, new GraveyardNorthMap(), null},
+                                {new GraveyardWestMap(), new GraveyardMap(), null}};
     /**
      * Chooses the map to load from the array
      */
@@ -42,7 +39,7 @@ public class GraveyardScreen extends PlayScreen {
      */
     private int[] ybounds = {0,1600};
 
-    public GraveyardScreen(SpacePiratesShoedown game, Vector2 selector) {
+    public GraveyardScreen(SpacePiratesShoedown game, Vector2 selector, int px, int py) {
         super(game);
         mapSelector = selector;
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)];
@@ -57,8 +54,8 @@ public class GraveyardScreen extends PlayScreen {
 
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
-        p.setX(832);
-        p.setY(160);
+        p.setX(px);
+        p.setY(py);
         p.setBatch(batch);
         controller = new PlayerController(p,currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
@@ -116,6 +113,13 @@ public class GraveyardScreen extends PlayScreen {
             mapSelector.y -= 1;
             p.setY(0);
             camY = 1;
+        }
+        if(currentMapState.equals(MapFactory.MapType.GraveyardWest)){
+            if(p.getLocation().equals(new Location(1056,768))){
+                dispose();
+                oldState = MapFactory.MapType.GraveyardWest;
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(4,0)));
+            }
         }
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
