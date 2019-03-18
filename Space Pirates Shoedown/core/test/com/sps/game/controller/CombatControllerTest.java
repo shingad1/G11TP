@@ -1,11 +1,9 @@
-package com.sps.game.Controller;
+package com.sps.game.controller;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.sps.game.controller.CombatController;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.sprites.BasicEnemy;
 import com.sps.game.sprites.Player;
-import com.sps.game.controller.CombatSystem;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
@@ -27,7 +25,7 @@ public class CombatControllerTest {
         //p = new Player();
         cs = new CombatSystem(p,e,sb);
         e = new BasicEnemy(9,9,world,sb, "Pirate");
-        combatController = new CombatController(p,e,cs);
+        combatController = new CombatController(p, e, cs);
     }
 
     @Test

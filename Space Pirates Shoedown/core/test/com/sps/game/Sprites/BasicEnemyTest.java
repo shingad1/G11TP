@@ -1,18 +1,22 @@
 package com.sps.game.Sprites;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.animation.EnemyAnimation;
 import com.sps.game.maps.MapFactory;
 import com.sps.game.sprites.BasicEnemy;
+import com.sps.test.GdxTestRunner;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 
-
+@RunWith(GdxTestRunner.class)
 public class BasicEnemyTest {
 
     private SpriteBatch sb;
@@ -85,14 +89,14 @@ public class BasicEnemyTest {
     @Test
     public void changeDefence() {
         basicEnemy.changeDefence(9);
-        assertEquals(29,basicEnemy.changeDefence(););
+        assertEquals(29, basicEnemy.getDefence());
 
     }
 
     @Test
     public void changeAttack() {
         basicEnemy.changeAttack(9);
-        assertEquals(29,basicEnemy.changeAttack(););
+        assertEquals(29, basicEnemy.getAttack());
     }
 
     @Test
