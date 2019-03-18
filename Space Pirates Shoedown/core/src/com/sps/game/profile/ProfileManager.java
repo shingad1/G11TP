@@ -5,13 +5,18 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.ObjectMap;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
 public class ProfileManager extends ProfileSubject {
     private static ProfileManager profileManager;
 
-    private Hashtable<String, FileHandle> _profiles = null;
+    private Hashtable<String, FileHandle> profiles = null;
 
     private ObjectMap<String, Object> profileProperties = new ObjectMap<String, Object>();
 
@@ -27,8 +32,8 @@ public class ProfileManager extends ProfileSubject {
 
     public ProfileManager(){
         json = new Json();
-        _profiles = new Hashtable<String, FileHandle>();
-        _profiles.clear();
+        profiles = new Hashtable<String, FileHandle>();
+        profiles.clear();
         profileName = DEFAULT_PROFILE;
         storeAllProfiles();
     }
@@ -57,7 +62,7 @@ public class ProfileManager extends ProfileSubject {
      */
     public Array<String> getProfilelList(){
         Array<String> profiles = new Array<String>();
-        for(Enumeration<String> e = _profiles.keys(); e.hasMoreElements();){
+        for(Enumeration<String> e = this.profiles.keys(); e.hasMoreElements();){
             profiles.add(e.nextElement());
         }
     return profiles;
@@ -72,7 +77,7 @@ public class ProfileManager extends ProfileSubject {
         if(!doesProfileExist(profile)){
             return null;
         }
-        return _profiles.get(profile);
+        return profiles.get(profile);
     }
 
     /**
@@ -81,7 +86,7 @@ public class ProfileManager extends ProfileSubject {
      * @return True if the file exists and false if it does not
      */
     public boolean doesProfileExist(String profileName){
-        return _profiles.containsKey(profileName);
+        return profiles.containsKey(profileName);
     }
 
     /**
@@ -91,7 +96,7 @@ public class ProfileManager extends ProfileSubject {
         if(Gdx.files.isLocalStorageAvailable()){
             FileHandle[] files = Gdx.files.local(".").list(SAVEGAME_SUFFIX);
             for(FileHandle file: files) {
-                _profiles.put(file.nameWithoutExtension(), file);
+                profiles.put(file.nameWithoutExtension(), file);
             }
         } else{
             return;
@@ -113,15 +118,26 @@ public class ProfileManager extends ProfileSubject {
             return;
         }
 
-        FileHandle file = null;
+        //FileHandle file = null;
 
         if(Gdx.files.isLocalStorageAvailable()){
-            file = Gdx.files.local(fullFilename);
+            //file = Gdx.files.local(fullFilename);
             //String encodedString = Base64Coder.encodeString(fileData);
-            file.writeString(fileData, !overwrite);//encodedString
+
+            try {
+                ObjectOutputStream serialise = new ObjectOutputStream(new FileOutputStream(fullFilename));
+                serialise.writeObject(fileData);
+                serialise.close();
+                } catch (FileNotFoundException e) {
+                System.err.println(e.getMessage());
+                } catch (IOException e) {
+                System.err.println(e.getMessage());
+                }
+
+            //file.writeString(fileData, !overwrite);//encodedString
         }
 
-        _profiles.put(profileName, file);
+        profiles.put(profileName, FileHandle.tempFile(fullFilename));
     }
 
     /**
@@ -178,12 +194,12 @@ public class ProfileManager extends ProfileSubject {
             return;
         }
 
-        FileHandle encodedFile = _profiles.get(profileName);
+        FileHandle encodedFile = profiles.get(profileName);
         String s = encodedFile.readString();
 
         //String decodedFile = Base64Coder.decodeString(s);
 
-        profileProperties = json.fromJson(ObjectMap.class, _profiles.get(profileName));//decodedFile -> _profiles.get(profileName)
+        profileProperties = json.fromJson(ObjectMap.class, profiles.get(profileName));//decodedFile -> profiles.get(profileName)
         notify(this, ProfileObserver.ProfileEvent.PROFILE_LOADED);
         isNewProfile = false;
     }

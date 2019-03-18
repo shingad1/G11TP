@@ -77,15 +77,15 @@ public class MapManager implements ProfileObserver {
                     profileManager.setProperty("currentMapType", HomeWorldScreen.getCurrentMapType().toString()); //map.getCurrentMapType().toString()
                     System.out.println("Saving game as " + HomeWorldScreen.getCurrentMapType().toString());
                 }
-                profileManager.setProperty("\"" + "HomeWorldMap1StartPosition" + "\"", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
+                profileManager.setProperty("HomeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
                 profileManager.setProperty("HomeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;
             case CLEAR_CURRENT_PROFILE:
                 map = null;
                 profileManager.setProperty("currentMapType", MapFactory.MapType.HomeWorldMap1.toString());
                 MapFactory.clearCache();
-                profileManager.setProperty('\"' + "HomeWorldMap1StartPosition" + '\"', MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
-                profileManager.setProperty("HomeWorldMap2StartPosition" , MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
+                profileManager.setProperty("HomeWorldMap1StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).getPlayerPosition());
+                profileManager.setProperty("HomeWorldMap2StartPosition", MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).getPlayerPosition());
                 break;
             default:
                 break;
