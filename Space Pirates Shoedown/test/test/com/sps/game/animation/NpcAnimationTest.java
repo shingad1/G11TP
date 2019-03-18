@@ -5,7 +5,7 @@ public class NpcAnimationTest {
 
     @org.junit.Test
     public void dispose() {
-
+        fail("fail");
     }
 
     @org.junit.Test
