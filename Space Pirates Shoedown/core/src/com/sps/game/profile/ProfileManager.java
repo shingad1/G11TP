@@ -141,7 +141,7 @@ public class ProfileManager extends ProfileSubject {
      * @param <T>
      * @return
      */
-    public <T extends Object> T getProperty(String key, Class<T> type){
+    public <T extends Object> T getProperty(String key){
         T property = null;
         if(!profileProperties.containsKey(key)){
             return property;

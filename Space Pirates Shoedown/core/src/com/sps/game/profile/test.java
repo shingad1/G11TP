@@ -57,7 +57,7 @@ public class test {
             e.printStackTrace();
         }*/
 
-        InputStream fis = null;
+       /* InputStream fis = null;
         try {
             fis = new FileInputStream(JSON_FILE);
         } catch (FileNotFoundException e) {
@@ -74,6 +74,49 @@ public class test {
 
         String name = jsonObject.getString("name");
         int x = jsonObject.getInt("x");
-        System.out.print(x);
+        System.out.print(x);*/
+
+        /*int x = 0;
+        int y = 0;
+        ProfileManager profileManager = new ProfileManager();
+        InputStream fis = null;
+        JsonReader jsonReader;
+        JsonObject jsonObject;
+        if (profileManager.doesProfileExist("default")) {
+            System.out.print("exist");
+            try {
+                fis = new FileInputStream("default.json");
+                System.out.print("reading");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            jsonReader = Json.createReader(fis);
+            jsonObject = jsonReader.readObject();
+            //String temp = jsonObject.getString("homeWorldMap2StartPosition");
+            JsonObject innerJsonObject = jsonObject.getJsonObject("homeWorldMap2StartPosition");
+            x = innerJsonObject.getInt("x");
+            y = innerJsonObject.getInt("y");
+            //x = jsonObject.getInt("x");
+            //y = jsonObject.getInt("y");
+            System.out.print(x);
+            System.out.print(y);
+        }*/
+
+        /*JsonObject innerJsonObject = jsonObject.getJsonObject("address");
+        Address address = new Address();
+        address.setStreet(innerJsonObject.getString("street"));
+        address.setCity(innerJsonObject.getString("city"));
+        address.setZipcode(innerJsonObject.getInt("zipcode"));
+        emp.setAddress(address);*/
+
+        /*jsonReader.close();
+            try {
+                fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
+        //System.out.print(x + "guy");
+        //System.out.print(y);
+
     }
 }

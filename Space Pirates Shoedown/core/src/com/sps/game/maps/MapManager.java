@@ -12,14 +12,14 @@ import com.sps.game.sprites.AbstractNPC;
 import com.sps.game.sprites.Player;
 import com.sps.game.profile.ProfileManager;
 import com.sps.game.profile.ProfileObserver;
+import org.json.simple.parser.ParseException;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
@@ -46,7 +46,8 @@ public class MapManager implements ProfileObserver {
     public void onNotify(ProfileManager profileManager, ProfileEvent event) {
         switch (event){
             case PROFILE_LOADED:
-                String currentMap = profileManager.getProperty("currentMapType", String.class);
+                String currentMap = profileManager.getProperty("currentMapType");
+                //, String.class
                 MapFactory.MapType mapType;
                 if(currentMap == null || currentMap.isEmpty()){
                     mapType = MapFactory.MapType.HomeWorldMap1;
@@ -56,14 +57,14 @@ public class MapManager implements ProfileObserver {
                 loadMap(mapType);
 
                 //MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(getPlayerX());
-                Vector2 homeWorldMap1StartPosition = new Vector2(getPlayerX());
+               /* Vector2 homeWorldMap1StartPosition = new Vector2(getPlayerX());
                 if(homeWorldMap1StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap1).setPlayerPosition(homeWorldMap1StartPosition);
                 }
                 Vector2 homeWorldMap2StartPosition = new Vector2(getPlayerX());
                 if(homeWorldMap2StartPosition != null){
                     MapFactory.getMap(MapFactory.MapType.HomeWorldMap2).setPlayerPosition(homeWorldMap2StartPosition);
-                }
+                }*/
 
                 /*Vector2 homeWorldMap1StartPosition = new Vector2(profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).x, profileManager.getProperty("HomeWorldMap1StartPosition", Vector2.class).y);
                 if(homeWorldMap1StartPosition != null){
@@ -112,60 +113,38 @@ public class MapManager implements ProfileObserver {
         Gdx.app.debug(TAG, "Player Start: (" + map.getPlayerPosition().x + "," + map.getPlayerPosition().y + ")");
     }
 
-    public Vector2 getPlayerX() {
+    public void getPlayerX() {
         int x = 0;
         int y = 0;
         ProfileManager profileManager = new ProfileManager();
-        if (profileManager.doesProfileExist(JSON_FILE)) {
-            InputStream fis = null;
+        if (profileManager.doesProfileExist("default")) {
+            FileReader file = null;
+            org.json.simple.parser.JSONParser parser = new org.json.simple.parser.JSONParser();
             try {
-                fis = new FileInputStream(JSON_FILE);
+                file = new FileReader("default.json");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            JsonReader jsonReader = Json.createReader(fis);
-            JsonObject jsonObject = jsonReader.readObject();
-            jsonReader.close();
+            Object obj = null;
             try {
-                fis.close();
+                obj = parser.parse(file);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
-            x = jsonObject.getInt("x");
-            y = jsonObject.getInt("y");
-        }
-        /*else{
-            x =0;
-            y = 0;
-        }*/
-        Vector2 vector2 = new Vector2(x, y);
-        return vector2;
-    }
+            org.json.simple.JSONObject jsonObject = (org.json.simple.JSONObject) obj;
+            Iterator<String> iterator = jsonObject.keySet().iterator();
 
-    public int getPlayerY() {
-        int y = 0;
-        ProfileManager profileManager = new ProfileManager();
-        if (profileManager.doesProfileExist(JSON_FILE)) {
-            InputStream fis = null;
-            try {
-                fis = new FileInputStream(JSON_FILE);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            for(Iterator iterator1 = jsonObject.keySet().iterator(); iterator.hasNext();) {
+                String key = (String) iterator1.next();
+                char[] array = key.toCharArray();
+                System.out.print(array);
+                System.out.println(jsonObject.get(key) + "\n");
             }
-            JsonReader jsonReader = Json.createReader(fis);
-            JsonObject jsonObject = jsonReader.readObject();
-            jsonReader.close();
-            try {
-                fis.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            y = jsonObject.getInt("y");
+            /*Vector2 vector2 = new Vector2(x, y);
+            return vector2;*/
         }
-        else {
-            y = 0;
-        }
-        return y;
     }
 
     public void unregisterCurrentMapEntityObservers(){
