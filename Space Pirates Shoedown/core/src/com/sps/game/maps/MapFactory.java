@@ -35,6 +35,7 @@ public class MapFactory {
         GraveyardWorld1,
         GraveyardWest,
         GraveyardEast,
+        GraveyardEastInterior,
         GraveyardNorth,
         GraveyardWestInterior
     }

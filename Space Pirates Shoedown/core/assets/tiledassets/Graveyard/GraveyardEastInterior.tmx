@@ -5,12 +5,12 @@
  <tileset firstgid="981" source="Graveyard Tileset 1.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt17ERwCAMBEG5XwqgZbpwSozsQTAbbK7LXuOJGAAAAAdpsW737XNDT6jQkm2o0PJVw+4WHTp06NChQ4cOHXVbbtjuFRrmltP/QQAA4F8vpq5Dow==
+   eJzt17ENwCAMRUGTKTMEA2RltqClDomwpSuu9+u+R4sYAAAAhfR47/Tta8OzIUPLbkOGlq8aTrfo0KFDhw4dOnToyNtSYbvfV/6GtaX6PwgAAPxrAiPlQ4U=
   </data>
  </layer>
  <layer id="3" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt10EOgCAMRFGO5f1P5spNAwTKmAHyX+IO045K1VIAAAAA4ByP4HCLfbT66q1zZ+n1MtubM8tIhpl87hyja+P6WkYHdV1yaOpm9+gu81dRN84EB/X8d+fInFe7BrvkWL0v7hw3PFeZDK13vPt+xF5W9o3DTXM3u9dXv4/VFPXdGT43/A8CAAAA+N8LNQ0c4Q==
+   eJzt1FEKgCAQRVGpnbiKltue2lD1IchgZirNKDc4HxrBe47kF+c8AAAAAOB34QnrY3V7TO7Ha+3scYdczhLaHd7Oers63sI7ubbSpfS8U/mf+lvuYf1uzdSjtpNm7t7zSJ3HaPOwNJ9eM7DUo3Uu2j1muFc1HeQ32tlzWUabxyz/XdmltJ/Fu9U6F+3sAAAAAPDFCU7FrHM=
   </data>
  </layer>
  <layer id="4" name="Tile Layer 4" width="50" height="50">

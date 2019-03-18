@@ -25,7 +25,7 @@ public class GraveyardScreen extends PlayScreen {
      * 2D array, that contains all the maps for the graveyard world
      */
     private Map[][] worldMaps = {{null, new GraveyardNorthMap(), null},
-                                {new GraveyardWestMap(), new GraveyardMap(), null}};
+                                {new GraveyardWestMap(), new GraveyardMap(), new GraveyardEastMap()}};
     /**
      * Chooses the map to load from the array
      */
@@ -119,6 +119,12 @@ public class GraveyardScreen extends PlayScreen {
                 dispose();
                 oldState = MapFactory.MapType.GraveyardWest;
                 game.setScreen(new HouseInteriorScreen(game, new Vector2(4,0)));
+            }
+        } else if(currentMapState.equals(MapFactory.MapType.GraveyardEast)){
+            if(p.getLocation().equals(new Location(384,640))){
+                dispose();
+                oldState = MapFactory.MapType.GraveyardEast;
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(4,1)));
             }
         }
         if(camX != 0 || camY != 0) {
