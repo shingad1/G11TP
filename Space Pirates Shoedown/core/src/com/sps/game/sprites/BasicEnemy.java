@@ -1,29 +1,42 @@
 package com.sps.game.sprites;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.EnemyAnimation;
 import com.sps.game.controller.CombatSystem;
 import com.sps.game.controller.MoveList;
+import com.sps.game.maps.MapFactory;
 import com.sps.game.screens.Fighter;
 
 import java.util.HashMap;
 import java.util.Random;
 
 public class BasicEnemy extends AbstractEnemy{
+
     /**
-     * Holds the value of what world it is.
+     * Holds the world the basic enemy will be rendered in.
      */
-    public static String WORLD = "Earth";
+    private MapFactory.MapType world;
+    /**
+     * Holds the name of the basic enemy.
+     */
+    private String name;
+
+    private String state;
 
     private HashMap<String, EnemyAnimation> fightAnimation;
 
-    public BasicEnemy(int x, int y, SpriteBatch sb){
+    public BasicEnemy(int x, int y, MapFactory.MapType world, SpriteBatch sb, String name){
         this.x = x;
         this.y = y;
+        location = new Location(x,y);
+        this.name = name;
+        this.world = world;
         health = 100;
         attack = 20;
         defence = 0;
-        changeInString();
+        speed = 10;
+
         fightAnimation = new HashMap<String, EnemyAnimation>();
         fightAnimation.put("Idle",new EnemyAnimation(sb, this, "enemyIdle.atlas", 1/15f));
         fightAnimation.put("Right",new EnemyAnimation(sb, this, "enemyMoveRight.atlas", 1/15f));
@@ -35,30 +48,25 @@ public class BasicEnemy extends AbstractEnemy{
         animation.put("idle", new EnemyAnimation(sb, this, "regenemyIdle.atlas", 1/2f));
     }
 
-    /**
-     * Creates a character according to the value of the world.
-     */
-    private void changeInString() {
-        if(WORLD == "Test Battle Screen")
-        {
-
-        }
-    }
-
     public HashMap<String,EnemyAnimation> getFightAnimation(){return fightAnimation;}
 
     @Override
     public EnemyAnimation getAnimation() {
-        return null;
+        return animation.get("idle");
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public Location getLocation() {
+        return location;
+    }
+
+    @Override
+    public MapFactory.MapType getWorld() {
         return null;
     }
 

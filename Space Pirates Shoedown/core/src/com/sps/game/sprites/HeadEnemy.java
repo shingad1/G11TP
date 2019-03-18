@@ -3,6 +3,7 @@ package com.sps.game.sprites;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.EnemyAnimation;
+import com.sps.game.controller.MoveList;
 import com.sps.game.maps.MapFactory;
 
 import java.util.HashMap;
@@ -21,10 +22,6 @@ public class HeadEnemy extends AbstractEnemy {
      * Holds the Y value of the head enemy.
      */
     private int y;
-    /**
-     * Holds the head enemies vector 2.
-     */
-    private Vector2 velocity;
     /**
      * Holds the name of the head enemy.
      */
@@ -65,13 +62,9 @@ public class HeadEnemy extends AbstractEnemy {
         return y;
     }
 
-    /**
-     * Gets the velocity of the enemy.
-     * @return Vector2 velocity
-     */
     @Override
-    public Vector2 getVelocity() {
-        return velocity;
+    public void battleMove(MoveList moveList) {
+
     }
     /**
      * Returns the world the enemy is in.
@@ -100,13 +93,6 @@ public class HeadEnemy extends AbstractEnemy {
     }
 
     /**
-     *
-     */
-    @Override
-    public void battleMove() {
-
-    }
-    /**
      * Returns a HashMap contains all the Fighting animations of the enemy.
      * @return HashMap<String,EnemyAnimation> fightAnimation
      */
@@ -122,13 +108,10 @@ public class HeadEnemy extends AbstractEnemy {
     public String getName() {
         return name;
     }
-    /**
-     * Changes the state of the Enemy.
-     * @param newState
-     */
-    @Override
-    public void changeState(String newState) {
 
+    @Override
+    public Location getLocation() {
+        return null;
     }
 
     /**

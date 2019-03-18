@@ -1,8 +1,10 @@
 package com.sps.game.sprites;
 
+import com.badlogic.gdx.math.Vector2;
 import com.sps.game.animation.EnemyAnimation;
 import com.sps.game.controller.CombatSystem;
 import com.sps.game.controller.MoveList;
+import com.sps.game.maps.MapFactory;
 import com.sps.game.screens.Fighter;
 
 import java.util.HashMap;
@@ -17,6 +19,8 @@ public abstract class AbstractEnemy extends Fighter {
      * Holds the enemies Y coordinate.
      */
     public int y;
+
+    protected Location location;
 
     protected CombatSystem system;
 
@@ -46,5 +50,11 @@ public abstract class AbstractEnemy extends Fighter {
     public abstract String getName();
 
     public abstract Location getLocation();
+
+    /**
+     * Returns the world the enemy is in.
+     * @return MapFactory.MapType world.
+     */
+    public abstract MapFactory.MapType getWorld();
 
 }
