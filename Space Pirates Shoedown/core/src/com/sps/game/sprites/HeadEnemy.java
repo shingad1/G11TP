@@ -7,6 +7,7 @@ import com.sps.game.controller.MoveList;
 import com.sps.game.maps.MapFactory;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class HeadEnemy extends AbstractEnemy {
 
@@ -64,7 +65,53 @@ public class HeadEnemy extends AbstractEnemy {
 
     @Override
     public void battleMove(MoveList moveList) {
-
+        Random rand = new Random();
+        if(getHealth() <= 30){
+            int temp = rand.nextInt(3)+1; //size of list
+            switch(temp){
+                case 1:
+                    system.assignMove("Shield Bash", moveList.getMovelist().get("Shield Bash"), false);
+                    break;
+                case 2:
+                    system.assignMove("Bravery", moveList.getMovelist().get("Bravery"),false);
+                    break;
+                case 3:
+                    system.assignMove("Heal", moveList.getMovelist().get("Heal"),false);
+                    break;
+                default:
+                    system.assignMove("Patch Up", moveList.getMovelist().get("Patch Up"), false);
+                    break;
+            }
+        }else if(getHealth() > 30 && getHealth() <=60) {
+            int temp = rand.nextInt(3)+1;
+            switch (temp) {
+                case 1:
+                    system.assignMove("Poison", moveList.getMovelist().get("Poison"), false);
+                    break;
+                case 2:
+                    system.assignMove("Weaken", moveList.getMovelist().get("Weaken"), false);
+                    break;
+                case 3:
+                    system.assignMove("Frighten", moveList.getMovelist().get("Frighten"), false);
+                    break;
+                default:
+                    system.assignMove("Block", moveList.getMovelist().get("Block"), false);
+                    break;
+            }
+        } else {
+            int temp = rand.nextInt(5) + 1;
+            switch (temp){
+                case 1:
+                    system.assignMove("Block", moveList.getMovelist().get("Block"), false);
+                    break;
+                case 2:
+                    system.assignMove("Quick Attack", moveList.getMovelist().get("Quick Attack"), false);
+                    break;
+                default:
+                    system.assignMove("Attack", moveList.getMovelist().get("Attack"), false);
+                    break;
+            }
+        }
     }
     /**
      * Returns the world the enemy is in.

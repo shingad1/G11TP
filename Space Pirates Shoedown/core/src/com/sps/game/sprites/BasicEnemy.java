@@ -118,16 +118,39 @@ public class BasicEnemy extends AbstractEnemy{
 
         if(getHealth() > 40)
         {
-            int temp = 1;
+            int temp = rand.nextInt(4)+1; //rand.nextInt(size of list) + 1
             switch (temp) {
                 case 1:
                     system.assignMove("Attack", moveList.getMovelist().get("Attack"), false);
+                    break;
+                case 2:
+                    system.assignMove("Quick Attack", moveList.getMovelist().get("Quick Attack"), false);
+                    break;
+                case 3:
+                    system.assignMove("Poison", moveList.getMovelist().get("Poison"), false);
+                    break;
+                case 4:
+                    system.assignMove("Frighten", moveList.getMovelist().get("Frighten"),false);
+                    break;
+                default:
+                    system.assignMove("Slow", moveList.getMovelist().get("Slow"),false);
                     break;
             }
         }
         else
         {
-            system.assignMove("Block", moveList.getMovelist().get("Block"), false);
+            int temp = rand.nextInt(2) + 1;
+            switch (temp){
+                case 1:
+                    system.assignMove("Block", moveList.getMovelist().get("Block"), false);
+                    break;
+                case 2:
+                    system.assignMove("Weaken", moveList.getMovelist().get("Weaken"),false);
+                    break;
+                default:
+                    system.assignMove("Patch Up", moveList.getMovelist().get("Patch Up"), false);
+                    break;
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ import java.util.Stack;
 
 /**
  * This class has all the methods used in the battle scene, in order to increase/decrease the player's/ enemies lives
- * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
+ * @author Miguel Abaquin
  * @version 1.0
  */
 
