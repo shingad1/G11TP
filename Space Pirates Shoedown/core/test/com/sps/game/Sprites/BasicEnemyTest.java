@@ -32,7 +32,6 @@ public class BasicEnemyTest {
         fightAnimation = new HashMap<String, EnemyAnimation>();
         fightAnimation.put("Idle",new EnemyAnimation(sb, basicEnemy, "enemyIdle.atlas", 1/15f));
         health = 100;
-        int defence = 20;
     }
 
     @Test
