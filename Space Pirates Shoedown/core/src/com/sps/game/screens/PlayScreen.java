@@ -433,22 +433,24 @@ public abstract class PlayScreen implements Screen {
         startNum++;
         enemies.clear();
         allLocations.clear();
-        System.out.println(startNum);
         game.setScreen(this);
         createEnemies(startNum);
     }
 
     public void createEnemies(int num) {
-        ArrayList<AbstractEnemy> local = new ArrayList<AbstractEnemy>();
         allLocations = new ArrayList<Location>();
         if (currentMapState.equals(MapFactory.MapType.HomeInterior)) {
-            if (!currentCollisionLayer.getCell(800 / 32, 640 / 32).getTile().getProperties().containsKey("nonpc")) {
-                enemies.add(new BasicEnemy(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
-            } else {
-                if (!enemies.isEmpty()) {
-                    allLocations.clear();
-                    enemies.clear();
-                }
+            switch (num){
+                case 1:
+                    if (!currentCollisionLayer.getCell(800 / 32, 640 / 32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
+                        allLocations.add(new Location(800,640));
+                    }
+                    break;
+                default:
+                    TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible", 32, 32);
+                    enemyTile.getProperties().put("nonpc", "true");
+                    startNum = 1;
             }
         } else if (currentMapState.equals(MapFactory.MapType.HomeInterior2)) {
             switch (num){
@@ -461,7 +463,7 @@ public abstract class PlayScreen implements Screen {
                 case 2:
                     if (!currentCollisionLayer.getCell(1120 / 32, 544 / 32).getTile().getProperties().containsKey("nonpc")) {
                         enemies.add(new BasicEnemy(1120, 544, MapFactory.MapType.HomeInterior2, batch, "EnemyThree"));
-                        allLocations.add(new Location(672,640));
+                        allLocations.add(new Location(1120,544));
                     }
                     break;
                 default:
@@ -470,39 +472,129 @@ public abstract class PlayScreen implements Screen {
                     startNum = 1;
             }
         } else if(currentMapState.equals(MapFactory.MapType.CandyInterior)){
-            if(!currentCollisionLayer.getCell(800/32,832/32).getTile().getProperties().containsKey("nonpc")) {
-                enemies.add(new BasicEnemy(800, 832, MapFactory.MapType.CandyInterior, batch, "EnemyCandyOne"));
-            } else {
-                if(!enemies.isEmpty()) {
-                    allLocations.clear();
-                    enemies.clear();
-                }
+            switch (num){
+                case 1:
+                    if(!currentCollisionLayer.getCell(800/32,832/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(800, 832, MapFactory.MapType.CandyInterior, batch, "EnemyCandyOne"));
+                        allLocations.add(new Location(800,832));
+                    }
+                    break;
+                case 2:
+                    if(!currentCollisionLayer.getCell(576/32, 480/32).getTile().getProperties().containsKey("nonpc")){
+                        enemies.add(new BasicEnemy(576,480, MapFactory.MapType.CandyInterior,batch,"EnemyCandyTwo"));
+                        allLocations.add(new Location(576,480));
+                    }
+                    break;
+                default:
+                    TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
+                    enemyTile.getProperties().put("nonpc","true");
+                    startNum = 1;
             }
-            //enemies.add(new BasicEnemy(576,480, MapFactory.MapType.CandyInterior,batch,"EnemyCandyTwo"));
         } else if(currentMapState.equals(MapFactory.MapType.CandyInterior2)){
-            if(!currentCollisionLayer.getCell(768/32,800/32).getTile().getProperties().containsKey("nonpc")) {
-                enemies.add(new BasicEnemy(768, 800, MapFactory.MapType.CandyInterior2, batch, "EnemyCandyThree"));
-            } else {
-                if(!enemies.isEmpty()) {
-                    allLocations.clear();
-                    enemies.clear();
-                }
+            switch (num){
+                case 1:
+                    if(!currentCollisionLayer.getCell(768/32,800/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(768, 800, MapFactory.MapType.CandyInterior2, batch, "EnemyCandyThree"));
+                        allLocations.add(new Location(768,800));
+                    }
+                    break;
+                case 2:
+                    if(!currentCollisionLayer.getCell(1120/32,928/32).getTile().getProperties().containsKey("nonpc")){
+                        enemies.add(new BasicEnemy(1120,928,MapFactory.MapType.CandyInterior2,batch,"EnemyCandyFour"));
+                        allLocations.add(new Location(1120,928));
+                    }
+                    break;
+                default:
+                    TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
+                    enemyTile.getProperties().put("nonpc","true");
+                    startNum = 1;
             }
-            //enemies.add(new BasicEnemy(1120,928,MapFactory.MapType.CandyInterior2,batch,"EnemyCandyFour"));
         } else if(currentMapState.equals(MapFactory.MapType.CandyMansion)){
-            enemies.add(new BasicEnemy(832,512, MapFactory.MapType.CandyMansion,batch,"Enemyreg1"));
-            enemies.add(new BasicEnemy(1216,448, MapFactory.MapType.CandyMansion,batch,"EnemyCandyFive"));
-            enemies.add(new BasicEnemy(320,288,MapFactory.MapType.CandyMansion,batch,"EnemyCandySix"));
-            enemies.add(new BasicEnemy(384,672,MapFactory.MapType.CandyMansion,batch,"EnemyCandySeven"));
-            enemies.add(new BasicEnemy(1248,800, MapFactory.MapType.CandyMansion,batch,"EnemyCandyEight"));
-            enemies.add(new HeadEnemy(832, 928,MapFactory.MapType.CandyMansion,batch,"HeadEnemyCandy"));
+            switch (num){
+                case 1:
+                    if(!currentCollisionLayer.getCell(832/32,512/32).getTile().getProperties().containsKey("nonpc")){
+                        enemies.add(new BasicEnemy(832,512, MapFactory.MapType.CandyMansion,batch,"Enemyreg1"));
+                        allLocations.add(new Location(832,512));
+                    }
+                    break;
+                case 2:
+                    if(!currentCollisionLayer.getCell(1216/32,448/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(1216,448, MapFactory.MapType.CandyMansion,batch,"EnemyCandyFive"));
+                        allLocations.add(new Location(1216, 448));
+                    }
+                    break;
+                case 3:
+                    if(!currentCollisionLayer.getCell(320/32,288/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(320,288,MapFactory.MapType.CandyMansion,batch,"EnemyCandySix"));
+                        allLocations.add(new Location(320,288));
+                    }
+                    break;
+                case 4:
+                    if(!currentCollisionLayer.getCell(320/32,288/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(320,288,MapFactory.MapType.CandyMansion,batch,"EnemyCandySeven"));
+                        allLocations.add(new Location(320,288));
+                    }
+                    break;
+                case 5:
+                    if(!currentCollisionLayer.getCell(1248/32,800/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(1248,800, MapFactory.MapType.CandyMansion,batch,"EnemyCandyEight"));
+                        allLocations.add(new Location(1248,800));
+                    }
+                    break;
+                case 6:
+                    if(!currentCollisionLayer.getCell(832/32,928/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new HeadEnemy(832, 928,MapFactory.MapType.CandyMansion,batch,"HeadEnemyCandy"));
+                        allLocations.add(new Location(832,928));
+                    }
+                    break;
+                default:
+                    TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
+                    enemyTile.getProperties().put("nonpc","true");
+                    startNum = 1;
+            }
         } else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1)){
-            enemies.add(new BasicEnemy(928,768,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalTwo"));
-            enemies.add(new BasicEnemy(448,832,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalOne"));
-            enemies.add(new BasicEnemy(448,480, MapFactory.MapType.TropicalInterior1,batch,"EnemyFour"));
+            switch (num){
+                case 1:
+                    if(!currentCollisionLayer.getCell(928/32,768/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(928,768,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalTwo"));
+                        allLocations.add(new Location(928,768));
+                    }
+                    break;
+                case 2:
+                    if(!currentCollisionLayer.getCell(448/32,832/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(448,832,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalOne"));
+                        allLocations.add(new Location(448,832));
+                    }
+                    break;
+                case 3:
+                    if(!currentCollisionLayer.getCell(448/32,480/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(448,480, MapFactory.MapType.TropicalInterior1,batch,"EnemyFour"));
+                        allLocations.add(new Location(448,480));
+                    }
+                    break;
+                default:
+                    TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
+                    enemyTile.getProperties().put("nonpc","true");
+                    startNum = 1;
+            }
         } else if(currentMapState.equals(MapFactory.MapType.TropicalInterior2)){
-            enemies.add(new BasicEnemy(1056,800,MapFactory.MapType.TropicalInterior2,batch,"EnemySix"));
-            enemies.add(new BasicEnemy(352,512,MapFactory.MapType.TropicalInterior2,batch,"EnemySeven"));
+            switch (num){
+                case 1:
+                    if(!currentCollisionLayer.getCell(1056/32,800/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(1056,800,MapFactory.MapType.TropicalInterior2,batch,"EnemySix"));
+                        allLocations.add(new Location(1056,800));
+                    }
+                    break;
+                case 2:
+                    if(!currentCollisionLayer.getCell(352/32,512/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(352,512,MapFactory.MapType.TropicalInterior2,batch,"EnemySeven"));
+                        allLocations.add(new Location(352,512));
+                    }
+                default:
+                    TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
+                    enemyTile.getProperties().put("nonpc","true");
+                    startNum = 1;
+            }
         }
     }
     /**

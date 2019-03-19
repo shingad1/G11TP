@@ -32,7 +32,7 @@ public class BasicEnemy extends AbstractEnemy{
         location = new Location(x,y);
         this.name = name;
         this.world = world;
-        health = 20;//to be 100
+        health = 100;
         attack = 20;
         defence = 0;
         speed = 10;
