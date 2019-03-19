@@ -145,7 +145,7 @@ public class CombatSystem
                     resetInput(2);
                 }
             }
-            if ((player.getHealth() == 0) || (enemy.getHealth() == 0)) {
+            if ((player.getHealth() <= 0) || (enemy.getHealth() <= 0)) {
                 finished = true;
                 if(finished){
                     //Dialogue d = new Dialogue("Enemy");
