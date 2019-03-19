@@ -5,6 +5,7 @@ import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.Location;
 import com.sps.game.sprites.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -189,7 +190,13 @@ public class CombatSystem
     }
 
     public Object[] getMoveSelectionStackKeySet(){
-         return moveSelectionStack.peek().keySet().toArray();
+        ArrayList<Object> result = new ArrayList<Object>();
+        Object[] keySetArray = moveSelectionStack.peek().keySet().toArray();
+        for (int i = 0; i < keySetArray.length; i++){
+            if(keySetArray[i] != null)
+                result.add(keySetArray[i]);
+        }
+        return result.toArray();
     }
 
     /**
@@ -202,47 +209,47 @@ public class CombatSystem
         if((inputByPlayer && playerControl) || !(inputByPlayer && playerControl)) {
             switch (input) {
                 case Q:
-                    if (getOptions()[0] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move)) {
+                    if (getOptions()[0] != null && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move)) {
                         moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]));
                         resetInput(0);
-                    } else if (moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move) {
+                    } else if (getOptions()[0] != null && moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]) instanceof MoveList.Move) {
                         assignMove(getOptions()[0], (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[0]), inputByPlayer);
                     }
                     break;
                 case W:
-                    if (getOptions()[1] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move)) {
+                    if (getOptions()[1] != null && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move)) {
                         moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]));
                         resetInput(0);
-                    } else if (moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move) {
+                    } else if (getOptions()[1] != null && moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]) instanceof MoveList.Move) {
                         assignMove(getOptions()[1], (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[1]), inputByPlayer);
                     }
                     break;
                 case E:
-                    if (getOptions()[2] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move)) {
+                    if (getOptions()[2] != null && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move)) {
                         moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]));
                         resetInput(0);
-                    } else if (moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move) {
+                    } else if (getOptions()[2] != null && moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]) instanceof MoveList.Move) {
                         assignMove(getOptions()[2], (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[2]), inputByPlayer);
                     }
                     break;
                 case R:
-                    if (getOptions()[3] != "" && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move)) {
+                    if (getOptions()[3] != null && !(moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move)) {
                         moveSelectionStack.push((HashMap) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]));
                         resetInput(0);
-                    } else if (moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move) {
+                    } else if (getOptions()[3] != null && moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]) instanceof MoveList.Move) {
                         assignMove(getOptions()[3], (MoveList.Move) moveSelectionStack.peek().get(getMoveSelectionStackKeySet()[3]), inputByPlayer);
                     }
                     break;
                 case A:
-                    if (moveSelector * 4 < getMoveSelectionStackKeySet().length)
+                    if (getOptions()[4] != null && moveSelector * 4 < getMoveSelectionStackKeySet().length)
                         moveSelector++;
                     break;
                 case S:
-                    if (moveSelector > 0)
+                    if (getOptions()[5] != null && moveSelector > 0)
                         moveSelector--;
                     break;
                 case D:
-                    if (moveSelectionStack.size() > 1)
+                    if (getOptions()[6] != null && moveSelectionStack.size() > 1)
                         moveSelectionStack.pop();
                     resetInput(0);
                     break;

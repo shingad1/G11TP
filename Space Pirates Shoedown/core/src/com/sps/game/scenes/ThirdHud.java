@@ -43,13 +43,13 @@ public class ThirdHud
     public void update(String[] options)
     {
         AttackLabel = new Label (
-                "Q: " + options[0] + " " +
-                     "W: " + options[1] + " " +
-                     "E: " + options[2] + " " +
-                     "R: " + options[3] + " " +
+                "Q: " + options[0] + "\n" +
+                     "W: " + options[1] + "\n" +
+                     "E: " + options[2] + "\n" +
+                     "R: " + options[3] + "\n" +
                      "\n" +
-                     "A: " + options[4] + " " +
-                     "S: " + options[5] + " " +
+                     "A: " + options[4] + "\n" +
+                     "S: " + options[5] + "\n" +
                      "D: " + options[6]
                 ,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
