@@ -178,6 +178,8 @@ public abstract class PlayScreen implements Screen {
 
     private TutorialHud tutorialHud;
 
+    private StoryHud storyHud;
+
     public Boolean merchantDetected;
     public Boolean buyHudUp;
     public BuyHud buyHud;
@@ -200,6 +202,7 @@ public abstract class PlayScreen implements Screen {
         playerInventory = new PlayerInventory(game.batch, controller);
         itemHud = new ItemHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
+        storyHud = new StoryHud(game.batch, controller);
         tutorialHud = new TutorialHud(gamecam);
         buyHud = new BuyHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
@@ -240,14 +243,14 @@ public abstract class PlayScreen implements Screen {
      * @param <code>float</code> dt.
      */
     public void update(float dt) {
-        if (Gdx.input.isKeyPressed(Input.Keys.P)) {
+        /*if (Gdx.input.isKeyPressed(Input.Keys.P)) {
             pause = true;
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         handleInput(dt);
         for (int i = 0; i < npcController.size(); i++) {
             if (npc.get(i).getWorld().equals(currentMapState)) {
@@ -300,6 +303,7 @@ public abstract class PlayScreen implements Screen {
             playerInventory.update();
         }
         tutorialHud.update();
+        storyHud.update();
     }
 
 
@@ -315,11 +319,11 @@ public abstract class PlayScreen implements Screen {
             gamecam.update();
             mapManager.setMapChanged(false);
         }
-        if(pause)
-        {
+       // if(pause)
+        //{
             if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
             {
-                pause = false;
+                pause = true;
                 try
                 {
                     Thread.sleep(100);
@@ -328,7 +332,7 @@ public abstract class PlayScreen implements Screen {
                     e.printStackTrace();
                 }
             }
-        }
+       // }
         else {
             update(delta); //render method keeps getting called
         }
@@ -373,7 +377,8 @@ public abstract class PlayScreen implements Screen {
 
         itemHud.stage.draw();
         dialogueHud.stage.draw();
-        tutorialHud.show();
+        //tutorialHud.show();
+        storyHud.stage.draw();
 
         /*if(Gdx.input.isKeyPressed(Input.Keys.T))
         {
