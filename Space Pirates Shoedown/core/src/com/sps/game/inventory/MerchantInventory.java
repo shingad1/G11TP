@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import com.sps.game.sprites.Player;
+import com.sps.game.scenes.BuyHud;
 
 import java.util.ArrayList;
 
@@ -51,11 +52,12 @@ public class MerchantInventory {
     private Image imagePlaceholder = new Image();
     private Label descriptionPlaceholder = new Label("Pick an item", skin);
     private Label goldPlaceholder = new Label("Item gold value", skin);
+    private Boolean buyHudOpen;
 
 
 
     public MerchantInventory(final SpriteBatch sb, PlayerController playerController) {
-
+        buyHudOpen = false;
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -107,7 +109,6 @@ public class MerchantInventory {
 
                 //Create hud here?
 
-
                 for (int i = 0; i < rejectedItems.size(); i++) {
                     //If the rejected item equals to the item that the payload is set to, then reject it.
                     if (rejectedItems.get(i).equals((payload.getObject()))) {
@@ -116,7 +117,6 @@ public class MerchantInventory {
                     }
                 }
                 return !"Cucumber".equals(payload.getObject()); //Cucumber is rejected by default
-
             }
 
             @Override
@@ -125,14 +125,15 @@ public class MerchantInventory {
                 if (Player.getPlayer().getGold() > inventoryController.findItem(merchant.getSelected()).getGoldvalue()) {
                     inventory.getItems().add((String) payload.getObject());
                     merchant.getItems().removeValue(payload.getObject().toString(), true);
-                    System.out.println(inventoryController.findItem(payload.getObject().toString()).getName() + " Has been sold for: " +
+                    System.out.println(inventoryController.findItem(payload.getObject().toString()).getName() + " Has been bought for: " +
                                        inventoryController.findItem(payload.getObject().toString()).getGoldvalue());
+                    buyHudOpen = true;
+                    System.out.println("BuyHudOpen: " + buyHudOpen);
 
                     //Test to see if the item has been added to the merchants inventory
-                    System.out.println("merchant: " + inventory.getItems() + "\n");
-
+                    System.out.println("inventory: " + inventory.getItems() + "\n");
                     //Test to see if the item has been removed from the player's inventory
-                    System.out.println("player: " + merchant.getItems() + "\n");
+                    System.out.println("merchant: " + merchant.getItems() + "\n");
 
 
                 } else {
@@ -151,6 +152,16 @@ public class MerchantInventory {
             }
         });
     }
+
+    public void toggleBuyHudOpen() {
+        buyHudOpen = !buyHudOpen;
+        System.out.println(buyHudOpen);
+    }
+
+    public Boolean getBuyHudOpen() {
+        return buyHudOpen;
+    }
+
 
 
     public void dragAndDropPlayer() {

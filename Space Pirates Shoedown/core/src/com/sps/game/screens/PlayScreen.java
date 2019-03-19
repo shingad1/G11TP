@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
+import com.sps.game.scenes.BuyHud;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
@@ -168,6 +169,8 @@ public abstract class PlayScreen implements Screen {
 
     int count = 0;
 
+    private boolean buyHudOpened;
+
     /**
      * Holds the different states the game can be in.
      */
@@ -186,6 +189,8 @@ public abstract class PlayScreen implements Screen {
      */
     private DialogueHud dialogueHud;
     public Boolean merchantDetected;
+    public Boolean buyHudUp;
+    public BuyHud buyHud;
 
     MiniMapScreen miniMapScreen;
 
@@ -205,9 +210,11 @@ public abstract class PlayScreen implements Screen {
         playerInventory = new PlayerInventory(game.batch, controller);
         itemHud = new ItemHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
+        buyHud = new BuyHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
         merchantDetected = false;
+        buyHudOpened = false;
         //MiniMapScreen = new MiniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
     }
 
@@ -261,6 +268,7 @@ public abstract class PlayScreen implements Screen {
         renderer.setView(gamecam);
         hud.update();
         itemHud.update();
+        buyHud.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
@@ -373,6 +381,10 @@ public abstract class PlayScreen implements Screen {
 
         itemHud.stage.draw();
         dialogueHud.stage.draw();
+        if (merchantInventory.getBuyHudOpen()) {
+            buyHud.stage.draw();
+        }
+
 
         batch.begin();
         if(pause)

@@ -64,6 +64,7 @@ public class HudScene  {
     private ImageButton saveButton;
 
     //public Inventory inventory;
+    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
 
 
     public HudScene(SpriteBatch sb, Player p){
@@ -101,7 +102,7 @@ public class HudScene  {
     private void formatting(){
         stage = new Stage();
         //Creating a Table and instantiating it, used for layout of the HUD
-        Table table = new Table();
+        Table table = new Table(skin);
         //All objects of the table will originate from top left of the table
         table.top().left();
         //The table will have the same width and height as its parent (screen)
