@@ -23,16 +23,23 @@ import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
 
 /**
- * This class is what the user will see, when they pick up an item
+ * This class consists of what the user will view when they finish a battle with an enemy.
+ * It will present the user with a view of the item that they have encountered, as well as options
+ * which the user will be able to select, depending on whether they want the item or not.
  *
+ * @Author Devin Shingadia
+ * @see com.sps.game.screens.PlayScreen
+ * @Version 1.0
  */
+
 public class ItemHud {
     /**
-     * Holds the stage that will display the screen for the pick up item
+     *   The stage is used to handle the input and the actors.
+     *   The table is added to the stage as an actor.
      */
     public Stage stage;
     /**
-     * Displays what the user cna see
+     * Used to make the inventory view compatible with multiple devices.
      */
     private Viewport viewport;
     /**
@@ -40,31 +47,71 @@ public class ItemHud {
      */
     private InputProcessor oldInput;
     /**
-     * Get the items from the inventoryController
+     * Get the item from the inventoryController.
      */
     private InventoryController inventoryController = InventoryController.getInstance();
     /**
-     * The user will see the table
+     * The table that the user will interact with.
      */
     private Table table;
+
     /**
-     * The skin file for the table and associated components
+     * Skin object used to format the table. A Json file is passed into the skin object to provide
+     * element specific ui.
      */
     private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
+
+    /**
+     * Boolean attribute which is true if the user has picked up the item, or false instead.
+     */
     private Boolean isPickedUp;
+
+    /**
+     * The buttons displayed on the table.
+     */
     private TextButton yesButton, noButton;
+
+    /**
+     * The SpriteBatch object is used to draw elements.
+     */
     public SpriteBatch sb;
+
+    /**
+     * Image placeholder which updates depending on the user input.
+     */
     private Image imagePlaceholder = new Image();
-    private PlayerInventory playerInventory;
-    private MerchantInventory merchantInventory;
+
+    /**
+     * Assigned to the button that the user clicks on.
+     */
     private String buttonClicked;
+
+    /**
+     * The label which describes the item.
+     */
     private Label pickUpLabel;
+
+    /**
+     * The item itself which is added to the user inventory.
+     */
     private Item nearbyItem;
+
+    /**
+     * The name of the item itself which is added ot hte user inventory.
+     */
     private Label itemName;
 
+    /**
+     * Creates a new ItemHud object, which sets up the various elements required to add a new element to the
+     * inventory of the user.
+     *
+     * @see com.sps.game.screens.PlayScreen#update(float)
+     *
+     * @param sb The spritebatch that is used to display the table.
+     * @param playerController A PlayerController object
+     */
     public ItemHud(SpriteBatch sb, PlayerController playerController) {
-        playerInventory = new PlayerInventory(sb, playerController);
-        merchantInventory = new MerchantInventory(sb, playerController);
+
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -74,6 +121,12 @@ public class ItemHud {
 
     }
 
+    /**
+     *   Sets up the table, which holds the item and it's associating image.
+     *   Uses the JSON skin file for formatting and displaying the lists.
+     *
+     *   Called in {@link #update()}
+     */
     private void formatting() {
         stage = new Stage();
         table = new Table(skin);
@@ -117,8 +170,6 @@ public class ItemHud {
         imagePlaceholder.setScale(1.25f, 1.25f);
 
 
-
-
         table.add(pickUpLabel).colspan(2).row();
         pickUpLabel.setFontScale(0.8f, 0.8f);
         table.row();
@@ -130,6 +181,13 @@ public class ItemHud {
         stage.addActor(table);
     }
 
+    /**
+     * Functionality for the actions that have been carried out, depending on the user input.
+     * Adds the element to the user inventory, if clicked yes.
+     * Handles the switching of the input.
+     *
+     * Called in the formatting method {@link #formatting()}
+     */
     public void clickFunction() {
         if (buttonClicked.equals("yes")) {
             System.out.println("Yes clicked");
@@ -147,11 +205,23 @@ public class ItemHud {
         }
     }
 
+    /**
+     * Sets hte input to the stage, which is the user interface of the Itemhud.
+     */
     public void setInput() {
         oldInput = Gdx.input.getInputProcessor();
         Gdx.input.setInputProcessor(stage);
     }
 
+    /**
+     * The update method which is called in the PlayScreen class. This method will handle the user input and
+     * determines which user input is required to get the inventory view to show up.
+     *
+     * Calls the {@link #formatting()} and {@link #setInput()} methods to set up the table and user input.
+     *
+     * @see com.sps.game.screens.PlayScreen#update(float)
+     *
+     */
     public void update() {
         if (Gdx.input.isKeyPressed(Input.Keys.H) && oldInput == null) {
             formatting();
@@ -167,6 +237,9 @@ public class ItemHud {
         }
     }
 
+    /**
+     * Disposes the stage to free resources.
+     */
     public void dispose(){
         stage.dispose();
     }
