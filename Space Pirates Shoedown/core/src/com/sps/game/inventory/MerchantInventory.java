@@ -244,7 +244,7 @@ public class MerchantInventory {
         table.add(imageLabel);
         table.row();
         table.row();
-        table.add(inventory);
+        table.add(inventory).height(230);
         inventory.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 clickedItem = inventoryController.findItem(inventory.getSelected());
