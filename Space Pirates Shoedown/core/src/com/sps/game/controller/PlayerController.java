@@ -62,6 +62,8 @@ public class PlayerController extends InputAdapter {
 
     private boolean enterShip;
 
+    private boolean controls;
+
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         //dialogue = false;
         this.player = p;
@@ -97,6 +99,13 @@ public class PlayerController extends InputAdapter {
             switch(keycode){
                 case Input.Keys.A:
 
+                    break;
+                case Input.Keys.C:
+                    if(controls){
+                        controls = false;
+                    } else if (!controls){
+                        controls = true;
+                    }
                     break;
                 case Input.Keys.E:
                     //WILL HAVE IF STATEMENT AROUND IT
@@ -181,6 +190,10 @@ public class PlayerController extends InputAdapter {
      */
     public boolean getEnterShip(){
         return enterShip;
+    }
+
+    public boolean getControls(){
+        return controls;
     }
 
     /**
@@ -284,7 +297,7 @@ public class PlayerController extends InputAdapter {
                         player.getVelocity().y = 0;
                     } else {
                         player.getVelocity().y = 4;
-                        player.changeState("down");
+                        player.changeState("up");
                         isKeyDown = true;
                     }
                     break;

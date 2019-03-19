@@ -53,7 +53,7 @@ public class HudScene  {
      */
     Label goldCountLabel;
 
-    private Image pause, story, backpack;
+    private Image story;
 
     private Texture saveTexture;
 
@@ -77,9 +77,7 @@ public class HudScene  {
         //Instantiating the goldCountLabel label with the BitmapFont font and the colour white
        // goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        pause = new Image(new Texture("core/assets/pause.png"));
         story = new Image(new Texture("core/assets/story.png"));
-        backpack = new Image(new Texture("core/assets/Inventory/backpack.png"));
 
         saveTexture = new Texture("core/assets/Buttons/SaveButton.png");
         saveTextureRegion = new TextureRegion(saveTexture);
@@ -113,9 +111,7 @@ public class HudScene  {
         //Adding the goldCountLabel label to the table with padding of 10px from the left
         table.add(goldCountLabel).padLeft(10);
         //putting the table on the stage so that it can be drawn
-        table.add(pause).size(50,50).padLeft(20);
         table.add(story).size(50,50).padLeft(20);
-        table.add(backpack).size(50, 50).pad(20);
         stage.addActor(table);
         //stage.addActor(saveButton);
         //Gdx.input.setInputProcessor(stage);

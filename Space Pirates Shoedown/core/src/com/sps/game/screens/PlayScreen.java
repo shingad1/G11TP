@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -242,7 +243,7 @@ public abstract class PlayScreen implements Screen {
      * @param <code>float</code> dt.
      */
     public void update(float dt) {
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.P)) {
             pause = true;
             try {
                 Thread.sleep(100);
@@ -265,7 +266,6 @@ public abstract class PlayScreen implements Screen {
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
                 dialogueHud.update(npcTemp.getName());
-                //System.out.println(npcTemp.getName() + " In proximity");
 
                 if (!(npcTemp instanceof MerchantNPC)) {
                     merchantDetected = false;
@@ -333,6 +333,7 @@ public abstract class PlayScreen implements Screen {
         else {
             update(delta); //render method keeps getting called
         }
+
         batch.setProjectionMatrix(gamecam.combined);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
