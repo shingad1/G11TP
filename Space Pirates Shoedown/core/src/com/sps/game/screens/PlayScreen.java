@@ -439,18 +439,43 @@ public abstract class PlayScreen implements Screen {
             if(!currentCollisionLayer.getCell(800/32,640/32).getTile().getProperties().containsKey("nonpc")){
                 enemies.add(new BasicEnemy(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
             } else {
-                allLocations.clear();
-                enemies.clear();
+                if(!enemies.isEmpty()) {
+                    allLocations.clear();
+                    enemies.clear();
+                }
             }
         } else if(currentMapState.equals(MapFactory.MapType.HomeInterior2)){
-            enemies.add(new BasicEnemy(672,640, MapFactory.MapType.HomeInterior2,batch,"EnemyTwo"));
-            enemies.add(new BasicEnemy(1120, 544,MapFactory.MapType.HomeInterior2,batch,"EnemyThree"));
+            //ArrayList<AbstractEnemy> local = new ArrayList<AbstractEnemy>();
+            //BasicEnemy enemy2= new BasicEnemy(1120, 544,MapFactory.MapType.HomeInterior2,batch,"EnemyThree");
+            if(!currentCollisionLayer.getCell(672/32,640/32).getTile().getProperties().containsKey("nonpc")) {
+                enemies.add(new BasicEnemy(672, 640, MapFactory.MapType.HomeInterior2, batch, "EnemyTwo"));
+            } else {
+                if(!enemies.isEmpty()) {
+                    allLocations.clear();
+                    enemies.clear();
+                }
+            }
+
         } else if(currentMapState.equals(MapFactory.MapType.CandyInterior)){
-            enemies.add(new BasicEnemy(800, 832,MapFactory.MapType.CandyInterior,batch,"EnemyCandyOne"));
-            enemies.add(new BasicEnemy(576,480, MapFactory.MapType.CandyInterior,batch,"EnemyCandyTwo"));
+            if(!currentCollisionLayer.getCell(800/32,832/32).getTile().getProperties().containsKey("nonpc")) {
+                enemies.add(new BasicEnemy(800, 832, MapFactory.MapType.CandyInterior, batch, "EnemyCandyOne"));
+            } else {
+                if(!enemies.isEmpty()) {
+                    allLocations.clear();
+                    enemies.clear();
+                }
+            }
+            //enemies.add(new BasicEnemy(576,480, MapFactory.MapType.CandyInterior,batch,"EnemyCandyTwo"));
         } else if(currentMapState.equals(MapFactory.MapType.CandyInterior2)){
-            enemies.add(new BasicEnemy(768,800,MapFactory.MapType.CandyInterior2,batch,"EnemyCandyThree"));
-            enemies.add(new BasicEnemy(1120,928,MapFactory.MapType.CandyInterior2,batch,"EnemyCandyFour"));
+            if(!currentCollisionLayer.getCell(768/32,800/32).getTile().getProperties().containsKey("nonpc")) {
+                enemies.add(new BasicEnemy(768, 800, MapFactory.MapType.CandyInterior2, batch, "EnemyCandyThree"));
+            } else {
+                if(!enemies.isEmpty()) {
+                    allLocations.clear();
+                    enemies.clear();
+                }
+            }
+            //enemies.add(new BasicEnemy(1120,928,MapFactory.MapType.CandyInterior2,batch,"EnemyCandyFour"));
         } else if(currentMapState.equals(MapFactory.MapType.CandyMansion)){
             enemies.add(new BasicEnemy(832,512, MapFactory.MapType.CandyMansion,batch,"Enemyreg1"));
             enemies.add(new BasicEnemy(1216,448, MapFactory.MapType.CandyMansion,batch,"EnemyCandyFive"));
