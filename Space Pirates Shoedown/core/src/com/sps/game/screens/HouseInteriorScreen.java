@@ -62,32 +62,8 @@ public class HouseInteriorScreen extends PlayScreen {
             p.setY(352);
         }
 
-        if(currentMapState.equals(MapFactory.MapType.HomeInterior)){
-            enemies.add(new BasicEnemy(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
-        } else if(currentMapState.equals(MapFactory.MapType.HomeInterior2)){
-            enemies.add(new BasicEnemy(672,640, MapFactory.MapType.HomeInterior2,batch,"EnemyTwo"));
-            enemies.add(new BasicEnemy(1120, 544,MapFactory.MapType.HomeInterior2,batch,"EnemyThree"));
-        } else if(currentMapState.equals(MapFactory.MapType.CandyInterior)){
-            enemies.add(new BasicEnemy(800, 832,MapFactory.MapType.CandyInterior,batch,"EnemyCandyOne"));
-            enemies.add(new BasicEnemy(576,480, MapFactory.MapType.CandyInterior,batch,"EnemyCandyTwo"));
-        } else if(currentMapState.equals(MapFactory.MapType.CandyInterior2)){
-            enemies.add(new BasicEnemy(768,800,MapFactory.MapType.CandyInterior2,batch,"EnemyCandyThree"));
-            enemies.add(new BasicEnemy(1120,928,MapFactory.MapType.CandyInterior2,batch,"EnemyCandyFour"));
-        } else if(currentMapState.equals(MapFactory.MapType.CandyMansion)){
-            enemies.add(new BasicEnemy(832,512, MapFactory.MapType.CandyMansion,batch,"Enemyreg1"));
-            enemies.add(new BasicEnemy(1216,448, MapFactory.MapType.CandyMansion,batch,"EnemyCandyFive"));
-            enemies.add(new BasicEnemy(320,288,MapFactory.MapType.CandyMansion,batch,"EnemyCandySix"));
-            enemies.add(new BasicEnemy(384,672,MapFactory.MapType.CandyMansion,batch,"EnemyCandySeven"));
-            enemies.add(new BasicEnemy(1248,800, MapFactory.MapType.CandyMansion,batch,"EnemyCandyEight"));
-            enemies.add(new HeadEnemy(832, 928,MapFactory.MapType.CandyMansion,batch,"HeadEnemyCandy"));
-        } else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1)){
-            enemies.add(new BasicEnemy(928,768,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalTwo"));
-            enemies.add(new BasicEnemy(448,832,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalOne"));
-            enemies.add(new BasicEnemy(448,480, MapFactory.MapType.TropicalInterior1,batch,"EnemyFour"));
-        } else if(currentMapState.equals(MapFactory.MapType.TropicalInterior2)){
-            enemies.add(new BasicEnemy(1056,800,MapFactory.MapType.TropicalInterior2,batch,"EnemySix"));
-            enemies.add(new BasicEnemy(352,512,MapFactory.MapType.TropicalInterior2,batch,"EnemySeven"));
-        }
+        createEnemies();
+
         allLocations = new ArrayList<Location>();
         addEnemiesLocations(selected);
         p.setBatch(batch);
