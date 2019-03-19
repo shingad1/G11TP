@@ -109,7 +109,6 @@ public class MapManager implements ProfileObserver {
     public Vector2 getPlayerCoOrdinate() {
         Vector2 vector2;
         Long x,y;
-
         ProfileManager profileManager = new ProfileManager();
         if (profileManager.doesProfileExist("default")) {
             FileReader file = null;

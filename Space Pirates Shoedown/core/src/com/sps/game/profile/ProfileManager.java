@@ -4,12 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonWriter;
 import com.badlogic.gdx.utils.ObjectMap;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -113,31 +111,33 @@ public class ProfileManager extends ProfileSubject {
      */
     public void writeProfileToStorage(String profileName, String fileData, boolean overwrite){
         String fullFilename = profileName + SAVEGAME_SUFFIX;
-        boolean localFileExists = Gdx.files.internal( fullFilename).exists();
+        boolean localFileExists = Gdx.files.internal(fullFilename).exists();
         if(localFileExists && !overwrite){
             return;
         }
-
         //FileHandle file = null;
 
         if(Gdx.files.isLocalStorageAvailable()){
-            //file = Gdx.files.local(fullFilename);
-            //String encodedString = Base64Coder.encodeString(fileData);
 
+            BufferedWriter writer = null;
             try {
-                ObjectOutputStream serialise = new ObjectOutputStream(new FileOutputStream(fullFilename));
-                serialise.writeObject(fileData);
-                serialise.close();
-                } catch (FileNotFoundException e) {
-                System.err.println(e.getMessage());
-                } catch (IOException e) {
-                System.err.println(e.getMessage());
-                }
-
+                writer = new BufferedWriter(new FileWriter(fullFilename));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                writer.write(fileData);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             //file.writeString(fileData, !overwrite);//encodedString
         }
-
-        profiles.put(profileName, FileHandle.tempFile(fullFilename));
+        profiles.put(profileName, FileHandle.tempDirectory(fullFilename));
     }
 
     /**
@@ -172,7 +172,8 @@ public class ProfileManager extends ProfileSubject {
      */
     public void saveProfile(){
         notify(this, ProfileObserver.ProfileEvent.SAVING_PROFILE);
-        String text = json.prettyPrint(json.toJson(profileProperties));
+        json.setOutputType(JsonWriter.OutputType.json);
+        String text = this.json.prettyPrint(this.json.toJson(profileProperties));
         writeProfileToStorage(profileName, text, true);
     }
 
