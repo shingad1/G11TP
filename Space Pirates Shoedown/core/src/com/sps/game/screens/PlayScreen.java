@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
+import com.sps.game.scenes.BuyHud;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
@@ -168,6 +170,8 @@ public abstract class PlayScreen implements Screen {
 
     int count = 0;
 
+    private boolean buyHudOpened;
+
     /**
      * Holds the different states the game can be in.
      */
@@ -186,6 +190,8 @@ public abstract class PlayScreen implements Screen {
      */
     private DialogueHud dialogueHud;
     public Boolean merchantDetected;
+    public Boolean buyHudUp;
+    public BuyHud buyHud;
 
     MiniMapScreen miniMapScreen;
 
@@ -205,9 +211,11 @@ public abstract class PlayScreen implements Screen {
         playerInventory = new PlayerInventory(game.batch, controller);
         itemHud = new ItemHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
+        buyHud = new BuyHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
         merchantDetected = false;
+        buyHudOpened = false;
         //MiniMapScreen = new MiniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
     }
 
@@ -242,7 +250,7 @@ public abstract class PlayScreen implements Screen {
      * @param <code>float</code> dt.
      */
     public void update(float dt) {
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.P)) {
             pause = true;
             try {
                 Thread.sleep(100);
@@ -261,11 +269,11 @@ public abstract class PlayScreen implements Screen {
         renderer.setView(gamecam);
         hud.update();
         itemHud.update();
+        buyHud.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
                 dialogueHud.update(npcTemp.getName());
-                //System.out.println(npcTemp.getName() + " In proximity");
 
                 if (!(npcTemp instanceof MerchantNPC)) {
                     merchantDetected = false;
@@ -333,6 +341,7 @@ public abstract class PlayScreen implements Screen {
         else {
             update(delta); //render method keeps getting called
         }
+
         batch.setProjectionMatrix(gamecam.combined);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -373,6 +382,10 @@ public abstract class PlayScreen implements Screen {
 
         itemHud.stage.draw();
         dialogueHud.stage.draw();
+        if (merchantInventory.getBuyHudOpen()) {
+            buyHud.stage.draw();
+        }
+
 
         batch.begin();
         if(pause)

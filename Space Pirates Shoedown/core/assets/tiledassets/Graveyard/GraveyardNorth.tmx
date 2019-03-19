@@ -9,7 +9,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztmjESwjAMBB2ewivy/9/wC4o0TMZJpPhOOjkUaihkrVY2HsPaWlsnic9SO/4cWhHF8X5tkclxVgO7PjUfbH8sjmhPqj5GOdh93OdHrYfwgWa/k8/KkX0u9db//Qy9P7J4exzMWli5K59Xo3OVvVdYPpBcR7mu1oj+/lDzocb75H2uUvuRD++sKNxHehzsOplRba4sHJX6b/Vxdb9UC8W5svbLe+6y3SByRd/bWcGYK6Y/y/dg5VB5dx/1lV0/2sdZXyrse5QPz1s2oi/7HFHnFTunhyNivu6ukbXP0T3x3BMVfKn5QLtUe7+K8uGpmfVbB4Ijel4qcozwVeCYxcfsHJXfRWf00eOI/G8Xa50vIyAFSQ==
+   eJztmMERgDAIBGNX9t+NXfhyxkfUBMJxx/jg4yjcQhIDe2ttL2LHpm0/B5ehOKLjjPh/e4elniw6vLqiOND5Ya2HlwO9H1fFW+FnNbvF3+g32euvF//+jCGXCE5EPGa/6BpE7qksJoaaPvn6ioH+f7DVg42XTY9VuxrHyP7Jvit7/Cn0SBk5ZeBQZpr57zBzMmqz9BLWeQniLuL1wVgjRC6QubHeI1Xs4sjm8cbP1h+VB9V9j5iDRfRqiP4vw+dMTMT6UutPUb2L2jxI4Swa0cw2v0Jp8JwLkbwMuVyhhYnDo1GBo0o9qnNUmfVUqUePI9JQMU/+ag8h
   </data>
  </layer>
  <layer id="3" name="Doors" width="50" height="50">
