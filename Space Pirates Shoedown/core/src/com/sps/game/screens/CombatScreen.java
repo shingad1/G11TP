@@ -146,7 +146,6 @@ public class CombatScreen implements Screen {
      */
     public void update(float dt){
         if (cs.getFinished()){
-            playScreen.combatExit();
             returnScreen();
         }
         gamecam.update();

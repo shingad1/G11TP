@@ -62,10 +62,10 @@ public class HouseInteriorScreen extends PlayScreen {
             p.setY(352);
         }
 
-        createEnemies();
+        createEnemies(startNum);
 
-        allLocations = new ArrayList<Location>();
-        addEnemiesLocations(selected);
+        //allLocations = new ArrayList<Location>();
+       // addEnemiesLocations(selected);
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbound, ybound, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
