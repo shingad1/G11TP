@@ -14,7 +14,7 @@ public abstract class Fighter {
 
     protected int speed;
 
-    protected ArrayList<Effect> effectOverTimeList;
+    protected ArrayList<Effect> effectOverTimeList = new ArrayList<Effect>();
 
     public void changeHealth(int diff){health += diff;}
 
@@ -33,25 +33,24 @@ public abstract class Fighter {
     public int getSpeed(){return speed;}
 
     public void combatUpdate(){
-        for(Effect effect : effectOverTimeList)
-            handleEffect(effect);
+        for(int i = 0; i < effectOverTimeList.size(); i++){
+            if(!(effectOverTimeList.get(i).hasBeenApplied()) || effectOverTimeList.get(i).doesStackOverTime())
+                applyEffect(effectOverTimeList.get(i));
+
+            if(effectOverTimeList.get(i).update()){
+                if(effectOverTimeList.get(i).isTemporary()){
+                    effectOverTimeList.get(i).reverseEffect();
+                    applyEffect(effectOverTimeList.get(i));
+                }
+                effectOverTimeList.remove(i);
+                //i--;
+            }
+        }
+
     }
 
     public void inflictEffect(Stat status,int diff,int duration, boolean stacksOverTime, boolean temporary){
         effectOverTimeList.add(new Effect(status, diff, duration, stacksOverTime, temporary));
-    }
-
-    public void handleEffect(Effect effect){
-        if(!(effect.hasBeenApplied() && !effect.stacksOverTime))
-            applyEffect(effect);
-
-        if(effect.update()){
-            if(effect.isTemporary()){
-                effect.reverseEffect();
-                applyEffect(effect);
-            }
-            effectOverTimeList.remove(effect);
-        }
     }
 
     public void applyEffect(Effect effect){

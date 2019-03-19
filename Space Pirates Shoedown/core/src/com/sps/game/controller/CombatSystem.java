@@ -63,10 +63,12 @@ public class CombatSystem
     private String enemyChosenMoveKey;
 
     private boolean resolveOnce;
+    private boolean playerWin;
 
     public CombatSystem(Player p, AbstractEnemy e, SpriteBatch sb){
         this.player = p;
         this.enemy = e;
+        enemy.setCombatSystem(this);
         playerMoveList = new MoveList(this.player,this.enemy);
         enemyMoveList = new MoveList(this.enemy,this.player);
         playerTurn = true;
@@ -84,6 +86,7 @@ public class CombatSystem
         playerControl = true;
 
         resolveOnce = false;
+        playerWin = true;
     }
     /**
      * Changes the boolean when it is the players turn.
@@ -93,7 +96,7 @@ public class CombatSystem
     }
 
     public void render(){
-        animationHandler.render(playerTurn);
+        animationHandler.render(playerWin);
     }
 
     /**
@@ -115,9 +118,11 @@ public class CombatSystem
             if(playerChosenMove != null && enemyChosenMove != null){
                 BattleOutcome outcome = resolveCombat();
                 if (outcome == BattleOutcome.Win && !resolveOnce){
+                    playerWin = true;
                     animationHandler.setupPlayerAnimation(playerChosenMoveKey);
                     resolveOnce = true;
                 } else if (outcome == BattleOutcome.Lose && !resolveOnce){
+                    playerWin = false;
                     animationHandler.setupEnemyAnimation(enemyChosenMoveKey);
                     resolveOnce = true;
                 } else if (outcome == BattleOutcome.Draw && !resolveOnce){

@@ -41,6 +41,8 @@ public class MoveList {
 
     public HashMap<String,Move> getMovelist(){return movelist;}
 
+    public Move getMoveByKey(String key){return movelist.get(key);}
+
     public void use(String move){
         Move chosenMove = movelist.get(move);
         switch(chosenMove.getTarget()){

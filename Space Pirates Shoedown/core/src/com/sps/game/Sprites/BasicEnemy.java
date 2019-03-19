@@ -120,20 +120,20 @@ public class BasicEnemy extends AbstractEnemy{
         {
             int temp = rand.nextInt(4)+1; //rand.nextInt(size of list) + 1
             switch (temp) {
-                case 1:
-                    system.assignMove("Attack", moveList.getMovelist().get("Attack"), false);
+                /*case 1:
+                    system.assignMove("Slow", moveList.getMoveByKey("Slow"),false);
                     break;
                 case 2:
-                    system.assignMove("Quick Attack", moveList.getMovelist().get("Quick Attack"), false);
+                    system.assignMove("Quick Attack", moveList.getMoveByKey("Quick Attack"), false);
                     break;
                 case 3:
-                    system.assignMove("Poison", moveList.getMovelist().get("Poison"), false);
+                    system.assignMove("Poison", moveList.getMoveByKey("Poison"), false);
                     break;
                 case 4:
-                    system.assignMove("Frighten", moveList.getMovelist().get("Frighten"),false);
-                    break;
+                    system.assignMove("Frighten", moveList.getMoveByKey("Frighten"),false);
+                    break;*/
                 default:
-                    system.assignMove("Slow", moveList.getMovelist().get("Slow"),false);
+                    system.assignMove("Block", moveList.getMoveByKey("Block"), false);
                     break;
             }
         }
