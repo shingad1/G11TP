@@ -19,11 +19,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
-import com.sps.game.scenes.BuyHud;
-import com.sps.game.scenes.DialogueHud;
-import com.sps.game.scenes.HudScene;
+import com.sps.game.scenes.*;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.scenes.ItemHud;
 import com.sps.game.sprites.*;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
@@ -148,21 +145,10 @@ public abstract class PlayScreen implements Screen {
      */
     private MapManager mapManager;
     /**
-     * Creates and holds a story controller
-     */
-    private StoryController storyController = new StoryController();
-    /**
-     * Creates and holds a tutorial controller
-     */
-    private TutorialController1 tutorialController = new TutorialController1();
     /**
      * Holds a random number generator.
      */
     protected Random random;
-    /**
-     * Holds a boolean value to display a dialogue box. True if the dialogue box should appear, otherwise false.
-     */
-    private boolean dialogBoolean = true;
     /**
      * Holds the MapType of the map, before the player enters the house.
      */
@@ -189,6 +175,9 @@ public abstract class PlayScreen implements Screen {
      * Holds an instance of the DialogueHud, that displays the dialogue of the NPC or enemy.
      */
     private DialogueHud dialogueHud;
+
+    private TutorialHud tutorialHud;
+
     public Boolean merchantDetected;
     public Boolean buyHudUp;
     public BuyHud buyHud;
@@ -211,6 +200,7 @@ public abstract class PlayScreen implements Screen {
         playerInventory = new PlayerInventory(game.batch, controller);
         itemHud = new ItemHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
+        tutorialHud = new TutorialHud(gamecam);
         buyHud = new BuyHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -309,6 +299,7 @@ public abstract class PlayScreen implements Screen {
         } else {
             playerInventory.update();
         }
+        tutorialHud.update();
     }
 
 
@@ -382,11 +373,15 @@ public abstract class PlayScreen implements Screen {
 
         itemHud.stage.draw();
         dialogueHud.stage.draw();
+        tutorialHud.show();
+
+        /*if(Gdx.input.isKeyPressed(Input.Keys.T))
+        {
+            tutorialHud.show();
+        }*/
         if (merchantInventory.getBuyHudOpen()) {
             buyHud.stage.draw();
         }
-
-
         batch.begin();
         if(pause)
         {
@@ -395,8 +390,6 @@ public abstract class PlayScreen implements Screen {
         batch.end();
 
         changeMaps();
-
-        //MiniMapScreen.miniMap();
     }
 
     @Override
