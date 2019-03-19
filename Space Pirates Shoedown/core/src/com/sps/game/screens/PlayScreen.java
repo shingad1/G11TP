@@ -326,7 +326,7 @@ public abstract class PlayScreen implements Screen {
         }
         if(pause)
         {
-            if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+            if(Gdx.input.isKeyPressed(Input.Keys.P))
             {
                 pause = false;
                 try
@@ -390,7 +390,7 @@ public abstract class PlayScreen implements Screen {
         batch.begin();
         if(pause)
         {
-            batch.draw(pauseTexture,gamecam.position.x - 240,gamecam.position.y - 240,480,480);
+            batch.draw(pauseTexture,gameport.getScreenX() + 50,gameport.getScreenY() + 50,500,500);
         }
         batch.end();
 
