@@ -60,10 +60,9 @@ public class InventoryController {
     public Item axe;
     public Item fluxCapacitor;
     public Item shoes;
-    public Item hamster;
     public Item hammer;
     public Item piratesEye;
-    public Item cucumber;
+    public Item fakeShoe;
     public Item shoeLaces;
     public Item sword;
     public Item socks;
@@ -81,10 +80,9 @@ public class InventoryController {
                           axe,
                           fluxCapacitor,
                           shoes,
-                          hamster,
                           hammer,
                           piratesEye,
-                          cucumber,
+                fakeShoe,
                           shoeLaces,
                           sword,
                           socks
@@ -96,9 +94,9 @@ public class InventoryController {
          */
         inventory.setItems(socks.getName(),
                            shoeLaces.getName(),
-                           cucumber.getName(),
-                           fluxCapacitor.getName()
-
+                           fakeShoe.getName(),
+                           fluxCapacitor.getName(),
+                           piratesEye.getName()
                 );
 
 
@@ -115,10 +113,9 @@ public class InventoryController {
                                axe.getImage(),
                                fluxCapacitor.getImage(),
                                shoes.getImage(),
-                               hamster.getImage(),
                                hammer.getImage(),
                                piratesEye.getImage(),
-                               cucumber.getImage(),
+                               fakeShoe.getImage(),
                                shoeLaces.getImage(),
                                sword.getImage());
 
@@ -135,17 +132,16 @@ public class InventoryController {
      * @see #itemImageList
      */
     private void setItems() {
-        fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1,  "core/assets/Inventory/images/shoe.png");
-        axe = new Item("Axe", 20, "An Axe to cut pirates in half", 2, "core/assets/Inventory/images/premium-sword.png");
-        fluxCapacitor = new Item("Flux Capacitor", 200,"Travel through time!", 3, "core/assets/Inventory/images/plate.png");
+        fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1,  "core/assets/Inventory/images/fuel.png");
+        axe = new Item("Axe", 20, "An Axe to cut pirates in half", 2, "core/assets/Inventory/images/premium-axe.png");
+        fluxCapacitor = new Item("Flux Capacitor", 200,"Travel through time!", 3, "core/assets/Inventory/images/flux-capacitor.png");
         shoes = new Item("Shoes", 50,  "Some fake shoes", 4, "core/assets/Inventory/images/shoe.png");
-        hamster = new Item("Hamster", 1, "A rare hamster", 5, "core/assets/Inventory/images/premium-axe.png");
         hammer = new Item("Hammer", 25, "1.5x more effective at killing pirates", 6, "core/assets/Inventory/images/hammer.png");
-        piratesEye = new Item("Pirates Eye", 250, "Gives the ability to spot pirates a mile away!", 7, "core/assets/Inventory/images/silvershoe.png");
-        cucumber = new Item("Cucumber", 0, "A useless cucumber", 8, "core/assets/Inventory/images/wood.png");
-        shoeLaces = new Item("Shoe Laces", 25, "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/potion.png");
-        sword = new Item("Sword", 1000, "Hack your way to the final boss", 10, "core/assets/Inventory/images/axe.png");
-        socks = new Item("Socks", 3, "Next best substitute for shoes", 11, "core/assets/Inventory/images/potion.png");
+        piratesEye = new Item("Pirates Eye", 250, "Gives the ability to spot pirates a mile away!", 7, "core/assets/Inventory/images/eye.png");
+        fakeShoe = new Item("Fake Shoe", 0, "A fake shoe. Made out of newspaper.", 8, "core/assets/Inventory/images/fakeShoe.png");
+        shoeLaces = new Item("Shoe Laces", 25, "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/shoeLaces.png");
+        sword = new Item("Sword", 1000, "Hack your way to the final boss", 10, "core/assets/Inventory/images/regularSword.png");
+        socks = new Item("Socks", 3, "Next best substitute for shoes", 11, "core/assets/Inventory/images/sock.png");
     }
 
     /**
