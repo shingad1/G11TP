@@ -25,18 +25,18 @@ public class CombatControllerTest {
 
     @Before
     public void setUp(){
+        //world = MapFactory.Maptype.HomeWorldScreen;
         sb = new SpriteBatch();
-        //p = new Player();
         cs = new CombatSystem(p,e,sb);
         e = new BasicEnemy(9,9,world,sb, "Pirate");
         combatController = new CombatController(p, e, cs);
     }
-
+/*
     @Test
     public void keyDown()
     {
-        keyPressed = 81;
+        keyPressed = 72;
         int keycode = keyPressed;
-        assertTrue(keyPressed==keycode);
-    }
+        assertTrue(keyPressed == keycode);
+    }*/
 }

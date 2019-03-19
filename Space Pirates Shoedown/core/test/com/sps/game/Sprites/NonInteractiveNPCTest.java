@@ -3,9 +3,12 @@ package com.sps.game.Sprites;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.maps.MapFactory;
 import com.sps.test.GdxTestRunner;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import com.sps.game.sprites.Location;
+import com.sps.game.sprites.NonInteractiveNPC;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,64 +17,55 @@ public class NonInteractiveNPCTest {
 
     private SpriteBatch sb;
     private MapFactory.MapType world;
-    private com.sps.game.sprites.NonInteractiveNPC nonnteractiveNPC;
+    private NonInteractiveNPC nonInteractiveNPC;
     private String state;
-    //private Vector2 velocity;
-
+    private Location location;
 
     @Before
     public void setup() {
         sb = new SpriteBatch();
-        //velocity = new Vector2();
-        nonnteractiveNPC = new com.sps.game.sprites.NonInteractiveNPC(12, 9, world,sb, "Pirate");
+        world = MapFactory.MapType.HomeWorldMap1;
+        nonInteractiveNPC = new NonInteractiveNPC(12, 9, world,sb, "Pirate");
+        location = new Location(12,9);
+        state = "";
     }
 
     @Test
     public void getX() {
-        assertEquals(12, nonnteractiveNPC.getX());
+        assertEquals(12, nonInteractiveNPC.getX(),0);
     }
 
-    @org.junit.Test
+    @Test
     public void getY() {
-        assertEquals(9, nonnteractiveNPC.getY());
+        assertEquals(9, nonInteractiveNPC.getY(),0);
     }
 
-    @org.junit.Test
+    @Test
     public void getWorld() {
-        assertEquals("Candy Land", nonnteractiveNPC.getWorld());
+        assertEquals("Candy Land", nonInteractiveNPC.getWorld());
     }
-
-    //@Test
-    //public void getVelocity() {
-
-    //}
 
     @Test
     public void setY() {
-        nonnteractiveNPC.setY(58);
-        assertEquals(58, nonnteractiveNPC.getY(),0);
+        nonInteractiveNPC.setY(58);
+        assertEquals(58, nonInteractiveNPC.getY(),0);
     }
 
     @Test
     public void setX() {
-        nonnteractiveNPC.setX(22);
-        assertEquals(22, nonnteractiveNPC.getX());
+        nonInteractiveNPC.setX(22);
+        assertEquals(22, nonInteractiveNPC.getLocation().getX(),0);
     }
 
     @Test
-    public void getAnimation() {
-    }
-
-    @org.junit.Test
-    public void changeState() {
-        state = "Paused";
-        assertEquals("Paused", state);
-    }
-
-    @org.junit.Test
     public void getLocation() {
-        com.sps.game.sprites.Location location = new com.sps.game.sprites.Location(5, 9);
-        assertEquals(5,location.getX(),0);
-        assertEquals(9, location.getY(), 0);
+        assertEquals(12, location.getX(),0);
+        assertEquals(9, location.getY(),0);
+    }
+
+    @After
+    public void after() {
+        nonInteractiveNPC.getLocation().setX(12);
+        nonInteractiveNPC.getLocation().setY(9);
     }
 }
