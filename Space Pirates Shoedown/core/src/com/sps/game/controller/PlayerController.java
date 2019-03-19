@@ -284,7 +284,7 @@ public class PlayerController extends InputAdapter {
                         player.getVelocity().y = 0;
                     } else {
                         player.getVelocity().y = 4;
-                        player.changeState("down");
+                        player.changeState("up");
                         isKeyDown = true;
                     }
                     break;
