@@ -18,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import com.sps.game.sprites.Player;
-import com.sps.game.scenes.BuyHud;
 
 import java.util.ArrayList;
 
@@ -52,12 +51,10 @@ public class MerchantInventory {
     private Image imagePlaceholder = new Image();
     private Label descriptionPlaceholder = new Label("Pick an item", skin);
     private Label goldPlaceholder = new Label("Item gold value", skin);
-    private Boolean buyHudOpen;
 
 
 
     public MerchantInventory(final SpriteBatch sb, PlayerController playerController) {
-        buyHudOpen = false;
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -127,8 +124,6 @@ public class MerchantInventory {
                     merchant.getItems().removeValue(payload.getObject().toString(), true);
                     System.out.println(inventoryController.findItem(payload.getObject().toString()).getName() + " Has been bought for: " +
                                        inventoryController.findItem(payload.getObject().toString()).getGoldvalue());
-                    buyHudOpen = true;
-                    System.out.println("BuyHudOpen: " + buyHudOpen);
 
                     //Test to see if the item has been added to the merchants inventory
                     System.out.println("inventory: " + inventory.getItems() + "\n");
@@ -152,16 +147,6 @@ public class MerchantInventory {
             }
         });
     }
-
-    public void toggleBuyHudOpen() {
-        buyHudOpen = !buyHudOpen;
-        System.out.println(buyHudOpen);
-    }
-
-    public Boolean getBuyHudOpen() {
-        return buyHudOpen;
-    }
-
 
 
     public void dragAndDropPlayer() {
@@ -267,8 +252,7 @@ public class MerchantInventory {
             }
         });
 
-        table.add(merchant).height(230);
-        merchant.setWidth(200);
+        table.add(merchant).height(230).width(230);
         table.add(imagePlaceholder);
         table.row();
         table.row();
