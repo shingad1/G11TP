@@ -294,6 +294,8 @@ https://opengameart.org/content/lpc-city-outside
 
 https://opengameart.org/content/lpc-interior-castle-tiles
 
+https://opengameart.org/content/lpc-castle-mega-pack
+
 Music:
 Home World Music: https://www.melodyloops.com/tracks/creativity/
 Candy Land Music: https://www.melodyloops.com/my-music/longoloops/orchestral-game/
