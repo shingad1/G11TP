@@ -162,7 +162,7 @@ public abstract class PlayScreen implements Screen {
 
     private WinHud winHud;
 
-    public static boolean[] flags = {false, false, false};
+    public static boolean[] flags = {false, false, false, false, false};
     /**
      * Holds the different states the game can be in.
      */
@@ -419,7 +419,7 @@ public abstract class PlayScreen implements Screen {
      * Changes the screen once combat is finished.
      */
     public void combatExit(){
-
+            Player.getPlayer().playerReset();
             startNum++;
             enemies.clear();
             allLocations.clear();
@@ -508,9 +508,9 @@ public abstract class PlayScreen implements Screen {
                     }
                     break;
                 case 2:
-                    if(!currentCollisionLayer.getCell(1216/32,448/32).getTile().getProperties().containsKey("nonpc")) {
-                        enemies.add(new BasicEnemy(1216,448, MapFactory.MapType.CandyMansion,batch,"EnemyCandyFive"));
-                        allLocations.add(new Location(1216, 448));
+                    if(!currentCollisionLayer.getCell(832/32,928/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new HeadEnemy(832, 928,MapFactory.MapType.CandyMansion,batch,"HeadEnemyCandy"));
+                        allLocations.add(new Location(832,928));
                     }
                     break;
                 case 3:
@@ -532,9 +532,9 @@ public abstract class PlayScreen implements Screen {
                     }
                     break;
                 case 6:
-                    if(!currentCollisionLayer.getCell(832/32,928/32).getTile().getProperties().containsKey("nonpc")) {
-                        enemies.add(new HeadEnemy(832, 928,MapFactory.MapType.CandyMansion,batch,"HeadEnemyCandy"));
-                        allLocations.add(new Location(832,928));
+                    if(!currentCollisionLayer.getCell(1216/32,448/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new BasicEnemy(1216,448, MapFactory.MapType.CandyMansion,batch,"EnemyCandyFive"));
+                        allLocations.add(new Location(1216, 448));
                     }
                     break;
                 default:
@@ -602,7 +602,7 @@ public abstract class PlayScreen implements Screen {
             switch (num){
                 case 1:
                     if(!currentCollisionLayer.getCell(800/32,1120/32).getTile().getProperties().containsKey("nonpc")) {
-                        enemies.add(new HeadEnemy(800,1120, MapFactory.MapType.GraveyardWest, batch, "HeadEast"));
+                        enemies.add(new HeadEnemy(800,1120, MapFactory.MapType.GraveyardEast, batch, "HeadEast"));
                         allLocations.add(new Location(800,1120));
                     }
                     break;
@@ -611,14 +611,14 @@ public abstract class PlayScreen implements Screen {
                     enemyTile.getProperties().put("nonpc","true");
                     startNum = 1;
             }
-        } else if(currentMapState.equals(MapFactory.MapType.GraveyardNorth)){
+        } else if(currentMapState.equals(MapFactory.MapType.GraveyardWorld1)){//Was GraveyardNorth
             switch (num){
                 case 1:
-                    if(!currentCollisionLayer.getCell(800/32,928/32).getTile().getProperties().containsKey("nonpc")) {
-                    enemies.add(new HeadEnemy(800,928, MapFactory.MapType.GraveyardWest, batch, "HeadNorth"));
-                    allLocations.add(new Location(800,928));
-                }
-                break;
+                    if(!currentCollisionLayer.getCell(832/32,1504/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new HeadEnemy(832,1504, MapFactory.MapType.GraveyardWorld1, batch, "HeadNorth"));
+                        allLocations.add(new Location(832,1504));
+                    }
+                    break;
                 default:
                     TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
                     enemyTile.getProperties().put("nonpc","true");
