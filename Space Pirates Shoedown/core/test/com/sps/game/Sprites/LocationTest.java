@@ -4,10 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import com.sps.game.sprites.Location;
 
 public class LocationTest {
 
-    private com.sps.game.sprites.Location location = new com.sps.game.sprites.Location(12,15);
+    private Location location = new Location(12,15);
 
     @Test
     public void getX() {
@@ -33,8 +34,8 @@ public class LocationTest {
 
     @Test
     public void equals(){
-        com.sps.game.sprites.Location anotherLocation = new com.sps.game.sprites.Location(95, 22);
-        assertFalse(anotherLocation==location);
+        Location anotherLocation = new Location(95, 22);
+        assertFalse(anotherLocation == location);
     }
 
 }

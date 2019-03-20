@@ -1,14 +1,16 @@
 package com.sps.game.animation;
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class NpcAnimationTest {
 
-    @org.junit.Test
+    @Test
     public void dispose() {
 
     }
 
-    @org.junit.Test
+    @Test
     public void render() {
     }
 }
