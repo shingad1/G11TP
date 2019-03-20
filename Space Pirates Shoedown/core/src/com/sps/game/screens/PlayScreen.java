@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
-import com.sps.game.scenes.BuyHud;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
@@ -170,7 +169,6 @@ public abstract class PlayScreen implements Screen {
 
     int count = 0;
 
-    private boolean buyHudOpened;
 
     /**
      * Holds the different states the game can be in.
@@ -189,11 +187,7 @@ public abstract class PlayScreen implements Screen {
      * Holds an instance of the DialogueHud, that displays the dialogue of the NPC or enemy.
      */
     private DialogueHud dialogueHud;
-    public Boolean merchantDetected;
-    public Boolean buyHudUp;
-    public BuyHud buyHud;
-
-    MiniMapScreen miniMapScreen;
+    public boolean merchantDetected;
 
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
@@ -211,12 +205,9 @@ public abstract class PlayScreen implements Screen {
         playerInventory = new PlayerInventory(game.batch, controller);
         itemHud = new ItemHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
-        buyHud = new BuyHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
         merchantDetected = false;
-        buyHudOpened = false;
-        //MiniMapScreen = new MiniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
     }
 
 
@@ -239,10 +230,6 @@ public abstract class PlayScreen implements Screen {
      */
     public void handleInput(float dt){
         controller.action(gamecam);
-        /*if(controller.getFight()){
-            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
-            currentMapState = "HouseFight";
-        }*/
     }
 
     /**
@@ -269,7 +256,6 @@ public abstract class PlayScreen implements Screen {
         renderer.setView(gamecam);
         hud.update();
         itemHud.update();
-        buyHud.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
@@ -277,18 +263,15 @@ public abstract class PlayScreen implements Screen {
 
                 if (!(npcTemp instanceof MerchantNPC)) {
                     merchantDetected = false;
-                    //System.out.println(merchantDetected);
                 }
 
                 if (npcTemp instanceof MerchantNPC) {
                     merchantDetected = true;
-                    //System.out.println(merchantDetected);
                     if (    Gdx.input.isKeyPressed(Input.Keys.DOWN) ||
                             Gdx.input.isKeyPressed(Input.Keys.UP) ||
                             Gdx.input.isKeyPressed(Input.Keys.LEFT)  ||
                             Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
                         merchantDetected = false;
-                        //System.out.println(merchantDetected);
                     }
                 }
 
@@ -302,7 +285,7 @@ public abstract class PlayScreen implements Screen {
                     dialogueHud.update(enemy.getName());
                 }
             }
-            }
+        }
 
         if (merchantDetected == true) {
             merchantInventory.update();
@@ -326,7 +309,7 @@ public abstract class PlayScreen implements Screen {
         }
         if(pause)
         {
-            if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+            if(Gdx.input.isKeyPressed(Input.Keys.P))
             {
                 pause = false;
                 try
@@ -382,21 +365,18 @@ public abstract class PlayScreen implements Screen {
 
         itemHud.stage.draw();
         dialogueHud.stage.draw();
-        if (merchantInventory.getBuyHudOpen()) {
-            buyHud.stage.draw();
-        }
+
 
 
         batch.begin();
         if(pause)
         {
-            batch.draw(pauseTexture,gamecam.position.x - 240,gamecam.position.y - 240,480,480);
+            batch.draw(pauseTexture,gameport.getScreenX() + 50,gameport.getScreenY() + 50,500,500);
         }
         batch.end();
 
         changeMaps();
-
-        //MiniMapScreen.miniMap();
+        
     }
 
     @Override

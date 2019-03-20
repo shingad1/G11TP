@@ -90,20 +90,16 @@ public class InventoryController {
 
 
         /**
-         *         Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
+         * Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
          */
-        inventory.setItems(socks.getName(),
-                           shoeLaces.getName(),
-                           fakeShoe.getName(),
-                           fluxCapacitor.getName(),
-                           piratesEye.getName()
+        inventory.setItems(socks.getName()
                 );
 
 
         /**
-         *         Providing the string representation for each item in the merchant list, to be printed
+         * Providing the string representation for each item in the merchant list, to be printed
          */
-        merchantInventory.setItems(sword.getName());
+        merchantInventory.setItems(sword.getName(), fakeShoe.getName(), axe.getName(), piratesEye.getName()); //to have more
 
 
         /**
@@ -140,22 +136,31 @@ public class InventoryController {
         piratesEye = new Item("Pirates Eye", 250, "Gives the ability to spot pirates a mile away!", 7, "core/assets/Inventory/images/eye.png");
         fakeShoe = new Item("Fake Shoe", 0, "A fake shoe. Made out of newspaper.", 8, "core/assets/Inventory/images/fakeShoe.png");
         shoeLaces = new Item("Shoe Laces", 25, "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/shoeLaces.png");
-        sword = new Item("Sword", 1000, "Hack your way to the final boss", 10, "core/assets/Inventory/images/regularSword.png");
+        sword = new Item("Sword", 100, "Hack your way to the final boss", 10, "core/assets/Inventory/images/regularSword.png");
         socks = new Item("Socks", 3, "Next best substitute for shoes", 11, "core/assets/Inventory/images/sock.png");
     }
 
     /**
-     *
-     * @return
+     * Accessor method for the user inventory list.
+     * @return A list of strings which is the user's inventory.
      */
     public List<String> getInventoryList() {
         return inventory;
     }
 
+    /**
+     * Accessor method for the merchant's inventory list
+     * @return A list of strings which is the merchant's inventory
+     */
     public List<String> getMerchantList() {
         return merchantInventory;
     }
 
+    /**
+     * Finds an item, given the item name. Iterates through the allItems collection using an enhanced for loop.
+     * @param itemName The string representation of the item to be found.
+     * @return An item object which has the .getName() output, which is the same as the parameter.
+     */
     public Item findItem(String itemName) {
         Item foundItem = null;
 
@@ -167,12 +172,25 @@ public class InventoryController {
         return foundItem;
     }
 
+    /**
+     * Accessor method for the gold value.
+     * @param item The item object, which passed in, contains a method to return the gold value.
+     * @return An Integer which is the gold value of the item in question.
+     */
     public Integer getGoldValue(Item item) {
         return item.getGoldvalue();
     }
 
+    /**
+     * Returns a list of images, called imageList.
+     * @return A list of images.
+     */
     public List<Image> getImageList() { return itemImageList; }
 
+    /**
+     * Adds item to the user inventory collection.
+     * @param foundItem The item to be added. 
+     */
     public void addToInventory(Item foundItem) {
         this.foundItem = foundItem;
         inventory.getItems().add(foundItem.getName());

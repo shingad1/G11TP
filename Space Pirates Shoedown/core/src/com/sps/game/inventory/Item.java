@@ -50,25 +50,26 @@ public class Item {
 
     /**
      * Creates an item object which can be stored in a scene2d list and stored in a table.
-     * @param name The name of the
-     * @param description
-     * @param id
-     * @param filePath
+     * @param name The name of the item.
+     * @param description The item's description
+     * @param id The id of the item
+     * @param filePath The filepath of the items image resource.
      */
     public Item (String name, int goldValue, String description, int id, String filePath) {
         this.filepath = filePath;
-        imageTexture = new Texture(filePath); //Create a texture which takes in the file path of the item
-        itemImage = new Image(imageTexture);  //Create an image object which takes in the texture
-        this.name = name;                     //Name of the object (it's string output)
-        this.description = description;       //Object Description
-        this.id = id;                         //Object ID
+        imageTexture = new Texture(filePath);
+        itemImage = new Image(imageTexture);
+        this.name = name;
+        this.description = description;
+        this.id = id;
         this.goldValue = goldValue;
 
     }
 
-
-    //Accessor and Mutator Methods
-
+    /**
+     * Accessor and mutator methods
+     *
+     */
     public int getGoldvalue() { return goldValue; }
     public Image getImage() { return itemImage; }
     public void setImage (String filepath) {
