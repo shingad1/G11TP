@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.Utility;
+
+import java.io.IOException;
 
 /**
  * This class displays the controls of the game to the user.
@@ -41,33 +44,23 @@ public class ControlsScreen implements Screen {
 
     public ControlsScreen(final SpacePiratesShoedown game){
         this.game = game;
-        stage = new Stage();
+
         batch = new SpriteBatch();
         gamecam = new OrthographicCamera(480,480);
 
-        Gdx.input.setInputProcessor(stage);
         controlsTexture = new Texture(Gdx.files.internal("core/assets/MenuResources/Controls1.png"));
-        Table table = new Table();
-        TextButton backButton = new TextButton("Back", Utility.STATUSUI_SKIN);
 
-        table.setHeight(backButton.getHeight());
-        table.setWidth(Gdx.graphics.getWidth());
-        table.add(backButton);
-        stage.addActor(table);
+    }
 
-        backButton.addListener(new ClickListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                return true;
+    public void handleInput() throws IOException{
+        if((Gdx.input.getX() > ((controlsTexture.getWidth() / 2) - 480)) && (Gdx.input.getX() < ((controlsTexture.getWidth() / 2) + 480))){
+            if((Gdx.input.getY() > ((controlsTexture.getHeight() / 2) - 480)) && (Gdx.input.getY() < ((controlsTexture.getHeight() / 2) + 250))) {
+                if (Gdx.input.justTouched()) {
+                    dispose();
+                    game.setScreen(new MenuScreen(game));
+                }
             }
-
-            @Override
-            public void touchUp(InputEvent event, float a, float y, int pointer, int button){
-                dispose();
-                game.setScreen(new MenuScreen(game));
-            }
-        });
-
+        }
     }
 
     @Override
@@ -77,8 +70,13 @@ public class ControlsScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        try {
+            handleInput();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         batch.begin();
-        batch.draw(controlsTexture, gamecam.position.x, gamecam.position.x,1000,582);
+        batch.draw(controlsTexture, gamecam.position.x + 50, gamecam.position.x + 120,580,480);
         batch.end();
     }
 

@@ -159,13 +159,23 @@ public class MenuScreen implements Screen {
             }
         }
 
-        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 210)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 150))){
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 230)) && (Gdx.input.getX() < ((logo.getWidth() / 2) - 90))){
             if((Gdx.input.getY() > ((background.getHeight() / 2) + 220))) {
                 if (Gdx.input.justTouched()) {
-
+                    Gdx.app.exit();
                 }
             }
         }
+
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 60)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 70))){
+            if((Gdx.input.getY() > ((background.getHeight() / 2) + 220))) {
+                if (Gdx.input.justTouched()) {
+                    game.setScreen(new ControlsScreen(game));
+                }
+            }
+        }
+
+
     }
 
 
