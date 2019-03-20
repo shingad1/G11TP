@@ -170,6 +170,10 @@ public abstract class PlayScreen implements Screen {
 
     int startNum = 1;
 
+    protected Location playerCombatPosition;
+
+    protected Location enemyCombatPosition;
+
     /**
      * Holds the different states the game can be in.
      */
@@ -306,7 +310,7 @@ public abstract class PlayScreen implements Screen {
         if(controller.getEnemyEncounter()){
             for (AbstractEnemy enemy : enemies){
                 if(controller.enemyInProximity(enemy)){
-                    game.setScreen(new CombatScreen(game,p,enemy,this,currentMap));
+                    game.setScreen(new CombatScreen(game,batch, p,enemy, this,currentMap, playerCombatPosition, enemyCombatPosition));
                     controller.resetEnemyEncounter();
                 }
             }

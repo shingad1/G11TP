@@ -52,20 +52,24 @@ public class HouseInteriorScreen extends PlayScreen {
         if(currentMapState.equals(MapFactory.MapType.HomeInterior) ||currentMapState.equals(MapFactory.MapType.HomeInterior2 )){
             p.setX(800);
             p.setY(384);
+            playerCombatPosition = new Location(736,544);
+            enemyCombatPosition = new Location(864, 544);
         }
         else if(currentMapState.equals(MapFactory.MapType.CandyInterior) || currentMapState.equals(MapFactory.MapType.CandyMansion) || currentMapState.equals(MapFactory.MapType.CandyInterior2)){
             p.setX(832);
             p.setY(384);
+            playerCombatPosition = new Location(800,480);
+            enemyCombatPosition = new Location(960,480);
         }
         else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1) || currentMapState.equals(MapFactory.MapType.TropicalInterior2) || currentMapState.equals(MapFactory.MapType.TropicalInterior3)){
             p.setX(768);
             p.setY(352);
+            playerCombatPosition = new Location(736, 448);
+            enemyCombatPosition = new Location(896,448);
         }
 
         createEnemies(startNum);
 
-        //allLocations = new ArrayList<Location>();
-       // addEnemiesLocations(selected);
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbound, ybound, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);

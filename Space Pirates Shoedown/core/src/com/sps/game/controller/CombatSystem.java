@@ -66,7 +66,7 @@ public class CombatSystem
     private boolean resolveOnce;
     private boolean playerWin;
 
-    public CombatSystem(Player p, AbstractEnemy e, SpriteBatch sb){
+    public CombatSystem(Player p, AbstractEnemy e, SpriteBatch sb, Location pp, Location ep){
         this.player = p;
         this.enemy = e;
         enemy.setCombatSystem(this);
@@ -75,7 +75,7 @@ public class CombatSystem
         playerTurn = true;
         tick = 0;
         finished = false;
-        animationHandler = new BattleAnimationHandler(p,e,sb,new Location(64,150),new Location(256,150));
+        animationHandler = new BattleAnimationHandler(p,e,sb,pp, ep);
 
         HashMap<MoveList.MoveType, HashMap<String, MoveList.Move>> moveSelectionHashMap = new HashMap<MoveList.MoveType, HashMap<String, MoveList.Move>>();
         for (MoveList.MoveType moveType : playerMoveList.getMoveTypes()){

@@ -20,6 +20,7 @@ import com.sps.game.scenes.ThirdHud;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.BasicEnemy;
+import com.sps.game.sprites.Location;
 import com.sps.game.sprites.Player;
 
 /**
@@ -115,21 +116,20 @@ public class CombatScreen implements Screen {
      * Holds the play screen
      */
 
-    public CombatScreen(SpacePiratesShoedown game, Player p, AbstractEnemy e, PlayScreen playScreen, TiledMap map) {
+    public CombatScreen(SpacePiratesShoedown game, SpriteBatch sb, Player p, AbstractEnemy e, PlayScreen playScreen, TiledMap map, Location pp, Location ep) {
         this.game = game;
         this.enemy = e;
 
         this.map = map;
         renderer = new OrthogonalTiledMapRenderer(this.map);
         gamecam = new OrthographicCamera(480, 480);
-        gamecam.position.set(p.getX(),p.getY(),0);
+        gamecam.position.set((pp.getX() + ep.getX()) / 2, (pp.getY() + ep.getY()) /2,0);
         gameport = new FitViewport(1600, 1600, gamecam);
-        batch = new SpriteBatch();
+        this.batch = sb;
         playerHud = new CombatHud(batch,p,e);
         enemyHud = new EnemyHud(batch,e);
         thirdHud = new ThirdHud(batch);
-        cs = new CombatSystem(p, e, batch);
-        //enemy.setCombatSystem(cs);
+        cs = new CombatSystem(p, e, batch, pp, ep);
         combatController = new CombatController(p, e, cs);
         this.playScreen = playScreen;
     }
