@@ -47,6 +47,7 @@ public class HouseInteriorScreen extends PlayScreen {
         currentMapState = selected.getCurrentMapType();
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
+        allLocations = new ArrayList<Location>();
         //npc.add(new InteractiveNPC(862, 480, MapFactory.MapType.HomeInterior, batch, ""));
         enemies = new ArrayList<AbstractEnemy>();
         if(currentMapState.equals(MapFactory.MapType.HomeInterior) ||currentMapState.equals(MapFactory.MapType.HomeInterior2 )){

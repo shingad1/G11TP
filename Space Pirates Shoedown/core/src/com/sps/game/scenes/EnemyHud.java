@@ -42,6 +42,10 @@ public class EnemyHud
      */
     public Stage stage;
 
+    Label enemyAttackLabel;
+    Label enemyDefenceLabel;
+    Label enemySpeedLabel;
+
     public EnemyHud(SpriteBatch sb, AbstractEnemy enemy)
     {
         this.enemy = enemy;
@@ -52,8 +56,10 @@ public class EnemyHud
      * this method updates the enemy's information on the screen, also calls onto another method
      */
     public void update(){
-        enemyHealthLabel = new Label("Enemy Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        enemyHealthCountLabel = new Label(String.format("%d", enemy.getHealth()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        enemyHealthLabel = new Label("Enemy Health  : " + enemy.getHealth(),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        enemyAttackLabel = new Label("Enemy Attack  : " + enemy.getAttack(),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        enemyDefenceLabel = new Label("Enemy Defence : " + enemy.getDefence(),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        enemySpeedLabel = new Label("Enemy Speed   : " + enemy.getSpeed(),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
     /**
@@ -65,9 +71,13 @@ public class EnemyHud
         Table table = new Table(); //creates a table so it can be formatted properly
         table.top().right(); //places it at the top right
         table.setFillParent(true);
-        table.add(enemyHealthLabel).padLeft(20); //it is padded
+        table.add(enemyHealthLabel);
         table.row();
-        table.add(enemyHealthCountLabel).padLeft(20);
+        table.add(enemyAttackLabel);
+        table.row();
+        table.add(enemyDefenceLabel);
+        table.row();
+        table.add(enemySpeedLabel);
         stage.addActor(table);
     }
 }

@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.controller.StoryController;
+import com.sps.game.sprites.Player;
 
 import java.io.IOException;
 
@@ -123,6 +124,7 @@ public class MenuScreen implements Screen {
                    if (Gdx.input.justTouched()) {
                        sound.play();
                        dispose();
+                       Player.getPlayer().playerReset();
                        game.setScreen(new HomeWorldScreen(game, new Vector2(0,0),736, 1280));
                    }
                }

@@ -17,18 +17,15 @@ public class MoveList {
     public MoveList(Fighter user, Fighter target){
         this.user = user;
         this.target = target;
-        int atkDefDiff = this.user.getAttack() - this.target.getDefence();
-        if(atkDefDiff <= 0)
-            atkDefDiff = 0;
         movelist = new HashMap<String, Move>();
-        movelist.put("Attack",new Move(MoveType.attack, Fighter.Stat.health, MoveRange.near, MoveTarget.enemy, -atkDefDiff,false, 0,false, true));
+        movelist.put("Attack",new Move(MoveType.attack, Fighter.Stat.health, MoveRange.near, MoveTarget.enemy, -(user.getAttack()),false, 0,false, true));
 
         movelist.put("Shield Bash", new Move(MoveType.defend, Fighter.Stat.health, MoveRange.near, MoveTarget.enemy, -(user.getDefence()), false, 0, false, true));
         movelist.put("Block",new Move(MoveType.defend, Fighter.Stat.defence, MoveRange.far, MoveTarget.self, 10, true, 3, false, false));
         movelist.put("Bravery",new Move(MoveType.defend, Fighter.Stat.attack, MoveRange.far, MoveTarget.self, 10, true, 3, false, false));
         movelist.put("Wind Speed",new Move(MoveType.defend, Fighter.Stat.speed, MoveRange.far, MoveTarget.self, 10, true, 3, false, false));
-        movelist.put("Heal",new Move(MoveType.defend, Fighter.Stat.health, MoveRange.far, MoveTarget.self, 25, false, 0, false, true));
-        movelist.put("Patch Up", new Move(MoveType.defend, Fighter.Stat.health, MoveRange.far, MoveTarget.self, 10, true, 3, true, true));
+        movelist.put("Heal",new Move(MoveType.defend, Fighter.Stat.health, MoveRange.far, MoveTarget.self, (user.getDefence())/2, false, 0, false, true));
+        movelist.put("Patch Up", new Move(MoveType.defend, Fighter.Stat.health, MoveRange.far, MoveTarget.self, (user.getDefence()), true, 3, true, true));
 
         movelist.put("Quick Attack",new Move(MoveType.sneak, Fighter.Stat.health, MoveRange.near, MoveTarget.enemy, -(user.getSpeed()), false, 0, false, true));
         movelist.put("Poison", new Move(MoveType.sneak, Fighter.Stat.health, MoveRange.near, MoveTarget.enemy, -(user.getSpeed() / 2), true, 3, true, true));
@@ -88,6 +85,8 @@ public class MoveList {
             this.difference = difference;
             this.temporary = temporary;
             this.duration = duration;
+            this.stacksOverTime = stacksOverTime;
+            this.lingeringEffect = lingeringEffect;
         }
 
         public void use(Fighter target){

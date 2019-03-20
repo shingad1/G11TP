@@ -111,6 +111,8 @@ public class CombatSystem
      */
     public void update() {
         if (!(finished)){
+            playerMoveList = new MoveList(this.player,this.enemy);
+            enemyMoveList = new MoveList(this.enemy,this.player);
             if(playerControl && !(animationHandler.isInAnimation())){
                 if(playerChosenMove != null && !(playerChosenMoveKey.equals(""))){
                     playerControl = false;

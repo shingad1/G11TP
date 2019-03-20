@@ -439,7 +439,7 @@ public abstract class PlayScreen implements Screen {
     }
 
     public void createEnemies(int num) {
-        allLocations = new ArrayList<Location>();
+        //allLocations = new ArrayList<Location>();
         if (currentMapState.equals(MapFactory.MapType.HomeInterior)) {
             switch (num){
                 case 1:

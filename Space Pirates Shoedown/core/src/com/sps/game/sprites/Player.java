@@ -281,4 +281,6 @@ public class Player extends Fighter {
     public static Player getPlayer(){
         return player;
     }
+
+    public void playerReset(){player = new Player();}
 }
