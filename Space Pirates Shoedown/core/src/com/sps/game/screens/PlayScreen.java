@@ -162,7 +162,7 @@ public abstract class PlayScreen implements Screen {
 
     private WinHud winHud;
 
-    public static boolean[] flags = {false, false, false};
+    public static boolean[] flags = {true, true, true};
     /**
      * Holds the different states the game can be in.
      */

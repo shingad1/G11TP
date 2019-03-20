@@ -115,13 +115,13 @@ public class GraveyardScreen extends PlayScreen {
             camY = 1;
         }
         if(currentMapState.equals(MapFactory.MapType.GraveyardWest)){
-            if(p.getLocation().equals(new Location(1056,768))){
+            if(p.getLocation().equals(new Location(736,1408)) || p.getLocation().equals(new Location(768,1408))){
                 dispose();
                 oldState = MapFactory.MapType.GraveyardWest;
                 game.setScreen(new HouseInteriorScreen(game, new Vector2(4,0)));
             }
         } else if(currentMapState.equals(MapFactory.MapType.GraveyardEast)){
-            if(p.getLocation().equals(new Location(384,640))){
+            if(p.getLocation().equals(new Location(800,1440)) || p.getLocation().equals(new Location(832,1440))){
                 dispose();
                 oldState = MapFactory.MapType.GraveyardEast;
                 game.setScreen(new HouseInteriorScreen(game, new Vector2(4,1)));

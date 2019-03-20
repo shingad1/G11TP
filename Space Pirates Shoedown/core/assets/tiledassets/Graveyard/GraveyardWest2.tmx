@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Ground.tsx"/>
  <tileset firstgid="491" source="Resources/Castle3.tsx"/>
  <tileset firstgid="797" source="../TropicalWorld/Resources/Tiles5.tsx"/>
@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlEEOgDAIBE38Yv//Fk9NqsGWCu1iu5Nw0bAwxJjO40jKyry90+agq/SQ+Jo3+wYtj959nn0WvDwsd6HHHI/WDKRHbQ/peW1eb+8MDwv0kDN28sg9nnt73MXqofkXaefQY28PTX/vHCtoDy/QHohqeYy43SyPcjcU9JCzUNBDzkKxikeeT497DopVvit6yFkovD3+Ujt4IKFHLOgRC3rEgh6xoEcs6BELesSCHrHo9WCNrws1m1iq
+   eJzt1VsKgCAQRuEg2qH7X0sPEUhUzjTW/NURDnQh8etByzgMxdg0LR29s86TXe1Yr+uuzvf0P2g5vOvZfhcZvRyR/4LjGUfLmOk4W8fe8zPv3rNsRyQcOFrnh3fd9X1kRB2Wvci6L+P4t8OyPq8jOrIdvUa2IyPLHurdd1Ucvc6UXucRDhw4vunwWnDoGHDgyHK8pT84MsOhFQ6tcGiFQyscWuHQCodWOLTyOuj+ZqamioI=
   </data>
  </layer>
  <layer id="3" name="Doors" width="50" height="50">

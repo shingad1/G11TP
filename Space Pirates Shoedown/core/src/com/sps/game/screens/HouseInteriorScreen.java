@@ -72,7 +72,7 @@ public class HouseInteriorScreen extends PlayScreen {
             p.setY(576);
         } else if(currentMapState.equals(MapFactory.MapType.GraveyardEastInterior)){
             p.setX(800);
-            p.setY(544);
+            p.setY(576);
         }
 
         createEnemies(startNum);
@@ -155,13 +155,13 @@ public class HouseInteriorScreen extends PlayScreen {
         if(p.getLocation().equals(new Location(800,544))){
             dispose();
             if(oldState.equals(MapFactory.MapType.GraveyardWest)){
-                game.setScreen(new GraveyardScreen(game,new Vector2(0,1),1088,736));
+                game.setScreen(new GraveyardScreen(game,new Vector2(0,1),736,1376));
             }
         }
-        if(p.getLocation().equals(new Location(800,512))){
+        if(p.getLocation().equals(new Location(800,544))){
             if(oldState.equals(MapFactory.MapType.GraveyardEast)){
                 dispose();
-                game.setScreen(new GraveyardScreen(game, new Vector2(2,1),352,640));
+                game.setScreen(new GraveyardScreen(game, new Vector2(2,1),800,1376));
             }
         }
 

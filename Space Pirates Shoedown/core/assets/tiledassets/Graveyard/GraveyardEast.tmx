@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Ground.tsx"/>
  <tileset firstgid="491" source="Graveyard Tileset 1.tsx"/>
  <tileset firstgid="551" source="Tower.tsx"/>
@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt00EKgDAMRFFBPJs37Hld6sa2IQMZ7V/8lcb2QWz7trVE53FXMa9K7ch87zkbafbc3nMcWsfonrMOxZ7i6N8z861KRyYcOCLnRGdw4Hg7OzLv8H+M7pZ9d1WHOhw+e6XcQRw4cGgcVQYcfhYcOL7gqAyHz17N7B0On3B4hcMrHF7h8AqHVzi8wuHVqo4/dAFgtQPe
+   eJzt1EsKgDAQBNGAeDZv6HnFlW40GadhGlNCrTSfB4n70tqeaFuvKsarUjsy893HRhpd9+09Dq2jt89Rh+Kc4njfZ2auSkcmHDgi60TH4MDxtHZkvMP96O0t++2sDnU4vjvOR3mulGcQB45qh/q/W+WoMuDws3DPcbg7qsMRm6syHF7h8AqHVzi8wuEVDq9weIXDq1kdf+gALRv/oA==
   </data>
  </layer>
  <layer id="4" name="Doors" width="50" height="50">
