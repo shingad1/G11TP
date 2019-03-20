@@ -1,6 +1,7 @@
 package com.sps.game.Sprites;
 
 import com.badlogic.gdx.Gdx;
+import org.mockito.Mock;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sps.game.animation.EnemyAnimation;
 import com.sps.game.maps.MapFactory;
@@ -10,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.mockito.Mockito.mock;
 
 
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(GdxTestRunner.class)
 public class BasicEnemyTest {
 
+
     private SpriteBatch sb;
     private HashMap fightAnimation;
     private BasicEnemy basicEnemy;
@@ -26,11 +29,16 @@ public class BasicEnemyTest {
     private int health;
     private int defence;
 
+    @Mock
+    private SpriteBatch mockSpriteBatch;
+
+
     @Before
     public void setUp() {
-        basicEnemy = new BasicEnemy(12,15, MapFactory.MapType.CandyWorld1,sb,"Boss");
+        mockSpriteBatch = mock(SpriteBatch.class);
+        basicEnemy = new BasicEnemy(12,15, MapFactory.MapType.CandyWorld1,mockSpriteBatch,"Boss");
         fightAnimation = new HashMap<String, EnemyAnimation>();
-        fightAnimation.put("Idle",new EnemyAnimation(sb, basicEnemy, "enemyIdle.atlas", 1/15f));
+        fightAnimation.put("Idle",new EnemyAnimation(mockSpriteBatch, basicEnemy, "enemyIdle.atlas", 1/15f));
         health = 100;
     }
 

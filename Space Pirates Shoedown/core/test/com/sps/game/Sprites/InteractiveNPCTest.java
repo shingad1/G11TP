@@ -6,8 +6,10 @@ import com.sps.game.sprites.InteractiveNPC;
 import com.sps.game.sprites.Location;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 
 public class InteractiveNPCTest {
 
@@ -15,10 +17,13 @@ public class InteractiveNPCTest {
     private InteractiveNPC iNPC;
     private String state;
 
+    @Mock
+    private SpriteBatch mockSpriteBatch;
+
     @Before
     public void setup() {
-        sb = new SpriteBatch();
-       iNPC = new InteractiveNPC(5,9, MapFactory.MapType.CandyWorld1,sb,"Muffin");
+        mockSpriteBatch = mock(SpriteBatch.class);
+       iNPC = new InteractiveNPC(5,9, MapFactory.MapType.CandyWorld1,mockSpriteBatch,"Muffin");
     }
 
     @Test

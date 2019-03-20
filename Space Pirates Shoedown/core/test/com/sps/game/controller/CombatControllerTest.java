@@ -31,12 +31,12 @@ public class CombatControllerTest {
         e = new BasicEnemy(9,9,world,sb, "Pirate");
         combatController = new CombatController(p, e, cs);
     }
-/*
+
     @Test
     public void keyDown()
     {
         keyPressed = 72;
         int keycode = keyPressed;
         assertTrue(keyPressed == keycode);
-    }*/
+    }
 }

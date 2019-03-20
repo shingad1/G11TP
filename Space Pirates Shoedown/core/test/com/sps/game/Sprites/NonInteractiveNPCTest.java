@@ -1,5 +1,7 @@
 package com.sps.game.Sprites;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import org.mockito.Mock;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -14,6 +16,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.sps.game.sprites.Location;
 import com.sps.game.sprites.NonInteractiveNPC;
+import org.mockito.Mock;
+
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
@@ -22,21 +26,29 @@ import static org.junit.Assert.assertEquals;
 @RunWith(GdxTestRunner.class)
 public class NonInteractiveNPCTest {
 
-    private SpriteBatch sb;
+    //private SpriteBatch sb;
     private MapFactory.MapType world;
     private NonInteractiveNPC nonInteractiveNPC;
     private String state;
     private Location location;
     private OrthographicCamera gamecam;
+    private TextureAtlas atlas;
+
+
+    @Mock
+    private SpriteBatch mockSpriteBatch;
 
     @Before
     public void setup() {
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("core\\assets\\textureAtlas\\npcAtlas\\npcPeppermintDown.atlas"));
+       //core\assets\textureAtlas\npcAtlas\npcPirateDown.atlas
+        mockSpriteBatch = mock(SpriteBatch.class);
         gamecam = new OrthographicCamera(480,480);
-        sb = new SpriteBatch();
+        //sb = new SpriteBatch();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        sb.setProjectionMatrix(gamecam.combined);
+        mockSpriteBatch.setProjectionMatrix(gamecam.combined);
         world = MapFactory.MapType.HomeWorldMap1;
-        nonInteractiveNPC = new NonInteractiveNPC(12, 9, world, sb,"Pirate");
+        nonInteractiveNPC = new NonInteractiveNPC(12, 9, world, mockSpriteBatch,"Pirate");
         location = new Location(12,9);
         state = "";
     }

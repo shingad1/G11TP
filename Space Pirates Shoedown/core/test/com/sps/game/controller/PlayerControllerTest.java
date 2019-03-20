@@ -11,8 +11,8 @@ public class PlayerControllerTest {
 
     @Before
     public void setUp(){
-        //playerController = new PlayerController()
+        //playerController = new PlayerController();
     }
 
-    //Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations)
+
 }
