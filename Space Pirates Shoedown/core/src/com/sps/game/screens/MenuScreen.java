@@ -24,7 +24,7 @@ public class MenuScreen implements Screen {
     /**
      * Constant field to direct where the file is located.
      */
-    private static final String ASSETS_PATH = "core/assets/MenuResources/";
+    private static final String ASSETS_PATH = "MenuResources/";
     /**
      * Holds a version of the game.
      * @see #handleInput #render

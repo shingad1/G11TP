@@ -38,11 +38,11 @@ public class BasicEnemy extends AbstractEnemy{
         speed = 10;
 
         fightAnimation = new HashMap<String, EnemyAnimation>();
-        fightAnimation.put("Idle",new EnemyAnimation(sb, this, "enemyIdle.atlas", 1/15f));
-        fightAnimation.put("Right",new EnemyAnimation(sb, this, "enemyMoveRight.atlas", 1/15f));
-        fightAnimation.put("Left",new EnemyAnimation(sb, this, "enemyMoveLeft.atlas", 1/15f));
-        fightAnimation.put("basicAttack",new EnemyAnimation(sb, this, "enemyBasicAttack.atlas", 1/3f));
-        fightAnimation.put("block",new EnemyAnimation(sb, this, "enemyBasicBlock.atlas", 1/3f));
+        fightAnimation.put("Idle",new EnemyAnimation(sb, this, "regenemybattleIdle.atlas", 1/15f));
+        fightAnimation.put("Right",new EnemyAnimation(sb, this, "regenemyRight.atlas", 1/15f));
+        fightAnimation.put("Left",new EnemyAnimation(sb, this, "regenemyLeft.atlas", 1/15f));
+        fightAnimation.put("basicAttack",new EnemyAnimation(sb, this, "regenemyBasicAttack.atlas", 1/3f));
+        fightAnimation.put("block",new EnemyAnimation(sb, this, "regenemyBasicBlock.atlas", 1/3f));
 
         animation = new HashMap<String, EnemyAnimation>();
         animation.put("idle", new EnemyAnimation(sb, this, "regenemyIdle.atlas", 1/2f));
@@ -120,35 +120,35 @@ public class BasicEnemy extends AbstractEnemy{
         {
             int temp = rand.nextInt(4)+1; //rand.nextInt(size of list) + 1
             switch (temp) {
-                /*case 1:
-                    system.assignMove("Slow", moveList.getMoveByKey("Slow"),false);
+                case 1:
+                    system.assignMove("Attack", moveList.getMoveByKey("Attack"),false);
                     break;
                 case 2:
                     system.assignMove("Quick Attack", moveList.getMoveByKey("Quick Attack"), false);
                     break;
                 case 3:
-                    system.assignMove("Poison", moveList.getMoveByKey("Poison"), false);
+                    system.assignMove("Shield Bash", moveList.getMoveByKey("Shield Bash"), false);
                     break;
                 case 4:
-                    system.assignMove("Frighten", moveList.getMoveByKey("Frighten"),false);
-                    break;*/
-                default:
-                    system.assignMove("Block", moveList.getMoveByKey("Block"), false);
+                    system.assignMove("Block", moveList.getMoveByKey("Block"),false);
                     break;
             }
         }
         else
         {
-            int temp = rand.nextInt(2) + 1;
+            int temp = rand.nextInt(4) + 1;
             switch (temp){
                 case 1:
                     system.assignMove("Block", moveList.getMovelist().get("Block"), false);
                     break;
                 case 2:
-                    system.assignMove("Weaken", moveList.getMovelist().get("Weaken"),false);
+                    system.assignMove("Heal", moveList.getMovelist().get("Heal"),false);
                     break;
-                default:
-                    system.assignMove("Patch Up", moveList.getMovelist().get("Patch Up"), false);
+                case 3:
+                    system.assignMove("Patch Up", moveList.getMovelist().get("Patch Up"),false);
+                    break;
+                case 4:
+                    system.assignMove("Attack", moveList.getMovelist().get("Attack"),false);
                     break;
             }
         }
