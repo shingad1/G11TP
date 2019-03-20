@@ -45,7 +45,7 @@ public class CombatScreen implements Screen {
      * Constant field to direct where the file is located.
      * @see #CombatScreen
      */
-    private static final String ASSETS_PATH = "core/assets/tiledAssets/";
+    private static final String ASSETS_PATH = "tiledAssets/";
     /**
      *Displays what the user will see
      * @see #CombatScreen

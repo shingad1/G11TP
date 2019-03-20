@@ -33,7 +33,7 @@ public class NpcAnimation extends ApplicationAdapter {
     /**
      * The path for textures
      */
-    private static final String ASSETS_PATH = "core/assets/textureAtlas/npcAtlas/";
+    private static final String ASSETS_PATH = "textureAtlas/npcAtlas/";
     /**
      * Holds an instance of the NPC
      */

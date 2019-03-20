@@ -64,7 +64,7 @@ public class HudScene  {
     private ImageButton saveButton;
 
     //public Inventory inventory;
-    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
+    private Skin skin = new Skin(Gdx.files.internal("pixthulhuui/pixthulhu-ui.json"));
 
 
     public HudScene(SpriteBatch sb, Player p){
@@ -78,9 +78,9 @@ public class HudScene  {
         //Instantiating the goldCountLabel label with the BitmapFont font and the colour white
        // goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        story = new Image(new Texture("core/assets/story.png"));
+        story = new Image(new Texture("story.png"));
 
-        saveTexture = new Texture("core/assets/Buttons/SaveButton.png");
+        saveTexture = new Texture("Buttons/SaveButton.png");
         saveTextureRegion = new TextureRegion(saveTexture);
         saveTextureRegionDrawable = new TextureRegionDrawable(saveTextureRegion);
         saveButton = new ImageButton(saveTextureRegionDrawable);

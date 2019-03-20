@@ -32,7 +32,7 @@ public class ControlsHud {
 
     private Viewport viewport;
 
-    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
+    private Skin skin = new Skin(Gdx.files.internal("pixthulhuui/pixthulhu-ui.json"));
 
     private InputProcessor oldInput;
 
@@ -46,7 +46,7 @@ public class ControlsHud {
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport,sb);
-        controlsTexture = new Texture(Gdx.files.internal("core/assets/MenuResources/Controls1.png"));
+        controlsTexture = new Texture(Gdx.files.internal("MenuResources/Controls1.png"));
 
     }
 

@@ -34,7 +34,7 @@ public class EnemyAnimation extends ApplicationAdapter {
     /**
      * The path for textures
      */
-    private static final String ASSETS_PATH = "core/assets/textureAtlas/enemyAtlas/";
+    private static final String ASSETS_PATH = "textureAtlas/enemyAtlas/";
 
     private AbstractEnemy enemy;
 

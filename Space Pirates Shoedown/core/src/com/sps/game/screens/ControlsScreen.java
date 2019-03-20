@@ -47,7 +47,7 @@ public class ControlsScreen implements Screen {
         this.game = game;
         batch = new SpriteBatch();
         gamecam = new OrthographicCamera(480,480);
-        controlsTexture = new Texture(Gdx.files.internal("core/assets/MenuResources/Controls1.png"));
+        controlsTexture = new Texture(Gdx.files.internal("MenuResources/Controls1.png"));
     }
 
     public void handleInput() throws IOException{

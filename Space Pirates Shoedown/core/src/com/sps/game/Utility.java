@@ -30,19 +30,19 @@ public final class Utility {
     /**
      * Holds the path of the items texture.
      */
-    private final static String ITEMS_TEXTURE_ATLAS_PATH = "core/assets/Inventory/items.atlas";
+    private final static String ITEMS_TEXTURE_ATLAS_PATH = "Inventory/items.atlas";
     /**
      * Holds the path of the status ui skin.
      */
-    private final static String STATUSUI_SKIN_PATH = "core/assets/Inventory/statusui.json";
+    private final static String STATUSUI_SKIN_PATH = "Inventory/statusui.json";
     /**
      * Holds the path of the status ui texture.
      */
-    private final static String STATUSUI_TEXTURE_ATLAS_PATH = "core/assets/Inventory/statusui.atlas";
+    private final static String STATUSUI_TEXTURE_ATLAS_PATH = "Inventory/statusui.atlas";
     /**
      * Holds the path of the ui skin
      */
-    private final static String UISKIN_TEXTURE_PATH = "core/assets/Inventory/uiskin.json";
+    private final static String UISKIN_TEXTURE_PATH = "Inventory/uiskin.json";
     /**
      * Creates an InternalFileHandleResolver
      */
