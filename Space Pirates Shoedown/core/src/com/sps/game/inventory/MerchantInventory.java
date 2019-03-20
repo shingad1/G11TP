@@ -187,7 +187,11 @@ public class MerchantInventory {
             public void drop(Source source, Payload payload, float x, float y, int pointer) {
 
                 if (Player.getPlayer().getGold() > inventoryController.findItem(merchant.getSelected()).getGoldvalue()) {
-                    inventory.getItems().add((String) payload.getObject());
+                    if (!inventory.getItems().contains(merchant.getSelected(), false)) {
+                        inventory.getItems().add((String) payload.getObject());
+                    } else {
+                        merchant.getItems().add(merchant.getSelected());
+                    }
                     merchant.getItems().removeValue(payload.getObject().toString(), true);
                     System.out.println(inventoryController.findItem(payload.getObject().toString()).getName() + " Has been bought for: " +
                                        inventoryController.findItem(payload.getObject().toString()).getGoldvalue());

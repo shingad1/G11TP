@@ -128,7 +128,7 @@ public class PlayerInventory {
         table.add(inventoryLabel);
         table.add(imageLabel);
         table.row();
-        table.add(inventory);
+        table.add(inventory).height(200f);
         table.add(imagePlaceholder);
 
         //Get the item from the inventory list

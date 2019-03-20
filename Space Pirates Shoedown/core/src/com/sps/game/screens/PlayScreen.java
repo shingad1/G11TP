@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -22,7 +21,7 @@ import com.sps.game.inventory.PlayerInventory;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.scenes.ItemHud;
+import com.sps.game.scenes.WinHud;
 import com.sps.game.sprites.*;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
@@ -86,9 +85,9 @@ public abstract class PlayScreen implements Screen {
     private PlayerInventory playerInventory;
 
     /**
-     *Holds instance of the ItemHud class, which is shown if the user makes a decision on whether to pick up or ignore an item.
+     *Holds instance of the WinHud class, which is shown if the user makes a decision on whether to pick up or ignore an item.
      */
-    private ItemHud itemHud;
+    private WinHud winHud;
     /*
      * Holds all the sprites that will be displayed on the sreen.
      * @see #render
@@ -203,7 +202,7 @@ public abstract class PlayScreen implements Screen {
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
         playerInventory = new PlayerInventory(game.batch, controller);
-        itemHud = new ItemHud(game.batch, controller);
+        winHud = new WinHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -255,7 +254,7 @@ public abstract class PlayScreen implements Screen {
         gamecam.update();
         renderer.setView(gamecam);
         hud.update();
-        itemHud.update();
+        winHud.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
@@ -363,7 +362,7 @@ public abstract class PlayScreen implements Screen {
             playerInventory.stage.draw();
         }
 
-        itemHud.stage.draw();
+        winHud.stage.draw();
         dialogueHud.stage.draw();
 
 
