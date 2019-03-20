@@ -104,12 +104,12 @@ public class MenuScreen implements Screen {
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/bensound-newdawn.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/bensound-newdawn.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
 
-        sound = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/click.wav"));
+        sound = Gdx.audio.newMusic(Gdx.files.internal("Music/click.wav"));
         sound.setVolume(0.1f);
     }
 

@@ -92,7 +92,7 @@ public class HomeWorldScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0); //change when moving worlds
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/firstWorld.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();

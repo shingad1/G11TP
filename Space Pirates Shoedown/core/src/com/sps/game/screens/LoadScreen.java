@@ -23,11 +23,6 @@ import com.sps.game.profile.ProfileManager;
  * @version 1.0
  */
 public class LoadScreen implements Screen {
-
-    /**
-     * Constant field to direct where the file is located.
-     */
-    private static final String ASSETS_PATH = "core/assets/";
     /**
      * Holds a version of the game.
      * @see #render
@@ -63,11 +58,11 @@ public class LoadScreen implements Screen {
         this.game = game;
         //following may need to change
         stage = new Stage();
-        TextButton loadButton = new TextButton("Load", new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))));
-        TextButton backButton = new TextButton("Back", new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))));
+        TextButton loadButton = new TextButton("Load", new Skin(Gdx.files.internal("MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("MenuResources/statusui.atlas"))));
+        TextButton backButton = new TextButton("Back", new Skin(Gdx.files.internal("MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("MenuResources/statusui.atlas"))));
 
         ProfileManager.getInstance().storeAllProfiles();
-        listProfiles = new List(new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))), "inventory"); //takes in a skin and string
+        listProfiles = new List(new Skin(Gdx.files.internal("MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("MenuResources/statusui.atlas"))), "inventory"); //takes in a skin and string
         Array<String> list = ProfileManager.getInstance().getProfilelList();
         listProfiles.setItems(list);
 
@@ -132,7 +127,7 @@ public class LoadScreen implements Screen {
             }
         });
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/bensound-newdawn.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/bensound-newdawn.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();

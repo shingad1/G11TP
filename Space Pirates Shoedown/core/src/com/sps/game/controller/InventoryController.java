@@ -24,7 +24,7 @@ public class InventoryController {
      * @see #merchantInventory
      * @see #itemImageList
      */
-    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
+    private Skin skin = new Skin(Gdx.files.internal("pixthulhuui/pixthulhu-ui.json"));
 
     /**
      * Collection for the users items

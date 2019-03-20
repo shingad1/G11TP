@@ -32,7 +32,7 @@ public class TutorialController1 extends ApplicationAdapter implements InputProc
         stage = new Stage(new ScreenViewport());
 
         batch = new SpriteBatch();
-        sprite = new Sprite(new Texture(Gdx.files.internal("core/assets/MenuResources/Controls1.png")));
+        sprite = new Sprite(new Texture(Gdx.files.internal("MenuResources/Controls1.png")));
     }
 
     public void create()

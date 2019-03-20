@@ -38,7 +38,7 @@ public class PlayerAnimation extends ApplicationAdapter {
     /**
      * The path for textures
      */
-   private static final String ASSETS_PATH = "core/assets/textureAtlas/playerAtlas/";
+   private static final String ASSETS_PATH = "textureAtlas/playerAtlas/";
 
    private Player player;
 

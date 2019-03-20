@@ -38,7 +38,7 @@ public abstract class PlayScreen implements Screen {
     /**
      * Constant field to direct where the file is located.
      */
-    public static final String ASSETS_PATH = "core/assets/tiledassets/";
+    public static final String ASSETS_PATH = "tiledassets/";
     /**
      * Holds a version of the game.
      * @see #handleInput #render

@@ -57,7 +57,7 @@ public class MerchantInventory {
      * Skin object used to format the table. A Json file is passed into the skin object to provide
      * element specific ui.
      */
-    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
+    private Skin skin = new Skin(Gdx.files.internal("pixthulhuui/pixthulhu-ui.json"));
 
     /**
      * The list of inventory strings to be displayed

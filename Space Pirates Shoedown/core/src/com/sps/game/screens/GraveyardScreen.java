@@ -59,7 +59,7 @@ public class GraveyardScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p,currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/graveyard.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/graveyard.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
