@@ -207,10 +207,10 @@ public abstract class PlayScreen implements Screen {
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
         playerInventory = new PlayerInventory(game.batch, controller);
-        storyController = new StoryController(batch);
+        //storyController = new StoryController(batch);
         winHud = new WinHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
-        pauseTexture = new Texture("core/assets/pause.png");
+        pauseTexture = new Texture("pause.png");
         pause = false;
         merchantDetected = false;
         controlsHud = new ControlsHud(batch);
@@ -262,7 +262,7 @@ public abstract class PlayScreen implements Screen {
         renderer.setView(gamecam);
         hud.update();
         winHud.update();
-        storyController.update();
+        //storyController.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
@@ -386,7 +386,7 @@ public abstract class PlayScreen implements Screen {
         winHud.stage.draw();
         dialogueHud.stage.draw();
         controlsHud.stage.draw();
-        storyController.stage.draw();
+        //storyController.stage.draw();
 
         batch.begin();
         if(pause)
