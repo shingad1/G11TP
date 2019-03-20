@@ -2,6 +2,7 @@ package com.sps.game.controller;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.BasicEnemy;
 import com.sps.game.sprites.Player;
 
@@ -20,7 +21,7 @@ public class CombatController extends InputAdapter
      * @see #keyDown
      */
 
-    private BasicEnemy enemy;
+    private AbstractEnemy enemy;
     /**
      * Creates instance of the enemy, sets the enemy parameter into this local variable
      * @see #CombatController
@@ -38,7 +39,7 @@ public class CombatController extends InputAdapter
      * @see #keyDown
      */
 
-    public CombatController(Player p, BasicEnemy e, CombatSystem cs){
+    public CombatController(Player p, AbstractEnemy e, CombatSystem cs){
         this.player = p;
         this.enemy = e;
         combatSystem = cs;
@@ -58,10 +59,25 @@ public class CombatController extends InputAdapter
             switch(keycode)
             {
                 case Input.Keys.Q:
-                    combatSystem.doMove("basicAttack");
+                    combatSystem.doInput(CombatSystem.Inputs.Q, true);
                     break;
                 case Input.Keys.W:
-                    combatSystem.doMove("block");
+                    combatSystem.doInput(CombatSystem.Inputs.W, true);
+                    break;
+                case Input.Keys.E:
+                    combatSystem.doInput(CombatSystem.Inputs.E, true);
+                    break;
+                case Input.Keys.R:
+                    combatSystem.doInput(CombatSystem.Inputs.R, true);
+                    break;
+                case Input.Keys.A:
+                    combatSystem.doInput(CombatSystem.Inputs.A, true);
+                    break;
+                case Input.Keys.S:
+                    combatSystem.doInput(CombatSystem.Inputs.S, true);
+                    break;
+                case Input.Keys.D:
+                    combatSystem.doInput(CombatSystem.Inputs.D, true);
                     break;
             }
         }

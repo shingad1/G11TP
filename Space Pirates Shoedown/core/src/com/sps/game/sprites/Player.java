@@ -12,15 +12,12 @@ import java.util.HashMap;
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
  * @version 1.0
  */
-public class Player implements Fighter {
+public class Player extends Fighter {
     /**
      * Keeps track of the player's gold
      */
     private int gold;
-    /**
-     * Keeps track of the player's HP
-     */
-    private int HP;
+
     /**
      * Holds the players X coordinates.
      * @see #move #getX
@@ -68,11 +65,14 @@ public class Player implements Fighter {
     private Player(){
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
-        gold = 500;
-        HP = 100;
+        gold = 50;
+        health = 100;
         location = new Location(0, 0);
         attack = 20;
         defence = 10;
+        speed = 10;
+
+        //setAnimations(sb);
     }
 
     /**
@@ -151,7 +151,6 @@ public class Player implements Fighter {
     public int getGold(){
         return gold;
     }
-
     /**
      * Increases the value of the players gold
      * @param int goldValue
@@ -164,29 +163,12 @@ public class Player implements Fighter {
     public void decreaseGold(int goldValue) { gold -= goldValue; }
 
     /**
-     * Changes the value of the players health
-     * @param int diff
-     */
-    @Override
-    public void changeHP(int diff) {
-        increaseHealth(diff); //if diff is negative, implicitly takes away health points
-    }
-
-    /**
      * Gets the attack value of the player.
      * @return
      */
     @Override
     public int getAttack() {
         return attack;
-    }
-
-    /**
-     * Gets the health level of the player.
-     * @return Returns a <code>int</code> health points value.
-     */
-    public int getHP(){
-        return HP;
     }
 
     /**
@@ -228,7 +210,7 @@ public class Player implements Fighter {
      * @param <code>int</code> decrease, the amount to decrease the health level by.
      */
     public void decreaseHealth(int decrease){
-        HP-=decrease;
+        health-=decrease;
     }
 
     /**
@@ -236,11 +218,11 @@ public class Player implements Fighter {
      * @param <code>int</code> increase, the amount to increase the health by.
      */
     public void increaseHealth(int increase){
-       /* if(getHP() == 100){
-            HP = 100;
+       /* if(getHealth() == 100){
+            health = 100;
         }
         else {*/
-            HP += increase;
+            health += increase;
         //}
     }
 

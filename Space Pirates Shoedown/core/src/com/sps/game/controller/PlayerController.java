@@ -64,6 +64,8 @@ public class PlayerController extends InputAdapter {
 
     private boolean controls;
 
+    private boolean enemyEncounter;
+
     public PlayerController(Player p, TiledMapTileLayer collisionLayer, int[] xbound, int[] ybound, ArrayList<Location> allLocations){
         //dialogue = false;
         this.player = p;
@@ -98,7 +100,7 @@ public class PlayerController extends InputAdapter {
             keyPressed = keycode;
             switch(keycode){
                 case Input.Keys.A:
-
+                    enemyEncounter = true;
                     break;
                 case Input.Keys.C:
                     if(controls){
@@ -264,6 +266,7 @@ public class PlayerController extends InputAdapter {
         return null;
     }
 
+
     /**
      * Checks to see if the player can move in a particular direction and moves them if they can.
      * @param int keycode
@@ -398,4 +401,8 @@ public class PlayerController extends InputAdapter {
     public void changeNpcLocations(ArrayList<Location> npcLocations){
         allLocations = npcLocations;
     }
+
+    public boolean getEnemyEncounter(){return enemyEncounter;}
+
+    public void resetEnemyEncounter(){enemyEncounter = false;}
 }
