@@ -3,6 +3,7 @@ package com.sps.game.scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -18,6 +19,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.FileHandler;
 
 /**
  * This class launches the play screen, from where the play last left off.
@@ -78,8 +80,6 @@ public class DialogueHud {
      * Holds a boolean value, to indicate if an NPC should move or not. True if the NPC can move, otherwise false.
      */
     public static boolean move;
-
-    private static String DIALOGUE_PATH = "Dialogue.txt";
 
     public DialogueHud(SpriteBatch sb, PlayerController playerController) {
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
@@ -169,9 +169,6 @@ public class DialogueHud {
             if(textArea.getContentTable() != null){ //check if needed
                 textArea.getContentTable().clear();
             }
-            /*if(npcName.equals("ThirdNPC")){
-                move = true;
-            }*/
         }
     }
 
@@ -244,22 +241,22 @@ public class DialogueHud {
      */
     private void readingFile() throws IOException
     {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(DIALOGUE_PATH));
+        FileHandle file = Gdx.files.internal("Dialogue.txt");
+        String text = file.readString();
 
-        String line;
+        String[] line = text.split("\n");
 
-        while((line = bufferedReader.readLine()) != null)
+        for(int i = 0; i < line.length; i++)
         {
             ArrayList<String> val = new ArrayList<String>();
-            String[] temp = line.split(";");
+            String[] temp = line[i].split(";");
 
-            for(int i = 1; i < temp.length; i++){
-                val.add(temp[i]);
+            for(int x = 1; x < temp.length; x++){
+                val.add(temp[x]);
             }
 
             dialogHM.put(temp[0], val);
         }
-        bufferedReader.close();
     }
 
     /**

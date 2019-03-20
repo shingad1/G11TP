@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.controller.StoryController;
+import com.sps.game.controller.StoryScreen;
 import com.sps.game.sprites.Player;
 
 import java.io.IOException;
@@ -151,13 +152,11 @@ public class MenuScreen implements Screen {
         if((Gdx.input.getX() > ((logo.getWidth() / 2) - 230)) && (Gdx.input.getX() < ((logo.getWidth() / 2) - 90))){
             if((Gdx.input.getY() > ((background.getHeight() / 2) + 220))) {
                 if (Gdx.input.justTouched()) {
-                    //game.setScreen((Screen) new StoryController(game.batch));
-                    StoryController storyController = new StoryController(game.batch);
-                    storyController.update();
+                    game.setScreen((Screen) new StoryScreen(game));
                 }
-                else {
+                /*else {
                     System.out.println("noo");
-                }
+                }*/
             }
         }
 
