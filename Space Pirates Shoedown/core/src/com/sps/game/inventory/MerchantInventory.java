@@ -153,8 +153,9 @@ public class MerchantInventory {
                 merchant.getItems().removeIndex(merchant.getSelectedIndex());
                 payload.setDragActor(new Label(item, skin));
                 payload.setInvalidDragActor(new Label("I don't want your " + item + "!", skin));
-                payload.setValidDragActor(new Label("I'll buy your " + item + "\n" + "for" + +inventoryController.findItem(item).getGoldvalue()
-                        + " gold!", skin));
+                int goldValue = inventoryController.findItem(item).getGoldvalue() + 15;
+                payload.setValidDragActor(new Label("I'll buy your " + item + "\n" + "for" +  goldValue +
+                         " gold!", skin));
 
                 return payload;
             }
@@ -212,7 +213,7 @@ public class MerchantInventory {
                 }
 
                 if (player.getGold() >= inventoryController.findItem(payload.getObject().toString()).goldValue) {
-                    player.decreaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue);
+                    player.decreaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue + 15) ;
                 }
 
             }
@@ -273,7 +274,7 @@ public class MerchantInventory {
 
                 merchant.getItems().add((String) payload.getObject());
                 inventory.getItems().removeValue(payload.getObject().toString(), true);
-                player.increaseGold((inventoryController.findItem(payload.getObject().toString()).goldValue) - 15);
+                player.increaseGold((inventoryController.findItem(payload.getObject().toString()).goldValue));
                 //Test to see if the item has been added to the merchants inventory
                 System.out.println("merchant: " + merchant.getItems() + "\n");
 

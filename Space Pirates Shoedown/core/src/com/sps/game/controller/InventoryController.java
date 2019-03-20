@@ -101,7 +101,7 @@ public class InventoryController {
         /**
          * Providing the string representation for each item in the merchant list, to be printed
          */
-        merchantInventory.setItems(sword.getName(), fakeShoe.getName(), axe.getName(), piratesEye.getName()); //to have more
+        merchantInventory.setItems(sword.getName(), fluxCapacitor.getName(), axe.getName(), piratesEye.getName()); //to have more
 
 
         /**
