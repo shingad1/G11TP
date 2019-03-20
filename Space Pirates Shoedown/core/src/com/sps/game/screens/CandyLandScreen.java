@@ -87,14 +87,15 @@ public class CandyLandScreen extends PlayScreen {
         }
 
         if(currentMapState.equals(MapFactory.MapType.CandyWorld1)){
-            npc.add(new InteractiveNPC(480, 1184, MapFactory.MapType.CandyWorld1, batch, "MuffinWelcome"));
-            npc.add(new InteractiveNPC(1152, 672, MapFactory.MapType.CandyWorld1, batch, "MuffinSeventhNPC"));
-            npc.add(new InteractiveNPC(1504, 864, MapFactory.MapType.CandyWorld1, batch, "MuffinRoleModel"));
-            npc.add(new InteractiveNPC(384, 160, MapFactory.MapType.CandyWorld1, batch, "MuffinStranger"));
+            npc.add(new InteractiveNPC(512, 1216, MapFactory.MapType.CandyWorld1, batch, "MuffinWelcome"));
+            npc.add(new InteractiveNPC(1152, 800, MapFactory.MapType.CandyWorld1, batch, "MuffinSeventhNPC"));
+            npc.add(new InteractiveNPC(1472, 832, MapFactory.MapType.CandyWorld1, batch, "MuffinRoleModel"));
+            npc.add(new InteractiveNPC(512, 192, MapFactory.MapType.CandyWorld1, batch, "MuffinStranger"));
+            npc.add(new MerchantNPC(1152,544,MapFactory.MapType.CandyWorld1,batch,"Merchant"));
         }
-        npc.add(new InteractiveNPC(832, 832, MapFactory.MapType.CandyWorld2, batch, "MuffinEigthNP"));
-        npc.add(new InteractiveNPC(1408, 448, MapFactory.MapType.CandyWorld2, batch, "MuffinScared"));
-        npc.add(new InteractiveNPC(512, 352, MapFactory.MapType.CandyWorld2, batch, "MuffinWimp"));
+        npc.add(new InteractiveNPC(416, 928, MapFactory.MapType.CandyWorld2, batch, "MuffinEigthNP"));
+        npc.add(new InteractiveNPC(1280, 192, MapFactory.MapType.CandyWorld2, batch, "MuffinScared"));
+        npc.add(new InteractiveNPC(480, 352, MapFactory.MapType.CandyWorld2, batch, "MuffinWimp"));
         npc.add(new InteractiveNPC(1088, 1088, MapFactory.MapType.CandyWorld2, batch, "MuffinNinthNPC"));
 
         allLocations = new ArrayList<Location>();

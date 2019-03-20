@@ -187,7 +187,7 @@ public abstract class PlayScreen implements Screen {
      * Holds an instance of the DialogueHud, that displays the dialogue of the NPC or enemy.
      */
     private DialogueHud dialogueHud;
-    public Boolean merchantDetected;
+    public boolean merchantDetected;
 
     MiniMapScreen miniMapScreen;
 
