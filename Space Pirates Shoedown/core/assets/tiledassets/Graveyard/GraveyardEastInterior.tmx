@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" source="Ground.tsx"/>
- <tileset firstgid="491" source="../TropicalWorld/Resources/Tiles5.tsx"/>
- <tileset firstgid="981" source="Graveyard Tileset 1.tsx"/>
+ <tileset firstgid="491" source="Graveyard Tileset 1.tsx"/>
+ <tileset firstgid="551" source="../TropicalWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="1041" source="../CandyLand/castleFloor.tsx"/>
+ <tileset firstgid="1233" source="../CandyLand/castleWalls.tsx"/>
+ <tileset firstgid="1473" source="Resources/House Interior/Interior.tsx"/>
+ <tileset firstgid="2497" source="Resources/House Interior/castle.tsx"/>
+ <tileset firstgid="2649" source="../CandyLand/castleWindows.tsx"/>
+ <tileset firstgid="2905" source="castleWalls2.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt17ENwCAMRUGTKTMEA2RltqClDomwpSuu9+u+R4sYAAAAhfR47/Tta8OzIUPLbkOGlq8aTrfo0KFDhw4dOnToyNtSYbvfV/6GtaX6PwgAAPxrAiPlQ4U=
+   eJzt0ksKgCAUQFEHTQRX4SrcScto0JpdQvOQCiS0tI9K3cEhqGe8CxohhAEAfEKvwmrvdWX/lPcti+1KxzvGLmxQ8W+pcy10WJmupQ4tl3vinjqjwa7z7h/beTqeuVfa2yn3Xvlna3fsTfLc0flWOu6igw466KCDDjrooIMOOsp3iMz5kh0AAAAA8Fcz/8K21w==
   </data>
  </layer>
- <layer id="3" name="CollisionLayer" width="50" height="50">
+ <layer id="4" name="CollisionLayer" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1FEKgCAQRVGpnbiKltue2lD1IchgZirNKDc4HxrBe47kF+c8AAAAAOB34QnrY3V7TO7Ha+3scYdczhLaHd7Oers63sI7ubbSpfS8U/mf+lvuYf1uzdSjtpNm7t7zSJ3HaPOwNJ9eM7DUo3Uu2j1muFc1HeQ32tlzWUabxyz/XdmltJ/Fu9U6F+3sAAAAAPDFCU7FrHM=
+   eJzt08EJwCAQRFEJuduh/ZdhCUERouM7vPt+mG1PKQ0AgK3V99vfN+rQoWPNrbN0rOsY2ZUOu9JxZkfKf6R0pOxKx14dKf+R0pGyq9M6AAAAbtUBzhwxEQ==
   </data>
  </layer>
- <layer id="4" name="Tile Layer 4" width="50" height="50">
+ <layer id="5" name="Doors" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+   eJzt07ENgDAMRUFLNCgrMgITMAI7MBQjQU1LgpF1V7vwK34EAAD0t7SIrWV/8d56N+wFOuAL59z3LkuVDhihyj6qdMAIVfZRpYP/O6bsDwAAAHi6ABEEDLA=
   </data>
  </layer>
  <layer id="2" name="Misc" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1UEOgCAMRNFGuf8N9Sy6ISFECrKwo/63MqjJFJpiBgAAAACItCSzNfXXW99Fe0tOj1fDF+or5fzb+bxXayrKbIg32x/5P7X+yrw+q98p1aCU5UneXFYwmkl1vinu6V0zZ6B8x1/N0F7/qPbXDKWzKLVyKd8bAAAAAPBHB0U+EQA=
+   eJzt1F0KgkAUhuG51MEN9HfRr7aLdlG76C5oCW6gdbiQipbiEjpDRCY6jWn6Sd/AA4EnmBc7Rb5SERHRn1mLTeAuBLhzWccueBlqpUYZY/3+HL0jlPtOxUzMMxZiqR/P+9BhDHINTxPdn/dhnOXzpcDVx+mw7XPiKbUPPjNzXe9/fp+zbnI/l2PmtkGxrjqOul6H+T5CR1yzIwbp6PPvqmx/U8eO1PJ/0GZH2UkcO2xzCB0Hxw7bHELHybHDNofQUWU/kDuaOAgd3HOsDu45VkcTB6GDe47VwT3H6mjisKOalfB+aNlSBxERERER0Tfu0AC/Ag==
   </data>
  </layer>
 </map>

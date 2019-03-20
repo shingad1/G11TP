@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="Resources/interiorBricksBorders.tsx"/>
  <tileset firstgid="1025" source="Resources/interiorTropicalTilesheet.tsx"/>
  <tileset firstgid="1121" source="Resources/Interior.tsx"/>
@@ -10,7 +10,7 @@
  <tileset firstgid="3811" source="../../HomeWorld/Resources/Tiles5.tsx"/>
  <layer id="1" name="Ground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlUsKgCAUAIWCXHSSolu06ghtPGCn6CjdpDZSSFJK5acRBnzZyzeZqUohFAAAAAAEwaWFrhUPPPD4t0eOzNVO6Fpcar47rvtmji0O8T6W6prjvWbuWfy2x3GvdlKIsfyWVuJhAw888MAjJQ99Vp3Nabseo4c+r/U8ZpyKRy7fFR54pORh+1887dFnsh45eQzbM2tPpsIvr3lhfwAAAEDcrCmPpSg=
+   eJzt08EJgCAUgOEHBnpokqItOnVtAAdsikZpk7pEIkkplFJ/8EFSxvsDbSViAQAAkEXMlXtWOuig498dXzTrQ+5ZYma++3y/9/eE1jn+x6Kvue/6e8/WT3e4Z7UzIqN6V2voCKGDDjrooIMOOuiggw5fT0dxHcP2zTrRpNL2NQ+cDwAAULYVJn+Rzg==
   </data>
  </layer>
  <layer id="2" name="CollisionLayer" width="50" height="50">
