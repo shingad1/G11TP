@@ -202,7 +202,7 @@ public abstract class PlayScreen implements Screen {
         playerInventory = new PlayerInventory(game.batch, controller);
         itemHud = new ItemHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
-        storyHud = new StoryHud(game.batch, controller);
+        storyHud = new StoryHud(game.batch);
         tutorialHud = new TutorialHud(gamecam);
         buyHud = new BuyHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
@@ -302,7 +302,7 @@ public abstract class PlayScreen implements Screen {
         } else {
             playerInventory.update();
         }
-        tutorialHud.update();
+        //tutorialHud.update();
         storyHud.update();
     }
 
@@ -395,6 +395,9 @@ public abstract class PlayScreen implements Screen {
         batch.end();
 
         changeMaps();
+
+        //storyHud.formatting();
+        //storyHud.render();
     }
 
     @Override

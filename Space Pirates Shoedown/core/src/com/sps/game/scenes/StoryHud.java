@@ -3,6 +3,7 @@ package com.sps.game.scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureData;
@@ -24,7 +25,7 @@ public class StoryHud {
     public Stage stage;
     private int counter;
     private Table table;
-    private TextButton prevButton, nextButton;
+    private TextButton prevButton, nextButton, exitButton;
     private String buttonLogged;
     public Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     private Texture[] tutorialTexture;
@@ -33,7 +34,7 @@ public class StoryHud {
     private Sprite sprite;
     private InputProcessor oldInput;
 
-    public StoryHud(SpriteBatch sb, PlayerController playerController){
+    public StoryHud(SpriteBatch sb){
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         counter = 0;
@@ -56,9 +57,13 @@ public class StoryHud {
         tutorialTexture[12] = new Texture(ASSETS_PATH + "Slide13.png");
 
         batch = new SpriteBatch();
+
+        prevButton = new TextButton("Previous", skin, "default");
+        nextButton = new TextButton("Next", skin, "default");
+        exitButton = new TextButton("Exit", skin, "default");
     }
 
-    private void formatting() {
+    public void formatting() {
         stage = new Stage();
         table = new Table(skin);
         table.setWidth(stage.getWidth());
@@ -68,9 +73,6 @@ public class StoryHud {
         table.setFillParent(true);
 
         table.setPosition(0, 0);
-
-        prevButton = new TextButton("Previous", skin, "default");
-        nextButton = new TextButton("Next", skin, "default");
 
         prevButton.addListener(new ClickListener() {
             @Override
@@ -93,16 +95,30 @@ public class StoryHud {
         table.add(prevButton).size(150, 50).align(Align.bottomLeft);
         table.add(nextButton).size(150, 50).align(Align.bottomRight);
 
-        batch = new SpriteBatch();
-        sprite = new Sprite(tutorialTexture[counter]);
-
         stage.addActor(table);
+
+        //batch = new SpriteBatch();
+        //sprite = new Sprite(tutorialTexture[counter]);
+
+        Gdx.input.setInputProcessor(stage);
     }
 
-    public void show() {
+    public void render(){
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        //batch = new SpriteBatch();
+        sprite = new Sprite(tutorialTexture[counter]);
+
         batch.begin();
         sprite.draw(batch);
         batch.end();
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
+
+    }
+
+    public void show() {
+        render();
 
         oldInput = Gdx.input.getInputProcessor();
         Gdx.input.setInputProcessor(stage);

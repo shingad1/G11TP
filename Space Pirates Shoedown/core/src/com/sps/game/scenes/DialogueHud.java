@@ -97,7 +97,6 @@ public class DialogueHud {
      * Creates a text box and displays that along with the previous and next buttons.
      */
     private void formatting() {
-        stage = new Stage();
         table = new Table(skin);
         table.setWidth(stage.getWidth());
         table.setHeight(stage.getHeight() / 2);
