@@ -1,4 +1,4 @@
-package com.sps.game.scenes;
+package com.sps.game.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -105,19 +105,19 @@ public class StoryController {
     }
 
     public void update() {
-        if (Gdx.input.isKeyPressed(Input.Keys.N) && oldInput == null) {
+        //if (Gdx.input.isKeyPressed(Input.Keys.N) && oldInput == null) {
             formatting();
             show();
-        }
+        //}
 
-        if (Gdx.input.isKeyPressed(Input.Keys.M) && oldInput != null) {
+        /*if (Gdx.input.isKeyPressed(Input.Keys.M) && oldInput != null) {
             stage.dispose();
             table.clearChildren();
             table.reset();
             counter = 0;
             Gdx.input.setInputProcessor(oldInput);
             oldInput = null;
-        }
+        }*/
     }
 
     private void imageChanger(){

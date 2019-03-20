@@ -20,7 +20,6 @@ import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
 import com.sps.game.scenes.*;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.scenes.StoryController;
 import com.sps.game.sprites.*;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
