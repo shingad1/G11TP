@@ -1,11 +1,13 @@
-package com.sps.game.controller;
+package com.sps.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -17,7 +19,7 @@ import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.screens.MenuScreen;
 
 
-public class StoryScreen {
+public class StoryScreen implements Screen {
     private SpacePiratesShoedown game;
     public Stage stage;
     private int counter;
@@ -31,7 +33,7 @@ public class StoryScreen {
     private Image image;
     private OrthographicCamera gamecam;
 
-    public StoryScreen(final SpacePiratesShoedown game){
+    public StoryScreen(SpacePiratesShoedown game){
         this.game = game;
         batch = new SpriteBatch();
         gamecam = new OrthographicCamera(480, 480);
@@ -62,8 +64,9 @@ public class StoryScreen {
     public void formatting() {
         table = new Table();
         stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
         image = new Image(tutorialTexture[counter]);
-        table.setSize(stage.getWidth(), stage.getHeight());
+        table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         table.align(Align.center);
         table.setFillParent(true);
 
@@ -76,15 +79,22 @@ public class StoryScreen {
                 clickFunction();
                 event.stop();
             }
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+             return true;
+            }
         });
 
         nextButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                System.out.println("logged click");
                 buttonLogged = "next";
                 clickFunction();
                 event.stop();
             }
+
         });
 
         table.add(image);
@@ -110,6 +120,11 @@ public class StoryScreen {
         tutorialTexture[counter].dispose();
     }
 
+    @Override
+    public void show() {
+
+    }
+
     public void render(float delta) {
         try {
             handleInput();
@@ -117,13 +132,34 @@ public class StoryScreen {
             e.printStackTrace();
         }
         batch.begin();
-        batch.draw(tutorialTexture[counter], gamecam.position.x + 50, gamecam.position.x + 120,580,480);
+        stage.draw();
         batch.end();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
     }
 
     private void imageChanger(){
         table.clearChildren();
         image = new Image(tutorialTexture[counter]);
+        System.out.println("log");
         image.setSize(table.getWidth(), table.getHeight());
 
         table.add(image);
@@ -139,7 +175,7 @@ public class StoryScreen {
             counter --;
         }
 
-        if (buttonLogged.equals("next") && counter < tutorialTexture.length)
+        if (buttonLogged.equals("next") && counter < tutorialTexture.length - 1)
         {
             imageChanger();
             counter ++;
