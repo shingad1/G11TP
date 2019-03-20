@@ -14,14 +14,13 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.CombatController;
 import com.sps.game.controller.CombatSystem;
+import com.sps.game.maps.MapFactory;
 import com.sps.game.scenes.CombatHud;
 import com.sps.game.scenes.EnemyHud;
 import com.sps.game.scenes.ThirdHud;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.sprites.AbstractEnemy;
-import com.sps.game.sprites.BasicEnemy;
-import com.sps.game.sprites.Location;
-import com.sps.game.sprites.Player;
+import com.sps.game.scenes.WinHud;
+import com.sps.game.sprites.*;
 
 /**
  * This class creates the combat screen, which is shown when the player fights with an enemy.
@@ -73,48 +72,48 @@ public class CombatScreen implements Screen {
      */
     private OrthographicCamera gamecam;
     /**
-     * Holds the player information during the combat.
-     * @see #update #render
+     *
      */
-    private CombatHud playerHud;
+    private WinHud winHud;
     /**
      * holds the playerhud
      * @see #render(float)
      */
-    private EnemyHud enemyHud;
+    private CombatHud playerHud;
     /**
      * holds the Enemyhud
      * @see #render(float) #update(float)
      */
-    private ThirdHud thirdHud;
+    private EnemyHud enemyHud;
     /**
      * holds the thirdHud
      * @see #render(float) #update(float)
      */
-    private AbstractEnemy enemy;
+    private ThirdHud thirdHud;
     /**
      * holds the enemy
      * @see #render(float) #update(float)
      */
-    private CombatController combatController;
+    private AbstractEnemy enemy;
     /**
      * Holds the CombatController
      * @see #CombatScreen
      */
-    private CombatSystem cs;
+    private CombatController combatController;
     /**
      * Holds the CombatSystem
      * @see #CombatScreen
      */
-    private int tick;
+    private CombatSystem cs;
     /**
      * Holds integer variable which has the information for the tick
      * @see #CombatScreen
      */
-    private PlayScreen playScreen;
+    private int tick;
     /**
      * Holds the play screen
      */
+    private PlayScreen playScreen;
 
     public CombatScreen(SpacePiratesShoedown game, SpriteBatch sb, Player p, AbstractEnemy e, PlayScreen playScreen, TiledMap map, Location pp, Location ep) {
         this.game = game;
@@ -129,6 +128,7 @@ public class CombatScreen implements Screen {
         playerHud = new CombatHud(batch,p,e);
         enemyHud = new EnemyHud(batch,e);
         thirdHud = new ThirdHud(batch);
+        winHud = new WinHud(batch);
         cs = new CombatSystem(p, e, batch, pp, ep);
         combatController = new CombatController(p, e, cs);
         this.playScreen = playScreen;
@@ -146,6 +146,7 @@ public class CombatScreen implements Screen {
      */
     public void update(float dt){
         if (cs.getFinished()){
+            winHud.update();
             returnScreen();
         }
         gamecam.update();
@@ -169,6 +170,7 @@ public class CombatScreen implements Screen {
         enemyHud.stage.draw();
         playerHud.stage.draw();
         thirdHud.stage.draw();
+        winHud.stage.draw();
         batch.setProjectionMatrix(gamecam.combined);
         cs.render();
     }
@@ -210,8 +212,20 @@ public class CombatScreen implements Screen {
     /**
      * Clears the combat screen and returns to the state the play screen was left in.
      */
-    private void returnScreen(){
+    private void returnScreen() {
         dispose();
-        playScreen.combatExit();
+        if (winHud.getFinished()) {
+            if(enemy instanceof HeadEnemy){
+                if(PlayScreen.oldState.equals(MapFactory.MapType.HomeWorldMap2)){
+                    PlayScreen.flags[0] = true;
+                } else if(PlayScreen.oldState.equals(MapFactory.MapType.CandyWorld2)){
+                    PlayScreen.flags[1] = true;
+                } else if(PlayScreen.oldState.equals(MapFactory.MapType.TropicalWorld2)){
+                    PlayScreen.flags[2] = true;
+                }
+            }
+            playScreen.combatExit();
+            winHud.setFinished(false);
+        }
     }
 }

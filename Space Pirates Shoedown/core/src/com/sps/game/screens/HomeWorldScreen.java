@@ -187,7 +187,7 @@ public class HomeWorldScreen extends PlayScreen {
             camY = 1;
         }
         if(currentMapState.equals(MapFactory.MapType.HomeWorldMap2)){
-            if(p.getLocation().equals(new Location(1056, 256))){
+            if(p.getLocation().equals(new Location(1056, 256)) && (flags[0] == true)){
                 dispose();
                 game.setScreen(new CandyLandScreen(game, new Vector2(0,0), 384, 1280));
             } else if(p.getLocation().equals(new Location(288, 704))){

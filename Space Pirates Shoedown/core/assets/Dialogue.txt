@@ -14,7 +14,7 @@ Marketman;I heard you saved Linda’s home...;I think the space pirates are goin
 ThirdNPCAfter;My mum always said oats make you big and strong;Someone clearly had their oats!
 BusinessNPCAfter;Wow you really saved Linda’s home;He must’ve been weak.
 EnemyTwo;Wha' do ye wants
-EnemyThree;Move aside sprog; unless ye wants t' loose yer other shoe!
+HeadEnemyHome;Move aside sprog; unless ye wants t' loose yer other shoe!
 Enemy;You can't board our ship that easily
 MuffinWelcome;Welcome to CandyLand;Our world is pretty sweet;Not so much since the SpacePirates came along...;*sobs*
 MuffinRoleModel;Are you the one?;Sent from the heavens;To save us from these evil pirates;If so, there's more of them in the next map;If not, don't waste my time

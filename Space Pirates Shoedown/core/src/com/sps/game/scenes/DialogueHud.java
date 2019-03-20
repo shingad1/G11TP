@@ -160,7 +160,7 @@ public class DialogueHud {
             show(npcName);
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.E) && oldInput != null) {
+        if (Gdx.input.isKeyPressed(Input.Keys.N) && oldInput != null) {
             stage.clear();
             dialogue.clear();
             counter = 0;

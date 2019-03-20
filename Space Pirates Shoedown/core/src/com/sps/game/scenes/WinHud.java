@@ -112,6 +112,8 @@ public class WinHud {
      */
     private int goldValue;
 
+    private boolean finished;
+
     /**
      * Creates a new WinHud object, which sets up the various elements required to add a new element to the
      * inventory of the user.
@@ -121,7 +123,7 @@ public class WinHud {
      * @param sb The spritebatch that is used to display the table.
      * @param playerController A PlayerController object
      */
-    public WinHud(SpriteBatch sb, PlayerController playerController) {
+    public WinHud(SpriteBatch sb) {
 
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
@@ -129,7 +131,6 @@ public class WinHud {
         pickUpLabel = new Label("Do you want to pick up this item?", skin);
         itemName = new Label("Item name", skin);
         goldLabel = new Label ("Gold amount", skin);
-        //TODO: CHANGE THIS TO THE ACTUAL GOLD VALUE
         goldValue = 100;
 
         player = Player.getPlayer();
@@ -186,7 +187,6 @@ public class WinHud {
         goldLabel.setText("You have also found: " + 100 + " gold.");
         goldLabel.setFontScale(0.70f);
         table.add(goldLabel).colspan(2).row();
-
         //yes button
         table.add(okButton).size(150, 50).align(Align.bottom).padLeft(52).padTop(30).row();
 
@@ -205,7 +205,7 @@ public class WinHud {
         if (buttonClicked.equals("ok")) {
             System.out.println("Ok clicked");
             inventoryController.addToInventory(inventoryController.findItem(nearbyItem.getName()));
-            player.increaseGold(goldValue);
+            //player.increaseGold(goldValue);
             Gdx.input.setInputProcessor(oldInput);
             stage.dispose();
             oldInput = null;
@@ -231,17 +231,19 @@ public class WinHud {
      *
      */
     public void update() {
-        if (Gdx.input.isKeyPressed(Input.Keys.H) && oldInput == null) {
+        //if (Gdx.input.isKeyPressed(Input.Keys.H) && oldInput == null) {
             formatting();
             setInput();
-        }
+        //}
 
         if (Gdx.input.isKeyPressed(Input.Keys.O) && oldInput != null) {
             stage.dispose();
             table.clearChildren();
             table.reset();
             Gdx.input.setInputProcessor(oldInput);
+            finished = true;
             oldInput = null;
+            player.increaseGold(100);
         }
     }
 
@@ -252,6 +254,12 @@ public class WinHud {
         stage.dispose();
     }
 
+    public boolean getFinished(){
+        return finished;
+    }
 
+    public void setFinished(boolean newVal){
+        finished = newVal;
+    }
 
 }
