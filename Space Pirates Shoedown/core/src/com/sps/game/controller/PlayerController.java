@@ -60,8 +60,6 @@ public class PlayerController extends InputAdapter {
 
     private boolean newWorldDown; //move to world down i.e. 1,1 to 2,1
 
-    private boolean enterShip;
-
     private boolean controls;
 
     private boolean enemyEncounter;
@@ -108,10 +106,6 @@ public class PlayerController extends InputAdapter {
                     } else if (!controls){
                         controls = true;
                     }
-                    break;
-                case Input.Keys.E:
-                    //WILL HAVE IF STATEMENT AROUND IT
-                    enterShip = true;
                     break;
                 case Input.Keys.X:
                    // ProfileManager.getInstance().saveProfile();
@@ -185,14 +179,6 @@ public class PlayerController extends InputAdapter {
      * @return boolean newWorldDown
      */
     public boolean getNewWorldDown(){ return newWorldDown;}
-
-    /**
-     * Gets the boolean value of enterShip.
-     * @return boolean enterShip
-     */
-    public boolean getEnterShip(){
-        return enterShip;
-    }
 
     public boolean getControls(){
         return controls;

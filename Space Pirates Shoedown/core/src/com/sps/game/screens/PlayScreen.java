@@ -162,7 +162,7 @@ public abstract class PlayScreen implements Screen {
 
     private WinHud winHud;
 
-    public static boolean[] flags = {true, true, true};
+    public static boolean[] flags = {false, false, false};
     /**
      * Holds the different states the game can be in.
      */
@@ -602,7 +602,7 @@ public abstract class PlayScreen implements Screen {
             switch (num){
                 case 1:
                     if(!currentCollisionLayer.getCell(800/32,1120/32).getTile().getProperties().containsKey("nonpc")) {
-                        enemies.add(new HeadEnemy(800,1120, MapFactory.MapType.GraveyardWest, batch, "HeadWest"));
+                        enemies.add(new HeadEnemy(800,1120, MapFactory.MapType.GraveyardWest, batch, "HeadEast"));
                         allLocations.add(new Location(800,1120));
                     }
                     break;
@@ -615,7 +615,7 @@ public abstract class PlayScreen implements Screen {
             switch (num){
                 case 1:
                     if(!currentCollisionLayer.getCell(800/32,928/32).getTile().getProperties().containsKey("nonpc")) {
-                    enemies.add(new HeadEnemy(800,928, MapFactory.MapType.GraveyardWest, batch, "HeadWest"));
+                    enemies.add(new HeadEnemy(800,928, MapFactory.MapType.GraveyardWest, batch, "HeadNorth"));
                     allLocations.add(new Location(800,928));
                 }
                 break;

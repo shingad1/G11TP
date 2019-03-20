@@ -230,6 +230,10 @@ public class CombatScreen implements Screen {
                     PlayScreen.flags[1] = true;
                 } else if(PlayScreen.oldState.equals(MapFactory.MapType.TropicalWorld2)){
                     PlayScreen.flags[2] = true;
+                } else if(PlayScreen.currentMapState.equals(MapFactory.MapType.GraveyardNorth)){
+                    if(enemy.getHealth() <= 0){
+                        game.setScreen(new GameOverScreen(game, true));
+                    }
                 }
             }
             playScreen.combatExit();
