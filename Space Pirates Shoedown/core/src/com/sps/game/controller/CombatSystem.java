@@ -65,6 +65,7 @@ public class CombatSystem
 
     private boolean resolveOnce;
     private boolean playerWin;
+    private boolean playerDied;
 
     public CombatSystem(Player p, AbstractEnemy e, SpriteBatch sb, Location pp, Location ep){
         this.player = p;
@@ -88,6 +89,7 @@ public class CombatSystem
 
         resolveOnce = false;
         playerWin = true;
+        playerDied = false;
     }
     /**
      * Changes the boolean when it is the players turn.
@@ -109,6 +111,8 @@ public class CombatSystem
      */
     public void update() {
         if (!(finished)){
+            playerMoveList = new MoveList(this.player,this.enemy);
+            enemyMoveList = new MoveList(this.enemy,this.player);
             if(playerControl && !(animationHandler.isInAnimation())){
                 if(playerChosenMove != null && !(playerChosenMoveKey.equals(""))){
                     playerControl = false;
@@ -148,9 +152,8 @@ public class CombatSystem
             }
             if ((player.getHealth() <= 0) || (enemy.getHealth() <= 0)) {
                 finished = true;
-                if(finished){
-                    //Dialogue d = new Dialogue("Enemy");
-                }
+                if(enemy.getHealth() <= 0) playerDied = false;
+                if(player.getHealth() <= 0) playerDied = true;
             }
         }
     }
@@ -326,6 +329,8 @@ public class CombatSystem
     public void applyMove(MoveList userMoveList, String move){
         userMoveList.use(move);
     }
+
+    public boolean didPlayerDie(){return playerDied;}
 
 
 }

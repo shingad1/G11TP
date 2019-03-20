@@ -26,11 +26,11 @@ public class GameOverScreen implements Screen {
     /**
      * Holds a message that will be displayed if the players health is 0.
      */
-    private static final String DEATH_MESSAGE = "You have been beaten by the Space Pirates, and you will never get your shoe back!";
+    private static final String DEATH_MESSAGE = "You've been beaten by the Space Pirates, \n and will never get your shoe back!";
     /**
      * Holds a message that will de diplayed if the player defeats the final boss.
      */
-    private static final String WIN_MESSAGE = "Congratulations you have beaten the Space Pirates, and you've get everyone's shoe. Well Done!";
+    private static final String WIN_MESSAGE = "Congratulations you have beaten the Space Pirates,\n and you've get everyone's shoe. Well Done!";
     /**
      * Holds the stage that will be displayed, containing all the information to be displayed.
      */
@@ -57,10 +57,13 @@ public class GameOverScreen implements Screen {
         }
 
         table.setFillParent(true);
-        table.add(gameOverLabel);
-        table.add(message).pad(50,50,50,50).expandX().fillX().row();
+        table.add(gameOverLabel).align(Align.center);
         table.row();
-        table.add(continueButton).pad(50,50,50,50);
+        table.row();
+        table.add(message).align(Align.center);
+        table.row();
+        table.row();
+        table.add(continueButton).align(Align.center);
         stage.addActor(table);
 
         continueButton.addListener(new ClickListener(){

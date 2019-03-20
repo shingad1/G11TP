@@ -18,11 +18,23 @@ public abstract class Fighter {
 
     public void changeHealth(int diff){health += diff;}
 
-    public void changeAttack(int diff){attack += diff;}
+    public void changeAttack(int diff){
+        attack += diff;
+        if(attack <= 0)
+            attack = 0;
+    }
 
-    public void changeDefence(int diff){defence += diff;}
+    public void changeDefence(int diff){
+        defence += diff;
+        if(defence <= 0)
+            defence = 0;
+    }
 
-    public void changeSpeed(int diff){speed += diff;}
+    public void changeSpeed(int diff){
+        speed += diff;
+        if(speed <= 0)
+            speed = 0;
+    }
 
     public int getAttack(){return attack;}
 

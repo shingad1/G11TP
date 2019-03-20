@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.sps.game.inventory.Item;
+import com.sps.game.sprites.Player;
 
 
 /**
@@ -196,9 +197,9 @@ public class InventoryController {
     public void addToInventory(Item foundItem) {
         this.foundItem = foundItem;
         String itemString = foundItem.getName();
-
         if (!inventory.getItems().contains(foundItem.getName(), false)) {
             inventory.getItems().add(foundItem.getName());
+
         }
 
         System.out.println("player: " + inventory.getItems() + "\n");

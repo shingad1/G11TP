@@ -141,7 +141,7 @@ public abstract class PlayScreen implements Screen {
     /**
      * Creates and holds a story controller
      */
-    private StoryController storyController;
+    //private StoryController storyController;
     /**
      * Creates and holds a tutorial controller
      */
@@ -206,7 +206,7 @@ public abstract class PlayScreen implements Screen {
         merchantInventory  = new MerchantInventory(game.batch,controller);
         playerInventory = new PlayerInventory(game.batch, controller);
         //storyController = new StoryController(batch);
-        //winHud = new WinHud(game.batch, controller);
+
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("pause.png");
         pause = false;
@@ -430,15 +430,16 @@ public abstract class PlayScreen implements Screen {
      * Changes the screen once combat is finished.
      */
     public void combatExit(){
-        startNum++;
-        enemies.clear();
-        allLocations.clear();
-        game.setScreen(this);
-        createEnemies(startNum);
+
+            startNum++;
+            enemies.clear();
+            allLocations.clear();
+            game.setScreen(this);
+            createEnemies(startNum);
     }
 
     public void createEnemies(int num) {
-        allLocations = new ArrayList<Location>();
+        //allLocations = new ArrayList<Location>();
         if (currentMapState.equals(MapFactory.MapType.HomeInterior)) {
             switch (num){
                 case 1:

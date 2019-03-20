@@ -34,7 +34,7 @@ public class CombatScreen implements Screen {
      * Holds a version of the game
      * @see #CombatScreen
      */
-    private Game game;
+    private SpacePiratesShoedown game;
     /**
      * Renders the texture resources
      * @see #CombatScreen
@@ -115,6 +115,8 @@ public class CombatScreen implements Screen {
      */
     private PlayScreen playScreen;
 
+    private boolean playerDied;
+
     public CombatScreen(SpacePiratesShoedown game, SpriteBatch sb, Player p, AbstractEnemy e, PlayScreen playScreen, TiledMap map, Location pp, Location ep) {
         this.game = game;
         this.enemy = e;
@@ -132,6 +134,7 @@ public class CombatScreen implements Screen {
         cs = new CombatSystem(p, e, batch, pp, ep);
         combatController = new CombatController(p, e, cs);
         this.playScreen = playScreen;
+        playerDied = false;
     }
     /**
      * Sets which controller is being used to handle user input
@@ -146,12 +149,17 @@ public class CombatScreen implements Screen {
      */
     public void update(float dt){
         if (cs.getFinished()){
-            winHud.update();
+            if(!cs.didPlayerDie()) {
+                winHud.update();
+            } else {
+                game.setScreen(new GameOverScreen(game, false));
+            }
             returnScreen();
         }
         gamecam.update();
         renderer.setView(gamecam);
         cs.update();
+        playerDied = cs.didPlayerDie();
         playerHud.update();
         enemyHud.update();
         thirdHud.update(cs.getOptions());

@@ -43,11 +43,10 @@ public class CombatHud
      * @see #update()
      */
     Label playerHealthLabel;
-    /**
-     * Label that will display the value of the playerHealth field.
-     * @see #update()
-     */
-    Label playerHealthCountLabel;
+
+    Label playerAttackLabel;
+    Label playerDefenceLabel;
+    Label playerSpeedLabel;
 
     public CombatHud(SpriteBatch sb, Player player, AbstractEnemy enemy){
         this.player = player;
@@ -59,8 +58,10 @@ public class CombatHud
      * this method updates the players information on the screen, also calls onto another method
      */
     public void update(){
-        playerHealthLabel = new Label("Player Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        playerHealthCountLabel = new Label(String.format("%d",player.getHealth()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playerHealthLabel = new Label("Player Health  : " + player.getHealth(),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playerAttackLabel = new Label("Player Attack  : " + player.getAttack(),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playerDefenceLabel =new Label("Player Defence : " + player.getDefence(),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playerSpeedLabel =  new Label("Player Speed   : " + player.getSpeed(),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
     /**
@@ -71,9 +72,13 @@ public class CombatHud
         Table table = new Table();
         table.top().left();
         table.setFillParent(true);
-        table.add(playerHealthLabel).padRight(20);
+        table.add(playerHealthLabel);
         table.row();
-        table.add(playerHealthCountLabel).padRight(20);
+        table.add(playerAttackLabel);
+        table.row();
+        table.add(playerDefenceLabel);
+        table.row();
+        table.add(playerSpeedLabel);
         stage.addActor(table);
     }
 

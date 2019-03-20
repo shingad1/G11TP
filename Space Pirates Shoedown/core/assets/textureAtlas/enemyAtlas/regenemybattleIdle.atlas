@@ -1,0 +1,12 @@
+regenemybattleIdle.png
+size: 32, 32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Left2
+  rotate: false
+  xy: 0, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
