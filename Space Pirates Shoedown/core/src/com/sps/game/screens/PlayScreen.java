@@ -588,9 +588,48 @@ public abstract class PlayScreen implements Screen {
                     break;
                 case 2:
                     if(!currentCollisionLayer.getCell(352/32,512/32).getTile().getProperties().containsKey("nonpc")) {
-                        enemies.add(new BasicEnemy(352,512,MapFactory.MapType.TropicalInterior2,batch,"EnemySeven"));
+                        enemies.add(new HeadEnemy(352,512,MapFactory.MapType.TropicalInterior2,batch,"EnemySeven"));
                         allLocations.add(new Location(352,512));
                     }
+                default:
+                    TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
+                    enemyTile.getProperties().put("nonpc","true");
+                    startNum = 1;
+            }
+        } else if(currentMapState.equals(MapFactory.MapType.GraveyardWestInterior)){
+            switch (num){
+                case 1:
+                    if(!currentCollisionLayer.getCell(800/32,960/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new HeadEnemy(800,960, MapFactory.MapType.GraveyardWest, batch, "HeadWest"));
+                        allLocations.add(new Location(800,960));
+                    }
+                    break;
+                default:
+                    TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
+                    enemyTile.getProperties().put("nonpc","true");
+                    startNum = 1;
+            }
+        } else if(currentMapState.equals(MapFactory.MapType.GraveyardEastInterior)){
+            switch (num){
+                case 1:
+                    if(!currentCollisionLayer.getCell(800/32,1120/32).getTile().getProperties().containsKey("nonpc")) {
+                        enemies.add(new HeadEnemy(800,1120, MapFactory.MapType.GraveyardWest, batch, "HeadWest"));
+                        allLocations.add(new Location(800,1120));
+                    }
+                    break;
+                default:
+                    TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
+                    enemyTile.getProperties().put("nonpc","true");
+                    startNum = 1;
+            }
+        } else if(currentMapState.equals(MapFactory.MapType.GraveyardNorth)){
+            switch (num){
+                case 1:
+                    if(!currentCollisionLayer.getCell(800/32,928/32).getTile().getProperties().containsKey("nonpc")) {
+                    enemies.add(new HeadEnemy(800,928, MapFactory.MapType.GraveyardWest, batch, "HeadWest"));
+                    allLocations.add(new Location(800,928));
+                }
+                break;
                 default:
                     TiledMapTile enemyTile = controller.getTileNearPlayerWithProperty("invisible",32,32);
                     enemyTile.getProperties().put("nonpc","true");
