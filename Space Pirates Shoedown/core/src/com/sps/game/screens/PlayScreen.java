@@ -18,8 +18,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
-import com.sps.game.scenes.*;
-import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.scenes.ControlsHud;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
@@ -149,10 +147,21 @@ public abstract class PlayScreen implements Screen {
      */
     private MapManager mapManager;
     /**
+     * Creates and holds a story controller
+     */
+    private StoryController storyController = new StoryController();
+    /**
+     * Creates and holds a tutorial controller
+     */
+    private TutorialController1 tutorialController = new TutorialController1();
     /**
      * Holds a random number generator.
      */
     protected Random random;
+    /**
+     * Holds a boolean value to display a dialogue box. True if the dialogue box should appear, otherwise false.
+     */
+    private boolean dialogBoolean = true;
     /**
      * Holds the MapType of the map, before the player enters the house.
      */
@@ -178,14 +187,6 @@ public abstract class PlayScreen implements Screen {
      * Holds an instance of the DialogueHud, that displays the dialogue of the NPC or enemy.
      */
     private DialogueHud dialogueHud;
-
-    private TutorialHud tutorialHud;
-
-    private StoryHud storyHud;
-
-    public Boolean merchantDetected;
-    public Boolean buyHudUp;
-    public BuyHud buyHud;
     public boolean merchantDetected;
 
     public ControlsHud controlsHud;
@@ -206,9 +207,6 @@ public abstract class PlayScreen implements Screen {
         playerInventory = new PlayerInventory(game.batch, controller);
         winHud = new WinHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
-        storyHud = new StoryHud(game.batch);
-        tutorialHud = new TutorialHud(gamecam);
-        buyHud = new BuyHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
         merchantDetected = false;
@@ -242,14 +240,14 @@ public abstract class PlayScreen implements Screen {
      * @param <code>float</code> dt.
      */
     public void update(float dt) {
-        /*if (Gdx.input.isKeyPressed(Input.Keys.P)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.P)) {
             pause = true;
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
         handleInput(dt);
         for (int i = 0; i < npcController.size(); i++) {
             if (npc.get(i).getWorld().equals(currentMapState)) {
@@ -298,8 +296,7 @@ public abstract class PlayScreen implements Screen {
             playerInventory.update();
         }
 
-        //tutorialHud.update();
-        storyHud.update();
+
         controlsHud.update();
     }
 
@@ -320,7 +317,7 @@ public abstract class PlayScreen implements Screen {
         {
             if(Gdx.input.isKeyPressed(Input.Keys.P))
             {
-                pause = true;
+                pause = false;
                 try
                 {
                     Thread.sleep(100);
@@ -329,6 +326,7 @@ public abstract class PlayScreen implements Screen {
                     e.printStackTrace();
                 }
             }
+        }
         else {
             update(delta); //render method keeps getting called
         }
@@ -373,17 +371,9 @@ public abstract class PlayScreen implements Screen {
 
         winHud.stage.draw();
         dialogueHud.stage.draw();
-        //tutorialHud.show();
-        storyHud.stage.draw();
-
-        /*if(Gdx.input.isKeyPressed(Input.Keys.T))
-        {
-            tutorialHud.show();
-        }*/
-        if (merchantInventory.getBuyHudOpen()) {
-            buyHud.stage.draw();
-        }
         controlsHud.stage.draw();
+
+
         batch.begin();
         if(pause)
         {
@@ -392,6 +382,7 @@ public abstract class PlayScreen implements Screen {
         batch.end();
 
         changeMaps();
+        
     }
 
     @Override
