@@ -11,10 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -31,12 +28,13 @@ public class StoryHud {
     private Texture[] tutorialTexture;
     private static String ASSETS_PATH = "core/assets/SP/";
     private SpriteBatch batch;
-    private Sprite sprite;
     private InputProcessor oldInput;
+    private Image image;
 
     public StoryHud(SpriteBatch sb){
+        this.batch = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
-        stage = new Stage(viewport, sb);
+        stage = new Stage(viewport, batch);
         counter = 0;
         buttonLogged = "";
 
@@ -64,12 +62,13 @@ public class StoryHud {
     }
 
     public void formatting() {
+        table = new Table();
         stage = new Stage();
-        table = new Table(skin);
-        table.setWidth(stage.getWidth());
-        table.setHeight(stage.getHeight());
-        table.align(Align.center | Align.bottom);
-        table.padBottom(10);
+        image = new Image(tutorialTexture[counter]);
+        table.setSize(stage.getWidth(), stage.getHeight());
+        //table.setWidth(stage.getWidth());
+        //table.setHeight(stage.getHeight());
+        table.align(Align.center);
         table.setFillParent(true);
 
         table.setPosition(0, 0);
@@ -92,34 +91,15 @@ public class StoryHud {
             }
         });
 
+        table.add(image);
+        table.row();
         table.add(prevButton).size(150, 50).align(Align.bottomLeft);
         table.add(nextButton).size(150, 50).align(Align.bottomRight);
 
         stage.addActor(table);
-
-        //batch = new SpriteBatch();
-        //sprite = new Sprite(tutorialTexture[counter]);
-
-        Gdx.input.setInputProcessor(stage);
-    }
-
-    public void render(){
-        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        //batch = new SpriteBatch();
-        sprite = new Sprite(tutorialTexture[counter]);
-
-        batch.begin();
-        sprite.draw(batch);
-        batch.end();
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
-
     }
 
     public void show() {
-        render();
-
         oldInput = Gdx.input.getInputProcessor();
         Gdx.input.setInputProcessor(stage);
     }
@@ -131,28 +111,36 @@ public class StoryHud {
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.M) && oldInput != null) {
-            stage.clear();
-            dispose();
+            stage.dispose();
+            table.clearChildren();
+            table.reset();
             counter = 0;
             Gdx.input.setInputProcessor(oldInput);
             oldInput = null;
         }
     }
 
-    public void dispose(){
-        stage.dispose();
+    private void imageChanger(){
+        table.clearChildren();
+        image = new Image(tutorialTexture[counter]);
+        image.setSize(table.getWidth(), table.getHeight());
+
+        table.add(image);
+        table.row();
+        table.add(prevButton).size(150, 50).align(Align.bottomLeft);
+        table.add(nextButton).size(150, 50).align(Align.bottomRight);
     }
 
     private void clickFunction(){
         if (buttonLogged.equals("previous") && counter > 0)
         {
-            sprite = new Sprite(tutorialTexture[counter]);
+            imageChanger();
             counter --;
         }
 
-        if (buttonLogged.equals("next") && counter < tutorialTexture.length - 1)
+        if (buttonLogged.equals("next") && counter < tutorialTexture.length)
         {
-            sprite = new Sprite(tutorialTexture[counter]);
+            imageChanger();
             counter ++;
         }
         buttonLogged = "";
