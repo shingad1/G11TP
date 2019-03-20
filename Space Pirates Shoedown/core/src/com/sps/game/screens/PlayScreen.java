@@ -138,14 +138,7 @@ public abstract class PlayScreen implements Screen {
      * Holds an instance of the MapManager for saving that state of it.
      */
     private MapManager mapManager;
-    /**
-     * Creates and holds a story controller
-     */
-    //private StoryController storyController;
-    /**
-     * Creates and holds a tutorial controller
-     */
-    private TutorialController1 tutorialController = new TutorialController1();
+
     /**
      * Holds a random number generator.
      */
@@ -205,8 +198,6 @@ public abstract class PlayScreen implements Screen {
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
         playerInventory = new PlayerInventory(game.batch, controller);
-        //storyController = new StoryController(batch);
-
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("pause.png");
         pause = false;
@@ -261,8 +252,6 @@ public abstract class PlayScreen implements Screen {
         hud.update();
 
         //winHud.update();
-        //storyController.update();
-
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
                 dialogueHud.update(npcTemp.getName());
