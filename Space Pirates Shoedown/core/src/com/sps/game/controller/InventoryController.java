@@ -92,11 +92,7 @@ public class InventoryController {
         /**
          * Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
          */
-        inventory.setItems(socks.getName(),
-                           shoeLaces.getName(),
-                           fakeShoe.getName(),
-                           fluxCapacitor.getName(),
-                           piratesEye.getName()
+        inventory.setItems(socks.getName()
                 );
 
 
