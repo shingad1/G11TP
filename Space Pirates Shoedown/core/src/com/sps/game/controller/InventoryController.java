@@ -59,7 +59,7 @@ public class InventoryController {
     public Item fuel;
     public Item axe;
     public Item fluxCapacitor;
-    public Item shoes;
+    public Item shoe;
     public Item hammer;
     public Item piratesEye;
     public Item fakeShoe;
@@ -79,10 +79,10 @@ public class InventoryController {
         allItems.setItems(fuel,
                           axe,
                           fluxCapacitor,
-                          shoes,
+                shoe,
                           hammer,
                           piratesEye,
-                fakeShoe,
+                          fakeShoe,
                           shoeLaces,
                           sword,
                           socks
@@ -93,10 +93,8 @@ public class InventoryController {
          * Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
          */
         inventory.setItems(socks.getName(),
-                           shoeLaces.getName(),
-                           fakeShoe.getName(),
-                           fluxCapacitor.getName(),
-                           piratesEye.getName()
+                           fuel.getName(),
+                           fakeShoe.getName()
                 );
 
 
@@ -112,7 +110,7 @@ public class InventoryController {
         itemImageList.setItems(fuel.getImage(),
                                axe.getImage(),
                                fluxCapacitor.getImage(),
-                               shoes.getImage(),
+                               shoe.getImage(),
                                hammer.getImage(),
                                piratesEye.getImage(),
                                fakeShoe.getImage(),
@@ -132,16 +130,16 @@ public class InventoryController {
      * @see #itemImageList
      */
     private void setItems() {
-        fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1,  "core/assets/Inventory/images/fuel.png");
+        fuel = new Item("Fuel", 10, "Fuel for your rocket shoe", 1,  "core/assets/Inventory/images/fuel.png");
         axe = new Item("Axe", 20, "An Axe to cut pirates in half", 2, "core/assets/Inventory/images/premium-axe.png");
         fluxCapacitor = new Item("Flux Capacitor", 200,"Travel through time!", 3, "core/assets/Inventory/images/flux-capacitor.png");
-        shoes = new Item("Shoes", 50,  "Some fake shoes", 4, "core/assets/Inventory/images/shoe.png");
+        shoe = new Item("Shoe", 50,  "Your old shoe", 4, "core/assets/Inventory/images/shoe.png");
         hammer = new Item("Hammer", 25, "1.5x more effective at killing pirates", 6, "core/assets/Inventory/images/hammer.png");
         piratesEye = new Item("Pirates Eye", 250, "Gives the ability to spot pirates a mile away!", 7, "core/assets/Inventory/images/eye.png");
         fakeShoe = new Item("Fake Shoe", 0, "A fake shoe. Made out of newspaper.", 8, "core/assets/Inventory/images/fakeShoe.png");
         shoeLaces = new Item("Shoe Laces", 25, "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/shoeLaces.png");
         sword = new Item("Sword", 100, "Hack your way to the final boss", 10, "core/assets/Inventory/images/regularSword.png");
-        socks = new Item("Socks", 3, "Next best substitute for shoes", 11, "core/assets/Inventory/images/sock.png");
+        socks = new Item("Socks", 3, "Next best substitute for shoe", 11, "core/assets/Inventory/images/sock.png");
     }
 
     /**
@@ -197,7 +195,12 @@ public class InventoryController {
      */
     public void addToInventory(Item foundItem) {
         this.foundItem = foundItem;
-        inventory.getItems().add(foundItem.getName());
+        String itemString = foundItem.getName();
+
+        if (!inventory.getItems().contains(foundItem.getName(), false)) {
+            inventory.getItems().add(foundItem.getName());
+        }
+
         System.out.println("player: " + inventory.getItems() + "\n");
     }
 
