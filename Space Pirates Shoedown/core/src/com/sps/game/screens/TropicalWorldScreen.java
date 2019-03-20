@@ -95,6 +95,7 @@ public class TropicalWorldScreen extends PlayScreen {
             npc.add(new InteractiveNPC(1376,352,MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC12"));
             npc.add(new InteractiveNPC(608,960,MapFactory.MapType.TropicalWorld2, batch,"TropicalNPC7"));
             npc.add(new InteractiveNPC(1184,1024,MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC2"));
+            npc.add(new MerchantNPC(96,1440, MapFactory.MapType.TropicalWorld2,batch,"Merchant"));
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
         p.setX(px);
@@ -120,7 +121,7 @@ public class TropicalWorldScreen extends PlayScreen {
                 return false;
             }
         }
-        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked")|| getCell(location,world).getTile().getProperties().containsKey("nonpc")){
             return false;
         }
         return true;

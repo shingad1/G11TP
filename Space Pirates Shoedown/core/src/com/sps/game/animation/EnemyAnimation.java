@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.Location;
-
 /**
  * This class creates the animation for the enemy, according the state of the enemy.
  * @author Miraj Shah
@@ -16,6 +15,7 @@ import com.sps.game.sprites.Location;
  */
 public class EnemyAnimation extends ApplicationAdapter {
     /**
+
      * Holds all of the sprites that will be displayed on the screen
      */
     private SpriteBatch batch;
