@@ -286,6 +286,10 @@ https://opengameart.org/content/spaceship-building-kit
 
 https://opengameart.org/content/lpc-tile-atlas2
 
+https://opengameart.org/content/lpc-grave-markers-rework
+
+https://opengameart.org/content/lpc-submissions-merged
+
 Music:
 Home World Music:
 Candy Land Music: https://www.melodyloops.com/my-music/longoloops/orchestral-game/
