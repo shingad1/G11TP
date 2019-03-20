@@ -3,6 +3,7 @@ package com.sps.game.scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -18,6 +19,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.FileHandler;
 
 /**
  * This class launches the play screen, from where the play last left off.
@@ -244,22 +246,25 @@ public class DialogueHud {
      */
     private void readingFile() throws IOException
     {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(DIALOGUE_PATH));
+        //BufferedReader bufferedReader = new BufferedReader(new FileReader(DIALOGUE_PATH));
 
-        String line;
+        FileHandle file = Gdx.files.internal("Dialogue.txt");
+        String text = file.readString();
 
-        while((line = bufferedReader.readLine()) != null)
+        String[] line = text.split("\n");
+
+        for(int i = 0; i < line.length; i++)
+        //while((line = line..readLine()) != null)
         {
             ArrayList<String> val = new ArrayList<String>();
-            String[] temp = line.split(";");
+            String[] temp = line[i].split(";");
 
-            for(int i = 1; i < temp.length; i++){
-                val.add(temp[i]);
+            for(int x = 1; x < temp.length; x++){
+                val.add(temp[x]);
             }
 
             dialogHM.put(temp[0], val);
         }
-        bufferedReader.close();
     }
 
     /**
