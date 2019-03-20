@@ -90,7 +90,7 @@ public class InventoryController {
 
 
         /**
-         *         Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
+         * Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
          */
         inventory.setItems(socks.getName(),
                            shoeLaces.getName(),
@@ -101,7 +101,7 @@ public class InventoryController {
 
 
         /**
-         *         Providing the string representation for each item in the merchant list, to be printed
+         * Providing the string representation for each item in the merchant list, to be printed
          */
         merchantInventory.setItems(sword.getName());
 
@@ -145,17 +145,26 @@ public class InventoryController {
     }
 
     /**
-     *
-     * @return
+     * Accessor method for the user inventory list.
+     * @return A list of strings which is the user's inventory.
      */
     public List<String> getInventoryList() {
         return inventory;
     }
 
+    /**
+     * Accessor method for the merchant's inventory list
+     * @return A list of strings which is the merchant's inventory
+     */
     public List<String> getMerchantList() {
         return merchantInventory;
     }
 
+    /**
+     * Finds an item, given the item name. Iterates through the allItems collection using an enhanced for loop.
+     * @param itemName The string representation of the item to be found.
+     * @return An item object which has the .getName() output, which is the same as the parameter.
+     */
     public Item findItem(String itemName) {
         Item foundItem = null;
 
@@ -167,12 +176,25 @@ public class InventoryController {
         return foundItem;
     }
 
+    /**
+     * Accessor method for the gold value.
+     * @param item The item object, which passed in, contains a method to return the gold value.
+     * @return An Integer which is the gold value of the item in question.
+     */
     public Integer getGoldValue(Item item) {
         return item.getGoldvalue();
     }
 
+    /**
+     * Returns a list of images, called imageList.
+     * @return A list of images.
+     */
     public List<Image> getImageList() { return itemImageList; }
 
+    /**
+     * Adds item to the user inventory collection.
+     * @param foundItem The item to be added. 
+     */
     public void addToInventory(Item foundItem) {
         this.foundItem = foundItem;
         inventory.getItems().add(foundItem.getName());
