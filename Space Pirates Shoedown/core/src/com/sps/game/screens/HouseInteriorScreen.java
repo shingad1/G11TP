@@ -22,8 +22,8 @@ public class HouseInteriorScreen extends PlayScreen {
     /**
      * 2D array, that contains all the different house interiors
      */
-    private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2(), new TropicalInteriorMap(), new CandyInteriorMap2()},
-                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2(), null}};
+    private Map[][] interiors = {{new HomeInteriorMap(), new HomeInteriorMap2(), new TropicalInteriorMap(), new CandyInteriorMap2(), new GraveyardWestInteriorMap()},
+                                 {new CandyInteriorMap(), new CandyMansionMap(), new TropicalInteriorMap2(), new TropicalInteriorMap3(), new GraveyardEastInteriorMap()}};
     /**
      * Chooses the map to load from the array
      */
@@ -52,64 +52,51 @@ public class HouseInteriorScreen extends PlayScreen {
         if(currentMapState.equals(MapFactory.MapType.HomeInterior) ||currentMapState.equals(MapFactory.MapType.HomeInterior2 )){
             p.setX(800);
             p.setY(384);
+            playerCombatPosition = new Location(736,544);
+            enemyCombatPosition = new Location(864, 544);
         }
         else if(currentMapState.equals(MapFactory.MapType.CandyInterior) || currentMapState.equals(MapFactory.MapType.CandyMansion) || currentMapState.equals(MapFactory.MapType.CandyInterior2)){
             p.setX(832);
             p.setY(384);
+            playerCombatPosition = new Location(800,480);
+            enemyCombatPosition = new Location(960,480);
         }
-        else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1) || currentMapState.equals(MapFactory.MapType.TropicalInterior2)){
+        else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1) || currentMapState.equals(MapFactory.MapType.TropicalInterior2) || currentMapState.equals(MapFactory.MapType.TropicalInterior3)){
             p.setX(768);
             p.setY(352);
+            playerCombatPosition = new Location(736, 448);
+            enemyCombatPosition = new Location(896,448);
+        } else if(currentMapState.equals(MapFactory.MapType.GraveyardWestInterior)){
+            p.setX(800);
+            p.setY(576);
+        } else if(currentMapState.equals(MapFactory.MapType.GraveyardEastInterior)){
+            p.setX(800);
+            p.setY(544);
         }
 
-        if(currentMapState.equals(MapFactory.MapType.HomeInterior)){
-            enemies.add(new BasicEnemy(800, 640, MapFactory.MapType.HomeInterior, batch, "Enemyreg1"));
-        } else if(currentMapState.equals(MapFactory.MapType.HomeInterior2)){
-            enemies.add(new BasicEnemy(672,640, MapFactory.MapType.HomeInterior2,batch,"EnemyTwo"));
-            enemies.add(new BasicEnemy(1120, 544,MapFactory.MapType.HomeInterior2,batch,"EnemyThree"));
-        } else if(currentMapState.equals(MapFactory.MapType.CandyInterior)){
-            enemies.add(new BasicEnemy(800, 832,MapFactory.MapType.CandyInterior,batch,"EnemyCandyOne"));
-            enemies.add(new BasicEnemy(576,480, MapFactory.MapType.CandyInterior,batch,"EnemyCandyTwo"));
-        } else if(currentMapState.equals(MapFactory.MapType.CandyInterior2)){
-            enemies.add(new BasicEnemy(768,800,MapFactory.MapType.CandyInterior2,batch,"EnemyCandyThree"));
-            enemies.add(new BasicEnemy(1120,928,MapFactory.MapType.CandyInterior2,batch,"EnemyCandyFour"));
-        } else if(currentMapState.equals(MapFactory.MapType.CandyMansion)){
-            enemies.add(new BasicEnemy(832,512, MapFactory.MapType.CandyMansion,batch,"Enemyreg1"));
-            enemies.add(new BasicEnemy(1216,448, MapFactory.MapType.CandyMansion,batch,"EnemyCandyFive"));
-            enemies.add(new BasicEnemy(320,288,MapFactory.MapType.CandyMansion,batch,"EnemyCandySix"));
-            enemies.add(new BasicEnemy(384,672,MapFactory.MapType.CandyMansion,batch,"EnemyCandySeven"));
-            enemies.add(new BasicEnemy(1248,800, MapFactory.MapType.CandyMansion,batch,"EnemyCandyEight"));
-            enemies.add(new HeadEnemy(832, 928,MapFactory.MapType.CandyMansion,batch,"HeadEnemyCandy"));
-        } else if(currentMapState.equals(MapFactory.MapType.TropicalInterior1)){
-            enemies.add(new BasicEnemy(928,768,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalTwo"));
-            enemies.add(new BasicEnemy(448,832,MapFactory.MapType.TropicalInterior1,batch,"EnemyTropicalOne"));
-            enemies.add(new BasicEnemy(448,480, MapFactory.MapType.TropicalInterior1,batch,"EnemyFour"));
-        } else if(currentMapState.equals(MapFactory.MapType.TropicalInterior2)){
-            enemies.add(new BasicEnemy(1056,800,MapFactory.MapType.TropicalInterior2,batch,"EnemySix"));
-            enemies.add(new BasicEnemy(352,512,MapFactory.MapType.TropicalInterior2,batch,"EnemySeven"));
-        }
-        allLocations = new ArrayList<Location>();
-        addEnemiesLocations(selected);
+        createEnemies(startNum);
+
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbound, ybound, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/tense.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/tense.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
     }
     /**
      * Returns a cell according to the Map and the location
-     * @param location
-     * @param map
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType map
+     * @return TiledMapTileLayer.Cell
      */
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
         return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
     }
     /**
      * Checks if the location is occupied by an npc or a blocked tile
-     * @param location
+     * @param Location location
+     * @param MapFactory.MapType map
      * @return
      */
     @Override
@@ -153,19 +140,35 @@ public class HouseInteriorScreen extends PlayScreen {
             dispose();
             if(oldState.equals(MapFactory.MapType.TropicalWorld1)){
                 if(currentMapState.equals(MapFactory.MapType.TropicalInterior1)) {
-                    game.setScreen(new TropicalWorldScreen(game, 1504, 1344));
+                    game.setScreen(new TropicalWorldScreen(game,new Vector2(0,0), 1504, 1344));
                 }
                 if(currentMapState.equals(MapFactory.MapType.TropicalInterior2)){
-                    game.setScreen(new TropicalWorldScreen(game, 992, 928));
+                    game.setScreen(new TropicalWorldScreen(game,new Vector2(0,0), 992, 928));
                 }
+            } else if(oldState.equals(MapFactory.MapType.TropicalWorld2)){
+                if(currentMapState.equals(MapFactory.MapType.TropicalInterior3)){
+                    game.setScreen(new TropicalWorldScreen(game,new Vector2(1,0), 1216, 672));
+                }
+            }
+        }
+        if(p.getLocation().equals(new Location(800,544))){
+            dispose();
+            if(oldState.equals(MapFactory.MapType.GraveyardWest)){
+                game.setScreen(new GraveyardScreen(game,new Vector2(0,1),1088,736));
+            }
+        }
+        if(p.getLocation().equals(new Location(800,512))){
+            if(oldState.equals(MapFactory.MapType.GraveyardEast)){
+                dispose();
+                game.setScreen(new GraveyardScreen(game, new Vector2(2,1),352,640));
             }
         }
 
     }
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return Map
      */
     @Override
     public Map getMap(Vector2 selector) {
@@ -173,8 +176,8 @@ public class HouseInteriorScreen extends PlayScreen {
     }
     /**
      * Returns a Vector2 value to get a Map according to the map type specified in the parameter
-     * @param map
-     * @return
+     * @param MapFactory.MapType map
+     * @return Vector2
      */
     @Override
     public Vector2 getWorldMapByWorld(MapFactory.MapType map) {

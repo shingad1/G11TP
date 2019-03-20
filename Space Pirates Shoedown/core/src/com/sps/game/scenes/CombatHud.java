@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.BasicEnemy;
 import com.sps.game.sprites.Player;
 
@@ -48,7 +49,7 @@ public class CombatHud
      */
     Label playerHealthCountLabel;
 
-    public CombatHud(SpriteBatch sb, Player player, BasicEnemy enemy){
+    public CombatHud(SpriteBatch sb, Player player, AbstractEnemy enemy){
         this.player = player;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -59,11 +60,11 @@ public class CombatHud
      */
     public void update(){
         playerHealthLabel = new Label("Player Health",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        playerHealthCountLabel = new Label(String.format("%d",player.getHP()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        playerHealthCountLabel = new Label(String.format("%d",player.getHealth()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
     /**
-     * this method formats the labels so it displayed on the correct position
+     * This method formats the labels so it displayed on the correct position
      */
     public void formatting(){
         stage = new Stage();

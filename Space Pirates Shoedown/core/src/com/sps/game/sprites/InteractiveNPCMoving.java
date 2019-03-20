@@ -8,14 +8,18 @@ import com.sps.game.maps.MapFactory;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * This class creates the moving Interactive NPC
+ * @author Miraj Shah, Miguel Abaquin, Devin Shingadia and Mahamuda Akhter
+ * @version 1.0
+ */
 public class InteractiveNPCMoving extends AbstractNPC {
     /**
      * Stores the NPC character's x co-ordinate
      *
      * @see
      */
-    private int x; //keep record of the NPC's x co-ordinate
-    //private int x;
+    private int x;
     /**
      * Stores the NPC character's y co-ordinate
      *
@@ -53,7 +57,9 @@ public class InteractiveNPCMoving extends AbstractNPC {
      * Value = The textureAtlas to display.
      */
     private HashMap<String, NpcAnimation> animation;
-
+    /**
+     * Holds the state of the NPC.
+     */
     private String state;
 
     /**
@@ -82,7 +88,10 @@ public class InteractiveNPCMoving extends AbstractNPC {
         location = new Location(x, y);
 
     }
-
+    /**
+     * Gets the current animation of the NPC.
+     * @return NpcAnimation
+     */
     public NpcAnimation getAnimation(String direction) {return animation.get(direction);}
 
     /**
@@ -105,40 +114,73 @@ public class InteractiveNPCMoving extends AbstractNPC {
     public MapFactory.MapType getWorld() {
         return world;
     }
-
-
+    /**
+     * Returns the velocity of the NPC.
+     */
     public Vector2 getVelocity() {
         return velocity;
     }
-
+    /**
+     * Sets the value of the Y coordinate.
+     * @param float newY
+     */
     @Override
     public void setY(float newY) {
         y += newY;
     }
-
+    /**
+     * Sets the value of the X coordinate.
+     * @param float newX
+     */
     @Override
     public void setX(float newX) {
         x += newX;
     }
-
+    /**
+     * Gets the current animation of the NPC.
+     * @return NpcAnimation
+     */
     public NpcAnimation getAnimation() {
         return animation.get(state);
     }
-
+    /**
+     * Changes the state of the NPC.
+     * @param String newState
+     */
     public void changeState(String newState) {
         state = newState;
     }
 
+    /**
+     * Gets the current state of the NPC.
+     * @return String state
+     */
     public String getState(){return state;}
 
+    /**
+     * Gets the current location of the NPC
+     * @return Location location
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * Sets the name of the NPC
+     * @param String name
+     */
     public void setName(String name) { this.name = name;}
 
+    /**
+     * Gets the name of the NPC.
+     * @return String name
+     */
     public String getName() {return name;}
 
+    /**
+     * Gets the type of the NPC.
+     * @return String
+     */
     public String getType() {return "InteractiveNPCMoving";}
 
 }

@@ -87,14 +87,15 @@ public class CandyLandScreen extends PlayScreen {
         }
 
         if(currentMapState.equals(MapFactory.MapType.CandyWorld1)){
-            npc.add(new InteractiveNPC(480, 1184, MapFactory.MapType.CandyWorld1, batch, "MuffinWelcome"));
-            npc.add(new InteractiveNPC(1152, 672, MapFactory.MapType.CandyWorld1, batch, "MuffinSeventhNPC"));
-            npc.add(new InteractiveNPC(1504, 864, MapFactory.MapType.CandyWorld1, batch, "MuffinRoleModel"));
-            npc.add(new InteractiveNPC(384, 160, MapFactory.MapType.CandyWorld1, batch, "MuffinStranger"));
+            npc.add(new InteractiveNPC(512, 1216, MapFactory.MapType.CandyWorld1, batch, "MuffinWelcome"));
+            npc.add(new InteractiveNPC(1152, 800, MapFactory.MapType.CandyWorld1, batch, "MuffinSeventhNPC"));
+            npc.add(new InteractiveNPC(1472, 832, MapFactory.MapType.CandyWorld1, batch, "MuffinRoleModel"));
+            npc.add(new InteractiveNPC(512, 192, MapFactory.MapType.CandyWorld1, batch, "MuffinStranger"));
+            npc.add(new MerchantNPC(1152,544,MapFactory.MapType.CandyWorld1,batch,"Merchant"));
         }
-        npc.add(new InteractiveNPC(832, 832, MapFactory.MapType.CandyWorld2, batch, "MuffinEigthNP"));
-        npc.add(new InteractiveNPC(1408, 448, MapFactory.MapType.CandyWorld2, batch, "MuffinScared"));
-        npc.add(new InteractiveNPC(512, 352, MapFactory.MapType.CandyWorld2, batch, "MuffinWimp"));
+        npc.add(new InteractiveNPC(416, 928, MapFactory.MapType.CandyWorld2, batch, "MuffinEigthNP"));
+        npc.add(new InteractiveNPC(1280, 192, MapFactory.MapType.CandyWorld2, batch, "MuffinScared"));
+        npc.add(new InteractiveNPC(480, 352, MapFactory.MapType.CandyWorld2, batch, "MuffinWimp"));
         npc.add(new InteractiveNPC(1088, 1088, MapFactory.MapType.CandyWorld2, batch, "MuffinNinthNPC"));
 
         allLocations = new ArrayList<Location>();
@@ -104,24 +105,24 @@ public class CandyLandScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbounds, ybounds, allLocations);
         gamecam.position.set(p.getX(),p.getY(),0);
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/candy.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/candy.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
     }
     /**
      * Returns a cell according to the Map and the location
-     * @param location
-     * @param map
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType map
+     * @return TiledMapTileLayer.Cell
      */
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
         return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
     }
     /**
-     * Checks if the location is occupied by an npc or a blocked tile
-     * @param location
-     * @return
+     * Checks if the location is occupied by an npc or a blocked tile.
+     * @param Location location
+     * @return boolean, True if there is no NPC or blocked tile or nonpc tile otherwise false.
      */
     @Override
     public boolean checkPosition(Location location, MapFactory.MapType world) {
@@ -130,7 +131,7 @@ public class CandyLandScreen extends PlayScreen {
                 return false;
             }
         }
-        if(getCell(location, world) == null || getCell(location, world).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, world) == null || getCell(location, world).getTile().getProperties().containsKey("blocked") || getCell(location, world).getTile().getProperties().containsKey("nonpc")){
             return false;
         }
         return true;
@@ -138,7 +139,7 @@ public class CandyLandScreen extends PlayScreen {
 
 
     /**
-     * Changes the map that is rendered once the player is on a certain location or going of the screen
+     * Changes the map that is rendered once the player is on a certain location or going of the screen.
      */
     @Override
     public void changeMaps() {
@@ -154,9 +155,9 @@ public class CandyLandScreen extends PlayScreen {
             camX = -1;
         }
         if (currentMapState.equals(MapFactory.MapType.CandyWorld1)){
-            if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
+            if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip() && flags[1] == true){
                 dispose();
-                game.setScreen(new TropicalWorldScreen(game, 320, 256));
+                game.setScreen(new TropicalWorldScreen(game,new Vector2(0,0), 320, 256));
             }
             if(p.getLocation().equals(new Location(416, 992))){
                 oldState = MapFactory.MapType.CandyWorld1;
@@ -194,8 +195,8 @@ public class CandyLandScreen extends PlayScreen {
     }
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return Map
      */
     @Override
     public Map getMap(Vector2 selector) {
@@ -203,8 +204,8 @@ public class CandyLandScreen extends PlayScreen {
     }
     /**
      * Returns a Vector2 value to get a Map according to the map type specified in the parameter
-     * @param map
-     * @return
+     * @param MapFactory.MapType map
+     * @return Vector2
      */
     @Override
     public Vector2 getWorldMapByWorld(MapFactory.MapType map) {
@@ -217,7 +218,11 @@ public class CandyLandScreen extends PlayScreen {
         }
         return null;
     }
-
+    /**
+     * Returns an ArrayList containing all the enemies on the map.
+     * @param MapFactory.MapType map
+     * @return ArrayList<AbstractEnemy>
+     */
     @Override
     public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;

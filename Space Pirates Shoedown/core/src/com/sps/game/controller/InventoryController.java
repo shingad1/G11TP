@@ -24,7 +24,7 @@ public class InventoryController {
      * @see #merchantInventory
      * @see #itemImageList
      */
-    private Skin skin = new Skin(Gdx.files.internal("core/assets/pixthulhuui/pixthulhu-ui.json"));
+    private Skin skin = new Skin(Gdx.files.internal("pixthulhuui/pixthulhu-ui.json"));
 
     /**
      * Collection for the users items
@@ -59,11 +59,10 @@ public class InventoryController {
     public Item fuel;
     public Item axe;
     public Item fluxCapacitor;
-    public Item shoes;
-    public Item hamster;
+    public Item shoe;
     public Item hammer;
     public Item piratesEye;
-    public Item cucumber;
+    public Item fakeShoe;
     public Item shoeLaces;
     public Item sword;
     public Item socks;
@@ -80,11 +79,10 @@ public class InventoryController {
         allItems.setItems(fuel,
                           axe,
                           fluxCapacitor,
-                          shoes,
-                          hamster,
+                shoe,
                           hammer,
                           piratesEye,
-                          cucumber,
+                          fakeShoe,
                           shoeLaces,
                           sword,
                           socks
@@ -92,20 +90,18 @@ public class InventoryController {
 
 
         /**
-         *         Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
+         * Providing the string representation for each item in the inventory list, to be printed, through calling the getName() method.
          */
         inventory.setItems(socks.getName(),
-                           shoeLaces.getName(),
-                           cucumber.getName(),
-                           fluxCapacitor.getName()
-
+                           fuel.getName(),
+                           fakeShoe.getName()
                 );
 
 
         /**
-         *         Providing the string representation for each item in the merchant list, to be printed
+         * Providing the string representation for each item in the merchant list, to be printed
          */
-        merchantInventory.setItems(sword.getName());
+        merchantInventory.setItems(sword.getName(), fluxCapacitor.getName(), axe.getName(), piratesEye.getName()); //to have more
 
 
         /**
@@ -114,11 +110,10 @@ public class InventoryController {
         itemImageList.setItems(fuel.getImage(),
                                axe.getImage(),
                                fluxCapacitor.getImage(),
-                               shoes.getImage(),
-                               hamster.getImage(),
+                               shoe.getImage(),
                                hammer.getImage(),
                                piratesEye.getImage(),
-                               cucumber.getImage(),
+                               fakeShoe.getImage(),
                                shoeLaces.getImage(),
                                sword.getImage());
 
@@ -135,31 +130,39 @@ public class InventoryController {
      * @see #itemImageList
      */
     private void setItems() {
-        fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1,  "core/assets/Inventory/images/shoe.png");
-        axe = new Item("Axe", 20, "An Axe to cut pirates in half", 2, "core/assets/Inventory/images/premium-sword.png");
-        fluxCapacitor = new Item("Flux Capacitor", 200,"Travel through time!", 3, "core/assets/Inventory/images/plate.png");
-        shoes = new Item("Shoes", 50,  "Some fake shoes", 4, "core/assets/Inventory/images/shoe.png");
-        hamster = new Item("Hamster", 1, "A rare hamster", 5, "core/assets/Inventory/images/premium-axe.png");
-        hammer = new Item("Hammer", 25, "1.5x more effective at killing pirates", 6, "core/assets/Inventory/images/hammer.png");
-        piratesEye = new Item("Pirates Eye", 250, "Gives the ability to spot pirates a mile away!", 7, "core/assets/Inventory/images/silvershoe.png");
-        cucumber = new Item("Cucumber", 0, "A useless cucumber", 8, "core/assets/Inventory/images/wood.png");
-        shoeLaces = new Item("Shoe Laces", 25, "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/potion.png");
-        sword = new Item("Sword", 100, "Hack your way to the final boss", 10, "core/assets/Inventory/images/axe.png");
-        socks = new Item("Socks", 3, "Next best substitute for shoes", 11, "core/assets/Inventory/images/potion.png");
+        fuel = new Item("Fuel", 10, "Fuel for your rocket shoe", 1,  "Inventory/images/fuel.png");
+        axe = new Item("Axe", 20, "An Axe to cut pirates in half", 2, "Inventory/images/premium-axe.png");
+        fluxCapacitor = new Item("Flux Capacitor", 200,"Travel through time!", 3, "Inventory/images/flux-capacitor.png");
+        shoe = new Item("Shoe", 50,  "Your old shoe", 4, "Inventory/images/shoe.png");
+        hammer = new Item("Hammer", 25, "1.5x more effective at killing pirates", 6, "Inventory/images/hammer.png");
+        piratesEye = new Item("Pirates Eye", 250, "Gives the ability to spot pirates a mile away!", 7, "Inventory/images/eye.png");
+        fakeShoe = new Item("Fake Shoe", 0, "A fake shoe. Made out of newspaper.", 8, "Inventory/images/fakeShoe.png");
+        shoeLaces = new Item("Shoe Laces", 25, "Some common shoe laces. Not edible", 9, "Inventory/images/shoeLaces.png");
+        sword = new Item("Sword", 100, "Hack your way to the final boss", 10, "Inventory/images/regularSword.png");
+        socks = new Item("Socks", 3, "Next best substitute for shoe", 11, "Inventory/images/sock.png");
     }
 
     /**
-     *
-     * @return
+     * Accessor method for the user inventory list.
+     * @return A list of strings which is the user's inventory.
      */
     public List<String> getInventoryList() {
         return inventory;
     }
 
+    /**
+     * Accessor method for the merchant's inventory list
+     * @return A list of strings which is the merchant's inventory
+     */
     public List<String> getMerchantList() {
         return merchantInventory;
     }
 
+    /**
+     * Finds an item, given the item name. Iterates through the allItems collection using an enhanced for loop.
+     * @param itemName The string representation of the item to be found.
+     * @return An item object which has the .getName() output, which is the same as the parameter.
+     */
     public Item findItem(String itemName) {
         Item foundItem = null;
 
@@ -171,15 +174,33 @@ public class InventoryController {
         return foundItem;
     }
 
+    /**
+     * Accessor method for the gold value.
+     * @param item The item object, which passed in, contains a method to return the gold value.
+     * @return An Integer which is the gold value of the item in question.
+     */
     public Integer getGoldValue(Item item) {
         return item.getGoldvalue();
     }
 
+    /**
+     * Returns a list of images, called imageList.
+     * @return A list of images.
+     */
     public List<Image> getImageList() { return itemImageList; }
 
+    /**
+     * Adds item to the user inventory collection.
+     * @param foundItem The item to be added. 
+     */
     public void addToInventory(Item foundItem) {
         this.foundItem = foundItem;
-        inventory.getItems().add(foundItem.getName());
+        String itemString = foundItem.getName();
+
+        if (!inventory.getItems().contains(foundItem.getName(), false)) {
+            inventory.getItems().add(foundItem.getName());
+        }
+
         System.out.println("player: " + inventory.getItems() + "\n");
     }
 

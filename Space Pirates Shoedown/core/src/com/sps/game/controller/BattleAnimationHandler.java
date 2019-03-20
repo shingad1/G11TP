@@ -75,7 +75,7 @@ public class BattleAnimationHandler {
             } else {
                 if (frame >= 1.0f){
                     frame = 0.0f;
-                playerAnimationStack.pop();
+                    playerAnimationStack.pop();
                 } else {
                     frame += 0.3f;
                 }
@@ -115,25 +115,26 @@ public class BattleAnimationHandler {
 
     public void setupPlayerAnimation(String chosenMove){
         oldLocation = new Location(Math.round(playerLocation.getX()),Math.round(playerLocation.getY()));
-        if(moveList.getMoveRange(chosenMove).equals("close")){
+        if(moveList.getMoveRange(chosenMove) == MoveList.MoveRange.near){
             playerAnimationStack.push("Left");
-            playerAnimationStack.push(chosenMove);
+            playerAnimationStack.push("basicAttack");
             playerAnimationStack.push("Right");
         } else {
-            playerAnimationStack.push(chosenMove);
+            playerAnimationStack.push("block");
         }
 
         inAnimation = true;
     }
     public void setupEnemyAnimation(String chosenMove){
         oldLocation = new Location(Math.round(enemyLocation.getX()),Math.round(enemyLocation.getY()));
-        if(moveList.getMoveRange(chosenMove).equals("close")){
+        if(moveList.getMoveRange(chosenMove) == MoveList.MoveRange.near){
             enemyAnimationStack.push("Right");
-            enemyAnimationStack.push(chosenMove);
+            enemyAnimationStack.push("basicAttack");
             enemyAnimationStack.push("Left");
         } else {
-            enemyAnimationStack.push(chosenMove);
+            enemyAnimationStack.push("block");
         }
+
         inAnimation = true;
     }
 

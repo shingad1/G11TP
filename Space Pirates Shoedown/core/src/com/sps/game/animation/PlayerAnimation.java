@@ -9,6 +9,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.sps.game.sprites.Location;
 import com.sps.game.sprites.Player;
 
+/**
+ * This class creates the player animation according to its state.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class PlayerAnimation extends ApplicationAdapter {
     /**
      * Holds all the sprites that will be displayed on the screen
@@ -33,7 +38,7 @@ public class PlayerAnimation extends ApplicationAdapter {
     /**
      * The path for textures
      */
-   private static final String ASSETS_PATH = "core/assets/textureAtlas/playerAtlas/";
+   private static final String ASSETS_PATH = "textureAtlas/playerAtlas/";
 
    private Player player;
 
@@ -46,7 +51,7 @@ public class PlayerAnimation extends ApplicationAdapter {
 
 
     /**
-     * Frees up resources in the memory
+     * Frees up resources in the memory, by clearing batch and playerAtlas
      */
     public void dispose() {
         batch.dispose();
@@ -57,9 +62,6 @@ public class PlayerAnimation extends ApplicationAdapter {
      * Sets a temporary background colour, and uses the spritebatch to render the animation object, using the timePassed field.
      */
     public void render() {
-    //Gdx.gl.glClearColor(0, 1, 0, 1);
-    //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
     batch.begin();
     timePassed += Gdx.graphics.getDeltaTime();
     batch.draw(animation.getKeyFrame(timePassed, true), player.getX(), player.getY(),32,32);

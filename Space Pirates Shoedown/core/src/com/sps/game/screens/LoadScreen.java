@@ -23,11 +23,6 @@ import com.sps.game.profile.ProfileManager;
  * @version 1.0
  */
 public class LoadScreen implements Screen {
-
-    /**
-     * Constant field to direct where the file is located.
-     */
-    private static final String ASSETS_PATH = "core/assets/";
     /**
      * Holds a version of the game.
      * @see #render
@@ -61,14 +56,13 @@ public class LoadScreen implements Screen {
 
     public LoadScreen(final SpacePiratesShoedown game){
         this.game = game;
-        //loadButton = new Texture(ASSETS_PATH + "LoadButton.png");
         //following may need to change
         stage = new Stage();
-        TextButton loadButton = new TextButton("Load", new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))));
-        TextButton backButton = new TextButton("Back", new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))));
+        TextButton loadButton = new TextButton("Load", new Skin(Gdx.files.internal("MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("MenuResources/statusui.atlas"))));
+        TextButton backButton = new TextButton("Back", new Skin(Gdx.files.internal("MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("MenuResources/statusui.atlas"))));
 
         ProfileManager.getInstance().storeAllProfiles();
-        listProfiles = new List(new Skin(Gdx.files.internal("core/assets/MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("core/assets/MenuResources/statusui.atlas"))), "inventory"); //takes in a skin and string
+        listProfiles = new List(new Skin(Gdx.files.internal("MenuResources/statusui.json"), new TextureAtlas(Gdx.files.internal("MenuResources/statusui.atlas"))), "inventory"); //takes in a skin and string
         Array<String> list = ProfileManager.getInstance().getProfilelList();
         listProfiles.setItems(list);
 
@@ -133,12 +127,15 @@ public class LoadScreen implements Screen {
             }
         });
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/bensound-newdawn.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/bensound-newdawn.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
     }
 
+    /**
+     * Displays all the profiles to the user.
+     */
     @Override
     public void show() {
         Array<String> list = ProfileManager.getInstance().getProfilelList();
@@ -146,6 +143,10 @@ public class LoadScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
     }
 
+    /**
+     * Renders the stage
+     * @param float delta
+     */
     @Override
     public void render(float delta) {
         if(delta == 0){
@@ -157,6 +158,11 @@ public class LoadScreen implements Screen {
         stage.draw();
     }
 
+    /**
+     * Adjusts the stage to the size of the screen
+     * @param int width
+     * @param int height
+     */
     @Override
     public void resize(int width, int height) {
         stage.getViewport().setScreenSize(width, height);
@@ -177,6 +183,9 @@ public class LoadScreen implements Screen {
         Gdx.input.setInputProcessor(null);
     }
 
+    /**
+     * Clears the stafe and disposes of the stage and music
+     */
     @Override
     public void dispose() {
         stage.clear();

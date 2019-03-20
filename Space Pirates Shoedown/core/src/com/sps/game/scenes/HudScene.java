@@ -53,7 +53,7 @@ public class HudScene  {
      */
     Label goldCountLabel;
 
-    private Image pause, story, backpack;
+    private Image story;
 
     private Texture saveTexture;
 
@@ -64,6 +64,7 @@ public class HudScene  {
     private ImageButton saveButton;
 
     //public Inventory inventory;
+    private Skin skin = new Skin(Gdx.files.internal("pixthulhuui/pixthulhu-ui.json"));
 
 
     public HudScene(SpriteBatch sb, Player p){
@@ -77,11 +78,9 @@ public class HudScene  {
         //Instantiating the goldCountLabel label with the BitmapFont font and the colour white
        // goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        pause = new Image(new Texture("core/assets/pause.png"));
-        story = new Image(new Texture("core/assets/story.png"));
-        backpack = new Image(new Texture("core/assets/Inventory/backpack.png"));
+        story = new Image(new Texture("story.png"));
 
-        saveTexture = new Texture("core/assets/Buttons/SaveButton.png");
+        saveTexture = new Texture("Buttons/SaveButton.png");
         saveTextureRegion = new TextureRegion(saveTexture);
         saveTextureRegionDrawable = new TextureRegionDrawable(saveTextureRegion);
         saveButton = new ImageButton(saveTextureRegionDrawable);
@@ -101,7 +100,7 @@ public class HudScene  {
     private void formatting(){
         stage = new Stage();
         //Creating a Table and instantiating it, used for layout of the HUD
-        Table table = new Table();
+        Table table = new Table(skin);
         //All objects of the table will originate from top left of the table
         table.top().left();
         //The table will have the same width and height as its parent (screen)
@@ -113,20 +112,7 @@ public class HudScene  {
         //Adding the goldCountLabel label to the table with padding of 10px from the left
         table.add(goldCountLabel).padLeft(10);
         //putting the table on the stage so that it can be drawn
-        table.add(pause).size(50,50).padLeft(20);
         table.add(story).size(50,50).padLeft(20);
-        table.add(backpack).size(50, 50).pad(20);
         stage.addActor(table);
-        //stage.addActor(saveButton);
-        //Gdx.input.setInputProcessor(stage);
-/*
-        saveButton.addListener(new EventListener() {
-            @Override
-            public boolean handle(Event event) {
-                ProfileManager.getInstance().saveProfile();
-                System.out.println("Game Saved");
-                return true;
-            }
-        });*/
     }
 }

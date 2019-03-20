@@ -41,9 +41,9 @@ public class TropicalWorldScreen extends PlayScreen {
      */
     private int[] ybounds = {0,1600};
 
-    public TropicalWorldScreen(SpacePiratesShoedown game, int px, int py) {
+    public TropicalWorldScreen(SpacePiratesShoedown game, Vector2 selector,int px, int py) {
         super(game);
-        mapSelector = new Vector2(0,0);
+        mapSelector = selector;
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)];
         currentMap = selectedMap.getCurrentMap();
         renderer = new OrthogonalTiledMapRenderer(currentMap);
@@ -95,6 +95,7 @@ public class TropicalWorldScreen extends PlayScreen {
             npc.add(new InteractiveNPC(1376,352,MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC12"));
             npc.add(new InteractiveNPC(608,960,MapFactory.MapType.TropicalWorld2, batch,"TropicalNPC7"));
             npc.add(new InteractiveNPC(1184,1024,MapFactory.MapType.TropicalWorld2, batch, "TropicalNPC2"));
+            npc.add(new MerchantNPC(96,1440, MapFactory.MapType.TropicalWorld2,batch,"Merchant"));
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
         p.setX(px);
@@ -102,15 +103,16 @@ public class TropicalWorldScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer, xbounds, ybounds, allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/tropical.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/tropical.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
     }
     /**
      * Checks if the location is occupied by an npc or a blocked tile
-     * @param location
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType world
+     * @return boolean, True if there is no NPC or blocked tile or nonpc tile otherwise false.
      */
     @Override
     public boolean checkPosition(Location location, MapFactory.MapType world) {
@@ -119,16 +121,16 @@ public class TropicalWorldScreen extends PlayScreen {
                 return false;
             }
         }
-        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked")|| getCell(location,world).getTile().getProperties().containsKey("nonpc")){
             return false;
         }
         return true;
     }
     /**
      * Returns a cell according to the Map and the location
-     * @param location
-     * @param map
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType map
+     * @return TiledMapTileLayer.Cell
      */
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
         return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
@@ -169,9 +171,13 @@ public class TropicalWorldScreen extends PlayScreen {
             }
         }
         if(currentMapState.equals(MapFactory.MapType.TropicalWorld2)){
-            if(p.getLocation().equals(new Location(1280, 1376))){
+            if(p.getLocation().equals(new Location(1280, 1376)) && flags[2] == true){
                 dispose();
-                game.setScreen(new GraveyardScreen(game, new Vector2(1,0)));
+                game.setScreen(new GraveyardScreen(game, new Vector2(1,1), 832, 160));
+            } else if(p.getLocation().equals(new Location(1216,736))){
+                dispose();
+                oldState = MapFactory.MapType.TropicalWorld2;
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(3,1)));
             }
         }
         if(camX != 0 || camY != 0) {
@@ -192,8 +198,8 @@ public class TropicalWorldScreen extends PlayScreen {
     }
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return map
      */
     @Override
     public Map getMap(Vector2 selector) {
@@ -216,6 +222,11 @@ public class TropicalWorldScreen extends PlayScreen {
         return null;
     }
 
+    /**
+     * Returns an ArrayList containing all the enemies on the map.
+     * @param MapFactory.MapType map
+     * @return ArrayList<AbstractEnemy>
+     */
     @Override
     public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;

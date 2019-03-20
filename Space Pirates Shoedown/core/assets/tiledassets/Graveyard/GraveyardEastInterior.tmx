@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="Ground.tsx"/>
+ <tileset firstgid="491" source="../TropicalWorld/Resources/Tiles5.tsx"/>
+ <tileset firstgid="981" source="Graveyard Tileset 1.tsx"/>
+ <layer id="1" name="Ground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt17ENwCAMRUGTKTMEA2RltqClDomwpSuu9+u+R4sYAAAAhfR47/Tta8OzIUPLbkOGlq8aTrfo0KFDhw4dOnToyNtSYbvfV/6GtaX6PwgAAPxrAiPlQ4U=
+  </data>
+ </layer>
+ <layer id="3" name="CollisionLayer" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1FEKgCAQRVGpnbiKltue2lD1IchgZirNKDc4HxrBe47kF+c8AAAAAOB34QnrY3V7TO7Ha+3scYdczhLaHd7Oers63sI7ubbSpfS8U/mf+lvuYf1uzdSjtpNm7t7zSJ3HaPOwNJ9eM7DUo3Uu2j1muFc1HeQ32tlzWUabxyz/XdmltJ/Fu9U6F+3sAAAAAPDFCU7FrHM=
+  </data>
+ </layer>
+ <layer id="4" name="Tile Layer 4" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer id="2" name="Misc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1UEOgCAMRNFGuf8N9Sy6ISFECrKwo/63MqjJFJpiBgAAAACItCSzNfXXW99Fe0tOj1fDF+or5fzb+bxXayrKbIg32x/5P7X+yrw+q98p1aCU5UneXFYwmkl1vinu6V0zZ6B8x1/N0F7/qPbXDKWzKLVyKd8bAAAAAPBHB0U+EQA=
+  </data>
+ </layer>
+</map>

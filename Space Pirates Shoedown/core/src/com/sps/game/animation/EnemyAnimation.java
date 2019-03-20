@@ -8,9 +8,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.Location;
-
+/**
+ * This class creates the animation for the enemy, according the state of the enemy.
+ * @author Miraj Shah
+ * @version 1.0
+ */
 public class EnemyAnimation extends ApplicationAdapter {
     /**
+
      * Holds all of the sprites that will be displayed on the screen
      */
     private SpriteBatch batch;
@@ -29,7 +34,7 @@ public class EnemyAnimation extends ApplicationAdapter {
     /**
      * The path for textures
      */
-    private static final String ASSETS_PATH = "core/assets/textureAtlas/enemyAtlas/";
+    private static final String ASSETS_PATH = "textureAtlas/enemyAtlas/";
 
     private AbstractEnemy enemy;
 
@@ -40,11 +45,17 @@ public class EnemyAnimation extends ApplicationAdapter {
         animation = new Animation <TextureRegion> (duration, enemyAtlas.getRegions());
     }
 
+    /**
+     * Disposes the batch and atlas, so less memory is used.
+     */
     public void dispose() {
         batch.dispose();
         enemyAtlas.dispose();
     }
 
+    /**
+     * Renders the enemy according to its state
+     */
     public void render() {
         batch.begin();
         timePassed += Gdx.graphics.getDeltaTime();
@@ -52,6 +63,11 @@ public class EnemyAnimation extends ApplicationAdapter {
         batch.end();
     }
 
+    /**
+     * Renders the enemy according to its state
+     * @param Location location
+     * @param Float frame
+     */
     public void render(Location location, float frame) {
         batch.begin();
         timePassed += Gdx.graphics.getDeltaTime();
@@ -59,6 +75,10 @@ public class EnemyAnimation extends ApplicationAdapter {
         batch.end();
     }
 
+    /**
+     * Renders the enemy according to its state
+     * @param Location location
+     */
     public void render(Location location) {
         batch.begin();
         timePassed += Gdx.graphics.getDeltaTime();

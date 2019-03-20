@@ -14,6 +14,9 @@ public class MapFactory {
      */
     private static Hashtable<MapType, Map> mapTable = new Hashtable<MapType, Map>();
 
+    /**
+     * Holds all the type of maps in the game.
+     */
     public static enum MapType{
         HomeWorldMap1,
         HomeWorldMap2,
@@ -28,8 +31,13 @@ public class MapFactory {
         TropicalWorld2,
         TropicalInterior1,
         TropicalInterior2,
+        TropicalInterior3,
         GraveyardWorld1,
-        GraveyardWest
+        GraveyardWest,
+        GraveyardEast,
+        GraveyardEastInterior,
+        GraveyardNorth,
+        GraveyardWestInterior
     }
 
     /**

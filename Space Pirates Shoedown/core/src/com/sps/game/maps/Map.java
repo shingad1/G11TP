@@ -24,7 +24,7 @@ public abstract class Map{
     /**
      * Constant field to direct where the file is located.
      */
-    public static final String ASSETS_PATH = "core/assets/tiledassets/";
+    public static final String ASSETS_PATH = "tiledassets/";
 
     protected Json json; //may need to be removed
     /**

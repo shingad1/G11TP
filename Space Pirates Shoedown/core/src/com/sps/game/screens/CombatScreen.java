@@ -14,12 +14,13 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.CombatController;
 import com.sps.game.controller.CombatSystem;
+import com.sps.game.maps.MapFactory;
 import com.sps.game.scenes.CombatHud;
 import com.sps.game.scenes.EnemyHud;
 import com.sps.game.scenes.ThirdHud;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.sprites.BasicEnemy;
-import com.sps.game.sprites.Player;
+import com.sps.game.scenes.WinHud;
+import com.sps.game.sprites.*;
 
 /**
  * This class creates the combat screen, which is shown when the player fights with an enemy.
@@ -33,7 +34,7 @@ public class CombatScreen implements Screen {
      * Holds a version of the game
      * @see #CombatScreen
      */
-    private Game game;
+    private SpacePiratesShoedown game;
     /**
      * Renders the texture resources
      * @see #CombatScreen
@@ -44,22 +45,12 @@ public class CombatScreen implements Screen {
      * Constant field to direct where the file is located.
      * @see #CombatScreen
      */
-    private static final String ASSETS_PATH = "core/assets/tiledAssets/";
+    private static final String ASSETS_PATH = "tiledAssets/";
     /**
      *Displays what the user will see
      * @see #CombatScreen
      */
     private Viewport gameport;
-    /**
-     * Holds the texture showing the player.
-     * @see #render
-     */
-    private Texture player;
-    /**
-     * Holds the texture showing the enemy.
-     * @see #render
-     */
-    private Texture enemy;
     /**
      * Holds the tmx file.
      * @see #CombatScreen
@@ -81,69 +72,69 @@ public class CombatScreen implements Screen {
      */
     private OrthographicCamera gamecam;
     /**
-     * Holds the player information during the combat.
-     * @see #update #render
+     *
      */
-    private CombatHud playerHud;
+    private WinHud winHud;
     /**
      * holds the playerhud
      * @see #render(float)
      */
-    private EnemyHud enemyHud;
+    private CombatHud playerHud;
     /**
      * holds the Enemyhud
      * @see #render(float) #update(float)
      */
-    private ThirdHud ThirdHud;
+    private EnemyHud enemyHud;
     /**
-     * holds the ThirdHud
+     * holds the thirdHud
      * @see #render(float) #update(float)
      */
-    private BasicEnemy Enemy;
+    private ThirdHud thirdHud;
     /**
      * holds the enemy
      * @see #render(float) #update(float)
      */
-    private CombatController combatController;
+    private AbstractEnemy enemy;
     /**
      * Holds the CombatController
      * @see #CombatScreen
      */
-    private CombatSystem cs;
+    private CombatController combatController;
     /**
      * Holds the CombatSystem
      * @see #CombatScreen
      */
-    private int tick;
+    private CombatSystem cs;
     /**
      * Holds integer variable which has the information for the tick
      * @see #CombatScreen
      */
-    private PlayScreen playScreen;
+    private int tick;
     /**
      * Holds the play screen
      */
+    private PlayScreen playScreen;
 
-    public CombatScreen(SpacePiratesShoedown game, Player p, BasicEnemy e, PlayScreen playScreen) {
+    private boolean playerDied;
+
+    public CombatScreen(SpacePiratesShoedown game, SpriteBatch sb, Player p, AbstractEnemy e, PlayScreen playScreen, TiledMap map, Location pp, Location ep) {
         this.game = game;
-        this.Enemy = e;
+        this.enemy = e;
 
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load(ASSETS_PATH + "emptyBattleMap.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map);
+        this.map = map;
+        renderer = new OrthogonalTiledMapRenderer(this.map);
         gamecam = new OrthographicCamera(480, 480);
-        gamecam.position.set(176,176,0);
+        gamecam.position.set((pp.getX() + ep.getX()) / 2, (pp.getY() + ep.getY()) /2,0);
         gameport = new FitViewport(1600, 1600, gamecam);
-        player = new Texture(ASSETS_PATH + "singleCharacter.png");
-        enemy = new Texture(ASSETS_PATH + "singleEnemy.png");
-        batch = new SpriteBatch();
+        this.batch = sb;
         playerHud = new CombatHud(batch,p,e);
         enemyHud = new EnemyHud(batch,e);
-        ThirdHud = new ThirdHud(batch);
-        cs = new CombatSystem(p, e, batch);
-        //Enemy.setCombatSystem(cs);
+        thirdHud = new ThirdHud(batch);
+        winHud = new WinHud(batch);
+        cs = new CombatSystem(p, e, batch, pp, ep);
         combatController = new CombatController(p, e, cs);
         this.playScreen = playScreen;
+        playerDied = false;
     }
     /**
      * Sets which controller is being used to handle user input
@@ -158,14 +149,21 @@ public class CombatScreen implements Screen {
      */
     public void update(float dt){
         if (cs.getFinished()){
+            if(!cs.didPlayerDie()) {
+                winHud.update();
+            } else {
+                game.setScreen(new GameOverScreen(game, false));
+            }
             returnScreen();
         }
         gamecam.update();
         renderer.setView(gamecam);
         cs.update();
+        playerDied = cs.didPlayerDie();
         playerHud.update();
         enemyHud.update();
-        //ThirdHud.update(); //needs to have an array as a parameter
+        thirdHud.update(cs.getOptions());
+        //thirdHud.update(); //needs to have an array as a parameter
     }
     /**
      * Clears the screen and draws the necessary textures.
@@ -179,7 +177,8 @@ public class CombatScreen implements Screen {
         renderer.render();
         enemyHud.stage.draw();
         playerHud.stage.draw();
-        ThirdHud.stage.draw();
+        thirdHud.stage.draw();
+        winHud.stage.draw();
         batch.setProjectionMatrix(gamecam.combined);
         cs.render();
     }
@@ -217,14 +216,24 @@ public class CombatScreen implements Screen {
     @Override
     public void dispose() {
         map.dispose();
-        player.dispose();
-        enemy.dispose();
     }
     /**
      * Clears the combat screen and returns to the state the play screen was left in.
      */
-    private void returnScreen(){
+    private void returnScreen() {
         dispose();
-        playScreen.combatExit();
+        if (winHud.getFinished()) {
+            if(enemy instanceof HeadEnemy){
+                if(PlayScreen.oldState.equals(MapFactory.MapType.HomeWorldMap2)){
+                    PlayScreen.flags[0] = true;
+                } else if(PlayScreen.oldState.equals(MapFactory.MapType.CandyWorld2)){
+                    PlayScreen.flags[1] = true;
+                } else if(PlayScreen.oldState.equals(MapFactory.MapType.TropicalWorld2)){
+                    PlayScreen.flags[2] = true;
+                }
+            }
+            playScreen.combatExit();
+            winHud.setFinished(false);
+        }
     }
 }

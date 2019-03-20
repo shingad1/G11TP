@@ -12,15 +12,12 @@ import java.util.HashMap;
  * @author Miraj Shah, Miguel Abaquin, Devin Shingadia
  * @version 1.0
  */
-public class Player implements Fighter {
+public class Player extends Fighter {
     /**
      * Keeps track of the player's gold
      */
     private int gold;
-    /**
-     * Keeps track of the player's HP
-     */
-    private int HP;
+
     /**
      * Holds the players X coordinates.
      * @see #move #getX
@@ -37,32 +34,43 @@ public class Player implements Fighter {
      */
     private Vector2 velocity;
     /**
-     * Holds the texture showing the player.
+     * Holds the animation showing the player.
      */
     private HashMap<String, PlayerAnimation> animation;
-
+    /**
+     * Holds all the animations for the player during the combat
+     */
     private HashMap<String, PlayerAnimation> fightAnimation;
-
+    /**
+     * Holds the current state of the Player.
+     */
     private String state;
-
+    /**
+     * Holds the current location of the player.
+     */
     private Location location;
-
+    /**
+     * Holds the attack damage of the player.
+     */
     private int attack;
-
+    /**
+     * Holds the defence of the player.
+     */
     private int defence;
-
+    /**
+     * Holds the instance of the player.
+     */
     private static Player player = new Player();
 
-    private Player(){ //int x, int y, SpriteBatch sb
-        //this.x = x;
-        //this.y = y;
+    private Player(){
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
-        gold = 20;
-        HP = 100;
+        gold = 50;
+        health = 100;
         location = new Location(0, 0);
         attack = 20;
         defence = 10;
+        speed = 10;
 
         //setAnimations(sb);
     }
@@ -80,18 +88,34 @@ public class Player implements Fighter {
         }
     }
 
+    /**
+     * Gets the HashMap containing the fight animations of the Player
+     * @return HashMap<String,PlayerAnimation> fightAnimation
+     */
     public HashMap<String, PlayerAnimation> getFightAnimation(){return fightAnimation;}
 
+    /**
+     * Sets the X value of the player.
+     * @param int x
+     */
     public void setX(int x){
         this.x = x;
         location.setX(x);
     }
 
+    /**
+     * Sets the Y value of the player.
+     * @param int y
+     */
     public void setY(int y){
         this.y = y;
         location.setY(y);
     }
 
+    /**
+     * Sets the sprite batch of the player
+     * @param SpriteBatch sb
+     */
     public void setBatch(SpriteBatch sb){
         setAnimations(sb);
     }
@@ -127,36 +151,46 @@ public class Player implements Fighter {
     public int getGold(){
         return gold;
     }
-
+    /**
+     * Increases the value of the players gold
+     * @param int goldValue
+     */
     public void increaseGold(int goldValue) { gold += goldValue; }
+    /**
+     * Decreases the value of the players gold
+     * @param int goldValue
+     */
     public void decreaseGold(int goldValue) { gold -= goldValue; }
 
-    @Override
-    public void changeHP(int diff) {
-        increaseHealth(diff); //if diff is negative, implicitly takes away health points
-    }
-
+    /**
+     * Gets the attack value of the player.
+     * @return
+     */
     @Override
     public int getAttack() {
         return attack;
     }
 
     /**
-     * Gets the health level of the player.
-     * @return Returns a <code>int</code> health points value.
+     * Gets the defence value of the player.
+     * @return
      */
-    public int getHP(){
-        return HP;
-    }
-
     @Override
     public int getDefence() {
         return defence;
     }
 
+    /**
+     * Changes the value of the defence.
+     * @param int diff
+     */
     @Override
     public void changeDefence(int diff){defence += diff;}
 
+    /**
+     * Changes the value of the attack
+     * @param int diff
+     */
     @Override
     public void changeAttack(int diff){attack += diff;}
 
@@ -176,7 +210,7 @@ public class Player implements Fighter {
      * @param <code>int</code> decrease, the amount to decrease the health level by.
      */
     public void decreaseHealth(int decrease){
-        HP-=decrease;
+        health-=decrease;
     }
 
     /**
@@ -184,26 +218,46 @@ public class Player implements Fighter {
      * @param <code>int</code> increase, the amount to increase the health by.
      */
     public void increaseHealth(int increase){
-       /* if(getHP() == 100){
-            HP = 100;
+       /* if(getHealth() == 100){
+            health = 100;
         }
         else {*/
-            HP += increase;
+            health += increase;
         //}
     }
 
+    /**
+     * Gets the animation of the player according to its state.
+     * @return PlayerAnimation
+     */
     public PlayerAnimation getAnimation(){
         return animation.get(state);
     }
 
+    /**
+     * Changes the state of the player.
+     * @param String newState
+     */
     public void changeState(String newState){state = newState;}
 
+    /**
+     * Gets the current location of the player.
+     * @return Location location
+     */
     public Location getLocation(){return location;}
 
+    /**
+     * Changes the sprite batch of the player
+     * @param SpriteBatch sb
+     */
     public void changeSpriteBatch(SpriteBatch sb){
         setAnimations(sb);
     }
 
+    /**
+     * Sers the animations of the player.
+     * @param SpriteBatch sb
+     */
     private void setAnimations(SpriteBatch sb){
         animation = new HashMap<String, PlayerAnimation>();
         animation.put("down",new PlayerAnimation(sb,this, "playerDown.atlas",1/15f));
@@ -220,6 +274,10 @@ public class Player implements Fighter {
 
     }
 
+    /**
+     * Gets the instance of the player.
+     * @return
+     */
     public static Player getPlayer(){
         return player;
     }

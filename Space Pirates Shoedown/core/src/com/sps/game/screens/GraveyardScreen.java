@@ -7,10 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.sps.game.SpacePiratesShoedown;
 import com.sps.game.controller.NPCController;
 import com.sps.game.controller.PlayerController;
-import com.sps.game.maps.GraveyardMap;
-import com.sps.game.maps.GraveyardWestMap;
-import com.sps.game.maps.Map;
-import com.sps.game.maps.MapFactory;
+import com.sps.game.maps.*;
 import com.sps.game.sprites.*;
 
 import java.util.ArrayList;
@@ -27,8 +24,8 @@ public class GraveyardScreen extends PlayScreen {
     /**
      * 2D array, that contains all the maps for the graveyard world
      */
-    private Map[][] worldMaps = {{new GraveyardWestMap(), new GraveyardMap()},
-                                 {null, null}};
+    private Map[][] worldMaps = {{null, new GraveyardNorthMap(), null},
+                                {new GraveyardWestMap(), new GraveyardMap(), new GraveyardEastMap()}};
     /**
      * Chooses the map to load from the array
      */
@@ -42,7 +39,7 @@ public class GraveyardScreen extends PlayScreen {
      */
     private int[] ybounds = {0,1600};
 
-    public GraveyardScreen(SpacePiratesShoedown game, Vector2 selector) {
+    public GraveyardScreen(SpacePiratesShoedown game, Vector2 selector, int px, int py) {
         super(game);
         mapSelector = selector;
         Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)];
@@ -57,20 +54,20 @@ public class GraveyardScreen extends PlayScreen {
 
         allLocations = new ArrayList<Location>();
         changeNpcLocations(selectedMap);
-        p.setX(832);
-        p.setY(160);
+        p.setX(px);
+        p.setY(py);
         p.setBatch(batch);
         controller = new PlayerController(p,currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0);
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/graveyard.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/graveyard.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
     }
     /**
      * Checks if the location is occupied by an npc or a blocked tile
-     * @param location
-     * @return
+     * @param Location location
+     * @return boolean, True if there is no NPC or blocked tile or nonpc tile otherwise false.
      */
     @Override
     public boolean checkPosition(Location location, MapFactory.MapType world) {
@@ -79,16 +76,16 @@ public class GraveyardScreen extends PlayScreen {
                 return false;
             }
         }
-        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked") || getCell(location, world).getTile().getProperties().containsKey("nonpc")){
             return false;
         }
         return true;
     }
     /**
      * Returns a cell according to the Map and the location
-     * @param location
-     * @param map
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType map
+     * @return TiledMapTileLayer.Cell
      */
     public TiledMapTileLayer.Cell getCell(Location location, MapFactory.MapType map){
         return getMap(getWorldMapByWorld(map)).getCollisionLayer().getCell((int) location.getX() / 32, (int) location.getY()/32);
@@ -117,6 +114,19 @@ public class GraveyardScreen extends PlayScreen {
             p.setY(0);
             camY = 1;
         }
+        if(currentMapState.equals(MapFactory.MapType.GraveyardWest)){
+            if(p.getLocation().equals(new Location(1056,768))){
+                dispose();
+                oldState = MapFactory.MapType.GraveyardWest;
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(4,0)));
+            }
+        } else if(currentMapState.equals(MapFactory.MapType.GraveyardEast)){
+            if(p.getLocation().equals(new Location(384,640))){
+                dispose();
+                oldState = MapFactory.MapType.GraveyardEast;
+                game.setScreen(new HouseInteriorScreen(game, new Vector2(4,1)));
+            }
+        }
         if(camX != 0 || camY != 0) {
             Map selectedMap = worldMaps[Math.round(mapSelector.y)][Math.round(mapSelector.x)]; //change when moving worlds
             currentMap = selectedMap.getCurrentMap();//change when moving worlds
@@ -129,15 +139,14 @@ public class GraveyardScreen extends PlayScreen {
             gamecam.position.set(p.getX()+(240 * camX), p.getY() + (240 * camY), 0); //change when moving worlds
             changeNpcLocations(selectedMap);
             controller.changeNpcLocations(allLocations);
-            //controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
             controller.changeCollisionLayer(currentCollisionLayer, xbounds, ybounds);
             controller.newWorldReset();
         }
     }
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return Map
      */
     @Override
     public Map getMap(Vector2 selector) {
@@ -145,8 +154,8 @@ public class GraveyardScreen extends PlayScreen {
     }
     /**
      * Returns a Vector2 value to get a Map according to the map type specified in the parameter
-     * @param map
-     * @return
+     * @param MapFactory.MapType map
+     * @return Vector2
      */
     @Override
     public Vector2 getWorldMapByWorld(MapFactory.MapType map) {
@@ -159,7 +168,11 @@ public class GraveyardScreen extends PlayScreen {
         }
         return null;
     }
-
+    /**
+     * Returns an ArrayList containing all the enemies on the map.
+     * @param MapFactory.MapType map
+     * @return ArrayList<AbstractEnemy>
+     */
     @Override
     public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;

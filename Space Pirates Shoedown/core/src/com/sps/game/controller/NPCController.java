@@ -4,10 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.sps.game.screens.PlayScreen;
-import com.sps.game.sprites.AbstractNPC;
-import com.sps.game.sprites.InteractiveNPC;
-import com.sps.game.sprites.Location;
-import com.sps.game.sprites.Player;
+import com.sps.game.sprites.*;
 import com.sps.game.maps.MapFactory;
 
 import java.util.ArrayList;
@@ -240,8 +237,8 @@ public class NPCController {
     /**
      * Returns a boolean to see if there is an NPC is in the location they are about to move to.
      * True if there is an NPC in that location, otherwise false.
-     * @param location
-     * @return
+     * @param Location location
+     * @return boolean
      */
     private boolean npcInLocation(Location location){
         ArrayList<NPCController> worldNPCs = npcControllers.get(npc.getWorld());
@@ -252,10 +249,32 @@ public class NPCController {
         return false;
     }
 
+    /**
+     * Returns a boolean to see if there is an Interactive NPC in the location they are about to move to.
+     * True if there is an interactive NPC in that location, otherwise false.
+     * @param Location location
+     * @return boolean
+     */
     private boolean interactiveNPCInLocation(Location location){
         ArrayList<Location> interactiveNPCs = InteractiveNPC.allInteractiveNPCLocations;
         for(Location loc : interactiveNPCs){
             if(location.equals(loc)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns a boolean to see if there is a Merchant in the location they are about to move to.
+     * True if there is a Merchant in that location, otherwise false.
+     * @param Location location
+     * @return boolean
+     */
+    private boolean merchantNPCInLocation(Location location) {
+        ArrayList<Location> merchantNPCs = MerchantNPC.allMerchantNPCLocations;
+        for(Location loc : merchantNPCs){
+            if (location.equals(loc)){
                 return true;
             }
         }

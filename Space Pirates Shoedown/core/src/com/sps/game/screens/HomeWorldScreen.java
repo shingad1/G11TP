@@ -57,7 +57,7 @@ public class HomeWorldScreen extends PlayScreen {
         while(npc.size() < numNonInteractive + baseNPCSize){
             int x = random.nextInt(49);
             int y = random.nextInt(49);
-            Location location = new Location(x * 32, y * 32);
+            Location location = new Location(x * 32, y * 32);//make sure location is not somewhere that blocks player position
             MapFactory.MapType world;
             if(random.nextBoolean()){
                 world = MapFactory.MapType.HomeWorldMap1;
@@ -78,12 +78,11 @@ public class HomeWorldScreen extends PlayScreen {
             npc.add(new InteractiveNPC(768, 896, MapFactory.MapType.HomeWorldMap1, batch, "BusinessNPC"));
             npc.add(new InteractiveNPC(224, 192, MapFactory.MapType.HomeWorldMap1, batch, "FirstNPC"));
             npc.add(new InteractiveNPC(736, 608, MapFactory.MapType.HomeWorldMap1, batch, "AnotherNPC"));
-            //need to add marketman- but dialogue should only work after they defeat the enemy
-            npc.add(new MerchantNPC(928,1216,MapFactory.MapType.HomeWorldMap1,batch,"Merchant"));
         }
         npc.add(new InteractiveNPC(128, 864, MapFactory.MapType.HomeWorldMap2, batch, "FourthNPC"));
         npc.add(new InteractiveNPC(896, 512, MapFactory.MapType.HomeWorldMap2, batch, "FifthNPC"));
         npc.add(new InteractiveNPC(1056, 1088, MapFactory.MapType.HomeWorldMap2, batch, "SixthNPC"));
+        npc.add(new MerchantNPC(608,192,MapFactory.MapType.HomeWorldMap2,batch,"Merchant"));
 
 
         allLocations = new ArrayList<Location>();
@@ -93,7 +92,7 @@ public class HomeWorldScreen extends PlayScreen {
         p.setBatch(batch);
         controller = new PlayerController(p, currentCollisionLayer,xbounds,ybounds,allLocations);
         gamecam.position.set(p.getX(), p.getY(), 0); //change when moving worlds
-        music = Gdx.audio.newMusic(Gdx.files.internal("core/assets/Music/firstWorld.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Music/firstWorld.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
@@ -102,8 +101,8 @@ public class HomeWorldScreen extends PlayScreen {
 
     /**
      * Returns a Vector2 value to get a Map according to the map type specified in the parameter
-     * @param map
-     * @return
+     * @param MapFactory.MapType map
+     * @return Vector2
      */
     public Vector2 getWorldMapByWorld(MapFactory.MapType map){
         for(int i = 0; i < worldMaps.length; i++){
@@ -115,7 +114,11 @@ public class HomeWorldScreen extends PlayScreen {
         }
         return null;
     }
-
+    /**
+     * Returns an ArrayList containing all the enemies on the map.
+     * @param MapFactory.MapType map
+     * @return ArrayList<AbstractEnemy>
+     */
     @Override
     public ArrayList<AbstractEnemy> getMapEnemy(MapFactory.MapType map) {
         return null;
@@ -123,8 +126,8 @@ public class HomeWorldScreen extends PlayScreen {
 
     /**
      * Returns a map from the array according to the vector2 value passed in as a parameter
-     * @param selector
-     * @return
+     * @param Vector2 selector
+     * @return Map
      */
     public Map getMap(Vector2 selector){
         return worldMaps[Math.round(selector.x)][Math.round(selector.y)];
@@ -132,8 +135,9 @@ public class HomeWorldScreen extends PlayScreen {
 
     /**
      * Checks if the location is occupied by an npc or a blocked tile
-     * @param location
-     * @return
+     * @param Location location
+     * @param MapFactory.MapType map
+     * @return boolean, True if there is no NPC or blocked tile or nonpc tile otherwise false.
      */
     @Override
     public boolean checkPosition(Location location, MapFactory.MapType map){
@@ -142,7 +146,7 @@ public class HomeWorldScreen extends PlayScreen {
                 return false;
             }
         }
-        if(getCell(location, map) == null || getCell(location,map).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, map) == null || getCell(location,map).getTile().getProperties().containsKey("blocked") ||getCell(location,map).getTile().getProperties().containsKey("nonpc") ){
             return false;
         }
         return true;
@@ -183,7 +187,7 @@ public class HomeWorldScreen extends PlayScreen {
             camY = 1;
         }
         if(currentMapState.equals(MapFactory.MapType.HomeWorldMap2)){
-            if(p.getLocation().equals(new Location(1056, 256))){
+            if(p.getLocation().equals(new Location(1056, 256)) && (flags[0] == true)){
                 dispose();
                 game.setScreen(new CandyLandScreen(game, new Vector2(0,0), 384, 1280));
             } else if(p.getLocation().equals(new Location(288, 704))){
