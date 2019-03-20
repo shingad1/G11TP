@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -44,12 +45,9 @@ public class ControlsScreen implements Screen {
 
     public ControlsScreen(final SpacePiratesShoedown game){
         this.game = game;
-
         batch = new SpriteBatch();
         gamecam = new OrthographicCamera(480,480);
-
         controlsTexture = new Texture(Gdx.files.internal("core/assets/MenuResources/Controls1.png"));
-
     }
 
     public void handleInput() throws IOException{

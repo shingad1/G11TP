@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
+import com.sps.game.scenes.ControlsHud;
 import com.sps.game.scenes.DialogueHud;
 import com.sps.game.scenes.HudScene;
 import com.sps.game.SpacePiratesShoedown;
@@ -188,6 +189,8 @@ public abstract class PlayScreen implements Screen {
     private DialogueHud dialogueHud;
     public boolean merchantDetected;
 
+    public ControlsHud controlsHud;
+
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         mapManager = new MapManager();
@@ -207,6 +210,7 @@ public abstract class PlayScreen implements Screen {
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
         merchantDetected = false;
+        controlsHud = new ControlsHud(batch);
     }
 
 
@@ -291,6 +295,9 @@ public abstract class PlayScreen implements Screen {
         } else {
             playerInventory.update();
         }
+
+
+        controlsHud.update();
     }
 
 
@@ -364,7 +371,7 @@ public abstract class PlayScreen implements Screen {
 
         winHud.stage.draw();
         dialogueHud.stage.draw();
-
+        controlsHud.stage.draw();
 
 
         batch.begin();
