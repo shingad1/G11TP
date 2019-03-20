@@ -16,7 +16,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.sps.game.sprites.Location;
 import com.sps.game.sprites.NonInteractiveNPC;
-import org.mockito.Mock;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;

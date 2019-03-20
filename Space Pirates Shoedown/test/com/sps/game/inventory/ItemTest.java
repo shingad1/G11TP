@@ -19,7 +19,7 @@ public class ItemTest {
 
     @Test
     public void getImage() {
-        Item fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1, "core/assets/Inventory/images/shoe.png");
+        Item fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1, "Inventory/images/shoe.png");
 
         assertNotNull(fuel.getImage());
     }
@@ -27,14 +27,14 @@ public class ItemTest {
 
     @Test
     public void getDescription() {
-        Item fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1, "core/assets/Inventory/images/shoe.png");
+        Item fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1, "Inventory/images/shoe.png");
 
         assertEquals("Fuel for your rocket shoes", fuel.getDescription());
     }
 
     @Test
     public void getName() {
-        Item fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1, "core/assets/Inventory/images/shoe.png");
+        Item fuel = new Item("Fuel", 10, "Fuel for your rocket shoes", 1, "Inventory/images/shoe.png");
         assertEquals("Fuel", fuel.getName());
     }
 

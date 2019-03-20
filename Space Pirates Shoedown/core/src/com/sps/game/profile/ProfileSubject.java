@@ -6,8 +6,8 @@ import com.badlogic.gdx.utils.Array;
  * This class creates the observers so that the save file is updated.
  * @author Miraj Shah
  * @version 1.0
- */
-public class ProfileSubject {
+            */
+    public class ProfileSubject {
 
     /**
      * Holds all the observers.

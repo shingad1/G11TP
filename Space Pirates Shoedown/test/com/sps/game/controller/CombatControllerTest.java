@@ -27,7 +27,7 @@ public class CombatControllerTest {
     public void setUp(){
         //world = MapFactory.Maptype.HomeWorldScreen;
         sb = new SpriteBatch();
-        cs = new CombatSystem(p,e,sb);
+        //cs = new CombatSystem(p,e,sb);
         e = new BasicEnemy(9,9,world,sb, "Pirate");
         combatController = new CombatController(p, e, cs);
     }
