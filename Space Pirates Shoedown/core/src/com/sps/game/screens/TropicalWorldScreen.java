@@ -121,7 +121,7 @@ public class TropicalWorldScreen extends PlayScreen {
                 return false;
             }
         }
-        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, world) == null || getCell(location,world).getTile().getProperties().containsKey("blocked")|| getCell(location,world).getTile().getProperties().containsKey("nonpc")){
             return false;
         }
         return true;

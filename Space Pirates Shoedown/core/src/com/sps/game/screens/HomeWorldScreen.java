@@ -146,7 +146,7 @@ public class HomeWorldScreen extends PlayScreen {
                 return false;
             }
         }
-        if(getCell(location, map) == null || getCell(location,map).getTile().getProperties().containsKey("blocked")){
+        if(getCell(location, map) == null || getCell(location,map).getTile().getProperties().containsKey("blocked") ||getCell(location,map).getTile().getProperties().containsKey("nonpc") ){
             return false;
         }
         return true;
