@@ -18,11 +18,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.*;
 import com.sps.game.inventory.MerchantInventory;
 import com.sps.game.inventory.PlayerInventory;
-import com.sps.game.scenes.ControlsHud;
-import com.sps.game.scenes.DialogueHud;
-import com.sps.game.scenes.HudScene;
+import com.sps.game.scenes.*;
 import com.sps.game.SpacePiratesShoedown;
-import com.sps.game.scenes.WinHud;
 import com.sps.game.sprites.*;
 import com.sps.game.maps.Map;
 import com.sps.game.maps.MapFactory;
@@ -144,7 +141,7 @@ public abstract class PlayScreen implements Screen {
     /**
      * Creates and holds a story controller
      */
-    private StoryController storyController = new StoryController();
+    private StoryController storyController;
     /**
      * Creates and holds a tutorial controller
      */
@@ -206,6 +203,8 @@ public abstract class PlayScreen implements Screen {
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
         playerInventory = new PlayerInventory(game.batch, controller);
+        storyController = new StoryController(batch);
+        winHud = new WinHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -258,6 +257,9 @@ public abstract class PlayScreen implements Screen {
         gamecam.update();
         renderer.setView(gamecam);
         hud.update();
+
+        winHud.update();
+        storyController.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
@@ -380,7 +382,7 @@ public abstract class PlayScreen implements Screen {
 
         dialogueHud.stage.draw();
         controlsHud.stage.draw();
-
+        storyController.stage.draw();
 
         batch.begin();
         if(pause)

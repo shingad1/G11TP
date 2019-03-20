@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.SpacePiratesShoedown;
+import com.sps.game.controller.StoryController;
 
 import java.io.IOException;
 
@@ -23,7 +24,7 @@ public class MenuScreen implements Screen {
     /**
      * Constant field to direct where the file is located.
      */
-    private static final String ASSETS_PATH = "core/assets/MenuResources/";
+    private static final String ASSETS_PATH = "MenuResources/";
     /**
      * Holds a version of the game.
      * @see #handleInput #render
@@ -162,7 +163,12 @@ public class MenuScreen implements Screen {
         if((Gdx.input.getX() > ((logo.getWidth() / 2) - 230)) && (Gdx.input.getX() < ((logo.getWidth() / 2) - 90))){
             if((Gdx.input.getY() > ((background.getHeight() / 2) + 220))) {
                 if (Gdx.input.justTouched()) {
-                    Gdx.app.exit();
+                    //game.setScreen((Screen) new StoryController(game.batch));
+                    StoryController storyController = new StoryController(game.batch);
+                    storyController.update();
+                }
+                else {
+                    System.out.println("noo");
                 }
             }
         }
