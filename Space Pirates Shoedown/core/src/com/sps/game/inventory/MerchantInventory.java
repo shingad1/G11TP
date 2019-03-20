@@ -175,7 +175,6 @@ public class MerchantInventory {
                 //Create hud here?
 
                 for (int i = 0; i < rejectedItems.size(); i++) {
-                    //If the rejected item equals to the item that the payload is set to, then reject it.
                     if (rejectedItems.get(i).equals((payload.getObject()))) {
                         return !(rejectedItems.get(i).equals(payload.getObject()));
 
@@ -208,8 +207,8 @@ public class MerchantInventory {
                     System.out.println("merchant: " + merchant.getItems() + "\n");
                 }
 
-                if (player.getGold() > inventoryController.findItem(payload.getObject().toString()).goldValue + 15) {
-                    player.decreaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue + 15);
+                if (player.getGold() >= inventoryController.findItem(payload.getObject().toString()).goldValue) {
+                    player.decreaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue);
                 }
 
             }
@@ -270,7 +269,7 @@ public class MerchantInventory {
 
                 merchant.getItems().add((String) payload.getObject());
                 inventory.getItems().removeValue(payload.getObject().toString(), true);
-                player.increaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue);
+                player.increaseGold((inventoryController.findItem(payload.getObject().toString()).goldValue) - 15);
                 //Test to see if the item has been added to the merchants inventory
                 System.out.println("merchant: " + merchant.getItems() + "\n");
 
