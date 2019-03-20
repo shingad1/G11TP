@@ -81,8 +81,6 @@ public class DialogueHud {
      */
     public static boolean move;
 
-    private static String DIALOGUE_PATH = "Dialogue.txt";
-
     public DialogueHud(SpriteBatch sb, PlayerController playerController) {
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -171,9 +169,6 @@ public class DialogueHud {
             if(textArea.getContentTable() != null){ //check if needed
                 textArea.getContentTable().clear();
             }
-            /*if(npcName.equals("ThirdNPC")){
-                move = true;
-            }*/
         }
     }
 
@@ -246,15 +241,12 @@ public class DialogueHud {
      */
     private void readingFile() throws IOException
     {
-        //BufferedReader bufferedReader = new BufferedReader(new FileReader(DIALOGUE_PATH));
-
         FileHandle file = Gdx.files.internal("Dialogue.txt");
         String text = file.readString();
 
         String[] line = text.split("\n");
 
         for(int i = 0; i < line.length; i++)
-        //while((line = line..readLine()) != null)
         {
             ArrayList<String> val = new ArrayList<String>();
             String[] temp = line[i].split(";");
