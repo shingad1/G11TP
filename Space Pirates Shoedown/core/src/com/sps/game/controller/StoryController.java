@@ -26,7 +26,7 @@ public class StoryController {
     private String buttonLogged;
     public Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
     private Texture[] tutorialTexture;
-    private static String ASSETS_PATH = "core/assets/SP/";
+    private static String ASSETS_PATH = "SP/";
     private SpriteBatch batch;
     private InputProcessor oldInput;
     private Image image;

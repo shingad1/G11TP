@@ -38,7 +38,7 @@ public abstract class PlayScreen implements Screen {
     /**
      * Constant field to direct where the file is located.
      */
-    public static final String ASSETS_PATH = "core/assets/tiledassets/";
+    public static final String ASSETS_PATH = "tiledassets/";
     /**
      * Holds a version of the game.
      * @see #handleInput #render
@@ -167,6 +167,8 @@ public abstract class PlayScreen implements Screen {
 
     protected Location enemyCombatPosition;
 
+    private WinHud winHud;
+
     public static boolean[] flags = {false, false, false};
     /**
      * Holds the different states the game can be in.
@@ -204,8 +206,9 @@ public abstract class PlayScreen implements Screen {
         merchantInventory  = new MerchantInventory(game.batch,controller);
         playerInventory = new PlayerInventory(game.batch, controller);
         //storyController = new StoryController(batch);
+
         dialogueHud = new DialogueHud(game.batch, controller);
-        pauseTexture = new Texture("core/assets/pause.png");
+        pauseTexture = new Texture("pause.png");
         pause = false;
         merchantDetected = false;
         controlsHud = new ControlsHud(batch);
