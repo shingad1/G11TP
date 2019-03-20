@@ -32,6 +32,7 @@ public class NonInteractiveNPCTest {
 
     @Test
     public void getX() {
+       System.out.println( nonInteractiveNPC.getX());
         assertEquals(12, nonInteractiveNPC.getX(),0);
     }
 
@@ -48,7 +49,7 @@ public class NonInteractiveNPCTest {
     @Test
     public void setY() {
         nonInteractiveNPC.setY(58);
-        assertEquals(58, nonInteractiveNPC.getY(),0);
+        assertEquals(58, nonInteractiveNPC.getY(),0.2);
     }
 
     @Test
