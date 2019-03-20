@@ -154,7 +154,7 @@ public class WinHud {
         table.setFillParent(true);
         table.setDebug(false);
 
-        okButton = new TextButton("Ok", skin, "default");
+        okButton = new TextButton("Press 'O' to Exit", skin, "default");
 
 
         //TODO: Replace the image with image of item which is nearby.

@@ -66,8 +66,9 @@ public class Player extends Fighter {
         velocity = new Vector2();
         velocity.x = 0; velocity.y = 0;
         gold = 50;
-        health = 100;
+
         location = new Location(0, 0);
+        health = 100;
         attack = 20;
         defence = 10;
         speed = 10;
@@ -282,5 +283,10 @@ public class Player extends Fighter {
         return player;
     }
 
-    public void playerReset(){player = new Player();}
+    public void playerReset(){
+        health = 100;
+        attack = 20;
+        defence = 10;
+        speed = 10;
+    }
 }

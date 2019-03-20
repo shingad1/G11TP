@@ -419,7 +419,7 @@ public abstract class PlayScreen implements Screen {
      * Changes the screen once combat is finished.
      */
     public void combatExit(){
-
+            Player.getPlayer().playerReset();
             startNum++;
             enemies.clear();
             allLocations.clear();
