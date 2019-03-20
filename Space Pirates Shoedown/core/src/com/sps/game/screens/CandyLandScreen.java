@@ -155,7 +155,7 @@ public class CandyLandScreen extends PlayScreen {
             camX = -1;
         }
         if (currentMapState.equals(MapFactory.MapType.CandyWorld1)){
-            if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip()){
+            if((p.getLocation().equals(new Location(384, 1280)) || p.getLocation().equals(new Location(416,1280))) && controller.getEnterShip() && flags[1] == true){
                 dispose();
                 game.setScreen(new TropicalWorldScreen(game,new Vector2(0,0), 320, 256));
             }

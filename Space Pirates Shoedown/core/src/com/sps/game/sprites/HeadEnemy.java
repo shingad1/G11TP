@@ -41,6 +41,11 @@ public class HeadEnemy extends AbstractEnemy {
         defence = 0;//to change
 
         fightAnimation = new HashMap<String, EnemyAnimation>();
+        fightAnimation.put("Idle",new EnemyAnimation(sb, this, "enemyIdle.atlas", 1/15f));
+        fightAnimation.put("Right",new EnemyAnimation(sb, this, "enemyMoveRight.atlas", 1/15f));
+        fightAnimation.put("Left",new EnemyAnimation(sb, this, "enemyMoveLeft.atlas", 1/15f));
+        fightAnimation.put("basicAttack",new EnemyAnimation(sb, this, "enemyBasicAttack.atlas", 1/3f));
+        fightAnimation.put("block",new EnemyAnimation(sb, this, "enemyBasicBlock.atlas", 1/3f));
 
         animation = new HashMap<String, EnemyAnimation>();
         animation.put("idle", new EnemyAnimation(sb, this, "headenemyIdle.atlas",1/2));
@@ -158,7 +163,7 @@ public class HeadEnemy extends AbstractEnemy {
 
     @Override
     public Location getLocation() {
-        return null;
+        return location;
     }
 
     /**

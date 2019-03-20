@@ -84,11 +84,6 @@ public abstract class PlayScreen implements Screen {
      * @see #render
      */
     private PlayerInventory playerInventory;
-
-    /**
-     *Holds instance of the WinHud class, which is shown if the user makes a decision on whether to pick up or ignore an item.
-     */
-    private WinHud winHud;
     /*
      * Holds all the sprites that will be displayed on the sreen.
      * @see #render
@@ -175,6 +170,7 @@ public abstract class PlayScreen implements Screen {
 
     protected Location enemyCombatPosition;
 
+    public static boolean[] flags = {false, false, false};
     /**
      * Holds the different states the game can be in.
      */
@@ -210,7 +206,6 @@ public abstract class PlayScreen implements Screen {
         hud = new HudScene(game.batch,p);
         merchantInventory  = new MerchantInventory(game.batch,controller);
         playerInventory = new PlayerInventory(game.batch, controller);
-        winHud = new WinHud(game.batch, controller);
         dialogueHud = new DialogueHud(game.batch, controller);
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
@@ -263,7 +258,6 @@ public abstract class PlayScreen implements Screen {
         gamecam.update();
         renderer.setView(gamecam);
         hud.update();
-        winHud.update();
 
         for (AbstractNPC npcTemp : getInteractiveNPC()) {
             if (controller.npcInProximity(npcTemp)) {
@@ -384,7 +378,6 @@ public abstract class PlayScreen implements Screen {
             playerInventory.stage.draw();
         }
 
-        winHud.stage.draw();
         dialogueHud.stage.draw();
         controlsHud.stage.draw();
 
@@ -465,7 +458,7 @@ public abstract class PlayScreen implements Screen {
                     break;
                 case 2:
                     if (!currentCollisionLayer.getCell(1120 / 32, 544 / 32).getTile().getProperties().containsKey("nonpc")) {
-                        enemies.add(new BasicEnemy(1120, 544, MapFactory.MapType.HomeInterior2, batch, "EnemyThree"));
+                        enemies.add(new HeadEnemy(1120, 544, MapFactory.MapType.HomeInterior2, batch, "HeadEnemyHome"));
                         allLocations.add(new Location(1120,544));
                     }
                     break;
