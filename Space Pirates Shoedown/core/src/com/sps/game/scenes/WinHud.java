@@ -19,8 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.controller.InventoryController;
 import com.sps.game.controller.PlayerController;
 import com.sps.game.inventory.Item;
-import com.sps.game.inventory.MerchantInventory;
-import com.sps.game.inventory.PlayerInventory;
+import com.sps.game.sprites.Player;
 
 /**
  * This class consists of what the user will view when they finish a battle with an enemy.
@@ -32,7 +31,7 @@ import com.sps.game.inventory.PlayerInventory;
  * @Version 1.0
  */
 
-public class ItemHud {
+public class WinHud {
     /**
      *   The stage is used to handle the input and the actors.
      *   The table is added to the stage as an actor.
@@ -69,7 +68,7 @@ public class ItemHud {
     /**
      * The buttons displayed on the table.
      */
-    private TextButton yesButton, noButton;
+    private TextButton okButton;
 
     /**
      * The SpriteBatch object is used to draw elements.
@@ -100,9 +99,23 @@ public class ItemHud {
      * The name of the item itself which is added ot hte user inventory.
      */
     private Label itemName;
+    /**
+     * The gold placeholder which is updated depending on how much gold the user finds after winning their battle.
+     */
+    private Label goldLabel;
+    /**
+     * The player object used to update their gold value
+     */
+    private Player player;
+    /**
+     * The gold value that will be added to the player's inventory.
+     */
+    private int goldValue;
+
+    private boolean finished;
 
     /**
-     * Creates a new ItemHud object, which sets up the various elements required to add a new element to the
+     * Creates a new WinHud object, which sets up the various elements required to add a new element to the
      * inventory of the user.
      *
      * @see com.sps.game.screens.PlayScreen#update(float)
@@ -110,13 +123,18 @@ public class ItemHud {
      * @param sb The spritebatch that is used to display the table.
      * @param playerController A PlayerController object
      */
-    public ItemHud(SpriteBatch sb, PlayerController playerController) {
+    public WinHud(SpriteBatch sb) {
 
         this.sb = sb;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, sb);
         pickUpLabel = new Label("Do you want to pick up this item?", skin);
         itemName = new Label("Item name", skin);
+        goldLabel = new Label ("Gold amount", skin);
+        goldValue = 100;
+
+        player = Player.getPlayer();
+
         isPickedUp = false;
 
     }
@@ -136,39 +154,27 @@ public class ItemHud {
         table.setFillParent(true);
         table.setDebug(false);
 
-        yesButton = new TextButton("Yes", skin, "default");
-        noButton = new TextButton("No", skin, "default");
+        okButton = new TextButton("Ok", skin, "default");
 
 
         //TODO: Replace the image with image of item which is nearby.
-        nearbyItem = inventoryController.allItems.getItems().get(5);
+        nearbyItem = inventoryController.allItems.getItems().get(3);
         Drawable imageDrawable = nearbyItem.getImage().getDrawable();
         imagePlaceholder.setDrawable(imageDrawable);
 
 
-        yesButton.addListener(new ClickListener() {
+        okButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                buttonClicked = "yes";
+                buttonClicked = "ok";
                 clickFunction();
-
             }
         });
 
-        noButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                buttonClicked = "no";
-                clickFunction();
-
-
-            }
-        });
 
         pickUpLabel.setText("Do you want to pick up this item?");
         itemName.setText(nearbyItem.getName());
         imagePlaceholder.setScale(1.25f, 1.25f);
-
 
         table.add(pickUpLabel).colspan(2).row();
         pickUpLabel.setFontScale(0.8f, 0.8f);
@@ -176,8 +182,15 @@ public class ItemHud {
         table.add(imagePlaceholder).colspan(2).row();
         table.add(itemName).colspan(2).row();
         itemName.setFontScale(0.6f, 0.6f);
-        table.add(yesButton).size(150, 50).align(Align.bottomLeft).padLeft(175).padTop(25);
-        table.add(noButton).size(150, 50).align(Align.bottomRight).padRight(175).padTop(25);
+
+        //gold label
+        goldLabel.setText("You have also found: " + 100 + " gold.");
+        goldLabel.setFontScale(0.70f);
+        table.add(goldLabel).colspan(2).row();
+        //yes button
+        table.add(okButton).size(150, 50).align(Align.bottom).padLeft(52).padTop(30).row();
+
+
         stage.addActor(table);
     }
 
@@ -189,24 +202,19 @@ public class ItemHud {
      * Called in the formatting method {@link #formatting()}
      */
     public void clickFunction() {
-        if (buttonClicked.equals("yes")) {
-            System.out.println("Yes clicked");
+        if (buttonClicked.equals("ok")) {
+            System.out.println("Ok clicked");
             inventoryController.addToInventory(inventoryController.findItem(nearbyItem.getName()));
+            //player.increaseGold(goldValue);
             Gdx.input.setInputProcessor(oldInput);
             stage.dispose();
             oldInput = null;
         }
 
-        if (buttonClicked.equals("no")) {
-            System.out.println("No clicked");
-            stage.dispose();
-            Gdx.input.setInputProcessor(oldInput);
-            oldInput = null;
-        }
     }
 
     /**
-     * Sets hte input to the stage, which is the user interface of the Itemhud.
+     * Sets the input to the stage, which is the user interface of the Itemhud.
      */
     public void setInput() {
         oldInput = Gdx.input.getInputProcessor();
@@ -223,17 +231,19 @@ public class ItemHud {
      *
      */
     public void update() {
-        if (Gdx.input.isKeyPressed(Input.Keys.H) && oldInput == null) {
+        //if (Gdx.input.isKeyPressed(Input.Keys.H) && oldInput == null) {
             formatting();
             setInput();
-        }
+        //}
 
         if (Gdx.input.isKeyPressed(Input.Keys.O) && oldInput != null) {
             stage.dispose();
             table.clearChildren();
             table.reset();
             Gdx.input.setInputProcessor(oldInput);
+            finished = true;
             oldInput = null;
+            player.increaseGold(100);
         }
     }
 
@@ -244,6 +254,12 @@ public class ItemHud {
         stage.dispose();
     }
 
+    public boolean getFinished(){
+        return finished;
+    }
 
+    public void setFinished(boolean newVal){
+        finished = newVal;
+    }
 
 }

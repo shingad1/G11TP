@@ -153,8 +153,9 @@ public class MerchantInventory {
                 merchant.getItems().removeIndex(merchant.getSelectedIndex());
                 payload.setDragActor(new Label(item, skin));
                 payload.setInvalidDragActor(new Label("I don't want your " + item + "!", skin));
-                payload.setValidDragActor(new Label("I'll buy your " + item + "\n" + "for" + +inventoryController.findItem(item).getGoldvalue()
-                        + " gold!", skin));
+                int goldValue = inventoryController.findItem(item).getGoldvalue() + 15;
+                payload.setValidDragActor(new Label("I'll buy your " + item + "\n" + "for" +  goldValue +
+                         " gold!", skin));
 
                 return payload;
             }
@@ -187,7 +188,11 @@ public class MerchantInventory {
             public void drop(Source source, Payload payload, float x, float y, int pointer) {
 
                 if (Player.getPlayer().getGold() > inventoryController.findItem(merchant.getSelected()).getGoldvalue()) {
-                    inventory.getItems().add((String) payload.getObject());
+                    if (!inventory.getItems().contains(merchant.getSelected(), false)) {
+                        inventory.getItems().add((String) payload.getObject());
+                    } else {
+                        merchant.getItems().add(merchant.getSelected());
+                    }
                     merchant.getItems().removeValue(payload.getObject().toString(), true);
                     System.out.println(inventoryController.findItem(payload.getObject().toString()).getName() + " Has been bought for: " +
                                        inventoryController.findItem(payload.getObject().toString()).getGoldvalue());
@@ -208,7 +213,7 @@ public class MerchantInventory {
                 }
 
                 if (player.getGold() >= inventoryController.findItem(payload.getObject().toString()).goldValue) {
-                    player.decreaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue);
+                    player.decreaseGold(inventoryController.findItem(payload.getObject().toString()).goldValue + 15) ;
                 }
 
             }
@@ -269,7 +274,7 @@ public class MerchantInventory {
 
                 merchant.getItems().add((String) payload.getObject());
                 inventory.getItems().removeValue(payload.getObject().toString(), true);
-                player.increaseGold((inventoryController.findItem(payload.getObject().toString()).goldValue) - 15);
+                player.increaseGold((inventoryController.findItem(payload.getObject().toString()).goldValue));
                 //Test to see if the item has been added to the merchants inventory
                 System.out.println("merchant: " + merchant.getItems() + "\n");
 

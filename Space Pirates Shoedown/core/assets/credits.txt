@@ -1,4 +1,4 @@
-﻿SpacePirates Shoedown
+SpacePirates Shoedown
 
 Credits:
 
@@ -59,8 +59,8 @@ https://opengameart.org/content/lpc-upholstery
 	"[LPC] Bricks" by bluecarrot16, Guido Bos, keith karnage, Lanea Zimmerman (Sharm), Casper Nilsson, Leonard Pabin, and Buch
 
 
-Flowers, buildings and boxes; 
-	Interior wooden tiles; some old castle stuff 
+Flowers, buildings and boxes;
+	Interior wooden tiles; some old castle stuff
 Guido Bos
 GPL v3 / CC-BY-SA 3.0
 
@@ -72,7 +72,7 @@ CC-BY 3.0
 
 	https://opengameart.org/content/medieval-town-0
 
-Liberated Pixel Cup (LPC) Base Assets 
+Liberated Pixel Cup (LPC) Base Assets
 Lanea Zimmerman (Sharm)
 CC-BY-SA 3.0 / CC-BY 3.0 / GPL 3.0
 
@@ -80,7 +80,7 @@ CC-BY-SA 3.0 / CC-BY 3.0 / GPL 3.0
 
 LPC C.Nilsson
 Casper Nilsson
-CC-BY-SA 3.0 / 
+CC-BY-SA 3.0 /
 	GPL 3.0
 https://opengameart.org/content/lpc-cnilsson
 
@@ -96,7 +96,7 @@ CC0
 https://opengameart.org/content/outdoor-32x32-tileset"
 	[LPC] Wooden Furniture:
 	https://opengameart.org/content/lpc-wooden-furniture
-	Credits: 
+	Credits:
 	"Liberated Pixel Cup (LPC) Base Assets (sprites & map tiles)
 CC-BY-SA 3.0 / GPL 3.0
 
@@ -116,7 +116,7 @@ CC-BY-SA 3.0 / GPL 3.0 / GPL 2.0
 
 	http://opengameart.org/content/lpc-house-interior-and-decorations
 
-Flowers, buildings and boxes; 
+Flowers, buildings and boxes;
 	Interior wooden tiles; some old castle stuff
 CC-BY-SA 3.0 / GPL 3.0
 Guido Bos
@@ -143,7 +143,7 @@ CC0
 	https://opengameart.org/content/home-objects
 
 [LPC] Clock Animation
-Lanea Zimmerman (Sharm), 
+Lanea Zimmerman (Sharm),
 	William.Thompsonj
 CC-BY 3.0 / GPL 3.0
 https://opengameart.org/content/lpc-clock-animation"
@@ -168,7 +168,7 @@ https://opengameart.org/content/lpc-clock-animation"
 
 	[LPC] Cavern and ruin tiles
 	CC-BY-SA 3.0 / GPL 3.0 / GPL 2.0
-	Reemax, Sharm, Hyptosis, Johann C, HughSpectrum, Redshrike, William.Thompsonj, wulax, 
+	Reemax, Sharm, Hyptosis, Johann C, HughSpectrum, Redshrike, William.Thompsonj, wulax,
 	https://opengameart.org/node/33913
 
 	Statues & Fountains Collection
@@ -193,11 +193,11 @@ Credits: Daniel Eddeland and Wiliam Thompson
 
 	[LPC] Terrains:
 	https://opengameart.org/content/lpc-terrains
-	Credits: "[LPC] Terrains" by bluecarrot16, Lanea Zimmerman (Sharm), Daniel Eddeland (Daneeklu), 
+	Credits: "[LPC] Terrains" by bluecarrot16, Lanea Zimmerman (Sharm), Daniel Eddeland (Daneeklu),
 	Richard Kettering (Jetrel), Zachariah Husiar (Zabin), Hyptosis, Casper Nilsson, Buko Studios, Nushio, ZaPaper,
 	 billknye, William Thompson, caeles, Redshrike, Bertram, and Rayane Félix (RayaneFLX)
 
-	
+
 Liberated Pixel Cup (LPC) Base Assets (sprites & map tiles)
 Lanea Zimmerman (Sharm)
 CC-BY 3.0 / CC-BY-SA 3.0 / GPL 3.0
@@ -212,7 +212,7 @@ CC-BY-SA 3.0 / GPL 3.0
 	https://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements
 
 ZRPG Tiles
-Richard Kettering (Jetrel), 
+Richard Kettering (Jetrel),
 	Zachariah Husiar (Zabin), Hyptosis, Lanea Zimmerman (Sharm), and Open Pixel Project.
 CC-BY-SA 3.0+
 
@@ -225,7 +225,7 @@ CC-BY-SA 3.0 / GPL 3.0
 	https://opengameart.org/content/lpc-cnilsson
 
 Frozen Lake [LPC]
-Buko Studios (http://www.buko-studios.com/) 
+Buko Studios (http://www.buko-studios.com/)
 	Commissioned by PlayCraft: (www.playcraftapp.com)
 CC-BY 3.0
 
@@ -245,7 +245,7 @@ CC-BY-SA 3.0 / GPL 3.0
 	https://opengameart.org/content/lpc-more-water-transitions
 
 [LPC] Sand+Rock Alt Colors
-William.Thompsonj, 
+William.Thompsonj,
 	Daniel Eddeland
 CC-BY-SA 3.0 / GPL 3.0
 https://opengameart.org/content/lpc-sandrock-alt-colors
@@ -263,7 +263,7 @@ CC-BY-SA 3.0 / GPL 3.0
 	https://opengameart.org/content/lpc-terrain-extension
 
 RPG Tiles: Cobble stone paths & town objects
-Zachariah Husiar (Zabin), 
+Zachariah Husiar (Zabin),
 	Daniel Eddeland (Daneeklu), Richard Kettering (Jetrel), Hyptosis, Redshrike, Bertram
 CC-BY-SA 3.0
 
@@ -273,11 +273,11 @@ RPG Terrains
 Rayane Félix (RayaneFLX)
 CC-BY-SA 3.0
 https://opengameart.org/content/rpg-terrains"
-	
+
 https://forums.rpgmakerweb.com/index.php?threads/marus-mv-bits.46811/
 Credits: PandaMaru
 
-LPC Submissions Merged: 
+LPC Submissions Merged:
 https://opengameart.org/content/lpc-submissions-merged
 
 https://opengameart.org/content/lpc-house-interior-and-decorations
@@ -291,9 +291,11 @@ https://opengameart.org/content/lpc-grave-markers-rework
 https://opengameart.org/content/lpc-submissions-merged
 
 Music:
+
 Home World Music: https://www.melodyloops.com/tracks/creativity/
+Menu Music: https://www.bensound.com/royalty-free-music/track/new-dawn
 Candy Land Music: https://www.melodyloops.com/my-music/longoloops/orchestral-game/
-Tropical World Music: https://www.melodyloops.com/my-music/longoloops/the-dream-of-the-dancing-turtles/ 
+Tropical World Music: https://www.melodyloops.com/my-music/longoloops/the-dream-of-the-dancing-turtles/
 Tense Music:
 	Planet Hell by Serge Narcissoff | https://soundcloud.com/sergenarcissoff
 	Music promoted by https://www.free-stock-music.com

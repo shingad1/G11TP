@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.sps.game.sprites.AbstractEnemy;
 import com.sps.game.sprites.BasicEnemy;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
@@ -29,7 +30,7 @@ public class EnemyHud
      */
     Label enemyHealthCountLabel;
 
-    private BasicEnemy enemy;
+    private AbstractEnemy enemy;
     /**
      * Sets up a separate camera for the HUD so that the hud stays stationary.
      * @see #EnemyHud
@@ -41,7 +42,7 @@ public class EnemyHud
      */
     public Stage stage;
 
-    public EnemyHud(SpriteBatch sb, BasicEnemy enemy)
+    public EnemyHud(SpriteBatch sb, AbstractEnemy enemy)
     {
         this.enemy = enemy;
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());

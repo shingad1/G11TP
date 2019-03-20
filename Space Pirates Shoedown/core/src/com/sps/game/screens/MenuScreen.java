@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sps.game.SpacePiratesShoedown;
+import com.sps.game.controller.StoryController;
 
 import java.io.IOException;
 
@@ -23,7 +24,7 @@ public class MenuScreen implements Screen {
     /**
      * Constant field to direct where the file is located.
      */
-    private static final String ASSETS_PATH = "core/assets/MenuResources/";
+    private static final String ASSETS_PATH = "MenuResources/";
     /**
      * Holds a version of the game.
      * @see #handleInput #render
@@ -67,21 +68,17 @@ public class MenuScreen implements Screen {
      */
     private Texture creditsButton;
     /**
-     * Holds the texture of the twitterButton.
-     */
-    private Texture twitterButton;
-    /**
      * Holds the texture of the logo.
      */
     private Texture logoViewed;
     /**
      * Holds the story button texture.
      */
-    private static Texture storyTexture;
+    private Texture storyButton;
     /**
-     * Holds the StoryController button texture.
+     * Holds the controlsButton button texture.
      */
-    private Texture tutorialTexture;
+    private Texture controlsButton;
 
     /**
      * Music of the menu screen
@@ -102,9 +99,8 @@ public class MenuScreen implements Screen {
         quitButton = new Texture(ASSETS_PATH + "QuitButton.png");
         loadButton = new Texture(ASSETS_PATH + "LoadButton.png");
         creditsButton = new Texture(ASSETS_PATH + "CreditsButton.png");
-        twitterButton = new Texture(ASSETS_PATH + "twitter.png");
-        storyTexture = new Texture(ASSETS_PATH + "story.png");
-        //tutorialTexture = new Texture(ASSETS_PATH + "StoryController.png");
+        storyButton = new Texture(ASSETS_PATH + "StoryButton.png");
+        controlsButton = new Texture(ASSETS_PATH + "ControlsButton.png");
         gamecam = new OrthographicCamera();
         gameport = new ScreenViewport(gamecam);
 
@@ -164,31 +160,28 @@ public class MenuScreen implements Screen {
             }
         }
 
-        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 210)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 150))){
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 230)) && (Gdx.input.getX() < ((logo.getWidth() / 2) - 90))){
             if((Gdx.input.getY() > ((background.getHeight() / 2) + 220))) {
                 if (Gdx.input.justTouched()) {
-                    Gdx.net.openURI("https://twitter.com/SpacePirateSD");
+                    //game.setScreen((Screen) new StoryController(game.batch));
+                    StoryController storyController = new StoryController(game.batch);
+                    storyController.update();
+                }
+                else {
+                    System.out.println("noo");
                 }
             }
         }
 
-        /*
-            if((Gdx.input.getY() > ((storyTexture.getHeight() / 2) + 220 ))&& (Gdx.input.getX() < ((storyTexture.getWidth() / 2) + 150))) {
+        if((Gdx.input.getX() > ((logo.getWidth() / 2) - 60)) && (Gdx.input.getX() < ((logo.getWidth() / 2) + 70))){
+            if((Gdx.input.getY() > ((background.getHeight() / 2) + 220))) {
                 if (Gdx.input.justTouched()) {
-                    StoryController1 dialog = new StoryController1();
-                    dialog.pack();
-                    dialog.setVisible(true);
+                    game.setScreen(new ControlsScreen(game));
                 }
             }
-
-        if((Gdx.input.getX() > Gdx.graphics.getWidth() - 100) && Gdx.input.getY() > 10 ){
-            if (Gdx.input.justTouched()) {
-                TutorialController dialog = new TutorialController();
-                dialog.pack();
-                dialog.setVisible(true);
-            }
         }
-        */
+
+
     }
 
 
@@ -207,14 +200,13 @@ public class MenuScreen implements Screen {
         }
         game.batch.begin();
         game.batch.draw(background,-((background.getWidth() - Gdx.graphics.getWidth())/2),Gdx.graphics.getHeight() - background.getHeight()); //Texture = background, x = centre of image to center of screen, y = top of image to top of screen
-        game.batch.draw(logoViewed,18,Gdx.graphics.getHeight()-logo.getHeight() + 80, 600, 374); //positioned at top centre of the screen
-        game.batch.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) - 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
-        game.batch.draw(quitButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) - 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
-        game.batch.draw(loadButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 30));
-        game.batch.draw(creditsButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 160));
-        game.batch.draw(twitterButton, ((Gdx.graphics.getWidth() / 2) - (twitterButton.getWidth() / 2)), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 210));
-        //game.batch.draw(storyTexture, 0,0);
-        //game.batch.draw(tutorialTexture, (Gdx.graphics.getWidth()) - 100, 0);
+        game.batch.draw(logoViewed,18,Gdx.graphics.getHeight()-logo.getHeight() + 110, 600, 374); //positioned at top centre of the screen
+        game.batch.draw(playButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) - 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 20));
+        game.batch.draw(quitButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) - 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 170));
+        game.batch.draw(loadButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) + 20));
+        game.batch.draw(creditsButton, ((Gdx.graphics.getWidth() / 2) - (playButton.getWidth() / 2) + 120), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 170));
+        game.batch.draw(storyButton, ((Gdx.graphics.getWidth() / 2) - (storyButton.getWidth() / 2) - 75), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 220));
+        game.batch.draw(controlsButton, ((Gdx.graphics.getWidth() / 2) - (storyButton.getWidth() / 2) + 75), ((Gdx.graphics.getHeight() / 2) - (playButton.getWidth() / 2) - 220));
         game.batch.end();
     }
 
@@ -253,7 +245,8 @@ public class MenuScreen implements Screen {
         quitButton.dispose();
         loadButton.dispose();
         creditsButton.dispose();
-        twitterButton.dispose();
+        storyButton.dispose();
+        creditsButton.dispose();
         background.dispose();
         music.dispose();
     }

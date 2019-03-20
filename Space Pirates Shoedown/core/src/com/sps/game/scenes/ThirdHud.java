@@ -40,15 +40,18 @@ public class ThirdHud
     /**
      * this method updates the information on the screen, also calls onto another method
      */
-    public void update(String[] array)
+    public void update(String[] options)
     {
-        AttackLabel = new Label ("Press the key 'Q'" + array[0] + "\n" +
-                "Press the key 'W'" + array[1] + "\n" +
-                "Press the key 'E'" + array[2] + "\n" +
-                "Press the key 'R'" + array[3] + "\n" +
-                "Press the key 'A'" + array[4] + "\n" +
-                "Press the key 'S'" + array[5] + "\n" +
-                "Press the key 'D'" + array[6] + "\n", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        AttackLabel = new Label (
+                "Q: " + options[0] + "\n" +
+                     "W: " + options[1] + "\n" +
+                     "E: " + options[2] + "\n" +
+                     "R: " + options[3] + "\n" +
+                     "\n" +
+                     "A: " + options[4] + "\n" +
+                     "S: " + options[5] + "\n" +
+                     "D: " + options[6]
+                ,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         formatting();
     }
     /**
@@ -57,7 +60,7 @@ public class ThirdHud
     public void formatting(){
         stage = new Stage();
         Table table = new Table();
-        table.bottom();
+        table.left();
         table.setFillParent(true);
         table.add(AttackLabel).padLeft(20);
         stage.addActor(table);
