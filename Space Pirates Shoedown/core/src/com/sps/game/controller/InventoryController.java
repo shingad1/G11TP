@@ -103,7 +103,7 @@ public class InventoryController {
         /**
          * Providing the string representation for each item in the merchant list, to be printed
          */
-        merchantInventory.setItems(sword.getName());
+        merchantInventory.setItems(sword.getName(), fakeShoe.getName(), axe.getName(), piratesEye.getName()); //to have more
 
 
         /**
@@ -140,7 +140,7 @@ public class InventoryController {
         piratesEye = new Item("Pirates Eye", 250, "Gives the ability to spot pirates a mile away!", 7, "core/assets/Inventory/images/eye.png");
         fakeShoe = new Item("Fake Shoe", 0, "A fake shoe. Made out of newspaper.", 8, "core/assets/Inventory/images/fakeShoe.png");
         shoeLaces = new Item("Shoe Laces", 25, "Some common shoe laces. Not edible", 9, "core/assets/Inventory/images/shoeLaces.png");
-        sword = new Item("Sword", 1000, "Hack your way to the final boss", 10, "core/assets/Inventory/images/regularSword.png");
+        sword = new Item("Sword", 100, "Hack your way to the final boss", 10, "core/assets/Inventory/images/regularSword.png");
         socks = new Item("Socks", 3, "Next best substitute for shoes", 11, "core/assets/Inventory/images/sock.png");
     }
 

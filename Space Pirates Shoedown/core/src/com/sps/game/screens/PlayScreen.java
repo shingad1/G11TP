@@ -189,8 +189,6 @@ public abstract class PlayScreen implements Screen {
     private DialogueHud dialogueHud;
     public boolean merchantDetected;
 
-    MiniMapScreen miniMapScreen;
-
     public PlayScreen(SpacePiratesShoedown game){
         this.game = game;
         mapManager = new MapManager();
@@ -210,7 +208,6 @@ public abstract class PlayScreen implements Screen {
         pauseTexture = new Texture("core/assets/pause.png");
         pause = false;
         merchantDetected = false;
-        //MiniMapScreen = new MiniMapScreen(getWorldMapByWorld(mapManager.getCurrentMapType()));
     }
 
 
@@ -233,10 +230,6 @@ public abstract class PlayScreen implements Screen {
      */
     public void handleInput(float dt){
         controller.action(gamecam);
-        /*if(controller.getFight()){
-            game.setScreen(new CombatScreen(game, p, new BasicEnemy(160, 250, batch),this));
-            currentMapState = "HouseFight";
-        }*/
     }
 
     /**
@@ -270,18 +263,15 @@ public abstract class PlayScreen implements Screen {
 
                 if (!(npcTemp instanceof MerchantNPC)) {
                     merchantDetected = false;
-                    //System.out.println(merchantDetected);
                 }
 
                 if (npcTemp instanceof MerchantNPC) {
                     merchantDetected = true;
-                    //System.out.println(merchantDetected);
                     if (    Gdx.input.isKeyPressed(Input.Keys.DOWN) ||
                             Gdx.input.isKeyPressed(Input.Keys.UP) ||
                             Gdx.input.isKeyPressed(Input.Keys.LEFT)  ||
                             Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
                         merchantDetected = false;
-                        //System.out.println(merchantDetected);
                     }
                 }
 
@@ -295,7 +285,7 @@ public abstract class PlayScreen implements Screen {
                     dialogueHud.update(enemy.getName());
                 }
             }
-            }
+        }
 
         if (merchantDetected == true) {
             merchantInventory.update();
@@ -386,8 +376,7 @@ public abstract class PlayScreen implements Screen {
         batch.end();
 
         changeMaps();
-
-        //MiniMapScreen.miniMap();
+        
     }
 
     @Override
