@@ -78,7 +78,7 @@ public class HudScene  {
         //Instantiating the goldCountLabel label with the BitmapFont font and the colour white
        // goldCountLabel = new Label(String.format("%03d",gold),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        story = new Image(new Texture("story.png"));
+        //story = new Image(new Texture("story.png"));
 
         saveTexture = new Texture("Buttons/SaveButton.png");
         saveTextureRegion = new TextureRegion(saveTexture);
@@ -91,7 +91,7 @@ public class HudScene  {
      * this method updates the GoldCounterLabel and also calls onto another method
      */
     public void update(){
-        goldCountLabel = new Label("Gold: " + String.format("%02d",player.getGold()),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        goldCountLabel = new Label("Gold: " + String.format("%02d",player.getGold()),new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         formatting();
     }
     /**
