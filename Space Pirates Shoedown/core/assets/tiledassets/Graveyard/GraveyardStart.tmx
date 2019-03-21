@@ -20,7 +20,7 @@
    eJztmEsSAjEIREfLe3gSrzT33+lWpwI0v5DELHozZQVeN7DwvB/HuYDet9z3n49fVfNujrk5rv3PylGRB+WdV0guUXWq84jsJSsPxDvp+yx5RNax9MLNe2+G77razCI4ou8JlYuXA90B78xqOFr9InmgHNYMUA7tzbDmkc1h3beVOZCekMw9++Hh0OysNLOcD576URwaTimP0XX1ipq30cXt+YziOKpnBp0rKQ/uvo0g6p62uFr7P4okDu4uVM6bhoPqs9p3C0ek562aWt+5njmOV8D/ohKHZeY9v83k0NySzVHH4b1h3PfoPac4vJ5p+dAcOI4MWfNA/Ghlky0tO8XhfbunMu6C1fOI/YqYAW+GrXd65olwWG5j731EOaz+9M6j1x5mcmRlPFoeo6rSu8w5qu7rX/PY2lpBHzPxWnw=
   </data>
  </layer>
- <layer id="5" name="Doors" width="50" height="50" locked="1">
+ <layer id="5" name="Doors" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJzt1rEJADAIBED33zGZJVkgTRBUuAP7Lx75CAAA+Lfu7eoQkECPAfqzOwCATLYFL7oBTDX1f03NDfR1AFlrC0E=
   </data>
