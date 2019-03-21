@@ -118,39 +118,27 @@ public class BasicEnemy extends AbstractEnemy{
 
         if(getHealth() > 40)
         {
-            int temp = rand.nextInt(4)+1; //rand.nextInt(size of list) + 1
-            switch (temp) {
-                case 1:
-                    system.assignMove("Attack", moveList.getMoveByKey("Attack"),false);
-                    break;
-                case 2:
-                    system.assignMove("Quick Attack", moveList.getMoveByKey("Quick Attack"), false);
-                    break;
-                case 3:
-                    system.assignMove("Shield Bash", moveList.getMoveByKey("Shield Bash"), false);
-                    break;
-                case 4:
-                    system.assignMove("Block", moveList.getMoveByKey("Block"),false);
-                    break;
-            }
+            int temp = rand.nextInt(100); //rand.nextInt(size of list) + 1
+            if(temp >= 0 && temp < 75)
+                system.assignMove("Shield Bash", moveList.getMoveByKey("Shield Bash"),false);
+            if(temp >= 75 && temp < 95)
+                system.assignMove("Block", moveList.getMoveByKey("Block"), false);
+            if(temp >= 95 && temp < 100)
+                system.assignMove("Attack", moveList.getMoveByKey("Attack"),false);
+
         }
         else
         {
-            int temp = rand.nextInt(4) + 1;
-            switch (temp){
-                case 1:
-                    system.assignMove("Block", moveList.getMovelist().get("Block"), false);
-                    break;
-                case 2:
-                    system.assignMove("Heal", moveList.getMovelist().get("Heal"),false);
-                    break;
-                case 3:
-                    system.assignMove("Patch Up", moveList.getMovelist().get("Patch Up"),false);
-                    break;
-                case 4:
-                    system.assignMove("Attack", moveList.getMovelist().get("Attack"),false);
-                    break;
-            }
+            int temp = rand.nextInt(100);
+            if(temp >= 0 && temp < 30)
+                system.assignMove("Block", moveList.getMovelist().get("Block"), false);
+            if(temp >= 30 && temp < 60)
+                system.assignMove("Wind Speed", moveList.getMovelist().get("Wind Speed"), false);
+            if(temp >= 60 && temp < 90)
+                system.assignMove("Heal", moveList.getMovelist().get("Heal"),false);
+            if(temp >= 90 && temp < 100)
+                system.assignMove("Quick Attack", moveList.getMovelist().get("Quick Attack"),false);
+
         }
     }
 }

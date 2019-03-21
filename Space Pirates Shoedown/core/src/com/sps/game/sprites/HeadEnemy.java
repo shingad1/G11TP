@@ -37,8 +37,9 @@ public class HeadEnemy extends AbstractEnemy {
         this.world = world;
         this.name = name;
         health = 100;
-        attack = 50;//to change
-        defence = 0;//to change
+        attack = 30;//to change
+        defence = 15;//to change
+        speed = 0;
 
         fightAnimation = new HashMap<String, EnemyAnimation>();
         fightAnimation.put("Idle",new EnemyAnimation(sb, this, "enemyIdle.atlas", 1/15f));
@@ -71,51 +72,32 @@ public class HeadEnemy extends AbstractEnemy {
     @Override
     public void battleMove(MoveList moveList) {
         Random rand = new Random();
-        if(getHealth() <= 30){
-            int temp = rand.nextInt(3)+1; //size of list
-            switch(temp){
-                case 1:
-                    system.assignMove("Shield Bash", moveList.getMovelist().get("Shield Bash"), false);
-                    break;
-                case 2:
-                    system.assignMove("Bravery", moveList.getMovelist().get("Bravery"),false);
-                    break;
-                case 3:
-                    system.assignMove("Heal", moveList.getMovelist().get("Heal"),false);
-                    break;
-                default:
-                    system.assignMove("Patch Up", moveList.getMovelist().get("Patch Up"), false);
-                    break;
-            }
-        }else if(getHealth() > 30 && getHealth() <=60) {
-            int temp = rand.nextInt(3)+1;
-            switch (temp) {
-                case 1:
-                    system.assignMove("Poison", moveList.getMovelist().get("Poison"), false);
-                    break;
-                case 2:
-                    system.assignMove("Weaken", moveList.getMovelist().get("Weaken"), false);
-                    break;
-                case 3:
-                    system.assignMove("Frighten", moveList.getMovelist().get("Frighten"), false);
-                    break;
-                default:
-                    system.assignMove("Block", moveList.getMovelist().get("Block"), false);
-                    break;
-            }
+        if(health >= 60){
+            int temp = rand.nextInt(100); //rand.nextInt(size of list) + 1
+            if(temp >= 0 && temp < 50)
+                system.assignMove("Attack", moveList.getMoveByKey("Attack"),false);
+            if(temp >= 50 && temp < 75)
+                system.assignMove("Shield Bash", moveList.getMoveByKey("Shield Bash"),false);
+            if(temp >= 75 && temp < 100)
+                system.assignMove("Block", moveList.getMoveByKey("Block"),false);
+        } else if(health >= 10){
+            int temp = rand.nextInt(100); //rand.nextInt(size of list) + 1
+            if(temp >= 0 && temp < 25)
+                system.assignMove("Shield Bash", moveList.getMoveByKey("Shield Bash"),false);
+            if(temp >= 25 && temp < 50)
+                system.assignMove("Block", moveList.getMoveByKey("Block"),false);
+            if(temp >= 50 && temp < 75)
+                system.assignMove("Wind Speed", moveList.getMoveByKey("Wind Speed"),false);
+            if(temp >= 75 && temp < 100)
+                system.assignMove("Quick Attack", moveList.getMoveByKey("Quick Attack"),false);
         } else {
-            int temp = rand.nextInt(5) + 1;
-            switch (temp){
-                case 1:
-                    system.assignMove("Block", moveList.getMovelist().get("Block"), false);
-                    break;
-                case 2:
-                    system.assignMove("Quick Attack", moveList.getMovelist().get("Quick Attack"), false);
-                    break;
-                default:
-                    system.assignMove("Attack", moveList.getMovelist().get("Attack"), false);
-                    break;
-            }
+            int temp = rand.nextInt(100); //rand.nextInt(size of list) + 1
+            if(temp >= 0 && temp < 33)
+                system.assignMove("Attack", moveList.getMoveByKey("Attack"),false);
+            if(temp >= 33 && temp < 66)
+                system.assignMove("Shield Bash", moveList.getMoveByKey("Shield Bash"),false);
+            if(temp >= 66 && temp < 100)
+                system.assignMove("Quick Attack", moveList.getMoveByKey("Quick Attack"),false);
         }
     }
     /**
