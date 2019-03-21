@@ -30,7 +30,7 @@ public class GameOverScreen implements Screen {
     /**
      * Holds a message that will de diplayed if the player defeats the final boss.
      */
-    private static final String WIN_MESSAGE = "Congratulations you have beaten the Space Pirates,\n and you've get everyone's shoe. Well Done!";
+    private static final String WIN_MESSAGE = "Congratulations you have beaten the Space Pirates,\n and you've get everyone's shoes back!";
     /**
      * Holds the stage that will be displayed, containing all the information to be displayed.
      */
@@ -52,7 +52,7 @@ public class GameOverScreen implements Screen {
 
         if(isAlive){
             message = new Label(WIN_MESSAGE, Utility.STATUSUI_SKIN);
-        } else{
+        } else {
             message = new Label(DEATH_MESSAGE, Utility.STATUSUI_SKIN);
         }
 

@@ -49,10 +49,14 @@ public class GraveyardScreen extends PlayScreen {
         currentMapState = selectedMap.getCurrentMapType();
         npc = new ArrayList<AbstractNPC>();
         npcController = new ArrayList<NPCController>();
-
+        oldState = MapFactory.MapType.GraveyardWorld1;
         npc.add(new InteractiveNPC(864,192,MapFactory.MapType.GraveyardWorld1, batch,"Gravewelcome"));
 
         allLocations = new ArrayList<Location>();
+        enemies = new ArrayList<AbstractEnemy>();
+        playerCombatPosition = new Location(768,1376);
+        enemyCombatPosition = new Location(896, 1376);
+        createEnemies(startNum);
         changeNpcLocations(selectedMap);
         p.setX(px);
         p.setY(py);

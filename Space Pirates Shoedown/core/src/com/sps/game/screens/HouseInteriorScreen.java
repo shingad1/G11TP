@@ -70,9 +70,13 @@ public class HouseInteriorScreen extends PlayScreen {
         } else if(currentMapState.equals(MapFactory.MapType.GraveyardWestInterior)){
             p.setX(800);
             p.setY(576);
+            playerCombatPosition = new Location(704,736);
+            enemyCombatPosition = new Location(896, 736);
         } else if(currentMapState.equals(MapFactory.MapType.GraveyardEastInterior)){
             p.setX(800);
             p.setY(576);
+            playerCombatPosition = new Location(704,736);
+            enemyCombatPosition = new Location(896, 736);
         }
 
         createEnemies(startNum);

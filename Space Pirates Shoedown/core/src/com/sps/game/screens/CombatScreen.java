@@ -223,17 +223,16 @@ public class CombatScreen implements Screen {
     private void returnScreen() {
         dispose();
         if (winHud.getFinished()) {
-            if(enemy instanceof HeadEnemy){
-                if(PlayScreen.oldState.equals(MapFactory.MapType.HomeWorldMap2)){
+            if(enemy instanceof HeadEnemy) {
+                if (PlayScreen.oldState.equals(MapFactory.MapType.HomeWorldMap2)) {
                     PlayScreen.flags[0] = true;
-                } else if(PlayScreen.oldState.equals(MapFactory.MapType.CandyWorld2)){
+                } else if (PlayScreen.oldState.equals(MapFactory.MapType.CandyWorld2)) {
                     PlayScreen.flags[1] = true;
-                } else if(PlayScreen.oldState.equals(MapFactory.MapType.TropicalWorld2)){
+                } else if (PlayScreen.oldState.equals(MapFactory.MapType.TropicalWorld2)) {
                     PlayScreen.flags[2] = true;
-                } else if(PlayScreen.currentMapState.equals(MapFactory.MapType.GraveyardNorth)){
-                    if(enemy.getHealth() <= 0){
-                        game.setScreen(new GameOverScreen(game, true));
-                    }
+                } else if (PlayScreen.currentMapState.equals(MapFactory.MapType.GraveyardWorld1)) {
+                    dispose();
+                    game.setScreen(new CreditsScreen(game));
                 }
             }
             playScreen.combatExit();

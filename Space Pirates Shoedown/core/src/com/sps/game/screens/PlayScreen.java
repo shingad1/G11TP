@@ -411,6 +411,11 @@ public abstract class PlayScreen implements Screen {
      */
     @Override
     public void dispose() {
+        /*if(!npc.isEmpty()){
+            for(AbstractNPC npc : npc){
+                npc.getAnimation().dispose();
+            }
+        }*/
        currentMap.dispose();
        music.dispose();
     }
