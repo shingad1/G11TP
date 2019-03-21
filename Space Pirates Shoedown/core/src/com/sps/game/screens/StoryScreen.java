@@ -64,7 +64,6 @@ public class StoryScreen implements Screen {
     public void formatting() {
         table = new Table();
         stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
         image = new Image(tutorialTexture[counter]);
         table.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         table.align(Align.center);
@@ -89,7 +88,6 @@ public class StoryScreen implements Screen {
         nextButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("logged click");
                 buttonLogged = "next";
                 clickFunction();
                 event.stop();
@@ -103,6 +101,8 @@ public class StoryScreen implements Screen {
         table.add(nextButton).size(150, 50).align(Align.bottomRight);
 
         stage.addActor(table);
+
+        Gdx.input.setInputProcessor(stage);
     }
 
     public void handleInput() throws IOException {
@@ -158,8 +158,9 @@ public class StoryScreen implements Screen {
 
     private void imageChanger(){
         table.clearChildren();
+        table.reset();
+
         image = new Image(tutorialTexture[counter]);
-        System.out.println("log");
         image.setSize(table.getWidth(), table.getHeight());
 
         table.add(image);
