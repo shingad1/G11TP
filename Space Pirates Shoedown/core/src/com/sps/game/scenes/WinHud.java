@@ -203,9 +203,7 @@ public class WinHud {
      */
     public void clickFunction() {
         if (buttonClicked.equals("ok")) {
-            System.out.println("Ok clicked");
             inventoryController.addToInventory(inventoryController.findItem(nearbyItem.getName()));
-            //player.increaseGold(goldValue);
             Gdx.input.setInputProcessor(oldInput);
             stage.dispose();
             oldInput = null;
